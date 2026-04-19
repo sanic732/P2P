@@ -162,14 +162,14 @@ Edit `.claude/skills/p2p/p2p.config.md` once to set your project card, language,
 
 | Agent | Role | Best for |
 |-------|------|----------|
-| **TECTON** | System Architect | System prompts, XML structures, modular design |
-| **IRIS** | Strategic Advisor | Strategy, UX, writing tasks, planning |
-| **FORGE** | Code Specialist | Code generation, bug fixes, agentic workflows |
-| **AXIOM** | Logical Engineer | Verification, comparison, quality assessment |
-| **VECTOR** | Red Teamer | Security, noise filtering, fabrication detection |
-| **DATOS** | Research Specialist | Fact-finding, deep search, source verification |
-| **ARCHITECTON** | Structure Optimizer | Prompt structure, technique placement |
-| **QUORUM** | Council | Complex tasks, conflicting recommendations, Tier 3+ |
+| 🟢 **TECTON** | System Architect | System prompts, XML structures, modular design |
+| 🟣 **IRIS** | Strategic Advisor | Strategy, UX, writing tasks, planning |
+| ⚫ **FORGE** | Code Specialist | Code generation, bug fixes, agentic workflows |
+| 🟡 **AXIOM** | Logical Engineer | Verification, comparison, quality assessment |
+| 🟠 **VECTOR** | Red Teamer | Security, noise filtering, fabrication detection |
+| 🟤 **DATOS** | Research Specialist | Fact-finding, deep search, source verification |
+| 🔵 **ARCHITECTON** | Structure Optimizer | Prompt structure, technique placement |
+| 🏛️ **QUORUM** | Council | Complex tasks, conflicting recommendations, Tier 3+ |
 
 In Claude Code / Cowork each agent is also a native sub-agent — Claude delegates to them via the Agent tool.
 
