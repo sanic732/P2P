@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "_comment": "P2P v1.1 -- safe defaults for Claude Code / Cowork. Review before enabling hooks.",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Edit",
+      "Write(.claude/state/**)",
+      "Write(docs/**)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(cp:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(git push:*)",
+      "Bash(git push --force:*)",
+      "Bash(curl:*)",
+      "Write(/etc/**)",
+      "Write(~/.ssh/**)"
+    ],
+    "ask": [
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Write(.claude/skills/p2p/**)"
+    ]
+  },
+  "hooks": {
+    "_comment_hooks": "Hooks are OPT-IN. Set _disabled to false to activate.",
+    "PostToolUse": [
+      {
+        "_disabled": true,
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[P2P] Anti-pattern scan recommended. Run: /p2p-feedback'"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "_disabled": true,
+        "_purpose": "Auto-load p2p.config.md context on first message",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f .claude/skills/p2p/p2p.config.md && echo '[P2P] config loaded'"
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "P2P_VERSION": "1.1",
+    "P2P_HOST": "claude",
+    "P2P_LIVE_SPECS_OVERRIDE": "true",
+    "P2P_CORTEX_BUILTIN": "true"
+  }
+}
