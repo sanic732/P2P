@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "p2p-v8c2",
+  "displayName": "P2P v8C.2 — Claude Edition",
+  "version": "8.2.0",
+  "description": "Meta-prompt system for Claude Opus 4.7 / Sonnet 4.6. 8 QUORUM agents, 11 /p2p-* commands, XML-native, SCOPE.HELM, interactive teacher mode.",
+  "author": {
+    "name": "P2P Project",
+    "email": "sanic732@protonmail.com"
+  },
+  "keywords": [
+    "prompt-engineering",
+    "meta-prompt",
+    "quorum",
+    "multi-agent",
+    "claude-native",
+    "xml-native",
+    "scope-helm",
+    "teacher"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanic732/P2P-4PDA-edition.git"
+  },
+  "commands": "./.claude/commands",
+  "agents": "./.claude/agents",
+  "skills": "./.claude/skills",
+  "settings": "./.claude/settings.json",
+  "engines": {
+    "claude-code": ">=1.0.0",
+    "cowork": ">=0.1.0"
+  },
+  "compatibility": {
+    "platforms": ["claude-code", "cowork", "claude-app"],
+    "models": [
+      "claude-opus-4-7",
+      "claude-sonnet-4-6",
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-6"
+    ]
+  }
+}

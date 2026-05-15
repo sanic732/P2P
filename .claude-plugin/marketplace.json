@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "p2p",
+  "displayName": "P2P Marketplace — 4PDA Edition",
+  "description": "Official P2P meta-prompt system marketplace (Claude Native Edition, mirror published for 4PDA community)",
+  "owner": {
+    "name": "sanic732",
+    "email": "sanic732@protonmail.com"
+  },
+  "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanic732/P2P-4PDA-edition.git"
+  },
+  "plugins": [
+    {
+      "name": "p2p-v8c2",
+      "source": "./cowork + code",
+      "description": "P2P v8C.2 Claude Edition — full meta-prompt system with interactive teacher mode (8 QUORUM agents, 11 commands, XML-native, SCOPE.HELM)",
+      "tags": ["latest", "stable", "claude-native"],
+      "version": "8.2.0"
+    }
+  ]
+}
