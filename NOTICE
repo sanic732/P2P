@@ -1,0 +1,77 @@
+P2P v8C.2 — Claude Native Edition
+Copyright (c) 2026 sanic732 / P2P Project
+Licensed under the MIT License (see LICENSE).
+
+================================================================================
+Third-party attributions
+================================================================================
+
+P2P is an independently authored prompt-engineering meta-system. It does not
+bundle, redistribute, or fork the source code of the projects listed below.
+However, parts of P2P's philosophy and one of its operating modes were directly
+inspired by external work and the authors are credited here in good faith.
+
+--------------------------------------------------------------------------------
+1. Andrej Karpathy — prompting philosophy
+--------------------------------------------------------------------------------
+P2P's "Template M" (also surfaced as the `/p2p-karpathy` command and the
+`p2p-karpathy` skill, "Karpathy Mode") was inspired by Andrej Karpathy's
+public observations on LLM coding pitfalls and minimalist prompting:
+
+  - "The models make wrong assumptions on your behalf and just run along with
+     them without checking. They don't manage their confusion, don't seek
+     clarifications, don't surface inconsistencies, don't present tradeoffs,
+     don't push back when they should."
+  - "They really like to overcomplicate code and APIs, bloat abstractions..."
+  - "Best prompt — no prompt, only clean context."
+
+Source post: https://x.com/karpathy/status/2015883857489522876 (and adjacent
+threads on @karpathy's X account).
+
+Andrej Karpathy is credited as the originator of the underlying philosophy.
+P2P's implementation (Template M, PRE_CODE_DECLARATION, surgical-change rules
+inside `.claude/skills/p2p-karpathy/`) is independently authored. No source
+code from Andrej Karpathy is bundled in this repository.
+
+--------------------------------------------------------------------------------
+2. multica-ai / andrej-karpathy-skills — reference implementation
+--------------------------------------------------------------------------------
+The Karpathy-Inspired Claude Code Guidelines repository at
+
+   https://github.com/multica-ai/andrej-karpathy-skills
+   (formerly: forrestchang/andrej-karpathy-skills)
+
+is acknowledged as a prior public reference implementation of the same
+philosophy. P2P's Karpathy Mode was authored independently and does not copy
+files, prose, or skill manifests from that repository.
+
+License status (verified 2026-05-15 via GitHub API):
+  - SPDX:    none (no LICENSE file in the repository at the time of writing)
+  - License: not declared
+
+Because that repository does not currently carry a redistribution license,
+P2P deliberately does NOT vendor or copy any of its files. Only public-domain
+philosophical ideas (which are not copyrightable) are echoed. If the upstream
+project later declares a license, this NOTICE may be updated to reflect it.
+
+Maintainer attribution: Jiayuan / multica-ai (X: @jiayuan_jy).
+
+--------------------------------------------------------------------------------
+3. Anthropic — Claude Code and Anthropic SDK
+--------------------------------------------------------------------------------
+P2P targets Claude (Opus 4.7, Sonnet 4.6, Haiku 4.5, Opus 4.6) and Claude Code
+as host platforms. Claude and Claude Code are products of Anthropic, PBC. P2P
+does not bundle or redistribute Anthropic's software; it only emits prompts,
+plugin manifests, and skill files designed to run inside Anthropic-controlled
+environments.
+
+--------------------------------------------------------------------------------
+4. 4PDA community
+--------------------------------------------------------------------------------
+P2P evolved from v1 to v8 driven by feedback, bug reports, and use cases
+contributed by the 4PDA forum community in topic
+https://4pda.to/forum/index.php?showtopic=1109539 . Their reports are credited
+collectively across CHANGELOG.md.
+
+================================================================================
+End of NOTICE.
