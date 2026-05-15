@@ -101,7 +101,7 @@ P2P-4PDA-edition/
 
 P2P-система читает **Live Specs** из `_live/` (Chat-ветка) и `vendors/` (Code-ветка). Эти файлы поставляются в момент релиза по состоянию на дату сборки, но **актуальные дельты публикуются вне релизного цикла** на форуме:
 
-→ **[Актуальные Live Specs от 12.05.2026](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142685423)** (Grok migration 15.05, Gemini G13 worsened, Claude thinking API breaking, DeepSeek promo cutoff)
+→ **[Актуальные Live Specs от 12.05.2026](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143350511)** (Grok migration 15.05, Gemini G13 worsened, Claude thinking API breaking, DeepSeek promo cutoff)
 
 Подпишитесь на ветку — получите уведомление о следующем обновлении.
 
