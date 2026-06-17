@@ -1,14 +1,14 @@
 ---
 source_id: LIVE_CORE_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: live
 depends_on: _live/MANIFEST.md
-last_updated: 2026-05-02
-scope: P2P v8C.1 live session state — current session tracking, active project, ATLAS state placeholder, routing memory state.
+last_updated: 2026-06-12
+scope: P2P v8C.3 live session state — current session tracking, active project, ATLAS state placeholder, routing memory state.
 tags: live, session-state, atlas, routing-memory, core
 ---
 
-# P2P v8C.1 — LIVE CORE (_live/live_core.md)
+# P2P v8C.3-ALPHA — LIVE CORE (_live/live_core.md)
 
 > Сбрасывается при каждой новой сессии. Заполняется автоматически по мере работы.
 
@@ -21,7 +21,7 @@ session_id: ""           # Заполняется при старте
 started_at: ""           # ISO timestamp
 environment: ""          # Code / API / Projects / Chat
 project_card_loaded: false
-live_specs_version: "v8C.1-20260502"
+live_specs_version: "v8C.3-20260502"
 
 # Метрики
 prompts_total: 0
@@ -94,9 +94,21 @@ temperature: null              # null при thinking=enabled
 VERSION_METADATA
 ========================================
 id: LIVE_CORE_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
+// ═══════════════════════════════════════════════════════
+// [V8.5 OVERRIDE — 2026-06-17] источник истины: vendors/live_specs_20260617.md (перебивает при конфликте)
+// ═══════════════════════════════════════════════════════
+V85_OVERRIDE:
+  Claude: PRIMARY=opus-4-8 ($5/$25, 1M ctx, out 128K/300K batch, effort high default low|med|high|xhigh|max).
+  Fable5: $10/$50 1M, Arena #1 Agent/Text/WebDev — SUSPENDED globally 12.06 (export controls) → fallback opus-4-8.
+  opus-4-6: пин >500K recall (MRCR 78.3%); токенизатор эффективнее 4.7/4.8.
+  legacy_retire: COMPLETED — claude-*-4-20250514 → HTTP 404.
+  G6 tokenizer inflation: UNRESOLVED (+10-35%) → pin 4.6 cost-sensitive.
+  thinking: ТОЛЬКО {"type":"adaptive"}; budget_tokens removed; G7 нет temperature/top_p/top_k.
+  cache_ttl: Claude Code 1h→5min → ephemeral на префикс.
+  deadlines: 2026-06-25 Gemini Nano Banana preview shutdown; 2026-07-24 deepseek-chat/reasoner → 404.

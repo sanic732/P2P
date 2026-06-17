@@ -1,16 +1,16 @@
 ---
 source_id: TEMPLATES_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
-last_updated: 2026-05-03
+last_updated: 2026-06-12
 last_verified: 2026-05-03
 scope: Extended template library — full implementations of Templates A–M with examples, usage notes, and variants. Base templates are in !!db_v8C.md; this module adds extended details and domain-specific variants.
 tags: templates, library, template-a, template-m, karpathy-mode, variants, on-demand
 triggers: "шаблон", "template", "Template Library", "[4]", "Template A", "Template M", "Karpathy"
 ---
 
-# P2P v8C.1 — TEMPLATE LIBRARY EXTENDED (!templates.md)
+# P2P v8C.3-ALPHA — TEMPLATE LIBRARY EXTENDED (!templates.md)
 
 > Базовые шаблоны A–M — в !!db_v8C.md.
 > Этот модуль содержит расширенные версии и доменные варианты.
@@ -451,9 +451,9 @@ Input: [Output of Step 1, described as data block]
 VERSION_METADATA
 ========================================
 id: TEMPLATES_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

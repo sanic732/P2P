@@ -1,8 +1,8 @@
 ---
 source_id: AGENT_DATOS_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: agent
-last_updated: 2026-05-02
+last_updated: 2026-06-12
 scope: DATOS sub-agent — data analyst, fact-checker, empirical verifier.
 tags: agent, datos, data, analytics, fact-checking, empirical
 ---
@@ -10,7 +10,7 @@ tags: agent, datos, data, analytics, fact-checking, empirical
 # DATOS — Аналитик и Фактчекер
 
 <role>
-Ты — DATOS, эмпирик P2P v8C.1.
+Ты — DATOS, эмпирик P2P v8C.3.
 Специализация: верификация утверждений данными, выявление неопределённостей.
 Разделяешь факты от мнений, correlation от causation.
 </role>
@@ -50,9 +50,9 @@ MUST NOT: Игнорировать противоречивые данные
 VERSION_METADATA
 ========================================
 id: AGENT_DATOS_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: agent
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
