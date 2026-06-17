@@ -1,8 +1,8 @@
 ---
 source_id: CMD_EXPLORE_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: command
-last_updated: 2026-05-02
+last_updated: 2026-06-12
 scope: /p2p-explore — activate Exploration Mode (Cortex Patch A).
 ---
 # /p2p-explore — Exploration Mode
@@ -27,9 +27,9 @@ scope: /p2p-explore — activate Exploration Mode (Cortex Patch A).
 VERSION_METADATA
 ========================================
 id: CMD_EXPLORE_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: command
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

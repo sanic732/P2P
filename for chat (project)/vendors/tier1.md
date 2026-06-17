@@ -1,13 +1,13 @@
 ---
 source_id: TIER1_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: vendor
-last_updated: 2026-05-02
+last_updated: 2026-06-12
 scope: Tier 1 budget models — DeepSeek V4-Flash, Qwen 3.6-Plus, Kimi K2.x. For T0-2 high-volume or cost-sensitive tasks.
 tags: vendor, tier1, deepseek, qwen, kimi, budget, on-demand
 ---
 
-# P2P v8C.1 — VENDORS TIER 1 (Budget)
+# P2P v8C.3-ALPHA — VENDORS TIER 1 (Budget)
 
 ## DeepSeek V4-Flash
 API: `deepseek-v4-flash` (НЕ deepseek-chat — DEADLINE 2026-07-24)
@@ -39,9 +39,9 @@ Fix G20: >40 agents → PARL async + webhooks
 VERSION_METADATA
 ========================================
 id: TIER1_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: vendor
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

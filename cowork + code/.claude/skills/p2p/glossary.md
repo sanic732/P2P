@@ -1,13 +1,13 @@
 ---
 source_id: GLOSSARY_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: meta
-last_updated: 2026-05-02
-scope: P2P v8C.1 glossary — all terms, acronyms, G-errors quick reference, agent names.
+last_updated: 2026-06-12
+scope: P2P v8C.3 glossary — all terms, acronyms, G-errors quick reference, agent names.
 tags: glossary, terms, definitions, g-errors-reference, v8c
 ---
 
-# P2P v8C.1 — ГЛОССАРИЙ (_glossary.md)
+# P2P v8C.3-ALPHA — ГЛОССАРИЙ (_glossary.md)
 
 ---
 
@@ -23,7 +23,7 @@ tags: glossary, terms, definitions, g-errors-reference, v8c
 
 **Contract** — промпт, построенный по 9-step алгоритму с MUST/MUST NOT парами.
 
-**Cortex Patch A** — расширение для дивергентного мышления (Exploration Mode). В v8C.1 встроен.
+**Cortex Patch A** — расширение для дивергентного мышления (Exploration Mode). В v8C.3 встроен.
 
 **DEEP_THINK_VALUE_GATE** — 3 вопроса перед активацией Extended Thinking. 2/3 да → включить.
 
@@ -126,9 +126,9 @@ tags: glossary, terms, definitions, g-errors-reference, v8c
 VERSION_METADATA
 ========================================
 id: GLOSSARY_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: meta
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

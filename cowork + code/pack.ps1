@@ -1,9 +1,9 @@
-# pack.ps1 — Упаковка P2P v8C.2 в .plugin файл для one-click импорта
+# pack.ps1 — Упаковка P2P v8C.3-ALPHA в .plugin файл для one-click импорта
 # Usage: powershell -ExecutionPolicy Bypass -File pack.ps1 [output_name]
-# Default output: p2p-v8c2.plugin
+# Default output: p2p-v8c3.plugin
 
 param(
-    [string]$OutputName = "p2p-v8c2.plugin"
+    [string]$OutputName = "p2p-v8c3.plugin"
 )
 
 $ErrorActionPreference = "Stop"
@@ -11,7 +11,7 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $OutputPath = Join-Path (Split-Path -Parent $ScriptDir) $OutputName
 
 Write-Host "═══════════════════════════════════════════════════════════"
-Write-Host "  P2P v8C.2 PACKAGING SCRIPT (PowerShell)"
+Write-Host "  P2P v8C.3-ALPHA PACKAGING SCRIPT (PowerShell)"
 Write-Host "═══════════════════════════════════════════════════════════"
 Write-Host "  Source:  $ScriptDir"
 Write-Host "  Output:  $OutputPath"
@@ -36,7 +36,7 @@ try {
 if (Test-Path $OutputPath) { Remove-Item $OutputPath -Force }
 
 # Build temporary staging directory excluding pack scripts and .plugin files
-$TempDir = Join-Path $env:TEMP "p2p-v8c2-pack-$(Get-Random)"
+$TempDir = Join-Path $env:TEMP "p2p-v8c3-pack-$(Get-Random)"
 New-Item -ItemType Directory -Path $TempDir | Out-Null
 
 try {

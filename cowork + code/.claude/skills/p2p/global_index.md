@@ -1,15 +1,15 @@
 ---
 source_id: INDEX_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 module_type: meta
-last_updated: 2026-05-14
-last_verified: 2026-05-14
-scope: P2P v8C.2 master index — all files, load order, tags, module types.
+last_updated: 2026-06-12
+last_verified: 2026-06-12
+scope: P2P v8C.3 master index — all files, load order, tags, module types.
 tags: index, navigation, load-order, v8c, teacher, plugin
 changelog: 2026-05-14 — v8C.2 BUMP; +!teacher.md ON-DEMAND; +/p2p-teacher command; +.claude-plugin/ manifests; +.claude/skills/p2p-teacher/
 ---
 
-# P2P v8C.2 — МАСТЕР ИНДЕКС (_index.md)
+# P2P v8C.3-ALPHA — МАСТЕР ИНДЕКС (_index.md)
 
 ---
 
@@ -52,6 +52,15 @@ v8C.2/
 │   ├── !sandbox.md            User Editable Sandbox (port from v7C.2)
 │   └── !teacher.md            [v8C.2 NEW] Curriculum 5 уровней + Q&A + cheatsheet
 │
+├── ON-DEMAND v8C.3 (по VERSION_COMPAT, меню [35-40]):
+│   ├── rag.md                 [v8C.3] RAG / RAPTOR / векторный поиск
+│   ├── reasoning.md           [v8C.3] CoT / Self-Consistency / MCTS / TTS
+│   ├── routing.md             [v8C.3] Выбор модели + effort (advisor)
+│   ├── compression.md         [v8C.3] LLMLingua / Gist Tokens
+│   ├── security.md            [v8C.3] Аудит промптов / injection defense
+│   ├── optimization.md        [v8C.3] APO / OPRO / автооптимизация
+│   └── art.md                 [v8C.3] OPTIONAL ASCII-баннеры режимов (eye-candy)
+│
 ├── VENDORS (on-demand по задаче):
 │   ├── vendors/tier1.md       DeepSeek V4-Flash, Qwen 3.6, Kimi K2.x
 │   ├── vendors/tier2.md       Claude Sonnet 4.6, Gemini Flash
@@ -71,7 +80,7 @@ v8C.2/
 │       └── SKILL.md           Teacher skill metadata (Cowork triggers)
 │
 ├── _master.md                 Полная сборка для API (один файл)
-├── _glossary.md               Глоссарий терминов P2P v8C.2
+├── _glossary.md               Глоссарий терминов P2P v8C.3
 │
 ├── docs/
 │   ├── ИНДЕКС.md              Навигация по документации
@@ -152,9 +161,9 @@ _preloader.md + !!core_v8C.md + !!db_v8C.md + _live/*
 VERSION_METADATA
 ========================================
 id: INDEX_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 type: meta
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-14
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

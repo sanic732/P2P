@@ -1,11 +1,11 @@
 ---
 source_id: INTENT_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
-last_updated: 2026-05-03
+last_updated: 2026-06-12
 last_verified: 2026-05-03
-scope: Deep intent analysis, anti-pattern detection, tool routing — port of v7C.2 !intent_engine.md adapted to v8C.1.
+scope: Deep intent analysis, anti-pattern detection, tool routing — port of v7C.2 !intent_engine.md adapted to v8C.3.
 tags: intent, anti-patterns, tool-routing, 9D, primacy, recency, memory-block, fabrication
 triggers: "intent", "9D", "anti-pattern", "tool routing", "REASONING LLM", "THINKING LLM", "primacy", "recency", "30/55/15", "fabrication"
 ---
@@ -35,9 +35,14 @@ Silently extract these 9 dimensions before generating any prompt.
 
 Rules:
 - Extract silently, do not narrate.
-- If dimensions 1-3 missing → ask (counts toward 3-question limit).
+- If dimensions 1-3 missing → ask (counts toward question limit).
 - If 4-9 inferable from context → infer, do not ask.
-- Never ask >3 clarifying questions before producing a prompt.
+- Question limit is PILOT-aware (see pilot_mode in !!core_v8C.md):
+    CO-PILOT (beginner): up to 5 questions, offered via INTERACTIVE_CHOICE [1]/[2]/[3];
+      goal — surface WHAT the user wants before building; clarify intent over form; plain language, no LLM jargon.
+    AUTO-PILOT (intermediate): up to 3 questions (default behavior).
+    MANUAL (expert): max 1 question, prefer inference; never interrupt flow.
+- Sandbox PERSONA_HINT overrides the above for the session if present.
 
 PROJECT_CARD integration: if loaded in `!!core_v8C.md`, auto-fill dim 6 (stack), 4 (constraints), 7 (audience), and expand glossary terms across all dimensions.
 
@@ -59,6 +64,26 @@ PROJECT_CARD integration: if loaded in `!!core_v8C.md`, auto-fill dim 6 (stack),
 | 10 | VOICE AI (ElevenLabs/Suno/Udio) | Emotion + pacing + emphasis markers + speech rate (parameters, not prose) | see `!visual.md` §3 |
 | 11 | WORKFLOW AI (Zapier/Make/n8n) | Trigger app + event → action app + field mapping. Auth noted explicitly | Multi-step Plan |
 | 12 | UNKNOWN TOOL | Ask 4 questions: format / system-instr support / common failure / stateful? Then route to closest match | derive |
+
+---
+
+## §2.5 v8C.3 MODULE HANDOFF (added 2026-06-14 — wires v8C.3 modules into routing)
+
+When intent signals one of these needs AND the module is loaded (or v8C3=on), hand off:
+
+| Intent signal | Hand off to | Module |
+|---------------|-------------|--------|
+| retrieval / "по базе" / большой корпус документов / RAPTOR | RAG techniques | !rag.md |
+| глубокое многошаговое рассуждение / math / "подумай глубже" / self-check | reasoning chains (SC/MCTS) | !reasoning.md |
+| "какую модель" / cost vs quality / выбор модели+effort | model+effort advice | !routing.md |
+| переполнение контекста / "слишком длинно" / token budget | compression | !compression.md |
+| аудит безопасности / injection / jailbreak / защита промпта | security scan | !security.md |
+| "улучши промпт" / auto-tune / итеративное улучшение | optimization (APO/OPRO) | !optimization.md |
+
+Rule: handoff is advisory under PILOT co-pilot (offer via INTERACTIVE_CHOICE), automatic under manual.
+If module not loaded AND v8C3=off → mention it exists, do not force-load.
+Also: after Contract Builder produces a prompt → consider !routing.md for model/effort advice
+(Chain Orchestrator RESEARCH_DRAFT_REVIEW pattern: cheap model plans, strong model executes).
 
 ---
 
@@ -200,7 +225,7 @@ Run before every prompt output. Fix silently; flag only if fix changes intent.
 VERSION_METADATA
 ========================================
 id: INTENT_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-05-03

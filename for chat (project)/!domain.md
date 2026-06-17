@@ -1,16 +1,16 @@
 ---
 source_id: DOMAIN_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md
-last_updated: 2026-05-03
+last_updated: 2026-06-12
 last_verified: 2026-05-03
 scope: Domain Knowledge — management protocol + built-in React 19 / TypeScript and Kotlin / Coroutines / KMP reference libraries (ported from v7C.2). Replaces separate !domain_react.md and !domain_kotlin.md.
 tags: domain, knowledge, context, react, typescript, frontend, kotlin, jvm, android, coroutines, multiplatform, on-demand
 triggers: "домен", "контекст проекта", "domain knowledge", "[16]", "добавить знания", "react", "react 19", "JSX", "hooks", "useEffect", "useState", "TanStack", "Zustand", "Suspense", "RSC", "tsx", "frontend", "kotlin", "ktx", "coroutine", "Flow", "StateFlow", "sealed class", "data class", "suspend", "KMP", "multiplatform", "android"
 ---
 
-# P2P v8C.1 — DOMAIN KNOWLEDGE (!domain.md)
+# P2P v8C.3-ALPHA — DOMAIN KNOWLEDGE (!domain.md)
 
 ---
 
@@ -107,7 +107,7 @@ DOMAIN CONTEXT:
 
 ## ORCHESTRATOR DIRECTIVE
 
-> [CRITICAL]: P2P v8C.1 использует данные ниже как reference для построения промптов.
+> [CRITICAL]: P2P v8C.3 использует данные ниже как reference для построения промптов.
 > НЕ адаптируй эти черты сам — инжектируй релевантный subset в генерируемый промпт.
 > Данные React и Kotlin — syntax reference для frontend, backend и mobile задач.
 
@@ -440,7 +440,7 @@ inline functions, avoiding reflection, Kotlin-specific profilers (YourKit, async
 VERSION_METADATA
 ========================================
 id: DOMAIN_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-05-03

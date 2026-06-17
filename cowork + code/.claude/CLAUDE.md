@@ -1,61 +1,58 @@
-# CLAUDE.md — P2P v8C.2 Claude Edition
+# CLAUDE.md — P2P v8C.3-ALPHA Claude Edition
 
-> Локальные правила для репо v8C.2. Действует в пределах этой папки.
+> Local rules for the v8C.3 repo. Applies within this folder.
 
-## Контекст
-P2P v8C.2 — Claude Edition мета-промпт системы P2P v8.
-Оптимизирован для Claude Opus 4.7 / Sonnet 4.6.
-XML-native, TRI_MODE_BRIDGE v3, QUORUM 8 агентов, интерактивный teacher mode.
+## Context
+P2P v8C.3-ALPHA — Claude Edition meta-prompt system.
+Optimized for Claude Fable 5 / Claude Opus 4.8 / Sonnet 4.6.
+XML-native, TRI_MODE_BRIDGE v3, QUORUM 8 agents, interactive teacher mode, VERSION_COMPAT.
 
-## Обязательные правила
+## Mandatory rules
 
-1. **Перед любым изменением** — прочитать изменяемый файл целиком
-2. **API strings** — только актуальные: `claude-opus-4-7`, `claude-sonnet-4-6`
-3. **НИКОГДА** не передавать temperature при thinking=enabled (G7)
-4. **НИКОГДА** не использовать budget_tokens (удалён из API)
-5. **DEADLINE 2026-06-15** — удалить все упоминания `claude-*-4-20250514`
-6. **Версионирование** — каждое изменение = bump + запись в CHANGELOG.md
+1. **Before any change** — read the target file in full
+2. **API strings** — only current: `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-4-6`
+3. **NEVER** pass temperature when thinking=enabled (G7 → HTTP 400)
+4. **NEVER** use budget_tokens (removed from API)
+5. **DEADLINE 2026-06-15** — remove all mentions of `claude-*-4-20250514` (HTTP 400/404)
+6. **DEADLINE 2026-07-24** — remove `deepseek-chat` / `deepseek-reasoner` aliases
+7. **Versioning** — every change = bump + entry in CHANGELOG
 
-## Архитектурные инварианты
+## Architectural invariants
 
-1. XML-native для Claude — не убирать теги ради "простоты"
-2. Modular loading (BASE/LIVE/ON-DEMAND) — не монолит
-3. YAML frontmatter на всех файлах
-4. Тесты: 3 кейса (простой/средний/adversarial) перед коммитом
-5. **v8C.2 NEW:** plugin manifest `.claude-plugin/plugin.json` синхронизирован с версией системы
+1. XML-native for Claude — do not remove tags for "simplicity"
+2. Modular loading (BASE/LIVE/ON-DEMAND) — never monolith
+3. YAML frontmatter on all files
+4. File language: English for instructions; comments bilingual (RU+EN)
+5. Tests: 3 cases (simple/medium/adversarial) before commit
+6. Plugin manifest `.claude-plugin/plugin.json` synced with system version
 
-## Структура
+## Structure
 
 ```
-v8C.2/
-├── .claude-plugin/             ← NEW: plugin/marketplace manifests
+v8C.3-cowork-code/
+├── .claude-plugin/             ← plugin/marketplace manifests
 │   ├── plugin.json
 │   └── marketplace.json
 ├── .claude/
-│   ├── agents/                 ← 8 sub-agent файлов
-│   ├── commands/               ← 11 /p2p-* команд (+ p2p-teacher)
+│   ├── agents/                 ← 8 sub-agent files
+│   ├── commands/               ← 11 /p2p-* commands (+ p2p-teacher)
 │   ├── skills/
-│   │   ├── p2p/                ← основной skill manifest
-│   │   └── p2p-teacher/        ← NEW: teacher skill
+│   │   ├── p2p/                ← main skill manifest + all core files
+│   │   └── p2p-teacher/        ← teacher skill
 │   ├── settings.json
-│   └── CLAUDE.md               ← этот файл
-├── !!core_v8C.md              ← BASE: всегда загружается
-├── !!db_v8C.md                ← BASE: всегда загружается
-├── _preloader.md              ← BASE: загружается первым
-├── _live/                     ← LIVE: 4 файла
-├── !*.md                      ← ON-DEMAND: по триггеру (вкл. !teacher.md)
-├── vendors/                   ← ON-DEMAND: tier1-4
-├── docs/                      ← Документация (вкл. INSTALL_GUIDE.md, TEACHER_GUIDE.md)
-├── pack.sh / pack.ps1         ← NEW: упаковка в .plugin
-├── INSTALL.md                 ← NEW: TL;DR установки
-├── README.md
-└── docs/CHANGELOG.md
+│   └── CLAUDE.md               ← this file
+├── INSTALL.md                  ← Quick start TL;DR
+├── pack.sh / pack.ps1          ← packaging scripts
+└── README.md
 ```
 
-## v8C.2 что нового vs v8C.1
+## v8C.3 new vs v8C.2
 
-- Plugin manifest для one-click import (Claude Code + Cowork)
-- `/p2p-teacher` команда + skill + curriculum (!teacher.md, 5 уровней)
-- Packaging scripts (pack.sh / pack.ps1) для .plugin сборки
-- INSTALL.md + docs/INSTALL_GUIDE.md (5 методов установки)
-- docs/TEACHER_GUIDE.md
+- Claude Fable 5 added as T4 FULL+ model (Arena #1 Agent; `claude-fable-5`)
+- VERSION_COMPAT system: v8C2/v8C3 on/off + 6 MODULE flags
+- CONFLICT_RESOLVER v1.0: activates when both v8C2 and v8C3 are on
+- Dynamic menu [35-40]: items shown only when corresponding module is loaded
+- 6 new ON-DEMAND modules: !rag, !reasoning, !routing, !compression, !security, !optimization
+- STARTUP_LOGO: ASCII P2P art on /start
+- Language: all .md files in English; output defaults to Russian (changeable via /lang)
+- Live specs: live_specs_20260617.md (v8.4, 10 vendors, Fable 5 added)

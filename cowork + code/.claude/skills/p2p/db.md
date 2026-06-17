@@ -1,14 +1,14 @@
 ---
 source_id: DB_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: base
 depends_on: !!core_v8C.md
-last_updated: 2026-05-02
-scope: P2P v8C.1 knowledge base — G-errors G1-G20, Extended Thinking rules, Claude-specific patterns, Template Library A–M, QUORUM agent definitions, 9-step algorithm. Always loaded.
+last_updated: 2026-06-12
+scope: P2P v8C.3 knowledge base — G-errors G1-G20, Extended Thinking rules, Claude-specific patterns, Template Library A–M, QUORUM agent definitions, 9-step algorithm. Always loaded.
 tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c
 ---
 
-# P2P v8C.1 — БАЗА ЗНАНИЙ (!!db_v8C.md)
+# P2P v8C.3-ALPHA — БАЗА ЗНАНИЙ (!!db_v8C.md)
 
 ---
 
@@ -707,6 +707,19 @@ Conflict matrix:
 - IF combined=(ANON_CONCISE+ELI5) → BLOCK ANON_CONCISE
 Resolution: Higher ARENA_SCORE wins. Incompatible techniques dropped at pre-flight.
 
+Conflict matrix — v8C.3 modules (added 2026-06-14):
+- IF MODULE_COMPRESSION AND CAPSULE (memory) both active → both touch context; COMPRESSION runs first, CAPSULE on result. Minor, no block.
+- IF MODULE_REASONING (MCTS / Self-Consistency) AND target=reasoning_model → strip explicit CoT scaffolding, keep native thinking (same as STEP_BY_STEP rule above).
+- IF MODULE_ROUTING advice conflicts with explicit user model choice → user choice wins; routing stays advisory.
+- IF MODULE_OPTIMIZATION (APO / OPRO) AND Contract Builder active → optimization runs as post-pass on the built prompt, never in parallel.
+- IF MODULE_SECURITY scan flags a technique → VECTOR veto applies (security > convenience).
+
+Fabrication Banned List disambiguation (CRITICAL — VECTOR MUST NOT veto P2P's own v8C.3 techniques):
+- Self-Consistency (SC, reasoning.md — Wang 2023, sample N paths + majority vote) ≠ USC (Universal Self-Consistency, banned as forcing). SC ALLOWED.
+- MCTS (reasoning.md — Monte-Carlo Tree Search, algorithmic) ≠ ToT (Tree-of-Thoughts as multi-step prompt forcing, banned). MCTS ALLOWED.
+- RAPTOR / LongRAG (rag.md — retrieval structure) are NOT GoT / graph-prompt forcing. ALLOWED.
+- VECTOR MUST consult this disambiguation before flagging any v8C.3 reasoning/rag technique as fabrication.
+
 ### ADVANCED TECHNIQUES v7C.1.1 (9 новых)
 
 **STRUCTURED_DECOMPOSITION**
@@ -1063,7 +1076,7 @@ Depth mode determines:
 VERSION_METADATA
 ========================================
 id: DB_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: base
 edition: CLAUDE_NATIVE
 last_verified: 2026-05-03

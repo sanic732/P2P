@@ -1,17 +1,17 @@
 ---
 source_id: EXPLORATION_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md
-last_updated: 2026-05-02
+last_updated: 2026-06-12
 scope: Exploration Mode (Cortex Patch A built-in) — divergent thinking, hypothesis generation, experimental approaches. Safe for brainstorming, not for production decisions without verification.
 tags: exploration, cortex-patch-a, brainstorm, hypotheses, divergent-thinking, on-demand
 triggers: "исследуй", "exploration", "EXPLORATION MODE", "brainstorm", "гипотезы", "[22]", "/p2p-explore"
 ---
 
-# P2P v8C.1 — EXPLORATION MODE (!exploration.md)
+# P2P v8C.3-ALPHA — EXPLORATION MODE (!exploration.md)
 
-> Cortex Patch A встроен в v8C.1. Активируется командой [22] или `/p2p-explore`.
+> Cortex Patch A встроен в v8C.3. Активируется командой [22] или `/p2p-explore`.
 
 ---
 
@@ -90,7 +90,7 @@ MUST NOT:
 
 ## CORTEX PATCH A — ВСТРОЕННОЕ РАСШИРЕНИЕ
 
-В v8C.1 Cortex Patch A встроен в ядро (в отличие от v7C.2 где был отдельным модулем).
+В v8C.3 Cortex Patch A встроен в ядро (в отличие от v7C.2 где был отдельным модулем).
 
 Это означает:
 - Exploration Mode всегда доступен без дополнительной загрузки
@@ -100,7 +100,7 @@ MUST NOT:
 **Флаг в p2p.config.md:**
 ```yaml
 flags:
-  CORTEX_BUILTIN: true   # Exploration Mode встроен (v8C.1 default)
+  CORTEX_BUILTIN: true   # Exploration Mode встроен (v8C.3 default)
 ```
 
 ---
@@ -136,7 +136,7 @@ flags:
 
 Активируется при любом из:
 - **T1.** SIR Scanner вернул confidence < 0.55 (default fallback при неясной маршрутизации)
-- **T2.** Задача не маппится ни на один #DB_TASK_TYPE из !!db_v8C.md
+- **T2.** Задача не маппится ни на один task_type из !!db_v8C.md (см. #DB_DYNAMIC_WEIGHTING)
 - **T3.** Пользователь явно: "explore", "исследуй", "не уверен как подойти", "/p2p-explore"
 - **T4.** QUORUM: разброс весов агентов > 30% (нет доминирующего лидера)
 - **T5.** Меню п.22 выбран явно
@@ -229,9 +229,9 @@ MENU:      item 22 в core.md
 VERSION_METADATA
 ========================================
 id: EXPLORATION_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
