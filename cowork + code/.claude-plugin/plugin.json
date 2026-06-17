@@ -1,9 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
-  "name": "p2p-v8c2",
-  "displayName": "P2P v8C.2 — Claude Edition",
-  "version": "8.2.0",
-  "description": "Meta-prompt system for Claude Opus 4.7 / Sonnet 4.6. 8 QUORUM agents, 11 /p2p-* commands, XML-native, SCOPE.HELM, interactive teacher mode.",
+  "name": "p2p-v8c3",
+  "displayName": "P2P v8C.3-ALPHA — Claude Edition",
+  "version": "8.3.0",
+  "description": "Meta-prompt system for Claude Fable 5 / Opus 4.8 / Sonnet 4.6. 8 QUORUM agents, 11 /p2p-* commands, XML-native, SCOPE.HELM, PILOT/SHERPA, 6 ON-DEMAND modules, interactive teacher mode.",
   "author": {
     "name": "P2P Project",
     "email": "sanic732@gmail.com"
@@ -35,10 +35,11 @@
   "compatibility": {
     "platforms": ["claude-code", "cowork", "claude-app"],
     "models": [
+      "claude-fable-5",
+      "claude-opus-4-8",
       "claude-opus-4-7",
       "claude-sonnet-4-6",
-      "claude-haiku-4-5-20251001",
-      "claude-opus-4-6"
+      "claude-haiku-4-5-20251001"
     ]
   }
 }

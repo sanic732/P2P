@@ -1,15 +1,15 @@
 ---
 source_id: VISUAL_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on_demand
 depends_on: [!!db_v8C.md, !templates.md]
 tags: [visual, image, video, audio, multimodal, creative-suite]
-trigger_keywords: [image, картинка, картинку, video, видео, audio, аудио, MJ, midjourney, dall-e, sora, suno, imagen, nano banana, stable diffusion, flux]
-last_updated: 2026-05-03
+triggers: [image, картинка, картинку, video, видео, audio, аудио, MJ, midjourney, dall-e, sora, suno, imagen, nano banana, stable diffusion, flux]
+last_updated: 2026-06-12
 last_verified: 2026-05-03
 ---
 
-# !visual.md — Visual / Video / Audio Suite (v8C.1)
+# !visual.md — Visual / Video / Audio Suite (v8C.3-ALPHA)
 
 > Перенос из v7C.2 `!visual_suite.md`. Replaces menu item 14 CREATIVE SUITE.
 > XML-native — Claude может использовать теги внутри генерируемых промптов.
@@ -192,9 +192,9 @@ Voice cloning: 30s+ clean reference audio.
 VERSION_METADATA
 ========================================
 id: VISUAL_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on_demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

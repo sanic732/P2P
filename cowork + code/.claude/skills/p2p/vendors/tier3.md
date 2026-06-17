@@ -1,15 +1,15 @@
 ---
 source_id: TIER3_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: vendor
-last_updated: 2026-05-02
+last_updated: 2026-06-12
 scope: Tier 3 high-quality — Claude Opus 4.7 (primary), Gemini 3.1 Pro, Grok 4.3. For T2-4 demanding tasks.
 tags: vendor, tier3, claude-opus, gemini-pro, grok, high-quality, on-demand
 ---
 
-# P2P v8C.1 — VENDORS TIER 3 (High-Quality)
+# P2P v8C.3-ALPHA — VENDORS TIER 3 (High-Quality)
 
-## Claude Opus 4.7 (PRIMARY для v8C.1 Tier 3-4)
+## Claude Opus 4.7 (PRIMARY для v8C.3 Tier 3-4)
 API: `claude-opus-4-7`
 Legacy RETIRE 2026-06-15: `claude-opus-4-20250514`
 Context: 200K | Arena: Code #1 (1571) | Cost: $15-75/1M
@@ -42,9 +42,9 @@ Advantages: 2M context, X Firehose, excellent JSON Tool Calling.
 VERSION_METADATA
 ========================================
 id: TIER3_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: vendor
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

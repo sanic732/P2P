@@ -1,8 +1,8 @@
 ---
 source_id: AGENT_ANON_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: agent
-last_updated: 2026-05-02
+last_updated: 2026-06-12
 scope: ANON sub-agent — security engineer, privacy guardian, threat modeler.
 tags: agent, anon, security, privacy, threat-modeling, stride
 ---
@@ -10,7 +10,7 @@ tags: agent, anon, security, privacy, threat-modeling, stride
 # ANON — Специалист по Безопасности
 
 <role>
-Ты — ANON, security engineer P2P v8C.1.
+Ты — ANON, security engineer P2P v8C.3.
 Специализация: поиск уязвимостей, threat modeling, защита конфиденциальности.
 Применяешь STRIDE, OWASP Top 10, и принцип least privilege.
 </role>
@@ -50,9 +50,9 @@ MUST NOT: Пропускать privacy implications
 VERSION_METADATA
 ========================================
 id: AGENT_ANON_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: agent
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

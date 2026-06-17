@@ -1,77 +1,60 @@
-P2P v8C.2 — Claude Native Edition
-Copyright (c) 2026 sanic732 / P2P Project
+P2P — Prompt-to-Prompt (Claude Native Edition)
+================================================
+Copyright (c) 2026 sanic732 (4PDA community)
 Licensed under the MIT License (see LICENSE).
 
-================================================================================
-Third-party attributions
-================================================================================
+This product is a META-PROMPT system: it consists of behavioral instructions
+and prompting patterns (Markdown/XML text), NOT executable code from the
+projects listed below. The techniques integrated in v8C.3 are implemented as
+PROMPTING PATTERNS INSPIRED BY published research. No third-party source code
+is vendored. Attributions below are credits for intellectual inspiration; they
+do not impose additional license obligations on this MIT-licensed work.
 
-P2P is an independently authored prompt-engineering meta-system. It does not
-bundle, redistribute, or fork the source code of the projects listed below.
-However, parts of P2P's philosophy and one of its operating modes were directly
-inspired by external work and the authors are credited here in good faith.
 
---------------------------------------------------------------------------------
-1. Andrej Karpathy — prompting philosophy
---------------------------------------------------------------------------------
-P2P's "Template M" (also surfaced as the `/p2p-karpathy` command and the
-`p2p-karpathy` skill, "Karpathy Mode") was inspired by Andrej Karpathy's
-public observations on LLM coding pitfalls and minimalist prompting:
+--- COMMUNITY & PHILOSOPHY ---------------------------------------------------
 
-  - "The models make wrong assumptions on your behalf and just run along with
-     them without checking. They don't manage their confusion, don't seek
-     clarifications, don't surface inconsistencies, don't present tradeoffs,
-     don't push back when they should."
-  - "They really like to overcomplicate code and APIs, bloat abstractions..."
-  - "Best prompt — no prompt, only clean context."
+* Template M ("Karpathy Mode") — inspired by Andrej Karpathy's minimalist
+  prompting philosophy ("best prompt is no prompt, just clean context").
+* 4PDA community — bug reports, stress-tests, and non-standard use cases that
+  shaped every patch of P2P from v1 to v8C.3.
 
-Source post: https://x.com/karpathy/status/2015883857489522876 (and adjacent
-threads on @karpathy's X account).
 
-Andrej Karpathy is credited as the originator of the underlying philosophy.
-P2P's implementation (Template M, PRE_CODE_DECLARATION, surgical-change rules
-inside `.claude/skills/p2p-karpathy/`) is independently authored. No source
-code from Andrej Karpathy is bundled in this repository.
+--- SCIENTIFIC SOURCES (v8C.3 integrated techniques) -------------------------
 
---------------------------------------------------------------------------------
-2. multica-ai / andrej-karpathy-skills — reference implementation
---------------------------------------------------------------------------------
-The Karpathy-Inspired Claude Code Guidelines repository at
+Integrated as prompting patterns in the corresponding ON-DEMAND modules.
+Full descriptions: docs/TECHNIQUES_v8C3.md
 
-   https://github.com/multica-ai/andrej-karpathy-skills
-   (formerly: forrestchang/andrej-karpathy-skills)
+RAG (!rag.md):
+* RAPTOR — Sarthi et al., Stanford NLP — arXiv:2401.18059 (2024) — code MIT (parthsarthi03/raptor)
+* LongRAG / LRGinstruction — arXiv:2410.18050 (2024)
+* Dynamic RAPTOR (adRAP) — arXiv:2410.01736 (2024)
 
-is acknowledged as a prior public reference implementation of the same
-philosophy. P2P's Karpathy Mode was authored independently and does not copy
-files, prose, or skill manifests from that repository.
+Reasoning (!reasoning.md):
+* Self-Consistency — Wang et al., Google Brain — arXiv:2203.11171 (ICLR 2023)
+* rStar-Math / MCTS reasoning — Microsoft Research — arXiv:2501.04519 (2025)
+* s1 — Simple Test-Time Scaling (Budget Forcing) — Muennighoff et al., Stanford — github.com/simplescaling/s1 (2025)
 
-License status (verified 2026-05-15 via GitHub API):
-  - SPDX:    none (no LICENSE file in the repository at the time of writing)
-  - License: not declared
+Compression (!compression.md):
+* LLMLingua / LLMLingua-2 — Microsoft Research — arXiv:2310.05736 / 2403.12968 (2023/2024) — code MIT (microsoft/LLMLingua)
+* Gist Tokens — Mu et al., Stanford NLP — arXiv:2304.08467 (NeurIPS 2024)
 
-Because that repository does not currently carry a redistribution license,
-P2P deliberately does NOT vendor or copy any of its files. Only public-domain
-philosophical ideas (which are not copyrightable) are echoed. If the upstream
-project later declares a license, this NOTICE may be updated to reflect it.
+Security (!security.md):
+* SelfCheckGPT / SelfCheck-Eval — arXiv:2502.01812 (2025)
 
-Maintainer attribution: Jiayuan / multica-ai (X: @jiayuan_jy).
+Optimization (!optimization.md):
+* OPRO ("LLMs as Optimizers") — Yang et al., Google DeepMind — arXiv:2309.03409 (2023)
+* EvoPrompt / EvoPrompting — arXiv:2309.08532 (2023)
 
---------------------------------------------------------------------------------
-3. Anthropic — Claude Code and Anthropic SDK
---------------------------------------------------------------------------------
-P2P targets Claude (Opus 4.7, Sonnet 4.6, Haiku 4.5, Opus 4.6) and Claude Code
-as host platforms. Claude and Claude Code are products of Anthropic, PBC. P2P
-does not bundle or redistribute Anthropic's software; it only emits prompts,
-plugin manifests, and skill files designed to run inside Anthropic-controlled
-environments.
+Routing (!routing.md):
+* Semantic Router pattern — aurelio-ai/semantic-router (MIT)
+* LLM Routing / RouteLLM — arXiv:2406.18665
 
---------------------------------------------------------------------------------
-4. 4PDA community
---------------------------------------------------------------------------------
-P2P evolved from v1 to v8 driven by feedback, bug reports, and use cases
-contributed by the 4PDA forum community in topic
-https://4pda.to/forum/index.php?showtopic=1109539 . Their reports are credited
-collectively across CHANGELOG.md.
 
-================================================================================
-End of NOTICE.
+--- DISCLAIMER ON AUTHOR-ORIGINAL NAMES --------------------------------------
+
+The P2P agent names and mechanism names — QUORUM, SCOPE.HELM, ATLAS, SIR
+Scanner, VECTOR, IRIS, TECTON, AXIOM, DATOS, ANON, ARCHITECTON, HELIOS,
+PILOT, SHERPA, CAPSULE, CONSTRAINT_REINJECTION, TRI_MODE_BRIDGE, and others —
+are ORIGINAL designs of the P2P project, developed independently since v1.
+Any resemblance of these names to terms in the works cited above is
+coincidental and does NOT imply derivation from them.

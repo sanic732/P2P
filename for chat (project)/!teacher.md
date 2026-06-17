@@ -1,14 +1,14 @@
 ---
 source_id: TEACHER_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
-last_updated: 2026-05-14
-scope: Interactive teaching curriculum for P2P v8C.2. 5 levels + Q&A FAQ. Loaded on /p2p-teacher trigger.
+last_updated: 2026-06-12
+scope: Interactive teaching curriculum for P2P v8C.3. 5 levels + Q&A FAQ. Loaded on /p2p-teacher trigger.
 tags: teacher, curriculum, onboarding, levels, exercises, faq
 ---
 
-# !teacher.md — Curriculum P2P v8C.2
+# !teacher.md — Curriculum P2P v8C.3
 
 > ON-DEMAND модуль. Загружается командой `/p2p-teacher` или скиллом `p2p-teacher`.
 > Источник истины для всех учебных сценариев. Не использовать как замену `!!core_v8C.md`.
@@ -77,7 +77,7 @@ P2P — мета-промпт система для Claude. Помогает с�
 **Пример:**
 ```
 User: /p2p
-P2P: [P2P v8C.2 | Среда: COWORK | Guardian: ON]
+P2P: [P2P v8C.3 | Среда: COWORK | Guardian: ON]
      1) QUICK GEN ...
      2) DEEP DIVE ...
      ...
@@ -652,7 +652,7 @@ A: Да: `/p2p [QUORUM=off]` или через `p2p.config.md`. Но для comp
 ### Q6. Что такое G-errors?
 A: 20 типов системных ошибок Claude (G1-G20). G6=stop-token confusion, G7=temperature+thinking conflict, G8=budget_tokens deprecated. См. `!!db_v8C.md` раздел 4.
 
-### Q7. Чем v8C.2 отличается от v8C.1?
+### Q7. Чем v8C.2 отличается от v8C.3?
 A: + plugin manifest для one-click import, + interactive teacher mode (`/p2p-teacher` + `!teacher.md`), + packaging scripts, + INSTALL docs.
 
 ### Q8. Можно ли использовать P2P в Claude Code и в Cowork одновременно?
@@ -731,7 +731,7 @@ A: `docs/FAQ_И_ОШИБКИ.md` — все G-errors + типичные user err
 
 ```
 ═══════════════════════════════════════════════════════════
-P2P v8C.2 CHEATSHEET
+P2P v8C.3 CHEATSHEET
 ═══════════════════════════════════════════════════════════
 
 КОМАНДЫ (11):
@@ -812,9 +812,9 @@ DEADLINE 2026-06-15 — удалить legacy API strings
 VERSION_METADATA
 ========================================
 id: TEACHER_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-14
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

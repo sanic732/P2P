@@ -1,15 +1,15 @@
 ---
 source_id: CMD_P2P_TEACHER_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 module_type: command
-last_updated: 2026-05-14
+last_updated: 2026-06-12
 scope: /p2p-teacher — interactive teaching mode for P2P system. Adaptive 5-level curriculum + Q&A.
 tags: command, teacher, onboarding, curriculum, interactive
 ---
 
 # /p2p-teacher — Интерактивный Обучающий Режим
 
-**Что делает:** Запускает режим интерактивного обучения системе P2P v8C.2. Подстраивается под уровень пользователя, ведёт по 5 уровням curriculum, отвечает на вопросы по системе используя `!!core_v8C.md` + `!!db_v8C.md` + `!teacher.md`.
+**Что делает:** Запускает режим интерактивного обучения системе P2P v8C.3. Подстраивается под уровень пользователя, ведёт по 5 уровням curriculum, отвечает на вопросы по системе используя `!!core_v8C.md` + `!!db_v8C.md` + `!teacher.md`.
 
 ---
 
@@ -111,7 +111,7 @@ tags: command, teacher, onboarding, curriculum, interactive
 ## Output format
 
 ```
-🎓 P2P v8C.2 TEACHER MODE
+🎓 P2P v8C.3 TEACHER MODE
 ─────────────────────────────────
 LEVEL: {N}/5 — {title}
 PROGRESS: {completed}/{total} блоков
@@ -155,7 +155,7 @@ PROGRESS: {completed}/{total} блоков
 **Пример 1 — Первый запуск:**
 ```
 User: /p2p-teacher
-P2P: 🎓 Привет! Я твой проводник по P2P v8C.2.
+P2P: 🎓 Привет! Я твой проводник по P2P v8C.3.
      Какой у тебя опыт?
      1) Впервые
      2) Читал README
@@ -187,9 +187,9 @@ P2P: HELIOS — 8-й агент QUORUM, синтезатор.
 VERSION_METADATA
 ========================================
 id: CMD_P2P_TEACHER_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 type: command
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-14
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

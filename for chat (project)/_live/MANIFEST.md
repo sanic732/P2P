@@ -1,56 +1,64 @@
 ---
 source_id: MANIFEST_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 module_type: live
 depends_on: none
-last_updated: 2026-05-14
-scope: P2P v8C.2 live manifest — deadlines, deprecation flags, daily refresh checklist. Always loaded as part of BASE set.
-tags: manifest, deadlines, deprecation, live, v8c
+last_updated: 2026-06-12
+live_specs_ref: vendors/live_specs_20260617.md
+scope: P2P v8C.3-ALPHA live manifest — deadlines, deprecation flags, daily refresh checklist, v8C.3 module status. Always loaded as part of BASE set.
+tags: manifest, deadlines, deprecation, live, v8c, v8c3
 ---
 
-# P2P v8C.2 — LIVE MANIFEST (_live/MANIFEST.md)
+# P2P v8C.3-ALPHA — LIVE MANIFEST (_live/MANIFEST.md)
 
 > Обновляй этот файл при каждом обновлении live specs.
-> Дата последнего обновления: 2026-05-14
+> Last updated: 2026-06-12
+> Full live specs: `vendors/live_specs_20260617.md` (PRIORITY: OVERRIDE)
 
 ---
 
-## ★ КРИТИЧЕСКИЕ ДЕДЛАЙНЫ
+## ★ CRITICAL DEADLINES
 
-| Deadline | Что устаревает | Замена | Приоритет |
-|----------|----------------|--------|-----------|
-| **2026-06-15** [DEADLINE] | `claude-opus-4-20250514` | `claude-opus-4-7` | 🔴 КРИТИЧНО |
-| **2026-06-15** [DEADLINE] | `claude-sonnet-4-20250514` | `claude-sonnet-4-6` | 🔴 КРИТИЧНО |
-| **2026-06-05** [DEADLINE] | `gpt-5.2` Thinking | `gpt-5.5` | 🔴 КРИТИЧНО |
-| **2026-07-24** [DEADLINE] | `deepseek-chat` | `deepseek-v4-pro` | 🟡 ВАЖНО |
-| **2026-07-24** [DEADLINE] | `deepseek-reasoner` | `deepseek-v4-flash` | 🟡 ВАЖНО |
+| Deadline | Deprecated | Replacement | Priority |
+|----------|------------|-------------|----------|
+| **2026-06-15** [T-3 DAYS] | `claude-opus-4-20250514` | `claude-opus-4-8` | 🔴 HTTP 400/404 |
+| **2026-06-15** [T-3 DAYS] | `claude-sonnet-4-20250514` | `claude-sonnet-4-6` | 🔴 HTTP 400/404 |
+| **2026-06-25** [DEADLINE] | Google Nano Banana preview models | GA version remains | 🟡 Image gen |
+| **2026-07-24** [DEADLINE] | `deepseek-chat` | `deepseek-v4-pro` | 🟡 T-42 days |
+| **2026-07-24** [DEADLINE] | `deepseek-reasoner` | `deepseek-v4-flash` | 🟡 T-42 days |
 
-**Проверь сегодня:** есть ли в проекте устаревшие API strings?
+**Check today** — audit all API strings in your project:
 ```bash
-grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepseek-reasoner\|gpt-5.2" .
+grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepseek-reasoner" .
 ```
 
 ---
 
-## АКТИВНЫЕ МОДЕЛИ (v8C.2 — May 2026)
+## АКТИВНЫЕ МОДЕЛИ (v8C.3-ALPHA — June 2026)
 
-### Claude (Primary для v8C.2)
-| Модель | API String | Статус |
-|--------|-----------|--------|
-| Claude Opus 4.7 | `claude-opus-4-7` | ✅ Primary |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6` | ✅ Free tier default |
-| Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | ✅ Fast/cheap |
-| Claude Opus 4.6 | `claude-opus-4-6` | ✅ Pinned (long-context recall) |
+### Claude (Primary for v8C.3)
+| Model | API String | Status |
+|-------|-----------|--------|
+| Claude Fable 5 | `claude-fable-5` | ✅ T4 FULL+ (Arena #1 Agent; GA 2026-06-10) |
+| Claude Opus 4.8 | `claude-opus-4-8` | ✅ T4 PRIMARY (coding FIXED; SWE-bench Pro 69.2%) |
+| Claude Opus 4.7 | `claude-opus-4-7` | ✅ T3-4 |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` | ✅ T2, Free tier default |
+| Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | ✅ T0-1 Fast/cheap |
+| Claude Opus 4.6 | `claude-opus-4-6` | ✅ T3-4 Pinned (>500K recall; MRCR 78.3%) |
 
-### Альтернативные модели
-| Модель | API String | Статус |
-|--------|-----------|--------|
-| Gemini 3.1 Pro | `gemini-3.1-pro-preview` | ✅ Long context |
-| GPT-5.5 | `gpt-5.5` | ✅ GA May 1 2026 |
-| Grok 4.3 | `grok-4.3` | ✅ 2M context |
-| DeepSeek V4-Flash | `deepseek-v4-flash` | ✅ Budget |
-| Qwen 3.6-Plus | `qwen3-plus` | ✅ Multilingual |
-| Kimi K2.x | `kimi-k2-6` | ✅ Swarm |
+### Alternative models
+| Model | API String | Status |
+|-------|-----------|--------|
+| Gemini 3.5 Flash | `gemini-3.5-flash` | ✅ T2-3 |
+| Gemini 3.1 Pro | `gemini-3.1-pro-preview` | ✅ Long context 2M |
+| GPT-5.5 | `gpt-5.5` | ✅ Agentic coding |
+| Grok 4.3 | `grok-4.3` | ✅ 1M ctx + X Firehose |
+| DeepSeek V4 Pro | `deepseek-v4-pro` | ✅ T2-3 |
+| DeepSeek V4 Flash | `deepseek-v4-flash` | ✅ Budget |
+| Qwen 3.6-Plus | `qwen3.6-plus` | ✅ Chinese content |
+| Kimi K2.6 | `kimi-k2.6` | ✅ Swarm (40 agents) |
+| MiniMax M3 | `MiniMax-M3` | ✅ Promo budget |
+| Manus 1.6 Max | `manus/manus-1.6-max` | ⚠️ Agent tasks (Meta deal unwinding) |
 
 ---
 
@@ -69,10 +77,24 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 
 | Файл | Тип | Частота обновления | Статус |
 |------|-----|--------------------|--------|
-| MANIFEST.md | Live | При дедлайнах | ✅ |
+| MANIFEST.md | Live | При дедлайнах | ✅ v8C.3-ALPHA |
 | live_core.md | Live | Ежедневно | ✅ |
 | live_claude.md | Live | При обновлениях Claude | ✅ |
-| live_vendors.md | Live | При обновлениях моделей | ✅ |
+| live_vendors.md | Live | При обновлениях моделей | ✅ v8C.3-ALPHA |
+| vendors/live_specs_20260617.md | OVERRIDE | При выходе новой версии | ✅ Loaded (v8.5) |
+
+## v8C.3 MODULES STATUS
+
+| Модуль | Файл | Статус по умолчанию | Пункт меню |
+|--------|------|---------------------|-----------|
+| RAG | !rag.md | off (MODULE_RAG: false) | [35] |
+| Reasoning | !reasoning.md | off (MODULE_REASONING: false) | [36] |
+| Routing | !routing.md | off (MODULE_ROUTING: false) | [37] |
+| Compression | !compression.md | off (MODULE_COMPRESSION: false) | [38] |
+| Security | !security.md | off (MODULE_SECURITY: false) | [39] |
+| Optimization | !optimization.md | off (MODULE_OPTIMIZATION: false) | [40] |
+
+> Активировать: `_preloader.md → VERSION_COMPAT → MODULE_X: true`
 
 <!-- SOURCE_META: type=live | priority=1 | manifest=true | deadlines=true | always-loaded=true -->
 
@@ -81,9 +103,9 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 VERSION_METADATA
 ========================================
 id: MANIFEST_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-14
+last_verified: 2026-06-17
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

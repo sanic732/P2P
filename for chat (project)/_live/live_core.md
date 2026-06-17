@@ -1,14 +1,14 @@
 ---
 source_id: LIVE_CORE_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: live
 depends_on: _live/MANIFEST.md
-last_updated: 2026-05-02
-scope: P2P v8C.1 live session state — current session tracking, active project, ATLAS state placeholder, routing memory state.
+last_updated: 2026-06-12
+scope: P2P v8C.3 live session state — current session tracking, active project, ATLAS state placeholder, routing memory state.
 tags: live, session-state, atlas, routing-memory, core
 ---
 
-# P2P v8C.1 — LIVE CORE (_live/live_core.md)
+# P2P v8C.3-ALPHA — LIVE CORE (_live/live_core.md)
 
 > Сбрасывается при каждой новой сессии. Заполняется автоматически по мере работы.
 
@@ -21,7 +21,7 @@ session_id: ""           # Заполняется при старте
 started_at: ""           # ISO timestamp
 environment: ""          # Code / API / Projects / Chat
 project_card_loaded: false
-live_specs_version: "v8C.1-20260502"
+live_specs_version: "v8C.3-20260612"
 
 # Метрики
 prompts_total: 0
@@ -94,9 +94,9 @@ temperature: null              # null при thinking=enabled
 VERSION_METADATA
 ========================================
 id: LIVE_CORE_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

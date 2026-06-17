@@ -1,16 +1,16 @@
 ---
 source_id: CONTRACT_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
-last_updated: 2026-05-03
+last_updated: 2026-06-12
 last_verified: 2026-05-03
 scope: Contract Builder — 9-step algorithm full implementation, Translation Layer for 8 models, XML scaffold patterns, output validation.
 tags: contract, builder, translation-layer, xml, 9-step, on-demand
 triggers: "contract", "промпт под модель", "translation layer", "Contract Builder", "[2]", "[5]"
 ---
 
-# P2P v8C.1 — CONTRACT BUILDER (!contract.md)
+# P2P v8C.3-ALPHA — CONTRACT BUILDER (!contract.md)
 
 ---
 
@@ -136,6 +136,17 @@ MUST NOT:
 ### [ШАГ 9] TARGET MODEL ADAPTATION
 
 Передай контракт в Translation Layer (ниже).
+
+**TARGET CONTEXT CHECK (added 2026-06-14 — host ≠ target awareness):**
+P2P работает НА host-модели (для этой редакции — Claude), но промпт/ТЗ часто пишется для ДРУГОЙ target-модели.
+Перед адаптацией (PILOT co-pilot → спроси простыми словами; manual → выведи и иди дальше):
+1. Target-модель? Если не задана в `PROJECT_CARD.target_model` → возьми из запроса или уточни.
+2. Доступ пользователя? free tier | paid — определяет реальный контекст и rate limits target-модели.
+3. Сверься с `_live/live_vendors.md` и `vendors/live_specs_*.md`: context window, output limit, цена, G-errors target-модели.
+4. Если ожидаемый объём задачи > эффективного лимита target → предложи разбивку:
+   → Chain Mode [9] (цепочка self-contained промптов) или SCOPE.HELM [25] (большие проекты).
+5. free tier + тяжёлая задача → предупреди о лимитах; предложи разбить ИЛИ более дешёвую/доступную модель (`!routing.md`).
+Источник метрик — всегда свежий live_specs (обновляется автором ~раз в 1-2 недели; auto-detect при старте).
 
 ---
 
@@ -295,7 +306,7 @@ MUST NOT: Повторять код обратно без изменений
 
 ```xml
 <role>
-Ты — P2P v8C.1 Contract Builder.
+Ты — P2P v8C.3 Contract Builder.
 </role>
 <task>
 Создай оптимизированный промпт для задачи:
@@ -469,9 +480,9 @@ Format appears TWICE — survives both attention decay patterns.
 VERSION_METADATA
 ========================================
 id: CONTRACT_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

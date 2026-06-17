@@ -1,4 +1,4 @@
-# P2P v8C.2 — Установка (TL;DR)
+# P2P v8C.3-ALPHA — Установка (TL;DR)
 
 Выбери метод по среде. Детальный гайд: [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md).
 
@@ -14,8 +14,8 @@ bash pack.sh
 # Windows: powershell -ExecutionPolicy Bypass -File pack.ps1
 
 # 2. Импорт:
-# Cowork:      Settings → Skills → "+" → Upload a skill → p2p-v8c2.plugin
-# Claude Code: /plugin install /path/to/p2p-v8c2.plugin
+# Cowork:      Settings → Skills → "+" → Upload a skill → p2p-v8c3.plugin
+# Claude Code: /plugin install /path/to/p2p-v8c3.plugin
 ```
 
 После — `/p2p` или `/p2p-teacher`.
@@ -29,20 +29,20 @@ bash pack.sh
 ```bash
 # В Claude Code:
 /plugin marketplace add https://github.com/sanic732/P2P-4PDA-edition
-/plugin install p2p-v8c2@p2p
+/plugin install p2p-v8c3@p2p
 ```
 
 Ожидаемый вывод:
 
 ```
 ✔ Added marketplace 'p2p' (source: github:sanic732/P2P-4PDA-edition)
-✔ Resolved plugin 'p2p-v8c2' from marketplace 'p2p' (v8.2.0)
+✔ Resolved plugin 'p2p-v8c3' from marketplace 'p2p' (v8.3.0)
 ✔ Installed 11 commands, 8 agents, 2 skills
 ```
 
 Проверка:
 ```
-/p2p              → меню v8C.2
+/p2p              → меню v8C.3-ALPHA
 /p2p-teacher      → интерактивный курс
 ```
 
@@ -57,12 +57,12 @@ Marketplace-манифесты:
 **Для:** Claude Code открытого как папка-проект
 
 ```bash
-# 1. Скопировать v8C.2/.claude/ в корень своего проекта
-cp -r v8C.2/.claude /path/to/your/project/
+# 1. Скопировать .claude/ в корень своего проекта
+cp -r .claude /path/to/your/project/
 
 # 2. Скопировать BASE + ON-DEMAND модули
-cp v8C.2/!*.md /path/to/your/project/
-cp -r v8C.2/_live v8C.2/vendors /path/to/your/project/
+cp !*.md /path/to/your/project/
+cp -r _live vendors /path/to/your/project/
 
 # 3. Открыть проект в Claude Code → /p2p
 ```
@@ -95,7 +95,7 @@ cp -r v8C.2/_live v8C.2/vendors /path/to/your/project/
 import anthropic
 client = anthropic.Anthropic()
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     system=open("_master.md").read(),
     messages=[{"role": "user", "content": "СТАРТ"}]
 )
@@ -107,7 +107,7 @@ response = client.messages.create(
 
 После любого метода:
 ```
-/p2p              → должно показать меню v8C.2
+/p2p              → должно показать меню v8C.3-ALPHA
 /p2p-teacher      → должен запуститься обучающий режим
 ```
 

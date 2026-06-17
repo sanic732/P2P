@@ -1,17 +1,17 @@
 ---
 name: p2p-teacher
-description: Interactive teaching mode for P2P v8C.2 meta-prompt system. Use when the user wants to learn P2P, asks "how do I use P2P", "explain P2P to me", "научи меня P2P", "как пользоваться P2P", "не понимаю как работает", "как использовать систему", "что умеет P2P", "научи использовать", or any natural-language request to onboard, train, or get guided through the P2P system. Triggers a 5-level curriculum (Quickstart → Commands → Agents → QUORUM → SCOPE.HELM) with exercises, sandbox tasks, and Q&A mode. Not for generating prompts (use /p2p) or for QUORUM analysis (use /p2p-quorum).
+description: Interactive teaching mode for P2P v8C.3 meta-prompt system. Use when the user wants to learn P2P, asks "how do I use P2P", "explain P2P to me", "научи меня P2P", "как пользоваться P2P", "не понимаю как работает", "как использовать систему", "что умеет P2P", "научи использовать", or any natural-language request to onboard, train, or get guided through the P2P system. Triggers a 5-level curriculum (Quickstart → Commands → Agents → QUORUM → SCOPE.HELM) with exercises, sandbox tasks, and Q&A mode. Not for generating prompts (use /p2p) or for QUORUM analysis (use /p2p-quorum).
 source_id: SKILL_P2P_TEACHER
-version: v8C.2
+version: v8C.3-ALPHA
 module_type: skill
-last_updated: 2026-05-14
+last_updated: 2026-06-12
 tags: skill, teacher, onboarding, curriculum, interactive, learning
 ---
 
 # P2P TEACHER SKILL
 
-**Skill:** P2P v8C.2 Interactive Teacher
-**Version:** v8C.2
+**Skill:** P2P v8C.3 Interactive Teacher
+**Version:** v8C.3-ALPHA
 **Platform:** Claude (Opus 4.7 / Sonnet 4.6)
 **Entry point:** `/p2p-teacher` command
 **Knowledge base:** `!teacher.md` (ON-DEMAND module)
@@ -67,9 +67,9 @@ Trigger this skill when the user says (in any language):
 VERSION_METADATA
 ========================================
 id: SKILL_P2P_TEACHER
-version: v8C.2
+version: v8C.3-ALPHA
 type: skill
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-14
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
