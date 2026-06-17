@@ -1,22 +1,22 @@
 ---
 source_id: SKILL_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 module_type: skill
-last_updated: 2026-05-14
-scope: P2P v8C.2 Claude Edition skill manifest. Entry point for Claude Code /p2p commands.
+last_updated: 2026-06-12
+scope: P2P v8C.3-ALPHA Claude Edition skill manifest. Entry point for Claude Code /p2p commands.
 tags: skill, manifest, entry-point, claude-code, v8c
 ---
 
-# P2P v8C.2 — SKILL MANIFEST
+# P2P v8C.3-ALPHA — SKILL MANIFEST
 
-**Skill:** P2P v8C.2 Claude Edition
-**Version:** v8C.2
-**Platform:** Claude (Opus 4.7 / Sonnet 4.6)
+**Skill:** P2P v8C.3-ALPHA Claude Edition
+**Version:** v8C.3-ALPHA
+**Platform:** Claude (Fable 5 / Opus 4.8 / Sonnet 4.6)
 **Author:** P2P Project
 
 ## Что умеет этот skill
 
-P2P v8C.2 — мета-промпт система для:
+P2P v8C.3-ALPHA — мета-промпт система для:
 - Генерации оптимизированных промптов под любую задачу
 - Оркестрации 8 специализированных агентов (QUORUM)
 - Управления большими задачами (SCOPE.HELM)
@@ -36,18 +36,18 @@ P2P v8C.2 — мета-промпт система для:
 /p2p-chain     → Цепочка агентов
 /p2p-feedback  → Обратная связь
 /p2p-karpathy  → Karpathy Coding Mode (Template M)
-/p2p-teacher   → [v8C.2 NEW] Интерактивное обучение системе
+/p2p-teacher   → Интерактивное обучение системе
 ```
 
 ## Загрузка
 
 ### Plugin (рекомендуется для Claude Code / Cowork)
-1. Drag-drop `p2p-v8c2.plugin` в Claude Code/Cowork
+1. Drag-drop `p2p-v8c3.plugin` в Claude Code/Cowork
 2. Команды и агенты доступны сразу
 
 ### Manual (для API / Chat)
-1. Скопируй весь каталог v8C.2 в проект
-2. Загрузи в Claude: `_preloader.md → !!core_v8C.md → !!db_v8C.md → _live/*`
+1. Скопируй весь каталог v8C.3 в проект
+2. Загрузи в Claude: `preloader.md → core.md → db.md → _live/*`
 3. Введи `СТАРТ` или `/p2p`
 
 Подробнее: `INSTALL.md` (5 методов установки).
@@ -57,9 +57,9 @@ P2P v8C.2 — мета-промпт система для:
 VERSION_METADATA
 ========================================
 id: SKILL_V8C
-version: v8C.2
+version: v8C.3-ALPHA
 type: skill
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-14
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

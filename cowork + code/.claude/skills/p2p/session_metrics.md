@@ -1,15 +1,15 @@
 ---
 source_id: METRICS_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md
-last_updated: 2026-05-02
+last_updated: 2026-06-12
 scope: Session Metrics v0.2 — efficiency formula, routing memory tracking, quality scoring, performance dashboard.
 tags: metrics, session-metrics, routing-memory, efficiency, quality, on-demand
 triggers: "метрики", "эффективность", "/p2p-metrics", "[19]", "[20]", "ROUTING MEMORY"
 ---
 
-# P2P v8C.1 — SESSION METRICS v0.2 (!metrics.md)
+# P2P v8C.3-ALPHA — SESSION METRICS v0.2 (!metrics.md)
 
 ---
 
@@ -137,7 +137,7 @@ ROUTING MEMORY REPORT:
 
 ```
 ╔═══════════════════════════════════════╗
-║  SESSION METRICS v0.2 — P2P v8C.2    ║
+║  SESSION METRICS v0.2 — P2P v8C.3    ║
 ╠═══════════════════════════════════════╣
 ║  Prompts:     [N]                     ║
 ║  Tasks done:  [N]                     ║
@@ -288,9 +288,9 @@ session_metrics_export:
 VERSION_METADATA
 ========================================
 id: METRICS_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

@@ -9,11 +9,11 @@
   },
   "plugins": [
     {
-      "name": "p2p-v8c2",
+      "name": "p2p-v8c3",
       "source": ".",
-      "description": "P2P v8C.2 Claude Edition — full meta-prompt system with interactive teacher mode",
+      "description": "P2P v8C.3 Claude Edition — full meta-prompt system with interactive teacher mode",
       "tags": ["latest", "stable", "claude-native"],
-      "version": "8.2.0"
+      "version": "8.3.0"
     }
   ]
 }

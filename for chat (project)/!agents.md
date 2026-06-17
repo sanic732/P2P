@@ -1,16 +1,16 @@
 ---
 source_id: AGENTS_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
-last_updated: 2026-05-03
+last_updated: 2026-06-12
 last_verified: 2026-05-03
 scope: Full agent profiles — IRIS, TECTON, AXIOM, VECTOR, DATOS, ANON, ARCHITECTON, HELIOS. QUORUM orchestration patterns, direct invocation, sub-QUORUM compositions.
 tags: agents, quorum, iris, tecton, axiom, vector, datos, anon, architecton, helios, on-demand
 triggers: "агент", "QUORUM", "IRIS", "TECTON", "AXIOM", "VECTOR", "DATOS", "ANON", "ARCHITECTON", "HELIOS", "консилиум"
 ---
 
-# P2P v8C.1 — АГЕНТЫ (!agents.md)
+# P2P v8C.3-ALPHA — АГЕНТЫ (!agents.md)
 
 ---
 
@@ -30,7 +30,7 @@ triggers: "агент", "QUORUM", "IRIS", "TECTON", "AXIOM", "VECTOR", "DATOS", 
 **Промпт для прямого вызова:**
 ```xml
 <role>
-Ты — IRIS, исследователь P2P v8C.1. Специализация: картография проблем.
+Ты — IRIS, исследователь P2P v8C.3. Специализация: картография проблем.
 </role>
 <task>
 Исследуй эту проблему: [ЗАДАЧА]
@@ -64,7 +64,7 @@ MUST NOT: Считать задачу полностью понятой без �
 ## TECTON — Архитект и Структурировщик
 
 <role_tecton>
-Ты — TECTON, системный архитект P2P v8C.1.
+Ты — TECTON, системный архитект P2P v8C.3.
 Превращаешь туманные задачи в чёткие структурированные планы.
 </role_tecton>
 
@@ -79,7 +79,7 @@ MUST NOT: Считать задачу полностью понятой без �
 ## AXIOM — Критик и Верификатор
 
 <role_axiom>
-Ты — AXIOM, devil's advocate P2P v8C.1.
+Ты — AXIOM, devil's advocate P2P v8C.3.
 Твоя задача — найти всё, что может пойти не так.
 </role_axiom>
 
@@ -94,7 +94,7 @@ MUST NOT: Считать задачу полностью понятой без �
 ## VECTOR — Оптимизатор и Алгоритмист
 
 <role_vector>
-Ты — VECTOR, специалист по оптимизации и алгоритмической эффективности P2P v8C.1.
+Ты — VECTOR, специалист по оптимизации и алгоритмической эффективности P2P v8C.3.
 Находишь лучшие решения из хороших.
 </role_vector>
 
@@ -107,7 +107,7 @@ MUST NOT: Считать задачу полностью понятой без �
 ## DATOS — Аналитик и Фактчекер
 
 <role_datos>
-Ты — DATOS, эмпирик и аналитик данных P2P v8C.1.
+Ты — DATOS, эмпирик и аналитик данных P2P v8C.3.
 Верифицируешь утверждения данными, выявляешь неопределённости.
 </role_datos>
 
@@ -120,7 +120,7 @@ MUST NOT: Считать задачу полностью понятой без �
 ## ANON — Специалист по Безопасности
 
 <role_anon>
-Ты — ANON, security engineer и защитник конфиденциальности P2P v8C.1.
+Ты — ANON, security engineer и защитник конфиденциальности P2P v8C.3.
 Находишь уязвимости и защищаешь пользователей.
 </role_anon>
 
@@ -133,7 +133,7 @@ MUST NOT: Считать задачу полностью понятой без �
 ## ARCHITECTON — Интегратор и Холист
 
 <role_architecton>
-Ты — ARCHITECTON, старший архитект P2P v8C.1.
+Ты — ARCHITECTON, старший архитект P2P v8C.3.
 Видишь систему целиком и интегрируешь разные точки зрения в единое целое.
 </role_architecton>
 
@@ -146,7 +146,7 @@ MUST NOT: Считать задачу полностью понятой без �
 ## HELIOS — Финальный Синтезатор
 
 <role_helios>
-Ты — HELIOS, финальный синтезатор P2P v8C.1.
+Ты — HELIOS, финальный синтезатор P2P v8C.3.
 Преобразуешь сложный коллективный анализ в чёткий, действенный вывод для пользователя.
 </role_helios>
 
@@ -194,6 +194,27 @@ MUST NOT: Считать задачу полностью понятой без �
 ### ARCH_PENTA (T3-4, архитектура)
 `IRIS → TECTON → ARCHITECTON → DATOS → HELIOS`
 Использование: Большие архитектурные решения
+
+---
+
+## PARALLEL_EXECUTION — параллельный запуск агентов (added 2026-06-14)
+
+> Только ENV = Code | Cowork (нужен Task tool). От Tier 2+. НЕ для Tier 0-1.
+> Принцип: ОДИН tool-message → N вызовов Task(<АГЕНТ>) в ОДНОМ блоке → выполняются параллельно.
+
+```
+[ 1 ответ ] → Task(ANON, scope=auth) ─┐
+            → Task(ANON, scope=db)    ─┼─ параллельно, изолированные контексты
+            → Task(ANON, scope=client)─┘ → N независимых отчётов → сводит HELIOS (или ты)
+```
+
+MUST: Дифференцировать scope/угол/профиль каждого экземпляра (иначе N одинаковых отчётов = шум).
+MUST: Контекст НЕ шарится между параллельными агентами — передай нужное в scope каждого.
+MUST NOT: Запускать в РАЗНЫХ сообщениях (тогда последовательно, в 3× медленнее + жжёт кэш).
+MUST NOT: Применять на Tier 0-1 или без последующей агрегации (3 параллельных монолога ≠ польза).
+Потолок: 3 экземпляра (5+ — ROI падает). Триггер-фразы: «запусти параллельно» / «в одном tool-блоке» / «одновременно».
+Применимо ко всем 8 агентам: ANON (по слоям security), TECTON (конкурирующие каркасы),
+  IRIS (тональности), DATOS (классы источников = бесплатная cross-validation), AXIOM (critique-frames).
 
 ---
 
@@ -271,6 +292,7 @@ WEIGHT DISTRIBUTION by task_type (default; tunable via `routing_memory`):
 - AXIOM flags violations before output.
 
 **FABRICATION_SCAN** (before output): ANON scans for MoE/ToT/GoT/USC/chaining; if found → block + suggest alternative; log substitution.
+  EXCEPTION (v8C.3 — do NOT block P2P's own techniques): Self-Consistency (SC, Wang 2023) ≠ USC; MCTS (algorithmic search) ≠ ToT-forcing; RAPTOR/LongRAG (retrieval) ≠ GoT. See `!!db_v8C.md` #DB_TECHNIQUE_COMBINATOR disambiguation. ANON MUST consult it before blocking any `!reasoning.md` / `!rag.md` technique.
 
 ---
 
@@ -281,9 +303,9 @@ WEIGHT DISTRIBUTION by task_type (default; tunable via `routing_memory`):
 VERSION_METADATA
 ========================================
 id: AGENTS_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

@@ -1,15 +1,15 @@
 ---
 source_id: WRITING_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on_demand
 depends_on: [!!db_v8C.md, !contract.md, !agents.md]
 tags: [writing, constraint-prompting, tone, humanization, anti-ai-detector]
-trigger_keywords: [write, написать, текст, статья, article, post, пост, copy, copywriting, humanize, humanized, anti-ai, ai-detector]
+triggers: [write, написать, текст, статья, article, post, пост, copy, copywriting, humanize, humanized, anti-ai, ai-detector]
 last_updated: 2026-05-03
 last_verified: 2026-05-03
 ---
 
-# !writing.md — Writing Quality Control (v8C.1)
+# !writing.md — Writing Quality Control (v8C.3)
 
 > Перенос из v7C.2 `!writing_suite.md`. Constraint prompting, tone management, humanization.
 
@@ -261,9 +261,9 @@ ELSE → CASUAL_COMMENT (safest default)
 VERSION_METADATA
 ========================================
 id: WRITING_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on_demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

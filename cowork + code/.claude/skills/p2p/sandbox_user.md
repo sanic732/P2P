@@ -1,15 +1,15 @@
 ---
 source_id: SANDBOX_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on_demand
 depends_on: [_preloader.md, !user_context.md]
 tags: [sandbox, user-overrides, session-config, quick-rules]
-trigger_keywords: [sandbox, песочница, override, session config, quick rule]
-last_updated: 2026-05-02
-last_verified: 2026-05-02
+triggers: [sandbox, песочница, override, session config, quick rule]
+last_updated: 2026-06-12
+last_verified: 2026-06-12
 ---
 
-# !sandbox.md — User Editable Sandbox (v8C.1)
+# !sandbox.md — User Editable Sandbox (v8C.3)
 
 > Перенос из v7C.2 `!sandbox_user.md`. Зона пользовательских переопределений на сессию.
 > Приоритет: переопределяет PRELOADER на текущую сессию. НЕ изменяет core.
@@ -20,7 +20,7 @@ last_verified: 2026-05-02
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║  SANDBOX — USER EDITABLE ZONE (P2P v8C.2)                    ║
+║  SANDBOX — USER EDITABLE ZONE (P2P v8C.3)                    ║
 ║  ✏ Редактируй ТОЛЬКО эту зону                                ║
 ║  Приоритет: перекрывает PRELOADER на текущую сессию          ║
 ╚══════════════════════════════════════════════════════════════╝
@@ -119,9 +119,9 @@ PRELOADER (defaults)
 VERSION_METADATA
 ========================================
 id: SANDBOX_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on_demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

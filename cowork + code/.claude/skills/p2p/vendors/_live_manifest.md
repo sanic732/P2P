@@ -1,43 +1,44 @@
 ---
 source_id: MANIFEST_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: live
 depends_on: none
-last_updated: 2026-05-02
-scope: P2P v8C.1 live manifest — deadlines, deprecation flags, daily refresh checklist. Always loaded as part of BASE set.
+last_updated: 2026-06-12
+scope: P2P v8C.3-ALPHA live manifest — deadlines, deprecation flags, daily refresh checklist. Always loaded as part of BASE set.
 tags: manifest, deadlines, deprecation, live, v8c
 ---
 
-# P2P v8C.1 — LIVE MANIFEST (_live/MANIFEST.md)
+# P2P v8C.3-ALPHA — LIVE MANIFEST (_live/MANIFEST.md)
 
-> Обновляй этот файл при каждом обновлении live specs.
-> Дата последнего обновления: 2026-05-02
+> Update this file on every live specs update.
+> Last updated: 2026-06-17 | Live specs: vendors/live_specs_20260617.md
 
 ---
 
-## ★ КРИТИЧЕСКИЕ ДЕДЛАЙНЫ
+## ★ CRITICAL DEADLINES
 
-| Deadline | Что устаревает | Замена | Приоритет |
-|----------|----------------|--------|-----------|
-| **2026-06-15** [DEADLINE] | `claude-opus-4-20250514` | `claude-opus-4-7` | 🔴 КРИТИЧНО |
-| **2026-06-15** [DEADLINE] | `claude-sonnet-4-20250514` | `claude-sonnet-4-6` | 🔴 КРИТИЧНО |
-| **2026-06-05** [DEADLINE] | `gpt-5.2` Thinking | `gpt-5.5` | 🔴 КРИТИЧНО |
-| **2026-07-24** [DEADLINE] | `deepseek-chat` | `deepseek-v4-pro` | 🟡 ВАЖНО |
-| **2026-07-24** [DEADLINE] | `deepseek-reasoner` | `deepseek-v4-flash` | 🟡 ВАЖНО |
+| Deadline | Deprecated | Replacement | Priority |
+|----------|------------|-------------|----------|
+| **2026-06-15** [T-3 DAYS] | `claude-opus-4-20250514` | `claude-opus-4-8` | 🔴 HTTP 400/404 |
+| **2026-06-15** [T-3 DAYS] | `claude-sonnet-4-20250514` | `claude-sonnet-4-6` | 🔴 HTTP 400/404 |
+| **2026-06-25** [DEADLINE] | Google Nano Banana preview | GA version remains | 🟡 Image gen |
+| **2026-07-24** [DEADLINE] | `deepseek-chat` | `deepseek-v4-pro` | 🟡 T-42 days |
+| **2026-07-24** [DEADLINE] | `deepseek-reasoner` | `deepseek-v4-flash` | 🟡 T-42 days |
 
-**Проверь сегодня:** есть ли в проекте устаревшие API strings?
+**Check today** — audit your project API strings:
 ```bash
-grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepseek-reasoner\|gpt-5.2" .
+grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepseek-reasoner" .
 ```
 
 ---
 
-## АКТИВНЫЕ МОДЕЛИ (v8C.1 — May 2026)
+## ACTIVE MODELS (v8C.3-ALPHA — June 2026)
 
-### Claude (Primary для v8C.1)
-| Модель | API String | Статус |
-|--------|-----------|--------|
-| Claude Opus 4.7 | `claude-opus-4-7` | ✅ Primary |
+### Claude (Primary for v8C.3)
+| Model | API String | Status |
+|-------|-----------|--------|
+| Claude Fable 5 | `claude-fable-5` | ✅ T4 FULL+ (Arena #1 Agent; GA 2026-06-10) |
+| Claude Opus 4.8 | `claude-opus-4-8` | ✅ T4 PRIMARY |
 | Claude Sonnet 4.6 | `claude-sonnet-4-6` | ✅ Free tier default |
 | Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | ✅ Fast/cheap |
 | Claude Opus 4.6 | `claude-opus-4-6` | ✅ Pinned (long-context recall) |
@@ -81,9 +82,21 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 VERSION_METADATA
 ========================================
 id: MANIFEST_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
+// ═══════════════════════════════════════════════════════
+// [V8.5 OVERRIDE — 2026-06-17] источник истины: vendors/live_specs_20260617.md (перебивает при конфликте)
+// ═══════════════════════════════════════════════════════
+V85_OVERRIDE:
+  Claude: PRIMARY=opus-4-8 ($5/$25, 1M ctx, out 128K/300K batch, effort high default low|med|high|xhigh|max).
+  Fable5: $10/$50 1M, Arena #1 Agent/Text/WebDev — SUSPENDED globally 12.06 (export controls) → fallback opus-4-8.
+  opus-4-6: пин >500K recall (MRCR 78.3%); токенизатор эффективнее 4.7/4.8.
+  legacy_retire: COMPLETED — claude-*-4-20250514 → HTTP 404.
+  G6 tokenizer inflation: UNRESOLVED (+10-35%) → pin 4.6 cost-sensitive.
+  thinking: ТОЛЬКО {"type":"adaptive"}; budget_tokens removed; G7 нет temperature/top_p/top_k.
+  cache_ttl: Claude Code 1h→5min → ephemeral на префикс.
+  deadlines: 2026-06-25 Gemini Nano Banana preview shutdown; 2026-07-24 deepseek-chat/reasoner → 404.

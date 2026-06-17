@@ -1,22 +1,26 @@
 ---
 source_id: DEBUG_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
-last_updated: 2026-05-03
+last_updated: 2026-06-12
 last_verified: 2026-05-03
 scope: Debug Engine — structured failure analysis, G-error diagnosis, prompt autopsy, iterative fix workflow.
 tags: debug, failure-analysis, g-errors, autopsy, on-demand
 triggers: "debug", "провал", "не работает", "ошибка", "почему", "исправь", "[12]", "Debug Engine"
 ---
 
-# P2P v8C.1 — DEBUG ENGINE (!debug.md)
+# P2P v8C.3-ALPHA — DEBUG ENGINE (!debug.md)
 
 ---
 
 ## АЛГОРИТМ РАЗБОРА ПРОВАЛА
 
 ### Шаг 1 — SYMPTOM CLASSIFICATION
+
+Если вход — СКРИНШОТ (частый кейс: промпт запущен в другой LLM, результат не устроил →
+скриншот → возврат в P2P): извлеки из изображения текст ошибки/вывода, затем классифицируй ниже.
+Vision — нативно у хост-модели (Claude / Gemini).
 
 Определи тип симптома:
 
@@ -230,9 +234,9 @@ MUST NOT: Add explanations inside JSON as string values
 VERSION_METADATA
 ========================================
 id: DEBUG_V8C
-version: v8C.1
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-02
+last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
