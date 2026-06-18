@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P2P · Useful Posts — Interactive Mind-Map Hub</title>
+<meta name="description" content="Curated, interactive mind-map of Sanic27's useful Prompt-to-Prompt (P2P) posts from the 4PDA forum — prompts, tools, guides and project core.">
+<style>
+  :root{--bg:#0b1120;--line:#24314d;--text:#e8eefc;--muted:#8aa0c6;--accent:#38bdf8;--card:#13203b;}
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:radial-gradient(1100px 700px at 75% -10%,#16233f,transparent),var(--bg);
+    color:var(--text);font-family:'Segoe UI',Roboto,system-ui,Arial,sans-serif;line-height:1.55}
+  .wrap{max-width:860px;margin:0 auto;padding:48px 22px 70px}
+  .lang{display:flex;justify-content:flex-end;gap:8px;font-size:12px}
+  .lang a,.lang button{background:#16233f;border:1px solid var(--line);color:var(--accent);border-radius:8px;
+    padding:6px 12px;cursor:pointer;text-decoration:none;font-size:12px}
+  .lang .on{background:var(--accent);color:#0b1120;border-color:var(--accent);font-weight:700}
+  h1{font-size:30px;margin:18px 0 4px;letter-spacing:.3px}
+  .tag{color:var(--muted);font-size:14px;margin:0 0 26px}
+  .lead{font-size:15px;color:#cdd9f0;border-left:3px solid var(--accent);padding:10px 0 10px 16px;margin:0 0 26px;background:#0e1830aa;border-radius:0 10px 10px 0}
+  h2{font-size:16px;color:var(--accent);margin:30px 0 12px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:620px){.cards{grid-template-columns:1fr}}
+  .card{display:block;background:linear-gradient(180deg,var(--card),#0e1830);border:1px solid var(--line);
+    border-radius:14px;padding:18px;text-decoration:none;color:var(--text);transition:.15s}
+  .card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px #0007}
+  .card .ico{font-size:24px}
+  .card .h{font-weight:700;font-size:15px;margin:8px 0 4px}
+  .card .s{font-size:12.5px;color:var(--muted)}
+  ul{padding-left:20px} li{margin:6px 0;font-size:14px}
+  a.inline{color:var(--accent)}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
+  .pill{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12px}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lang">
+    <button class="on" id="bEN" onclick="setLang('en')">EN</button>
+    <button id="bRU" onclick="setLang('ru')">RU</button>
+  </div>
+
+  <!-- EN -->
+  <div id="en">
+    <h1>🧠 P2P · Useful Posts</h1>
+    <p class="tag">Interactive mind-map hub · Prompt-to-Prompt (P2P) · 4PDA community</p>
+    <p class="lead">It started with a simple question on the forum — someone asked whether the scattered prompts and guides could be gathered into one place. I answered, and then collected everything here: an interactive map of the useful posts, so anyone can find a prompt, a tool or a guide in a couple of clicks.</p>
+
+    <h2>Open the map</h2>
+    <div class="cards">
+      <a class="card" href="mindmap-en.html"><div class="ico">🗺️</div><div class="h">Mind-Map — English</div><div class="s">79 posts · 5 sections · search, zoom, collapsible branches</div></a>
+      <a class="card" href="mindmap-ru.html"><div class="ico">🗺️</div><div class="h">Mind-Map — Русский</div><div class="s">79 постов · 5 разделов · поиск, зум, сворачивание</div></a>
+    </div>
+
+    <h2>What's inside</h2>
+    <ul>
+      <li>🧠 <b>P2P — Project Core:</b> editions 8C.3 / 8H.3 / 8N.3 / 8L.3, install, UI menu, Live Specs, workflow tips.</li>
+      <li>⚙️ <b>Prompts &amp; Tools:</b> SunoForge, OCR pipeline, Excel parser, ARENA builder, PDF/encoding fixers and more.</li>
+      <li>📚 <b>Educational Guides:</b> Context Engineering, Claude battle-guide, Skills, Cowork setup, DevLogs.</li>
+      <li>🎨 <b>Media · Image · Video:</b> Nanobanana collections, pose reference, restoration, Veo animation.</li>
+      <li>🗄️ <b>Archive:</b> tool version history and Live Specs changelogs.</li>
+    </ul>
+    <p style="font-size:13px;color:var(--muted)">Every node links directly to the original post on the 4PDA forum.</p>
+
+    <h2>Links</h2>
+    <ul>
+      <li><a class="inline" href="https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576">P2P main post on 4PDA</a> — overview, downloads &amp; FAQ</li>
+      <li><a class="inline" href="https://github.com/sanic732/P2P-4PDA-edition">GitHub repo</a> · one-command install via <code>/plugin marketplace add</code></li>
+      <li><a class="inline" href="https://github.com/sanic732/P2P-4PDA-edition/releases">Releases</a> — v8C.3 and earlier</li>
+    </ul>
+  </div>
+
+  <!-- RU -->
+  <div id="ru" class="hide">
+    <h1>🧠 P2P · Полезные посты</h1>
+    <p class="tag">Хаб интерактивной mind-map · Prompt-to-Prompt (P2P) · сообщество 4PDA</p>
+    <p class="lead">Всё началось с простого вопроса на форуме — спросили, нельзя ли собрать разрозненные промпты и гайды в одном месте. Я ответил, а потом собрал всё воедино: интерактивную карту полезных постов, чтобы любой за пару кликов нашёл промпт, инструмент или гайд.</p>
+
+    <h2>Открыть карту</h2>
+    <div class="cards">
+      <a class="card" href="mindmap-ru.html"><div class="ico">🗺️</div><div class="h">Mind-Map — Русский</div><div class="s">79 постов · 5 разделов · поиск, зум, сворачивание</div></a>
+      <a class="card" href="mindmap-en.html"><div class="ico">🗺️</div><div class="h">Mind-Map — English</div><div class="s">79 posts · 5 sections · search, zoom, collapse</div></a>
+    </div>
+
+    <h2>Что внутри</h2>
+    <ul>
+      <li>🧠 <b>P2P — ядро проекта:</b> редакции 8C.3 / 8H.3 / 8N.3 / 8L.3, установка, UI-меню, Live Specs, воркфлоу.</li>
+      <li>⚙️ <b>Промпты и инструменты:</b> SunoForge, OCR-пайплайн, парсер для Excel, ARENA, фиксы PDF/кодировки и др.</li>
+      <li>📚 <b>Образовательные гайды:</b> Context Engineering, боевой гайд по Claude, Skills, настройка Cowork, DevLog'и.</li>
+      <li>🎨 <b>Медиа · изображение · видео:</b> коллекции Nanobanana, pose reference, реставрация, анимация Veo.</li>
+      <li>🗄️ <b>Архив:</b> история версий инструментов и changelog'и Live Specs.</li>
+    </ul>
+    <p style="font-size:13px;color:var(--muted)">Каждый узел ведёт напрямую на оригинальный пост в ветке 4PDA.</p>
+
+    <h2>Ссылки</h2>
+    <ul>
+      <li><a class="inline" href="https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576">Основной пост P2P на 4PDA</a> — обзор, загрузки и FAQ</li>
+      <li><a class="inline" href="https://github.com/sanic732/P2P-4PDA-edition">Репозиторий на GitHub</a> · установка одной командой <code>/plugin marketplace add</code></li>
+      <li><a class="inline" href="https://github.com/sanic732/P2P-4PDA-edition/releases">Релизы</a> — v8C.3 и более ранние</li>
+    </ul>
+  </div>
+
+  <footer>
+    P2P — Prompt-to-Prompt · a meta-prompt that writes other prompts. MIT.
+    Built from the 4PDA thread <i>«Промпты для Искусственного Интеллекта»</i>.
+  </footer>
+</div>
+<script>
+function setLang(l){
+  document.getElementById('en').classList.toggle('hide',l!=='en');
+  document.getElementById('ru').classList.toggle('hide',l!=='ru');
+  document.getElementById('bEN').classList.toggle('on',l==='en');
+  document.getElementById('bRU').classList.toggle('on',l==='ru');
+  try{localStorage.setItem('p2p_lang',l);}catch(e){}
+}
+try{var s=localStorage.getItem('p2p_lang');if(s)setLang(s);}catch(e){}
+// default to browser language if Russian
+if(!localStorage.getItem('p2p_lang') && (navigator.language||'').toLowerCase().startsWith('ru')) setLang('ru');
+</script>
+</body>
+</html>
