@@ -20,20 +20,17 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sanic732/P2P-4PDA-edition.git"
-  },
-  "commands": "./.claude/commands",
-  "agents": "./.claude/agents",
-  "skills": "./.claude/skills",
-  "settings": "./.claude/settings.json",
+  "repository": "https://github.com/sanic732/P2P-4PDA-edition.git",
   "engines": {
     "claude-code": ">=1.0.0",
     "cowork": ">=0.1.0"
   },
   "compatibility": {
-    "platforms": ["claude-code", "cowork", "claude-app"],
+    "platforms": [
+      "claude-code",
+      "cowork",
+      "claude-app"
+    ],
     "models": [
       "claude-opus-4-7",
       "claude-sonnet-4-6",
