@@ -2,22 +2,23 @@
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "p2p",
   "displayName": "P2P Marketplace — 4PDA Edition",
-  "description": "Official P2P meta-prompt system marketplace (Claude Native Edition, mirror published for 4PDA community)",
-  "owner": {
-    "name": "sanic732",
-    "email": "sanic732@protonmail.com"
-  },
+  "description": "Official P2P meta-prompt system marketplace (Claude Native + Lite editions, mirror published for the 4PDA community)",
+  "owner": { "name": "sanic732", "email": "sanic732@protonmail.com" },
   "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sanic732/P2P-4PDA-edition.git"
-  },
+  "repository": { "type": "git", "url": "https://github.com/sanic732/P2P-4PDA-edition.git" },
   "plugins": [
     {
       "name": "p2p-v8c3",
-      "source": "./cowork + code",
-      "description": "P2P v8C.3-ALPHA Claude Edition — PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 11 commands, XML-native, SCOPE.HELM, Claude Fable 5 / Opus 4.8",
+      "source": "./editions/cloud-claude/plugin",
+      "description": "P2P v8C.3-ALPHA Claude Edition — PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 11 commands, XML-native, SCOPE.HELM",
       "tags": ["latest", "alpha", "claude-native"],
+      "version": "8.3.0"
+    },
+    {
+      "name": "p2p-v8l3",
+      "source": "./editions/light/plugin",
+      "description": "P2P v8L.3-ALPHA Lite/Live Edition — 4 BOOT files + lazy online fetch, universal host",
+      "tags": ["lite", "live", "alpha"],
       "version": "8.3.0"
     }
   ]

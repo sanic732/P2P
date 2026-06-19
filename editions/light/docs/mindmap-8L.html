@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P v8L.3 Architecture Explorer — Resolver-Gated (QUORUM-revised)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+        .folder:hover { background-color: #161b22; cursor: pointer; }
+        .file:hover { background-color: #1f2428; cursor: pointer; }
+        .active-node { background-color: #1f2428; border-left: 3px solid #58a6ff; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .terminal-box { background-color: #010409; border: 1px solid #30363d; border-radius: 6px; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .badge-boot   { background-color: #238636; color: #ffffff; }
+        .badge-resolver { background-color: #1f6feb; color: #ffffff; }
+        .badge-transport { background-color: #bb8009; color: #ffffff; }
+        .badge-gist   { background-color: #8957e5; color: #ffffff; }
+        .pill-new   { background:#1f6feb22; color:#58a6ff; border:1px solid #1f6feb; }
+        .pill-fix   { background:#da363322; color:#f85149; border:1px solid #da3633; }
+        .pill-eager { background:#23863622; color:#3fb950; border:1px solid #238636; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="bg-[#161b22] border-b border-[#30363d] p-4 flex items-center justify-between z-10">
+        <div>
+            <h1 class="text-xl font-bold text-white flex items-center gap-2">
+                <svg class="w-6 h-6 text-[#58a6ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                P2P v8L.3 — Resolver-Gated Lazy Hybrid
+            </h1>
+            <p class="text-xs text-gray-400 mt-1">Карта v2 после ревизии QUORUM: FETCH-гейт · dependency-resolver · sha256 · eager live_specs · расклеен gist_10</p>
+        </div>
+        <div class="text-right hidden sm:block">
+            <p class="text-sm">Idle: <span class="text-green-400 font-mono">~33K</span> · Active: <span class="text-yellow-400 font-mono">~50–70K</span></p>
+            <p class="text-sm">Full Arsenal: <span class="text-purple-400 font-mono">~215K</span> (lazy)</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden">
+
+        <!-- Sidebar: Directory Tree -->
+        <div class="w-full md:w-1/3 lg:w-1/4 border-r border-[#30363d] overflow-y-auto scrollbar-hide bg-[#0d1117] p-2" id="sidebar"></div>
+
+        <!-- Detail Panel -->
+        <div class="w-full md:w-2/3 lg:w-3/4 overflow-y-auto p-4 sm:p-8 bg-[#0d1117]" id="detail-panel">
+            <div class="flex flex-col items-center justify-center h-full text-gray-500">
+                <svg class="w-16 h-16 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                <p>Выберите слой или чанк слева. Красные пилюли = правки QUORUM (D1–D4).</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Архитектурные данные v8L.3 (revised) ---
+        // RU: 4 слоя вместо 2. EN: 4 layers instead of 2.
+        const architectureData = [
+            {
+                id: "boot_layer", type: "folder", title: "L0 · BOOT (local, eager)", badge: "boot",
+                desc: "Загружается вручную в стартовый контекст (~33K). 4 локальных файла + live_specs грузится EAGER при старте (поправка DATOS: дедлайны не должны быть lazy). Здесь же FETCH-гейт, решающий, доступен ли вообще удалённый арсенал.",
+                children: [
+                    {
+                        id: "preloader_v8l", title: "_preloader_v8L.md", original: "_preloader.md",
+                        desc: "Конфигуратор сессии. NEW: FETCH_CAPABILITY-гейт — на старте детектит наличие web-fetch инструмента у хоста и ставит LOAD_MODE = GIST_LAZY_FETCH | LITE_ONLY. Содержит HOST_CONFIG, FLAGS, PROJECT_CARD и MUTEX-матрицу.",
+                        size: "~3K", pills: ["new"],
+                        code: `FETCH_CAPABILITY_GATE:        # ANON A1 — единственное основание дизайна
+  probe: [WebFetch?, web_search?, browse?]
+  on_capable:    LOAD_MODE = GIST_LAZY_FETCH
+  on_incapable:  LOAD_MODE = LITE_ONLY     # честная деградация, не галлюцинация`
+                    },
+                    {
+                        id: "index_v8l", title: "_index_v8L.md", original: "_index_v8H.md",
+                        desc: "Сетевая таблица маршрутизации. NEW: не просто URL, а ПОЛНЫЙ КОНТРАКТ чанка — trigger + url + sha256 + size_kb + requires[] + mutex[] + fallback. Это фундамент для dependency-resolver в ядре.",
+                        size: "~4.5K", pills: ["new"],
+                        code: `GIST_ROUTING_TABLE:
+  OPTIMIZATION:
+    trigger:  "APO|OPRO|оптимизируй промпт|auto-tune"
+    url:      "https://gist.../gist_optimization.md"
+    sha256:   "a1b2c3…"          # реальная integrity (закрывает D4/A3)
+    eof_hash: "EOF_MARKER_OPTIMIZATION_VALIDATED"  # дешёвая 1-я линия
+    size_kb:  3.5
+    requires: [SESSION, PIPELINE] # транзитивные deps → resolver
+    mutex:    [metrics_required]
+    fallback: "LITE_DECLINE"`
+                    },
+                    {
+                        id: "core_v8l", title: "!!core_v8L.md", original: "!!core_v8H.md",
+                        desc: "Главный диспетчер. NEW: DEPENDENCY_RESOLVER (L1) — транзитивное замыкание requires + dedup + MUTEX-чек ДО fetch (закрывает D1/D2). Плюс LAZY_FETCH_PROTOCOL, управляющий online-инструментом. Стартовое меню (25 базовых).",
+                        size: "~12K", pills: ["new"],
+                        code: `on trigger T:
+  plan = resolve_deps(T)            # транзитивное замыкание requires
+  if not HOST.fetch_capable:
+      return LITE_DECLINE(plan)      # A1
+  for chunk in plan:
+      raw = FETCH(chunk.url)
+      assert raw.endswith(chunk.eof_hash)        # анти-усечение
+      assert sha256(raw) == chunk.sha256         # анти-подмена (D4)
+      assert abs(len(raw)-chunk.size) < 15%
+      inject(raw)
+  check_mutex(plan)                  # конфликт компрессоров/grammar`
+                    },
+                    {
+                        id: "db_v8l", title: "!!db_v8L.md", original: "!!db_v8H.md",
+                        desc: "Статическая база знаний. 38 обязательных техник, паттерны ошибок A-P, баги вендоров G1-G20, веса QUORUM. Всегда в памяти — предотвращает галлюцинации базового уровня.",
+                        size: "~12K", pills: []
+                    },
+                    {
+                        id: "gist_live_eager", title: "live_specs ⚡ EAGER", original: "live_core.md, live_vendors.md, live_specs_20260617.md, MANIFEST.md",
+                        desc: "ПЕРЕНЕСЁН из lazy в eager (поправка DATOS). Питает DEADLINE-сканер (правила 5-6 CLAUDE.md). Данные стареют → грузятся при КАЖДОМ старте, а не «когда юзер вспомнит слово pricing». ELO, прайсинг, временные патчи (баги Fable 5 / Opus 4.8).",
+                        size: "~6K", pills: ["eager"],
+                        trigger: "АВТО при старте (не по триггеру)"
+                    }
+                ]
+            },
+            {
+                id: "resolver_layer", type: "folder", title: "L1 · RESOLVER (логика в core)", badge: "resolver",
+                desc: "Новый слой, которого не было в исходном миндмапе. Превращает триггер в КОРРЕКТНЫЙ план загрузки: собирает все транзитивные зависимости, дедуплицирует чанки и проверяет MUTEX-конфликты ДО обращения к сети. Закрывает дефекты D1 (MUTEX через границы чанков) и D2 (одиночный fetch ломает deps).",
+                children: [
+                    {
+                        id: "resolver_step", title: "resolve_deps(T)", original: "NEW — нет аналога в v8H.3",
+                        desc: "5 шагов: 1) match trigger → 2) собрать ВСЕ транзитивные requires → 3) dedup чанков → 4) MUTEX-чек → 5) построить fetch-план. Пример: триггер «оптимизируй промпт» тянет gist_optimization + gist_session(metrics) + gist_core_plus(pipeline), а не один чанк (как ошибочно обещал v1).",
+                        size: "логика", pills: ["new"],
+                        code: `resolve_deps("оптимизируй промпт"):
+  → OPTIMIZATION
+  → + SESSION       (requires: metrics)
+  → + CORE_PLUS     (requires: pipeline)
+  = [optimization, session, core_plus]   # ~18.5K, честно (не 3.5K)`
+                    },
+                    {
+                        id: "mutex_check", title: "check_mutex(plan)", original: "NEW",
+                        desc: "Гейт совместимости. Если план содержит конфликтующие MUTEX-классы (напр. два компрессора, или GUARDIAN:ON + routing-cascade) — резолвер ругается ДО fetch, а не активирует три гейта разом (корень дефекта D1).",
+                        size: "логика", pills: ["new"]
+                    }
+                ]
+            },
+            {
+                id: "transport_layer", type: "folder", title: "L2 · TRANSPORT (контракт)", badge: "transport",
+                desc: "Контракт надёжной доставки чанка. Каждый fetch проходит верификацию целостности (eof_marker → sha256 → size) перед инъекцией. При недоступности сети — управляемый FALLBACK вместо тихой галлюцинации содержимого Gist.",
+                children: [
+                    {
+                        id: "fetch_verify", title: "FETCH → verify → inject", original: "NEW — раньше всё было локально",
+                        desc: "3-ступенчатая верификация: (1) eof_marker ловит усечение в конце; (2) sha256 ловит подмену середины (A3) и тихую правку (A4); (3) size_kb ±15% — вторая линия анти-усечения. Провал любой → FALLBACK по chunk.fallback.",
+                        size: "контракт", pills: ["new"],
+                        eof: "// EOF_MARKER_<CHUNK>_VALIDATED + sha256:<hex>"
+                    },
+                    {
+                        id: "verify_macro", title: "/p2p-verify (Manifest Reconciliation)", original: "NEW (ARCHITECTON)",
+                        desc: "Релизный макрос: проходит по _index_v8L, делает GET по всем URL, сверяет sha256 и размеры, рапортует drift. Отвечает на вопрос IRIS «кто пересчитывает хеши» — не человек вручную, а команда перед релизом.",
+                        size: "макрос", pills: ["new"]
+                    }
+                ]
+            },
+            {
+                id: "gist_layer", type: "folder", title: "L3 · GIST CLOUD (lazy, по плану резолвера)", badge: "gist",
+                desc: "Удалённые чанки. ПЕРЕНАРЕЗАНЫ по принципу VECTOR: «минимум транзитивных fetch на типовой сценарий», а не по теме. Склеено то, что всегда грузится вместе (agents+pipeline); расклеено то, у чего разные MUTEX (бывший gist_10). Потолок ≤6K/чанк (порог одного надёжного fetch).",
+                children: [
+                    {
+                        id: "g_core_plus", title: "gist_core_plus.md", original: "!agents.md + !pipeline.md",
+                        desc: "СКЛЕЕНО (VECTOR): agents и pipeline почти всегда грузятся вместе для QUORUM/контрактов → 1 fetch вместо 2. Консилиум (QUORUM/HELIOS/FAST_TRIO/Heavy-16) + 5D Intent + 11-шаговый Contract Builder + библиотека шаблонов A/NANO→M.",
+                        size: "~10K", pills: ["fix"], mutex: "—",
+                        trigger: "QUORUM|агент|Contract|шаблон|5D|интент", eof: "// EOF_MARKER_CORE_PLUS_VALIDATED",
+                        note: "ПРИМ: на Claude/Grok хостах агенты локальны (.claude/agents/). Gist-версия — только для chat-хостов без плагина. Двойной путь явно разведён в _index."
+                    },
+                    {
+                        id: "g_session", title: "gist_session.md", original: "!toolkit.md, !scope.md, !memory.md, !metrics.md, !sandbox.md",
+                        desc: "Кластер «сессия»: декомпозиция (SPLITTER), память (CAPSULE), метрики качества, Debug Engine, песочница. Держится вместе, т.к. optimization/rag требуют metrics.",
+                        size: "~9K", pills: [], mutex: "—",
+                        trigger: "debug|Arena|scope|CAPSULE|метрики|sandbox", eof: "// EOF_MARKER_SESSION_VALIDATED"
+                    },
+                    {
+                        id: "g_vendors", title: "gist_vendors.md", original: "tier1-4.md, grok.md, claude.md",
+                        desc: "Детальные спеки 8+ моделей (флагманы → китайские GLM/Kimi). Только для глубокого анализа провайдеров.",
+                        size: "~8K", pills: [], mutex: "—",
+                        trigger: "vendor|спецификация модели|tier1|claude model", eof: "// EOF_MARKER_VENDORS_VALIDATED"
+                    },
+                    {
+                        id: "g_host", title: "gist_host_engine.md", original: "!host_profiles, !llm_router, !routing_matrix, !tool_budget, !x_realtime",
+                        desc: "Специфика хоста. ПРИМ DATOS: реальный размер ~9-11K (v1 занижал до 5K). Лимиты вызовов (Type B), матрица тиров, X Firehose для Grok.",
+                        size: "~10K", pills: ["fix"], mutex: "—",
+                        trigger: "host profile|лимит вызовов|router|x firehose", eof: "// EOF_MARKER_HOST_ENGINE_VALIDATED"
+                    },
+                    {
+                        id: "g_reasoning", title: "gist_reasoning.md", original: "!reasoning.md",
+                        desc: "MCTS, Self-Consistency, Critical Chain для Math/Logic. Оставлен ОТДЕЛЬНО от optimization из-за MUTEX: THINKING:ON (один бюджет рассуждения).",
+                        size: "~3.5K", pills: [], mutex: "THINKING:ON",
+                        trigger: "reasoning|cot|mcts|self-consistency|думай глубже", eof: "// EOF_MARKER_REASONING_VALIDATED"
+                    },
+                    {
+                        id: "g_optimization", title: "gist_optimization.md", original: "!optimization.md",
+                        desc: "APO/OPRO авто-улучшение промптов. КРИТИЧНО: requires [SESSION(metrics), CORE_PLUS(pipeline)] → резолвер тянет 3 чанка, не 1 (исправление D2).",
+                        size: "~3.5K", pills: ["fix"], mutex: "metrics_required",
+                        trigger: "APO|OPRO|оптимизируй промпт|auto-tune", eof: "// EOF_MARKER_OPTIMIZATION_VALIDATED"
+                    },
+                    {
+                        id: "g_rag", title: "gist_rag.md", original: "!rag.md",
+                        desc: "RAPTOR-дерево, ретривал, инъекция контекста. requires [SESSION(memory), CORE_PLUS(agents)].",
+                        size: "~3K", pills: [], mutex: "—",
+                        trigger: "rag|raptor|retrieval|векторная БД", eof: "// EOF_MARKER_RAG_VALIDATED"
+                    },
+                    {
+                        id: "g_security", title: "gist_security.md  ◀ split", original: "!security.md (из бывш. gist_10)",
+                        desc: "РАСКЛЕЕНО из gist_10 (исправление D1). Аудит безопасности промптов, injection/jailbreak. Свой MUTEX GUARDIAN:ON — нельзя было держать в одном чанке с компрессией/роутингом.",
+                        size: "~3K", pills: ["fix"], mutex: "GUARDIAN:ON",
+                        trigger: "security|injection|jailbreak|безопасность", eof: "// EOF_MARKER_SECURITY_VALIDATED"
+                    },
+                    {
+                        id: "g_compress", title: "gist_compress.md  ◀ split", original: "!compression.md (из бывш. gist_10)",
+                        desc: "РАСКЛЕЕНО из gist_10 (исправление D1). LLMLingua-сжатие, constrained output, JSON schema. MUTEX: один компрессор/grammar за раз.",
+                        size: "~2.5K", pills: ["fix"], mutex: "один компрессор",
+                        trigger: "compress|llmlingua|сжат|constrained output", eof: "// EOF_MARKER_COMPRESS_VALIDATED"
+                    },
+                    {
+                        id: "g_route", title: "gist_route.md  ◀ split", original: "!routing.md (из бывш. gist_10)",
+                        desc: "РАСКЛЕЕНО из gist_10 (исправление D1). Каскадная маршрутизация моделей. MUTEX с !scope Cascade — конфликтовал бы с другими частями бывшего gist_10.",
+                        size: "~2K", pills: ["fix"], mutex: "!scope Cascade",
+                        trigger: "routing|маршрутизация|какую модель|cascade", eof: "// EOF_MARKER_ROUTE_VALIDATED"
+                    }
+                ]
+            }
+        ];
+
+        // --- Рендеринг ---
+        const sidebar = document.getElementById('sidebar');
+        const detailPanel = document.getElementById('detail-panel');
+        const badgeClassMap = { boot:'badge-boot', resolver:'badge-resolver', transport:'badge-transport', gist:'badge-gist' };
+
+        function pillsHtml(pills){
+            if(!pills || !pills.length) return '';
+            const map = { new:['pill-new','NEW'], fix:['pill-fix','QUORUM FIX'], eager:['pill-eager','EAGER'] };
+            return pills.map(p=>`<span class="badge ${map[p][0]} ml-1">${map[p][1]}</span>`).join('');
+        }
+
+        function renderTree() {
+            let html = '';
+            architectureData.forEach(folder => {
+                html += `
+                    <div class="mb-4">
+                        <div class="folder flex items-center gap-2 p-2 rounded-md text-white font-semibold transition-colors" onclick="showFolderDetails('${folder.id}')">
+                            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
+                            <span class="text-sm">${folder.title}</span>
+                        </div>
+                        <div class="ml-4 mt-1 border-l border-[#30363d] pl-2 flex flex-col gap-1">
+                            ${folder.children.map(file => `
+                                <div class="file flex items-center justify-between p-2 rounded-md text-sm text-gray-300 transition-colors" onclick="showFileDetails('${folder.id}', '${file.id}', event)">
+                                    <span class="truncate pr-2">${file.title}</span>
+                                    <span>${pillsHtml(file.pills)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            sidebar.innerHTML = html;
+        }
+
+        function showFolderDetails(folderId) {
+            document.querySelectorAll('.file, .folder').forEach(el => el.classList.remove('active-node'));
+            if(event) event.currentTarget.classList.add('active-node');
+            const folder = architectureData.find(f => f.id === folderId);
+            const badgeClass = badgeClassMap[folder.badge];
+            let html = `
+                <div class="animate-fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg class="w-10 h-10 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">${folder.title}</h2>
+                            <span class="badge ${badgeClass} mt-2 uppercase tracking-wide">${folder.badge} LAYER</span>
+                        </div>
+                    </div>
+                    <div class="bg-[#161b22] border border-[#30363d] p-6 rounded-lg mb-6">
+                        <p class="text-gray-300 text-base leading-relaxed">${folder.desc}</p>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 border-b border-[#30363d] pb-2">Состав слоя</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        ${folder.children.map(file => `
+                            <div class="terminal-box p-4 cursor-pointer hover:border-[#58a6ff] transition-colors" onclick="showFileDetails('${folder.id}', '${file.id}', event)">
+                                <h4 class="text-[#58a6ff] font-mono text-sm font-bold mb-1">${file.title} ${pillsHtml(file.pills)}</h4>
+                                <p class="text-xs text-gray-400 truncate mb-2">Из: ${file.original}</p>
+                                <p class="text-sm text-gray-300 line-clamp-2">${file.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            detailPanel.innerHTML = html;
+        }
+
+        function showFileDetails(folderId, fileId, e) {
+            if(e) e.stopPropagation();
+            document.querySelectorAll('.file, .folder').forEach(el => el.classList.remove('active-node'));
+            if(e && e.currentTarget) e.currentTarget.classList.add('active-node');
+            const folder = architectureData.find(f => f.id === folderId);
+            const file = folder.children.find(f => f.id === fileId);
+            const badgeClass = badgeClassMap[folder.badge];
+            let html = `
+                <div class="animate-fade-in">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="badge ${badgeClass} uppercase tracking-wide">${folder.badge}</span>
+                                <span class="text-xs text-gray-500 font-mono">${file.size}</span>
+                                ${pillsHtml(file.pills)}
+                            </div>
+                            <h2 class="text-2xl font-bold text-[#58a6ff] font-mono">${file.title}</h2>
+                            <p class="text-sm text-gray-400 mt-1">Исходники (v8H.3): <span class="text-gray-300">${file.original}</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-[#161b22] border border-[#30363d] p-6 rounded-lg mb-6 shadow-lg">
+                        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Архитектурная роль</h3>
+                        <p class="text-gray-200 text-base leading-relaxed">${file.desc}</p>
+                    </div>
+                    ${file.note ? `<div class="bg-[#1c2128] border-l-2 border-[#8957e5] p-4 rounded mb-6 text-sm text-gray-300">${file.note}</div>` : ''}
+                    ${file.mutex && file.mutex !== '—' ? `
+                        <div class="mb-6">
+                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">MUTEX-класс</h3>
+                            <div class="terminal-box p-3 font-mono text-sm text-[#f0883e]">${file.mutex}</div>
+                        </div>` : ''}
+                    ${file.trigger ? `
+                        <div class="mb-6">
+                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                <svg class="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                Триггеры активации
+                            </h3>
+                            <div class="terminal-box p-3 font-mono text-sm text-[#e5c07b]">
+                                ${file.trigger.split('|').map(t => `<span class="bg-[#282c34] px-1 py-0.5 rounded mr-1">${t}</span>`).join(' ')}
+                            </div>
+                        </div>` : ''}
+                    ${file.eof ? `
+                        <div class="mb-6">
+                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Integrity (анти-усечение + анти-подмена)
+                            </h3>
+                            <div class="terminal-box p-3 font-mono text-sm flex justify-between items-center">
+                                <span class="text-[#98c379]">${file.eof}</span>
+                                <button onclick="navigator.clipboard.writeText('${file.eof}')" class="text-gray-500 hover:text-white p-1" title="Копировать">⧉</button>
+                            </div>
+                        </div>` : ''}
+                    ${file.code ? `
+                        <div class="mb-6">
+                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Конфигурация / псевдокод</h3>
+                            <div class="terminal-box p-4 font-mono text-xs text-gray-300 overflow-x-auto whitespace-pre">${file.code.replace(/</g,'&lt;')}</div>
+                        </div>` : ''}
+                </div>
+            `;
+            detailPanel.innerHTML = html;
+        }
+
+        renderTree();
+    </script>
+</body>
+</html>

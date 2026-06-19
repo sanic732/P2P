@@ -1,97 +1,92 @@
-# CHANGELOG
+# CHANGELOG — P2P (Prompt-to-Prompt)
 
-Полная история версий — [`docs/CHANGELOG_v8C3.md`](docs/CHANGELOG_v8C3.md).
-Этот файл — release-level changelog публикации в GitHub.
+Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версионирование — по поколениям архитектуры P2P (v1 → v8).
+
+> **Историзация:** записи v1–v7 и v8 .1/.2 помечены `(backfilled)` — это **историческая реконструкция** по форумным постам 4PDA и архивным файлам (`old_version/`). Даты приведены как в первоисточниках; **git-коммиты задним числом не создаются** (решение 2026-06-19). Подробные описания — `legacy/v*/DESCRIPTION.md`, нарратив — `legacy/HISTORY.md`.
 
 ---
 
-## [v8C.3-ALPHA] — 2026-06
+## [v8.3-ALPHA] — 2026-06 · «NEXUS» (.3)
 
 ### Added
-- **PILOT** — единая ось управления уровнем помощи (Co-Pilot / Auto-Pilot / Manual + GLASS COCKPIT). Оборачивает DEEP_THINK_VALUE_GATE, IDEALIST/PRAGMATIST, 9-step contract, SIR Scanner. Выбор буквой `C/A/M`. `USER_LEVEL ↔ PILOT_MODE`; сессионный override через sandbox `PERSONA_HINT`.
-- **SHERPA** — проводник по штатным фичам среды (апгрейд teacher → inline-коучинг). Флаг `SHERPA: auto|on|off` + `/sherpa`.
-- **6 ON-DEMAND модулей** (меню [35-40]): `!rag` (RAPTOR, LongRAG, adRAP) · `!reasoning` (Self-Consistency, rStar-Math/MCTS, s1) · `!routing` (Semantic/Cascade/Cost-Aware, RouteLLM) · `!compression` (LLMLingua, Gist Tokens) · `!security` (SelfCheckGPT, injection defense) · `!optimization` (OPRO, APE, EvoPrompt). Источники — `docs/TECHNIQUES_v8C3.md`.
-- **VERSION_COMPAT** — `v8C2/v8C3 on/off` + 6 MODULE-флагов (`false|true|auto|or`); **CONFLICT_RESOLVER v1.0** при конфликте техник.
-- **Арт-меню** — опциональный `!art.md`: ASCII-баннеры режимов на старте (вертикально), выбор буквой.
-- **Claude Fable 5** — добавлена как T4-модель (Arena #1 Agent, `claude-fable-5`).
-- `docs/`: MODES_GUIDE, TECHNIQUES_v8C3, MODULE_REFERENCE, MINDMAP, ARCHITECTURE_MAP (карта архитектуры + Route Changelog).
-- `NOTICE` — атрибуции интегрированных техник + дисклеймер про авторские имена P2P.
+- 4 редакции одной архитектуры: **8C.3** (Claude Native), **8H.3** (High \ Hybrid = слияние Gemini-A ⊕ Grok-G), **8N.3** (Normal/Universal), **8L.3** (Lite/Live).
+- **PILOT** — ось уровня помощи (Co-Pilot / Auto-Pilot / Manual + GLASS COCKPIT); **SHERPA** — проводник по фичам среды.
+- 6 ON-DEMAND модулей: `!rag` · `!reasoning` · `!routing` · `!compression` · `!security` · `!optimization` (RAPTOR/LongRAG, Self-Consistency/MCTS/s1, Cost-Aware routing, LLMLingua/Gist, SelfCheckGPT, OPRO/APE/EvoPrompt).
+- **VERSION_COMPAT** + CONFLICT_RESOLVER v1.0; арт-меню (ASCII-баннеры); **Claude Fable 5** как T4-модель.
+- Live specs от 17.06.26 интегрированы во все редакции; переход на **base-model идентификаторы**.
 
 ### Changed
-- Live specs → `live_specs_20260617.md` (v8.5, 10 вендоров, Fable 5, Opus 4.8).
-- Манифесты: `p2p-v8c2` → `p2p-v8c3`, версия `8.2.0` → `8.3.0`.
-- TARGET CONTEXT CHECK в Contract Builder (host ≠ target: подписка/лимиты/разбивка задачи).
-- intent §2.5 MODULE HANDOFF — маршрутизация в новые модули.
-- `docs/` — заменена на EN-документацию (INSTALL_GUIDE, TECHNIQUES_v8C3, MODULE_REFERENCE, MINDMAP, MODES_GUIDE, ARCHITECTURE_MAP); добавлен `tools/` с python-чекерами.
+- Манифесты `p2p-v8c2` → `p2p-v8c3` (`8.2.0` → `8.3.0`).
+- 8L.3: 4 BOOT-файла (~18-22K токенов) + ленивая online-подгрузка арсенала по триггеру.
 
-### Fixed
-- Унифицирована схема активации модулей (`trigger`/`trigger_keywords` → `triggers`).
-- FABRICATION_SCAN (VECTOR/ANON) больше не блокирует собственные техники: SC ≠ USC, MCTS ≠ ToT, RAPTOR ≠ GoT.
-- Висячая якорная ссылка `#DB_TASK_TYPE` исправлена; 0 битых якорей.
-- Версионный дрейф `v8C.1`/`v8C.2` в теле модулей вычищен.
-
-### Verified
-- Consistency: 0 битых якорей, паритет дистрибуций, 0 терминологического рассинхрона.
-- Симуляции 6 сценариев (генерация, QUORUM, feedback-loop, cross-model, conflict-resolver) — механики отрабатывают как заявлено.
-
-### Notes
-- Интегрированные техники — паттерны промптинга, вдохновлённые открытыми работами (код не включён). P2P остаётся под **MIT**.
-- Drop-in замена для v8C.2. v8C.3 модули по умолчанию активны в alpha-сборке; для прода `v8C3=off` экономит токены.
+> Опубликована пока только редакция **8C.3** (`P2P-4PDA-edition`); H/N/L — к публикации (Фазы 4/8).
 
 ---
 
-## [v8C.2] — 2026-05-15 — публичная публикация на GitHub
+## [v8C.2] — 2026-05-14 (backfilled) · «NEXUS» (.2)
+🔗 [Обновление P2P для Claude → 8C.2](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143383283)
 
-Первая публикация P2P v8C.2 как открытого GitHub-проекта в репозитории
-`sanic732/P2P-4PDA-edition` (зеркало для 4PDA-сообщества).
-
-### Что вошло в релиз
-
-- `cowork + code/` — плагин для Claude Code и Cowork (skills, agents, commands,
-  pack scripts, `.claude-plugin/` манифесты)
-- `for chat (project)/` — модули для Claude.ai Projects/Chat и API
-  (BASE, ON-DEMAND, _live/, vendors/)
-- `docs/` — 10 markdown-гайдов (install, teacher, FAQ, changelog, agents…)
-- Корневые: `README.md`, `LICENSE` (MIT), `NOTICE`, `.gitignore`,
-  `.claude-plugin/marketplace.json` (для `/plugin marketplace add`)
-
-### Ассеты релиза
-
-- `p2p-v8c2.plugin` — собранный one-click пакет (Cowork/Claude Code import)
-- `p2p-v8C.2-cowork-code.zip` — исходники плагина для самостоятельной сборки
-- `p2p-v8C.2-for-chat.zip` — модули для Chat/Projects/API
-
-### Pre-release fixes 2026-05-15
-
-При подготовке к публикации проведена сквозная валидация v8C.2:
-
-- ✅ `plugin.json` — валиден, name=p2p-v8c2, version=8.2.0
-- ✅ `marketplace.json` (внутри плагина) — валиден
-- ✅ `.claude/commands/` — 11 файлов (`/p2p` + 10 субкоманд, включая `/p2p-teacher`)
-- ✅ `.claude/agents/` — 8 sub-agent файлов (QUORUM)
-- ✅ `.claude/skills/` — 2 skill (`p2p`, `p2p-teacher`)
-- ✅ `pack.ps1` собирает чистый `.plugin` (210 KB, без pack-скриптов и `.zip`/`.plugin` мусора внутри)
-- ✅ `for chat (project)/` — 25 верхне-уровневых файлов (3 BASE + 19 ON-DEMAND + 3 индекс/мастер), `_live/` × 4, `vendors/` × 4
-- ✅ `docs/` — 10 гайдов, все на месте
-- 🔧 `cowork + code/.claude-plugin/plugin.json` — поле `homepage` обновлено
-  с placeholder-URL `p2p-project/p2p-v8c2` на актуальный
-  `sanic732/P2P-4PDA-edition`; добавлен блок `repository`.
-- 🔧 Создан корневой `.claude-plugin/marketplace.json` с `source: "./cowork + code"`,
-  чтобы `/plugin marketplace add <git-url>` работал из корня репо
-  (внутренний `cowork + code/.claude-plugin/marketplace.json` сохранён для
-  локальной сборки).
-- 🔧 `cowork + code/INSTALL.md` — раздел "Метод 2 — Marketplace" обновлён
-  реальной командой импорта с этого репо (`sanic732/P2P-4PDA-edition`)
-  вместо плейсхолдера `<user>/p2p`.
-- 🔧 `docs/INSTALL_GUIDE.md` — добавлен **Метод 0 — GitHub marketplace** в начало
-  как рекомендованный one-liner.
-
-Никаких ломающих изменений в логике системы, агентах, базе знаний или
-вендорских модулях не вносилось. CAPSULE и state-файлы из v8C.1 совместимы.
+- Claude Native Edition: XML-ядро, cowork-code + for-chat, 8 агентов QUORUM, SCOPE.HELM.
+- Параллельные ветки поколения .1/.2: **8A.1** (Gemini AI Studio, ZERO XML — обход G2; Memory Bridge против G13), **8G.1** (Grok Native — Heavy-16, X Firehose, Tool Budget), **8N.1** (Universal — HOST_PROFILE_LOADER, защиты G15/G18/G19/G20). См. `legacy/v8-pre/`.
 
 ---
 
-## [v8C.1] и ранее
+## [v1.1-EN] — 2026-04 (backfilled, archived) · публичный EN-релиз
+🔗 Архивный репозиторий (read-only): https://github.com/sanic732/P2P-main
 
-См. [`docs/CHANGELOG.md`](docs/CHANGELOG.md) для полной истории
-(v8C.0 → v8C.1 → v8C.2 и v7C.x).
+- Первый публичный релиз на GitHub. **Внутренняя версия v7C.2** (поколение CORTEX), English-only.
+- Переименование агентов: `ANON → FORGE`, `KSENIA → LYRA`; команда `/lang` (EN/RU).
+- Без слома совместимости с v1.0 (=внутр. v7C.1). → судьба: **архив + ссылка** (см. `03a_NAMING_DECISION.md`).
+
+---
+
+## [v7] — 2026-03 → 2026-04 (backfilled) · «CORTEX»
+🔗 [SCOPE.HELM v1.0](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142654977) · [CORTEX Patch 001](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142550801)
+
+- Редакции FULL / NORMAL / LITE; ветки 7A.1 (AI Studio), 7C.1/7C.2 (Claude), 7N.1, 7L.
+- **SCOPE.HELM v1.0** — pre-work движок больших сессий (SPLITTER → ROUTER → CAPSULE).
+- **CORTEX Patch 001** — три недостающих контура ядра. 8 агентов, 38 техник, 16 типов ошибок (A-P), 11 шаблонов.
+
+---
+
+## [v6] — 2026-02 → 2026-03 (backfilled) · «LEGION»
+
+- **Domain Knowledge Layer** (React 19, Kotlin); **NotebookLM Bridge v1.0 STABLE**; **Cross-Pollination Directive**.
+- **Tier 4 (Frontier)** с обязательным QUORUM; 4 техники DeepSearch (GO_SLOW, CLAUDE_MD, LLM_COUNCIL, SAFE_THINKING); **ROUTING_FORMULA_PROTOCOL v1.0**.
+- Сборки 6.0 / 6.1_fix / 6.3_fix2 (Ядро+БД).
+
+---
+
+## [v5.5–5.9] — 2026-02-15 (backfilled) · «CHIMERA»
+🔗 [P2P CORE v5.5 «CHIMERA» — релиз](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141969850) · 📜 [DevLog ч.2](https://4pda.to/forum/index.php?showtopic=1077922&view=findpost&p=142005543)
+
+- Переход от монолита к модульной «Химере». Трёхслойная база знаний; ссылки-якоря `#DB_LINK_XXX`; правило свежести 90 дней.
+- Линия 5.3 → 5.5 → 5.7 → 5.9 STABLE. Начало «ОС внутри промпта».
+
+---
+
+## [v4.0–4.1] — 2026-01 → 2026-02-16 (backfilled) · «Constraint Prompting»
+
+- Парадигма **Constraint Prompting** (границы+цели вместо CoT для reasoning-моделей, +30-40% качества).
+- Трёхслойная архитектура (Static/Dynamic/Empirical); **DoD Security**; **Chain of Prompts** (Research→Draft→Review→Polish); **Library Anchor Protocol**.
+
+---
+
+## [v3.2] — 2025-12 (backfilled) · «Dynamic Lab»
+📜 [DevLog ч.1](https://4pda.to/forum/index.php?showtopic=1077922&view=findpost&p=140958693)
+
+- Архитектура **Dynamic Lab**: разделение логики (Core) и данных (Knowledge Base).
+- Динамическая инъекция знаний; валидация авто-адаптируется под модель (XML/Markdown/CoT); модуль анти-галлюцинаций.
+
+---
+
+## [v2] — 2025-11 (backfilled)
+
+- Коллекция системных промптов под каждую LLM (GPT/Gemini/Claude/DeepSeek/Grok/Qwen/Kimi).
+- Уровни строгости Simple / Pro / System; встроенные чек-листы валидации.
+
+---
+
+## [v1] — 2025-10 (backfilled) · «Prompt to create prompts»
+
+- Первый мета-промпт: один англоязычный текстовый промпт (intake GOAL/CONTEXT/FORMAT → дизайн → чек-лист оптимизации). Исток проекта.
