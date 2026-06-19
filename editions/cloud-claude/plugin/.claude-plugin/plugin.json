@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "p2p-v8c3",
   "displayName": "P2P v8C.3 — Claude Edition",
-  "version": "8.3.0",
+  "version": "8.3.1",
   "description": "Meta-prompt system for Claude Opus 4.7 / Sonnet 4.6. 8 QUORUM agents, 11 /p2p-* commands, XML-native, SCOPE.HELM, interactive teacher mode.",
   "author": {
     "name": "P2P Project",

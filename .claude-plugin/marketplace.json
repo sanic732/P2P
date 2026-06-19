@@ -12,14 +12,14 @@
       "source": "./editions/cloud-claude/plugin",
       "description": "P2P v8C.3-ALPHA Claude Edition — PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 11 commands, XML-native, SCOPE.HELM",
       "tags": ["latest", "alpha", "claude-native"],
-      "version": "8.3.0"
+      "version": "8.3.1"
     },
     {
       "name": "p2p-v8l3",
       "source": "./editions/light/plugin",
       "description": "P2P v8L.3-ALPHA Lite/Live Edition — 4 BOOT files + lazy online fetch, universal host",
       "tags": ["lite", "live", "alpha"],
-      "version": "8.3.0"
+      "version": "8.3.1"
     }
   ]
 }
