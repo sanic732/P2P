@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2P · План реструктуризации GitHub</title>
+<style>
+:root{--bg:#0b1120;--line:#24314d;--text:#e8eefc;--muted:#8aa0c6;--accent:#38bdf8;
+  --c-state:#f59e0b;--c-dec:#a78bfa;--c-struct:#38bdf8;--c-ed:#34d399;--c-hist:#fb7185;--c-rel:#f472b6;--c-faq:#facc15;}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:radial-gradient(1200px 800px at 70% -10%,#16233f,transparent),var(--bg);
+  color:var(--text);font-family:'Segoe UI',Roboto,system-ui,Arial,sans-serif}
+#top{position:sticky;top:0;z-index:10;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  padding:12px 18px;background:linear-gradient(180deg,#0b1120ee,#0b112099);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+#top b{font-size:17px;letter-spacing:.3px}
+#top .sub{font-size:11px;color:var(--muted)}
+.spacer{flex:1}
+.btn{background:#16233f;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;transition:.15s;user-select:none}
+.btn:hover{border-color:var(--accent);color:#fff}
+.btn.active{background:#1b2f55;border-color:var(--accent);color:#fff}
+#wrap{max-width:1180px;margin:0 auto;padding:22px 18px 80px}
+.root{display:flex;justify-content:center;margin-bottom:18px}
+.root .card{background:linear-gradient(180deg,#1b2f55,#10203f);border:1px solid #2b4a7a;border-radius:14px;
+  padding:14px 26px;text-align:center;box-shadow:0 8px 24px #0007}
+.root .t{font-size:19px;font-weight:700}
+.root .d{font-size:12px;color:var(--muted);margin-top:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}
+.branch{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#13203b,#0e1830);box-shadow:0 6px 18px #0006}
+.bhead{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;border-left:4px solid var(--bc,#38bdf8)}
+.bhead:hover{background:#16233f}
+.bhead .ph{font-size:11px;font-weight:800;color:#0b1120;background:var(--bc);border-radius:999px;padding:2px 9px}
+.bhead .t{font-size:15px;font-weight:700}
+.bhead .ar{margin-left:auto;color:var(--muted);transition:.2s;font-size:13px}
+.branch.collapsed .ar{transform:rotate(-90deg)}
+.bbody{padding:4px 16px 14px;font-size:13px;line-height:1.5}
+.branch.collapsed .bbody{display:none}
+.bbody ul{margin:6px 0 0;padding-left:18px}
+.bbody li{margin:5px 0;color:#d6e2fb}
+.bbody li b{color:#fff}
+.tag{display:inline-block;font-size:10px;color:#0b1120;background:var(--accent);border-radius:999px;padding:1px 7px;font-weight:700;margin-right:5px}
+.file{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:var(--muted)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0 18px}
+.flow .step{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.flow .step b{color:var(--accent)}
+.nfo{position:fixed;left:0;right:0;bottom:0;font-size:11px;color:var(--muted);text-align:center;padding:8px;
+  background:linear-gradient(0deg,#0b1120ee,transparent)}
+[data-lang=en] .ru{display:none}[data-lang=ru] .en{display:none}
+</style>
+</head>
+<body data-lang="ru">
+<div id="top">
+  <div><b>P2P</b> · <span class="ru">План реструктуризации GitHub</span><span class="en">GitHub Restructuring Plan</span>
+    <div class="sub ru">v8.3 NEXUS · 4 редакции · двуязычный монорепо</div>
+    <div class="sub en">v8.3 NEXUS · 4 editions · bilingual monorepo</div></div>
+  <div class="spacer"></div>
+  <div class="btn" id="expandAll"><span class="ru">Развернуть всё</span><span class="en">Expand all</span></div>
+  <div class="btn" id="collapseAll"><span class="ru">Свернуть всё</span><span class="en">Collapse all</span></div>
+  <div class="btn active" id="ru-btn">🇷🇺 RU</div>
+  <div class="btn" id="en-btn">🇬🇧 EN</div>
+</div>
+
+<div id="wrap">
+  <div class="root"><div class="card">
+    <div class="t">P2P — Prompt-to-Prompt</div>
+    <div class="d ru">Монорепо <span class="file">P2P-4PDA-edition</span> · от форума 4PDA к аккуратному GitHub</div>
+    <div class="d en">Monorepo <span class="file">P2P-4PDA-edition</span> · from the 4PDA forum to a clean GitHub</div>
+  </div></div>
+
+  <div class="flow">
+    <div class="step"><b>1</b> <span class="ru">состояние</span><span class="en">state</span></div>
+    <div class="step"><b>2</b> <span class="ru">решения</span><span class="en">decisions</span></div>
+    <div class="step"><b>3</b> <span class="ru">структура</span><span class="en">structure</span></div>
+    <div class="step"><b>4</b> <span class="ru">редакции</span><span class="en">editions</span></div>
+    <div class="step"><b>5</b> <span class="ru">история</span><span class="en">history</span></div>
+    <div class="step"><b>6</b> <span class="ru">релизы</span><span class="en">releases</span></div>
+    <div class="step"><b>7</b> FAQ</div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="nfo ru">Клик по заголовку — свернуть/развернуть ветку · переключатель 🇷🇺/🇬🇧 вверху · сгенерировано P2P-ревизией 2026-06-19</div>
+<div class="nfo en">Click a header to collapse/expand · 🇷🇺/🇬🇧 toggle on top · generated by P2P revision 2026-06-19</div>
+
+<script>
+const DATA=[
+ {ph:"1",color:"--c-state",tRu:"Текущее состояние",tEn:"Current state",items:[
+   {ru:"<b>P2P-main</b> — старый EN-репо, v1.1 (=v7C.2), English-only, без плагина, live specs устарели",
+    en:"<b>P2P-main</b> — old EN repo, v1.1 (=v7C.2), English-only, no plugin, stale live specs"},
+   {ru:"<b>P2P-4PDA-edition</b> ⭐ эталон — v8C.3, двуязычный, плагин, 8 агентов, богатые docs",
+    en:"<b>P2P-4PDA-edition</b> ⭐ reference — v8C.3, bilingual, plugin, 8 agents, rich docs"},
+   {ru:"Gap: редакции <b>H/N/L</b> есть локально, но не на GitHub",
+    en:"Gap: <b>H/N/L</b> editions exist locally but not on GitHub"},
+   {ru:"<span class='file'>02_REPO_AUDIT.md</span>",en:"<span class='file'>02_REPO_AUDIT.md</span>"}]},
+ {ph:"2",color:"--c-dec",tRu:"Решения (приняты)",tEn:"Decisions (locked)",items:[
+   {ru:"<b>A.</b> Имя репо <b>не меняем</b> — остаётся P2P-4PDA-edition",
+    en:"<b>A.</b> Repo name <b>unchanged</b> — stays P2P-4PDA-edition"},
+   {ru:"<b>B.</b> Старый P2P-main → <b>архив read-only</b> + шапка-редирект (не вливаем)",
+    en:"<b>B.</b> Old P2P-main → <b>archive read-only</b> + redirect header (no merge)"},
+   {ru:"<b>C.</b> 4 редакции — в одном репо как <span class='file'>editions/*</span>",
+    en:"<b>C.</b> 4 editions in one repo as <span class='file'>editions/*</span>"},
+   {ru:"История — только датами в CHANGELOG <b>(backfilled)</b>, без бэкдейта коммитов",
+    en:"History — dates in CHANGELOG only <b>(backfilled)</b>, no backdated commits"},
+   {ru:"<b>H = High \\ Hybrid</b> (имя High; слияние Gemini-A + Grok-G)",
+    en:"<b>H = High \\ Hybrid</b> (name High; merge of Gemini-A + Grok-G)"}]},
+ {ph:"3",color:"--c-struct",tRu:"Целевая структура",tEn:"Target structure",items:[
+   {ru:"Корень: <span class='file'>README(.en) · NAMING · CHANGELOG · FAQ(.en) · LICENSE · NOTICE</span>",
+    en:"Root: <span class='file'>README(.en) · NAMING · CHANGELOG · FAQ(.en) · LICENSE · NOTICE</span>"},
+   {ru:"<span class='file'>.claude-plugin/marketplace.json</span> — 2 плагина, <b>source без пробелов</b>",
+    en:"<span class='file'>.claude-plugin/marketplace.json</span> — 2 plugins, <b>no-space source</b>"},
+   {ru:"<span class='file'>editions/{cloud-claude,high,normal,light}/</span> · <span class='file'>docs/</span> · <span class='file'>legacy/</span>",
+    en:"<span class='file'>editions/{cloud-claude,high,normal,light}/</span> · <span class='file'>docs/</span> · <span class='file'>legacy/</span>"},
+   {ru:"<span class='file'>03_TARGET_STRUCTURE.md</span> — дерево + маппинг «что откуда»",
+    en:"<span class='file'>03_TARGET_STRUCTURE.md</span> — tree + source mapping"}]},
+ {ph:"4",color:"--c-ed",tRu:"4 редакции (.3)",tEn:"4 editions (.3)",items:[
+   {ru:"🟦 <b>cloud-claude</b> (8C.3) — Claude, ~7K старт, plugin",
+    en:"🟦 <b>cloud-claude</b> (8C.3) — Claude, ~7K start, plugin"},
+   {ru:"🟥 <b>high</b> (8H.3) — High\\Hybrid, 8 хостов, Heavy-16 на Grok, ~60-200K",
+    en:"🟥 <b>high</b> (8H.3) — High\\Hybrid, 8 hosts, Heavy-16 on Grok, ~60-200K"},
+   {ru:"🟩 <b>normal</b> (8N.3) — универсальная, любой хост",
+    en:"🟩 <b>normal</b> (8N.3) — universal, any host"},
+   {ru:"🟦 <b>light</b> (8L.3) — 4 BOOT ~18K + online-fetch (Live Specs)",
+    en:"🟦 <b>light</b> (8L.3) — 4 BOOT ~18K + online fetch (Live Specs)"},
+   {ru:"<span class='file'>editions/COMPARISON.md · NAMING.md</span>",en:"<span class='file'>editions/COMPARISON.md · NAMING.md</span>"}]},
+ {ph:"5",color:"--c-hist",tRu:"История v1→v8",tEn:"History v1→v8",items:[
+   {ru:"v1 исток → v2 мультимодель → <b>v3 Dynamic Lab</b> → <b>v4 Constraint</b>",
+    en:"v1 origin → v2 multi-model → <b>v3 Dynamic Lab</b> → <b>v4 Constraint</b>"},
+   {ru:"<b>v5 Chimera</b> → <b>v6 Legion</b> → <b>v7 CORTEX</b> (7C.2 = v1.1 EN) → <b>v8 NEXUS</b>",
+    en:"<b>v5 Chimera</b> → <b>v6 Legion</b> → <b>v7 CORTEX</b> (7C.2 = v1.1 EN) → <b>v8 NEXUS</b>"},
+   {ru:"Каждая версия: DESCRIPTION (RU+EN) + запись CHANGELOG (backfilled) + ссылка на пост",
+    en:"Each version: DESCRIPTION (RU+EN) + CHANGELOG entry (backfilled) + post link"},
+   {ru:"<span class='file'>legacy/HISTORY.md · legacy/v*/DESCRIPTION.md</span>",en:"<span class='file'>legacy/HISTORY.md · legacy/v*/DESCRIPTION.md</span>"}]},
+ {ph:"6",color:"--c-rel",tRu:"Релизы и установка",tEn:"Releases & install",items:[
+   {ru:"Тег <b>v8.3-alpha</b> + 5 ассетов: 4 ZIP редакций + <span class='file'>p2p-v8c3.plugin</span>",
+    en:"Tag <b>v8.3-alpha</b> + 5 assets: 4 edition ZIPs + <span class='file'>p2p-v8c3.plugin</span>"},
+   {ru:"Установка: плагин · .plugin upload · ZIP · Chat/Projects/API · Light (BOOT+fetch)",
+    en:"Install: plugin · .plugin upload · ZIP · Chat/Projects/API · Light (BOOT+fetch)"},
+   {ru:"<span class='file'>04b_RELEASES_PLAN.md · RELEASE_NOTES_v8.3-alpha.md</span>",
+    en:"<span class='file'>04b_RELEASES_PLAN.md · RELEASE_NOTES_v8.3-alpha.md</span>"}]},
+ {ph:"7",color:"--c-faq",tRu:"FAQ из форума",tEn:"FAQ from the forum",items:[
+   {ru:"Группы: Установка · Использование · Редакции · Хосты · Токены · Live Specs · Траблшутинг · Безопасность",
+    en:"Groups: Install · Usage · Editions · Hosts · Tokens · Live Specs · Troubleshooting · Security"},
+   {ru:"Ответы из 312-постового корпуса (77/79 верифицированы), каждый со ссылкой",
+    en:"Answers from a 312-post corpus (77/79 verified), each with a source link"},
+   {ru:"<span class='file'>FAQ.md · FAQ.en.md</span>",en:"<span class='file'>FAQ.md · FAQ.en.md</span>"}]},
+];
+
+const grid=document.getElementById('grid');
+DATA.forEach(b=>{
+  const items=b.items.map(it=>`<li><span class="ru">${it.ru}</span><span class="en">${it.en}</span></li>`).join('');
+  const el=document.createElement('div');
+  el.className='branch';
+  el.style.setProperty('--bc',`var(${b.color})`);
+  el.innerHTML=`<div class="bhead"><span class="ph">${b.ph}</span>
+    <span class="t"><span class="ru">${b.tRu}</span><span class="en">${b.tEn}</span></span>
+    <span class="ar">▾</span></div><div class="bbody"><ul>${items}</ul></div>`;
+  el.querySelector('.bhead').onclick=()=>el.classList.toggle('collapsed');
+  grid.appendChild(el);
+});
+
+document.getElementById('expandAll').onclick=()=>document.querySelectorAll('.branch').forEach(b=>b.classList.remove('collapsed'));
+document.getElementById('collapseAll').onclick=()=>document.querySelectorAll('.branch').forEach(b=>b.classList.add('collapsed'));
+function setLang(l){document.body.dataset.lang=l;
+  document.getElementById('ru-btn').classList.toggle('active',l==='ru');
+  document.getElementById('en-btn').classList.toggle('active',l==='en');}
+document.getElementById('ru-btn').onclick=()=>setLang('ru');
+document.getElementById('en-btn').onclick=()=>setLang('en');
+</script>
+</body>
+</html>
