@@ -1,4 +1,6 @@
 ---
+name: p2p
+description: P2P v8C.3-ALPHA — main Skill entry point of the Prompt-to-Prompt meta-prompt system for Claude. Use when the user types /p2p, /start, старт, or /menu, or asks to build/generate/optimize a prompt, run a QUORUM multi-agent review, SCOPE.HELM scoping, or any /p2p-* workflow. Entry point and main menu for the P2P system. Not for the interactive course (use p2p-teacher).
 source_id: SKILL_V8C
 version: v8C.3-ALPHA
 module_type: skill
