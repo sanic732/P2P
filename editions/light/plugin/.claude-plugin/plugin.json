@@ -21,6 +21,17 @@
   "license": "MIT",
   "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
   "repository": "https://github.com/sanic732/P2P-4PDA-edition.git",
+  "commands": "./.claude/commands",
+  "agents": [
+    "./.claude/agents/p2p-anon.md",
+    "./.claude/agents/p2p-architecton.md",
+    "./.claude/agents/p2p-axiom.md",
+    "./.claude/agents/p2p-datos.md",
+    "./.claude/agents/p2p-helios.md",
+    "./.claude/agents/p2p-iris.md",
+    "./.claude/agents/p2p-tecton.md",
+    "./.claude/agents/p2p-vector.md"
+  ],
   "engines": {
     "claude-code": ">=1.0.0",
     "cowork": ">=0.1.0"
