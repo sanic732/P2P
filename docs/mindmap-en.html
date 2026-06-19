@@ -5,11 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>P2P · Useful Posts</title>
 <style>
-  :root{--bg:#0b1120;--line:#24314d;--text:#e8eefc;--muted:#8aa0c6;--accent:#38bdf8;}
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%;background:radial-gradient(1200px 800px at 70% -10%,#16233f,transparent),var(--bg);
-    color:var(--text);font-family:'Segoe UI',Roboto,system-ui,Arial,sans-serif;overflow:hidden}
-  #top{position:fixed;left:0;right:0;top:0;z-index:10;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  :root{--bg:#0b1120;--line:#24314d;--text:#e8eefc;--muted:#8aa0c6;--accent:#38bdf8;--card:#13203b}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;min-height:100%;background:radial-gradient(1200px 800px at 70% -10%,#16233f,transparent),var(--bg);
+    color:var(--text);font-family:'Segoe UI',Roboto,system-ui,Arial,sans-serif}
+  /* ===== DESKTOP: SVG tree ===== */
+  @media(min-width:769px){
+    body{overflow:hidden}
+    #mob{display:none}
+  }
+  #top{position:fixed;left:0;right:0;top:0;z-index:10;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
     padding:10px 16px;background:linear-gradient(180deg,#0b1120ee,#0b112099);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
   #title{display:flex;flex-direction:column;line-height:1.2}
   #title b{font-size:16px;letter-spacing:.3px}
@@ -17,7 +22,7 @@
   .grow{flex:1}
   .btn{background:#16233f;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;white-space:nowrap;transition:.15s}
   .btn:hover{border-color:var(--accent);color:#fff}
-  #search{background:#0b1428;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 12px;font-size:13px;min-width:200px;outline:none}
+  #search{background:#0b1428;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 12px;font-size:13px;min-width:140px;outline:none;flex:1;max-width:260px}
   #search:focus{border-color:var(--accent)}
   .chip{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
   a.langlink{color:var(--accent);font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:7px 12px;transition:.15s}
@@ -42,6 +47,32 @@
   .dim{opacity:.18}
   .fo-card.hit{outline:2px solid var(--accent);outline-offset:1px}
   .toggle{font-size:11px;color:#0b1120;font-weight:800}
+  /* ===== MOBILE: accordion list ===== */
+  @media(max-width:768px){
+    #stage,.nfo{display:none}
+    #top{position:sticky;top:0}
+    .desk-only{display:none!important}
+    body{overflow:auto;padding-bottom:40px}
+  }
+  @media(min-width:769px){#mob{display:none}}
+  #mob{padding:80px 12px 40px}
+  .m-cat{margin:0 0 6px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+  .m-cat-head{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;-webkit-user-select:none;user-select:none}
+  .m-cat-head .ico{font-size:22px}
+  .m-cat-head .h{font-weight:700;font-size:15px;flex:1}
+  .m-cat-head .cnt{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+  .m-cat-head .arrow{font-size:14px;color:var(--muted);transition:.2s}
+  .m-cat.open .arrow{transform:rotate(180deg)}
+  .m-items{display:none;padding:0 10px 10px}
+  .m-cat.open .m-items{display:block}
+  .m-item{display:block;text-decoration:none;color:var(--text);border-radius:10px;padding:12px 14px;margin:6px 0;border:1px solid var(--line);background:#0e1830;transition:.12s}
+  .m-item:hover,.m-item:active{border-color:var(--accent);background:#13203bcc}
+  .m-item .mt{font-weight:600;font-size:14px;line-height:1.3;margin:0 0 4px}
+  .m-item .md{font-size:12px;color:var(--muted);line-height:1.4}
+  .m-item .mdt{font-size:10px;color:#5f7099;margin-top:6px}
+  .m-item.dim{opacity:.18}
+  .m-item.hit{outline:2px solid var(--accent);outline-offset:1px}
+  footer{text-align:center;font-size:11px;color:var(--muted);padding:20px 16px;border-top:1px solid var(--line);margin-top:20px}
 </style>
 </head>
 <body>
@@ -50,45 +81,97 @@
   <span class="chip" id="cnt"></span>
   <div class="grow"></div>
   <input id="search" placeholder="Search posts…">
-  <button class="btn" id="exp">Expand all</button>
-  <button class="btn" id="col">Collapse all</button>
-  <button class="btn" id="rst">Reset view</button>
-  <a class="langlink" href="P2P_mindmap_RU.html">Русская версия</a>
+  <button class="btn desk-only" id="exp">Expand all</button>
+  <button class="btn desk-only" id="col">Collapse all</button>
+  <button class="btn desk-only" id="rst">Reset view</button>
+  <a class="langlink" href="mindmap-ru.html">Русская версия</a>
 </div>
+<!-- DESKTOP SVG -->
 <div id="stage"><svg id="svg"><g id="vp"></g></svg></div>
-<div class="nfo">Click a branch to fold/unfold · click a post to open it on 4PDA · wheel to zoom · drag to pan · Thread Prompts for Artificial Intelligence · 4PDA</div>
+<div class="nfo">Click a branch to fold/unfold · click a post to open it on 4PDA · wheel to zoom · drag to pan</div>
+<!-- MOBILE ACCORDION -->
+<div id="mob"></div>
 
 <script>
 const DATA = [{"t": "P2P — Project Core", "color": "#3b82f6", "icon": "🧠", "children": [{"t": "P2P v8 NEXUS — main post", "d": "Project hub: editions 8C.3 / 8H.3 / 8N.3 / 8L.3, RAG architecture, 8 QUORUM agents, install, FAQ and the techniques catalog.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576", "date": "12.06.25"}, {"t": "P2P for Claude updated → 8C.2", "d": "Claude Native Edition 8C.2 release: what changed and how to update.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143383283", "date": "14.05.26"}, {"t": "Guide: error-fixing, updates & big prompts", "d": "How to build model-targeted error correction, update P2P on new releases, and assemble large prompts (3 methods).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142243608", "date": "03.03.26"}, {"t": "Template M (Karpathy Mode)", "d": "Minimalist 'best prompt is clean context' mode: what's new and how to invoke it.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143033099", "date": "21.04.26"}, {"t": "Parallel P2P agents in one call", "d": "8C.3 (Claude) lifehack: launching several QUORUM agents in parallel within a single call.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143396222", "date": "15.05.26"}, {"t": "Claude Code + P2P — workflow", "d": "Why the agent rewrites code from scratch and how to fix it without burning tokens; fitting specs into the P2P workflow.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143697302", "date": "03.06.26"}, {"t": "Build statuses: ALPHA / BETA / STABLE", "d": "What P2P release statuses mean and which version to pick.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142547413", "date": "21.03.26"}, {"t": "How to use the P2P UI menu", "d": "Breakdown of the menu, AUTO/QUORUM modes, direct agent calls, and why plain text works just as well.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142199454", "date": "28.02.26"}, {"t": "Live Specs — permanent link", "d": "Current model prices/quotas/bugs for P2P (C/A/N/G), refreshed every 1-2 weeks.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142685423", "date": "30.05.26"}, {"t": "Token saving in Gemini via NotebookLM", "d": "Loading the P2P base into NotebookLM to sharply cut token usage in Gemini.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143234252&anchor=Spoil-143234252-1", "date": "03.05.26"}, {"t": "Loading P2P in parts (file limits)", "d": "How to load the system when the host limits files per message.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143670563&anchor=Spoil-143670563-1", "date": "02.06.26"}, {"t": "Launch options on Gemini", "d": "3 working ways to run P2P editions on Gemini, NotebookLM nuances and direct .md upload.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143474710", "date": "20.05.26"}, {"t": "Running P2P on Qwen", "d": "How to run the system in Qwen projects: HOST_MODEL and working around file limits.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143350627", "date": "12.05.26"}, {"t": "Account personalization & P2P", "d": "Why global Custom Instructions break P2P agents and 4 ways to isolate them.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142364315&anchor=Spoil-142364315-1", "date": "10.03.26"}], "n": 14}, {"t": "Prompts & Tools", "color": "#22c55e", "icon": "⚙️", "children": [{"t": "SunoForge v2.0 — AI Music Orchestrator", "d": "Multi-platform music producer & prompt orchestrator (Suno v5 etc.), syntax and RAG.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142556185", "date": "22.03.26"}, {"t": "BET_OS v4.0 — sports modeling", "d": "Sports-modeling compute station for Perplexity with anti-hallucination.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143655003", "date": "01.06.26"}, {"t": "NotebookLLM MultiMedia Architect v1.3.2", "d": "Modular system for infographics, presentations and podcasts (Audio Architect).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141174529", "date": "03.01.26"}, {"t": "OCR Data Extraction Pipeline", "d": "Prompt pipeline for extracting structured data from images/scans.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140949343", "date": "21.12.25"}, {"t": "Extract for Excel — data parser", "d": "Prompt for Gemini + NotebookLM: turning text into structured tables.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142091989", "date": "22.02.26"}, {"t": "Perplexity PDF Generator (Cyrillic)", "d": "Prompt for generating PDFs with correct Cyrillic rendering (copy & paste).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141350578", "date": "12.01.26"}, {"t": "The Encoding Fixer — encoding patch", "d": "Prompt patch that fixes mojibake / broken text encoding without manual re-encoding.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141187273", "date": "04.01.26"}, {"t": "ARENA v3.0 Builder — prompt A/B testing", "d": "Prompt comparison tool with trap markers and numeric scoring of results.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142252035", "date": "03.03.26"}, {"t": "Debug mode + FIX-Patch", "d": "How to reduce model 'fantasies': debug mode and a patch for any prompt.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142239341", "date": "02.03.26"}, {"t": "Therapist — personal psychologist", "d": "Psychological-support assistant prompt (built in P2P v8), with a knowledge base.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143657129", "date": "01.06.26"}, {"t": "V-CDSS — veterinary decision support", "d": "Veterinary Clinical Decision Support System: clinical assistant on an XML scaffold.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143026646", "date": "20.04.26"}, {"t": "Kids' book-bot constructor", "d": "Meta-prompt to quickly build an interactive educational bot for children based on books.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142091929", "date": "22.02.26"}, {"t": "RootStech Assistant v1.1", "d": "Domain assistant (built on P2P 3): core + knowledge base.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140974528", "date": "22.12.25"}, {"t": "Assistant for KernelSuNext", "d": "Helper for migrating from Magisk to KernelSuNext: goal, scenario, prompt body.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140940226", "date": "21.12.25"}, {"t": "DOCU-SYNTH v1.0 — screenshot analysis", "d": "Visualization & logic core: result from a single screenshot.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141973513", "date": "15.02.26"}, {"t": "Voice mode Claude + P2P (live)", "d": "Full P2P v8C.2 operation in live voice mode, no compromises.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143568995", "date": "26.05.26"}, {"t": "Gemini Deep Think prompts + 50 commands", "d": "Deep-mode scenario collection and 50+ internal Gemini commands.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140734399", "date": "10.12.25"}, {"t": "Meta-prompts for Grok / GPT / Gemini", "d": "Per-model instruction set + a universal meta-prompt for all.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140738366", "date": "10.12.25"}, {"t": "PocketPal Navigator — local LLM picker", "d": "Dynamic local-model selector tuned to your hardware.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142413027", "date": "13.03.26"}], "n": 19}, {"t": "Educational Guides", "color": "#f59e0b", "icon": "📚", "children": [{"t": "DevLog pt.1: from 'crutches' to architecture", "d": "P2P evolution from v2.0 to v3.2 Dynamic Lab: the pain behind the builds and the engineering path taken.", "u": "https://4pda.to/forum/index.php?showtopic=1077922&view=findpost&p=140958693", "date": "22.12.25"}, {"t": "DevLog pt.2: 'an OS inside the prompt' (v5.7)", "d": "Continuation: the monolith's collapse, the birth of 'Chimera', and turning chat into an IDE — P2P's evolution to v5.7.", "u": "https://4pda.to/forum/index.php?showtopic=1077922&view=findpost&p=142005543", "date": "16.02.26"}, {"t": "Claude — battle guide (how 90% waste its potential)", "d": "Big guide: long-session degradation, prompt poverty, Extended Thinking, Plan Mode, session-killing patterns.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142391090", "date": "11.03.26"}, {"t": "Battle guide: interactive in-chat visualizations", "d": "Add-on: in-chat visualizations, scenarios, save/export, Android example.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142410536", "date": "13.03.26"}, {"t": "8 steps to set up Claude Cowork from scratch", "d": "Step-by-step Cowork setup — 'hot start' so you never revisit it.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142398719", "date": "12.03.26"}, {"t": "Context Engineering — guide series", "d": "9-Step Framework, Blueprint/Contract Prompting, Cowork, Claude Code — from an architecture standpoint.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142442253", "date": "15.03.26"}, {"t": "Context Engineering — definitions", "d": "Definitions from Anthropic, Karpathy and LangChain; how it ties to degradation.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142446056", "date": "15.03.26"}, {"t": "Claude Skills — educational guide from scratch", "d": "Full skill mechanics: easy/medium/pro levels, plugins, marketplaces + GitHub catalog.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142807349", "date": "07.04.26"}, {"t": "Branding via AI — why it fails", "d": "Why AI branding fails and how to fix it: tools, summary table, starter checklist.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142897508", "date": "12.04.26"}, {"t": "Context, tokenization & zip compression", "d": "Context window, per-platform file limits, ultra zip compression, caching, practical nuances.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142276672", "date": "05.03.26"}, {"t": "Why there's no 'magic prompt'", "d": "Primer on generative video/image engines and the triple filtration system.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142092733", "date": "22.02.26"}, {"t": "Jailbreak and the illusion of control", "d": "How jailbreaks kill accounts: de-anon, 'black mark', layered defense, white-hat sandbox.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142093413", "date": "22.02.26"}, {"t": "White Hat Prompt Engineering", "d": "A legal prompt-engineering collection: what works without breaking the rules.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142218452", "date": "01.03.26"}, {"t": "Claude Desktop Buddy + P2P", "d": "A $30 physical AI companion: ClawdMeter (ESP32), Tamagotchi states, Flipper Zero, QUORUM schematic.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143580331", "date": "27.05.26"}, {"t": "LLMs in law — guide, pt.1", "d": "'From prompt to architecture': an engineering approach to legal LLM systems (RAG and beyond).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143792807", "date": "10.06.26"}, {"t": "LLMs in law — guide, pt.2", "d": "Continuation: code examples and practical implementation of legal LLM systems.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143795117", "date": "10.06.26"}, {"t": "QWEN report — what actually works", "d": "Under-the-hood breakdown: what really works vs pseudo-effects (incl. Gemini).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=139778198", "date": "22.10.25"}, {"t": "'Leak system prompts' collection", "d": "A collection of leaked system prompts from popular products for study.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142667939", "date": "29.03.26"}], "n": 18}, {"t": "Media · Image · Video", "color": "#a855f7", "icon": "🎨", "children": [{"t": "Nanobanana Collection — image prompts", "d": "A large image-prompt collection for everything (Gemini): portraits, design, infographics, etc.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140622630", "date": "04.12.25"}, {"t": "NanoBanana Lego-Prompt Collection", "d": "Builder-style prompts for Gemini 3 Pro: artist, architecture, infographics, design, outfit constructor, etc.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140748954", "date": "11.12.25"}, {"t": "POSE REFERENCE CREATOR v1.0", "d": "System prompt-tool for generating pose references + extra materials.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140817755", "date": "14.12.25"}, {"t": "Animation & video via Veo 3.1", "d": "Prompt for animating arrows and circular cycles; 3D and dynamic mode in Gemini Veo 3.1.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140590829", "date": "03.12.25"}, {"t": "Old photo restoration (Remini)", "d": "Extended old-photo restoration prompt: before/after, precision.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140603776", "date": "03.12.25"}], "n": 5}];
 const S = {"root": "P2P · Useful Posts", "sub": "Curated map of Sanic27's publications · 4PDA", "search": "Search posts…", "expand": "Expand all", "collapse": "Collapse all", "hint": "Click a branch to fold/unfold · click a post to open it on 4PDA · wheel to zoom · drag to pan", "total": "posts", "other": "Русская версия", "reset": "Reset view", "open": "Open post ↗", "thread": "Thread Prompts for Artificial Intelligence · 4PDA"};
-const ROOT_W=240, ROOT_H=80, CAT_W=240, CAT_H=64, LEAF_W=300, LEAF_H=92, COL_GAP=140, V_GAP=14;
+const TOTAL = 56;
+document.getElementById('cnt').textContent = TOTAL + ' ' + S.total;
+
+/* ===== MOBILE ACCORDION ===== */
+function renderMob() {
+  const mob = document.getElementById('mob');
+  let h = '';
+  DATA.forEach((cat, ci) => {
+    h += '<div class="m-cat open" data-ci="' + ci + '">';
+    h += '<div class="m-cat-head" style="border-left:4px solid ' + cat.color + '">';
+    h += '<span class="ico">' + cat.icon + '</span>';
+    h += '<span class="h" style="color:' + cat.color + '">' + esc(cat.t) + '</span>';
+    h += '<span class="cnt">' + cat.n + '</span>';
+    h += '<span class="arrow">▼</span></div>';
+    h += '<div class="m-items">';
+    cat.children.forEach(leaf => {
+      h += '<a class="m-item" href="' + esc(leaf.u) + '" target="_blank" data-txt="' + esc((leaf.t + ' ' + leaf.d).toLowerCase()) + '">';
+      h += '<div class="mt">' + esc(leaf.t) + '</div>';
+      h += '<div class="md">' + esc(leaf.d) + '</div>';
+      h += '<div class="mdt">' + (leaf.date || '') + ' · ' + S.open + '</div>';
+      h += '</a>';
+    });
+    h += '</div></div>';
+  });
+  mob.innerHTML = h;
+  mob.querySelectorAll('.m-cat-head').forEach(el => {
+    el.addEventListener('click', () => el.parentElement.classList.toggle('open'));
+  });
+}
+if (window.innerWidth <= 768) renderMob();
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 768 && !document.getElementById('mob').children.length) renderMob();
+});
+
+/* ===== SEARCH (both modes) ===== */
+const search = document.getElementById('search');
+function applySearch() {
+  const q = search.value.trim().toLowerCase();
+  document.querySelectorAll('.leaf, .m-item').forEach(el => {
+    const t = (el.getAttribute('data-txt') || '');
+    const card = el.querySelector('.fo-card') || el;
+    if (!q) { el.classList.remove('dim'); card.classList.remove('hit'); }
+    else if (t.includes(q)) { el.classList.remove('dim'); card.classList.add('hit'); }
+    else { el.classList.add('dim'); card.classList.remove('hit'); }
+  });
+}
+search.addEventListener('input', applySearch);
+
+/* ===== DESKTOP SVG TREE ===== */
+const ROOT_W=240,ROOT_H=80,CAT_W=240,CAT_H=64,LEAF_W=300,LEAF_H=92,COL_GAP=140,V_GAP=14;
 const collapsed = {};
-let nodes=[], links=[];
+let nodes=[],links_=[];
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function layout(){
-  nodes=[]; links=[];
-  const cats = DATA.map((c,i)=>({...c,idx:i}));
-  let y=0; const catLayout=[];
-  cats.forEach(c=>{ const vis=collapsed[c.idx]?0:c.children.length; const h=Math.max(1,vis)*(LEAF_H+V_GAP); catLayout.push({c,y0:y,h,vis}); y+=h+30; });
+  nodes=[];links_=[];
+  const cats=DATA.map((c,i)=>({...c,idx:i}));
+  let y=0;const catLayout=[];
+  cats.forEach(c=>{const vis=collapsed[c.idx]?0:c.children.length;const h=Math.max(1,vis)*(LEAF_H+V_GAP);catLayout.push({c,y0:y,h,vis});y+=h+30;});
   const totalH=Math.max(y,ROOT_H+40);
   const xRoot=40,xCat=xRoot+ROOT_W+COL_GAP,xLeaf=xCat+CAT_W+COL_GAP;
   nodes.push({id:"root",type:"root",x:xRoot,y:totalH/2-ROOT_H/2,w:ROOT_W,h:ROOT_H,t:S.root});
   catLayout.forEach(cl=>{
-    const cy=cl.y0+cl.h/2-CAT_H/2, cid="c"+cl.c.idx;
+    const cy=cl.y0+cl.h/2-CAT_H/2,cid="c"+cl.c.idx;
     nodes.push({id:cid,type:"cat",x:xCat,y:cy,w:CAT_W,h:CAT_H,t:cl.c.t,color:cl.c.color,icon:cl.c.icon,n:cl.c.n,idx:cl.c.idx});
-    links.push({a:"root",b:cid,color:cl.c.color});
-    if(!collapsed[cl.c.idx]){ let ly=cl.y0;
-      cl.c.children.forEach((leaf,j)=>{ const lid=cid+"_"+j; nodes.push({id:lid,type:"leaf",x:xLeaf,y:ly,w:LEAF_W,h:LEAF_H,leaf,color:cl.c.color}); links.push({a:cid,b:lid,color:cl.c.color}); ly+=LEAF_H+V_GAP; });
+    links_.push({a:"root",b:cid,color:cl.c.color});
+    if(!collapsed[cl.c.idx]){let ly=cl.y0;
+      cl.c.children.forEach((leaf,j)=>{const lid=cid+"_"+j;nodes.push({id:lid,type:"leaf",x:xLeaf,y:ly,w:LEAF_W,h:LEAF_H,leaf,color:cl.c.color});links_.push({a:cid,b:lid,color:cl.c.color});ly+=LEAF_H+V_GAP;});
     }
   });
-  return {totalH, width:xLeaf+LEAF_W+60};
+  return{totalH,width:xLeaf+LEAF_W+60};
 }
-const vp=document.getElementById('vp'), svg=document.getElementById('svg');
+const vp=document.getElementById('vp'),svg=document.getElementById('svg');
 function nodeById(id){return nodes.find(n=>n.id===id);}
-function edgePath(a,b){const x1=a.x+a.w,y1=a.y+a.h/2,x2=b.x,y2=b.y+b.h/2,mx=(x1+x2)/2;return `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`;}
-function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function edgePath(a,b){const x1=a.x+a.w,y1=a.y+a.h/2,x2=b.x,y2=b.y+b.h/2,mx=(x1+x2)/2;return`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`;}
 function render(){
-  layout(); let h='';
-  links.forEach(l=>{const a=nodeById(l.a),b=nodeById(l.b);if(a&&b)h+=`<path class="link" d="${edgePath(a,b)}" style="stroke:${l.color}55"></path>`;});
+  layout();let h='';
+  links_.forEach(l=>{const a=nodeById(l.a),b=nodeById(l.b);if(a&&b)h+=`<path class="link" d="${edgePath(a,b)}" style="stroke:${l.color}55"></path>`;});
   nodes.forEach(n=>{
     if(n.type==='root'){
       h+=`<foreignObject x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-root"><div class="t">${esc(n.t)}</div></div></foreignObject>`;
@@ -96,12 +179,11 @@ function render(){
       const sign=collapsed[n.idx]?'＋':'－';
       h+=`<foreignObject class="node-card" data-cat="${n.idx}" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-cat" style="border-color:${n.color}88"><div class="t" style="color:${n.color}">${n.icon} ${esc(n.t)}</div><span class="badge" style="background:${n.color}">${n.n} · <span class="toggle">${sign}</span></span></div></foreignObject>`;
     }else{
-      h+=`<foreignObject class="node-card leaf" data-url="${esc(n.leaf.u)}" data-txt="${esc((n.leaf.t+' '+n.leaf.d).toLowerCase())}" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-leaf" style="border-left:3px solid ${n.color}"><div class="t">${esc(n.leaf.t)}</div><div class="d">${esc(n.leaf.d)}</div><div class="dt">${n.leaf.date?esc(n.leaf.date)+' · ':''}${S.open}</div></div></foreignObject>`;
+      h+=`<foreignObject class="node-card leaf" data-url="${esc(n.leaf.u)}" data-txt="${esc((n.leaf.t+' '+n.leaf.d).toLowerCase())}" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-leaf" style="border-left:3px solid ${n.color}"><div class="t">${esc(n.leaf.t)}</div><div class="d">${esc(n.leaf.d)}</div><div class="dt">${n.leaf.date?esc(n.leaf.date)+' · ':''}\${S.open}</div></div></foreignObject>`;
     }
   });
   vp.innerHTML=h;
-  document.getElementById('cnt').textContent=(56)+' '+S.total;
-  bindNodes(); applySearch();
+  bindNodes();applySearch();
 }
 function bindNodes(){
   vp.querySelectorAll('[data-cat]').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();const i=+el.getAttribute('data-cat');collapsed[i]=!collapsed[i];render();}));
@@ -121,14 +203,11 @@ stage.addEventListener('touchstart',e=>{if(e.touches.length===1){drag=true;sx=e.
 stage.addEventListener('touchmove',e=>{if(e.touches.length===1&&drag){tx=stx+(e.touches[0].clientX-sx);ty=sty+(e.touches[0].clientY-sy);applyVP();}else if(e.touches.length===2&&pinch){const d=dist(e);scale=Math.max(.25,Math.min(2.5,ps*d/pinch));applyVP();}},{passive:true});
 stage.addEventListener('touchend',()=>{drag=false;pinch=null;});
 function dist(e){const a=e.touches[0],b=e.touches[1];return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);}
-const search=document.getElementById('search');
-function applySearch(){const q=search.value.trim().toLowerCase();vp.querySelectorAll('.leaf').forEach(el=>{const t=el.getAttribute('data-txt')||'';const card=el.querySelector('.fo-card');if(!q){el.classList.remove('dim');card.classList.remove('hit');}else if(t.includes(q)){el.classList.remove('dim');card.classList.add('hit');}else{el.classList.add('dim');card.classList.remove('hit');}});}
-search.addEventListener('input',applySearch);
 document.getElementById('exp').onclick=()=>{DATA.forEach((c,i)=>collapsed[i]=false);render();};
 document.getElementById('col').onclick=()=>{DATA.forEach((c,i)=>collapsed[i]=true);render();};
 document.getElementById('rst').onclick=()=>{search.value='';render();fit();};
-render(); fit();
-window.addEventListener('resize',()=>applyVP());
+if(window.innerWidth>768){render();fit();}
+window.addEventListener('resize',()=>{if(window.innerWidth>768)applyVP();});
 </script>
 </body>
 </html>
