@@ -92,7 +92,7 @@ Model prices/quotas/bugs are updated separately (~every 1-2 weeks) from a dedica
 
 ## 🔬 Scientific Sources & attributions
 
-Integrated ON-DEMAND techniques (RAPTOR, LongRAG, Self-Consistency, MCTS, LLMLingua, OPRO…) are **prompting patterns inspired by** published research; no third-party code is vendored, the project is **MIT**. `/p2p-karpathy` and Template M are inspired by Andrej Karpathy's philosophy. P2P's own mechanisms (QUORUM, SCOPE.HELM, PILOT, ATLAS…) are original. Full list with sources — [`NOTICE`](NOTICE) and [`docs/TECHNIQUES.md`](docs/TECHNIQUES.md).
+Integrated ON-DEMAND techniques (RAPTOR, LongRAG, Self-Consistency, MCTS, LLMLingua, OPRO…) are **prompting patterns inspired by** published research; no third-party code is vendored, the project is **MIT**. `/p2p-karpathy` and Template M are inspired by Andrej Karpathy's philosophy. P2P's own mechanisms (QUORUM, SCOPE.HELM, PILOT, ATLAS…) are original. Full list with sources — [`NOTICE`](NOTICE) and [`docs/TECHNIQUES_v8C3.md`](docs/TECHNIQUES_v8C3.md).
 
 ---
 

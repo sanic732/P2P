@@ -92,7 +92,7 @@ P2P (Prompt-to-Prompt) — модульная оркестрирующая си�
 
 ## 🔬 Scientific Sources & атрибуции
 
-Интегрированные ON-DEMAND техники (RAPTOR, LongRAG, Self-Consistency, MCTS, LLMLingua, OPRO…) — это **паттерны промптинга, вдохновлённые** открытыми работами; чужой код не включён, проект под **MIT**. `/p2p-karpathy` и Template M вдохновлены философией Andrej Karpathy. Авторские механизмы P2P (QUORUM, SCOPE.HELM, PILOT, ATLAS…) — независимые разработки. Полный список с источниками — [`NOTICE`](NOTICE) и [`docs/TECHNIQUES.md`](docs/TECHNIQUES.md).
+Интегрированные ON-DEMAND техники (RAPTOR, LongRAG, Self-Consistency, MCTS, LLMLingua, OPRO…) — это **паттерны промптинга, вдохновлённые** открытыми работами; чужой код не включён, проект под **MIT**. `/p2p-karpathy` и Template M вдохновлены философией Andrej Karpathy. Авторские механизмы P2P (QUORUM, SCOPE.HELM, PILOT, ATLAS…) — независимые разработки. Полный список с источниками — [`NOTICE`](NOTICE) и [`docs/TECHNIQUES_v8C3.md`](docs/TECHNIQUES_v8C3.md).
 
 ---
 
