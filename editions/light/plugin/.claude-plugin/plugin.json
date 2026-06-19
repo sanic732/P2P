@@ -26,7 +26,6 @@
   },
   "commands": "./.claude/commands",
   "agents": "./.claude/agents",
-  "skills": "./.claude/skills",
   "settings": "./.claude/settings.json",
   "engines": {
     "claude-code": ">=1.0.0",
