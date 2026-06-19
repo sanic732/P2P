@@ -1,105 +1,105 @@
 # P2P — Prompt-to-Prompt
 
-> 🇷🇺 **Русский** · 🇬🇧 [English](README.en.md)
+> 🇬🇧 **English** · 🇷🇺 [Русский](README.ru.md)
 
 [![Version](https://img.shields.io/badge/version-v8.3--ALPHA-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-ALPHA-red)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
 
-**Мета-промпт, который пишет промпты — и выполняет задачи.** Поток сознания на входе → выверенный промпт под нужную модель на выходе. Цель проекта: **убрать классический prompt engineering для рядового пользователя.**
+**A meta-prompt that writes prompts — and gets the job done.** Stream of consciousness in → a polished, model-specific prompt out. The project's goal: **eliminate classical prompt engineering for the everyday user.**
 
-Вы не должны знать, что такое Chain-of-Thought или как экранировать XML от prompt-injection. Вы просто описываете задачу — *«хочу приложение для учёта расходов, данные из экселя, тёмная тема»* — а P2P берёт на себя декомпозицию, маршрутизацию, подбор агентов и защиту от галлюцинаций «под капотом».
-
----
-
-## Что такое P2P
-
-P2P (Prompt-to-Prompt) — модульная оркестрирующая система, загружаемая в LLM и превращающая её в эксперта по prompt engineering. Архитектура **RAG** (BASE / LIVE / ON-DEMAND), консилиум из 8 агентов **QUORUM**, движок больших задач **SCOPE.HELM**, авто-обновляемые **Live Specs**.
-
-**Философия:** ограничения, а не давление. Эмпирично, а не эстетично.
-
-Проект прошёл путь от одного текстового промпта (v1) до мета-промпт-ОS (v8 NEXUS) — см. [историю эволюции](legacy/HISTORY.md).
+You shouldn't need to know what Chain-of-Thought is or how to escape XML against prompt-injection. You just describe the task — *"I want an expense-tracker app, data from Excel, dark theme"* — and P2P handles decomposition, routing, agent selection and hallucination defense under the hood.
 
 ---
 
-## 🧭 Выберите редакцию
+## What is P2P
 
-Одна архитектура — четыре входа под разные хосты и форм-факторы. **Не уверены — берите ту, что заточена под вашу основную модель.**
+P2P (Prompt-to-Prompt) is a modular orchestration system loaded into an LLM that turns it into a prompt-engineering expert. **RAG** architecture (BASE / LIVE / ON-DEMAND), an 8-agent **QUORUM** council, the **SCOPE.HELM** engine for large tasks, and auto-updating **Live Specs**.
 
-| Редакция | Для кого | Хост | Старт |
+**Philosophy:** constraints, not pressure. Empirical, not aesthetic.
+
+The project evolved from a single text prompt (v1) into a meta-prompt OS (v8 NEXUS) — see the [evolution history](legacy/HISTORY.md).
+
+---
+
+## 🧭 Choose your edition
+
+One architecture, four entry points for different hosts and form factors. **Unsure? Pick the one tuned for your main model.**
+
+| Edition | For whom | Host | Start |
 |---|---|---|---|
-| 🟦 **[cloud-claude](editions/cloud-claude/README.md)** (8C.3) | Работаешь в **Claude** (Code / Cowork / Projects) | только Claude | ~7K |
-| 🟥 **[high](editions/high/README.md)** (8H.3) | Хочешь максимум / сидишь на **Grok** | 8 хостов (нативно Grok) | ~60K |
-| 🟩 **[normal](editions/normal/README.md)** (8N.3) | Твоей модели нет среди «нативных» | любой из 8 | ~60K |
-| 🟦 **[light](editions/light/README.md)** (8L.3) | Экономия токенов / лимит контекста / **новичкам** | универсальный | **~18K** |
+| 🟦 **[cloud-claude](editions/cloud-claude/README.en.md)** (8C.3) | You work in **Claude** (Code / Cowork / Projects) | Claude only | ~7K |
+| 🟥 **[high](editions/high/README.en.md)** (8H.3) | You want maximum / use **Grok** | 8 hosts (native Grok) | ~60K |
+| 🟩 **[normal](editions/normal/README.en.md)** (8N.3) | Your model isn't "native" | any of 8 | ~60K |
+| 🟦 **[light](editions/light/README.en.md)** (8L.3) | Token economy / context limits / **newcomers** | universal | **~18K** |
 
-📊 Подробное сравнение — [`editions/COMPARISON.md`](editions/COMPARISON.md) · 📖 расшифровка имён — [`NAMING.md`](NAMING.md).
+📊 Full comparison — [`editions/COMPARISON.md`](editions/COMPARISON.md) · 📖 naming guide — [`NAMING.md`](NAMING.md).
 
 ---
 
-## 🚀 Быстрый старт
+## 🚀 Quick start
 
-### Вариант A — плагин (Claude Code / Cowork)
+### Option A — plugin (Claude Code / Cowork)
 
 ```
 /plugin marketplace add https://github.com/sanic732/P2P-4PDA-edition
 /plugin install p2p-v8c3@p2p
 ```
 
-Проверка: `/p2p` (главное меню) · `/p2p-teacher` (интерактивный курс). Обновление: `/plugin update p2p-v8c3@p2p`.
+Check: `/p2p` (main menu) · `/p2p-teacher` (interactive course). Update: `/plugin update p2p-v8c3@p2p`.
 
-### Вариант B — чат / Projects / API (любой хост)
+### Option B — Chat / Projects / API (any host)
 
-Загрузите `.md`-файлы выбранной редакции в Project Knowledge (или system prompt) и напишите `старт` / `/p2p`. Для Gemini — можно через NotebookLM (экономия токенов). Подробно — в INSTALL каждой редакции и [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md).
+Load the chosen edition's `.md` files into Project Knowledge (or system prompt) and type `start` / `/p2p`. For Gemini you can use NotebookLM (token savings). Details in each edition's INSTALL and [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md).
 
-Триггеры запуска: `/start` · `start` · `старт` · `/p2p` · `/menu`. Не виден интерфейс? Напишите `full ui menu`.
+Launch triggers: `/start` · `start` · `старт` · `/p2p` · `/menu`. Menu not showing? Type `full ui menu`.
 
 ---
 
-## 👥 8 агентов QUORUM
+## 👥 The 8 QUORUM agents
 
-| Агент | Роль | Когда |
-|-------|------|-------|
-| 🟣 **IRIS** | Strategist & Cartographer | Карта задачи, скрытые зависимости, правильные вопросы |
-| 🟢 **TECTON** | System Architect | Структура промпта, архитектура кода, Decision Trees |
-| 🟡 **AXIOM** | Logician & Verifier | Red Team, дыры в логике, Confidence Score |
-| 🟠 **VECTOR** | Optimization & Security | Защита от prompt-injection, санитизация |
-| 🟤 **DATOS** | Data Analyst | Фактчекинг, эмпирическая верификация (на Grok — X Firehose) |
-| ⚫ **ANON** | Code Specialist / Security | Production-ready код, Stop Conditions (в 8C.3 — безопасностник) |
-| 🔵 **ARCHITECTON** | Integrator | Разрешение конфликтов между агентами, UI/UX |
-| ☀️ **HELIOS** | Final Synthesizer | Сборка хора 7 агентов в чистый результат |
+| Agent | Role | When |
+|-------|------|------|
+| 🟣 **IRIS** | Strategist & Cartographer | Task map, hidden dependencies, the right questions |
+| 🟢 **TECTON** | System Architect | Prompt structure, code architecture, decision trees |
+| 🟡 **AXIOM** | Logician & Verifier | Red-teaming, logic gaps, Confidence Score |
+| 🟠 **VECTOR** | Optimization & Security | Prompt-injection defense, sanitization |
+| 🟤 **DATOS** | Data Analyst | Fact-checking, empirical verification (X Firehose on Grok) |
+| ⚫ **ANON** | Code Specialist / Security | Production-ready code, Stop Conditions (security in 8C.3) |
+| 🔵 **ARCHITECTON** | Integrator | Resolves inter-agent conflicts, UI/UX |
+| ☀️ **HELIOS** | Final Synthesizer | Merges the 7-agent chorus into a clean result |
 
-На **Grok** (high) агенты запускаются нативно параллельно (**Heavy-16**, в 5-7× быстрее); на остальных хостах — симулированный QUORUM.
+On **Grok** (high) agents run natively in parallel (**Heavy-16**, 5-7× faster); on other hosts a simulated QUORUM is used.
 
 ---
 
 ## 📡 Live Specs
 
-Цены/квоты/баги моделей обновляются отдельно (~раз в 1-2 недели) из выделенного Gist (`live_specs.md`, latest). Система на старте проверяет способность к web-fetch и работает в режиме онлайн-обновления или из вшитого snapshot. Механика — в [`editions/COMPARISON.md`](editions/COMPARISON.md#механика-live-specs-что-нового-в-поколении-3).
+Model prices/quotas/bugs are updated separately (~every 1-2 weeks) from a dedicated Gist (`live_specs.md`, latest). At startup the system checks web-fetch capability and runs in online-update mode or from an embedded snapshot. Mechanics — in [`editions/COMPARISON.md`](editions/COMPARISON.md#-english).
 
 ---
 
-## 📚 Документация
+## 📚 Documentation
 
-| Раздел | Что внутри |
+| Section | Inside |
 |---|---|
-| **[NAMING.md](NAMING.md)** | Расшифровка имён C/H/N/L/A/G, версий, статусов |
-| **[FAQ.md](FAQ.md)** | Частые вопросы: установка, хосты, токены, траблшутинг |
-| **[editions/COMPARISON.md](editions/COMPARISON.md)** | Сравнение 4 редакций + механика Live Specs |
-| **[CHANGELOG.md](CHANGELOG.md)** | История версий (v1 → v8) |
-| **[legacy/HISTORY.md](legacy/HISTORY.md)** | Нарратив эволюции проекта |
-| **[docs/](docs/)** | Архитектура, техники, режимы PILOT, mindmap |
+| **[NAMING.md](NAMING.md)** | Names C/H/N/L/A/G, versions, statuses |
+| **[FAQ.en.md](FAQ.en.md)** | FAQ: install, hosts, tokens, troubleshooting |
+| **[editions/COMPARISON.md](editions/COMPARISON.md)** | 4-edition comparison + Live Specs mechanics |
+| **[CHANGELOG.md](CHANGELOG.md)** | Version history (v1 → v8) |
+| **[legacy/HISTORY.md](legacy/HISTORY.md)** | Project evolution narrative |
+| **[docs/](docs/)** | Architecture, techniques, PILOT modes, mindmap |
 
 ---
 
-## 🔬 Scientific Sources & атрибуции
+## 🔬 Scientific Sources & attributions
 
-Интегрированные ON-DEMAND техники (RAPTOR, LongRAG, Self-Consistency, MCTS, LLMLingua, OPRO…) — это **паттерны промптинга, вдохновлённые** открытыми работами; чужой код не включён, проект под **MIT**. `/p2p-karpathy` и Template M вдохновлены философией Andrej Karpathy. Авторские механизмы P2P (QUORUM, SCOPE.HELM, PILOT, ATLAS…) — независимые разработки. Полный список с источниками — [`NOTICE`](NOTICE) и [`docs/TECHNIQUES.md`](docs/TECHNIQUES.md).
+Integrated ON-DEMAND techniques (RAPTOR, LongRAG, Self-Consistency, MCTS, LLMLingua, OPRO…) are **prompting patterns inspired by** published research; no third-party code is vendored, the project is **MIT**. `/p2p-karpathy` and Template M are inspired by Andrej Karpathy's philosophy. P2P's own mechanisms (QUORUM, SCOPE.HELM, PILOT, ATLAS…) are original. Full list with sources — [`NOTICE`](NOTICE) and [`docs/TECHNIQUES.md`](docs/TECHNIQUES.md).
 
 ---
 
-## Помощь и обратная связь
+## Help & feedback
 
-- Не запускается → [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md) или [`FAQ.md`](FAQ.md)
-- Не понятно как пользоваться → `/p2p-teacher` после установки
-- Багрепорт / предложение → [Issues](https://github.com/sanic732/P2P-4PDA-edition/issues) или 4PDA-ветка
+- Won't launch → [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md) or [`FAQ.en.md`](FAQ.en.md)
+- Not sure how to use it → `/p2p-teacher` after install
+- Bug report / suggestion → [Issues](https://github.com/sanic732/P2P-4PDA-edition/issues) or the 4PDA thread
 
-**Лицензия:** MIT (форкай, модифицируй; не вырезай `NOTICE`). **Автор:** sanic732 · **4PDA:** [Prompt to Prompt 8 NEXUS](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576)
+**License:** MIT (fork & modify; keep `NOTICE`). **Author:** sanic732 · **4PDA:** [Prompt to Prompt 8 NEXUS](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576)
