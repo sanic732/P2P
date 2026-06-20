@@ -27,6 +27,21 @@
   .card .ico{font-size:24px}
   .card .h{font-weight:700;font-size:15px;margin:8px 0 4px}
   .card .s{font-size:12.5px;color:var(--muted)}
+  .hero{display:block;text-decoration:none;color:var(--text);border:2px solid #f72585;border-radius:18px;
+    padding:28px 24px;margin:0 0 28px;background:linear-gradient(135deg,#1a0a2e,#0e1830,#0b1428);
+    transition:.2s;position:relative;overflow:hidden}
+  .hero:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 40px #f7258533}
+  .hero::before{content:'';position:absolute;top:-50%;right:-30%;width:60%;height:200%;
+    background:radial-gradient(circle,#f7258511,transparent 70%);pointer-events:none}
+  .hero .h-ico{font-size:36px;margin:0 0 10px}
+  .hero .h-title{font-size:22px;font-weight:800;letter-spacing:.5px;margin:0 0 6px}
+  .hero .h-title .pink{color:#f72585}.hero .h-title .cyan{color:#06d6a0}
+  .hero .h-sub{font-size:14px;color:#cdd9f0;margin:0 0 14px;line-height:1.5}
+  .hero .h-tags{display:flex;gap:8px;flex-wrap:wrap}
+  .hero .h-tag{font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .hero .h-cta{display:inline-block;margin-top:16px;padding:10px 28px;background:linear-gradient(135deg,#f72585,#3a86ff);
+    color:#fff;font-weight:700;font-size:14px;border-radius:10px;letter-spacing:.3px}
+  @media(max-width:620px){.hero{padding:20px 16px}.hero .h-title{font-size:18px}}
   ul{padding-left:20px} li{margin:6px 0;font-size:14px}
   a.inline{color:var(--accent)}
   .meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
@@ -48,10 +63,24 @@
     <p class="tag">Interactive mind-map hub · Prompt-to-Prompt (P2P) · 4PDA community</p>
     <p class="lead">It started with a simple question on the forum — someone asked whether the scattered prompts and guides could be gathered into one place. I answered, and then collected everything here: an interactive map of the useful posts, so anyone can find a prompt, a tool or a guide in a couple of clicks.</p>
 
-    <h2>Open the map</h2>
+    <a class="hero" href="p2p-map.html">
+      <div class="h-ico">⚡</div>
+      <div class="h-title"><span class="pink">P2P v8C.3</span> × <span class="cyan">Claude</span> — Interactive Architecture Map</div>
+      <div class="h-sub">Full system map: modules, agents, commands, cross-references, data flow — all in one interactive D3.js visualization. Tabs, filters, animation, RU/EN switch.</div>
+      <div class="h-tags">
+        <span class="h-tag">D3.js force graph</span>
+        <span class="h-tag">8 QUORUM agents</span>
+        <span class="h-tag">11 commands</span>
+        <span class="h-tag">6 ON-DEMAND modules</span>
+        <span class="h-tag">Cross-references</span>
+      </div>
+      <span class="h-cta">Open Interactive Map →</span>
+    </a>
+
+    <h2>Posts map</h2>
     <div class="cards">
-      <a class="card" href="mindmap-en.html"><div class="ico">🗺️</div><div class="h">Mind-Map — English</div><div class="s">79 posts · 5 sections · search, zoom, collapsible branches</div></a>
-      <a class="card" href="mindmap-ru.html"><div class="ico">🗺️</div><div class="h">Mind-Map — Русский</div><div class="s">79 постов · 5 разделов · поиск, зум, сворачивание</div></a>
+      <a class="card" href="mindmap-en.html"><div class="ico">🗺️</div><div class="h">Posts Mind-Map — English</div><div class="s">80 posts · 5 sections · search, collapsible branches</div></a>
+      <a class="card" href="mindmap-ru.html"><div class="ico">🗺️</div><div class="h">Posts Mind-Map — Русский</div><div class="s">80 постов · 5 разделов · поиск, сворачивание</div></a>
     </div>
 
     <h2>What's inside</h2>
@@ -78,10 +107,24 @@
     <p class="tag">Хаб интерактивной mind-map · Prompt-to-Prompt (P2P) · сообщество 4PDA</p>
     <p class="lead">Всё началось с простого вопроса на форуме — спросили, нельзя ли собрать разрозненные промпты и гайды в одном месте. Я ответил, а потом собрал всё воедино: интерактивную карту полезных постов, чтобы любой за пару кликов нашёл промпт, инструмент или гайд.</p>
 
-    <h2>Открыть карту</h2>
+    <a class="hero" href="p2p-map.html">
+      <div class="h-ico">⚡</div>
+      <div class="h-title"><span class="pink">P2P v8C.3</span> × <span class="cyan">Claude</span> — Интерактивная карта архитектуры</div>
+      <div class="h-sub">Полная карта системы: модули, агенты, команды, перекрёстные связи, потоки данных — в одной интерактивной D3.js-визуализации. Табы, фильтры, анимация, переключение RU/EN.</div>
+      <div class="h-tags">
+        <span class="h-tag">D3.js force-граф</span>
+        <span class="h-tag">8 агентов QUORUM</span>
+        <span class="h-tag">11 команд</span>
+        <span class="h-tag">6 ON-DEMAND модулей</span>
+        <span class="h-tag">Перекрёстные связи</span>
+      </div>
+      <span class="h-cta">Открыть интерактивную карту →</span>
+    </a>
+
+    <h2>Карта постов</h2>
     <div class="cards">
-      <a class="card" href="mindmap-ru.html"><div class="ico">🗺️</div><div class="h">Mind-Map — Русский</div><div class="s">79 постов · 5 разделов · поиск, зум, сворачивание</div></a>
-      <a class="card" href="mindmap-en.html"><div class="ico">🗺️</div><div class="h">Mind-Map — English</div><div class="s">79 posts · 5 sections · search, zoom, collapse</div></a>
+      <a class="card" href="mindmap-ru.html"><div class="ico">🗺️</div><div class="h">Mind-Map постов — Русский</div><div class="s">80 постов · 5 разделов · поиск, сворачивание</div></a>
+      <a class="card" href="mindmap-en.html"><div class="ico">🗺️</div><div class="h">Posts Mind-Map — English</div><div class="s">80 posts · 5 sections · search, collapse</div></a>
     </div>
 
     <h2>Что внутри</h2>
