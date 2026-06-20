@@ -18,6 +18,10 @@ P2P (Prompt-to-Prompt) is a modular orchestration system loaded into an LLM that
 
 The project evolved from a single text prompt (v1) into a meta-prompt OS (v8 NEXUS) — see the [evolution history](legacy/HISTORY.md).
 
+### ⚡ [Interactive Architecture Map](https://sanic732.github.io/P2P-4PDA-edition/p2p-map.html)
+
+> **Full system map: modules, agents, commands, cross-references, data flow** — in one D3.js interactive visualization with tabs, filters, animation and RU/EN switch. See how the 8 QUORUM agents, 11 commands and 6 ON-DEMAND modules connect.
+
 ---
 
 ## 🧭 Choose your edition

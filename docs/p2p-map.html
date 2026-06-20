@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>P2P v8C.3 × Claude — Full Map v3</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0f14;--panel:#161921;--border:#252836;--text:#e2e8f0;--dim:#6b7594;
+  --accent:#3a86ff;
+  --base:#ff6b35;--od:#ff9f1c;--v8:#f72585;--ag:#b06de3;--cmd:#3a86ff;
+  --ca:#06d6a0;--cc:#48cae4;
+}
+body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+
+/* TABS */
+#tabs{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--panel);flex-shrink:0;overflow-x:auto}
+.tab{padding:9px 18px;font-size:11px;cursor:pointer;color:var(--dim);border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;font-family:inherit}
+.tab:hover{color:var(--text)}
+.tab.on{color:var(--text);border-bottom-color:var(--accent)}
+.tab-panel{display:none;flex:1;overflow:hidden;flex-direction:column}
+.tab-panel.on{display:flex}
+
+/* HEADER */
+header{padding:8px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--panel);gap:8px;flex-wrap:wrap}
+.logo{font-size:13px;font-weight:700;white-space:nowrap}
+.logo .p{color:var(--v8)}.logo .c{color:var(--ca)}
+.hctrl{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.btn{padding:4px 11px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--dim);font-family:inherit;font-size:11px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:var(--accent);color:var(--text)}
+.btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.cross.on{background:var(--v8);border-color:var(--v8)}
+.btn.l14.on{background:#7c3aed;border-color:#7c3aed}
+.btn.cowork.on{background:var(--ca);border-color:var(--ca);color:#000}
+.btn.flow.on{background:#06d6a0;border-color:#06d6a0;color:#000}
+.btn.play{border-color:#f72585;color:#f72585}
+.btn.play:hover{background:#f72585;color:#fff}
+#lang-btn{font-weight:700}
+.vsel{display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.vsel button{padding:4px 9px;background:transparent;border:none;border-right:1px solid var(--border);color:var(--dim);font-family:inherit;font-size:10.5px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.vsel button:last-child{border-right:none}
+.vsel button:hover{color:var(--text)}
+.vsel button.on{background:var(--accent);color:#fff}
+
+/* FILTERS */
+#filters{padding:6px 12px;border-bottom:1px solid var(--border);display:flex;gap:5px;flex-wrap:wrap;flex-shrink:0;background:var(--bg)}
+.fb{padding:3px 9px;border-radius:20px;border:1.5px solid transparent;font-family:inherit;font-size:10px;cursor:pointer;transition:all .15s;opacity:.45;white-space:nowrap}
+.fb.on{opacity:1}
+.fb:hover{opacity:.8}
+
+/* MAIN GRAPH */
+#main{flex:1;display:flex;overflow:hidden;position:relative}
+#graph{flex:1;position:relative;overflow:hidden}
+svg{width:100%;height:100%;display:block}
+
+/* LINKS */
+.link{stroke:#2e3248;stroke-opacity:.5;stroke-width:1.2;fill:none}
+.link.cross{stroke:var(--v8);stroke-dasharray:5 3;stroke-width:1.8;stroke-opacity:.55}
+.link.l14-link{stroke:#a855f7;stroke-width:3;stroke-opacity:.9;stroke-dasharray:none}
+.link.k-dep{stroke:#46506e;stroke-opacity:.6;stroke-width:1.3}
+.link.k-call{stroke:#525a73;stroke-opacity:.4;stroke-width:1;stroke-dasharray:1 5}
+.link.k-handoff{stroke:#ff9f1c;stroke-opacity:.78;stroke-width:1.8;stroke-dasharray:7 4}
+.link.k-anchor{stroke:#ffd166;stroke-opacity:.5;stroke-width:1.2;stroke-dasharray:2 4}
+.link.hi{stroke-opacity:1!important;stroke-width:2.5!important;filter:drop-shadow(0 0 4px currentColor)}
+.link.fade{stroke-opacity:.04!important}
+
+/* NODES */
+.node{cursor:pointer}
+.node circle{stroke-width:1.5;transition:opacity .15s}
+.node text{font-size:9.5px;pointer-events:none;text-anchor:middle;fill:var(--text)}
+.node.hi circle{stroke-width:2.5!important;filter:drop-shadow(0 0 8px currentColor)}
+.node.fade circle,.node.fade text{opacity:.12}
+.node .pulse-dot{animation:pulseDot 2s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:.55;r:var(--pr,3)}50%{opacity:1}}
+.layer-badge{font-size:9px;font-weight:700;fill:#a855f7;pointer-events:none}
+.particles circle{pointer-events:none}
+
+/* TOOLTIP */
+#tooltip{position:fixed;pointer-events:none;z-index:300;max-width:240px;background:rgba(13,15,20,.96);border:1px solid var(--border);border-radius:8px;padding:8px 11px;font-size:10.5px;line-height:1.5;color:var(--text);opacity:0;transition:opacity .12s;box-shadow:0 6px 24px rgba(0,0,0,.5);backdrop-filter:blur(6px)}
+#tooltip .tt-name{font-weight:700;margin-bottom:3px}
+#tooltip .tt-desc{color:var(--dim)}
+
+/* INFO PANEL */
+#panel{width:280px;flex-shrink:0;border-left:1px solid var(--border);background:var(--panel);padding:14px;overflow-y:auto;font-size:11.5px;line-height:1.6;display:flex;flex-direction:column;gap:10px}
+#panel h3{font-size:13px;border-bottom:1px solid var(--border);padding-bottom:7px}
+#panel .nid{font-size:10px;color:var(--dim)}
+#panel .ndesc{color:var(--dim);font-size:11px}
+.cl{font-size:10px;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.clist{list-style:none;display:flex;flex-direction:column;gap:3px;margin-top:3px}
+.clist li{padding:4px 8px;border-radius:4px;border:1px solid var(--border);cursor:pointer;color:var(--dim);transition:border-color .1s;font-size:11px}
+.clist li:hover{border-color:var(--accent);color:var(--text)}
+.clist li .ct{font-size:9px;opacity:.55;display:block}
+#placeholder{color:var(--dim);font-size:11px;text-align:center;margin-top:24px;line-height:1.9}
+#icontent{display:none;flex-direction:column;gap:8px}
+
+/* LEGEND */
+#legend{position:absolute;bottom:10px;left:10px;background:rgba(22,25,33,.92);border:1px solid var(--border);border-radius:8px;padding:9px 11px;font-size:9.5px;display:flex;flex-direction:column;gap:4px;pointer-events:none;backdrop-filter:blur(4px);max-height:46%;overflow:auto}
+.lr{display:flex;align-items:center;gap:6px;color:var(--dim)}
+.ld{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.ll{width:18px;height:2px;flex-shrink:0}
+.lda{border-top:2px dashed var(--v8);width:18px;height:0;flex-shrink:0}
+.lda.l14{border-color:#a855f7;border-top-width:3px}
+#hint{position:absolute;top:9px;left:50%;transform:translateX(-50%);font-size:9.5px;color:var(--dim);pointer-events:none;opacity:.5;white-space:nowrap;text-align:center}
+
+/* MOBILE */
+@media(max-width:680px){
+  #panel{display:none}
+  #panel.mob{display:flex;position:fixed;bottom:0;left:0;right:0;width:100%;height:50vh;border-left:none;border-top:1px solid var(--border);z-index:100;border-radius:14px 14px 0 0}
+  #legend{display:none}
+  #filters{display:none}
+  .logo{font-size:11px}
+  .btn{font-size:10px;padding:3px 8px}
+  .vsel button{padding:4px 7px;font-size:10px}
+  #mdots{display:flex}
+  #hint{font-size:9px;max-width:90%}
+}
+#mdots{display:none;position:fixed;top:50%;right:7px;transform:translateY(-50%);flex-direction:column;gap:4px;z-index:50}
+.mdot{width:13px;height:13px;border-radius:50%;border:2px solid rgba(255,255,255,.15);cursor:pointer;opacity:.45;transition:opacity .15s}
+.mdot.on{opacity:1;border-color:rgba(255,255,255,.7)}
+#closepanel{display:none;position:absolute;top:7px;right:9px;background:none;border:none;color:var(--dim);cursor:pointer;font-size:16px}
+@media(max-width:680px){#closepanel{display:block}}
+
+/* TAB 2 — MINDMAP */
+#mindmap-wrap{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:8px;min-height:0}
+.mm-section{border:1px solid var(--border);border-radius:8px;overflow:visible}
+.mm-header{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;user-select:none;transition:background .12s}
+.mm-header:hover{background:rgba(255,255,255,.03)}
+.mm-header .mm-icon{font-size:14px;flex-shrink:0}
+.mm-header .mm-title{font-size:12px;font-weight:700;flex:1}
+.mm-header .mm-count{font-size:10px;color:var(--dim);background:rgba(255,255,255,.06);padding:2px 7px;border-radius:10px}
+.mm-header .mm-arrow{font-size:10px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.mm-section.open .mm-arrow{transform:rotate(90deg)}
+.mm-body{display:none;border-top:1px solid var(--border);padding:10px 14px;flex-direction:column;gap:6px}
+.mm-section.open .mm-body{display:flex;flex-direction:column}
+.mm-item{display:flex;flex-direction:column;gap:2px;padding:7px 10px;border-radius:6px;border:1px solid transparent;transition:border-color .12s;width:100%;box-sizing:border-box}
+.mm-item:hover{border-color:var(--border)}
+.mm-item .mi-head{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600}
+.mm-item .mi-badge{font-size:9px;padding:1px 6px;border-radius:10px;font-weight:700}
+.mm-item .mi-desc{font-size:10px;color:var(--dim);line-height:1.5;margin-left:20px}
+.mm-item .mi-tags{display:flex;flex-wrap:wrap;gap:3px;margin-left:20px;margin-top:3px}
+.mi-tag{font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(255,255,255,.05);color:var(--dim);border:1px solid rgba(255,255,255,.08)}
+
+/* search */
+#mm-search-wrap{padding:10px 16px;border-bottom:1px solid var(--border);background:var(--panel);flex-shrink:0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#mm-search{flex:1;min-width:160px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-family:inherit;font-size:11px;outline:none}
+#mm-search:focus{border-color:var(--accent)}
+
+/* TAB 3 — CHAIN */
+#chain-wrap{flex:1;display:flex;overflow:hidden;position:relative}
+#chain-left{width:240px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;background:var(--panel);padding:10px}
+#chain-left h4{font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;padding:0 4px}
+.scenario-btn{display:block;width:100%;text-align:left;padding:8px 10px;margin-bottom:4px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--dim);font-family:inherit;font-size:11px;cursor:pointer;transition:all .15s;line-height:1.4}
+.scenario-btn:hover{border-color:var(--accent);color:var(--text)}
+.scenario-btn.on{background:rgba(58,134,255,.12);border-color:var(--accent);color:var(--text)}
+.scenario-btn .sb-tag{display:block;font-size:9px;color:var(--dim);margin-top:2px}
+#chain-right{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+#chain-title{font-size:14px;font-weight:700;color:var(--text)}
+#chain-desc{font-size:11px;color:var(--dim);line-height:1.6}
+#chain-vis{display:flex;flex-direction:column;gap:0;margin-top:4px}
+.chain-step{display:flex;align-items:flex-start;gap:0;position:relative}
+.cs-line{display:flex;flex-direction:column;align-items:center;width:32px;flex-shrink:0}
+.cs-dot{width:12px;height:12px;border-radius:50%;border:2px solid;flex-shrink:0;z-index:1;margin-top:10px;transition:all .3s}
+.cs-connector{width:2px;flex:1;min-height:16px;background:var(--border)}
+.cs-content{flex:1;padding:8px 0 8px 4px}
+.cs-phase{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);margin-bottom:3px}
+.cs-name{font-size:12px;font-weight:700;margin-bottom:2px}
+.cs-detail{font-size:10px;color:var(--dim);line-height:1.5}
+.cs-modules{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.cs-mod{font-size:9px;padding:2px 7px;border-radius:4px;border:1px solid;font-weight:600}
+
+/* CHAIN NODE INFO PANEL */
+#chain-placeholder{color:var(--dim);font-size:12px;text-align:center;padding:40px 20px;line-height:2}
+.cs-node-panel{
+  margin-top:8px;padding:10px 12px;border-radius:8px;
+  border:1px solid var(--border);background:rgba(255,255,255,.03);
+  font-size:11px;line-height:1.6;
+  max-height:0;overflow:hidden;
+  transition:max-height .3s ease,padding .3s ease;
+}
+.cs-node-panel.open{max-height:400px;padding:10px 12px}
+.cs-np-title{font-weight:700;font-size:12px;margin-bottom:4px}
+.cs-np-desc{color:var(--dim);font-size:11px}
+.cs-np-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.cs-np-tag{font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(255,255,255,.06);color:var(--dim);border:1px solid rgba(255,255,255,.1)}
+.cs-np-chain{margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.cs-np-chain-title{font-size:9px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.cs-np-chain-item{font-size:10px;padding:4px 8px;border-radius:4px;background:rgba(255,255,255,.04);border-left:2px solid;margin-bottom:3px;line-height:1.4}
+.chain-step{cursor:pointer;border-radius:6px;transition:background .15s;padding:2px 4px;margin:1px 0}
+.chain-step:hover{background:rgba(255,255,255,.04)}
+.chain-step.selected{background:rgba(58,134,255,.08);outline:1px solid rgba(58,134,255,.3)}
+.chain-step.active .cs-dot{box-shadow:0 0 8px 2px currentColor;transform:scale(1.25)}
+
+/* chain-placeholder in combined block below */
+@media(max-width:680px){
+  #chain-wrap{flex-direction:row;position:relative}
+  #chain-left{
+    position:absolute;left:0;top:0;bottom:0;z-index:50;
+    width:220px;max-width:75vw;
+    transform:translateX(-100%);
+    transition:transform .25s cubic-bezier(.4,0,.2,1);
+    border-right:1px solid var(--border);
+    border-bottom:none;
+    overflow-y:auto;
+    max-height:none;
+    display:flex;flex-direction:column;flex-wrap:nowrap;gap:0;
+    box-shadow:6px 0 24px rgba(0,0,0,.7);
+    background:var(--panel);
+  }
+  #chain-left.mob-open{transform:translateX(0)}
+  #chain-left h4{width:100%;display:flex;align-items:center;justify-content:space-between}
+  .scenario-btn{width:100%;flex:none;margin-bottom:4px}
+  #chain-right{flex:1;overflow-y:auto;width:100%;padding:12px}
+  #chain-mob-toggle{
+    display:flex!important;
+    position:fixed;bottom:80px;left:10px;z-index:60;
+    background:var(--accent);color:#fff;border:none;
+    border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;
+    cursor:pointer;font-family:inherit;
+    box-shadow:0 3px 16px rgba(0,0,0,.6);
+    align-items:center;gap:6px;
+  }
+  #chain-mob-overlay{
+    display:none;position:fixed;inset:0;z-index:49;background:rgba(0,0,0,.5);
+  }
+  #chain-mob-overlay.mob-open{display:block}
+}
+@media(min-width:681px){
+  #chain-mob-toggle{display:none!important}
+  #chain-mob-overlay{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- TABS NAV -->
+<div id="tabs">
+  <div class="tab on" onclick="switchTab('graph')">⬡ Connection Map</div>
+  <div class="tab" onclick="switchTab('mindmap')">🗺 Mindmap v8C.3</div>
+  <div class="tab" onclick="switchTab('chain')">⛓ Chain Loader</div>
+</div>
+
+<!-- ══════════════════ TAB 1: GRAPH ══════════════════ -->
+<div class="tab-panel on" id="tp-graph">
+<header>
+  <div class="logo"><span class="p">P2P v8C.3</span> × <span class="c">Claude</span> — Map</div>
+  <div class="hctrl">
+    <div class="vsel" id="layout-switch">
+      <button data-lay="force" class="on" data-ru="Силовой" data-en="Force">Силовой</button>
+      <button data-lay="radial" data-ru="Радиальный" data-en="Radial">Радиальный</button>
+      <button data-lay="hierarchy" data-ru="Иерархия" data-en="Hierarchy">Иерархия</button>
+      <button data-lay="circle" data-ru="Кольцо" data-en="Ring">Кольцо</button>
+    </div>
+    <button class="btn" id="b-hier-dir" title="Переключить ориентацию иерархии" style="display:none">↕ <span id="hier-dir-label">Верт.</span></button>
+    <button class="btn play" id="b-play" title="Анимация прохода сигнала через QUORUM">▶ <span data-ru="Поток" data-en="Play">Поток</span></button>
+    <button class="btn flow on" id="b-logic" title="Показать логические цепочки: depends / handoff / anchors">🔗 <span data-ru="Цепочки" data-en="Chains">Цепочки</span></button>
+    <button class="btn flow on" id="b-flow" title="Частицы вдоль связей">✦ <span data-ru="Частицы" data-en="Particles">Частицы</span></button>
+    <button class="btn l14"  id="b-l14"    title="Архитектурное зеркало L1-L4">⬡ L1-L4</button>
+    <button class="btn cowork" id="b-cowork" title="Только Cowork-релевантные узлы">⚙ Cowork</button>
+    <button class="btn cross" id="b-cross"  title="Только якорные P2P↔Claude связи">⚡ <span data-ru="Якоря" data-en="Anchors">Якоря</span></button>
+    <button class="btn" id="b-fit" data-ru="В кадр" data-en="Fit">В кадр</button>
+    <button class="btn" id="b-reset" data-ru="Сброс" data-en="Reset">Сброс</button>
+    <button class="btn" id="lang-btn">EN</button>
+  </div>
+</header>
+<div id="filters"></div>
+<div id="main">
+  <div id="graph">
+    <svg id="svg"></svg>
+    <div id="hint" data-ru="Колесо — зум · Drag — пан · Клик — выбор · Наведение — подсказка" data-en="Scroll — zoom · Drag — pan · Click — select · Hover — tooltip">Колесо — зум · Drag — пан · Клик — выбор · Наведение — подсказка</div>
+    <div id="legend">
+      <div class="lr"><div class="ld" style="background:var(--base)"></div><span>P2P BASE</span></div>
+      <div class="lr"><div class="ld" style="background:var(--od)"></div><span>P2P ON-DEMAND</span></div>
+      <div class="lr"><div class="ld" style="background:var(--v8)"></div><span>P2P v8C.3 NEW</span></div>
+      <div class="lr"><div class="ld" style="background:var(--ag)"></div><span>QUORUM агенты</span></div>
+      <div class="lr"><div class="ld" style="background:var(--cmd)"></div><span>/p2p-* команды</span></div>
+      <div class="lr"><div class="ld" style="background:var(--ca)"></div><span>Claude среды</span></div>
+      <div class="lr"><div class="ld" style="background:var(--cc)"></div><span>Claude концепции</span></div>
+      <div class="lr"><div class="ld" style="background:#ffd166"></div><span>Контроль-механизмы</span></div>
+      <div class="lr"><div class="ld" style="background:#8d99ae"></div><span>Мета / индекс</span></div>
+      <div class="lr" style="margin-top:3px;border-top:1px solid var(--border);padding-top:4px"><div class="ll" style="background:#46506e"></div><span>depends_on</span></div>
+      <div class="lr"><div class="lda" style="border-color:#ff9f1c"></div><span>v8C.3 handoff</span></div>
+      <div class="lr"><div class="lda" style="border-color:#ffd166"></div><span>anchor / логика</span></div>
+      <div class="lr"><div class="lda"></div><span>P2P↔Claude зеркало</span></div>
+      <div class="lr"><div class="lda l14"></div><span>L1-L4 зеркало</span></div>
+    </div>
+  </div>
+  <div id="panel">
+    <button id="closepanel" onclick="closePanel()">✕</button>
+    <div id="placeholder"><p data-ru="Кликните на узел<br>чтобы увидеть связи" data-en="Click a node<br>to see connections">Кликните на узел<br>чтобы увидеть связи</p></div>
+    <div id="icontent">
+      <div class="nid" id="i-cluster"></div>
+      <h3 id="i-name"></h3>
+      <div class="ndesc" id="i-desc"></div>
+      <div class="cl">Связи</div>
+      <ul class="clist" id="i-conns"></ul>
+    </div>
+  </div>
+</div>
+<div id="mdots"></div>
+</div>
+
+<!-- ══════════════════ TAB 2: MINDMAP ══════════════════ -->
+<div class="tab-panel" id="tp-mindmap">
+<div id="mm-search-wrap">
+  <input id="mm-search" type="text" placeholder="🔍  Поиск по mindmap..." oninput="mmSearch(this.value)">
+  <button class="btn" onclick="mmAll(true)" data-ru="Развернуть всё" data-en="Expand all">Развернуть всё</button>
+  <button class="btn" onclick="mmAll(false)" data-ru="Свернуть всё" data-en="Collapse all">Свернуть всё</button>
+</div>
+<div id="mindmap-wrap"></div>
+</div>
+
+<!-- ══════════════════ TAB 3: CHAIN ══════════════════ -->
+<div class="tab-panel" id="tp-chain">
+<button id="chain-mob-toggle" onclick="chainMobToggle()">☰ Сценарии</button>
+<div id="chain-mob-overlay" onclick="chainMobClose()"></div>
+<div id="chain-wrap">
+  <div id="chain-left">
+    <h4><span>СЦЕНАРИИ</span><button onclick="chainMobClose()" style="background:none;border:none;color:var(--dim);cursor:pointer;font-size:16px;padding:0 2px;line-height:1">✕</button></h4>
+    <div id="scenario-list"></div>
+  </div>
+  <div id="chain-right">
+    <div id="chain-placeholder">← Выберите сценарий<br>чтобы увидеть цепочку загрузки модулей</div>
+    <div id="chain-title" style="display:none"></div>
+    <div id="chain-desc" style="display:none"></div>
+    <div id="chain-vis"></div>
+  </div>
+</div>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// TAB SWITCHER
+// ══════════════════════════════════════════════════════════════
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    const ids=['graph','mindmap','chain'];
+    t.classList.toggle('on', ids[i]===id);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>{
+    p.classList.toggle('on', p.id==='tp-'+id);
+  });
+  if(id==='graph') setTimeout(()=>{sim.restart();fitView();},60);
+}
+
+// ══════════════════════════════════════════════════════════════
+// GRAPH DATA
+// ══════════════════════════════════════════════════════════════
+const CL={
+  'base':{ru:'P2P BASE',en:'P2P BASE',c:'#ff6b35'},
+  'od':{ru:'P2P ON-DEMAND',en:'P2P ON-DEMAND',c:'#ff9f1c'},
+  'v8':{ru:'P2P v8C.3 NEW',en:'P2P v8C.3 NEW',c:'#f72585'},
+  'ag':{ru:'QUORUM агенты',en:'QUORUM agents',c:'#b06de3'},
+  'cmd':{ru:'/p2p-* команды',en:'/p2p-* commands',c:'#3a86ff'},
+  'ca':{ru:'Claude среды',en:'Claude envs',c:'#06d6a0'},
+  'cc':{ru:'Claude концепции',en:'Claude concepts',c:'#48cae4'},
+  'ctrl':{ru:'Контроль-механизмы',en:'Control mechanisms',c:'#ffd166'},
+  'meta':{ru:'Мета / индекс',en:'Meta / index',c:'#8d99ae'},
+};
+const nodes=[
+  {id:'preloader',cl:'base',ru:'_preloader.md',en:'_preloader.md',r:14,ru_d:'TRI_MODE_BRIDGE v3 · ENV detection · PROJECT_CARD · порядок загрузки',en_d:'TRI_MODE_BRIDGE v3 · ENV detection · PROJECT_CARD · load order'},
+  {id:'core',cl:'base',ru:'!!core.md',en:'!!core.md',r:19,ru_d:'Меню [1-40] · XML-native · QUORUM · ATLAS v2 · Claude contract warning',en_d:'Menu [1-40] · XML-native · QUORUM · ATLAS v2 · Claude contract warning'},
+  {id:'db',cl:'base',ru:'!!db.md',en:'!!db.md',r:16,ru_d:'G-errors G1-G20 · Templates A-M · 9-step Contract Builder algorithm',en_d:'G-errors G1-G20 · Templates A-M · 9-step Contract Builder algorithm'},
+  {id:'manifest',cl:'base',ru:'MANIFEST.md',en:'MANIFEST.md',r:11,ru_d:'Дедлайны моделей · активные API strings · VERSION_COMPAT flags',en_d:'Model deadlines · active API strings · VERSION_COMPAT flags'},
+  {id:'live-core',cl:'base',ru:'live_core.md',en:'live_core.md',r:10,ru_d:'Состояние сессии · активные модули · CONFLICT_RESOLVER',en_d:'Session state · active modules · CONFLICT_RESOLVER'},
+  {id:'live-claude',cl:'base',ru:'live_claude.md',en:'live_claude.md',r:10,ru_d:'Claude-specific данные · фичи платформы · compat matrix',en_d:'Claude-specific data · platform features · compat matrix'},
+  {id:'live-vendors',cl:'base',ru:'live_vendors.md',en:'live_vendors.md',r:11,ru_d:'Все вендоры · API strings · Translation Layer · tier 1-4',en_d:'All vendors · API strings · Translation Layer · tiers 1-4'},
+  {id:'p2p-config',cl:'base',ru:'p2p.config.md',en:'p2p.config.md',r:10,cowork:true,ru_d:'Пользовательская конфигурация · USER_LEVEL · PILOT_MODE · язык · тир · ≡ about-me.md',en_d:'User config · USER_LEVEL · PILOT_MODE · language · tier · ≡ about-me.md'},
+  {id:'plugin-json',cl:'base',ru:'plugin.json',en:'plugin.json',r:9,cowork:true,ru_d:'Plugin manifest · точка входа P2P в Claude Code/Cowork · marketplace manifest',en_d:'Plugin manifest · P2P entry point for Claude Code/Cowork · marketplace manifest'},
+  {id:'od-agents',cl:'od',ru:'!agents.md',en:'!agents.md',r:14,ru_d:'QUORUM профили 8 агентов · sub-QUORUM паттерны · прямой вызов агента',en_d:'QUORUM profiles of 8 agents · sub-QUORUM patterns · direct agent invoke'},
+  {id:'od-contract',cl:'od',ru:'!contract.md',en:'!contract.md',r:13,ru_d:'Contract Builder · Translation Layer полный · MUST/MUST NOT пары · 9D intent',en_d:'Contract Builder · full Translation Layer · MUST/MUST NOT pairs · 9D intent'},
+  {id:'od-debug',cl:'od',ru:'!debug.md',en:'!debug.md',r:11,ru_d:'Debug Engine · G-error diagnosis · причины деградации · remediation',en_d:'Debug Engine · G-error diagnosis · degradation causes · remediation'},
+  {id:'od-intent',cl:'od',ru:'!intent.md',en:'!intent.md',r:12,ru_d:'Intent Engine 9D · 36 anti-patterns · 12 tool routes · SIR Scanner',en_d:'Intent Engine 9D · 36 anti-patterns · 12 tool routes · SIR Scanner'},
+  {id:'od-memory',cl:'od',ru:'!memory.md',en:'!memory.md',r:12,cowork:true,ru_d:'Memory Bridge · CAPSULE protocol · сохранение/восстановление контекста между сессиями',en_d:'Memory Bridge · CAPSULE protocol · save/restore context between sessions'},
+  {id:'od-scope',cl:'od',ru:'!scope.md',en:'!scope.md',r:13,ru_d:'SCOPE.HELM v1.2 · SPLITTER · CAPSULE · ROUTER · большие многошаговые задачи',en_d:'SCOPE.HELM v1.2 · SPLITTER · CAPSULE · ROUTER · large multi-step tasks'},
+  {id:'od-templates',cl:'od',ru:'!templates.md',en:'!templates.md',r:10,ru_d:'Template Library A-M · готовые структуры промптов · Contract шаблоны',en_d:'Template Library A-M · ready-made prompt structures · Contract templates'},
+  {id:'od-mentor',cl:'od',ru:'!mentor.md',en:'!mentor.md',r:10,ru_d:'Mentor Method · Socratic pattern · обучение через использование P2P',en_d:'Mentor Method · Socratic pattern · learning through P2P usage'},
+  {id:'od-metrics',cl:'od',ru:'!metrics.md',en:'!metrics.md',r:10,cowork:true,ru_d:'Session Metrics v0.2 · Routing Memory · эффективность сессии · лучший/худший агент',en_d:'Session Metrics v0.2 · Routing Memory · session effectiveness · best/worst agent'},
+  {id:'od-user',cl:'od',ru:'!user_context.md',en:'!user_context.md',r:11,cowork:true,ru_d:'User Context extended · adaptive behavior · PILOT_MODE · USER_LEVEL · SHERPA',en_d:'User Context extended · adaptive behavior · PILOT_MODE · USER_LEVEL · SHERPA'},
+  {id:'od-domain',cl:'od',ru:'!domain.md',en:'!domain.md',r:10,ru_d:'Domain Knowledge · React 19 · Kotlin · KMP reference · on-demand по задаче',en_d:'Domain Knowledge · React 19 · Kotlin · KMP reference · on-demand by task'},
+  {id:'od-writing',cl:'od',ru:'!writing.md',en:'!writing.md',r:9,ru_d:'Writing Quality Control · стиль · анти-паттерны текста · голос бренда',en_d:'Writing Quality Control · style · text anti-patterns · brand voice'},
+  {id:'od-teacher',cl:'od',ru:'!teacher.md',en:'!teacher.md',r:12,cowork:true,ru_d:'Curriculum 5 уровней · Q&A mode · cheatsheet · /p2p-teacher · sandbox задачи',en_d:'Curriculum 5 levels · Q&A mode · cheatsheet · /p2p-teacher · sandbox tasks'},
+  {id:'v8-rag',cl:'v8',ru:'rag.md',en:'rag.md',r:10,ru_d:'RAG · RAPTOR · векторный поиск · chunk strategy · hybrid retrieval',en_d:'RAG · RAPTOR · vector search · chunk strategy · hybrid retrieval'},
+  {id:'v8-reason',cl:'v8',ru:'reasoning.md',en:'reasoning.md',r:11,ru_d:'CoT · Self-Consistency · MCTS · Test-Time Scaling · reasoning techniques',en_d:'CoT · Self-Consistency · MCTS · Test-Time Scaling · reasoning techniques'},
+  {id:'v8-routing',cl:'v8',ru:'routing.md',en:'routing.md',r:11,ru_d:'Выбор модели T0-T4 · effort advisor · cost vs quality matrix',en_d:'Model selection T0-T4 · effort advisor · cost vs quality matrix'},
+  {id:'v8-compress',cl:'v8',ru:'compression.md',en:'compression.md',r:9,ru_d:'LLMLingua · Gist Tokens · сжатие контекста без потери смысла',en_d:'LLMLingua · Gist Tokens · context compression without loss'},
+  {id:'v8-security',cl:'v8',ru:'security.md',en:'security.md',r:10,ru_d:'Аудит промптов · injection defense · COLLISION_PATCH · L3 детерминизм',en_d:'Prompt audit · injection defense · COLLISION_PATCH · L3 determinism'},
+  {id:'v8-optim',cl:'v8',ru:'optimization.md',en:'optimization.md',r:10,ru_d:'APO · OPRO · автооптимизация промптов · prompt scoring · iterative refine',en_d:'APO · OPRO · auto-optimization of prompts · prompt scoring · iterative refine'},
+  {id:'v8-art',cl:'v8',ru:'art.md',en:'art.md',r:8,ru_d:'ASCII-баннеры режимов · STARTUP_LOGO · визуальное меню при /start',en_d:'ASCII mode banners · STARTUP_LOGO · visual menu on /start'},
+  {id:'ag-iris',cl:'ag',ru:'IRIS',en:'IRIS',r:13,ru_d:'Исследователь · картограф проблемы · скрытые зависимости · открытые вопросы',en_d:'Explorer · problem mapper · hidden dependencies · open questions'},
+  {id:'ag-tecton',cl:'ag',ru:'TECTON',en:'TECTON',r:13,ru_d:'Архитект · декомпозиция · системный дизайн · структурирование задачи',en_d:'Architect · decomposition · system design · task structuring'},
+  {id:'ag-axiom',cl:'ag',ru:'AXIOM',en:'AXIOM',r:12,ru_d:'Критик · верификатор · поиск противоречий · red team · дырки в логике',en_d:'Critic · verifier · contradiction finder · red team · logic gaps'},
+  {id:'ag-vector',cl:'ag',ru:'VECTOR',en:'VECTOR',r:12,ru_d:'Генератор · множество альтернатив · нестандартные подходы · divergent thinking',en_d:'Generator · multiple alternatives · unconventional approaches · divergent thinking'},
+  {id:'ag-datos',cl:'ag',ru:'DATOS',en:'DATOS',r:11,ru_d:'Аналитик · паттерны в данных · числовая аргументация · статистика',en_d:'Analyst · data patterns · numerical reasoning · statistics'},
+  {id:'ag-anon',cl:'ag',ru:'ANON',en:'ANON',r:11,ru_d:'Нейтральный · объективная оценка без предвзятости · без контекста',en_d:'Neutral · objective assessment without bias · context-free'},
+  {id:'ag-arch',cl:'ag',ru:'ARCHITECTON',en:'ARCHITECTON',r:15,ru_d:'Мастер-архитект · оркестратор QUORUM · синтез всех агентов · финальное решение',en_d:'Master architect · QUORUM orchestrator · synthesis of all agents · final decision'},
+  {id:'ag-helios',cl:'ag',ru:'HELIOS',en:'HELIOS',r:12,ru_d:'Финализатор · полировка вывода · anti-hallucination · качество и точность',en_d:'Finalizer · output polish · anti-hallucination · quality and precision'},
+  {id:'cmd-p2p',cl:'cmd',ru:'/p2p',en:'/p2p',r:14,ru_d:'Главное меню [1-40] · генерация промпта · Contract Builder entry point',en_d:'Main menu [1-40] · prompt generation · Contract Builder entry point'},
+  {id:'cmd-quorum',cl:'cmd',ru:'/p2p-quorum',en:'/p2p-quorum',r:12,ru_d:'Запуск полного QUORUM консилиума · все 8 агентов · оркестрация',en_d:'Launch full QUORUM council · all 8 agents · orchestration'},
+  {id:'cmd-chain',cl:'cmd',ru:'/p2p-chain',en:'/p2p-chain',r:10,ru_d:'Chain Mode · последовательный вызов агентов · вывод A = вход B',en_d:'Chain Mode · sequential agent calls · output of A = input of B'},
+  {id:'cmd-scope',cl:'cmd',ru:'/p2p-scope',en:'/p2p-scope',r:11,ru_d:'SCOPE.HELM · большие задачи · SPLITTER / CAPSULE / ROUTER',en_d:'SCOPE.HELM · large tasks · SPLITTER / CAPSULE / ROUTER'},
+  {id:'cmd-atlas',cl:'cmd',ru:'/p2p-atlas',en:'/p2p-atlas',r:10,ru_d:'ATLAS v2 · карта задачи GOAL / PROGRESS / NEXT / BLOCKERS',en_d:'ATLAS v2 · task map GOAL / PROGRESS / NEXT / BLOCKERS'},
+  {id:'cmd-capsule',cl:'cmd',ru:'/p2p-capsule',en:'/p2p-capsule',r:10,cowork:true,ru_d:'CAPSULE · сохранить/загрузить контекст · персистентность между сессиями',en_d:'CAPSULE · save/load context · persistence between sessions'},
+  {id:'cmd-metrics',cl:'cmd',ru:'/p2p-metrics',en:'/p2p-metrics',r:9,cowork:true,ru_d:'Session Metrics · эффективность · routing memory · анализ качества',en_d:'Session Metrics · effectiveness · routing memory · quality analysis'},
+  {id:'cmd-explore',cl:'cmd',ru:'/p2p-explore',en:'/p2p-explore',r:9,ru_d:'Exploration Mode · экспериментальные режимы · Cortex Patch A · brainstorm',en_d:'Exploration Mode · experimental modes · Cortex Patch A · brainstorm'},
+  {id:'cmd-karpathy',cl:'cmd',ru:'/p2p-karpathy',en:'/p2p-karpathy',r:10,ru_d:'Karpathy Coding Mode · хирургические правки кода · Template M · PRE_CODE_DECLARATION',en_d:'Karpathy Coding Mode · surgical code edits · Template M · PRE_CODE_DECLARATION'},
+  {id:'cmd-teacher',cl:'cmd',ru:'/p2p-teacher',en:'/p2p-teacher',r:11,cowork:true,ru_d:'Teacher Mode · 5-уровневый курс · Q&A · sandbox задачи · delivered as Skill',en_d:'Teacher Mode · 5-level curriculum · Q&A · sandbox tasks · delivered as Skill'},
+  {id:'cl-chat',cl:'ca',ru:'Chat',en:'Chat',r:12,ru_d:'Одиночный спринт · нулевой контекст между чатами · быстрые задачи без истории',en_d:'Single sprint · zero context between chats · quick tasks without history'},
+  {id:'cl-cowork',cl:'ca',ru:'Cowork',en:'Cowork',r:15,cowork:true,ru_d:'Постоянный партнёр · доступ к папке · Skills/Plugins · Extended Thinking ON · /schedule',en_d:'Persistent partner · folder access · Skills/Plugins · Extended Thinking ON · /schedule'},
+  {id:'cl-projects',cl:'ca',ru:'Projects',en:'Projects',r:13,ru_d:'Долгосрочное пространство · постоянные инструкции · автозагрузка в каждый чат',en_d:'Long-term workspace · persistent instructions · auto-load to each chat'},
+  {id:'cl-code',cl:'ca',ru:'Claude Code',en:'Claude Code',r:16,ru_d:'CLI-агент · автономный · Hooks · Subagents · /clear /compact · Checkpoints · Plan Mode',en_d:'CLI agent · autonomous · Hooks · Subagents · /clear /compact · Checkpoints · Plan Mode'},
+  {id:'cl-skill',cl:'ca',ru:'SKILL.md',en:'SKILL.md',r:13,cowork:true,ru_d:'Ситуативная загрузка · Progressive Disclosure · description = триггер · L2 слой',en_d:'Situational loading · Progressive Disclosure · description = trigger · L2 layer'},
+  {id:'cl-claude-md',cl:'ca',ru:'CLAUDE.md',en:'CLAUDE.md',r:13,ru_d:'Постоянный брифинг · L1 слой · самообучение через ошибки · иерархия файлов · <200 строк',en_d:'Persistent briefing · L1 layer · self-learning from errors · file hierarchy · <200 lines'},
+  {id:'cl-hooks',cl:'ca',ru:'Hooks',en:'Hooks',r:11,ru_d:'Детерминированные колбэки · L3 слой · гарантированное выполнение · не промпт',en_d:'Deterministic callbacks · L3 layer · guaranteed execution · not a prompt'},
+  {id:'cl-subagents',cl:'ca',ru:'Subagents',en:'Subagents',r:12,ru_d:'Изолированный контекст · L4 слой · исследование без загрязнения основного контекста',en_d:'Isolated context · L4 layer · exploration without polluting main context'},
+  {id:'cl-about',cl:'ca',ru:'about-me.md',en:'about-me.md',r:10,cowork:true,ru_d:'Кто вы · стиль · стек · что важно · Cowork читает при каждом старте · ≡ p2p.config.md',en_d:'Who you are · style · stack · what matters · Cowork reads on every start · ≡ p2p.config.md'},
+  {id:'cc-extthink',cl:'cc',ru:'Extended Thinking',en:'Extended Thinking',r:12,cowork:true,ru_d:'Скрытая цепочка рассуждений · не писать "думай пошагово" · включён в Cowork по умолчанию',en_d:'Hidden reasoning chain · don\'t write "think step by step" · on in Cowork by default'},
+  {id:'cc-context',cl:'cc',ru:'Context = RAM',en:'Context = RAM',r:13,ru_d:'Белая доска · конечная · не стирается · LLM = CPU · всё что Claude "видит" прямо сейчас',en_d:'Whiteboard · finite · doesn\'t erase · LLM = CPU · everything Claude "sees" right now'},
+  {id:'cc-litm',cl:'cc',ru:'Lost-in-Middle',en:'Lost-in-Middle',r:11,ru_d:'Модели хуже воспринимают середину контекста · ключевое — в начало и конец',en_d:'Models process context middle worse · key info should be at start and end'},
+  {id:'cc-pollution',cl:'cc',ru:'Context Pollution',en:'Context Pollution',r:11,ru_d:'Свалка несвязанных тем · противоречивые сигналы · Attention Mechanism распылён',en_d:'Dump of unrelated topics · contradictory signals · Attention Mechanism spread thin'},
+  {id:'cc-corrloop',cl:'cc',ru:'Correction Loop',en:'Correction Loop',r:10,ru_d:'Петля исправлений · правило двух попыток · /clear вместо третьего раза',en_d:'Correction loop · rule of two attempts · /clear instead of third try'},
+  {id:'cc-clear',cl:'cc',ru:'/clear · /compact',en:'/clear · /compact',r:11,ru_d:'/clear = полный сброс белой доски · /compact focus on X = мягкий сброс с сохранением сути',en_d:'/clear = full whiteboard reset · /compact focus on X = soft reset keeping essence'},
+  {id:'cc-checkpts',cl:'cc',ru:'Checkpoints',en:'Checkpoints',r:11,ru_d:'Save Game механика · откат кода/разговора · переживают закрытие терминала',en_d:'Save Game mechanic · roll back code/conversation · survive terminal close'},
+  {id:'cc-planmode',cl:'cc',ru:'Plan Mode',en:'Plan Mode',r:12,ru_d:'Режим без изменений файлов · исследование → план → утверждение → выполнение',en_d:'Read-only mode · exploration → plan → approval → execution'},
+  {id:'cc-parallel',cl:'cc',ru:'Parallel Sessions',en:'Parallel Sessions',r:12,ru_d:'Строитель + Ревьюер · TDD параллельно · изолированный контекст каждой сессии',en_d:'Builder + Reviewer · parallel TDD · isolated context per session'},
+  {id:'cc-progdisc',cl:'cc',ru:'Progressive Disclosure',en:'Progressive Disclosure',r:11,cowork:true,ru_d:'SKILL.md первым · подфайлы по условию · экономия контекста · сильнее чем монолит',en_d:'SKILL.md first · sub-files by condition · context economy · stronger than monolith'},
+  {id:'cc-contract',cl:'cc',ru:'Contract Prompting',en:'Contract Prompting',r:13,ru_d:'9-step Anthropic framework · XML-структура · MUST/MUST NOT · роль/данные/задача/формат',en_d:'9-step Anthropic framework · XML structure · MUST/MUST NOT · role/data/task/format'},
+  {id:'cc-xml',cl:'cc',ru:'XML-native Claude',en:'XML-native Claude',r:11,ru_d:'Claude обучался на XML · теги = структурный сигнал для модели · vs Gemini = Markdown',en_d:'Claude trained on XML · tags = structural signal · vs Gemini = Markdown'},
+  {id:'cc-trimode',cl:'cc',ru:'TRI_MODE envs',en:'TRI_MODE envs',r:10,cowork:true,ru_d:'Code · Projects · API · Chat — 4 среды с разным поведением и возможностями',en_d:'Code · Projects · API · Chat — 4 environments with different behavior'},
+];
+const links=[
+  {source:'preloader',target:'core',t:'i',ru:'загружает первым',en:'loads first'},
+  {source:'core',target:'db',t:'i',ru:'зависит от',en:'depends on'},
+  {source:'core',target:'manifest',t:'i',ru:'читает',en:'reads'},
+  {source:'core',target:'live-core',t:'i',ru:'читает',en:'reads'},
+  {source:'core',target:'live-claude',t:'i',ru:'читает',en:'reads'},
+  {source:'manifest',target:'live-vendors',t:'i',ru:'→',en:'→'},
+  {source:'plugin-json',target:'cl-cowork',t:'i',ru:'точка входа →',en:'entry point →'},
+  {source:'p2p-config',target:'od-user',t:'i',ru:'конфиг →',en:'config →'},
+  {source:'core',target:'od-agents',t:'i',ru:'активирует QUORUM',en:'activates QUORUM'},
+  {source:'db',target:'od-contract',t:'i',ru:'база шаблонов',en:'template base'},
+  {source:'od-intent',target:'od-contract',t:'i',ru:'intent → contract',en:'intent → contract'},
+  {source:'od-scope',target:'od-memory',t:'i',ru:'CAPSULE →',en:'CAPSULE →'},
+  {source:'od-contract',target:'od-templates',t:'i',ru:'шаблоны',en:'templates'},
+  {source:'v8-routing',target:'live-vendors',t:'i',ru:'tier данные',en:'tier data'},
+  {source:'v8-rag',target:'od-intent',t:'i',ru:'расширяет intent',en:'extends intent'},
+  {source:'v8-security',target:'core',t:'i',ru:'COLLISION_PATCH',en:'COLLISION_PATCH'},
+  {source:'od-agents',target:'ag-iris',t:'i',ru:'профиль',en:'profile'},
+  {source:'od-agents',target:'ag-tecton',t:'i',ru:'профиль',en:'profile'},
+  {source:'od-agents',target:'ag-axiom',t:'i',ru:'профиль',en:'profile'},
+  {source:'od-agents',target:'ag-vector',t:'i',ru:'профиль',en:'profile'},
+  {source:'od-agents',target:'ag-datos',t:'i',ru:'профиль',en:'profile'},
+  {source:'od-agents',target:'ag-anon',t:'i',ru:'профиль',en:'profile'},
+  {source:'od-agents',target:'ag-arch',t:'i',ru:'профиль',en:'profile'},
+  {source:'od-agents',target:'ag-helios',t:'i',ru:'профиль',en:'profile'},
+  {source:'ag-arch',target:'ag-iris',t:'i',ru:'синтез ←',en:'synthesizes ←'},
+  {source:'ag-arch',target:'ag-tecton',t:'i',ru:'синтез ←',en:'synthesizes ←'},
+  {source:'ag-arch',target:'ag-axiom',t:'i',ru:'синтез ←',en:'synthesizes ←'},
+  {source:'ag-helios',target:'ag-arch',t:'i',ru:'финализирует',en:'finalizes'},
+  {source:'cmd-p2p',target:'od-contract',t:'i',ru:'вызывает',en:'invokes'},
+  {source:'cmd-quorum',target:'od-agents',t:'i',ru:'запускает',en:'runs'},
+  {source:'cmd-chain',target:'od-agents',t:'i',ru:'цепочка',en:'chains'},
+  {source:'cmd-scope',target:'od-scope',t:'i',ru:'→',en:'→'},
+  {source:'cmd-atlas',target:'od-scope',t:'i',ru:'ATLAS',en:'ATLAS'},
+  {source:'cmd-capsule',target:'od-memory',t:'i',ru:'→',en:'→'},
+  {source:'cmd-metrics',target:'od-metrics',t:'i',ru:'→',en:'→'},
+  {source:'cmd-teacher',target:'od-teacher',t:'i',ru:'→',en:'→'},
+  {source:'cl-cowork',target:'cl-skill',t:'i',ru:'использует',en:'uses'},
+  {source:'cl-code',target:'cl-skill',t:'i',ru:'использует',en:'uses'},
+  {source:'cl-cowork',target:'cl-claude-md',t:'i',ru:'читает',en:'reads'},
+  {source:'cl-code',target:'cl-claude-md',t:'i',ru:'L1 читает',en:'L1 reads'},
+  {source:'cl-projects',target:'cl-claude-md',t:'i',ru:'инструкции',en:'instructions'},
+  {source:'cl-code',target:'cl-hooks',t:'i',ru:'L3',en:'L3'},
+  {source:'cl-code',target:'cl-subagents',t:'i',ru:'L4',en:'L4'},
+  {source:'cl-skill',target:'cc-progdisc',t:'i',ru:'реализует',en:'implements'},
+  {source:'cl-claude-md',target:'cc-litm',t:'i',ru:'<200 строк',en:'<200 lines rule'},
+  {source:'cl-code',target:'cc-clear',t:'i',ru:'команды',en:'commands'},
+  {source:'cl-code',target:'cc-checkpts',t:'i',ru:'сохраняет',en:'saves'},
+  {source:'cl-code',target:'cc-planmode',t:'i',ru:'режим',en:'mode'},
+  {source:'cl-code',target:'cc-parallel',t:'i',ru:'сессии',en:'sessions'},
+  {source:'cl-cowork',target:'cc-extthink',t:'i',ru:'ON по умолч.',en:'ON by default'},
+  {source:'cl-cowork',target:'cl-about',t:'i',ru:'читает',en:'reads'},
+  {source:'cc-context',target:'cc-litm',t:'i',ru:'→',en:'→'},
+  {source:'cc-context',target:'cc-pollution',t:'i',ru:'→',en:'→'},
+  {source:'cc-pollution',target:'cc-corrloop',t:'i',ru:'→',en:'→'},
+  {source:'cc-corrloop',target:'cc-clear',t:'i',ru:'лечение',en:'remedy'},
+  {source:'cc-contract',target:'cc-xml',t:'i',ru:'использует',en:'uses'},
+  {source:'preloader',target:'cc-trimode',t:'x',ru:'TRI_MODE_BRIDGE ≡ envs',en:'TRI_MODE_BRIDGE ≡ envs'},
+  {source:'core',target:'cc-xml',t:'x',ru:'XML-native нативно',en:'XML-native natively'},
+  {source:'od-agents',target:'cl-subagents',t:'x',layer:'L4',ru:'L4: LLM_COUNCIL ≡ Subagents',en:'L4: LLM_COUNCIL ≡ Subagents'},
+  {source:'od-agents',target:'cc-parallel',t:'x',ru:'QUORUM ≡ Parallel Sessions',en:'QUORUM ≡ Parallel Sessions'},
+  {source:'od-contract',target:'cc-contract',t:'x',ru:'9-step algo = Contract Prompting',en:'9-step algo = Contract Prompting'},
+  {source:'od-debug',target:'cc-clear',t:'x',ru:'Debug Engine → /clear logic',en:'Debug Engine → /clear logic'},
+  {source:'od-memory',target:'cc-checkpts',t:'x',ru:'CAPSULE ≡ Checkpoints',en:'CAPSULE ≡ Checkpoints'},
+  {source:'od-scope',target:'cc-planmode',t:'x',ru:'SCOPE.HELM ≡ Plan Mode',en:'SCOPE.HELM ≡ Plan Mode'},
+  {source:'od-metrics',target:'cl-cowork',t:'x',ru:'SESSION_METRICS в Cowork',en:'SESSION_METRICS in Cowork'},
+  {source:'v8-security',target:'cl-hooks',t:'x',layer:'L3',ru:'L3: COLLISION_PATCH ≡ Hooks',en:'L3: COLLISION_PATCH ≡ Hooks'},
+  {source:'v8-routing',target:'cl-code',t:'x',ru:'T0-T4 tier → модели',en:'T0-T4 tier → models'},
+  {source:'v8-reason',target:'cc-extthink',t:'x',ru:'CoT/MCTS ≡ Extended Thinking',en:'CoT/MCTS ≡ Extended Thinking'},
+  {source:'v8-compress',target:'cc-clear',t:'x',ru:'LLMLingua ≡ /compact эффект',en:'LLMLingua ≡ /compact effect'},
+  {source:'od-user',target:'cl-about',t:'x',ru:'USER_LEVEL config ≡ about-me.md',en:'USER_LEVEL config ≡ about-me.md'},
+  {source:'p2p-config',target:'cl-about',t:'x',ru:'p2p.config ≡ about-me.md',en:'p2p.config ≡ about-me.md'},
+  {source:'core',target:'cl-claude-md',t:'x',layer:'L1',ru:'L1: !core ≡ CLAUDE.md',en:'L1: !core ≡ CLAUDE.md'},
+  {source:'od-domain',target:'cl-skill',t:'x',layer:'L2',ru:'L2: domain files ≡ Skills',en:'L2: domain files ≡ Skills'},
+  {source:'od-intent',target:'cc-contract',t:'x',ru:'9D intent → prompt spec',en:'9D intent → prompt spec'},
+  {source:'db',target:'cc-litm',t:'x',ru:'G-errors = degrad.симптомы',en:'G-errors = degrad.symptoms'},
+  {source:'db',target:'cc-corrloop',t:'x',ru:'G-error G8-G10 = Correction Loop',en:'G-error G8-G10 = Correction Loop'},
+  {source:'od-teacher',target:'cl-cowork',t:'x',ru:'teacher skill → Cowork',en:'teacher skill → Cowork'},
+  {source:'od-teacher',target:'cl-skill',t:'x',ru:'teacher delivered as Skill',en:'teacher delivered as Skill'},
+  {source:'cmd-quorum',target:'cc-parallel',t:'x',ru:'/p2p-quorum ≡ parallel sessions',en:'/p2p-quorum ≡ parallel sessions'},
+  {source:'cmd-capsule',target:'cc-checkpts',t:'x',ru:'/p2p-capsule ≡ Checkpoints',en:'/p2p-capsule ≡ Checkpoints'},
+  {source:'cmd-scope',target:'cc-planmode',t:'x',ru:'/p2p-scope ≡ Plan Mode',en:'/p2p-scope ≡ Plan Mode'},
+  {source:'plugin-json',target:'cl-cowork',t:'x',ru:'P2P plugin entry → Cowork',en:'P2P plugin entry → Cowork'},
+  {source:'v8-rag',target:'cl-subagents',t:'x',ru:'RAG via subagent isolation',en:'RAG via subagent isolation'},
+];
+// ── ENRICHMENT from real P2P v8C.3 source (ARCHITECTURE_MAP.md · global_index.md · intent §2.5) ──
+const EXTRA_NODES=[
+  // missing ON-DEMAND modules
+  {id:'od-exploration',cl:'od',ru:'!exploration.md',en:'!exploration.md',r:10,ru_d:'Exploration Mode · Cortex Patch A · brainstorm · гипотезы · outbound-хаб (9)',en_d:'Exploration Mode · Cortex Patch A · brainstorm · hypotheses · outbound hub (9)'},
+  {id:'od-toolbudget',cl:'od',ru:'!tool_budget.md',en:'!tool_budget.md',r:9,ru_d:'Tool Budget · re-injection protocol · агентика · API mode · бюджет tool-calls',en_d:'Tool Budget · re-injection protocol · agentic · API mode · tool-call budget'},
+  {id:'od-visual',cl:'od',ru:'!visual.md',en:'!visual.md',r:10,ru_d:'Visual/Video/Audio Suite · диаграммы · UI-replication · depends: db + templates',en_d:'Visual/Video/Audio Suite · diagrams · UI replication · depends: db + templates'},
+  {id:'od-sandbox',cl:'od',ru:'!sandbox.md',en:'!sandbox.md',r:10,cowork:true,ru_d:'User Sandbox · 5 полей · session override · PERSONA_HINT · depends: preloader + user_context',en_d:'User Sandbox · 5 fields · session override · PERSONA_HINT · depends: preloader + user_context'},
+  // meta / index layer
+  {id:'meta-index',cl:'meta',ru:'_index · global_index',en:'_index · global_index',r:13,ru_d:'Мастер-индекс · порядок загрузки · теги поиска · крупнейший outbound-хаб (51 ссылка)',en_d:'Master index · load order · search tags · largest outbound hub (51 refs)'},
+  {id:'meta-master',cl:'meta',ru:'_master.md',en:'_master.md',r:11,ru_d:'Полная сборка для API · один файл · outbound 20 · собирает все модули',en_d:'Full API build · single file · outbound 20 · assembles every module'},
+  {id:'meta-glossary',cl:'meta',ru:'_glossary.md',en:'_glossary.md',r:9,ru_d:'Глоссарий терминов P2P · канонические имена · защита от naming-drift',en_d:'P2P term glossary · canonical names · guards against naming drift'},
+  // live source-of-truth
+  {id:'live-specs',cl:'base',ru:'live_specs_*.md',en:'live_specs_*.md',r:11,ru_d:'Полные live-спеки вендоров · PRIORITY:OVERRIDE · источник правды · staleness guard 60д',en_d:'Full vendor live specs · PRIORITY:OVERRIDE · source of truth · 60d staleness guard'},
+  // control mechanisms = anchors living inside files
+  {id:'ctrl-versioncompat',cl:'ctrl',ru:'VERSION_COMPAT',en:'VERSION_COMPAT',r:12,ru_d:'Якорь в _preloader · v8C2/v8C3 on|off + 6 MODULE_* флагов · меню [35-40] · safety valve',en_d:'Anchor in _preloader · v8C2/v8C3 on|off + 6 MODULE_* flags · menu [35-40] · safety valve'},
+  {id:'ctrl-pilot',cl:'ctrl',ru:'PILOT_MODE',en:'PILOT_MODE',r:12,ru_d:'Якорь в !!core · co-pilot|auto-pilot|manual · оборачивает 9-step + SIR · ≡ USER_LEVEL',en_d:'Anchor in !!core · co-pilot|auto-pilot|manual · wraps 9-step + SIR · ≡ USER_LEVEL'},
+  {id:'ctrl-sir',cl:'ctrl',ru:'SIR Scanner',en:'SIR Scanner',r:11,ru_d:'Якорь в !!core · Signal→Intent→Route · точка входа plain-intent · маршрутизирует в модули',en_d:'Anchor in !!core · Signal→Intent→Route · plain-intent entry · routes into modules'},
+  {id:'ctrl-conflict',cl:'ctrl',ru:'CONFLICT_RESOLVER',en:'CONFLICT_RESOLVER',r:11,ru_d:'Якорь в !!core · срабатывает при v8C2=on И v8C3=on · предсказывает A vs B → выбор',en_d:'Anchor in !!core · fires when v8C2=on AND v8C3=on · predicts A vs B → choice'},
+  {id:'ctrl-sherpa',cl:'ctrl',ru:'SHERPA',en:'SHERPA',r:11,ru_d:'Якорь в !!core + _preloader · env-feature coach · TRI_MODE-aware · upgrades teacher→inline',en_d:'Anchor in !!core + _preloader · env-feature coach · TRI_MODE-aware · upgrades teacher→inline'},
+  {id:'ctrl-combinator',cl:'ctrl',ru:'TECHNIQUE_COMBINATOR',en:'TECHNIQUE_COMBINATOR',r:10,ru_d:'Якорь в !!db · матрица конфликтов техник · предсказывает исход · disambig SC≠USC, MCTS≠ToT',en_d:'Anchor in !!db · technique conflict matrix · predicts outcome · disambig SC≠USC, MCTS≠ToT'},
+  {id:'ctrl-valuegate',cl:'ctrl',ru:'DEEP_THINK_VALUE_GATE',en:'DEEP_THINK_VALUE_GATE',r:10,ru_d:'Якорь в !!db · решает effort low/med/high · экономит thinking-бюджет',en_d:'Anchor in !!db · decides effort low/med/high · saves thinking budget'},
+  {id:'ctrl-persona',cl:'ctrl',ru:'PERSONA_HINT',en:'PERSONA_HINT',r:9,cowork:true,ru_d:'Якорь в !sandbox · session-scope override уровня · бьёт PILOT_MODE на текущую сессию',en_d:'Anchor in !sandbox · session-scope level override · beats PILOT_MODE for the session'},
+];
+const D=(s,t,ru,en)=>({source:s,target:t,t:'i',k:'dep',ru,en});       // depends_on
+const C=(s,t,ru,en)=>({source:s,target:t,t:'i',k:'call',ru,en});      // horizontal reference / call
+const H=(s,t,ru,en)=>({source:s,target:t,t:'i',k:'handoff',ru,en});   // v8C.3 routing handoff
+const A=(s,t,ru,en)=>({source:s,target:t,t:'i',k:'anchor',ru,en});    // control-anchor lives-in / logic
+const MX=(s,t,ru,en)=>({source:s,target:t,t:'x',k:'mirror',ru,en});   // P2P↔Claude mirror (enrichment)
+const EXTRA_LINKS=[
+  // depends_on (vertical) — special cases from §2 + every on-demand → core hub (inbound 23)
+  D('od-sandbox','preloader','depends: preloader','depends: preloader'),
+  D('od-sandbox','od-user','depends: user_context','depends: user_context'),
+  D('od-visual','db','depends: db','depends: db'),
+  D('od-visual','od-templates','depends: templates','depends: templates'),
+  D('od-writing','db','depends: db','depends: db'),
+  D('od-writing','od-contract','depends: contract','depends: contract'),
+  D('od-writing','od-agents','depends: agents','depends: agents'),
+  D('od-intent','core','depends: core','depends: core'),
+  D('od-memory','core','depends: core','depends: core'),
+  D('od-debug','core','depends: core','depends: core'),
+  D('od-debug','db','G-errors base','G-errors base'),
+  D('od-scope','core','depends: core','depends: core'),
+  D('od-metrics','core','depends: core','depends: core'),
+  D('od-mentor','core','depends: core','depends: core'),
+  D('od-domain','core','depends: core','depends: core'),
+  D('od-teacher','core','depends: core','depends: core'),
+  D('od-exploration','core','depends: core','depends: core'),
+  D('od-toolbudget','core','depends: core','depends: core'),
+  D('v8-rag','core','depends: core','depends: core'),
+  D('v8-reason','core','depends: core','depends: core'),
+  D('v8-security','core','depends: core','depends: core'),
+  D('v8-compress','core','depends: core','depends: core'),
+  D('v8-optim','core','depends: core','depends: core'),
+  D('live-specs','live-vendors','PRIORITY override','PRIORITY override'),
+  D('manifest','live-specs','tracks spec status','tracks spec status'),
+  // v8C.3 module handoff (intent §2.5) — orange dashed
+  H('od-intent','v8-rag','retrieval / большой корпус','retrieval / large corpus'),
+  H('od-intent','v8-reason','глубокое рассуждение / math','deep reasoning / math'),
+  H('od-intent','v8-routing','выбор модели + effort','model + effort choice'),
+  H('od-intent','v8-compress','переполнение контекста','context overflow'),
+  H('od-intent','v8-security','аудит / injection','audit / injection'),
+  H('od-intent','v8-optim','улучши промпт (APO/OPRO)','improve prompt (APO/OPRO)'),
+  H('od-contract','v8-routing','после контракта → routing','after contract → routing'),
+  // horizontal call-hubs (who calls whom) — dotted
+  C('meta-index','core','индексирует','indexes'),
+  C('meta-index','db','индексирует','indexes'),
+  C('meta-index','preloader','load order','load order'),
+  C('meta-index','od-agents','индексирует','indexes'),
+  C('meta-index','od-contract','индексирует','indexes'),
+  C('meta-index','od-teacher','индексирует','indexes'),
+  C('meta-index','meta-master','сборка','assembly'),
+  C('meta-master','core','собирает','assembles'),
+  C('meta-master','db','собирает','assembles'),
+  C('meta-master','od-agents','собирает','assembles'),
+  C('meta-glossary','core','канон. термины','canon terms'),
+  C('meta-glossary','db','канон. термины','canon terms'),
+  C('od-teacher','od-agents','учит агентам','teaches agents'),
+  C('od-teacher','od-scope','учит SCOPE','teaches SCOPE'),
+  C('od-teacher','cmd-quorum','демонстрирует','demonstrates'),
+  C('od-exploration','od-intent','питает intent','feeds intent'),
+  C('od-contract','live-vendors','Translation Layer','Translation Layer'),
+  C('v8-routing','live-specs','читает метрики','reads metrics'),
+  // control-mechanism anchors (lives-in) + their logic — yellow dashed
+  A('ctrl-versioncompat','preloader','якорь в','anchor in'),
+  A('ctrl-versioncompat','manifest','статус модулей','module status'),
+  A('ctrl-pilot','core','якорь в','anchor in'),
+  A('ctrl-sir','core','якорь в','anchor in'),
+  A('ctrl-conflict','core','якорь в','anchor in'),
+  A('ctrl-sherpa','core','якорь в','anchor in'),
+  A('ctrl-sherpa','preloader','флаг SHERPA','SHERPA flag'),
+  A('ctrl-combinator','db','якорь в','anchor in'),
+  A('ctrl-valuegate','db','якорь в','anchor in'),
+  A('ctrl-persona','od-sandbox','якорь в','anchor in'),
+  A('ctrl-pilot','ctrl-persona','session override бьёт','session override beats'),
+  A('ctrl-conflict','ctrl-combinator','использует матрицу','uses matrix'),
+  A('ctrl-pilot','od-user','USER_LEVEL ≡ PILOT','USER_LEVEL ≡ PILOT'),
+  A('ctrl-sir','od-intent','SIR → intent route','SIR → intent route'),
+  A('ctrl-valuegate','v8-reason','effort ↔ reasoning','effort ↔ reasoning'),
+  // P2P control ↔ Claude concept mirrors
+  MX('ctrl-sherpa','cl-code','SHERPA раскрывает env-фичи','SHERPA surfaces env features'),
+  MX('ctrl-sir','cc-contract','SIR → prompt spec','SIR → prompt spec'),
+  MX('ctrl-valuegate','cc-extthink','effort gate ≡ thinking budget','effort gate ≡ thinking budget'),
+  MX('ctrl-pilot','cc-trimode','PILOT env-aware (TRI_MODE)','PILOT env-aware (TRI_MODE)'),
+];
+EXTRA_NODES.forEach(n=>nodes.push(n));
+EXTRA_LINKS.forEach(l=>links.push(l));
+links.forEach(l=>{if(l.layer)l._isL14=true;});
+const COWORK_NODES=new Set(nodes.filter(n=>n.cowork).map(n=>n.id));
+let LANG='ru';
+const tN=n=>LANG==='ru'?n.ru:n.en;
+const tD=n=>LANG==='ru'?n.ru_d:n.en_d;
+const tL=l=>LANG==='ru'?l.ru:l.en;
+const idOf=x=>typeof x==='object'?x.id:x;
+function toggleLang(){LANG=LANG==='ru'?'en':'ru';document.getElementById('lang-btn').textContent=LANG==='ru'?'EN':'RU';refreshText();if(selNode)showInfo(selNode);}
+function refreshText(){
+  document.querySelectorAll('[data-ru]').forEach(el=>{el.innerHTML=LANG==='ru'?el.dataset.ru:el.dataset.en;});
+  nodeLabel.text(d=>tN(d));
+  document.querySelectorAll('.fb').forEach(btn=>{const cid=btn.dataset.cl;if(cid)btn.textContent=LANG==='ru'?CL[cid].ru:CL[cid].en;});
+}
+let selNode=null,crossOnly=false,l14Mode=false,coworkMode=false,flowOn=true,logicOn=true,currentLayout='force';
+const activeFilters=new Set(Object.keys(CL));
+const CLUSTER_ORDER=['meta','base','ctrl','od','v8','ag','cmd','ca','cc'];
+const svg=d3.select('#svg'),g=svg.append('g');
+const zoom=d3.zoom().scaleExtent([.08,5]).on('zoom',e=>g.attr('transform',e.transform));
+svg.call(zoom);
+const nodeById=new Map(nodes.map(n=>[n.id,n]));
+const CENTERS={'meta':[-540,-300],'base':[-360,-170],'ctrl':[-250,30],'od':[-60,-300],'v8':[120,-190],'ag':[-200,210],'cmd':[120,250],'ca':[360,-150],'cc':[380,150]};
+function clusterForce(alpha){for(const d of nodes){const c=CENTERS[d.cl]||[0,0];d.vx+=(c[0]-d.x)*alpha*.045;d.vy+=(c[1]-d.y)*alpha*.045;}}
+const sim=d3.forceSimulation(nodes)
+  .force('link',d3.forceLink(links).id(d=>d.id).distance(l=>l.t==='x'?210:75).strength(l=>l.t==='x'?.2:.55))
+  .force('charge',d3.forceManyBody().strength(-230))
+  .force('collide',d3.forceCollide(d=>d.r+15))
+  .force('center',d3.forceCenter(0,0).strength(.03))
+  .force('cluster',clusterForce)
+  .stop();
+for(let i=0;i<280;i++)sim.tick();
+
+// LAYERS
+const linkSel=g.append('g').attr('class','links').selectAll('line').data(links).join('line').attr('class',l=>`link${l.t==='x'?' cross':''}${l._isL14?' l14-link':''}${l.k?' k-'+l.k:''}`);
+const badgeData=links.filter(l=>l._isL14);
+const badgeSel=g.append('g').attr('class','badges').selectAll('text').data(badgeData).join('text').attr('class','layer-badge').style('display','none').text(l=>l.layer);
+const partLayer=g.append('g').attr('class','particles');
+const nodeSel=g.append('g').attr('class','nodes').selectAll('.node').data(nodes).join('g').attr('class','node')
+  .attr('transform',d=>`translate(${d.x},${d.y})`)
+  .call(d3.drag()
+    .on('start',(e,d)=>{if(!e.active)sim.alphaTarget(.2).restart();d.fx=d.x;d.fy=d.y;})
+    .on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y;})
+    .on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);if(currentLayout==='force'){d.fx=null;d.fy=null;}}))
+  .on('click',(e,d)=>{e.stopPropagation();selectNode(d);})
+  .on('mouseover',(e,d)=>showTip(e,d))
+  .on('mousemove',moveTip)
+  .on('mouseout',hideTip);
+nodeSel.append('circle').attr('r',d=>d.r).attr('fill',d=>CL[d.cl].c+'1e').attr('stroke',d=>CL[d.cl].c).attr('stroke-width',1.5);
+nodeSel.append('circle').attr('class','pulse-dot').attr('r',d=>Math.min(d.r*.3,4.5)).style('--pr',d=>Math.min(d.r*.3,4.5)+'px').attr('fill',d=>CL[d.cl].c).attr('opacity',.75).style('pointer-events','none');
+const nodeLabel=nodeSel.append('text').attr('dy',d=>d.r+12).style('font-size','9.5px').style('fill',d=>CL[d.cl].c).text(d=>tN(d));
+
+function updateLinks(){
+  linkSel.attr('x1',l=>l.source.x).attr('y1',l=>l.source.y).attr('x2',l=>l.target.x).attr('y2',l=>l.target.y);
+  badgeSel.attr('x',l=>(l.source.x+l.target.x)/2).attr('y',l=>(l.source.y+l.target.y)/2);
+}
+updateLinks();nodeSel.attr('transform',d=>`translate(${d.x},${d.y})`);
+sim.on('tick',()=>{updateLinks();nodeSel.attr('transform',d=>`translate(${d.x},${d.y})`);});
+sim.restart();
+setTimeout(fitView,260);
+
+// ── TOOLTIP ──
+const tip=document.getElementById('tooltip');
+function showTip(e,d){tip.innerHTML=`<div class="tt-name" style="color:${CL[d.cl].c}">${tN(d)}</div><div class="tt-desc">${tD(d)}</div>`;tip.style.opacity='1';moveTip(e);}
+function moveTip(e){const pad=14;let x=e.clientX+pad,y=e.clientY+pad;if(x+250>window.innerWidth)x=e.clientX-250;tip.style.left=x+'px';tip.style.top=y+'px';}
+function hideTip(){tip.style.opacity='0';}
+
+// ── LAYOUTS ──
+let hierDir='horizontal';
+function computeTargets(mode){
+  const byCl={};CLUSTER_ORDER.forEach(c=>byCl[c]=[]);nodes.forEach(n=>byCl[n.cl].push(n));
+  if(mode==='hierarchy'){
+    if(hierDir==='vertical'){
+      CLUSTER_ORDER.forEach((c,ci)=>{
+        const col=byCl[c];
+        const y=(ci-(CLUSTER_ORDER.length-1)/2)*155;
+        col.forEach((n,i)=>{n.tx=(i-(col.length-1)/2)*85;n.ty=y;});
+      });
+    } else {
+      CLUSTER_ORDER.forEach((c,ci)=>{const col=byCl[c];const x=(ci-(CLUSTER_ORDER.length-1)/2)*210;col.forEach((n,i)=>{n.tx=x;n.ty=(i-(col.length-1)/2)*50;});});
+    }
+  }else if(mode==='radial'){
+    const R=380;
+    CLUSTER_ORDER.forEach((c,ci)=>{const ang=(ci/CLUSTER_ORDER.length)*Math.PI*2-Math.PI/2;const cx=Math.cos(ang)*R,cy=Math.sin(ang)*R;const col=byCl[c];const r=34+col.length*8;col.forEach((n,i)=>{const a=(i/col.length)*Math.PI*2;n.tx=cx+Math.cos(a)*r;n.ty=cy+Math.sin(a)*r;});});
+  }else if(mode==='circle'){
+    const ordered=[];CLUSTER_ORDER.forEach(c=>byCl[c].forEach(n=>ordered.push(n)));const R=440;
+    ordered.forEach((n,i)=>{const a=(i/ordered.length)*Math.PI*2-Math.PI/2;n.tx=Math.cos(a)*R;n.ty=Math.sin(a)*R;});
+  }
+}
+function applyLayout(mode){
+  currentLayout=mode;
+  document.querySelectorAll('#layout-switch button').forEach(b=>b.classList.toggle('on',b.dataset.lay===mode));
+  const hierBtn=document.getElementById('b-hier-dir');
+  if(hierBtn)hierBtn.style.display=(mode==='hierarchy')?'':'none';
+  if(mode==='force'){
+    nodes.forEach(n=>{n.fx=null;n.fy=null;});
+    sim.force('x',null).force('y',null);
+    sim.force('charge',d3.forceManyBody().strength(-230));
+    sim.force('cluster',clusterForce);
+    sim.force('link').distance(l=>l.t==='x'?210:75).strength(l=>l.t==='x'?.2:.55);
+  }else{
+    computeTargets(mode);
+    nodes.forEach(n=>{n.fx=null;n.fy=null;});
+    sim.force('cluster',null);
+    sim.force('charge',d3.forceManyBody().strength(-30));
+    sim.force('x',d3.forceX(d=>d.tx).strength(.6));
+    sim.force('y',d3.forceY(d=>d.ty).strength(.6));
+    sim.force('link').strength(.02);
+  }
+  sim.alpha(.9).restart();
+  setTimeout(fitView,700);
+}
+function fitView(){
+  const vis=nodes.filter(n=>activeFilters.has(n.cl)&&!(coworkMode&&!COWORK_NODES.has(n.id)));
+  if(!vis.length)return;
+  const xs=vis.map(n=>n.x),ys=vis.map(n=>n.y);
+  const minX=Math.min(...xs)-50,maxX=Math.max(...xs)+50,minY=Math.min(...ys)-50,maxY=Math.max(...ys)+50;
+  const w=svg.node().clientWidth||window.innerWidth,h=svg.node().clientHeight||window.innerHeight;
+  const scale=Math.min(w/(maxX-minX),h/(maxY-minY),1.5);
+  const tx=w/2-scale*(minX+maxX)/2,ty=h/2-scale*(minY+maxY)/2;
+  svg.transition().duration(650).call(zoom.transform,d3.zoomIdentity.translate(tx,ty).scale(scale*.94));
+}
+
+// ── PARTICLES ──
+let particles=[];
+function linkVisible(l){
+  const sid=idOf(l.source),tid=idOf(l.target),sn=nodeById.get(sid),tn=nodeById.get(tid);
+  if(!sn||!tn)return false;
+  if(!logicOn&&l.k)return false;
+  if(!activeFilters.has(sn.cl)||!activeFilters.has(tn.cl))return false;
+  if(coworkMode&&!COWORK_NODES.has(sid)&&!COWORK_NODES.has(tid))return false;
+  if(l14Mode)return !!l._isL14;
+  if(crossOnly)return l.t==='x';
+  return true;
+}
+function rebuildParticles(){
+  particles=[];
+  if(flowOn){
+    links.filter(l=>linkVisible(l)&&(!l.k||l.k==='handoff')).forEach(l=>{const n=(l.t==='x'||l.k==='handoff')?2:1;for(let k=0;k<n;k++)particles.push({l,t:Math.random(),sp:.0016+Math.random()*.004});});
+  }
+  const sel=partLayer.selectAll('circle').data(particles);
+  sel.exit().remove();
+  sel.enter().append('circle').attr('r',p=>p.l.t==='x'?2.4:1.8).merge(sel)
+    .attr('fill',p=>{const sn=nodeById.get(idOf(p.l.source));return p.l.t==='x'?'#f72585':(sn?CL[sn.cl].c:'#3a86ff');})
+    .attr('opacity',.9);
+}
+function animParticles(){
+  if(flowOn){
+    partLayer.selectAll('circle').each(function(p){
+      p.t+=p.sp;if(p.t>1)p.t-=1;
+      const s=p.l.source,t=p.l.target;
+      if(typeof s==='object'&&typeof t==='object'){
+        d3.select(this).attr('cx',s.x+(t.x-s.x)*p.t).attr('cy',s.y+(t.y-s.y)*p.t).style('display',null);
+      }else d3.select(this).style('display','none');
+    });
+  }
+  requestAnimationFrame(animParticles);
+}
+rebuildParticles();animParticles();
+
+// ── PLAY: signal wave through QUORUM (Design Claude demo) ──
+const FLOW_PATH=['preloader','core','od-agents','ag-iris','ag-tecton','ag-axiom','ag-vector','ag-datos','ag-anon','ag-arch','ag-helios'];
+let playing=false;
+function ripple(n,col){
+  const c=g.insert('circle',':first-child').attr('cx',n.x).attr('cy',n.y).attr('r',n.r).attr('fill','none').attr('stroke',col).attr('stroke-width',2.5).attr('opacity',.95);
+  c.transition().duration(950).ease(d3.easeCubicOut).attr('r',n.r+50).attr('stroke-width',.4).attr('opacity',0).remove();
+}
+function playFlow(){
+  if(playing)return;playing=true;
+  switchTab('graph');resetSel();
+  document.getElementById('b-play').classList.add('on');
+  let i=0;
+  const step=()=>{
+    if(i>=FLOW_PATH.length){
+      setTimeout(()=>{resetSel();document.getElementById('b-play').classList.remove('on');playing=false;},900);
+      return;
+    }
+    const id=FLOW_PATH[i],n=nodeById.get(id),col=CL[n.cl].c;
+    ripple(n,col);
+    nodeSel.filter(d=>d.id===id).classed('hi',true);
+    if(i>0){const a=FLOW_PATH[i-1],b=id;linkSel.filter(l=>{const s=idOf(l.source),t=idOf(l.target);return(s===a&&t===b)||(s===b&&t===a);}).classed('hi',true);}
+    i++;setTimeout(step,500);
+  };
+  step();
+}
+
+function nodeConns(d){return links.filter(l=>idOf(l.source)===d.id||idOf(l.target)===d.id);}
+function selectNode(d){
+  selNode=d;const connIds=new Set([d.id]);
+  nodeConns(d).forEach(l=>{connIds.add(idOf(l.source));connIds.add(idOf(l.target));});
+  nodeSel.classed('hi',n=>n.id===d.id).classed('fade',n=>!connIds.has(n.id));
+  linkSel.classed('hi',l=>idOf(l.source)===d.id||idOf(l.target)===d.id).classed('fade',l=>idOf(l.source)!==d.id&&idOf(l.target)!==d.id);
+  showInfo(d);document.getElementById('panel').classList.add('mob');
+}
+function showInfo(d){
+  document.getElementById('placeholder').style.display='none';
+  const ic=document.getElementById('icontent');ic.style.display='flex';ic.style.flexDirection='column';ic.style.gap='8px';
+  const ic_cl=document.getElementById('i-cluster');ic_cl.textContent=`[${d.cl}] ${CL[d.cl][LANG==='ru'?'ru':'en']}`;ic_cl.style.color=CL[d.cl].c;
+  const nm=document.getElementById('i-name');nm.textContent=tN(d);nm.style.color=CL[d.cl].c;
+  document.getElementById('i-desc').textContent=tD(d);
+  const ul=document.getElementById('i-conns');ul.innerHTML='';
+  nodeConns(d).forEach(l=>{
+    const sid=idOf(l.source),tid=idOf(l.target),otherId=sid===d.id?tid:sid,dir=sid===d.id?'→':'←',other=nodeById.get(otherId);
+    if(!other)return;
+    const li=document.createElement('li'),badge=l._isL14?` <span style="color:#a855f7;font-size:9px">[${l.layer}]</span>`:'',xbadge=l.t==='x'?' ⚡':'';
+    const KIND={dep:['depends','#46506e'],call:['ref','#525a73'],handoff:['handoff','#ff9f1c'],anchor:['anchor','#ffd166'],mirror:['mirror','#f72585']};
+    const kb=l.k&&KIND[l.k]?` <span style="font-size:8px;padding:0 4px;border-radius:6px;background:${KIND[l.k][1]}33;color:${KIND[l.k][1]==='#46506e'||KIND[l.k][1]==='#525a73'?'#9aa3bd':KIND[l.k][1]}">${KIND[l.k][0]}</span>`:'';
+    li.innerHTML=`<span style="color:${CL[other.cl].c}">${dir} ${tN(other)}${badge}${kb}</span><span class="ct">${tL(l)}${xbadge}</span>`;
+    li.onclick=()=>selectNode(other);ul.appendChild(li);
+  });
+}
+function resetSel(){selNode=null;nodeSel.classed('hi',false).classed('fade',false);linkSel.classed('hi',false).classed('fade',false);document.getElementById('placeholder').style.display='block';document.getElementById('icontent').style.display='none';document.getElementById('panel').classList.remove('mob');}
+svg.on('click',resetSel);
+window.closePanel=()=>{document.getElementById('panel').classList.remove('mob');};
+
+// ── CONTROLS ──
+document.querySelectorAll('#layout-switch button').forEach(b=>b.addEventListener('click',()=>applyLayout(b.dataset.lay)));
+document.getElementById('b-play').addEventListener('click',playFlow);
+document.getElementById('b-flow').addEventListener('click',()=>{flowOn=!flowOn;document.getElementById('b-flow').classList.toggle('on',flowOn);if(!flowOn)partLayer.selectAll('circle').remove();else rebuildParticles();});
+document.getElementById('b-logic').addEventListener('click',()=>{logicOn=!logicOn;document.getElementById('b-logic').classList.toggle('on',logicOn);applyFilters();});
+document.getElementById('b-cross').addEventListener('click',()=>{crossOnly=!crossOnly;document.getElementById('b-cross').classList.toggle('on',crossOnly);if(crossOnly){l14Mode=false;document.getElementById('b-l14').classList.remove('on');}applyFilters();});
+document.getElementById('b-l14').addEventListener('click',()=>{l14Mode=!l14Mode;document.getElementById('b-l14').classList.toggle('on',l14Mode);if(l14Mode){crossOnly=false;document.getElementById('b-cross').classList.remove('on');}badgeSel.style('display',l14Mode?null:'none');applyFilters();});
+document.getElementById('b-cowork').addEventListener('click',()=>{coworkMode=!coworkMode;document.getElementById('b-cowork').classList.toggle('on',coworkMode);applyFilters();});
+document.getElementById('b-fit').addEventListener('click',fitView);
+document.getElementById('b-reset').addEventListener('click',()=>{resetSel();fitView();});
+document.getElementById('lang-btn').addEventListener('click',toggleLang);
+
+const filterBar=document.getElementById('filters');
+Object.entries(CL).forEach(([id,cl])=>{const btn=document.createElement('button');btn.className='fb on';btn.dataset.cl=id;btn.textContent=cl.ru;btn.style.borderColor=cl.c;btn.style.color=cl.c;btn.style.background=cl.c+'18';btn.addEventListener('click',()=>{if(activeFilters.has(id)){activeFilters.delete(id);btn.classList.remove('on');}else{activeFilters.add(id);btn.classList.add('on');}applyFilters();});filterBar.appendChild(btn);});
+const mdots=document.getElementById('mdots');Object.entries(CL).forEach(([id,cl])=>{const dot=document.createElement('div');dot.className='mdot on';dot.style.background=cl.c;dot.title=cl.ru;dot.addEventListener('click',()=>{if(activeFilters.has(id)){activeFilters.delete(id);dot.classList.remove('on');}else{activeFilters.add(id);dot.classList.add('on');}applyFilters();});mdots.appendChild(dot);});
+
+function applyFilters(){
+  nodeSel.style('display',d=>{if(!activeFilters.has(d.cl))return'none';if(coworkMode&&!COWORK_NODES.has(d.id))return'none';return null;});
+  linkSel.style('display',l=>linkVisible(l)?null:'none');
+  badgeSel.style('display',l14Mode?l=>l._isL14?null:'none':()=>'none');
+  rebuildParticles();
+  setTimeout(fitView,80);
+}
+
+// ══════════════════════════════════════════════════════════════
+// TAB 2: MINDMAP
+// ══════════════════════════════════════════════════════════════
+const MM_SECTIONS=[
+{id:'overview',color:'#f72585',icon:'⬡',title:'P2P v8C.3 — Обзор системы',items:[
+  {name:'Что такое P2P',badge:'META',badgeColor:'#f72585',desc:'Мета-промпт система второго поколения. Превращает сырой запрос в структурированный контракт для LLM через 9-шаговый алгоритм, QUORUM агентов и модульную загрузку.',tags:['XML-native','TRI_MODE_BRIDGE v3','QUORUM 8 agents','VERSION_COMPAT']},
+  {name:'Архитектура загрузки',badge:'ARCH',badgeColor:'#ff6b35',desc:'BASE (всегда) → ON-DEMAND (по запросу) → NEW v8C.3 (специализированные). Preloader определяет среду, core активирует нужные модули.',tags:['_preloader.md','!!core.md','!!db.md','Modular']},
+  {name:'Claude Edition vs Universal',badge:'COMPAT',badgeColor:'#06d6a0',desc:'v8C.3 оптимизирован под Claude Fable 5 / Opus 4.8 / Sonnet 4.6. XML-теги вместо Markdown. TRI_MODE_BRIDGE v3 заменяет DUAL_MODE_BRIDGE.',tags:['claude-fable-5','claude-opus-4-8','claude-sonnet-4-6','XML']},
+  {name:'VERSION_COMPAT',badge:'v8C.3',badgeColor:'#f72585',desc:'6 флагов модулей (v8C2_ON/OFF, v8C3_ON/OFF + 6 модулей). CONFLICT_RESOLVER активируется если оба v8C2 и v8C3 включены одновременно.',tags:['CONFLICT_RESOLVER','dynamic menu','flags']},
+]},
+{id:'base',color:'#ff6b35',icon:'📦',title:'BASE Layer — Всегда загружается',items:[
+  {name:'_preloader.md',badge:'ENTRY',badgeColor:'#ff6b35',desc:'TRI_MODE_BRIDGE v3 — определяет среду (Chat/Projects/Code/API). PROJECT_CARD — тип проекта. Активирует нужные live_*.md файлы.',tags:['TRI_MODE_BRIDGE v3','ENV detection','PROJECT_CARD','load order']},
+  {name:'!!core.md',badge:'CORE',badgeColor:'#ff6b35',desc:'Главный файл. Меню [1-40] с динамическими пунктами. QUORUM оркестрация. ATLAS v2. Claude contract warning. Активирует ON-DEMAND модули по запросу.',tags:['Menu [1-40]','QUORUM','ATLAS v2','dynamic items [35-40]']},
+  {name:'!!db.md',badge:'DB',badgeColor:'#ff6b35',desc:'База знаний. G-errors G1-G20 (симптомы деградации). Templates A-M. 9-step Contract Builder algorithm. Translation Layer для multi-vendor.',tags:['G-errors G1-G20','Templates A-M','Contract Builder','Translation Layer']},
+  {name:'MANIFEST.md',badge:'META',badgeColor:'#888',desc:'Дедлайны моделей. Активные API strings. VERSION_COMPAT flags. Предупреждения об устаревших строках.',tags:['model deadlines','API strings','VERSION_COMPAT','2026-06-15','2026-07-24']},
+  {name:'live_core.md',badge:'LIVE',badgeColor:'#ff9f1c',desc:'Состояние текущей сессии. Активные модули. CONFLICT_RESOLVER для смешанных версий.',tags:['session state','active modules','CONFLICT_RESOLVER']},
+  {name:'live_claude.md',badge:'LIVE',badgeColor:'#ff9f1c',desc:'Claude-специфичные данные. Фичи платформы. Compatibility matrix. Extended Thinking статус.',tags:['Claude features','compat matrix','Extended Thinking']},
+  {name:'live_vendors.md',badge:'LIVE',badgeColor:'#ff9f1c',desc:'Все LLM вендоры. API strings. Translation Layer. Tier 1-4 classification. 10 vendors включая Fable 5.',tags:['10 vendors','Tier 1-4','API strings','Fable 5']},
+  {name:'p2p.config.md',badge:'USER',badgeColor:'#06d6a0',desc:'Пользовательская конфигурация. USER_LEVEL (0-5). PILOT_MODE. Язык вывода. Тир модели. Эквивалент about-me.md в Cowork.',tags:['USER_LEVEL','PILOT_MODE','language','≡ about-me.md']},
+  {name:'plugin.json',badge:'PLUGIN',badgeColor:'#06d6a0',desc:'Plugin manifest. Точка входа P2P в Claude Code и Cowork. Marketplace manifest. Синхронизирован с версией системы.',tags:['plugin manifest','entry point','Cowork','marketplace']},
+]},
+{id:'od',color:'#ff9f1c',icon:'⚡',title:'ON-DEMAND Modules — По запросу',items:[
+  {name:'!agents.md',badge:'QUORUM',badgeColor:'#b06de3',desc:'Профили всех 8 QUORUM агентов. Sub-QUORUM паттерны. Прямой вызов конкретного агента без полного консилиума.',tags:['8 agents','sub-QUORUM','direct invoke','profiles']},
+  {name:'!contract.md',badge:'BUILD',badgeColor:'#ff6b35',desc:'Полный Contract Builder. Translation Layer. MUST/MUST NOT пары. 9D intent-to-spec алгоритм. Синтез итогового промпта.',tags:['Contract Builder','Translation Layer','MUST/MUST NOT','9D intent']},
+  {name:'!debug.md',badge:'DEBUG',badgeColor:'#ef4444',desc:'Debug Engine. G-error diagnosis по коду ошибки. Причины деградации контекста. Remediation стратегии. Связан с G1-G20.',tags:['Debug Engine','G-error diagnosis','remediation','context degradation']},
+  {name:'!intent.md',badge:'INTENT',badgeColor:'#ff9f1c',desc:'Intent Engine 9D. 36 анти-паттернов запросов. 12 tool routes. SIR Scanner (Scope / Intent / Requirements).',tags:['9D intent','36 anti-patterns','12 tool routes','SIR Scanner']},
+  {name:'!memory.md',badge:'MEMORY',badgeColor:'#06d6a0',desc:'Memory Bridge. CAPSULE protocol — сохранение/восстановление контекста между сессиями. Совместим с Cowork и Claude Code.',tags:['CAPSULE','Memory Bridge','cross-session','persistence']},
+  {name:'!scope.md',badge:'SCOPE',badgeColor:'#3a86ff',desc:'SCOPE.HELM v1.2. SPLITTER — декомпозиция большой задачи. CAPSULE — чекпоинт. ROUTER — маршрутизация подзадач.',tags:['SCOPE.HELM v1.2','SPLITTER','CAPSULE','ROUTER']},
+  {name:'!templates.md',badge:'TMPL',badgeColor:'#888',desc:'Template Library A-M. Готовые структуры промптов. Contract шаблоны под разные типы задач.',tags:['Templates A-M','prompt structures','Contract templates']},
+  {name:'!mentor.md',badge:'LEARN',badgeColor:'#48cae4',desc:'Mentor Method. Socratic pattern — ответы через вопросы. Обучение пользователя через реальное использование P2P.',tags:['Mentor Method','Socratic','learning by doing']},
+  {name:'!metrics.md',badge:'METRICS',badgeColor:'#06d6a0',desc:'Session Metrics v0.2. Routing Memory — какой агент сработал. Эффективность сессии. Лучший/худший агент по задаче.',tags:['Session Metrics v0.2','Routing Memory','session effectiveness']},
+  {name:'!user_context.md',badge:'USER',badgeColor:'#06d6a0',desc:'Extended User Context. Adaptive behavior по USER_LEVEL. PILOT_MODE. SHERPA — режим максимальной помощи.',tags:['USER_LEVEL','PILOT_MODE','SHERPA','adaptive']},
+  {name:'!domain.md',badge:'DOMAIN',badgeColor:'#888',desc:'Domain Knowledge. React 19. Kotlin/KMP reference. Загружается on-demand только когда задача этого требует.',tags:['React 19','Kotlin','KMP','domain-specific']},
+  {name:'!writing.md',badge:'WRITE',badgeColor:'#888',desc:'Writing Quality Control. Стилистика. Анти-паттерны текста. Голос бренда. Технические тексты.',tags:['writing style','anti-patterns','brand voice','quality control']},
+  {name:'!teacher.md',badge:'TEACH',badgeColor:'#06d6a0',desc:'Curriculum 5 уровней (Quickstart → Commands → Agents → QUORUM → SCOPE.HELM). Q&A mode. Cheatsheet. Sandbox задачи. Delivered as Cowork Skill.',tags:['5 levels','Q&A mode','sandbox','Cowork Skill']},
+]},
+{id:'v8new',color:'#f72585',icon:'🆕',title:'v8C.3 NEW Modules — Специализированные',items:[
+  {name:'rag.md (!rag)',badge:'RAG',badgeColor:'#f72585',desc:'RAG — Retrieval-Augmented Generation. RAPTOR иерархический индекс. Векторный поиск. Chunk strategy. Hybrid retrieval (dense + sparse).',tags:['RAG','RAPTOR','vector search','chunk strategy','hybrid retrieval']},
+  {name:'reasoning.md (!reasoning)',badge:'REASON',badgeColor:'#f72585',desc:'CoT — Chain of Thought. Self-Consistency. MCTS — Monte Carlo Tree Search. Test-Time Scaling. Работает синергийно с Extended Thinking.',tags:['CoT','Self-Consistency','MCTS','Test-Time Scaling']},
+  {name:'routing.md (!routing)',badge:'ROUTE',badgeColor:'#f72585',desc:'Выбор модели T0-T4. Effort advisor — оценка сложности задачи. Cost vs quality matrix. Маршрутизация запросов по тиру.',tags:['T0-T4 tiers','effort advisor','cost/quality','model selection']},
+  {name:'compression.md (!compression)',badge:'COMP',badgeColor:'#f72585',desc:'LLMLingua — алгоритм сжатия промптов. Gist Tokens. Сжатие контекста без потери смысла. Аналог /compact по эффекту.',tags:['LLMLingua','Gist Tokens','context compression','≡ /compact']},
+  {name:'security.md (!security)',badge:'SEC',badgeColor:'#ef4444',desc:'Аудит промптов на уязвимости. Injection defense. COLLISION_PATCH — патч детерминизма. L3 уровень — аналог Hooks в Claude Code.',tags:['injection defense','COLLISION_PATCH','prompt audit','L3 determinism']},
+  {name:'optimization.md (!optimization)',badge:'OPT',badgeColor:'#f72585',desc:'APO — Automatic Prompt Optimization. OPRO. Авто-оптимизация промптов через scoring. Iterative refinement цикл.',tags:['APO','OPRO','auto-optimization','prompt scoring','iterative refine']},
+  {name:'art.md',badge:'ART',badgeColor:'#888',desc:'ASCII-баннеры режимов. STARTUP_LOGO — ASCII-арт P2P при /start. Визуальное меню. UX в терминальной среде.',tags:['ASCII art','STARTUP_LOGO','/start','visual menu']},
+]},
+{id:'quorum',color:'#b06de3',icon:'👁',title:'QUORUM — 8 Агентов',items:[
+  {name:'IRIS',badge:'L-EXPLORE',badgeColor:'#b06de3',desc:'Исследователь и картограф. Выявляет скрытые зависимости. Задаёт открытые вопросы. Первым входит в задачу.',tags:['explorer','problem mapper','hidden dependencies','open questions']},
+  {name:'TECTON',badge:'L-STRUCT',badgeColor:'#b06de3',desc:'Архитект и декомпозитор. Системный дизайн. Структурирование сложной задачи на подзадачи. Строит скаффолдинг.',tags:['architect','decomposition','system design','scaffolding']},
+  {name:'AXIOM',badge:'L-CRITIC',badgeColor:'#ef4444',desc:'Критик и верификатор. Ищет противоречия и логические дыры. Red team атака на решение. Не принимает ничего на веру.',tags:['critic','verifier','red team','logic gaps','contradictions']},
+  {name:'VECTOR',badge:'L-GEN',badgeColor:'#b06de3',desc:'Генератор альтернатив. Divergent thinking — максимальное разнообразие решений. Нестандартные подходы. Lateral thinking.',tags:['generator','alternatives','divergent thinking','lateral thinking']},
+  {name:'DATOS',badge:'L-ANAL',badgeColor:'#b06de3',desc:'Аналитик данных. Паттерны и числовые аргументы. Статистическая аргументация. Evidence-based решения.',tags:['analyst','data patterns','statistics','evidence-based']},
+  {name:'ANON',badge:'L-NEUT',badgeColor:'#888',desc:'Нейтральный арбитр. Объективная оценка без контекста и предвзятости. Baseline без истории разговора.',tags:['neutral','objective','unbiased','context-free']},
+  {name:'ARCHITECTON',badge:'ORCH',badgeColor:'#f72585',desc:'Мастер-архитект и оркестратор QUORUM. Синтезирует выводы всех агентов. Принимает финальное решение. Точка конвергенции.',tags:['orchestrator','synthesis','final decision','convergence','master']},
+  {name:'HELIOS',badge:'FINAL',badgeColor:'#ff9f1c',desc:'Финализатор вывода. Полировка и качество. Anti-hallucination guard. Проверка точности перед выдачей результата.',tags:['finalizer','output polish','anti-hallucination','quality check']},
+]},
+{id:'commands',color:'#3a86ff',icon:'⌨️',title:'/p2p-* Команды',items:[
+  {name:'/p2p',badge:'MAIN',badgeColor:'#3a86ff',desc:'Главное меню [1-40]. Пункты 35-40 динамические — появляются только при загруженных модулях. Contract Builder entry point.',tags:['menu [1-40]','dynamic [35-40]','Contract Builder','main entry']},
+  {name:'/p2p-quorum',badge:'QUORUM',badgeColor:'#b06de3',desc:'Запуск полного QUORUM консилиума. Все 8 агентов по очереди. ARCHITECTON синтезирует. HELIOS финализирует.',tags:['full QUORUM','8 agents','orchestration','synthesis']},
+  {name:'/p2p-chain',badge:'CHAIN',badgeColor:'#3a86ff',desc:'Chain Mode — последовательный вызов агентов. Вывод агента A = вход агента B. Настраиваемая цепочка.',tags:['chain mode','sequential','A→B pipeline','configurable']},
+  {name:'/p2p-scope',badge:'SCOPE',badgeColor:'#3a86ff',desc:'SCOPE.HELM для больших задач. SPLITTER, CAPSULE, ROUTER под капотом. Эквивалент Plan Mode в Claude Code.',tags:['SCOPE.HELM','large tasks','SPLITTER/CAPSULE/ROUTER','≡ Plan Mode']},
+  {name:'/p2p-atlas',badge:'ATLAS',badgeColor:'#3a86ff',desc:'ATLAS v2 — карта задачи. Четыре блока: GOAL / PROGRESS / NEXT / BLOCKERS. Живая навигация по проекту.',tags:['ATLAS v2','GOAL','PROGRESS','NEXT','BLOCKERS']},
+  {name:'/p2p-capsule',badge:'SAVE',badgeColor:'#06d6a0',desc:'CAPSULE — сохранить/загрузить контекст. Персистентность между сессиями. Эквивалент Checkpoints в Claude Code.',tags:['CAPSULE','save/load','cross-session','≡ Checkpoints']},
+  {name:'/p2p-metrics',badge:'STATS',badgeColor:'#06d6a0',desc:'Session Metrics. Эффективность работы. Routing Memory — история вызовов агентов. Анализ качества сессии.',tags:['session metrics','routing memory','effectiveness','quality analysis']},
+  {name:'/p2p-explore',badge:'EXP',badgeColor:'#888',desc:'Exploration Mode. Экспериментальные режимы. Cortex Patch A. Brainstorm без ограничений.',tags:['exploration','experimental','Cortex Patch A','brainstorm']},
+  {name:'/p2p-karpathy',badge:'CODE',badgeColor:'#3a86ff',desc:'Karpathy Coding Mode. Хирургические правки кода — минимальные изменения. Template M. PRE_CODE_DECLARATION.',tags:['Karpathy','surgical edits','Template M','PRE_CODE_DECLARATION','minimal changes']},
+  {name:'/p2p-teacher',badge:'TEACH',badgeColor:'#06d6a0',desc:'Teacher Mode. 5-уровневый курс P2P. Q&A режим. Sandbox задачи. Delivered as Cowork Skill в плагине.',tags:['5-level curriculum','Q&A','sandbox','Cowork Skill']},
+  {name:'/p2p-feedback',badge:'FB',badgeColor:'#888',desc:'Feedback Mode. Оценка качества вывода агентов. Улучшение routing на основе обратной связи.',tags:['feedback','quality rating','routing improvement']},
+]},
+{id:'templates',color:'#ff6b35',icon:'📋',title:'Templates A-M (!!db.md)',items:[
+  {name:'Template A — Базовый',badge:'A',badgeColor:'#ff6b35',desc:'Простая структура для однозначных задач. Роль + задача + формат. Минимальный оверхед.',tags:['basic','role+task+format','simple']},
+  {name:'Template B — Contract',badge:'B',badgeColor:'#ff6b35',desc:'Полный Contract Prompting. 9 шагов. MUST/MUST NOT. XML-структура. Для сложных многошаговых задач.',tags:['contract','9 steps','MUST/MUST NOT','XML']},
+  {name:'Template C — Chain',badge:'C',badgeColor:'#ff6b35',desc:'Цепочка промптов A→B→C. Каждый шаг — отдельный контракт. Вывод предыдущего = вход следующего.',tags:['chain','A→B→C','sequential','pipeline']},
+  {name:'Template D — QUORUM',badge:'D',badgeColor:'#b06de3',desc:'Шаблон для multi-agent консилиума. Роли агентов. Протокол голосования. Синтез через ARCHITECTON.',tags:['multi-agent','voting','ARCHITECTON','synthesis']},
+  {name:'Template E — RAG',badge:'E',badgeColor:'#f72585',desc:'RAG-ориентированный шаблон. Источники + вопрос + формат ответа. Chunk references. Anti-hallucination.',tags:['RAG','sources','chunk references','anti-hallucination']},
+  {name:'Template F — Debug',badge:'F',badgeColor:'#ef4444',desc:'Диагностический шаблон. Симптом + контекст + G-error код + ожидаемое поведение.',tags:['debug','G-error','diagnosis','symptom+context']},
+  {name:'Templates G-M',badge:'G-M',badgeColor:'#888',desc:'Специализированные шаблоны: код-ревью, рефакторинг, документация, аналитика, writing, обучение, Karpathy.',tags:['code review','refactoring','docs','analytics','writing','Karpathy']},
+]},
+{id:'gerrors',color:'#ef4444',icon:'🔴',title:'G-errors G1-G20 (симптомы деградации)',items:[
+  {name:'G1-G5: Структурные',badge:'G1-5',badgeColor:'#ef4444',desc:'G1: Игнорирование XML-тегов. G2: Неправильная роль. G3: Пропуск шагов алгоритма. G4: Смешение языков. G5: Монолит вместо модулей.',tags:['XML ignored','wrong role','skipped steps','language mix','monolith']},
+  {name:'G6-G10: Контекстные',badge:'G6-10',badgeColor:'#ef4444',desc:'G6: Lost-in-Middle деградация. G7: temperature при thinking (HTTP 400). G8-G10: Correction Loop — петля исправлений.',tags:['Lost-in-Middle','temperature+thinking','correction loop','G7 API error']},
+  {name:'G11-G15: Агентные',badge:'G11-15',badgeColor:'#ef4444',desc:'G11: Агент вышел из роли. G12: QUORUM без синтеза. G13: Sub-agent без изоляции. G14: Hallucination в финале. G15: HELIOS пропущен.',tags:['agent drift','no synthesis','no isolation','hallucination','HELIOS skipped']},
+  {name:'G16-G20: Системные',badge:'G16-20',badgeColor:'#ef4444',desc:'G16: Неверная API string (HTTP 400/404). G17: budget_tokens (устарел). G18: Устаревший вендор. G19: VERSION_COMPAT конфликт. G20: COLLISION без PATCH.',tags:['wrong API string','budget_tokens','deprecated vendor','version conflict','COLLISION']},
+]},
+{id:'versions',color:'#f72585',icon:'📅',title:'Модели и дедлайны',items:[
+  {name:'T4 FULL+ — Fable 5',badge:'T4',badgeColor:'#f72585',desc:'claude-fable-5. Arena #1 Agent. Новый в v8C.3. Максимальный тир. Полный QUORUM, Extended Thinking, все модули.',tags:['claude-fable-5','Arena #1','T4','new in v8C.3']},
+  {name:'T3 — Opus 4.8',badge:'T3',badgeColor:'#b06de3',desc:'claude-opus-4-8. Флагман. Сложные аналитические задачи. QUORUM консилиум. Reasoning модуль.',tags:['claude-opus-4-8','flagship','T3','QUORUM']},
+  {name:'T2 — Sonnet 4.6',badge:'T2',badgeColor:'#3a86ff',desc:'claude-sonnet-4-6. Баланс скорость/качество. Большинство рабочих задач. Рекомендован для Cowork.',tags:['claude-sonnet-4-6','balanced','T2','Cowork recommended']},
+  {name:'⚠️ Дедлайн 2026-06-15',badge:'DEAD',badgeColor:'#ef4444',desc:'Удалить все упоминания claude-*-4-20250514. HTTP 400/404 при использовании. MANIFEST.md отслеживает.',tags:['deprecated','2026-06-15','HTTP 400','MANIFEST']},
+  {name:'⚠️ Дедлайн 2026-07-24',badge:'DEAD',badgeColor:'#ef4444',desc:'Удалить deepseek-chat / deepseek-reasoner алиасы. Переход на официальные строки вендора.',tags:['deepseek','deprecated','2026-07-24','aliases']},
+]},
+];
+
+function makeMmItem(it){
+  const d=document.createElement('div');
+  d.className='mm-item';
+  d.dataset.search=(it.name+' '+it.desc+' '+it.tags.join(' ')).toLowerCase();
+  const h=document.createElement('div');h.className='mi-head';
+  const b=document.createElement('span');b.className='mi-badge';
+  b.style.cssText='background:'+it.badgeColor+'22;color:'+it.badgeColor+';border:1px solid '+it.badgeColor+'44';
+  b.textContent=it.badge;
+  const n=document.createElement('span');n.style.color='var(--text)';n.textContent=it.name;
+  h.appendChild(b);h.appendChild(n);
+  const desc=document.createElement('div');desc.className='mi-desc';desc.textContent=it.desc;
+  const tags=document.createElement('div');tags.className='mi-tags';
+  it.tags.forEach(t=>{const s=document.createElement('span');s.className='mi-tag';s.textContent=t;tags.appendChild(s);});
+  d.appendChild(h);d.appendChild(desc);d.appendChild(tags);
+  return d;
+}
+function renderMindmap(){
+  const wrap=document.getElementById('mindmap-wrap');
+  wrap.innerHTML='';
+  MM_SECTIONS.forEach((sec,si)=>{
+    const sec_div=document.createElement('div');
+    sec_div.className='mm-section'+(si===0?' open':'');
+    sec_div.dataset.secId=sec.id;
+    // Header
+    const hdr=document.createElement('div');
+    hdr.className='mm-header';
+    hdr.style.cssText='border-left:3px solid '+sec.color;
+    hdr.onclick=function(){toggleSection(this);};
+    const icon=document.createElement('span');icon.className='mm-icon';icon.textContent=sec.icon;
+    const ttl=document.createElement('span');ttl.className='mm-title';ttl.style.color=sec.color;ttl.textContent=sec.title;
+    const cnt=document.createElement('span');cnt.className='mm-count';cnt.textContent=sec.items.length;
+    const arr=document.createElement('span');arr.className='mm-arrow';arr.textContent='▶';
+    hdr.appendChild(icon);hdr.appendChild(ttl);hdr.appendChild(cnt);hdr.appendChild(arr);
+    // Body
+    const body=document.createElement('div');body.className='mm-body';
+    sec.items.forEach(it=>body.appendChild(makeMmItem(it)));
+    sec_div.appendChild(hdr);sec_div.appendChild(body);
+    wrap.appendChild(sec_div);
+  });
+}
+window.toggleSection=function(header){
+  const sec=header.parentElement;
+  sec.classList.toggle('open');
+};
+window.mmAll=function(open){document.querySelectorAll('.mm-section').forEach(s=>s.classList.toggle('open',open));};
+window.mmSearch=function(q){
+  q=q.toLowerCase().trim();
+  document.querySelectorAll('.mm-section').forEach(sec=>{
+    let anyVisible=false;
+    sec.querySelectorAll('.mm-item').forEach(item=>{
+      const match=!q||item.dataset.search.includes(q);
+      item.style.display=match?'':'none';
+      if(match)anyVisible=true;
+    });
+    sec.style.display=anyVisible?'':'none';
+    if(q&&anyVisible)sec.classList.add('open');
+  });
+};
+renderMindmap();
+
+// ══════════════════════════════════════════════════════════════
+// TAB 3: CHAIN LOADER
+// ══════════════════════════════════════════════════════════════
+const SCENARIOS=[
+{id:'prompt-gen',label:'Написать промпт',tag:'Contract Builder',color:'#ff6b35',
+desc:'Самый частый сценарий. Пользователь вызывает /p2p → система разворачивает Intent Engine → Contract Builder → синтез.',
+steps:[
+  {phase:'ENV',name:'_preloader.md',detail:'Определение среды (Chat/Code/Cowork/Projects). TRI_MODE_BRIDGE v3.',color:'#ff6b35',mods:['TRI_MODE_BRIDGE','ENV detect']},
+  {phase:'BASE',name:'!!core.md',detail:'Активация ядра. Меню [1-40]. Пользователь выбирает пункт → вызов !intent.',color:'#ff6b35',mods:['Menu [1-40]','QUORUM ready']},
+  {phase:'BASE',name:'!!db.md',detail:'База шаблонов A-M и G-errors. Алгоритм Contract Builder.',color:'#ff6b35',mods:['Templates A-M','G-errors','CB algo']},
+  {phase:'ON-DEMAND',name:'!intent.md',detail:'Intent Engine 9D. Разбор запроса пользователя. SIR Scanner. 36 анти-паттернов проверены.',color:'#ff9f1c',mods:['9D intent','SIR Scanner','36 anti-patterns']},
+  {phase:'ON-DEMAND',name:'!contract.md',detail:'Contract Builder. Translation Layer. MUST/MUST NOT. 9-шаговый алгоритм → итоговый промпт.',color:'#ff9f1c',mods:['9-step algo','MUST/MUST NOT','Translation Layer']},
+  {phase:'ON-DEMAND',name:'!templates.md',detail:'Выбор подходящего шаблона A-M под тип задачи.',color:'#ff9f1c',mods:['Template A-M','structure']},
+  {phase:'OUTPUT',name:'Готовый промпт',detail:'XML-структурированный контракт для LLM. Опционально — запуск через QUORUM для валидации.',color:'#06d6a0',mods:['XML contract','ready to use']},
+]},
+{id:'quorum-full',label:'QUORUM консилиум',tag:'/p2p-quorum',color:'#b06de3',
+desc:'Полный запуск всех 8 агентов. ARCHITECTON синтезирует, HELIOS финализирует. Для сложных стратегических задач.',
+steps:[
+  {phase:'ENV',name:'_preloader.md',detail:'Определение среды. Проверка доступности Extended Thinking.',color:'#ff6b35',mods:['TRI_MODE_BRIDGE','ET check']},
+  {phase:'BASE',name:'!!core.md + !!db.md',detail:'Ядро активировано. Templates и G-errors загружены.',color:'#ff6b35',mods:['core','db']},
+  {phase:'ON-DEMAND',name:'!agents.md',detail:'Загрузка профилей 8 агентов QUORUM. Паттерны вызова. Протоколы.',color:'#ff9f1c',mods:['8 agent profiles','QUORUM protocol']},
+  {phase:'AGENT ×1',name:'IRIS',detail:'Исследует задачу. Выявляет скрытые зависимости. Задаёт уточняющие вопросы.',color:'#b06de3',mods:['explore','dependencies','open questions']},
+  {phase:'AGENT ×2',name:'TECTON',detail:'Декомпозирует задачу. Строит архитектуру решения.',color:'#b06de3',mods:['decomposition','structure','system design']},
+  {phase:'AGENT ×3',name:'AXIOM',detail:'Red team атака. Ищет противоречия и дыры в предложенном решении.',color:'#ef4444',mods:['red team','contradictions','logic gaps']},
+  {phase:'AGENT ×4-6',name:'VECTOR + DATOS + ANON',detail:'Альтернативы (VECTOR). Числовые аргументы (DATOS). Нейтральная оценка (ANON).',color:'#b06de3',mods:['alternatives','statistics','neutral']},
+  {phase:'SYNTHESIS',name:'ARCHITECTON',detail:'Синтез выводов всех 6 агентов. Принятие финального решения. Конвергенция.',color:'#f72585',mods:['synthesis','final decision','convergence']},
+  {phase:'FINALIZE',name:'HELIOS',detail:'Полировка вывода. Anti-hallucination проверка. Проверка точности.',color:'#ff9f1c',mods:['polish','anti-hallucination','quality']},
+  {phase:'OUTPUT',name:'Синтезированный ответ',detail:'Финальный ответ QUORUM. Подписан HELIOS.',color:'#06d6a0',mods:['QUORUM result','verified']},
+]},
+{id:'scope-large',label:'Большая задача (SCOPE)',tag:'/p2p-scope',color:'#3a86ff',
+desc:'SCOPE.HELM для многошаговых проектов. Декомпозиция → чекпоинты → роутинг подзадач. Аналог Plan Mode.',
+steps:[
+  {phase:'ENV',name:'_preloader.md → !!core.md',detail:'Среда определена. Ядро активировано.',color:'#ff6b35',mods:['ENV','core']},
+  {phase:'ON-DEMAND',name:'!scope.md',detail:'SCOPE.HELM v1.2 загружен. Три под-модуля: SPLITTER, CAPSULE, ROUTER.',color:'#ff9f1c',mods:['SCOPE.HELM v1.2','SPLITTER','CAPSULE','ROUTER']},
+  {phase:'SPLIT',name:'SPLITTER',detail:'Большая задача разбивается на атомарные подзадачи с зависимостями.',color:'#3a86ff',mods:['decomposition','atomic tasks','dependencies']},
+  {phase:'SAVE',name:'CAPSULE',detail:'Чекпоинт состояния. Сохранение прогресса. Можно возобновить после /clear.',color:'#06d6a0',mods:['checkpoint','save state','resume']},
+  {phase:'ATLAS',name:'/p2p-atlas',detail:'ATLAS v2: GOAL / PROGRESS / NEXT / BLOCKERS — живая карта прогресса.',color:'#3a86ff',mods:['GOAL','PROGRESS','NEXT','BLOCKERS']},
+  {phase:'ROUTE',name:'ROUTER',detail:'Маршрутизация каждой подзадачи: нужный агент / инструмент / модуль.',color:'#3a86ff',mods:['routing','agent selection','tool selection']},
+  {phase:'EXEC',name:'Итерации подзадач',detail:'Каждая подзадача выполняется в изоляции. CAPSULE обновляется.',color:'#ff9f1c',mods:['isolated execution','CAPSULE update']},
+  {phase:'OUTPUT',name:'Завершённый проект',detail:'Все подзадачи выполнены. Финальный CAPSULE сохранён.',color:'#06d6a0',mods:['project complete','final CAPSULE']},
+]},
+{id:'debug-flow',label:'Отладка деградации',tag:'!debug',color:'#ef4444',
+desc:'Claude начал деградировать: игнорирует инструкции, галлюцинирует, теряет контекст. Диагностика и remediation.',
+steps:[
+  {phase:'DETECT',name:'Симптом',detail:'Пользователь замечает отклонение: G1 (игнор XML), G6 (Lost-in-Middle), G7 (API error), G8-G10 (correction loop).',color:'#ef4444',mods:['symptom detected','G-error code']},
+  {phase:'BASE',name:'!!db.md',detail:'G-errors G1-G20 — диагностическая база. Определение кода ошибки.',color:'#ff6b35',mods:['G-errors G1-G20','diagnosis base']},
+  {phase:'ON-DEMAND',name:'!debug.md',detail:'Debug Engine активирован. Поиск кода G-error. Анализ причины деградации.',color:'#ef4444',mods:['Debug Engine','root cause','G-error match']},
+  {phase:'DIAGNOSE',name:'G-error mapped',detail:'Например G7: temperature при thinking → HTTP 400. Или G8: correction loop → 2 попытки, потом /clear.',color:'#ef4444',mods:['G7: temp+thinking','G8: correction loop','G6: Lost-in-Middle']},
+  {phase:'REMEDY',name:'Remediation',detail:'G7: убрать temperature. G8-G10: /clear + новый старт. G6: ключевое в начало/конец контекста.',color:'#ff9f1c',mods:['/clear','/compact','reposition','fix API call']},
+  {phase:'VALIDATE',name:'Проверка',detail:'Повторный запрос. Проверка, что деградация устранена.',color:'#06d6a0',mods:['re-test','validate fix']},
+]},
+{id:'rag-flow',label:'RAG задача',tag:'!rag (v8C.3)',color:'#f72585',
+desc:'Работа с большими документами через Retrieval-Augmented Generation. Chunk → Embed → Retrieve → Generate.',
+steps:[
+  {phase:'ENV',name:'_preloader.md → !!core.md',detail:'Среда и ядро.',color:'#ff6b35',mods:['ENV','core']},
+  {phase:'v8C.3',name:'rag.md (!rag)',detail:'RAG модуль v8C.3 загружен. RAPTOR иерархический индекс. Стратегии chunking.',color:'#f72585',mods:['RAG','RAPTOR','chunking','hybrid retrieval']},
+  {phase:'ON-DEMAND',name:'!intent.md',detail:'SIR Scanner — понимание вопроса пользователя. Формирование поискового запроса.',color:'#ff9f1c',mods:['SIR Scanner','query formation']},
+  {phase:'RETRIEVE',name:'Retrieval',detail:'Hybrid search: dense (semantic) + sparse (BM25). Reranking результатов.',color:'#f72585',mods:['dense search','BM25','reranking']},
+  {phase:'AGENT',name:'Subagent (L4)',detail:'RAG execution в изолированном subagent. Не загрязняет основной контекст.',color:'#b06de3',mods:['L4 isolation','subagent','clean context']},
+  {phase:'GENERATE',name:'Augmented Generation',detail:'LLM генерирует ответ с опорой на retrieved chunks. Chunk references в выводе.',color:'#f72585',mods:['grounded generation','chunk refs','anti-hallucination']},
+  {phase:'OUTPUT',name:'RAG-обоснованный ответ',detail:'Ответ с источниками. Anti-hallucination через grounding.',color:'#06d6a0',mods:['sourced answer','verified']},
+]},
+{id:'memory-save',label:'Сохранить контекст',tag:'/p2p-capsule',color:'#06d6a0',
+desc:'Конец сессии. Нужно сохранить прогресс для возобновления в следующей сессии.',
+steps:[
+  {phase:'ON-DEMAND',name:'!memory.md',detail:'Memory Bridge загружен. CAPSULE protocol активирован.',color:'#06d6a0',mods:['Memory Bridge','CAPSULE protocol']},
+  {phase:'CAPTURE',name:'Capture State',detail:'Сбор: GOAL, PROGRESS, NEXT, BLOCKERS, ключевые решения, контекст.',color:'#06d6a0',mods:['GOAL','PROGRESS','decisions','context snapshot']},
+  {phase:'COMPRESS',name:'Сжатие (опц.)',detail:'!compression (!compression) — LLMLingua сжатие если контекст большой.',color:'#f72585',mods:['LLMLingua','compression','optional']},
+  {phase:'SAVE',name:'CAPSULE сохранён',detail:'/p2p-capsule команда. Capsule.md файл или вывод для вставки в следующий чат.',color:'#06d6a0',mods:['/p2p-capsule','capsule.md','portable']},
+  {phase:'RESTORE',name:'Следующая сессия',detail:'Вставить CAPSULE в начало нового чата. Memory Bridge восстанавливает контекст.',color:'#06d6a0',mods:['restore','new session','Memory Bridge']},
+]},
+{id:'teach-mode',label:'Обучение P2P',tag:'/p2p-teacher',color:'#48cae4',
+desc:'Новый пользователь хочет изучить P2P. 5-уровневый curriculum, Q&A, sandbox.',
+steps:[
+  {phase:'ON-DEMAND',name:'!teacher.md',detail:'Teacher Mode загружен. Curriculum 5 уровней. Q&A режим.',color:'#48cae4',mods:['!teacher.md','5 levels','Q&A']},
+  {phase:'L1',name:'Quickstart',detail:'Базовые концепции. Первый /p2p вызов. Понимание меню.',color:'#48cae4',mods:['basics','/p2p','menu']},
+  {phase:'L2',name:'Commands',detail:'Все /p2p-* команды. Когда и зачем использовать каждую.',color:'#48cae4',mods:['/p2p-*','command map','use cases']},
+  {phase:'L3',name:'Agents',detail:'QUORUM агенты. Роли. Когда вызывать конкретного агента.',color:'#b06de3',mods:['8 agents','roles','direct invoke']},
+  {phase:'L4',name:'QUORUM',detail:'Полный консилиум. /p2p-quorum. Синтез. Реальные примеры.',color:'#b06de3',mods:['/p2p-quorum','council','synthesis']},
+  {phase:'L5',name:'SCOPE.HELM',detail:'Большие проекты. /p2p-scope. SPLITTER/CAPSULE/ROUTER.',color:'#3a86ff',mods:['/p2p-scope','large projects','HELM']},
+  {phase:'SANDBOX',name:'Sandbox задача',detail:'Практическая задача для отработки навыков.',color:'#06d6a0',mods:['practice','hands-on','real task']},
+]},
+{id:'karpathy-code',label:'Правка кода (Karpathy)',tag:'/p2p-karpathy',color:'#3a86ff',
+desc:'Хирургические минимальные правки кода. Template M. PRE_CODE_DECLARATION. Никаких лишних изменений.',
+steps:[
+  {phase:'ENV',name:'_preloader.md',detail:'Определение среды. Claude Code → максимум возможностей.',color:'#ff6b35',mods:['ENV','Claude Code preferred']},
+  {phase:'BASE',name:'!!core.md',detail:'Ядро. /p2p-karpathy команда активирует Template M.',color:'#ff6b35',mods:['core','Template M activation']},
+  {phase:'TEMPLATE',name:'Template M (Karpathy)',detail:'PRE_CODE_DECLARATION: список изменений до кода. Минимальные хирургические правки.',color:'#3a86ff',mods:['Template M','PRE_CODE_DECLARATION','surgical edits']},
+  {phase:'CONSTRAINT',name:'Karpathy Rules',detail:'ТОЛЬКО изменённые строки. Без рефакторинга. Без улучшений. Только запрошенное.',color:'#3a86ff',mods:['minimal changes','no refactor','no extras','only requested']},
+  {phase:'v8C.3',name:'!security.md (опц.)',detail:'COLLISION_PATCH для детерминизма. Проверка на injection если это промпт.',color:'#ef4444',mods:['COLLISION_PATCH','injection check','optional']},
+  {phase:'OUTPUT',name:'Хирургические изменения',detail:'PRE_CODE_DECLARATION → код с минимальными правками.',color:'#06d6a0',mods:['surgical','declared changes','clean diff']},
+]},
+];
+
+function renderScenarios(){
+  const list=document.getElementById('scenario-list');
+  list.innerHTML='';
+  SCENARIOS.forEach(s=>{
+    const btn=document.createElement('button');
+    btn.className='scenario-btn';
+    btn.dataset.id=s.id;
+    btn.innerHTML=`<span style="color:${s.color};font-weight:700">${s.label}</span><span class="sb-tag">${s.tag}</span>`;
+    btn.onclick=()=>loadScenario(s.id);
+    list.appendChild(btn);
+  });
+}
+
+let currentScenario=null,animating=false;
+// NODE INFO for RAG/chain panels
+const NODE_INFO={
+  '_preloader.md':{summary:'TRI_MODE_BRIDGE v3 — определяет среду (Chat/Projects/Code/API). Первый загружаемый файл системы.',chain:[{l:'ENV → !!core.md',n:'Передаёт флаги среды в ядро'},{l:'→ live_*.md',n:'Активирует живые данные по среде'}]},
+  '!!core.md':{summary:'Главный диспетчер. Меню [1-40]. XML-native. Активирует ON-DEMAND модули.',chain:[{l:'→ !!db.md',n:'База шаблонов и G-errors'},{l:'→ !intent.md',n:'Intent Engine'},{l:'→ !agents.md',n:'QUORUM при консилиуме'}]},
+  '!!db.md':{summary:'База знаний: G-errors G1-G20, Templates A-M, 9-step Contract Builder, Translation Layer.',chain:[{l:'Templates A-M',n:'Готовые структуры промптов'},{l:'G-errors G1-G20',n:'Паттерны деградации + workaround'}]},
+  'rag.md (!rag)':{summary:'RAG модуль v8C.3. RAPTOR иерархический индекс. Chunking стратегии. Hybrid retrieval.',chain:[{l:'RAPTOR index',n:'Иерархическая кластеризация chunks'},{l:'→ !intent.md',n:'SIR Scanner формирует запрос'},{l:'→ Subagent (L4)',n:'Изолированное выполнение'}]},
+  '!intent.md':{summary:'Intent Engine 9D. SIR Scanner (Signal→Intent→Route). 36 анти-паттернов.',chain:[{l:'SIR Scanner',n:'Signal → Intent → Route'},{l:'9D intent',n:'9 измерений намерения'},{l:'→ !contract.md',n:'Передаёт structured intent'}]},
+  '!contract.md':{summary:'Contract Builder. Translation Layer для 10 вендоров. MUST/MUST NOT. 9-step algorithm.',chain:[{l:'9-step algo',n:'Role→Data→Task→Format→Rules'},{l:'Translation Layer',n:'Адаптация под целевую LLM'},{l:'→ !templates.md',n:'Выбор шаблона A-M'}]},
+  '!agents.md':{summary:'Профили 8 QUORUM агентов: IRIS/TECTON/AXIOM/VECTOR/DATOS/ANON/ARCHITECTON/HELIOS.',chain:[{l:'IRIS→TECTON→AXIOM',n:'Исследование→Структура→Критика'},{l:'VECTOR+DATOS+ANON',n:'Альтернативы+Данные+Нейтраль'},{l:'ARCHITECTON→HELIOS',n:'Синтез→Финализация'}]},
+  '!scope.md':{summary:'SCOPE.HELM v1.2: SPLITTER (декомпозиция), CAPSULE (чекпоинты), ROUTER (маршрутизация).',chain:[{l:'SPLITTER',n:'Задача→атомарные подзадачи'},{l:'CAPSULE',n:'Сохранение прогресса'},{l:'ROUTER',n:'Маршрутизация к агентам'}]},
+  '!memory.md':{summary:'Memory Bridge. CAPSULE protocol: GOAL/PROGRESS/NEXT/BLOCKERS.',chain:[{l:'CAPSULE save',n:'Сжатый снапшот состояния'},{l:'CAPSULE restore',n:'Восстановление в новой сессии'}]},
+  '!debug.md':{summary:'Debug Engine. G-error диагностика и remediation guide.',chain:[{l:'G-error lookup',n:'Сопоставление симптомов с G1-G20'},{l:'Remediation steps',n:'Конкретные шаги исправления'}]},
+  'Retrieval':{summary:'Hybrid search: dense (semantic embeddings) + sparse (BM25). Cross-encoder reranking.',chain:[{l:'Dense search',n:'Семантическое сходство'},{l:'BM25',n:'Term-frequency matching'},{l:'Reranking',n:'Cross-encoder финальный ранг'}]},
+  'Subagent (L4)':{summary:'L4 — изолированный subagent. Выполняет RAG без загрязнения основного контекста.',chain:[{l:'L4 isolation',n:'Отдельный контекстный пузырь'},{l:'Clean output',n:'Результат→основной контекст'}]},
+};
+function getNodeInfo(name){
+  if(NODE_INFO[name])return NODE_INFO[name];
+  const l=name.toLowerCase();
+  for(const k of Object.keys(NODE_INFO))if(l.includes(k.toLowerCase())||k.toLowerCase().includes(l))return NODE_INFO[k];
+  return null;
+}
+
+let selectedStepEl=null;
+function selectStep(el,step){
+  if(selectedStepEl&&selectedStepEl!==el){
+    selectedStepEl.classList.remove('selected');
+    const old=selectedStepEl.querySelector('.cs-node-panel');
+    if(old){old.classList.remove('open');setTimeout(()=>{try{old.remove()}catch(e){}},300);}
+  }
+  if(selectedStepEl===el){
+    el.classList.remove('selected');
+    const p=el.querySelector('.cs-node-panel');
+    if(p){p.classList.remove('open');setTimeout(()=>{try{p.remove()}catch(e){}},300);}
+    selectedStepEl=null;return;
+  }
+  selectedStepEl=el;
+  el.classList.add('selected');
+  const info=getNodeInfo(step.name);
+  const panel=document.createElement('div');
+  panel.className='cs-node-panel';
+  const chainHtml=info&&info.chain?'<div class="cs-np-chain"><div class="cs-np-chain-title">🔗 Внутренние цепочки промпта</div>'+info.chain.map(c=>'<div class="cs-np-chain-item" style="border-color:'+step.color+'">'+c.l+' <span style="color:var(--dim);font-size:9px">— '+c.n+'</span></div>').join('')+'</div>':'';
+  panel.innerHTML='<div class="cs-np-title" style="color:'+step.color+'">📍 '+step.name+'</div><div class="cs-np-desc">'+(info?info.summary:step.detail)+'</div><div class="cs-np-tags">'+step.mods.map(m=>'<span class="cs-np-tag" style="border-color:'+step.color+'44;color:'+step.color+'">'+m+'</span>').join('')+'</div>'+chainHtml;
+  el.querySelector('.cs-content').appendChild(panel);
+  setTimeout(()=>panel.classList.add('open'),20);
+}
+
+function loadScenario(id){
+  const s=SCENARIOS.find(x=>x.id===id);
+  if(!s||animating)return;
+  currentScenario=s;selectedStepEl=null;
+  document.querySelectorAll('.scenario-btn').forEach(b=>{b.classList.toggle('on',b.dataset.id===id);});
+  chainMobClose();
+  const vis=document.getElementById('chain-vis');
+  const ph=document.getElementById('chain-placeholder');
+  const title=document.getElementById('chain-title');
+  const desc=document.getElementById('chain-desc');
+  ph.style.display='none';title.style.display='block';desc.style.display='block';
+  title.innerHTML='<span style="color:'+s.color+'">⛓ '+s.label+'</span> <span style="font-size:11px;color:var(--dim);font-weight:400">'+s.tag+'</span>';
+  desc.textContent=s.desc;
+  vis.innerHTML='';animating=true;
+  s.steps.forEach((step,i)=>{
+    const el=document.createElement('div');
+    el.className='chain-step';
+    el.style.cssText='opacity:0;transform:translateX(-10px);transition:all 0.3s ease';
+    el.innerHTML='<div class="cs-line"><div class="cs-dot" style="border-color:'+step.color+';background:'+step.color+'22"></div>'+(i<s.steps.length-1?'<div class="cs-connector"></div>':'')+'</div><div class="cs-content"><div class="cs-phase" style="color:'+step.color+'">'+step.phase+'</div><div class="cs-name" style="color:'+step.color+'">'+step.name+'</div><div class="cs-detail">'+step.detail+'</div><div class="cs-modules">'+step.mods.map(m=>'<span class="cs-mod" style="border-color:'+step.color+'44;color:'+step.color+';background:'+step.color+'11">'+m+'</span>').join('')+'</div></div>';
+    el.onclick=()=>selectStep(el,step);
+    vis.appendChild(el);
+    setTimeout(()=>{
+      el.style.opacity='1';el.style.transform='translateX(0)';
+      el.classList.add('active');setTimeout(()=>el.classList.remove('active'),400);
+      if(i===s.steps.length-1)animating=false;
+    },i*140+60);
+  });
+}
+
+function chainMobToggle(){
+  document.getElementById('chain-left').classList.toggle('mob-open');
+  document.getElementById('chain-mob-overlay').classList.toggle('mob-open');
+}
+function chainMobClose(){
+  const l=document.getElementById('chain-left');
+  const o=document.getElementById('chain-mob-overlay');
+  if(l)l.classList.remove('mob-open');
+  if(o)o.classList.remove('mob-open');
+}
+document.getElementById('b-hier-dir').addEventListener('click',function(){
+  hierDir=hierDir==='horizontal'?'vertical':'horizontal';
+  document.getElementById('hier-dir-label').textContent=hierDir==='vertical'?'Гор.':'Верт.';
+  if(currentLayout==='hierarchy')applyLayout('hierarchy');
+});
+
+renderScenarios();
+
+window.addEventListener('resize',()=>{if(document.getElementById('tp-graph').classList.contains('on'))fitView();});
+</script>
+</body>
+</html>
