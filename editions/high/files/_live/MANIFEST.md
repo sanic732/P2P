@@ -16,7 +16,7 @@ last_verified: 2026-06-17
 MANIFEST:
   SYSTEM:        P2P v8H.3 Normal Edition
   BUILD_DATE:    2026-06-17
-  STATUS:        ALPHA (technique import from v8C.3)
+  STATUS:        BETA (technique import from v8C.3)
   FILES:         24 base + 7 docs = 31 total
   PHILOSOPHY:    Universal · Any-host · Any-target · 8 host models
   LIVE_SPECS_REF: _live/live_specs_20260617.md (v8.5, OVERRIDE)

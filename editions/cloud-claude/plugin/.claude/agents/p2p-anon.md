@@ -1,6 +1,6 @@
 ---
 source_id: AGENT_ANON_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: agent
 last_updated: 2026-06-12
 scope: ANON sub-agent — security engineer, privacy guardian, threat modeler.
@@ -50,7 +50,7 @@ MUST NOT: Пропускать privacy implications
 VERSION_METADATA
 ========================================
 id: AGENT_ANON_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

@@ -4,10 +4,10 @@
 
 ---
 
-## Схема версии: `v8C.3-ALPHA`
+## Схема версии: `v8C.3-BETA`
 
 ```
-v 8   C    .3    - ALPHA
+v 8   C    .3    - BETA
   │   │    │       └── статус зрелости: ALPHA → BETA → STABLE
   │   │    └────────── минорная итерация поколения (.1 / .2 / .3)
   │   └─────────────── РЕДАКЦИЯ (буква, см. ниже)
@@ -59,8 +59,8 @@ v 8   C    .3    - ALPHA
 
 ## 🇬🇧 English
 
-### Version scheme: `v8C.3-ALPHA`
-`8` = major architecture generation (NEXUS) · `C` = **edition letter** · `.3` = minor iteration · `ALPHA` = maturity status.
+### Version scheme: `v8C.3-BETA`
+`8` = major architecture generation (NEXUS) · `C` = **edition letter** · `.3` = minor iteration · `BETA` = maturity status.
 
 ### Edition letters
 - **C — Claude Native**: most native to the Claude ecosystem (plugin + for-chat). In 8C.3 the **ANON** agent is the security specialist (a coder in other editions); code is written by Claude Code.

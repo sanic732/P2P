@@ -1,6 +1,6 @@
 ---
 id: index_v8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: META
 priority: REFERENCE
 edition: LITE_LIVE_HYBRID
@@ -270,7 +270,7 @@ VALIDATION_CHECK:
 
 # ═══════════════════════════════════════════════════════════════
 VERSION_METADATA:
-  SYSTEM:     P2P v8L.3-ALPHA · Lite/Live Hybrid · Gist Routing Table
+  SYSTEM:     P2P v8L.3-BETA · Lite/Live Hybrid · Gist Routing Table
   ROLE:       Contract registry, triggers, transitive deps, MUTEX, integrity
   COMPATIBLE: _preloader_v8L, !!core_v8L, !!db_v8L
   API_STRINGS: claude-fable-5, claude-opus-4-8, claude-opus-4-7, claude-sonnet-4-6

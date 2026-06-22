@@ -1,6 +1,6 @@
 ---
 source_id: RAG_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: on-demand
 triggers: "rag|raptor|retrieval|вектор|поиск по базе|document search|ретривал|векторная"
 depends_on: !!core_v8C.md, !!db_v8C.md
@@ -96,7 +96,7 @@ IF docs high interconnectedness:
 
 Этот модуль НЕ конфликтует с базовой логикой v8C.2 — аддитивный.
 
-При работе с [15] Поиск в базе знаний (v8C.3-ALPHA):
+При работе с [15] Поиск в базе знаний (v8C.3-BETA):
 - v8C.2: keyword/semantic search в !!db_v8C.md
 - v8C.3 RAG: RAPTOR-дерево с иерархическим ретривалом
 - **Режим or:** P2P предложит выбор стратегии
@@ -134,7 +134,7 @@ MUST NOT: Hallucinate факты вне контекста.
 VERSION_METADATA
 ========================================
 id: RAG_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

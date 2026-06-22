@@ -218,10 +218,10 @@ P2P v8H.3- HIGH EDITION | LiveSpecs: 2026-06-12
 
 ---
 
-# МЕНЮ P2P v8H.3-ALPHA  (на `/start`, `старт`, `/p2p`, `/menu`, `full ui menu` — ВСЕГДА целиком)
+# МЕНЮ P2P v8H.3-BETA  (на `/start`, `старт`, `/p2p`, `/menu`, `full ui menu` — ВСЕГДА целиком)
 
 ```
-⭕ P2P 8H.3-ALPHA — HIGH EDITION
+⭕ P2P 8H.3-BETA — HIGH EDITION
 
 🔰 ОСНОВНЫЕ РЕЖИМЫ:
 1.  🏛️ QUORUM (The Council)
@@ -267,7 +267,7 @@ P2P v8H.3- HIGH EDITION | LiveSpecs: 2026-06-12
 30. 🔄 CONSTRAINT REINJECTION — Авто-переинъекция каждые 25 сообщений
 === ДОКУМЕНТАЦИЯ И ОБУЧЕНИЕ ===
 31. СТАРТ (быстрый старт)
-32. Что нового в v8H.3-ALPHA
+32. Что нового в v8H.3-BETA
 33. Полная документация (docs/)
 34. 🎓 ОБУЧЕНИЕ (/p2p-teacher — интерактивный 5-уровневый curriculum)
 

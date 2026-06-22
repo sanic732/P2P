@@ -1,6 +1,6 @@
 ---
 source_id: AGENT_AXIOM_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 module_type: agent
 last_updated: 2026-06-18
 scope: AXIOM sub-agent — devil's advocate, critical verifier, weak point finder.
@@ -57,7 +57,7 @@ MUST NOT: Предлагать полный редизайн — только т
 VERSION_METADATA
 ========================================
 id: AGENT_AXIOM_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18

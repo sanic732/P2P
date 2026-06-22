@@ -1,6 +1,6 @@
 ---
 id: core_v8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: CORE
 priority: CRITICAL
 load_order: 3
@@ -209,7 +209,7 @@ HARD_HONESTY (P8, обязательно):
     этот хост в LITE_ONLY" + предложить fetch-хост ИЛИ ручную вставку нужного чанка.
 
 ```
-⭕ P2P 8L.3-ALPHA — LITE/LIVE HYBRID
+⭕ P2P 8L.3-BETA — LITE/LIVE HYBRID
 
 🔰 ОСНОВНЫЕ РЕЖИМЫ:
 1.  🏛️ QUORUM (The Council)          [chunk: CORE_PLUS]
@@ -248,7 +248,7 @@ HARD_HONESTY (P8, обязательно):
 30. 🔄 CONSTRAINT REINJECTION
 === ДОКУМЕНТАЦИЯ И ОБУЧЕНИЕ ===
 31. СТАРТ (быстрый старт)
-32. Что нового в v8L.3-ALPHA
+32. Что нового в v8L.3-BETA
 33. Полная документация (docs/)
 34. 🎓 ОБУЧЕНИЕ (/p2p-teacher)
 35. 🔎 /p2p-verify — Manifest Reconciliation (сверка sha256/size Gist-чанков)
@@ -470,7 +470,7 @@ CORE_RULES:
 
 // ─────────────────────────────────────────────────────
 VERSION_METADATA:
-  SYSTEM:      P2P v8L.3-ALPHA · Lite/Live Hybrid · Core Dispatcher
+  SYSTEM:      P2P v8L.3-BETA · Lite/Live Hybrid · Core Dispatcher
   PHILOSOPHY:  Universal · Any-host · Any-target · 8 host models · Lazy-fetch arsenal
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
   CHANGED_FROM_v8H: §4 chunk-aware menu, §6 LAZY_FETCH resolver + COMMAND_CHUNK_MAP, logo,

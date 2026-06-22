@@ -1,6 +1,6 @@
 ---
 source_id: DB_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: base
 depends_on: !!core_v8C.md
 last_updated: 2026-06-12
@@ -8,7 +8,7 @@ scope: P2P v8C.3 knowledge base — G-errors G1-G20, Extended Thinking rules, Cl
 tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c
 ---
 
-# P2P v8C.3-ALPHA — БАЗА ЗНАНИЙ (!!db_v8C.md)
+# P2P v8C.3-BETA — БАЗА ЗНАНИЙ (!!db_v8C.md)
 
 ---
 
@@ -1076,7 +1076,7 @@ Depth mode determines:
 VERSION_METADATA
 ========================================
 id: DB_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: base
 edition: CLAUDE_NATIVE
 last_verified: 2026-05-03

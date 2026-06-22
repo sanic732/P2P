@@ -1,6 +1,6 @@
 ---
 source_id: CMD_VERIFY_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 module_type: command
 last_updated: 2026-06-18
 scope: /p2p-verify — Manifest Reconciliation. Re-hash Gist chunks, compare to _index_v8L contracts, report drift.
@@ -33,7 +33,7 @@ scope: /p2p-verify — Manifest Reconciliation. Re-hash Gist chunks, compare to 
 VERSION_METADATA
 ========================================
 id: CMD_VERIFY_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18

@@ -1,6 +1,6 @@
 ---
 source_id: CMD_P2P_TEACHER_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 module_type: command
 last_updated: 2026-06-18
 scope: /p2p-teacher — interactive teaching mode for P2P system. Adaptive 5-level curriculum + Q&A.
@@ -187,7 +187,7 @@ P2P: HELIOS — 8-й агент QUORUM, синтезатор.
 VERSION_METADATA
 ========================================
 id: CMD_P2P_TEACHER_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18
