@@ -2,7 +2,7 @@
 source_id: CHANGELOG_V8C3
 version: v8C.3-ALPHA
 module_type: docs
-last_updated: 2026-06-22
+last_updated: 2026-06-12
 scope: Full changelog for v8C.3-ALPHA release. Covers only v8C.2 → v8C.3 changes. For earlier history see v8C.2 docs.
 tags: docs, changelog, v8c3, alpha
 ---
@@ -11,25 +11,6 @@ tags: docs, changelog, v8c3, alpha
 
 > v8C.2 → v8C.3 changes only.  
 > For v8C.1 → v8C.2 history see the v8C.2 release docs.
-
----
-
-## Maintenance: structure cleanup (2026-06-22)
-
-Plugin/marketplace hygiene per Claude Code docs — no behaviour change for end users:
-
-- **Removed** nested `marketplace.json` from inside the plugin (`.claude-plugin/`) in
-  cloud-claude and light editions. A `marketplace.json` bundled inside the `.plugin`
-  caused the desktop app to register a self-referential `local-desktop-app-uploads`
-  marketplace that reinstalled the plugin on every restart. Now there is one
-  marketplace.json at the repo root only.
-- **De-duplicated** version: removed `version` from the root marketplace plugin entry;
-  `plugin.json` is now the single source of truth (avoids the silent-override footgun).
-- **Merged** the three command↔skill duplicates (`p2p`, `p2p-quorum`, `p2p-teacher`)
-  into their `skills/` versions; deleted the duplicate `commands/*.md`. Each name now
-  loads once. Eight commands remain in `commands/`.
-- **Fixed** dangling references to the deleted files in `global_index.md` and `teacher.md`.
-- **Updated** stale `v8C.2` labels and default output name in `pack.sh` / `pack.ps1`.
 
 ---
 

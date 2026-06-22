@@ -149,9 +149,9 @@ _preloader.md + !!core_v8C.md + !!db_v8C.md + _live/*
 | `failure-modes` | !agents.md |
 | `format-enforcement` | !contract.md |
 | `classic-frameworks` | !templates.md |
-| `teacher` | !teacher.md, .claude/skills/p2p-teacher/ |
+| `teacher` | !teacher.md, .claude/commands/p2p-teacher.md, .claude/skills/p2p-teacher/ |
 | `onboarding` | !teacher.md, docs/НАЧАЛО_РАБОТЫ.md, docs/TEACHER_GUIDE.md |
-| `plugin` | .claude-plugin/plugin.json, INSTALL.md |
+| `plugin` | .claude-plugin/plugin.json, .claude-plugin/marketplace.json, INSTALL.md |
 | `install` | INSTALL.md, docs/INSTALL_GUIDE.md, pack.sh, pack.ps1 |
 
 <!-- SOURCE_META: type=meta | priority=1 | index=true | navigation=true -->
