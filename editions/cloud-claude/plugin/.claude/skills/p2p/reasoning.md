@@ -1,6 +1,6 @@
 ---
 source_id: REASONING_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: on-demand
 triggers: "reasoning|цепочка рассуждений|chain of thought|cot|self-consistency|mcts|tts|test-time|scaling|подумай|think step"
 depends_on: core.md
@@ -114,7 +114,7 @@ Simple T0-1      → Direct (нет overhead)
 
 ## CONFLICT_RESOLVER DECLARATIONS
 
-**Конфликт 1:** `MODULE_REASONING` + `DEEP_THINK_VALUE_GATE` (v8C.3-ALPHA)
+**Конфликт 1:** `MODULE_REASONING` + `DEEP_THINK_VALUE_GATE` (v8C.3-BETA)
 
 | | v8C.2 | v8C.3 |
 |--|-------|-------|
@@ -137,7 +137,7 @@ v8C.3 НИКОГДА не использует `budget_tokens` (удалён и�
 VERSION_METADATA
 ========================================
 id: REASONING_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

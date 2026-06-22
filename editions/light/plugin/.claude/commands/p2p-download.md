@@ -1,6 +1,6 @@
 ---
 source_id: CMD_DOWNLOAD_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 module_type: command
 last_updated: 2026-06-18
 scope: /p2p-download — full integration; fetch 10 module chunks + LIVE at once so every menu item works without per-trigger fetch.
@@ -40,7 +40,7 @@ scope: /p2p-download — full integration; fetch 10 module chunks + LIVE at once
 VERSION_METADATA
 ========================================
 id: CMD_DOWNLOAD_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: command
 edition: UNIVERSAL
 last_verified: 2026-06-18

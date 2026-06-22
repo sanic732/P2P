@@ -1,6 +1,6 @@
 ---
 source_id: CMD_QUORUM_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 module_type: command
 last_updated: 2026-06-18
 scope: /p2p-quorum — launch full 8-agent QUORUM or sub-QUORUM pattern.
@@ -29,7 +29,7 @@ scope: /p2p-quorum — launch full 8-agent QUORUM or sub-QUORUM pattern.
 VERSION_METADATA
 ========================================
 id: CMD_QUORUM_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18

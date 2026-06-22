@@ -1,6 +1,6 @@
 ---
 source_id: ART_BANNERS_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: on-demand
 triggers: "арт|баннер|art|banner|смена режима|выбор режима|mode switch|pilot|sherpa|quorum|scope|exploration"
 depends_on: !!core_v8C.md
@@ -90,7 +90,7 @@ W ─◈─ E       развилка: покажу разные пути
 VERSION_METADATA
 ========================================
 id: ART_BANNERS_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-14

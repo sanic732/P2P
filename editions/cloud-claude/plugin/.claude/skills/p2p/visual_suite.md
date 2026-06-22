@@ -1,6 +1,6 @@
 ---
 source_id: VISUAL_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: on_demand
 depends_on: [!!db_v8C.md, !templates.md]
 tags: [visual, image, video, audio, multimodal, creative-suite]
@@ -192,7 +192,7 @@ Voice cloning: 30s+ clean reference audio.
 VERSION_METADATA
 ========================================
 id: VISUAL_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: on_demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

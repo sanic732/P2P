@@ -1,6 +1,6 @@
 ---
 source_id: MODES_GUIDE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: docs
 last_updated: 2026-06-14
 scope: Пользовательский гайд по режимам P2P v8C.3 (PILOT, SHERPA) + ASCII-баннеры для визуального узнавания.

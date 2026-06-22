@@ -6,7 +6,7 @@
 
 ---
 
-## [v8.3.2-ALPHA] — 2026-06-22 · скиллы Cowork + новые скиллы + fallback live_specs
+## [v8.3.2-BETA] — 2026-06-22 · скиллы Cowork + новые скиллы + fallback live_specs
 
 ### Added
 - **5 готовых скиллов** в `editions/cloud-claude/plugin/.claude/skills/`: `bb4pda` (BB-разметка 4PDA), `rag-prep`, `rag-grounding`, `rag-router`, `notebook-pack` — формат `name`/`description` (Cowork-совместимы, авто-дискавери через `"skills": "./.claude/skills"`).
@@ -15,14 +15,15 @@
 - Сопутствующий BB text-prompt → `docs/`.
 
 ### Changed
+- **Статус зрелости поднят `ALPHA` → `BETA`** по всем 4 редакциям (личная обкатка пройдена). Обновлены метки версий (`v8X.3-BETA`), бейджи, статус-поля, `marketplace.json` (тег `beta`), заголовки/тег релиза (`v8.3-alpha` → `v8.3-beta`). Шкала `ALPHA → BETA → STABLE` в NAMING/FAQ оставлена как справочная.
 - **Бамп версии плагина `8.3.1` → `8.3.2-C`** (cloud `p2p-v8c3`, в корневом и вложенном `marketplace.json` + `plugin.json`) — чтобы у уже установивших Claude показал «update available». Буква редакции `C` — semver-валидным суффиксом (как `-L` у light), major остаётся числовым. Light `p2p-v8l3` без изменений (`8.3.1-L`) — лёгкая редакция, локальные скиллы ей не нужны.
 
 ---
 
-## [v8.3.1-ALPHA] — 2026-06-19 · публикация монорепо + фикс обновления
+## [v8.3.1-BETA] — 2026-06-19 · публикация монорепо + фикс обновления
 
 ### Added
-- Опубликованы **все 4 редакции** в монорепо `editions/*` и в релизе `v8.3-alpha` (Latest): 8C.3, 8H.3, 8N.3, 8L.3.
+- Опубликованы **все 4 редакции** в монорепо `editions/*` и в релизе `v8.3-beta` (Latest): 8C.3, 8H.3, 8N.3, 8L.3.
 - Релиз-ассеты разнесены по форме поставки: `p2p-8C.3-for-chat.zip` + `p2p-8C.3-cowork-code.zip` (вместо одного combined), `p2p-high-8H.3.zip`, `p2p-normal-8N.3.zip`, `p2p-light-8L.3.zip`, `p2p-v8c3.plugin`, **`p2p-v8l3.plugin`** (новый — плагин-форма light).
 
 ### Changed
@@ -34,7 +35,7 @@
 
 ---
 
-## [v8.3-ALPHA] — 2026-06 · «NEXUS» (.3)
+## [v8.3-BETA] — 2026-06 · «NEXUS» (.3)
 
 ### Added
 - 4 редакции одной архитектуры: **8C.3** (Claude Native), **8H.3** (High \ Hybrid = слияние Gemini-A ⊕ Grok-G), **8N.3** (Normal/Universal), **8L.3** (Lite/Live).
@@ -47,7 +48,7 @@
 - Манифесты `p2p-v8c2` → `p2p-v8c3` (`8.2.0` → `8.3.0`).
 - 8L.3: 4 BOOT-файла (~18-22K токенов) + ленивая online-подгрузка арсенала по триггеру.
 
-> Все 4 редакции опубликованы в монорепо `P2P-4PDA-edition` — см. запись `v8.3.1-ALPHA` выше.
+> Все 4 редакции опубликованы в монорепо `P2P-4PDA-edition` — см. запись `v8.3.1-BETA` выше.
 
 ---
 

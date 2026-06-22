@@ -1,11 +1,11 @@
 ---
 id: changelog_v8L3
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: DOC
 last_verified: 2026-06-18
 ---
 
-# CHANGELOG — P2P v8L.3-ALPHA (Lite/Live Hybrid)
+# CHANGELOG — P2P v8L.3-BETA (Lite/Live Hybrid)
 
 > Ветка миграции из **v8H.3** (30-файловый монолит) в **Resolver-Gated Lazy Hybrid**:
 > 4 локальных BOOT-файла + 11 lazy Gist-чанков, загружаемых по триггеру через

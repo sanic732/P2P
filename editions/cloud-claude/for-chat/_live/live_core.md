@@ -1,6 +1,6 @@
 ---
 source_id: LIVE_CORE_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: live
 depends_on: _live/MANIFEST.md
 last_updated: 2026-06-12
@@ -8,7 +8,7 @@ scope: P2P v8C.3 live session state — current session tracking, active project
 tags: live, session-state, atlas, routing-memory, core
 ---
 
-# P2P v8C.3-ALPHA — LIVE CORE (_live/live_core.md)
+# P2P v8C.3-BETA — LIVE CORE (_live/live_core.md)
 
 > Сбрасывается при каждой новой сессии. Заполняется автоматически по мере работы.
 
@@ -94,7 +94,7 @@ temperature: null              # null при thinking=enabled
 VERSION_METADATA
 ========================================
 id: LIVE_CORE_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

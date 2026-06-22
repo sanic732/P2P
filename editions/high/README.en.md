@@ -2,7 +2,7 @@
 
 > 🇬🇧 English · 🇷🇺 [Русский](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 
-**Version:** 8H.3-ALPHA · **Token budget:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
+**Version:** 8H.3-BETA · **Token budget:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
 
 ## Who it's for
 Grok users, or anyone wanting an all-in-one maximal universal build across 8 hosts.

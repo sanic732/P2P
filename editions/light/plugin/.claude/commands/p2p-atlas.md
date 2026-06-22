@@ -1,6 +1,6 @@
 ---
 source_id: CMD_ATLAS_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 module_type: command
 last_updated: 2026-06-18
 scope: /p2p-atlas — show or update ATLAS task map.
@@ -36,7 +36,7 @@ scope: /p2p-atlas — show or update ATLAS task map.
 VERSION_METADATA
 ========================================
 id: CMD_ATLAS_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18

@@ -1,6 +1,6 @@
 ---
 source_id: CMD_FETCHTEST_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 module_type: command
 last_updated: 2026-06-18
 scope: /p2p-fetch-test — active canary probe; verify the host can really web-fetch, set LOAD_MODE by fact.
@@ -48,7 +48,7 @@ gist_route.md    first line → // ═══ P2P v8L.3 CHUNK: route — assemble
 VERSION_METADATA
 ========================================
 id: CMD_FETCHTEST_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: command
 edition: UNIVERSAL
 last_verified: 2026-06-18

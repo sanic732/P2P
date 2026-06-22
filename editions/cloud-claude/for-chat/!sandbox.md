@@ -1,6 +1,6 @@
 ---
 source_id: SANDBOX_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: on_demand
 depends_on: [_preloader.md, !user_context.md]
 tags: [sandbox, user-overrides, session-config, quick-rules]
@@ -9,7 +9,7 @@ last_updated: 2026-06-12
 last_verified: 2026-06-12
 ---
 
-# !sandbox.md — User Editable Sandbox (v8C.3-ALPHA)
+# !sandbox.md — User Editable Sandbox (v8C.3-BETA)
 
 > Перенос из v7C.2 `!sandbox_user.md`. Зона пользовательских переопределений на сессию.
 > Приоритет: переопределяет PRELOADER на текущую сессию. НЕ изменяет core.
@@ -119,7 +119,7 @@ PRELOADER (defaults)
 VERSION_METADATA
 ========================================
 id: SANDBOX_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: on_demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

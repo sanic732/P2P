@@ -2,7 +2,7 @@
 
 > 🇬🇧 English · 🇷🇺 [Русский](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 
-**Version:** 8L.3-ALPHA · **Token budget:** BOOT ~18K (старт) · Active ~25-40K · Full arsenal ~57K (/p2p-download)
+**Version:** 8L.3-BETA · **Token budget:** BOOT ~18K (старт) · Active ~25-40K · Full arsenal ~57K (/p2p-download)
 
 ## Who it's for
 Anyone who needs **token economy** or works in a context-limited chat. A great starting point for newcomers.

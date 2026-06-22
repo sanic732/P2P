@@ -1,6 +1,6 @@
 ---
 source_id: TECHNIQUES_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: docs
 last_updated: 2026-06-12
 scope: Описание всех новых техник интегрированных в P2P v8C.3 — что это, как работает, как активировать, как использовать. С указанием первоисточников (open source).

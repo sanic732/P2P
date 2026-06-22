@@ -1,6 +1,6 @@
 ---
 source_id: LIVE_CLAUDE_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: live
 depends_on: _live/MANIFEST.md
 last_updated: 2026-06-12
@@ -8,7 +8,7 @@ scope: Claude-specific live data — current Arena rankings, Claude-specific G-e
 tags: live, claude, arena-elo, extended-thinking, pricing, anthropic
 ---
 
-# P2P v8C.3-ALPHA — LIVE CLAUDE SPECS (_live/live_claude.md)
+# P2P v8C.3-BETA — LIVE CLAUDE SPECS (_live/live_claude.md)
 
 > Обновляй при каждом релизе Anthropic.
 > Источник: https://docs.anthropic.com / https://www.anthropic.com/news
@@ -140,7 +140,7 @@ MRCR at 1M:   78.3% (vs 32.2% у 4.7)
 VERSION_METADATA
 ========================================
 id: LIVE_CLAUDE_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

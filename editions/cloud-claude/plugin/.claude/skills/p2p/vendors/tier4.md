@@ -1,13 +1,13 @@
 ---
 source_id: TIER4_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: vendor
 last_updated: 2026-06-12
 scope: Tier 4 maximum quality — Grok Heavy, GPT-5.5. For T3-4 critical high-stakes tasks.
 tags: vendor, tier4, grok-heavy, gpt-5.5, maximum-quality, on-demand
 ---
 
-# P2P v8C.3-ALPHA — VENDORS TIER 4 (Maximum Quality)
+# P2P v8C.3-BETA — VENDORS TIER 4 (Maximum Quality)
 
 ## Grok Heavy 16 (xAI)
 API: `grok-4.3` + Heavy mode (SuperGrok Heavy $300/mo)
@@ -36,7 +36,7 @@ Fix G10: Keep under 272K input tokens
 VERSION_METADATA
 ========================================
 id: TIER4_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: vendor
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12
