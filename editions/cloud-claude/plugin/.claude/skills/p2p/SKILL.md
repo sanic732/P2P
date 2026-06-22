@@ -4,8 +4,8 @@ description: P2P v8C.3-ALPHA — main Skill entry point of the Prompt-to-Prompt 
 source_id: SKILL_V8C
 version: v8C.3-ALPHA
 module_type: skill
-last_updated: 2026-06-12
-scope: P2P v8C.3-ALPHA Claude Edition skill manifest. Entry point for Claude Code /p2p commands.
+last_updated: 2026-06-22
+scope: P2P v8C.3-ALPHA Claude Edition skill manifest + entry-point command. Slash /p2p and natural-language entry for the P2P system.
 tags: skill, manifest, entry-point, claude-code, v8c
 ---
 
@@ -53,6 +53,15 @@ P2P v8C.3-ALPHA — мета-промпт система для:
 3. Введи `СТАРТ` или `/p2p`
 
 Подробнее: `INSTALL.md` (5 методов установки).
+
+## Алгоритм запуска (`/p2p` / `СТАРТ`)
+
+> Запускается при вводе `/p2p`, `/start`, `СТАРТ`, `/menu` — главная точка входа.
+
+1. Определить среду (TRI_MODE_BRIDGE v3).
+2. Загрузить `p2p.config.md`, если есть.
+3. Показать главное меню (34 пункта).
+4. Вывести строку статуса: `[P2P v8C.3 | Среда: {СРЕДА} | Guardian: {ON/OFF}]`
 
 
 ========================================

@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# pack.sh — Упаковка P2P v8C.2 в .plugin файл для one-click импорта
+# pack.sh — Упаковка P2P v8C.3 в .plugin файл для one-click импорта
 # Usage: bash pack.sh [output_name]
-# Default output: p2p-v8c2.plugin
+# Default output: p2p-v8c3.plugin
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-OUTPUT_NAME="${1:-p2p-v8c2.plugin}"
+OUTPUT_NAME="${1:-p2p-v8c3.plugin}"
 OUTPUT_PATH="${SCRIPT_DIR}/../${OUTPUT_NAME}"
 
 echo "═══════════════════════════════════════════════════════════"
-echo "  P2P v8C.2 PACKAGING SCRIPT"
+echo "  P2P v8C.3 PACKAGING SCRIPT"
 echo "═══════════════════════════════════════════════════════════"
 echo "  Source:  ${SCRIPT_DIR}"
 echo "  Output:  ${OUTPUT_PATH}"
