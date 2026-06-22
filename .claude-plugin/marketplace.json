@@ -12,7 +12,7 @@
       "source": "./editions/cloud-claude/plugin",
       "description": "P2P v8C.3-ALPHA Claude Edition — PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 11 commands, XML-native, SCOPE.HELM",
       "tags": ["latest", "alpha", "claude-native"],
-      "version": "8.3.1"
+      "version": "8.3.2"
     },
     {
       "name": "p2p-v8l3",
