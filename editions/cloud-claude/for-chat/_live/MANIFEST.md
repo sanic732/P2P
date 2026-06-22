@@ -1,15 +1,15 @@
 ---
 source_id: MANIFEST_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: live
 depends_on: none
 last_updated: 2026-06-12
 live_specs_ref: vendors/live_specs_20260617.md
-scope: P2P v8C.3-BETA live manifest — deadlines, deprecation flags, daily refresh checklist, v8C.3 module status. Always loaded as part of BASE set.
+scope: P2P v8C.3-ALPHA live manifest — deadlines, deprecation flags, daily refresh checklist, v8C.3 module status. Always loaded as part of BASE set.
 tags: manifest, deadlines, deprecation, live, v8c, v8c3
 ---
 
-# P2P v8C.3-BETA — LIVE MANIFEST (_live/MANIFEST.md)
+# P2P v8C.3-ALPHA — LIVE MANIFEST (_live/MANIFEST.md)
 
 > Обновляй этот файл при каждом обновлении live specs.
 > Last updated: 2026-06-12
@@ -34,7 +34,7 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 
 ---
 
-## АКТИВНЫЕ МОДЕЛИ (v8C.3-BETA — June 2026)
+## АКТИВНЫЕ МОДЕЛИ (v8C.3-ALPHA — June 2026)
 
 ### Claude (Primary for v8C.3)
 | Model | API String | Status |
@@ -77,10 +77,10 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 
 | Файл | Тип | Частота обновления | Статус |
 |------|-----|--------------------|--------|
-| MANIFEST.md | Live | При дедлайнах | ✅ v8C.3-BETA |
+| MANIFEST.md | Live | При дедлайнах | ✅ v8C.3-ALPHA |
 | live_core.md | Live | Ежедневно | ✅ |
 | live_claude.md | Live | При обновлениях Claude | ✅ |
-| live_vendors.md | Live | При обновлениях моделей | ✅ v8C.3-BETA |
+| live_vendors.md | Live | При обновлениях моделей | ✅ v8C.3-ALPHA |
 | vendors/live_specs_20260617.md | OVERRIDE | При выходе новой версии | ✅ Loaded (v8.5) |
 
 ## v8C.3 MODULES STATUS
@@ -103,7 +103,7 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 VERSION_METADATA
 ========================================
 id: MANIFEST_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-17

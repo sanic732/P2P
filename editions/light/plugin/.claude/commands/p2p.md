@@ -1,6 +1,6 @@
 ---
 source_id: CMD_P2P_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 module_type: command
 last_updated: 2026-06-18
 scope: /p2p — main entry point. Show menu, detect environment, initialize session.
@@ -25,7 +25,7 @@ scope: /p2p — main entry point. Show menu, detect environment, initialize sess
 VERSION_METADATA
 ========================================
 id: CMD_P2P_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18

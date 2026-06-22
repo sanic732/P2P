@@ -1,6 +1,6 @@
 ---
 source_id: AGENT_IRIS_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 module_type: agent
 last_updated: 2026-06-18
 scope: IRIS sub-agent — problem space cartographer, research specialist, unknown discovery.
@@ -58,7 +58,7 @@ MUST NOT: Игнорировать крайние случаи и edge condition
 VERSION_METADATA
 ========================================
 id: AGENT_IRIS_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18

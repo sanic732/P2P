@@ -1,14 +1,14 @@
 ---
 source_id: MANIFEST_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: live
 depends_on: none
 last_updated: 2026-06-12
-scope: P2P v8C.3-BETA live manifest — deadlines, deprecation flags, daily refresh checklist. Always loaded as part of BASE set.
+scope: P2P v8C.3-ALPHA live manifest — deadlines, deprecation flags, daily refresh checklist. Always loaded as part of BASE set.
 tags: manifest, deadlines, deprecation, live, v8c
 ---
 
-# P2P v8C.3-BETA — LIVE MANIFEST (_live/MANIFEST.md)
+# P2P v8C.3-ALPHA — LIVE MANIFEST (_live/MANIFEST.md)
 
 > Update this file on every live specs update.
 > Last updated: 2026-06-17 | Live specs: vendors/live_specs_20260617.md
@@ -32,7 +32,7 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 
 ---
 
-## ACTIVE MODELS (v8C.3-BETA — June 2026)
+## ACTIVE MODELS (v8C.3-ALPHA — June 2026)
 
 ### Claude (Primary for v8C.3)
 | Model | API String | Status |
@@ -82,7 +82,7 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 VERSION_METADATA
 ========================================
 id: MANIFEST_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

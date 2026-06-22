@@ -1,4 +1,4 @@
-# 🧬 P2P v8C.3-BETA — SYSTEM ARCHITECTURE MAP
+# 🧬 P2P v8C.3-ALPHA — SYSTEM ARCHITECTURE MAP
 # ==============================================================================
 # VISUALIZATION OF LOGIC FLOW, FILE DEPENDENCIES & MODULE ACTIVATION
 # PLATFORM: Claude Opus 4.8 (primary) / Sonnet 4.6 (default)
@@ -180,7 +180,7 @@
    │
 2. [SIR SCANNER]: Intent=BUILD, T4, Math → рекомендует QUORUM + reasoning
    │
-3. [CONFLICT CHECK]: DEEP_THINK_VALUE_GATE (v8C.3-BETA) vs MCTS_REASONING (v8C.3)
+3. [CONFLICT CHECK]: DEEP_THINK_VALUE_GATE (v8C.3-ALPHA) vs MCTS_REASONING (v8C.3)
    │
 4. [CONFLICT_RESOLVER]:
    ╔═══════════════════════════════╗
