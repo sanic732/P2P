@@ -695,7 +695,7 @@ A: 3-вопросный gate перед включением Extended Thinking �
 A: README статичный. Teacher — интерактивный: спрашивает уровень, даёт упражнения, проверяет понимание, сохраняет прогресс.
 
 ### Q21. Что делать если /p2p-teacher не запускается?
-A: 1) Проверь что plugin установлен 2) `ls .claude/commands/p2p-teacher.md` 3) Перезапусти Claude Code/Cowork.
+A: 1) Проверь что plugin установлен 2) `ls .claude/skills/p2p-teacher/SKILL.md` 3) Перезапусти Claude Code/Cowork.
 
 ### Q22. Можно ли пройти teacher на английском?
 A: Да: `/p2p-teacher [LANG=en]`. Curriculum переключится. Принципы те же.
