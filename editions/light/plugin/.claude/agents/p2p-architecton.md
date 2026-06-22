@@ -1,6 +1,6 @@
 ---
 source_id: AGENT_ARCHITECTON_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 module_type: agent
 last_updated: 2026-06-18
 scope: ARCHITECTON sub-agent — senior integrator, holistic view, conflict resolver.
@@ -50,7 +50,7 @@ MUST NOT: Игнорировать CRITICAL замечания ANON
 VERSION_METADATA
 ========================================
 id: AGENT_ARCHITECTON_V8L
-version: v8L.3-ALPHA
+version: v8L.3-BETA
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18

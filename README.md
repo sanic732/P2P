@@ -2,7 +2,7 @@
 
 > 🇬🇧 **English** · 🇷🇺 [Русский](README.ru.md)
 
-[![Version](https://img.shields.io/badge/version-v8.3--ALPHA-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-ALPHA-red)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
+[![Version](https://img.shields.io/badge/version-v8.3--BETA-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-BETA-red)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
 
 **A meta-prompt that writes prompts — and gets the job done.** Stream of consciousness in → a polished, model-specific prompt out. The project's goal: **eliminate classical prompt engineering for the everyday user.**
 

@@ -1,13 +1,13 @@
 ---
 source_id: INSTALL_GUIDE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: docs
 last_updated: 2026-06-12
-scope: Установка P2P v8C.3-ALPHA и переход с v8C.2. Не содержит информации о переходе с более ранних версий.
+scope: Установка P2P v8C.3-BETA и переход с v8C.2. Не содержит информации о переходе с более ранних версий.
 tags: docs, install, upgrade, v8c3
 ---
 
-# P2P v8C.3-ALPHA — РУКОВОДСТВО ПО УСТАНОВКЕ
+# P2P v8C.3-BETA — РУКОВОДСТВО ПО УСТАНОВКЕ
 
 > Для пользователей v8C.2 — здесь только то что изменилось.  
 > Полная карта файлов → `docs/MODULE_REFERENCE.md`  
@@ -71,7 +71,7 @@ VERSION_COMPAT:
 ```text
 ██████╗ ██████╗ ██████╗
 ...
-P2P v8C.3-ALPHA | LiveSpecs: 2026-06-09
+P2P v8C.3-BETA | LiveSpecs: 2026-06-09
 ```
 И меню с пунктами [1-34] + активными v8C.3 пунктами.
 
@@ -158,7 +158,7 @@ A: Скачать новый `live_specs_YYYYMMDD.md`, обновить ссыл
 
 | Дата | Изменение |
 |------|----------|
-| 2026-06-12 | ALPHA релиз v8C.3 |
+| 2026-06-12 | BETA релиз v8C.3 |
 | 2026-06-12 | +6 новых ON-DEMAND модулей (v8C.3 tier) |
 | 2026-06-12 | +VERSION_COMPAT + CONFLICT_RESOLVER в _preloader.md |
 | 2026-06-12 | +ASCII логотип P2P в !!core_v8C.md |

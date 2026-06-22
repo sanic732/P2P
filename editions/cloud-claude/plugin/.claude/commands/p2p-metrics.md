@@ -1,6 +1,6 @@
 ---
 source_id: CMD_METRICS_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p-metrics — show session metrics dashboard and routing memory.
@@ -23,7 +23,7 @@ scope: /p2p-metrics — show session metrics dashboard and routing memory.
 VERSION_METADATA
 ========================================
 id: CMD_METRICS_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

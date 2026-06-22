@@ -1,6 +1,6 @@
 ---
 source_id: MODULE_REFERENCE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: docs
 last_updated: 2026-06-12
 scope: Справочник всех файлов P2P v8C.3 — назначение, токен-бюджет, зависимости, когда загружать.
@@ -181,7 +181,7 @@ BASE ≈ 14,200
 ██╔═══╝ ██╔═══╝ ██╔═══╝
 ██║     ███████╗██║
 ╚═╝     ╚══════╝╚═╝
-P2P v8C.3-ALPHA | LiveSpecs: 2026-06-09
+P2P v8C.3-BETA | LiveSpecs: 2026-06-09
 ```
 
 Логотип хранится в `!!core_v8C.md → STARTUP_LOGO`. Не потребляет дополнительных токенов (уже в core).
@@ -195,7 +195,7 @@ P2P v8C.3-ALPHA | LiveSpecs: 2026-06-09
 VERSION_METADATA
 ========================================
 id: MODULE_REFERENCE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: docs
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

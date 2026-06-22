@@ -1,6 +1,6 @@
 ---
 source_id: OPTIMIZATION_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: on-demand
 triggers: "optim|оптимиз|APO|OPRO|автоматическ|улучши промпт|improve prompt|auto-tune|prompt evolution"
 depends_on: !!core_v8C.md
@@ -134,7 +134,7 @@ P2P запрашивает:
 
 ## CONFLICT_RESOLVER DECLARATIONS
 
-**Конфликт:** `!optimization.md` (v8C.3) vs `Contract Builder [2]` (v8C.3-ALPHA)
+**Конфликт:** `!optimization.md` (v8C.3) vs `Contract Builder [2]` (v8C.3-BETA)
 
 | | v8C.2 Contract Builder | v8C.3 Optimization |
 |--|------------------------|-------------------|
@@ -153,7 +153,7 @@ P2P запрашивает:
 VERSION_METADATA
 ========================================
 id: OPTIMIZATION_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

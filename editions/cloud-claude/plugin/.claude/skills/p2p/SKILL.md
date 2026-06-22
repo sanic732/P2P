@@ -1,24 +1,24 @@
 ---
 name: p2p
-description: P2P v8C.3-ALPHA — main Skill entry point of the Prompt-to-Prompt meta-prompt system for Claude. Use when the user types /p2p, /start, старт, or /menu, or asks to build/generate/optimize a prompt, run a QUORUM multi-agent review, SCOPE.HELM scoping, or any /p2p-* workflow. Entry point and main menu for the P2P system. Not for the interactive course (use p2p-teacher).
+description: P2P v8C.3-BETA — main Skill entry point of the Prompt-to-Prompt meta-prompt system for Claude. Use when the user types /p2p, /start, старт, or /menu, or asks to build/generate/optimize a prompt, run a QUORUM multi-agent review, SCOPE.HELM scoping, or any /p2p-* workflow. Entry point and main menu for the P2P system. Not for the interactive course (use p2p-teacher).
 source_id: SKILL_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: skill
 last_updated: 2026-06-22
-scope: P2P v8C.3-ALPHA Claude Edition skill manifest + entry-point command. Slash /p2p and natural-language entry for the P2P system.
+scope: P2P v8C.3-BETA Claude Edition skill manifest + entry-point command. Slash /p2p and natural-language entry for the P2P system.
 tags: skill, manifest, entry-point, claude-code, v8c
 ---
 
-# P2P v8C.3-ALPHA — SKILL MANIFEST
+# P2P v8C.3-BETA — SKILL MANIFEST
 
-**Skill:** P2P v8C.3-ALPHA Claude Edition
-**Version:** v8C.3-ALPHA
+**Skill:** P2P v8C.3-BETA Claude Edition
+**Version:** v8C.3-BETA
 **Platform:** Claude (Fable 5 / Opus 4.8 / Sonnet 4.6)
 **Author:** P2P Project
 
 ## Что умеет этот skill
 
-P2P v8C.3-ALPHA — мета-промпт система для:
+P2P v8C.3-BETA — мета-промпт система для:
 - Генерации оптимизированных промптов под любую задачу
 - Оркестрации 8 специализированных агентов (QUORUM)
 - Управления большими задачами (SCOPE.HELM)
@@ -68,7 +68,7 @@ P2P v8C.3-ALPHA — мета-промпт система для:
 VERSION_METADATA
 ========================================
 id: SKILL_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: skill
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

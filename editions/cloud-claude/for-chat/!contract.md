@@ -1,6 +1,6 @@
 ---
 source_id: CONTRACT_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
 last_updated: 2026-06-12
@@ -10,7 +10,7 @@ tags: contract, builder, translation-layer, xml, 9-step, on-demand
 triggers: "contract", "промпт под модель", "translation layer", "Contract Builder", "[2]", "[5]"
 ---
 
-# P2P v8C.3-ALPHA — CONTRACT BUILDER (!contract.md)
+# P2P v8C.3-BETA — CONTRACT BUILDER (!contract.md)
 
 ---
 
@@ -480,7 +480,7 @@ Format appears TWICE — survives both attention decay patterns.
 VERSION_METADATA
 ========================================
 id: CONTRACT_V8C
-version: v8C.3-ALPHA
+version: v8C.3-BETA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12
