@@ -1,6 +1,6 @@
 ---
 source_id: CMD_HOST_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 module_type: command
 last_updated: 2026-06-18
 scope: /host — show or switch the host LLM model (universal edition, like 8N.3).
@@ -38,7 +38,7 @@ v8L.3 — УНИВЕРСАЛЬНАЯ редакция (как 8N.3): работ�
 VERSION_METADATA
 ========================================
 id: CMD_HOST_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 type: command
 edition: UNIVERSAL
 last_verified: 2026-06-18

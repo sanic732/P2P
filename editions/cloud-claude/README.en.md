@@ -2,7 +2,7 @@
 
 > 🇬🇧 English · 🇷🇺 [Русский](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 
-**Version:** 8C.3-BETA · **Token budget:** MINIMAL ~7K · LIGHT ~16K · MEDIUM ~30K · FULL ~59K
+**Version:** 8C.3-ALPHA · **Token budget:** MINIMAL ~7K · LIGHT ~16K · MEDIUM ~30K · FULL ~59K
 
 ## Who it's for
 Anyone working in **Claude** (Opus 4.8 / Sonnet 4.6 / Fable 5): Claude Code, Cowork, or Claude.ai Projects.

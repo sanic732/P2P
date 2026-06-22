@@ -1,6 +1,6 @@
 ---
 source_id: PRELOADER_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: base
 depends_on: none
 last_updated: 2026-06-12
@@ -8,7 +8,7 @@ scope: P2P v8C.3 entry point — USER_CONTEXT detection, PROJECT_CARD, TRI_MODE_
 tags: preloader, user-context, project-card, tri-mode, env-detection, always-loaded
 ---
 
-# P2P v8C.3-BETA — PRELOADER (_preloader.md)
+# P2P v8C.3-ALPHA — PRELOADER (_preloader.md)
 
 > Этот файл загружается **первым**. Он задаёт контекст для всей сессии.
 
@@ -168,9 +168,9 @@ IF MODULE_X = false AND v8C3 = off:  Не загружать, пункт мен�
   optimization.md ← APO, OPRO, автооптимизация            [MODULE_OPTIMIZATION]
   # Грузить ТОЛЬКО если MODULE_X = true/or или v8C3 = on
 
-ПОРЯДОК ЗАГРУЗКИ (ART — BETA: грузится ПО УМОЛЧАНИЮ для арт-витрины на старте):
+ПОРЯДОК ЗАГРУЗКИ (ART — ALPHA: грузится ПО УМОЛЧАНИЮ для арт-витрины на старте):
   art.md          ← ASCII-баннеры режимов (старт-витрина + баннер при смене режима)
-  # BETA: загружен по умолчанию — тестеры видят арт-витрину на /start.
+  # ALPHA: загружен по умолчанию — тестеры видят арт-витрину на /start.
   # Для минимума токенов в проде — убрать из загрузки (будет текстовый fallback).
 ```
 
@@ -199,7 +199,7 @@ IF MODULE_X = false AND v8C3 = off:  Не загружать, пункт мен�
 VERSION_METADATA
 ========================================
 id: PRELOADER_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: base
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

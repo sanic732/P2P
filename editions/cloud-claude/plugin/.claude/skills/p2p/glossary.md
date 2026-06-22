@@ -1,13 +1,13 @@
 ---
 source_id: GLOSSARY_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: meta
 last_updated: 2026-06-12
 scope: P2P v8C.3 glossary — all terms, acronyms, G-errors quick reference, agent names.
 tags: glossary, terms, definitions, g-errors-reference, v8c
 ---
 
-# P2P v8C.3-BETA — ГЛОССАРИЙ (_glossary.md)
+# P2P v8C.3-ALPHA — ГЛОССАРИЙ (_glossary.md)
 
 ---
 
@@ -126,7 +126,7 @@ tags: glossary, terms, definitions, g-errors-reference, v8c
 VERSION_METADATA
 ========================================
 id: GLOSSARY_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: meta
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

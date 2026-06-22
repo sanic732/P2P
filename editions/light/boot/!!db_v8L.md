@@ -1,6 +1,6 @@
 ---
 id: db_v8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 type: KNOWLEDGE_BASE
 priority: CRITICAL
 load_order: 4

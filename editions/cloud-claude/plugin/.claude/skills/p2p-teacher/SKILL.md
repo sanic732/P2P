@@ -2,7 +2,7 @@
 name: p2p-teacher
 description: Interactive teaching mode for P2P v8C.3 meta-prompt system. Use when the user wants to learn P2P, asks "how do I use P2P", "explain P2P to me", "научи меня P2P", "как пользоваться P2P", "не понимаю как работает", "как использовать систему", "что умеет P2P", "научи использовать", or any natural-language request to onboard, train, or get guided through the P2P system. Triggers a 5-level curriculum (Quickstart → Commands → Agents → QUORUM → SCOPE.HELM) with exercises, sandbox tasks, and Q&A mode. Not for generating prompts (use /p2p) or for QUORUM analysis (use /p2p-quorum).
 source_id: SKILL_P2P_TEACHER
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: skill
 last_updated: 2026-06-22
 tags: skill, teacher, onboarding, curriculum, interactive, learning
@@ -11,7 +11,7 @@ tags: skill, teacher, onboarding, curriculum, interactive, learning
 # P2P TEACHER SKILL
 
 **Skill:** P2P v8C.3 Interactive Teacher
-**Version:** v8C.3-BETA
+**Version:** v8C.3-ALPHA
 **Platform:** Claude (Opus 4.7 / Sonnet 4.6)
 **Entry point:** `/p2p-teacher` command
 **Knowledge base:** `!teacher.md` (ON-DEMAND module)
@@ -226,7 +226,7 @@ P2P: HELIOS — 8-й агент QUORUM, синтезатор.
 VERSION_METADATA
 ========================================
 id: SKILL_P2P_TEACHER
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: skill
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

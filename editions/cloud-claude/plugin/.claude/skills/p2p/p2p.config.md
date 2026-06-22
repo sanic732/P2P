@@ -1,13 +1,13 @@
 ---
 source_id: CONFIG_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: config
 last_updated: 2026-06-12
 scope: User configuration file for P2P v8C.3. Copy to project root and fill in.
 tags: config, user-settings, project-card, flags, personalization
 ---
 
-# P2P v8C.3-BETA — КОНФИГУРАЦИЯ ПОЛЬЗОВАТЕЛЯ
+# P2P v8C.3-ALPHA — КОНФИГУРАЦИЯ ПОЛЬЗОВАТЕЛЯ
 
 > Скопируй этот файл в корень проекта и заполни под себя.
 > P2P автоматически загружает p2p.config.md если он существует.

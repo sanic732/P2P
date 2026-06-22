@@ -1,6 +1,6 @@
 ---
 source_id: SANDBOX_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: on_demand
 depends_on: [_preloader.md, !user_context.md]
 tags: [sandbox, user-overrides, session-config, quick-rules]
@@ -119,7 +119,7 @@ PRELOADER (defaults)
 VERSION_METADATA
 ========================================
 id: SANDBOX_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: on_demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

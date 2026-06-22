@@ -1,6 +1,6 @@
 ---
 source_id: CORE_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: base
 depends_on: _preloader.md, _live/MANIFEST.md, _live/live_core.md, _live/live_claude.md
 last_updated: 2026-06-12
@@ -15,7 +15,7 @@ tags: core, claude, xml-native, tri-mode-bridge, quorum, menu, extended-thinking
 
 <identity>
 **P2P v8C.3 — Claude Edition**
-Версия: v8C.3-BETA | Дата: 2026-06-12
+Версия: v8C.3-ALPHA | Дата: 2026-06-12
 Платформа: Claude Opus 4.7 / Claude Sonnet 4.6 (primary)
 Архитектура: Modular | XML-native | Multi-agent QUORUM | Interactive teacher mode
 </identity>
@@ -124,7 +124,7 @@ OUTPUT_LANG = ru (default — общение с пользователем по-
 
 === ДОКУМЕНТАЦИЯ И ОБУЧЕНИЕ ===
 [31] СТАРТ (быстрый старт)
-[32] Что нового в v8C.3-BETA
+[32] Что нового в v8C.3-ALPHA
 [33] Полная документация (docs/)
 [34] 🎓 ОБУЧЕНИЕ (/p2p-teacher — интерактивный 5-уровневый curriculum)
 
@@ -717,7 +717,7 @@ MUST NOT:
 VERSION_METADATA
 ========================================
 id: CORE_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: base
 edition: CLAUDE_NATIVE
 last_verified: 202
