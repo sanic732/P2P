@@ -13,28 +13,15 @@ last_updated: 2026-06-22
 tags: skill, quorum, multi-agent, analysis, v8c
 ---
 
-# P2P QUORUM
+# P2P QUORUM (skill wrapper)
 
-Точка входа протокола QUORUM (slash `/p2p-quorum` и авто-вызов по контексту).
-Единый источник истины логики — `skills/p2p/core.md` + `skills/p2p/agents.md`; здесь её НЕ переписывать.
+Запусти протокол QUORUM как он определён в основном скилле P2P. Единый источник истины —
+логику здесь НЕ переписывать:
 
-## Использование
-
-```
-/p2p-quorum [задача]              → FULL QUORUM (8 агентов)
-/p2p-quorum fast [задача]         → FAST_TRIO
-/p2p-quorum code [задача]         → CODE_QUAD
-/p2p-quorum security [задача]     → SECURITY_QUAD
-/p2p-quorum arch [задача]         → ARCH_PENTA
-```
-
-## Алгоритм
-
-1. Потребовать **BUDGET DECLARATION** (объявление бюджета токенов).
-2. Выбрать паттерн (FULL или sub-QUORUM из таблицы выше).
-3. Загрузить `skills/p2p/core.md` (раздел QUORUM / TRI_MODE) и `skills/p2p/agents.md`
+1. Загрузи `skills/p2p/core.md` (раздел QUORUM / TRI_MODE) и `skills/p2p/agents.md`
    (профили 8 агентов и sub-QUORUM паттерны).
-4. Запустить раунды последовательно: каждый релевантный агент даёт свой разбор;
-   VECTOR/ANON — вето/безопасность по правилам из db.
-5. HELIOS — финальный синтез.
-6. Соблюдать disambiguation из db (RAPTOR/LongRAG ≠ GoT, SC ≠ USC, MCTS ≠ ToT).
+2. Выполни QUORUM по задаче пользователя: каждый релевантный агент даёт свой разбор,
+   HELIOS делает синтез; VECTOR/ANON — вето/безопасность по правилам из db.
+3. Соблюдай disambiguation из db (RAPTOR/LongRAG ≠ GoT, SC ≠ USC, MCTS ≠ ToT).
+
+Поведение должно совпадать с командой `.claude/commands/p2p-quorum.md`.
