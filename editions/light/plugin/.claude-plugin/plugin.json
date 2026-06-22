@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "p2p-v8l3",
   "displayName": "P2P v8L.3 — Lite/Live Hybrid (Universal)",
-  "version": "8.3.2-L",
+  "version": "8.3.1-L",
   "description": "Universal (any-host) Lite/Live Hybrid meta-prompt system. Pick host on start: claude|gemini|gpt|grok|deepseek|qwen|kimi|glm. 4 local BOOT files (~18K idle) + 11 lazy Gist chunks fetched on-trigger via a dependency-resolver with sha256 integrity. FETCH-capability gate with honest LITE_ONLY fallback. 8 QUORUM agents (native sub-agents on Claude/Grok, simulated via CORE_PLUS chunk elsewhere). XML emitted only when host=claude.",
   "author": {
     "name": "P2P Project",
