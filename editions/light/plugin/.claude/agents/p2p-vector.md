@@ -1,6 +1,6 @@
 ---
 source_id: AGENT_VECTOR_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 module_type: agent
 last_updated: 2026-06-18
 scope: VECTOR sub-agent — optimization specialist, algorithm expert, performance analyst.
@@ -50,7 +50,7 @@ MUST NOT: Игнорировать readability ради micro-optimizations
 VERSION_METADATA
 ========================================
 id: AGENT_VECTOR_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18

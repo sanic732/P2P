@@ -1,6 +1,6 @@
 ---
 source_id: AGENTS_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
 last_updated: 2026-05-03
@@ -10,7 +10,7 @@ tags: agents, quorum, iris, tecton, axiom, vector, datos, anon, architecton, hel
 triggers: "агент", "QUORUM", "IRIS", "TECTON", "AXIOM", "VECTOR", "DATOS", "ANON", "ARCHITECTON", "HELIOS", "консилиум"
 ---
 
-# P2P v8C.3-BETA — АГЕНТЫ (!agents.md)
+# P2P v8C.3-ALPHA — АГЕНТЫ (!agents.md)
 
 ---
 
@@ -303,7 +303,7 @@ WEIGHT DISTRIBUTION by task_type (default; tunable via `routing_memory`):
 VERSION_METADATA
 ========================================
 id: AGENTS_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

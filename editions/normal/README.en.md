@@ -2,7 +2,7 @@
 
 > 🇬🇧 English · 🇷🇺 [Русский](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 
-**Version:** 8N.3-BETA · **Token budget:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
+**Version:** 8N.3-ALPHA · **Token budget:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
 
 ## Who it's for
 Anyone whose model isn't 'native' (GPT, DeepSeek, Qwen, Kimi, GLM, Gemini…). The easiest to launch.

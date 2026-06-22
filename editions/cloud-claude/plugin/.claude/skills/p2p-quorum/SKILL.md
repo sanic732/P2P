@@ -7,7 +7,7 @@ description: >-
   "мульти-агентный анализ", "consensus", or wants several expert viewpoints plus
   synthesis on a prompt / design / problem. Not for plain prompt generation (use p2p).
 source_id: SKILL_P2P_QUORUM
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: skill
 last_updated: 2026-06-22
 tags: skill, quorum, multi-agent, analysis, v8c
