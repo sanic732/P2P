@@ -13,7 +13,7 @@
       "source": ".",
       "description": "P2P v8C.3 Claude Edition — full meta-prompt system with interactive teacher mode",
       "tags": ["latest", "stable", "claude-native"],
-      "version": "8.3.2"
+      "version": "8.3.2-C"
     }
   ]
 }
