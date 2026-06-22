@@ -1,6 +1,6 @@
 ---
 source_id: AGENT_HELIOS_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 module_type: agent
 last_updated: 2026-06-18
 scope: HELIOS sub-agent — final synthesizer, executive presenter, actionable output generator.
@@ -60,7 +60,7 @@ MUST NOT: Оставлять пользователя без следующег�
 VERSION_METADATA
 ========================================
 id: AGENT_HELIOS_V8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-18

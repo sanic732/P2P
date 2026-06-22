@@ -1,24 +1,24 @@
 ---
 source_id: CHANGELOG_V8C3
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: docs
 last_updated: 2026-06-12
-scope: Full changelog for v8C.3-BETA release. Covers only v8C.2 → v8C.3 changes. For earlier history see v8C.2 docs.
-tags: docs, changelog, v8c3, beta
+scope: Full changelog for v8C.3-ALPHA release. Covers only v8C.2 → v8C.3 changes. For earlier history see v8C.2 docs.
+tags: docs, changelog, v8c3, alpha
 ---
 
-# P2P v8C.3-BETA — CHANGELOG
+# P2P v8C.3-ALPHA — CHANGELOG
 
 > v8C.2 → v8C.3 changes only.  
 > For v8C.1 → v8C.2 history see the v8C.2 release docs.
 
 ---
 
-## Release: v8C.3-BETA (2026-06-12)
+## Release: v8C.3-ALPHA (2026-06-12)
 
 ### Core architecture
 
-| Change | v8C.2 | v8C.3-BETA |
+| Change | v8C.2 | v8C.3-ALPHA |
 |--------|-------|-------------|
 | Primary model | Opus 4.8 | Opus 4.8 + **Fable 5** (Arena #1 Agent) |
 | New modules | 0 | **6** (!rag, !reasoning, !routing, !compression, !security, !optimization) |
@@ -107,7 +107,7 @@ VERSION_COMPAT:
 | `!!core_v8C.md` | + ASCII startup logo, + dynamic menu [35-40], + CONFLICT_RESOLVER rules |
 | `_live/MANIFEST.md` | + Claude Fable 5, + Nano Banana deadline, updated live_specs_ref |
 | `_live/live_vendors.md` | + Claude Fable 5, updated routing guide and fallback chain |
-| All *.md | Version bumped to v8C.3-BETA, dates updated to 2026-06-12 |
+| All *.md | Version bumped to v8C.3-ALPHA, dates updated to 2026-06-12 |
 | All *.md | Content converted to English (comments bilingual RU/EN) |
 
 ---
@@ -125,4 +125,4 @@ VERSION_COMPAT:
 
 ---
 
-<!-- SOURCE_META: type=docs | changelog=v8C3 | from=v8C2 | to=v8C3-BETA -->
+<!-- SOURCE_META: type=docs | changelog=v8C3 | from=v8C2 | to=v8C3-ALPHA -->

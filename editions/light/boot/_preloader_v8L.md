@@ -1,6 +1,6 @@
 ---
 id: preloader_v8L
-version: v8L.3-BETA
+version: v8L.3-ALPHA
 type: PRELOADER
 priority: CRITICAL
 load_order: 1
@@ -198,7 +198,7 @@ ON_LOAD:
   → Предложить заполнить, НЕ блокировать; разумные дефолты.
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8L.3-BETA · Lite/Live Hybrid · Preloader (UNIVERSAL, как 8N.3)
+  SYSTEM:      P2P v8L.3-ALPHA · Lite/Live Hybrid · Preloader (UNIVERSAL, как 8N.3)
   ROLE:        Host selection, FETCH gate, LOAD_MODE, HOST_CONFIG, PROJECT_CARD, FLAGS, VERSION_COMPAT
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm (выбор на старте, /host)
   COMPATIBLE:  _index_v8L, !!core_v8L, !!db_v8L

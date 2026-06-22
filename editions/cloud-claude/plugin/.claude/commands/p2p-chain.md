@@ -1,6 +1,6 @@
 ---
 source_id: CMD_CHAIN_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p-chain — run custom agent chain in specified order.
@@ -25,7 +25,7 @@ scope: /p2p-chain — run custom agent chain in specified order.
 VERSION_METADATA
 ========================================
 id: CMD_CHAIN_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

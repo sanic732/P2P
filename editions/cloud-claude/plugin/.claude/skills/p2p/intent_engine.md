@@ -1,6 +1,6 @@
 ---
 source_id: INTENT_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
 last_updated: 2026-05-03
@@ -225,7 +225,7 @@ Run before every prompt output. Fix silently; flag only if fix changes intent.
 VERSION_METADATA
 ========================================
 id: INTENT_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-05-03

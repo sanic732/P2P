@@ -1,6 +1,6 @@
 ---
 source_id: TEMPLATES_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: on-demand
 depends_on: !!core_v8C.md, !!db_v8C.md
 last_updated: 2026-05-03
@@ -10,7 +10,7 @@ tags: templates, library, template-a, template-m, karpathy-mode, variants, on-de
 triggers: "шаблон", "template", "Template Library", "[4]", "Template A", "Template M", "Karpathy"
 ---
 
-# P2P v8C.3-BETA — TEMPLATE LIBRARY EXTENDED (!templates.md)
+# P2P v8C.3-ALPHA — TEMPLATE LIBRARY EXTENDED (!templates.md)
 
 > Базовые шаблоны A–M — в !!db_v8C.md.
 > Этот модуль содержит расширенные версии и доменные варианты.
@@ -451,7 +451,7 @@ Input: [Output of Step 1, described as data block]
 VERSION_METADATA
 ========================================
 id: TEMPLATES_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

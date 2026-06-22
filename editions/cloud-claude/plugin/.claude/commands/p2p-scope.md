@@ -1,6 +1,6 @@
 ---
 source_id: CMD_SCOPE_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p-scope — activate SCOPE.HELM for large multi-step tasks.
@@ -28,7 +28,7 @@ scope: /p2p-scope — activate SCOPE.HELM for large multi-step tasks.
 VERSION_METADATA
 ========================================
 id: CMD_SCOPE_V8C
-version: v8C.3-BETA
+version: v8C.3-ALPHA
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12
