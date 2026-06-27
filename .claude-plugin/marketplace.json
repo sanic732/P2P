@@ -1,9 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
-  "name": "p2p",
+  "name": "P2P-4PDA-edition",
   "displayName": "P2P Marketplace — 4PDA Edition",
   "description": "Official P2P meta-prompt system marketplace (Claude Native edition, mirror published for the 4PDA community)",
-  "owner": { "name": "sanic732", "email": "sanic732@protonmail.com" },
+  "owner": { "name": "sanic732" },
   "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
   "repository": { "type": "git", "url": "https://github.com/sanic732/P2P-4PDA-edition.git" },
   "plugins": [
