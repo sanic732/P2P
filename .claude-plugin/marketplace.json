@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
-  "name": "P2P-4PDA-edition",
+  "name": "P2P-PROMPT-TO-PROMPT",
   "displayName": "P2P Marketplace — 4PDA Edition",
   "description": "Official P2P meta-prompt system marketplace (Claude Native edition, mirror published for the 4PDA community)",
   "owner": { "name": "sanic732" },
@@ -12,14 +12,14 @@
       "source": "./editions/claude-native/plugin",
       "description": "P2P v8C.3-BETA Claude Native Edition — PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 11 commands, XML-native, SCOPE.HELM",
       "tags": ["latest", "beta", "claude-native"],
-      "version": "8.3.5-C"
+      "version": "8.3.5"
     },
     {
       "name": "p2p-v8l3",
       "source": "./editions/light/plugin",
       "description": "P2P v8L.3-BETA Lite/Live Edition — 4 BOOT files + lazy online fetch, universal host",
       "tags": ["lite", "live", "beta"],
-      "version": "8.3.5-L"
+      "version": "8.3.5"
     }
   ]
 }
