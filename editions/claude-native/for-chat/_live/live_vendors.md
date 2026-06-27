@@ -4,7 +4,7 @@ version: v8C.3
 module_type: live
 depends_on: _live/MANIFEST.md
 last_updated: 2026-06-12
-live_specs_ref: live_specs_20260617.md
+live_specs_ref: live_specs.md
 scope: All LLM vendor live specs for v8C.2 — API strings, costs, context windows, G-errors. Quick reference for Translation Layer and routing decisions.
 tags: live, vendors, api-strings, pricing, g-errors, routing
 ---
@@ -12,7 +12,7 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 # P2P v8C.3 — LIVE VENDOR SPECS (_live/live_vendors.md)
 
 > Single source of truth for all active LLMs. Update on new releases.  
-> Full live specs (June 2026): `vendors/live_specs_20260617.md` (PRIORITY: OVERRIDE)  
+> Full live specs (June 2026): `vendors/live_specs.md` (PRIORITY: OVERRIDE)  
 > Claude-specific data → live_claude.md
 
 ---
@@ -167,11 +167,11 @@ version: v8C.3
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12
-live_specs_ref: live_specs_20260617.md
+live_specs_ref: live_specs.md
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
 // ═══════════════════════════════════════════════════════
-// §V8.5 DELTA (2026-06-27 import — live_specs_20260617.md OVERRIDE governs on conflict)
+// §V8.5 DELTA (2026-06-27 import — live_specs.md OVERRIDE governs on conflict)
 // ═══════════════════════════════════════════════════════
 V85_DELTA:
   Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404 (no redirect).

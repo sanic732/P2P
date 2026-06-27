@@ -4,7 +4,7 @@ version: v8C.3
 module_type: live
 depends_on: none
 last_updated: 2026-06-12
-live_specs_ref: vendors/live_specs_20260617.md
+live_specs_ref: vendors/live_specs.md
 scope: P2P v8C.3 live manifest — deadlines, deprecation flags, daily refresh checklist, v8C.3 module status. Always loaded as part of BASE set.
 tags: manifest, deadlines, deprecation, live, v8c, v8c3
 ---
@@ -13,7 +13,7 @@ tags: manifest, deadlines, deprecation, live, v8c, v8c3
 
 > Обновляй этот файл при каждом обновлении live specs.
 > Last updated: 2026-06-12
-> Full live specs: `vendors/live_specs_20260617.md` (PRIORITY: OVERRIDE)
+> Full live specs: `vendors/live_specs.md` (PRIORITY: OVERRIDE)
 
 ---
 
@@ -81,7 +81,7 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 | live_core.md | Live | Ежедневно | ✅ |
 | live_claude.md | Live | При обновлениях Claude | ✅ |
 | live_vendors.md | Live | При обновлениях моделей | ✅ v8C.3 |
-| vendors/live_specs_20260617.md | OVERRIDE | При выходе новой версии | ✅ Loaded (v8.5) |
+| vendors/live_specs.md | OVERRIDE | При выходе новой версии | ✅ Loaded (v8.6.1) |
 
 ## v8C.3 MODULES STATUS
 

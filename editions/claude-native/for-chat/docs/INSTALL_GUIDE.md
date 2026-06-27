@@ -24,7 +24,7 @@ tags: docs, install, upgrade, v8c3
 | Меню | 34 пункта | **40 пунктов** (35-40 динамические) |
 | VERSION_COMPAT | нет | **есть** — управление v8C.2/v8C.3 логикой |
 | Логотип | нет | **ASCII логотип** при старте |
-| Live specs | live_specs_20260617.md | **live_specs_20260617.md** (14 вендоров) |
+| Live specs | live_specs.md | **live_specs.md** (14 вендоров) |
 | Документация | 1 файл | **5 файлов** в docs/ |
 
 ---
@@ -165,5 +165,5 @@ A: Скачать новый `live_specs_YYYYMMDD.md`, обновить ссыл
 | 2026-06-12 | +Динамическое меню [35-40] в !!core_v8C.md |
 | 2026-06-12 | +Claude Opus 4.8 как T4 PRIMARY в routing |
 | 2026-06-12 | +10 вендоров в live_vendors.md (Manus, MiniMax и др.) |
-| 2026-06-12 | +live_specs_20260617.md (PRIORITY:OVERRIDE, 14K токенов) |
+| 2026-06-12 | +live_specs.md (PRIORITY:OVERRIDE, 14K токенов) |
 | 2026-06-12 | +docs/ папка: MODULE_REFERENCE, MINDMAP, TECHNIQUES, INSTALL, CHANGELOG |

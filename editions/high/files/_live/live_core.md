@@ -11,7 +11,7 @@ last_verified: 2026-06-27
 // ═══════════════════════════════════════════════════════
 // P2P v8H.3 — LIVE CORE
 // Прайсинг, Arena benchmarks, маршрутизация с весами.
-// Источник истины: _live/live_specs_20260617.md (v8.5 OVERRIDE).
+// Источник истины: _live/live_specs.md (v8.6.1 OVERRIDE).
 // ═══════════════════════════════════════════════════════
 
 // ─────────────────────────────────────────────────────
@@ -186,5 +186,5 @@ CACHING:
 VERSION_METADATA:
   SYSTEM:      P2P v8H.3 Normal · Live Core
   ROLE:        Прайсинг, Arena ELO, routing matrix, context strategy, thinking budget, caching
-  SOURCE:      _live/live_specs_20260617.md (v8.5 OVERRIDE)
+  SOURCE:      _live/live_specs.md (v8.6.1 OVERRIDE)
   COMPATIBLE:  !!core_v8H.md | !!db_v8H.md | _live/live_vendors.md

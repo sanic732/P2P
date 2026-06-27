@@ -11,7 +11,7 @@ tags: manifest, deadlines, deprecation, live, v8c
 # P2P v8C.3 — LIVE MANIFEST (_live/MANIFEST.md)
 
 > Update this file on every live specs update.
-> Last updated: 2026-06-27 | Live specs: vendors/live_specs_20260617.md
+> Last updated: 2026-06-27 | Live specs: vendors/live_specs.md
 
 ---
 
@@ -89,7 +89,7 @@ last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
 // ═══════════════════════════════════════════════════════
-// [V8.5 OVERRIDE — 2026-06-27] источник истины: vendors/live_specs_20260617.md (перебивает при конфликте)
+// [V8.5 OVERRIDE — 2026-06-27] источник истины: vendors/live_specs.md (перебивает при конфликте)
 // ═══════════════════════════════════════════════════════
 V85_OVERRIDE:
   Claude: PRIMARY=opus-4-8 ($5/$25, 1M ctx, out 128K/300K batch, effort high default low|med|high|xhigh|max).

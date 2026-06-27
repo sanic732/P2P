@@ -10,7 +10,7 @@ tags: grok, heavy-16, x-firehose, vendor, v8h3
 
 // ═══════════════════════════════════════════════════════
 // P2P v8H.3 — VENDOR: GROK (primary для grok host)
-// OVERRIDE: live_specs_20260617 > live_vendors > этот файл.
+// OVERRIDE: live_specs > live_vendors > этот файл.
 // ═══════════════════════════════════════════════════════
 
 GROK_4_3:

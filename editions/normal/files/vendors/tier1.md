@@ -13,7 +13,7 @@ last_verified: 2026-06-27
 // Flagship models: Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7 (legacy),
 //                  GPT-5.5, Gemini 3.1 Pro
 // ═══════════════════════════════════════════════════════
-// OVERRIDE: live_specs_20260617 > live_vendors.md > этот файл при конфликтах.
+// OVERRIDE: live_specs > live_vendors.md > этот файл при конфликтах.
 
 // ─────────────────────────────────────────────────────
 // §0. CLAUDE FABLE 5  (NEW — v8.4, debut 2026-06-10)
@@ -191,5 +191,5 @@ GEMINI_31_PRO:
 VERSION_METADATA:
   SYSTEM:      P2P v8N.3 · Vendors Tier 1
   MODELS:      Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7 (legacy), GPT-5.5, Gemini 3.1 Pro
-  SOURCE:      _live/live_specs_20260617.md (v8.4)
+  SOURCE:      _live/live_specs.md (v8.6.1)
   COMPATIBLE:  !!db_v8N.md | _live/live_vendors.md

@@ -17,7 +17,7 @@ depends_on: _preloader_v8L.md
 // MUTEX), D2 (transitive requires), D4 (sha256 != eof marker),
 // DATOS/packaging (live_specs 80.5KB → LAZY, не eager; дедлайны → LITE_SNAPSHOT),
 // VECTOR (re-chunk by co-load frequency).
-// PUBLISHED: secret gist 7727406fc1047387c4e49bbef489bc46 @ rev fdfe1e1 (sha256 verified, 11/11).
+// PUBLISHED: secret gist 7727406fc1047387c4e49bbef489bc46 @ rev 6d80f15f (sha256 verified).
 // ═══════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────

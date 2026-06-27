@@ -54,4 +54,4 @@ v8C.3-cowork-code/
 - 6 new ON-DEMAND modules: !rag, !reasoning, !routing, !compression, !security, !optimization
 - STARTUP_LOGO: ASCII P2P art on /start
 - Language: all .md files in English; output defaults to Russian (changeable via /lang)
-- Live specs: live_specs_20260617.md (v8.4, 10 vendors, Fable 5 added)
+- Live specs: live_specs.md (v8.6.1, 10 vendors, Fable 5 added)

@@ -81,7 +81,7 @@
  ├──📄 _live/live_vendors.md  [~1,600 токенов]
  │     └── Quick reference: API strings, цены, routing guide, Translation Rules
  │
- └──📄 vendors/live_specs_20260617.md  [~14,000 токенов] — PRIORITY: OVERRIDE
+ └──📄 vendors/live_specs.md  [~14,000 токенов] — PRIORITY: OVERRIDE
        ├── Все вендоры: Claude, Gemini, Grok, GPT, DeepSeek, Qwen, Kimi, GLM, MiniMax, Manus
        ├── ERROR_REGISTRY G1–G20 (полный)
        └── USER_SANDBOX: DATA_BINDING, логотип, меню
