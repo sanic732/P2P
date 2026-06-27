@@ -5,8 +5,7 @@
   "version": "8.3.5-C",
   "description": "Meta-prompt system for Claude Opus 4.7 / Sonnet 4.6. 8 QUORUM agents, 11 /p2p-* commands, XML-native, SCOPE.HELM, interactive teacher mode.",
   "author": {
-    "name": "P2P Project",
-    "email": "sanic732@protonmail.com"
+    "name": "P2P Project"
   },
   "keywords": [
     "prompt-engineering",
