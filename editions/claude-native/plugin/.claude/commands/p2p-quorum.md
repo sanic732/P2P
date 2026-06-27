@@ -2,7 +2,7 @@
 description: "/p2p-quorum — launch full 8-agent QUORUM or sub-QUORUM pattern."
 argument-hint: "[fast|code|security|arch] <task>"
 source_id: CMD_QUORUM_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p-quorum — launch full 8-agent QUORUM or sub-QUORUM pattern.
@@ -31,7 +31,7 @@ scope: /p2p-quorum — launch full 8-agent QUORUM or sub-QUORUM pattern.
 VERSION_METADATA
 ========================================
 id: CMD_QUORUM_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

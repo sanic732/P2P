@@ -1,6 +1,6 @@
 ---
 source_id: TEACHER_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: core.md, db.md
 last_updated: 2026-06-12
@@ -812,7 +812,7 @@ DEADLINE 2026-06-15 — удалить legacy API strings
 VERSION_METADATA
 ========================================
 id: TEACHER_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

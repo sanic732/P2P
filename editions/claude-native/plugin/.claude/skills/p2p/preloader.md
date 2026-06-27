@@ -1,6 +1,6 @@
 ---
 source_id: PRELOADER_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: base
 depends_on: none
 last_updated: 2026-06-12
@@ -8,7 +8,7 @@ scope: P2P v8C.3 entry point — USER_CONTEXT detection, PROJECT_CARD, TRI_MODE_
 tags: preloader, user-context, project-card, tri-mode, env-detection, always-loaded
 ---
 
-# P2P v8C.3-ALPHA — PRELOADER (_preloader.md)
+# P2P v8C.3 — PRELOADER (_preloader.md)
 
 > Этот файл загружается **первым**. Он задаёт контекст для всей сессии.
 
@@ -199,7 +199,7 @@ IF MODULE_X = false AND v8C3 = off:  Не загружать, пункт мен�
 VERSION_METADATA
 ========================================
 id: PRELOADER_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: base
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

@@ -5,7 +5,7 @@ type: ON_DEMAND
 load_trigger: "memory|capsule|сохрани|загрузи|состояние|resume"
 priority: SYSTEM
 compatible_with: "!!core_v8N.md | !scope.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════

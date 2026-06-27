@@ -2,7 +2,7 @@
 description: "/p2p — main entry point. Show menu, detect environment, initialize session."
 argument-hint: "[start|menu]"
 source_id: CMD_P2P_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p — main entry point. Show menu, detect environment, initialize session.
@@ -24,7 +24,7 @@ scope: /p2p — main entry point. Show menu, detect environment, initialize sess
 VERSION_METADATA
 ========================================
 id: CMD_P2P_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

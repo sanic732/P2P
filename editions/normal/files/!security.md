@@ -5,7 +5,7 @@ type: on-demand
 module_type: on-demand
 triggers: "security|безопас|jailbreak|injection|инъекц|уязвимост|атак|prompt injection|защит промпт|adversarial|guardrails"
 depends_on: "!!core_v8N.md, !!db_v8N.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 token_estimate: ~2600
 scope: Аудит и защита промптов — prompt injection detection, jailbreak classification, hardening, SelfCheck. Загружается по триггеру или MODULE_SECURITY=true.
 compatible_with: "all v8N files"

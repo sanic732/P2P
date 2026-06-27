@@ -5,7 +5,7 @@ type: HOST_ENGINE
 priority: MEDIUM
 triggers: "tool budget|лимит вызовов|Type B|re-inject|бюджет инструментов"
 depends_on: "!agents.md, !!core_v8H.md, !metrics.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 compatible_with: "all v8H files"
 tags: tool-budget, type-b, grok, host-gated, v8h3
 ---

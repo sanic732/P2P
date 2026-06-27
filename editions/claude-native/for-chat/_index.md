@@ -1,6 +1,6 @@
 ---
 source_id: INDEX_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: meta
 last_updated: 2026-06-12
 last_verified: 2026-06-12
@@ -9,7 +9,7 @@ tags: index, navigation, load-order, v8c, teacher, plugin
 changelog: 2026-05-14 — v8C.2 BUMP; +!teacher.md ON-DEMAND; +/p2p-teacher command; +.claude-plugin/ manifests; +.claude/skills/p2p-teacher/
 ---
 
-# P2P v8C.3-ALPHA — МАСТЕР ИНДЕКС (_index.md)
+# P2P v8C.3 — МАСТЕР ИНДЕКС (_index.md)
 
 ---
 
@@ -161,7 +161,7 @@ _preloader.md + !!core_v8C.md + !!db_v8C.md + _live/*
 VERSION_METADATA
 ========================================
 id: INDEX_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: meta
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

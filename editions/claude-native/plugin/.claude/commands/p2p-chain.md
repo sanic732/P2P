@@ -2,7 +2,7 @@
 description: "/p2p-chain — run custom agent chain in specified order."
 argument-hint: "<task>"
 source_id: CMD_CHAIN_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p-chain — run custom agent chain in specified order.
@@ -27,7 +27,7 @@ scope: /p2p-chain — run custom agent chain in specified order.
 VERSION_METADATA
 ========================================
 id: CMD_CHAIN_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

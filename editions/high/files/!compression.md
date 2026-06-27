@@ -5,7 +5,7 @@ type: on-demand
 module_type: on-demand
 triggers: "compress|сжат|llmlingua|gist token|токен бюджет|context window full|контекст переполнен|длинный контекст|constrained output|JSON schema|grammar"
 depends_on: "!!core_v8H.md, !!db_v8H.md, !pipeline.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 token_estimate: ~2400
 scope: Сжатие контекста — LLMLingua, Gist Tokens, Verbatim Deletion, Selective Summarization + constrained generation. Загружается по триггеру или MODULE_COMPRESSION=true.
 compatible_with: "all v8H files"

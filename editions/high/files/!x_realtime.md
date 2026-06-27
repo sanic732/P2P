@@ -5,7 +5,7 @@ type: HOST_ENGINE
 priority: LOW
 triggers: "x firehose|твиттер|twitter|x.com|realtime|реалтайм|тренды|sentiment"
 depends_on: "!agents.md, !metrics.md, !tool_budget.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 compatible_with: "all v8H files"
 tags: x-firehose, realtime, grok, cost-gate, host-gated, v8h3
 ---

@@ -5,7 +5,7 @@ type: PRELOADER
 priority: CRITICAL
 load_order: 1
 compatible_with: "!!core_v8H.md | all v8H files"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════

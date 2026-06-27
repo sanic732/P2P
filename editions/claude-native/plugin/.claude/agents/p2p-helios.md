@@ -2,7 +2,7 @@
 name: p2p-helios
 description: "HELIOS sub-agent — final synthesizer, executive presenter, actionable output generator."
 source_id: AGENT_HELIOS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: agent
 last_updated: 2026-06-12
 scope: HELIOS sub-agent — final synthesizer, executive presenter, actionable output generator.
@@ -62,7 +62,7 @@ MUST NOT: Оставлять пользователя без следующег�
 VERSION_METADATA
 ========================================
 id: AGENT_HELIOS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

@@ -1,11 +1,11 @@
 ---
 id: core_v8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: CORE
 priority: CRITICAL
 load_order: 3
 compatible_with: "_preloader_v8L.md | _index_v8L.md | all v8L files"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════════════
@@ -165,13 +165,14 @@ SIGNAL_TO_NOISE_PROTOCOL:
 При `/start`, `start`, `старт`, `/p2p`, `/menu` — ПЕРВЫМ в отдельном code-fence:
 
 ```text
-██████╗  ██████   ██████ 
-██╔══██╗ ╚════██╗ ██╔══██╗
-██████╔╝  █████╔╝ ██████╔╝
-██╔═══╝  ██╔═══╝  ██╔═══╝ 
-██║      ███████╗ ██║     
-╚═╝      ╚══════╝ ╚═╝     
-P2P v8L.3 — LITE/LIVE HYBRID | HOST: {HOST_MODEL} | MODE: {LOAD_MODE} | LiveSpecs: 2026-06-17
+ ######   #######   ###### 
+ ##   ##       ##   ##   ##
+ ######   #######   ###### 
+ ##       ##        ##     
+ ##       #######   ##
+P2P v8L.3 — LITE/LIVE HYBRID 
+LiveSpecs: {LIVE_SPECS_DATE}
+HOST: {HOST_MODEL} | MODE: {LOAD_MODE}
 ```
 
 MENU_HEADER_RULE (NEW v8L.3):
@@ -209,7 +210,7 @@ HARD_HONESTY (P8, обязательно):
     этот хост в LITE_ONLY" + предложить fetch-хост ИЛИ ручную вставку нужного чанка.
 
 ```
-⭕ P2P 8L.3-ALPHA — LITE/LIVE HYBRID
+⭕ P2P 8L.3 — LITE/LIVE HYBRID
 
 🔰 ОСНОВНЫЕ РЕЖИМЫ:
 1.  🏛️ QUORUM (The Council)          [chunk: CORE_PLUS]
@@ -248,7 +249,7 @@ HARD_HONESTY (P8, обязательно):
 30. 🔄 CONSTRAINT REINJECTION
 === ДОКУМЕНТАЦИЯ И ОБУЧЕНИЕ ===
 31. СТАРТ (быстрый старт)
-32. Что нового в v8L.3-ALPHA
+32. Что нового в v8L.3
 33. Полная документация (docs/)
 34. 🎓 ОБУЧЕНИЕ (/p2p-teacher)
 35. 🔎 /p2p-verify — Manifest Reconciliation (сверка sha256/size Gist-чанков)
@@ -466,11 +467,11 @@ CORE_RULES:
     - XML в промптах для non-Claude целей (G2)
     - temperature при thinking=enabled (G7) ; budget_tokens (удалён)
     - >7 MUST/MUST NOT пар для GPT (G9) ; GLM с >100K (G19)
-  [DEADLINE STATUS 2026-06-17]: ACTIVE 2026-07-24 deepseek-chat/reasoner → v4-pro/v4-flash.
+  [DEADLINE STATUS 2026-06-27]: ACTIVE 2026-07-24 deepseek-chat/reasoner → v4-pro/v4-flash.
 
 // ─────────────────────────────────────────────────────
 VERSION_METADATA:
-  SYSTEM:      P2P v8L.3-ALPHA · Lite/Live Hybrid · Core Dispatcher
+  SYSTEM:      P2P v8L.3 · Lite/Live Hybrid · Core Dispatcher
   PHILOSOPHY:  Universal · Any-host · Any-target · 8 host models · Lazy-fetch arsenal
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
   CHANGED_FROM_v8H: §4 chunk-aware menu, §6 LAZY_FETCH resolver + COMMAND_CHUNK_MAP, logo,

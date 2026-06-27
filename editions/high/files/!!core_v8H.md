@@ -270,6 +270,7 @@ P2P v8H.3- HIGH EDITION | LiveSpecs: 2026-06-12
 32. Что нового в v8H.3-ALPHA
 33. Полная документация (docs/)
 34. 🎓 ОБУЧЕНИЕ (/p2p-teacher — интерактивный 5-уровневый curriculum)
+34a. 📦 /p2p-download — ПОЛНАЯ ИНТЕГРАЦИЯ: LIVE SPECS (требует web-fetch)
 
   // ─── Динамические пункты v8H.3 (видны ТОЛЬКО если модуль загружен) ───
   // Управление: VERSION_COMPAT.MODULE_* в _preloader.md (по умолчанию false → скрыто).
@@ -618,6 +619,13 @@ CORE_RULES:
 // VERSION
 // ─────────────────────────────────────────────────────
 
+
+<p2p_download>
+COMMAND: `/p2p-download`
+ACTION: Use your web-fetch capability to download the latest LIVE SPECS from:
+https://gist.githubusercontent.com/sanic732/a64245c3f824f45708519d57e0d62408/raw/live_specs.md
+Once fetched, update your internal context with the new specifications. Do NOT hallucinate content.
+</p2p_download>
 VERSION_METADATA:
   SYSTEM:      P2P v8H.3 Normal Edition
   PREDECESSOR: P2P v7N.1 (10 files) + P2P v8C.1 (Claude Edition)

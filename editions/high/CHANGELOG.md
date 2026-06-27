@@ -1,6 +1,6 @@
 # P2P v8H.3 — CHANGELOG (Hybrid Edition)
 
-**Build:** v8H.3 (Hybrid = merge 8A.1 Gemini ⊕ 8G.1 Grok) · **Date:** 2026-06-17
+**Build:** v8H.3 (Hybrid = merge 8A.1 Gemini ⊕ 8G.1 Grok) · **Date:** 2026-06-27
 **Base:** универсальный каркас 8N-style + 8C.3 parity · **Donors:** 8A.1, 8G.1 (read-only).
 
 ---

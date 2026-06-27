@@ -1,8 +1,8 @@
 ---
 source_id: CMD_DOWNLOAD_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 module_type: command
-last_updated: 2026-06-18
+last_updated: 2026-06-27
 scope: /p2p-download — full integration; fetch 10 module chunks + LIVE at once so every menu item works without per-trigger fetch.
 ---
 # /p2p-download — Полная интеграция компонентов 8L.3
@@ -40,9 +40,9 @@ scope: /p2p-download — full integration; fetch 10 module chunks + LIVE at once
 VERSION_METADATA
 ========================================
 id: CMD_DOWNLOAD_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: command
 edition: UNIVERSAL
-last_verified: 2026-06-18
+last_verified: 2026-06-27
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

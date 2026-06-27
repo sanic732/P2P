@@ -2,7 +2,7 @@
 description: "/p2p-atlas — show or update ATLAS task map."
 argument-hint: "[update]"
 source_id: CMD_ATLAS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p-atlas — show or update ATLAS task map.
@@ -38,7 +38,7 @@ scope: /p2p-atlas — show or update ATLAS task map.
 VERSION_METADATA
 ========================================
 id: CMD_ATLAS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

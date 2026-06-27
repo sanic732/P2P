@@ -2,9 +2,9 @@
 name: p2p-tecton
 description: "TECTON sub-agent — system architect, task decomposer, structural planner."
 source_id: AGENT_TECTON_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 module_type: agent
-last_updated: 2026-06-18
+last_updated: 2026-06-27
 scope: TECTON sub-agent — system architect, task decomposer, structural planner.
 tags: agent, tecton, architecture, structure, planning
 ---
@@ -59,9 +59,9 @@ MUST NOT: Игнорировать карту IRIS при её наличии
 VERSION_METADATA
 ========================================
 id: AGENT_TECTON_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: agent
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-18
+last_verified: 2026-06-27
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

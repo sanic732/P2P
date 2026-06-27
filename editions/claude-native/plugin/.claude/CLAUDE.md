@@ -1,9 +1,9 @@
-# CLAUDE.md — P2P v8C.3-ALPHA Claude Edition
+# CLAUDE.md — P2P v8C.3 Claude Edition
 
 > Local rules for the v8C.3 repo. Applies within this folder.
 
 ## Context
-P2P v8C.3-ALPHA — Claude Edition meta-prompt system.
+P2P v8C.3 — Claude Edition meta-prompt system.
 Optimized for Claude Fable 5 / Claude Opus 4.8 / Sonnet 4.6.
 XML-native, TRI_MODE_BRIDGE v3, QUORUM 8 agents, interactive teacher mode, VERSION_COMPAT.
 

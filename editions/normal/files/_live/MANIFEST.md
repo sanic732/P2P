@@ -5,7 +5,7 @@ type: MANIFEST
 priority: HIGH
 load_order: 4
 compatible_with: "all v8N files"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -15,38 +15,38 @@ last_verified: 2026-06-17
 
 MANIFEST:
   SYSTEM:        P2P v8N.3 Normal Edition
-  BUILD_DATE:    2026-06-17
-  STATUS:        ALPHA (technique import from v8C.3)
+  BUILD_DATE:    2026-06-27
+  STATUS:        BETA (technique import from v8C.3)
   FILES:         24 base + 7 docs = 31 total
   PHILOSOPHY:    Universal · Any-host · Any-target · 8 host models
   LIVE_SPECS_REF: _live/live_specs_20260617.md (v8.5, OVERRIDE)
 
 VERSIONS:
-  !!core_v8N.md:        v8N.3  verified: 2026-06-17
-  !!db_v8N.md:          v8N.3  verified: 2026-06-17
-  _preloader.md:        v8N.3  verified: 2026-06-17
-  _live/MANIFEST.md:    v8N.3  verified: 2026-06-17
-  _live/live_core.md:   v8N.3  verified: 2026-06-17
-  _live/live_vendors.md: v8N.3 verified: 2026-06-17
-  _live/live_specs_20260617.md: v8.5 verified: 2026-06-17  // OVERRIDE source
-  !agents.md:           v8N.3  verified: 2026-06-17
-  !pipeline.md:         v8N.3  verified: 2026-06-17
-  !toolkit.md:          v8N.3  verified: 2026-06-17
-  !scope.md:            v8N.3  verified: 2026-06-17
-  !memory.md:           v8N.3  verified: 2026-06-17
-  !metrics.md:          v8N.3  verified: 2026-06-17
-  !sandbox.md:          v8N.3  verified: 2026-06-17
-  !rag.md:              v8N.3  verified: 2026-06-17  // NEW [26]
-  !reasoning.md:        v8N.3  verified: 2026-06-17  // NEW [27]
-  !routing.md:          v8N.3  verified: 2026-06-17  // NEW [28]
-  !compression.md:      v8N.3  verified: 2026-06-17  // NEW [29]
-  !security.md:         v8N.3  verified: 2026-06-17  // NEW [30]
-  !optimization.md:     v8N.3  verified: 2026-06-17  // NEW [31]
-  vendors/tier1.md:     v8N.3  verified: 2026-06-17
-  vendors/tier2.md:     v8N.3  verified: 2026-06-17
-  vendors/tier3.md:     v8N.3  verified: 2026-06-17
-  vendors/tier4.md:     v8N.3  verified: 2026-06-17
-  _index.md:            v8N.3  verified: 2026-06-17
+  !!core_v8N.md:        v8N.3  verified: 2026-06-27
+  !!db_v8N.md:          v8N.3  verified: 2026-06-27
+  _preloader.md:        v8N.3  verified: 2026-06-27
+  _live/MANIFEST.md:    v8N.3  verified: 2026-06-27
+  _live/live_core.md:   v8N.3  verified: 2026-06-27
+  _live/live_vendors.md: v8N.3 verified: 2026-06-27
+  _live/live_specs_20260617.md: v8.5 verified: 2026-06-27  // OVERRIDE source
+  !agents.md:           v8N.3  verified: 2026-06-27
+  !pipeline.md:         v8N.3  verified: 2026-06-27
+  !toolkit.md:          v8N.3  verified: 2026-06-27
+  !scope.md:            v8N.3  verified: 2026-06-27
+  !memory.md:           v8N.3  verified: 2026-06-27
+  !metrics.md:          v8N.3  verified: 2026-06-27
+  !sandbox.md:          v8N.3  verified: 2026-06-27
+  !rag.md:              v8N.3  verified: 2026-06-27  // NEW [26]
+  !reasoning.md:        v8N.3  verified: 2026-06-27  // NEW [27]
+  !routing.md:          v8N.3  verified: 2026-06-27  // NEW [28]
+  !compression.md:      v8N.3  verified: 2026-06-27  // NEW [29]
+  !security.md:         v8N.3  verified: 2026-06-27  // NEW [30]
+  !optimization.md:     v8N.3  verified: 2026-06-27  // NEW [31]
+  vendors/tier1.md:     v8N.3  verified: 2026-06-27
+  vendors/tier2.md:     v8N.3  verified: 2026-06-27
+  vendors/tier3.md:     v8N.3  verified: 2026-06-27
+  vendors/tier4.md:     v8N.3  verified: 2026-06-27
+  _index.md:            v8N.3  verified: 2026-06-27
 
 // ─────────────────────────────────────────────────────
 // DEADLINE FLAGS
@@ -54,7 +54,7 @@ VERSIONS:
 
 DEADLINES:
 
-  [DEADLINE 2026-06-15] ❌ PASSED — устарело на момент сборки (today 2026-06-17)
+  [DEADLINE 2026-06-15] ❌ PASSED — устарело на момент сборки (today 2026-06-27)
     RETIRED: Claude dated legacy aliases → claude-opus-4-8 / claude-opus-4-7 / claude-sonnet-4-6
     STATUS: дают HTTP 400/404. Литералы в операционных файлах отсутствуют (проверено grep).
 

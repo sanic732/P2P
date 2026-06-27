@@ -1,6 +1,6 @@
 ---
 source_id: METRICS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: !!core_v8C.md
 last_updated: 2026-06-12
@@ -9,7 +9,7 @@ tags: metrics, session-metrics, routing-memory, efficiency, quality, on-demand
 triggers: "метрики", "эффективность", "/p2p-metrics", "[19]", "[20]", "ROUTING MEMORY"
 ---
 
-# P2P v8C.3-ALPHA — SESSION METRICS v0.2 (!metrics.md)
+# P2P v8C.3 — SESSION METRICS v0.2 (!metrics.md)
 
 ---
 
@@ -288,7 +288,7 @@ session_metrics_export:
 VERSION_METADATA
 ========================================
 id: METRICS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

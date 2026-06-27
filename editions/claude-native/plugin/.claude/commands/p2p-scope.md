@@ -2,7 +2,7 @@
 description: "/p2p-scope — activate SCOPE.HELM for large multi-step tasks."
 argument-hint: "<large multi-step task>"
 source_id: CMD_SCOPE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p-scope — activate SCOPE.HELM for large multi-step tasks.
@@ -30,7 +30,7 @@ scope: /p2p-scope — activate SCOPE.HELM for large multi-step tasks.
 VERSION_METADATA
 ========================================
 id: CMD_SCOPE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

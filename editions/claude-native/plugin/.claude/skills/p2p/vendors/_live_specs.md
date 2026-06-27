@@ -1,6 +1,6 @@
 ---
 source_id: LIVE_VENDORS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: live
 depends_on: _live/MANIFEST.md
 last_updated: 2026-06-12
@@ -9,7 +9,7 @@ scope: All LLM vendor live specs for v8C.2 — API strings, costs, context windo
 tags: live, vendors, api-strings, pricing, g-errors, routing
 ---
 
-# P2P v8C.3-ALPHA — LIVE VENDOR SPECS (vendors/_live_specs.md)
+# P2P v8C.3 — LIVE VENDOR SPECS (vendors/_live_specs.md)
 
 > Единый источник правды по всем активным LLM. Обновляй при новых релизах.  
 > Полные live specs (июнь 2026): `vendors/live_specs_20260617.md` (PRIORITY: OVERRIDE)  
@@ -149,7 +149,7 @@ Real-time X data → Grok 4.3 (только Grok имеет X Firehose)
 VERSION_METADATA
 ========================================
 id: LIVE_VENDORS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

@@ -1,11 +1,11 @@
 ---
 id: db_v8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: KNOWLEDGE_BASE
 priority: CRITICAL
 load_order: 4
 compatible_with: "!!core_v8L.md | _index_v8L.md | all v8L files"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════════════
@@ -20,11 +20,11 @@ last_verified: 2026-06-17
 // RU: Минимальный срез критичных live-данных, чтобы офлайн система не слепла.
 // EN: Minimal slice of critical live data so an offline system isn't blind.
 // На него ссылается core §12 (DEADLINE_SCANNER) и §10 (RESOURCE_STRATEGY) когда gist_live недоступен.
-// FRESHNESS: snapshot от 2026-06-17. Если онлайн — gist_live ПЕРЕЗАПИСЫВАЕТ эти значения.
+// FRESHNESS: snapshot от 2026-06-27. Если онлайн — gist_live ПЕРЕЗАПИСЫВАЕТ эти значения.
 // ─────────────────────────────────────────────────────
 
 LITE_SNAPSHOT:
-  AS_OF: 2026-06-17
+  AS_OF: 2026-06-27
   DEADLINES:
     [PASSED 2026-06-15] Claude dated legacy aliases retired (HTTP 400/404)
     [PASSED 2026-06-05] gpt-5.x legacy → gpt-5.5
@@ -33,7 +33,7 @@ LITE_SNAPSHOT:
     claude: claude-fable-5 (Arena #1 Agent), claude-opus-4-8 (coding #1), claude-sonnet-4-6
     gpt: gpt-5.5  · gemini: gemini-3.1-pro-latest · grok: grok-4.3
     deepseek: deepseek-v4-pro · qwen: qwen3-max · kimi: moonshot-v2-128k · glm: glm-5.1-flash
-  WARN: "⚠ LITE_SNAPSHOT — данные на 2026-06-17, могут устареть. Для свежих ELO/цен нужен fetch (gist_live)."
+  WARN: "⚠ LITE_SNAPSHOT — данные на 2026-06-27, могут устареть. Для свежих ELO/цен нужен fetch (gist_live)."
 
 // ─────────────────────────────────────────────────────
 // §1. KNOWLEDGE ARCHITECTURE

@@ -1,6 +1,6 @@
 ---
 source_id: COMPRESSION_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 triggers: "compress|сжат|llmlingua|gist token|токен бюджет|context window full|контекст переполнен|длинный контекст|KV-cache"
 depends_on: core.md
@@ -114,7 +114,7 @@ IF ctx_usage > 90%:   → CAPSULE сохранить + новая сессия (
 | Когда | Контекст заполнен, нужна пауза | Контекст заполнен, продолжаем работу |
 | Результат | Полная история восстановима | Продолжение без разрыва |
 
-При `v8C3=or`: P2P спросит — сжать контекст (v8C.3) или сохранить CAPSULE (v8C.3-ALPHA)?
+При `v8C3=or`: P2P спросит — сжать контекст (v8C.3) или сохранить CAPSULE (v8C.3)?
 
 ---
 
@@ -125,7 +125,7 @@ IF ctx_usage > 90%:   → CAPSULE сохранить + новая сессия (
 VERSION_METADATA
 ========================================
 id: COMPRESSION_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

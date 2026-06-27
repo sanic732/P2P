@@ -1,4 +1,4 @@
-# P2P v8C.3-ALPHA — Установка (TL;DR)
+# P2P v8C.3 — Установка (TL;DR)
 
 Выбери метод по среде. Детальный гайд: [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md).
 

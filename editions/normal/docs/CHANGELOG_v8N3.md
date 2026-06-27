@@ -1,6 +1,6 @@
 # P2P v8N.3 — CHANGELOG
 
-**Build:** v8N.3 (Universal / Normal Edition) · **Date:** 2026-06-17 · **Base:** v8N.1
+**Build:** v8N.3 (Universal / Normal Edition) · **Date:** 2026-06-27 · **Base:** v8N.1
 **Тип:** ADDITIVE (append-only) — импорт техник из v8C.3 + нативный live-specs 2026-06-12.
 **Обратная совместимость:** полная. Новые модули по умолчанию OFF (`VERSION_COMPAT.v3=off`).
 
@@ -73,3 +73,4 @@
 | !optimization | «улучши промпт» → APO baseline | «оптимизируй до score 0.9» → OPRO 5 iter | нет !metrics → refuse (не оптимизировать вслепую) |
 
 Ожидание для каждого: корректный триггер, host-адаптация (Gemini=ZERO-XML), срабатывание mutex.
+

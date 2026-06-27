@@ -5,7 +5,7 @@ type: AGENTS
 priority: HIGH
 triggers: "QUORUM|агент|Q:|FULL|FAST_TRIO|Heavy-16|heavy|multi-agent"
 depends_on: "!!core_v8H.md, !!db_v8H.md, !host_profiles.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 compatible_with: "all v8H files"
 tags: agents, quorum, heavy-16, host-gated, merge, v8h3
 ---

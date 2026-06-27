@@ -1,10 +1,10 @@
 ---
 id: index_v8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: META
 priority: REFERENCE
 edition: LITE_LIVE_HYBRID
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 depends_on: _preloader_v8L.md
 ---
 
@@ -39,11 +39,11 @@ LOAD_MODES:
 # ═══════════════════════════════════════════════════════════════
 # FETCH_CANARY — активная проба fetch (используется FETCH_CAPABILITY_GATE preloader).
 # RU: дёрнуть URL и сверить ответ с expect. БЕЗ фразы-выхода «если не можешь».
-#     Эмпирика 2026-06-18: Gemini Pro проходит канарейку (умеет fetch);
+#     Эмпирика 2026-06-27: Gemini Pro проходит канарейку (умеет fetch);
 #     при пассивной проверке ложно уходил в LITE_ONLY.
 # ═══════════════════════════════════════════════════════════════
 FETCH_CANARY:
-  url:    "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_route.md"
+  url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/6d80f15f2a873e78332dd5277c0d2cbdd701052d/gist_route.md"
   expect: "// EOF_MARKER_ROUTE_VALIDATED"   # последняя непустая строка gist_route.md
   rule:   returned == expect → GIST_LAZY_FETCH ; иначе → LITE_ONLY (нет fetch ИЛИ галлюцинация)
 
@@ -70,102 +70,8 @@ GIST_ROUTING_TABLE:
 
   CORE_PLUS:                                  # склейка agents+pipeline (VECTOR)
     trigger:  "QUORUM|агент|Q:|FULL|FAST_TRIO|HELIOS|Contract|шаблон|template|5D|интент"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_core_plus.md"
-    sha256:   "633421641b075aba3ef9692eefa44d8567f7e6d73aa861f2e020cdc475aac37f"
-    eof_hash: "EOF_MARKER_CORE_PLUS_VALIDATED"
-    size_kb:  21.6                            # real (bytes/1024); ~5.4K токенов
-    requires: []
-    mutex:    []
-    fallback: LITE_DECLINE
-    # ПРИМ: на claude/grok хостах агенты локальны (.claude/agents/*). Этот чанк —
-    # путь ТОЛЬКО для chat-хостов без native-plugin. Резолвер выбирает путь по HOST_CONFIG.
-
-  SESSION:                                    # toolkit+scope+memory+metrics+sandbox
-    trigger:  "debug|Arena|scope|CAPSULE|память|метрики|sandbox|SPLITTER|enhance"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_session.md"
-    sha256:   "75f0415627395dfdc967687ec104c4443e0cdcd1924bc4fd11e91a233886de91"
-    eof_hash: "EOF_MARKER_SESSION_VALIDATED"
-    size_kb:  45.9                            # real; ~11.5K токенов — кандидат на сплит (см. NOTES)
-    requires: []
-    mutex:    []
-    fallback: LITE_DECLINE
-
-  VENDORS:
-    trigger:  "vendor|спецификация модели|tier1|tier2|tier3|tier4|claude model|grok model"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_vendors.md"
-    sha256:   "e30ecd4af66ea9fdb020d7cc52352a854a9e556bb0249e219cfe5440c3123926"
-    eof_hash: "EOF_MARKER_VENDORS_VALIDATED"
-    size_kb:  25.1                            # real; ~6.3K токенов
-    requires: []
-    mutex:    []
-    fallback: DEGRADE   # базовые спеки есть в !!db; полный каталог — опционально
-
-  HOST_ENGINE:                                # host_profiles+router+matrix+budget+x_realtime
-    trigger:  "host profile|лимит вызовов|router|маршрутизация хоста|x firehose|Heavy-16"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_host_engine.md"
-    sha256:   "f4905ad5c45d885a2f5a6aab219ab82875f9f8d9c2bd75beab408e28807d44d3"
-    eof_hash: "EOF_MARKER_HOST_ENGINE_VALIDATED"
-    size_kb:  16.7                            # real (DATOS прав: занижение было ×3)
-    requires: []
-    mutex:    []
-    fallback: LITE_DECLINE
-
-  REASONING:
-    trigger:  "reasoning|cot|mcts|self-consistency|critical chain|думай глубже"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_reasoning.md"
-    sha256:   "ebca243e5de4ee24a4e144dd958450a97598c5d22167828d3907c01ff7591a2b"
-    eof_hash: "EOF_MARKER_REASONING_VALIDATED"
-    size_kb:  5.6                             # real
-    requires: [CORE_PLUS]                     # pipeline для постановки
-    mutex:    [THINKING_ON]                   # один бюджет рассуждения
-    fallback: LITE_DECLINE
-
-  OPTIMIZATION:
-    trigger:  "APO|OPRO|оптимизируй промпт|auto-tune|DSPy"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_optimization.md"
-    sha256:   "055da2584682d101be9c903d82c2b8ab67e88e9ef8e8592e9179d8d9bf4091e8"
-    eof_hash: "EOF_MARKER_OPTIMIZATION_VALIDATED"
-    size_kb:  5.4                             # real (one chunk); + transitive SESSION+CORE_PLUS
-    requires: [SESSION, CORE_PLUS]            # FIX D2: metrics(SESSION)+pipeline(CORE_PLUS)
-    mutex:    [metrics_required]
-    fallback: LITE_DECLINE
-
-  RAG:
-    trigger:  "rag|raptor|retrieval|ретривал|векторная БД|documents|документы"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_rag.md"
-    sha256:   "65c658c01ae9dc9ad2f91c65bff36dc55051509a5ec407cdbfa6422430883af4"
-    eof_hash: "EOF_MARKER_RAG_VALIDATED"
-    size_kb:  5.3                             # real
-    requires: [SESSION, CORE_PLUS]            # memory(SESSION)+agents(CORE_PLUS)
-    mutex:    []
-    fallback: LITE_DECLINE
-
-  # ─── FIX D1: бывший монолит gist_10 расклеен на 3 чанка по MUTEX-классам.
-  #     Раньше один fetch ради компрессии тянул security+routing и активировал 3 гейта. ───
-  SECURITY:
-    trigger:  "security|injection|инъекц|jailbreak|безопасность|prompt audit"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_security.md"
-    sha256:   "57e0e747ecc7b2a591eeeb5245cdb3cc2e6f926c906fa19977179d2b8e69eb20"
-    eof_hash: "EOF_MARKER_SECURITY_VALIDATED"
-    size_kb:  5.6                             # real
-    requires: []
-    mutex:    [GUARDIAN_ON]
-    fallback: DEGRADE   # базовый STRIDE есть в ANON; глубокий аудит — опционально
-
-  COMPRESS:
-    trigger:  "compress|сжат|llmlingua|constrained output|JSON schema|grammar"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_compress.md"
-    sha256:   "8a14aedd85baaaed7835c047a31475a936619286f3d5395b880a85f05a67ff5d"
-    eof_hash: "EOF_MARKER_COMPRESS_VALIDATED"
-    size_kb:  5.7                             # real
-    requires: []
-    mutex:    [single_compressor]            # один компрессор/grammar за раз
-    fallback: SKIP
-
-  ROUTE:
-    trigger:  "routing|маршрутизация|какую модель|cascade|каскад"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/fdfe1e1e9f0113b1da09627d3f2b630de7c1391c/gist_route.md"
-    sha256:   "1511723e64efa014f1f4dbc37482a6abc1d459be18d61db5664c309287597bce"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/6d80f15f2a873e78332dd5277c0d2cbdd701052d/gist_route.md"
+    sha256:   "984c8c53e14d7413f4f67206fa418332eb528dc7be959c6d2a8b4166f842f926"
     eof_hash: "EOF_MARKER_ROUTE_VALIDATED"
     size_kb:  7.1                             # real
     requires: []
@@ -245,7 +151,7 @@ MACROS:
   /p2p-rag | /p2p-reasoning | /p2p-compress | /p2p-security | /p2p-optimize → соответств. чанки
 
 # ═══════════════════════════════════════════════════════════════
-# SIZE_NOTES (реальные данные из chunk_manifest.json, 2026-06-17)
+# SIZE_NOTES (реальные данные из chunk_manifest.json, 2026-06-27)
 # RU: size_kb выше = байт-КБ (то, что проверяет verify). Токены ≈ КБ/4.
 # ═══════════════════════════════════════════════════════════════
 SIZE_NOTES:
@@ -270,9 +176,10 @@ VALIDATION_CHECK:
 
 # ═══════════════════════════════════════════════════════════════
 VERSION_METADATA:
-  SYSTEM:     P2P v8L.3-ALPHA · Lite/Live Hybrid · Gist Routing Table
+  SYSTEM:     P2P v8L.3 · Lite/Live Hybrid · Gist Routing Table
   ROLE:       Contract registry, triggers, transitive deps, MUTEX, integrity
   COMPATIBLE: _preloader_v8L, !!core_v8L, !!db_v8L
   API_STRINGS: claude-fable-5, claude-opus-4-8, claude-opus-4-7, claude-sonnet-4-6
 # ═══════════════════════════════════════════════════════════════
 // EOF_MARKER_INDEX_V8L_VALIDATED
+

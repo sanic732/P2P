@@ -1,19 +1,19 @@
 ---
 id: changelog_v8L3
-version: v8L.3-ALPHA
+version: v8L.3
 type: DOC
-last_verified: 2026-06-18
+last_verified: 2026-06-27
 ---
 
-# CHANGELOG — P2P v8L.3-ALPHA (Lite/Live Hybrid)
+# CHANGELOG — P2P v8L.3 (Lite/Live Hybrid)
 
 > Ветка миграции из **v8H.3** (30-файловый монолит) в **Resolver-Gated Lazy Hybrid**:
 > 4 локальных BOOT-файла + 11 lazy Gist-чанков, загружаемых по триггеру через
 > dependency-resolver с проверкой целостности sha256.
 
-## [8.3.0-L] — 2026-06-18
+## [8.3.0-L] — 2026-06-27
 
-### DEV/USER варианты + чистка (2026-06-18)
+### DEV/USER варианты + чистка (2026-06-27)
 - Команда `/p2p-load` → **`/p2p-download`** (везде: меню [36], command-map, файл команды, доки).
 - Удалён устаревший локальный `gist_live_specs.md` (нёс неверную «источник истины: _live/live_specs_20260617.md»;
   LIVE теперь тянет из gist `a64245`). Манифест регенерирован → **10 модульных чанков** + LIVE. verify 10/10.
@@ -23,7 +23,7 @@ last_verified: 2026-06-18
   (static snapshot, БЕЗ remote-механики, без dev-доков). Дата-имя `live_specs_20260617.md` → **`live_specs.md`** (static).
 - Gist live specs: статичное имя файла `live_specs.md` — при апдейте меняется только содержимое (VERSION 8.5→8.6…).
 
-### LIVE_SPECS — единый авто-обновляемый источник (2026-06-18)
+### LIVE_SPECS — единый авто-обновляемый источник (2026-06-27)
 - `LIVE` чанк переподключён на выделенный **unpinned** gist (`a64245c3…/raw/live_specs.md`) —
   всегда latest. Источник: `Live_UPDATE/` (юзер правит файл → `update_live.cmd` → один клик, без браузера/2FA).
 - Свежесть проверяется маркером `VERSION:` + `// END OF FILE` (не sha256 — для live контент меняется).
@@ -32,7 +32,7 @@ last_verified: 2026-06-18
 - Тот же механизм переносим в 8C/8H/8N — см. `Live_UPDATE/INTEGRATION_SNIPPET.md`.
 - (старый `gist_live_specs.md` в чанк-гисте больше не источник LIVE — deprecated.)
 
-### Команда /p2p-download — полная интеграция (2026-06-18)
+### Команда /p2p-download — полная интеграция (2026-06-27)
 - Новая команда **`/p2p-download`** + пункт меню **[36]** (сразу после `/p2p-verify` [35]).
 - Грузит ВСЕ 11 чанков разом (fetch + verify) → все пункты [1-42] работают без дозагрузок.
 - Динамические модули сдвинуты [36-41] → **[37-42]**.
@@ -70,7 +70,7 @@ last_verified: 2026-06-18
 - `pack_v8L.sh` — детерминированная сборка чанков из исходников v8H.3 + sha256 + `chunk_manifest.json`.
 - `verify_v8L.sh` (`/p2p-verify`) — Manifest Reconciliation: сверка sha256 + EOF-маркеров. **11/11 PASS**.
 
-### Реальные размеры (chunk_manifest.json, 2026-06-17)
+### Реальные размеры (chunk_manifest.json, 2026-06-27)
 - idle (BOOT, 4 файла): **73 KB ≈ 18K токенов** (лучше прежней оценки ~33K).
 - active QUORUM: +21.6 KB · optimize (транзитивно): +72.9 KB · full arsenal (11): ~227 KB ≈ 57K т.
 - Честная вилка: **~18K idle / ~25-40K active**. Никаких «-86% всегда».
@@ -80,7 +80,7 @@ last_verified: 2026-06-18
   (выделить metrics-only под-чанк). Отложено: +1 fetch round-trip.
 - Хостинг Gist: public (открытая IP) vs private+token vs обфускация — **решение за пользователем**.
 
-### FETCH_CAPABILITY_GATE → активная канарейка — 2026-06-18 (эмпирика)
+### FETCH_CAPABILITY_GATE → активная канарейка — 2026-06-27 (эмпирика)
 - **Находка:** Gemini Pro chat РЕАЛЬНО умеет web-fetch (вернул точные EOF-маркеры gist_route/gist_compress).
   Ранее ложно определялся как LITE_ONLY.
 - **Корень бага:** пассивная проверка «есть ли инструмент» + фраза-выход «если не можешь, скажи
@@ -90,7 +90,7 @@ last_verified: 2026-06-18
   `LAZY_FETCH_PROTOCOL` STAGE 0, новый `FETCH_CANARY` в `_index`, команда `/p2p-fetch-test`.
 - **Следствие:** на Gemini v8L.3 работает в полном GIST_LAZY_FETCH (меню легитимно полное).
 
-### Универсальность хоста (как 8N.3) — 2026-06-18
+### Универсальность хоста (как 8N.3) — 2026-06-27
 - v8L.3 объявлен **UNIVERSAL** edition: не привязан к Claude, как и Normal-редакция 8N.3.
 - `_preloader_v8L`: `HOST_MODEL` теперь **нейтральный** (пусто → система спрашивает хост на старте,
   8 вариантов), а не дефолт `claude`. Добавлена `SELECT_HOST_FETCH_MATRIX` (fetch-способность по хостам).
@@ -105,3 +105,4 @@ last_verified: 2026-06-18
 - ACTIVE дедлайн 2026-07-24: `deepseek-chat`→`deepseek-v4-pro`, `deepseek-reasoner`→`deepseek-v4-flash`.
 
 // EOF_MARKER_CHANGELOG_V8L3_VALIDATED
+

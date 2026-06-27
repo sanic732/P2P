@@ -1,6 +1,6 @@
 ---
 source_id: DOMAIN_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: core.md
 last_updated: 2026-05-03
@@ -10,7 +10,7 @@ tags: domain, knowledge, context, react, typescript, frontend, kotlin, jvm, andr
 triggers: "домен", "контекст проекта", "domain knowledge", "[16]", "добавить знания", "react", "react 19", "JSX", "hooks", "useEffect", "useState", "TanStack", "Zustand", "Suspense", "RSC", "tsx", "frontend", "kotlin", "ktx", "coroutine", "Flow", "StateFlow", "sealed class", "data class", "suspend", "KMP", "multiplatform", "android"
 ---
 
-# P2P v8C.3-ALPHA — DOMAIN KNOWLEDGE (domain_knowledge.md)
+# P2P v8C.3 — DOMAIN KNOWLEDGE (domain_knowledge.md)
 
 ---
 
@@ -440,7 +440,7 @@ inline functions, avoiding reflection, Kotlin-specific profilers (YourKit, async
 VERSION_METADATA
 ========================================
 id: DOMAIN_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-05-03

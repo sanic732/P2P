@@ -1,14 +1,14 @@
 ---
 source_id: PRELOADER_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: base
 depends_on: none
 last_updated: 2026-06-12
-scope: P2P v8C.3-ALPHA entry point — environment detection, USER_CONTEXT, PROJECT_CARD, VERSION_COMPAT (v8C.2/v8C.3/module flags), TRI_MODE_BRIDGE v3, load order. Always loaded first.
+scope: P2P v8C.3 entry point — environment detection, USER_CONTEXT, PROJECT_CARD, VERSION_COMPAT (v8C.2/v8C.3/module flags), TRI_MODE_BRIDGE v3, load order. Always loaded first.
 tags: preloader, user-context, project-card, tri-mode, env-detection, always-loaded, version-compat
 ---
 
-# P2P v8C.3-ALPHA — PRELOADER (_preloader.md)
+# P2P v8C.3 — PRELOADER (_preloader.md)
 
 > This file is loaded **first**. It sets the context for the entire session.
 
@@ -45,7 +45,7 @@ ELSE:
 ```
 
 Report environment at startup:
-`[P2P v8C.3-ALPHA | ENV: {ENV} | Guardian: {ON/OFF}]`
+`[P2P v8C.3 | ENV: {ENV} | Guardian: {ON/OFF}]`
 
 ---
 
@@ -227,7 +227,7 @@ On first user message:
 4. If request = "START", "start", "старт", "/start", "/p2p", "/menu", "full ui menu" → show the FULL menu in one screen: logo + art banners (if !art.md loaded) + MODE letters row (C/A/M/S/Q/H/E) + all items [1-40] (see !!core_v8C.md menu).
 5. If request = task → start immediately (Tier ≥ T2 → offer QUORUM)
 6. Check VERSION_COMPAT → load active v8C.3 modules
-7. Output: [P2P v8C.3-ALPHA | {ENV} | {TIER}]
+7. Output: [P2P v8C.3 | {ENV} | {TIER}]
 
 CRITICAL: Always output the FULL menu with ALL numbered items [1-40].
 If user does not see the menu → they should type: full ui menu
@@ -240,7 +240,7 @@ If user does not see the menu → they should type: full ui menu
 VERSION_METADATA
 ========================================
 id: PRELOADER_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: base
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

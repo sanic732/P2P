@@ -2,9 +2,9 @@
 name: p2p-architecton
 description: "ARCHITECTON sub-agent — senior integrator, holistic view, conflict resolver."
 source_id: AGENT_ARCHITECTON_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 module_type: agent
-last_updated: 2026-06-18
+last_updated: 2026-06-27
 scope: ARCHITECTON sub-agent — senior integrator, holistic view, conflict resolver.
 tags: agent, architecton, integration, holistic, conflict-resolution
 ---
@@ -52,9 +52,9 @@ MUST NOT: Игнорировать CRITICAL замечания ANON
 VERSION_METADATA
 ========================================
 id: AGENT_ARCHITECTON_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: agent
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-18
+last_verified: 2026-06-27
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

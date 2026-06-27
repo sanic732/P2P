@@ -6,7 +6,7 @@ priority: HIGH
 load_order: 6.5
 triggers: "host profile|host caps|какой хост|сменить хост|host switch"
 depends_on: "_preloader.md, !!core_v8H.md, _live/live_vendors.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 compatible_with: "all v8H files"
 tags: host, profiles, caps, heavy-16, host-gated, v8h3
 ---

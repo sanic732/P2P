@@ -247,6 +247,7 @@ STARTUP_MENU:
 23. 🏢 Vendor Check            — Актуальные данные по модели
 24. ⏰ DEADLINE Scanner        — Проверка устаревших API строк
 25. ❓ Help                    — Справка по командам
+26. 📦 /p2p-download           — Загрузка актуальных Live Specs по fetch
 
 🚀 РАСШИРЕННЫЕ МОДУЛИ (v8N.3) (активны при загрузке модуля)
 26. 📚 RAG / RAPTOR            — Векторный поиск и ретривал
@@ -567,6 +568,13 @@ CORE_RULES:
 // VERSION
 // ─────────────────────────────────────────────────────
 
+
+<p2p_download>
+COMMAND: `/p2p-download`
+ACTION: Use your web-fetch capability to download the latest LIVE SPECS from:
+https://gist.githubusercontent.com/sanic732/a64245c3f824f45708519d57e0d62408/raw/live_specs.md
+Once fetched, update your internal context with the new specifications. Do NOT hallucinate content.
+</p2p_download>
 VERSION_METADATA:
   SYSTEM:      P2P v8N.3 Normal Edition
   PREDECESSOR: P2P v7N.1 (10 files) + P2P v8C.1 (Claude Edition)

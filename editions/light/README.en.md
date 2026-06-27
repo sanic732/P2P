@@ -2,7 +2,7 @@
 
 > 🇬🇧 English · 🇷🇺 [Русский](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 
-**Version:** 8L.3-ALPHA · **Token budget:** BOOT ~18K (старт) · Active ~25-40K · Full arsenal ~57K (/p2p-download)
+**Version:** 8L.3 · **Token budget:** BOOT ~18K (старт) · Active ~25-40K · Full arsenal ~57K (/p2p-download)
 
 ## Who it's for
 Anyone who needs **token economy** or works in a context-limited chat. A great starting point for newcomers.
@@ -15,3 +15,4 @@ Resolver-Gated Lazy Hybrid: just **4 local BOOT files (~18K tokens)**; the rest 
 
 > ⚠️ Do not mix files from different editions — their architectures are syntactically incompatible.
 > 📊 Full 4-edition comparison — [`COMPARISON.md`](../COMPARISON.md).
+

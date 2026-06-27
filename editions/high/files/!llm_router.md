@@ -6,7 +6,7 @@ priority: HIGH
 load_order: 6.6
 triggers: "router|маршрут|llm router|выбор провайдера|fallback|contract translation|какая модель"
 depends_on: "!host_profiles.md, !!db_v8H.md, _live/live_core.md, _live/live_specs_20260617.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 compatible_with: "all v8H files"
 tags: router, multi-provider, fallback, contract-translation, v8h3
 ---

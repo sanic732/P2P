@@ -1,6 +1,6 @@
 ---
 source_id: EXPLORATION_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: !!core_v8C.md
 last_updated: 2026-06-12
@@ -9,7 +9,7 @@ tags: exploration, cortex-patch-a, brainstorm, hypotheses, divergent-thinking, o
 triggers: "исследуй", "exploration", "EXPLORATION MODE", "brainstorm", "гипотезы", "[22]", "/p2p-explore"
 ---
 
-# P2P v8C.3-ALPHA — EXPLORATION MODE (!exploration.md)
+# P2P v8C.3 — EXPLORATION MODE (!exploration.md)
 
 > Cortex Patch A встроен в v8C.3. Активируется командой [22] или `/p2p-explore`.
 
@@ -229,7 +229,7 @@ MENU:      item 22 в core.md
 VERSION_METADATA
 ========================================
 id: EXPLORATION_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

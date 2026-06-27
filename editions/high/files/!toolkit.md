@@ -5,7 +5,7 @@ type: ON_DEMAND
 load_trigger: "debug|Arena|writing|тон|enhance|combinator|toolkit"
 priority: SYSTEM
 compatible_with: "!!core_v8H.md | !!db_v8H.md | !pipeline.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════

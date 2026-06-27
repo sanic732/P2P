@@ -1,6 +1,6 @@
 ---
 source_id: LIVE_VENDORS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: live
 depends_on: _live/MANIFEST.md
 last_updated: 2026-06-12
@@ -9,7 +9,7 @@ scope: All LLM vendor live specs for v8C.2 — API strings, costs, context windo
 tags: live, vendors, api-strings, pricing, g-errors, routing
 ---
 
-# P2P v8C.3-ALPHA — LIVE VENDOR SPECS (_live/live_vendors.md)
+# P2P v8C.3 — LIVE VENDOR SPECS (_live/live_vendors.md)
 
 > Single source of truth for all active LLMs. Update on new releases.  
 > Full live specs (June 2026): `vendors/live_specs_20260617.md` (PRIORITY: OVERRIDE)  
@@ -163,7 +163,7 @@ Real-time X/Twitter data     → Grok 4.3 (only Grok has X Firehose)
 VERSION_METADATA
 ========================================
 id: LIVE_VENDORS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12
@@ -171,7 +171,7 @@ live_specs_ref: live_specs_20260617.md
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
 // ═══════════════════════════════════════════════════════
-// §V8.5 DELTA (2026-06-17 import — live_specs_20260617.md OVERRIDE governs on conflict)
+// §V8.5 DELTA (2026-06-27 import — live_specs_20260617.md OVERRIDE governs on conflict)
 // ═══════════════════════════════════════════════════════
 V85_DELTA:
   Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404 (no redirect).

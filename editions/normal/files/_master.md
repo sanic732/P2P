@@ -3,7 +3,7 @@ id: master_v8N
 version: v8N.3
 type: META
 priority: REFERENCE
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════

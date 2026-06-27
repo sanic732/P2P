@@ -6,7 +6,7 @@ priority: MEDIUM
 load_order: 6.7
 triggers: "routing matrix|матрица маршрутизации|tier routing|какой tier|stakes"
 depends_on: "!llm_router.md, !!db_v8H.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 compatible_with: "all v8H files"
 tags: routing-matrix, tiers, auditable, v8h3
 ---

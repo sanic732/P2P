@@ -1,6 +1,6 @@
 ---
 source_id: DEBUG_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: core.md, db.md
 last_updated: 2026-05-03
@@ -10,7 +10,7 @@ tags: debug, failure-analysis, g-errors, autopsy, on-demand
 triggers: "debug", "провал", "не работает", "ошибка", "почему", "исправь", "[12]", "Debug Engine"
 ---
 
-# P2P v8C.3-ALPHA — DEBUG ENGINE (debug_engine.md)
+# P2P v8C.3 — DEBUG ENGINE (debug_engine.md)
 
 ---
 
@@ -234,7 +234,7 @@ MUST NOT: Add explanations inside JSON as string values
 VERSION_METADATA
 ========================================
 id: DEBUG_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

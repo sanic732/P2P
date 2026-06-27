@@ -5,7 +5,7 @@ type: on-demand
 module_type: on-demand
 triggers: "optim|оптимиз|APO|OPRO|автоматическ|улучши промпт|improve prompt|auto-tune|DSPy|few-shot bootstrap|prompt evolution"
 depends_on: "!!core_v8N.md, !!db_v8N.md, !pipeline.md, !metrics.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 token_estimate: ~3000
 scope: Автоматическая оптимизация промптов — APO, OPRO, EvoPrompt, QUORUM-refinement. Загружается по триггеру или MODULE_OPTIMIZATION=true. ТРЕБУЕТ !metrics.
 compatible_with: "all v8N files"

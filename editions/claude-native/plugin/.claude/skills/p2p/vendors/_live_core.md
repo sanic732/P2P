@@ -1,6 +1,6 @@
 ---
 source_id: LIVE_CORE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: live
 depends_on: _live/MANIFEST.md
 last_updated: 2026-06-12
@@ -8,7 +8,7 @@ scope: P2P v8C.3 live session state — current session tracking, active project
 tags: live, session-state, atlas, routing-memory, core
 ---
 
-# P2P v8C.3-ALPHA — LIVE CORE (_live/live_core.md)
+# P2P v8C.3 — LIVE CORE (_live/live_core.md)
 
 > Сбрасывается при каждой новой сессии. Заполняется автоматически по мере работы.
 
@@ -94,14 +94,14 @@ temperature: null              # null при thinking=enabled
 VERSION_METADATA
 ========================================
 id: LIVE_CORE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
 // ═══════════════════════════════════════════════════════
-// [V8.5 OVERRIDE — 2026-06-17] источник истины: vendors/live_specs_20260617.md (перебивает при конфликте)
+// [V8.5 OVERRIDE — 2026-06-27] источник истины: vendors/live_specs_20260617.md (перебивает при конфликте)
 // ═══════════════════════════════════════════════════════
 V85_OVERRIDE:
   Claude: PRIMARY=opus-4-8 ($5/$25, 1M ctx, out 128K/300K batch, effort high default low|med|high|xhigh|max).

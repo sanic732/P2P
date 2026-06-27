@@ -2,7 +2,7 @@
 name: p2p-anon
 description: "ANON sub-agent — security engineer, privacy guardian, threat modeler."
 source_id: AGENT_ANON_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: agent
 last_updated: 2026-06-12
 scope: ANON sub-agent — security engineer, privacy guardian, threat modeler.
@@ -52,7 +52,7 @@ MUST NOT: Пропускать privacy implications
 VERSION_METADATA
 ========================================
 id: AGENT_ANON_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

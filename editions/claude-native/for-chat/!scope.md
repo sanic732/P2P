@@ -1,6 +1,6 @@
 ---
 source_id: SCOPE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: !!core_v8C.md
 last_updated: 2026-06-12
@@ -9,7 +9,7 @@ tags: scope-helm, splitter, capsule, router, guardian, large-tasks, on-demand
 triggers: "scope", "SCOPE.HELM", "разбить задачу", "большая задача", "SPLITTER", "CAPSULE", "[25]"
 ---
 
-# P2P v8C.3-ALPHA — SCOPE.HELM v1.2 (!scope.md)
+# P2P v8C.3 — SCOPE.HELM v1.2 (!scope.md)
 
 ---
 
@@ -388,7 +388,7 @@ DATA FLOW:
 VERSION_METADATA
 ========================================
 id: SCOPE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-05-03

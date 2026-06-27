@@ -5,7 +5,7 @@ type: on-demand
 module_type: on-demand
 triggers: "rag|raptor|retrieval|ретривал|вектор|поиск по базе|векторная БД|document search|база знаний|документы"
 depends_on: "!!core_v8H.md, !!db_v8H.md, !memory.md, !agents.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 token_estimate: ~2800
 scope: RAG техники — RAPTOR, векторный поиск, адаптивный ретривал. Загружается по триггеру или MODULE_RAG=true.
 compatible_with: "all v8H files"

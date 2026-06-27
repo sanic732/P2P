@@ -1,6 +1,6 @@
 ---
 source_id: SECURITY_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 triggers: "security|безопас|jailbreak|injection|уязвимост|атак|prompt injection|защит промпт|adversarial"
 depends_on: !!core_v8C.md
@@ -142,7 +142,7 @@ P2P запрашивает: промпт для аудита (или текущ�
 VERSION_METADATA
 ========================================
 id: SECURITY_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

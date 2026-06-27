@@ -1,17 +1,17 @@
 ---
 source_id: MANIFEST_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: live
 depends_on: none
 last_updated: 2026-06-12
-scope: P2P v8C.3-ALPHA live manifest — deadlines, deprecation flags, daily refresh checklist. Always loaded as part of BASE set.
+scope: P2P v8C.3 live manifest — deadlines, deprecation flags, daily refresh checklist. Always loaded as part of BASE set.
 tags: manifest, deadlines, deprecation, live, v8c
 ---
 
-# P2P v8C.3-ALPHA — LIVE MANIFEST (_live/MANIFEST.md)
+# P2P v8C.3 — LIVE MANIFEST (_live/MANIFEST.md)
 
 > Update this file on every live specs update.
-> Last updated: 2026-06-17 | Live specs: vendors/live_specs_20260617.md
+> Last updated: 2026-06-27 | Live specs: vendors/live_specs_20260617.md
 
 ---
 
@@ -32,7 +32,7 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 
 ---
 
-## ACTIVE MODELS (v8C.3-ALPHA — June 2026)
+## ACTIVE MODELS (v8C.3 — June 2026)
 
 ### Claude (Primary for v8C.3)
 | Model | API String | Status |
@@ -82,14 +82,14 @@ grep -r "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deepse
 VERSION_METADATA
 ========================================
 id: MANIFEST_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
 // ═══════════════════════════════════════════════════════
-// [V8.5 OVERRIDE — 2026-06-17] источник истины: vendors/live_specs_20260617.md (перебивает при конфликте)
+// [V8.5 OVERRIDE — 2026-06-27] источник истины: vendors/live_specs_20260617.md (перебивает при конфликте)
 // ═══════════════════════════════════════════════════════
 V85_OVERRIDE:
   Claude: PRIMARY=opus-4-8 ($5/$25, 1M ctx, out 128K/300K batch, effort high default low|med|high|xhigh|max).

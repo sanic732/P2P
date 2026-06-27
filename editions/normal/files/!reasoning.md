@@ -5,7 +5,7 @@ type: on-demand
 module_type: on-demand
 triggers: "reasoning|цепочка рассуждений|chain of thought|cot|self-consistency|mcts|tts|test-time|подумай глубже|think step|budget thinking"
 depends_on: "!!core_v8N.md, !!db_v8N.md, !pipeline.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 token_estimate: ~3000
 scope: Расширенные техники reasoning — TTS, Self-Consistency, MCTS/rStar-Math, Critical Chain. Загружается по триггеру или MODULE_REASONING=true.
 compatible_with: "all v8N files"

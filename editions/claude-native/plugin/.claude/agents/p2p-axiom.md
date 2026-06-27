@@ -2,7 +2,7 @@
 name: p2p-axiom
 description: "AXIOM sub-agent — devil's advocate, critical verifier, weak point finder."
 source_id: AGENT_AXIOM_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: agent
 last_updated: 2026-06-12
 scope: AXIOM sub-agent — devil's advocate, critical verifier, weak point finder.
@@ -59,7 +59,7 @@ MUST NOT: Предлагать полный редизайн — только т
 VERSION_METADATA
 ========================================
 id: AGENT_AXIOM_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

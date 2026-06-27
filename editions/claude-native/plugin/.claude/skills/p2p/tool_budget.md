@@ -1,6 +1,6 @@
 ---
 source_id: TOOL_BUDGET_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: core.md
 last_updated: 2026-06-12
@@ -9,7 +9,7 @@ tags: tool-budget, api, agentic, constraint-drift, re-injection, on-demand
 triggers: "tool budget", "инструменты", "агентика", "API mode", "tool calls", "бюджет инструментов"
 ---
 
-# P2P v8C.3-ALPHA — TOOL BUDGET (tool_budget.md)
+# P2P v8C.3 — TOOL BUDGET (tool_budget.md)
 
 > Основное применение: API режим с многошаговыми agentic workflows.
 > В Claude.ai chat/projects — менее критично (нет Tool Budget ограничений).
@@ -115,7 +115,7 @@ Budget exhausted. Текущий прогресс:
 VERSION_METADATA
 ========================================
 id: TOOL_BUDGET_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

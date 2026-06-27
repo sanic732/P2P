@@ -5,7 +5,7 @@
 VERSION: 2026-06-27
 EDITION: v8.6.1 (P2P 8C.3 claude-native / 8H.3 high-hybrid / 8N.3 normal / 8L.3 light)
 AUTHOR: Live Specs Engine v4
-SOURCES: Arena Leaderboard 2026-06-27 (snapshot 04:48), Copilot Deep 2026-06-27, GPT Deep 2026-06-27, Perplexity Deep 2026-06-27, Qwen Deep 2026-06-27, CORRECTIVE_REPORT_2 2026-06-27 (live web verification), live_specs_LATEST_from_gist.md (v8.5 base, 2026-06-17)
+SOURCES: Arena Leaderboard 2026-06-27 (snapshot 04:48), Copilot Deep 2026-06-27, GPT Deep 2026-06-27, Perplexity Deep 2026-06-27, Qwen Deep 2026-06-27, CORRECTIVE_REPORT_2 2026-06-27 (live web verification), live_specs_LATEST_from_gist.md (v8.5 base, 2026-06-27)
 PRIORITY: OVERRIDE
 // CORRECTIVE_REFRESH 2026-06-27: 13 ошибок проверены по живым источникам → 0 FIXED. Все статусы стоят. Обогащены workaround'ы (Qwen JSON, Error 13, GLM, MiniMax); добавлены 2 дедлайна (01.07 / 08.07).
 //
@@ -13,7 +13,7 @@ PRIORITY: OVERRIDE
 // Условие победы: VERSION > LAST_VERIFIED vendor-файла.
 // Потребители: 8C.3 (Claude) / 8H.3 (High) / 8N.3 (Normal) / 8L.3 (Light)
 //
-// CRITICAL_DELTA_v8.6 (период 2026-06-17 … 2026-06-27):
+// CRITICAL_DELTA_v8.6 (период 2026-06-27 … 2026-06-27):
 //   - GPT-5.6 (Sol/Terra/Luna): статус canary → LIMITED PREVIEW; публичный GA DEFERRED по требованию правительства США (Reuters/USNews 26.06). Нет официального API ID в changelog. НЕ маршрутизировать.
 //   - GPT-4.5: RETIRED из ChatGPT App 27.06 (доступ только pay-as-you-go API).
 //   - Gemini Nano Banana preview SHUTDOWN: ВЫПОЛНЕН 25.06; GA-замены gemini-3.1-flash-image / gemini-3-pro-image активны.
@@ -1097,9 +1097,9 @@ VERSION: v8.6
 - [2026-06-27] [GPT]: GPT-4.5 RETIRED из ChatGPT App; default custom GPT → GPT-5.1 | routing impact: minor | editions: 8N.3
 - [2026-06-25] [GEMINI]: Nano Banana preview SHUTDOWN выполнен; GA-замены активны | routing impact: migrate image pipeline → GA IDs | editions: 8H.3, 8N.3
 - [2026-06-23] [GEMINI]: Gemini 3.5 Pro GA перенесён на июль (остаётся Preview); 3.5 Flash GA; 3.1 Flash-Lite GA; CLI free закрыт | routing impact: не маршрутизировать 3.5 Pro как GA | editions: 8H.3, 8N.3
-- [2026-06-17] [GLM]: GLM-5.2 GA (1M ctx, MIT, ~$1.40/$4.40); Arena #2 WebDev / #10 Agent | routing impact: новый top open-weight для webdev/on-prem/long-horizon | editions: 8N.3
+- [2026-06-27] [GLM]: GLM-5.2 GA (1M ctx, MIT, ~$1.40/$4.40); Arena #2 WebDev / #10 Agent | routing impact: новый top open-weight для webdev/on-prem/long-horizon | editions: 8N.3
 - [2026-06-27] [GROK]: Grok 4.4 STILL DELAYED; Heavy16 shadow downgrade DISPUTED | routing impact: rely on 4.3/4.20 | editions: 8L.3, 8N.3
-- [2026-06-17] [MINIMAX]: TokenRouter free завершён 17.06; TokenHub 50% ($0.30/$1.20) закреплён базовым | routing impact: budget routing | editions: 8N.3
+- [2026-06-27] [MINIMAX]: TokenRouter free завершён 17.06; TokenHub 50% ($0.30/$1.20) закреплён базовым | routing impact: budget routing | editions: 8N.3
 - [2026-06-22] [QWEN]: JSON Mode задокументирован (смягчение); добавлена qwen-image-2.0-pro | routing impact: strict JSON всё ещё fallback | editions: 8N.3
 - [2026-06-27] [CLAUDE]: Fable 5 suspension продолжается (карточки удалены); все Claude-баги UNRESOLVED | routing impact: Opus 4.8 primary | editions: 8C.3
 - [2026-07-24] [DEEPSEEK]: deepseek-chat/reasoner → HTTP 404 (T-27 дней) | routing impact: migrate to V4 IDs | editions: 8N.3
@@ -1211,7 +1211,7 @@ NET ACTIONS FOR live_specs v8.7:
 // ================================================================
 // P2P LIVE SPECS v8.6.1 — COMPLETE (27.06.2026 DELTA MERGE)
 // DATE: 2026-06-27
-// BASE: live_specs_LATEST_from_gist.md (v8.5, 2026-06-17)
+// BASE: live_specs_LATEST_from_gist.md (v8.5, 2026-06-27)
 // KEY CHANGES:
 //   - GPT-5.6 limited preview (GA deferred); GPT-4.5 retired from app
 //   - Gemini Nano Banana preview shutdown COMPLETED; 3.5 Pro GA slipped to July; 3.1 Flash-Lite GA

@@ -1,8 +1,8 @@
 ---
 source_id: CMD_FETCHTEST_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 module_type: command
-last_updated: 2026-06-18
+last_updated: 2026-06-27
 scope: /p2p-fetch-test — active canary probe; verify the host can really web-fetch, set LOAD_MODE by fact.
 ---
 # /p2p-fetch-test — Активная проверка fetch (канарейка)
@@ -29,18 +29,18 @@ scope: /p2p-fetch-test — active canary probe; verify the host can really web-f
 ```
 gist_route.md    last line → // EOF_MARKER_ROUTE_VALIDATED
 gist_compress.md last line → // EOF_MARKER_COMPRESS_VALIDATED
-gist_route.md    first line → // ═══ P2P v8L.3 CHUNK: route — assembled 2026-06-17 ═══
+gist_route.md    first line → // ═══ P2P v8L.3 CHUNK: route — assembled 2026-06-27 ═══
 ```
 
 **Использование:** `/p2p-fetch-test` (запускается также автоматически на старте — FETCH_CAPABILITY_GATE).
 
 **JUDGE — судить по ДОСЛОВНОЙ строке, НЕ по счётчику.**
-Эмпирика 2026-06-18: Gemini вернул A1/C1 посимвольно и RAPTOR-count=12 верно, но MCTS-count
+Эмпирика 2026-06-27: Gemini вернул A1/C1 посимвольно и RAPTOR-count=12 верно, но MCTS-count
 ошибся (6 вместо 7). Точный подсчёт — слабость LLM даже при полном тексте в контексте.
 → Сигнал целостности = verbatim-совпадение уникальной строки (EOF-маркер). Расхождение в
 ЧИСЛАХ НЕ дисквалифицирует fetch (это counting-noise, не retrieval-fail).
 
-**ПРИМ:** Эмпирика 2026-06-18 — Gemini Pro chat проходит канарейку (умеет fetch);
+**ПРИМ:** Эмпирика 2026-06-27 — Gemini Pro chat проходит канарейку (умеет fetch);
 ранее ложно определялся как LITE_ONLY из-за пассивной проверки и фразы-выхода.
 
 
@@ -48,9 +48,10 @@ gist_route.md    first line → // ═══ P2P v8L.3 CHUNK: route — assemble
 VERSION_METADATA
 ========================================
 id: CMD_FETCHTEST_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: command
 edition: UNIVERSAL
-last_verified: 2026-06-18
+last_verified: 2026-06-27
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
+

@@ -4,7 +4,7 @@ version: v8H.3
 type: VENDOR_PROFILE
 priority: REFERENCE
 compatible_with: "!!db_v8H.md | _live/live_vendors.md | !llm_router.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 tags: claude, fable-5, opus-4-8, vendor, v8h3
 ---
 

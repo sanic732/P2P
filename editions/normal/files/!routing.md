@@ -5,7 +5,7 @@ type: on-demand
 module_type: on-demand
 triggers: "routing|маршрутизация|выбор модели|какую модель|model selection|smart route|роутинг|cascade|каскад"
 depends_on: "!!core_v8N.md, !!db_v8N.md, _live/live_vendors.md, !metrics.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 token_estimate: ~2300
 scope: Умная маршрутизация по задаче — выбор оптимальной модели из 8 хостов, cost-aware и cascade routing. Загружается по триггеру или MODULE_ROUTING=true.
 compatible_with: "all v8N files"

@@ -2,7 +2,7 @@
 description: "/p2p-capsule — save or load session context via CAPSULE protocol."
 argument-hint: "<context>"
 source_id: CMD_CAPSULE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p-capsule — save or load session context via CAPSULE protocol.
@@ -29,7 +29,7 @@ scope: /p2p-capsule — save or load session context via CAPSULE protocol.
 VERSION_METADATA
 ========================================
 id: CMD_CAPSULE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

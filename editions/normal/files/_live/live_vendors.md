@@ -5,7 +5,7 @@ type: LIVE_VENDORS
 priority: HIGH
 load_order: 6
 update_frequency: weekly
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -308,7 +308,7 @@ VERSION_METADATA:
   OVERRIDE:    Этот файл имеет приоритет над vendors/*.md при конфликтах
   COMPATIBLE:  !!core_v8N.md | !!db_v8N.md | all v8N files
 // ═══════════════════════════════════════════════════════
-// §V8.5 DELTA (2026-06-17 import — live_specs_20260617.md OVERRIDE governs on conflict)
+// §V8.5 DELTA (2026-06-27 import — live_specs_20260617.md OVERRIDE governs on conflict)
 // ═══════════════════════════════════════════════════════
 V85_DELTA:
   Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404 (no redirect).

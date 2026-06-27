@@ -1,8 +1,8 @@
 ---
 source_id: CMD_METRICS_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 module_type: command
-last_updated: 2026-06-18
+last_updated: 2026-06-27
 scope: /p2p-metrics — show session metrics dashboard and routing memory.
 ---
 # /p2p-metrics — Метрики Сессии
@@ -23,9 +23,9 @@ scope: /p2p-metrics — show session metrics dashboard and routing memory.
 VERSION_METADATA
 ========================================
 id: CMD_METRICS_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: command
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-18
+last_verified: 2026-06-27
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

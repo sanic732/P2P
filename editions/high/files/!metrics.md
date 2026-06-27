@@ -5,7 +5,7 @@ type: ON_DEMAND
 load_trigger: "метрики|SESSION_EFFICIENCY|routing memory|статистика"
 priority: SYSTEM
 compatible_with: "!!core_v8H.md | !memory.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════

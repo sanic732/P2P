@@ -5,7 +5,7 @@ type: KNOWLEDGE_BASE
 priority: CRITICAL
 load_order: 3
 compatible_with: "!!core_v8N.md | all v8N files"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════

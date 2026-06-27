@@ -2,7 +2,7 @@
 name: p2p-datos
 description: "DATOS sub-agent — data analyst, fact-checker, empirical verifier."
 source_id: AGENT_DATOS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: agent
 last_updated: 2026-06-12
 scope: DATOS sub-agent — data analyst, fact-checker, empirical verifier.
@@ -52,7 +52,7 @@ MUST NOT: Игнорировать противоречивые данные
 VERSION_METADATA
 ========================================
 id: AGENT_DATOS_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

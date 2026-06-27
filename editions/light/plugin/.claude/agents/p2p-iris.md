@@ -2,9 +2,9 @@
 name: p2p-iris
 description: "IRIS sub-agent — problem space cartographer, research specialist, unknown discovery."
 source_id: AGENT_IRIS_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 module_type: agent
-last_updated: 2026-06-18
+last_updated: 2026-06-27
 scope: IRIS sub-agent — problem space cartographer, research specialist, unknown discovery.
 tags: agent, iris, research, cartography, discovery
 ---
@@ -60,9 +60,9 @@ MUST NOT: Игнорировать крайние случаи и edge condition
 VERSION_METADATA
 ========================================
 id: AGENT_IRIS_V8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: agent
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-18
+last_verified: 2026-06-27
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

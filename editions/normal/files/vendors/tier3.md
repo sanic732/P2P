@@ -5,7 +5,7 @@ type: VENDOR_PROFILE
 tier: 3
 priority: REFERENCE
 compatible_with: "!!db_v8N.md | _live/live_vendors.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════

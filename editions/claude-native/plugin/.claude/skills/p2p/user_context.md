@@ -1,6 +1,6 @@
 ---
 source_id: USER_CONTEXT_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: core.md
 last_updated: 2026-06-12
@@ -9,7 +9,7 @@ tags: user-context, personalization, adaptive, preferences, expertise, on-demand
 triggers: "профиль", "настройки пользователя", "user context", "[17]", "персонализация"
 ---
 
-# P2P v8C.3-ALPHA — USER CONTEXT EXTENDED (user_context.md)
+# P2P v8C.3 — USER CONTEXT EXTENDED (user_context.md)
 
 ---
 
@@ -132,7 +132,7 @@ P2P задаст 5 вопросов:
 VERSION_METADATA
 ========================================
 id: USER_CONTEXT_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

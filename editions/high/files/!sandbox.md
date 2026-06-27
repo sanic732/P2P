@@ -5,7 +5,7 @@ type: ON_DEMAND
 load_trigger: "sandbox|исследуй|exploration|эксперимент|исследование"
 priority: SYSTEM
 compatible_with: "!!core_v8H.md | !!db_v8H.md"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════

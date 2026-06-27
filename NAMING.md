@@ -4,7 +4,7 @@
 
 ---
 
-## Схема версии: `v8C.3-ALPHA`
+## Схема версии: `v8C.3`
 
 ```
 v 8   C    .3    - ALPHA
@@ -59,7 +59,7 @@ v 8   C    .3    - ALPHA
 
 ## 🇬🇧 English
 
-### Version scheme: `v8C.3-ALPHA`
+### Version scheme: `v8C.3`
 `8` = major architecture generation (NEXUS) · `C` = **edition letter** · `.3` = minor iteration · `ALPHA` = maturity status.
 
 ### Edition letters
@@ -79,3 +79,4 @@ v 8   C    .3    - ALPHA
 
 ### Glossary
 **QUORUM** — 8-agent council · **SCOPE.HELM** — large-task control (SPLITTER→ROUTER→CAPSULE) · **PILOT** — help-level axis (Co/Auto/Manual) · **SHERPA** — environment-feature guide · **Live Specs** — auto-updated model price/quota/bug reference (Gist) · **BASE / LIVE / ON-DEMAND** — three module-loading classes.
+

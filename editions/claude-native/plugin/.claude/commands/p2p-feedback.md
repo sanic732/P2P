@@ -2,7 +2,7 @@
 description: "/p2p-feedback — record quality feedback, update routing memory."
 argument-hint: "[scan]"
 source_id: CMD_FEEDBACK_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: command
 last_updated: 2026-06-12
 scope: /p2p-feedback — record quality feedback, update routing memory.
@@ -26,7 +26,7 @@ scope: /p2p-feedback — record quality feedback, update routing memory.
 VERSION_METADATA
 ========================================
 id: CMD_FEEDBACK_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: command
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

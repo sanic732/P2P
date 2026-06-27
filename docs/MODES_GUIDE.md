@@ -1,6 +1,6 @@
 ---
 source_id: MODES_GUIDE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: docs
 last_updated: 2026-06-14
 scope: Пользовательский гайд по режимам P2P v8C.3 (PILOT, SHERPA) + ASCII-баннеры для визуального узнавания.
@@ -90,3 +90,4 @@ P2P применил и почему — для тех, кто хочет тес
 - В меню: клик по `✈ РЕЖИМ ПИЛОТА` или напиши номер.
 - Навсегда: в `_preloader.md` → `PILOT_MODE: co-pilot | auto-pilot | manual`.
 - На одну сессию: скажи словами («я эксперт, без объяснений») — P2P поймёт (PERSONA_HINT).
+

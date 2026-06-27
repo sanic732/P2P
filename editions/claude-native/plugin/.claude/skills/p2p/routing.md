@@ -1,6 +1,6 @@
 ---
 source_id: ROUTING_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 triggers: "routing|маршрутизация|выбор модели|какую модель|model selection|smart route|роутинг"
 depends_on: core.md, _live/live_vendors.md
@@ -115,7 +115,7 @@ Cost: classifier ~$0.001 per query (экономия на дорогих мод�
 
 ## CONFLICT_RESOLVER DECLARATIONS
 
-**Конфликт:** `routing.md` (v8C.3) vs `Translation Layer` в `contract_builder.md` (v8C.3-ALPHA)
+**Конфликт:** `routing.md` (v8C.3) vs `Translation Layer` в `contract_builder.md` (v8C.3)
 
 | | v8C.2 Translation Layer | v8C.3 Routing Module |
 |--|------------------------|----------------------|
@@ -151,7 +151,7 @@ Cost: classifier ~$0.001 per query (экономия на дорогих мод�
 VERSION_METADATA
 ========================================
 id: ROUTING_MODULE_V8C3
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

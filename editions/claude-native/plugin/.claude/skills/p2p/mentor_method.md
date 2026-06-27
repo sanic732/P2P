@@ -1,6 +1,6 @@
 ---
 source_id: MENTOR_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: core.md
 last_updated: 2026-05-03
@@ -9,7 +9,7 @@ tags: mentor, teaching, socratic, adaptive, progressive-disclosure, on-demand
 triggers: "объясни", "научи", "mentor", "как работает", "[J]", "Template J", "обучение"
 ---
 
-# P2P v8C.3-ALPHA — MENTOR METHOD (mentor_method.md)
+# P2P v8C.3 — MENTOR METHOD (mentor_method.md)
 
 ---
 
@@ -285,7 +285,7 @@ Claude звучит generic               → Нет context файлов → с
 VERSION_METADATA
 ========================================
 id: MENTOR_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-05-03

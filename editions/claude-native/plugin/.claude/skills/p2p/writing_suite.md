@@ -1,6 +1,6 @@
 ---
 source_id: WRITING_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on_demand
 depends_on: [db.md, contract_builder.md, agents.md]
 tags: [writing, constraint-prompting, tone, humanization, anti-ai-detector]
@@ -261,7 +261,7 @@ ELSE → CASUAL_COMMENT (safest default)
 VERSION_METADATA
 ========================================
 id: WRITING_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on_demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

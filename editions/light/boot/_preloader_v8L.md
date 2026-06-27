@@ -1,11 +1,11 @@
 ---
 id: preloader_v8L
-version: v8L.3-ALPHA
+version: v8L.3
 type: PRELOADER
 priority: CRITICAL
 load_order: 1
 compatible_with: "!!core_v8L.md | _index_v8L.md | all v8L files"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════════════
@@ -19,7 +19,7 @@ last_verified: 2026-06-17
 // RU: Без web-fetch весь L3 GIST CLOUD недостижим. Гейт решает режим до меню.
 // EN: Without web-fetch the whole L3 is unreachable. Gate decides mode pre-menu.
 
-// RU: КРИТИЧНО — гейт АКТИВНЫЙ, а не «спроси, умеешь ли». Эмпирически (2026-06-18):
+// RU: КРИТИЧНО — гейт АКТИВНЫЙ, а не «спроси, умеешь ли». Эмпирически (2026-06-27):
 //   Gemini Pro chat РЕАЛЬНО умеет fetch, но при пассивной проверке / при наличии
 //   лёгкого выхода «скажи CANNOT_FETCH» уходит в отказ (false negative).
 //   Поэтому: дёрнуть КАНАРЕЙКУ и сверить ответ с эталоном. БЕЗ фразы-выхода.
@@ -61,7 +61,7 @@ HOST_CONFIG:
 // RU: GIST_LAZY_FETCH доступен только хостам с инструментом загрузки URL.
 SELECT_HOST_FETCH_MATRIX:
   claude:   FETCH=native (WebFetch/web_search)  → GIST_LAZY_FETCH ✓
-  gemini:   FETCH=native (Google Search/browse) → GIST_LAZY_FETCH ✓ (ЭМПИРИЧЕСКИ подтв. Gemini Pro 2026-06-18)
+  gemini:   FETCH=native (Google Search/browse) → GIST_LAZY_FETCH ✓ (ЭМПИРИЧЕСКИ подтв. Gemini Pro 2026-06-27)
   grok:     FETCH=native (X/web)                → GIST_LAZY_FETCH ✓
   gpt:      FETCH=native (browsing)             → GIST_LAZY_FETCH ✓ (если включён tool)
   qwen:     FETCH=depends (provider tool)       → авто-детект; иначе LITE_ONLY
@@ -198,7 +198,7 @@ ON_LOAD:
   → Предложить заполнить, НЕ блокировать; разумные дефолты.
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8L.3-ALPHA · Lite/Live Hybrid · Preloader (UNIVERSAL, как 8N.3)
+  SYSTEM:      P2P v8L.3 · Lite/Live Hybrid · Preloader (UNIVERSAL, как 8N.3)
   ROLE:        Host selection, FETCH gate, LOAD_MODE, HOST_CONFIG, PROJECT_CARD, FLAGS, VERSION_COMPAT
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm (выбор на старте, /host)
   COMPATIBLE:  _index_v8L, !!core_v8L, !!db_v8L

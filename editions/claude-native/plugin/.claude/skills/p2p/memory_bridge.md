@@ -1,6 +1,6 @@
 ---
 source_id: MEMORY_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: on-demand
 depends_on: core.md
 last_updated: 2026-06-12
@@ -9,7 +9,7 @@ tags: memory, capsule, cross-session, context-compression, state-persistence, on
 triggers: "память", "CAPSULE", "сохрани контекст", "восстанови", "/p2p-capsule", "[24]"
 ---
 
-# P2P v8C.3-ALPHA — MEMORY BRIDGE (memory_bridge.md)
+# P2P v8C.3 — MEMORY BRIDGE (memory_bridge.md)
 
 ---
 
@@ -35,7 +35,7 @@ Memory Bridge решает это через структурированный 
 # CAPSULE генерируется автоматически
 ---
 CAPSULE_V8C:
-  version: v8C.3-ALPHA
+  version: v8C.3
   created_at: "2026-05-02T14:30:00"
   environment: "Code"
   
@@ -257,7 +257,7 @@ ON NEW SESSION:
 VERSION_METADATA
 ========================================
 id: MEMORY_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

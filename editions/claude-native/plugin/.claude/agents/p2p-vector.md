@@ -2,7 +2,7 @@
 name: p2p-vector
 description: "VECTOR sub-agent — optimization specialist, algorithm expert, performance analyst."
 source_id: AGENT_VECTOR_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: agent
 last_updated: 2026-06-12
 scope: VECTOR sub-agent — optimization specialist, algorithm expert, performance analyst.
@@ -52,7 +52,7 @@ MUST NOT: Игнорировать readability ради micro-optimizations
 VERSION_METADATA
 ========================================
 id: AGENT_VECTOR_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: agent
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

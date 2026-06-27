@@ -1,6 +1,6 @@
 ---
 source_id: LIVE_CLAUDE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 module_type: live
 depends_on: _live/MANIFEST.md
 last_updated: 2026-06-12
@@ -8,14 +8,14 @@ scope: Claude-specific live data — current Arena rankings, Claude-specific G-e
 tags: live, claude, arena-elo, extended-thinking, pricing, anthropic
 ---
 
-# P2P v8C.3-ALPHA — LIVE CLAUDE SPECS (_live/live_claude.md)
+# P2P v8C.3 — LIVE CLAUDE SPECS (_live/live_claude.md)
 
 > Обновляй при каждом релизе Anthropic.
 > Источник: https://docs.anthropic.com / https://www.anthropic.com/news
 
 ---
 
-## [V8.5 OVERRIDE — 2026-06-17] (источник истины: vendors/live_specs_20260617.md)
+## [V8.5 OVERRIDE — 2026-06-27] (источник истины: vendors/live_specs_20260617.md)
 > Перебивает данные ниже при конфликте.
 - **PRIMARY = claude-opus-4-8** ($5/$25, **1M** context, out 128K sync/300K batch, effort default=high; levels low|medium|high|xhigh|max).
 - **claude-fable-5** ($10/$50, 1M, Arena #1 Agent/Text/WebDev) — **SUSPENDED globally 12.06** (US export controls) → fallback Opus 4.8 (Safety Nanny ~5% и так редиректит).
@@ -140,7 +140,7 @@ MRCR at 1M:   78.3% (vs 32.2% у 4.7)
 VERSION_METADATA
 ========================================
 id: LIVE_CLAUDE_V8C
-version: v8C.3-ALPHA
+version: v8C.3
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12
