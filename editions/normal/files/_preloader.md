@@ -56,12 +56,12 @@ VERSION_COMPAT:
   // RULE: если legacy=on AND v3=on → при конфликте техник активируется CONFLICT_RESOLVER
 
   // Гранулярный контроль 6 модулей v8N.3 (по умолчанию ВСЕ false):
-  MODULE_RAG: true           // false | true | auto | or
-  MODULE_REASONING: true
-  MODULE_ROUTING: true
-  MODULE_COMPRESSION: true
-  MODULE_SECURITY: true
-  MODULE_OPTIMIZATION: true
+  MODULE_RAG: auto           // false | true | auto | or
+  MODULE_REASONING: auto
+  MODULE_ROUTING: auto
+  MODULE_COMPRESSION: auto
+  MODULE_SECURITY: auto
+  MODULE_OPTIMIZATION: auto
   //
   // false → не загружать; пункт меню скрыт
   // true  → всегда загружать; пункт меню виден

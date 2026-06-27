@@ -1,4 +1,6 @@
 ---
+name: p2p-datos
+description: "DATOS sub-agent — data analyst, fact-checker, empirical verifier."
 source_id: AGENT_DATOS_V8L
 version: v8L.3-ALPHA
 module_type: agent

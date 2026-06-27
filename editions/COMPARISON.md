@@ -6,7 +6,7 @@
 
 ## Таблица сравнения
 
-| Параметр | 🟦 **cloud-claude** (8C.3) | 🟥 **high** (8H.3) | 🟩 **normal** (8N.3) | 🟦 **light** (8L.3) |
+| Параметр | 🟦 **claude-native** (8C.3) | 🟥 **high** (8H.3) | 🟩 **normal** (8N.3) | 🟦 **light** (8L.3) |
 |---|---|---|---|---|
 | Имя | Claude Native | High \ Hybrid | Normal / Universal | Lite / Live |
 | Хост | только Claude | 8 хостов (нативно Grok) | любой из 8 | универсальный (автоопределение) |
@@ -22,7 +22,7 @@
 ## Как выбрать (быстро)
 
 - **Новичок / экономия токенов / лимит контекста** → 🟦 **light** (8L.3).
-- **Работаешь в Claude** (Code/Cowork/Projects) → 🟦 **cloud-claude** (8C.3).
+- **Работаешь в Claude** (Code/Cowork/Projects) → 🟦 **claude-native** (8C.3).
 - **Хочешь максимум / сидишь на Grok** → 🟥 **high** (8H.3).
 - **Универсально, твоей модели нет среди нативных** → 🟩 **normal** (8N.3).
 
@@ -47,7 +47,7 @@
 
 All four editions share **one architecture**; they differ by host and form factor.
 
-| Field | cloud-claude (8C.3) | high (8H.3) | normal (8N.3) | light (8L.3) |
+| Field | claude-native (8C.3) | high (8H.3) | normal (8N.3) | light (8L.3) |
 |---|---|---|---|---|
 | Host | Claude only | 8 hosts (native Grok) | any of 8 | universal (auto-detect) |
 | Start tokens | ~7K | ~60K | ~60K | **~18K** |
@@ -55,6 +55,6 @@ All four editions share **one architecture**; they differ by host and form facto
 | Offline / online | offline | offline | offline | **hybrid** (BOOT + fetch) |
 | Plugin | ✅ | ⏳ flat+ZIP | flat+ZIP | ✅ |
 
-**Pick:** newcomer / token economy → **light**; Claude user → **cloud-claude**; maximum / Grok → **high**; your model isn't native → **normal**.
+**Pick:** newcomer / token economy → **light**; Claude user → **claude-native**; maximum / Grok → **high**; your model isn't native → **normal**.
 
 **Live Specs (new in .3):** an auto-updated price/quota/bug reference loaded from a dedicated **unpinned Gist** (`live_specs.md`, latest). An **active FETCH gate** (FETCH_CANARY) decides `GIST_LAZY_FETCH` vs `LITE_ONLY`; freshness is checked via `VERSION:` + `// END OF FILE` markers; offline falls back to an embedded snapshot with a date warning. 8L.3 uses a 4-layer lazy model (BOOT→RESOLVER→TRANSPORT→GIST) with a dependency resolver and sha256 integrity checks.

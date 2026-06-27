@@ -9,7 +9,7 @@
 ## [v8.3.2-ALPHA] — 2026-06-22 · скиллы Cowork + новые скиллы + fallback live_specs
 
 ### Added
-- **5 готовых скиллов** в `editions/cloud-claude/plugin/.claude/skills/`: `bb4pda` (BB-разметка 4PDA), `rag-prep`, `rag-grounding`, `rag-router`, `notebook-pack` — формат `name`/`description` (Cowork-совместимы, авто-дискавери через `"skills": "./.claude/skills"`).
+- **5 готовых скиллов** в `editions/claude-native/plugin/.claude/skills/`: `bb4pda` (BB-разметка 4PDA), `rag-prep`, `rag-grounding`, `rag-router`, `notebook-pack` — формат `name`/`description` (Cowork-совместимы, авто-дискавери через `"skills": "./.claude/skills"`).
 - **Скилл-обёртка `p2p-quorum`** (`skills/p2p-quorum/SKILL.md`) — тонкий триггер с делегированием в `skills/p2p/core.md` + `agents.md`, чтобы `/p2p-quorum` регистрировался как скилл в **Cowork** (команды ≠ скиллы). Логика не дублируется.
 - **Fallback `live_specs_20260617.md`** возвращён в `skills/p2p/vendors/` — на случай недоступности fetch-загрузки live-спеков (основной путь — онлайн-fetch).
 - Сопутствующий BB text-prompt → `docs/`.
@@ -27,7 +27,7 @@
 
 ### Changed
 - **Бамп версии плагинов `8.3.0` → `8.3.1`** (cloud `p2p-v8c3`) и `8.3.0-L` → `8.3.1-L` (light `p2p-v8l3`) — чтобы Claude Code корректно показал «update available» после реструктуризации (имя `p2p-v8c3@p2p` стабильно, обновление прозрачно).
-- `marketplace.json`: `source` плагина `p2p-v8c3` переведён с `./cowork + code` на `./editions/cloud-claude/plugin` (без пробелов); добавлен второй плагин `p2p-v8l3` (`./editions/light/plugin`).
+- `marketplace.json`: `source` плагина `p2p-v8c3` переведён с `./cowork + code` на `./editions/claude-native/plugin` (без пробелов); добавлен второй плагин `p2p-v8l3` (`./editions/light/plugin`).
 
 ### Fixed
 - Ссылка на архивный репозиторий в истории: `P2P-main` → `P2P` (реальное имя репо).

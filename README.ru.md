@@ -30,7 +30,7 @@ P2P (Prompt-to-Prompt) — модульная оркестрирующая си�
 
 | Редакция | Для кого | Хост | Старт |
 |---|---|---|---|
-| 🟦 **[cloud-claude](editions/cloud-claude/README.md)** (8C.3) | Работаешь в **Claude** (Code / Cowork / Projects) | только Claude | ~7K |
+| 🟦 **[claude-native](editions/claude-native/README.md)** (8C.3) | Работаешь в **Claude** (Code / Cowork / Projects) | только Claude | ~7K |
 | 🟥 **[high](editions/high/README.md)** (8H.3) | Хочешь максимум / сидишь на **Grok** | 8 хостов (нативно Grok) | ~60K |
 | 🟩 **[normal](editions/normal/README.md)** (8N.3) | Твоей модели нет среди «нативных» | любой из 8 | ~60K |
 | 🟦 **[light](editions/light/README.md)** (8L.3) | Экономия токенов / лимит контекста / **новичкам** | универсальный | **~18K** |

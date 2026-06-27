@@ -30,7 +30,7 @@ One architecture, four entry points for different hosts and form factors. **Unsu
 
 | Edition | For whom | Host | Start |
 |---|---|---|---|
-| 🟦 **[cloud-claude](editions/cloud-claude/README.en.md)** (8C.3) | You work in **Claude** (Code / Cowork / Projects) | Claude only | ~7K |
+| 🟦 **[claude-native](editions/claude-native/README.en.md)** (8C.3) | You work in **Claude** (Code / Cowork / Projects) | Claude only | ~7K |
 | 🟥 **[high](editions/high/README.en.md)** (8H.3) | You want maximum / use **Grok** | 8 hosts (native Grok) | ~60K |
 | 🟩 **[normal](editions/normal/README.en.md)** (8N.3) | Your model isn't "native" | any of 8 | ~60K |
 | 🟦 **[light](editions/light/README.en.md)** (8L.3) | Token economy / context limits / **newcomers** | universal | **~18K** |

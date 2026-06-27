@@ -21,8 +21,8 @@ Claude Code кэширует плагин по строке версии:
 ## Чеклист (по шагам)
 
 ### 1. Версии
-- [ ] Менял что-либо в `editions/cloud-claude/plugin/**`? → бампни `version` в
-      `editions/cloud-claude/plugin/.claude-plugin/plugin.json` (напр. `8.3.3-C` → `8.3.4-C`).
+- [ ] Менял что-либо в `editions/claude-native/plugin/**`? → бампни `version` в
+      `editions/claude-native/plugin/.claude-plugin/plugin.json` (напр. `8.3.3-C` → `8.3.4-C`).
 - [ ] Менял `editions/light/plugin/**`? → бампни `editions/light/plugin/.claude-plugin/plugin.json`
       (напр. `8.3.2-L` → `8.3.3-L`).
 - [ ] Версия задана ТОЛЬКО в `plugin.json`, НЕ дублируется в корневом `marketplace.json`.
@@ -32,7 +32,7 @@ Claude Code кэширует плагин по строке версии:
 - [ ] Внутри `editions/*/plugin/.claude-plugin/` — только `plugin.json` (НЕ `marketplace.json`).
 - [ ] Нет лишнего `plugin.json` в КОРНЕ папки плагина (только в `.claude-plugin/`).
 - [ ] Нет дублей: имя не должно быть и в `commands/`, и в `skills/` одновременно.
-- [ ] `claude plugin validate ./editions/cloud-claude/plugin` (если есть claude CLI).
+- [ ] `claude plugin validate ./editions/claude-native/plugin` (если есть claude CLI).
 
 ### 3. Залить изменения в main
 - [ ] Ветка → коммит → PR → squash-merge в `main`. Тег релиза двигать ПОСЛЕ merge.
@@ -41,10 +41,10 @@ Claude Code кэширует плагин по строке версии:
 Каждый меняется, если менялись его файлы:
 | Ассет | Источник | Как собрать |
 |---|---|---|
-| `p2p-v8c3.plugin` | `editions/cloud-claude/plugin/` | forward-slash zip (Python `zipfile`), искл. `pack.*`,`*.plugin`,`*.zip`,`.git` |
+| `p2p-v8c3.plugin` | `editions/claude-native/plugin/` | forward-slash zip (Python `zipfile`), искл. `pack.*`,`*.plugin`,`*.zip`,`.git` |
 | `p2p-8C.3-cowork-code.zip` | = копия `p2p-v8c3.plugin` | `cp` |
 | `p2p-v8l3.plugin` | `editions/light/plugin/` | forward-slash zip |
-| `p2p-8C.3-for-chat.zip` | `editions/cloud-claude/for-chat/` | файлы в КОРНЕ (без обёртки) |
+| `p2p-8C.3-for-chat.zip` | `editions/claude-native/for-chat/` | файлы в КОРНЕ (без обёртки) |
 | `p2p-high-8H.3.zip` | `editions/high/` | обёртка `high/` |
 | `p2p-normal-8N.3.zip` | `editions/normal/` | обёртка `normal/` |
 | `p2p-light-8L.3.zip` | `editions/light/` | обёртка `light/`, БЕЗ `.plugin`-артефакта |

@@ -1,4 +1,6 @@
 ---
+name: p2p-vector
+description: "VECTOR sub-agent — optimization specialist, algorithm expert, performance analyst."
 source_id: AGENT_VECTOR_V8L
 version: v8L.3-ALPHA
 module_type: agent

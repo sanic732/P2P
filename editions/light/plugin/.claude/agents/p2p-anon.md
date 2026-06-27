@@ -1,4 +1,6 @@
 ---
+name: p2p-anon
+description: "ANON sub-agent — security engineer, privacy guardian, threat modeler."
 source_id: AGENT_ANON_V8L
 version: v8L.3-ALPHA
 module_type: agent

@@ -1,4 +1,6 @@
 ---
+name: p2p-architecton
+description: "ARCHITECTON sub-agent — senior integrator, holistic view, conflict resolver."
 source_id: AGENT_ARCHITECTON_V8L
 version: v8L.3-ALPHA
 module_type: agent

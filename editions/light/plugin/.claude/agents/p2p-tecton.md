@@ -1,4 +1,6 @@
 ---
+name: p2p-tecton
+description: "TECTON sub-agent — system architect, task decomposer, structural planner."
 source_id: AGENT_TECTON_V8L
 version: v8L.3-ALPHA
 module_type: agent

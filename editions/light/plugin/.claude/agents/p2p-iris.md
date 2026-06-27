@@ -1,4 +1,6 @@
 ---
+name: p2p-iris
+description: "IRIS sub-agent — problem space cartographer, research specialist, unknown discovery."
 source_id: AGENT_IRIS_V8L
 version: v8L.3-ALPHA
 module_type: agent

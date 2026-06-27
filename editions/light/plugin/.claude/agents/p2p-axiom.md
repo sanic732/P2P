@@ -1,4 +1,6 @@
 ---
+name: p2p-axiom
+description: "AXIOM sub-agent — devil's advocate, critical verifier, weak point finder."
 source_id: AGENT_AXIOM_V8L
 version: v8L.3-ALPHA
 module_type: agent

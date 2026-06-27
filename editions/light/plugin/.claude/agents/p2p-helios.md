@@ -1,4 +1,6 @@
 ---
+name: p2p-helios
+description: "HELIOS sub-agent — final synthesizer, executive presenter, actionable output generator."
 source_id: AGENT_HELIOS_V8L
 version: v8L.3-ALPHA
 module_type: agent

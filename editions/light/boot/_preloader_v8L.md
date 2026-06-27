@@ -112,12 +112,12 @@ VERSION_COMPAT:
   // RULE: legacy=on AND v3=on → при конфликте техник → CONFLICT_RESOLVER
 
   // Гранулярный контроль (по умолчанию false = lazy-по-триггеру; true = eager-prefetch):
-  MODULE_RAG: false           // false=lazy | true=eager-prefetch | auto=SIR | or=prefetch+resolver
-  MODULE_REASONING: false
-  MODULE_ROUTING: false
-  MODULE_COMPRESSION: false
-  MODULE_SECURITY: false
-  MODULE_OPTIMIZATION: false
+  MODULE_RAG: auto           // false=lazy | true=eager-prefetch | auto=SIR | or=prefetch+resolver
+  MODULE_REASONING: auto
+  MODULE_ROUTING: auto
+  MODULE_COMPRESSION: auto
+  MODULE_SECURITY: auto
+  MODULE_OPTIMIZATION: auto
   // ПРИМ (отличие от v8H): здесь false ≠ «скрыт навсегда». false = «грузить лениво
   // по триггеру через resolver». true = «префетчить чанк сразу» (для офлайн-устойчивости).
 

@@ -16,8 +16,7 @@ claude/
 │   │                  /p2p-verify, /p2p-download, /p2p-host, /p2p-fetch-test
 │   └── settings.json  безопасные дефолты (хуки OPT-IN, выключены)
 └── .claude-plugin/
-    ├── plugin.json        манифест плагина (v8.3.0-L)
-    └── marketplace.json   манифест маркетплейса
+    └── plugin.json        манифест плагина (marketplace.json — в корне репо)
 ```
 
 ## Установка
