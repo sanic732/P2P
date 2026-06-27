@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
-  "name": "P2P-PROMPT-TO-PROMPT",
+  "name": "P2P-4PDA-edition",
   "displayName": "P2P Marketplace — 4PDA Edition",
   "description": "Official P2P meta-prompt system marketplace (Claude Native edition, mirror published for the 4PDA community)",
   "owner": { "name": "sanic732" },
