@@ -1,50 +1,76 @@
-# pack.ps1 — Упаковка P2P v8C.2 в .plugin файл для one-click импорта
+# pack.ps1 — Build a .plugin bundle of the Claude-Native edition (version-agnostic).
+#
+# WHAT THIS IS (and is NOT):
+#   • The .plugin file is a ZIP of THIS single plugin folder, for MANUAL import only
+#     (Cowork → "Upload a skill", or a one-off local install). It bundles ONE plugin.
+#   • It is NOT how the marketplace works. "Add marketplace → Sync" clones the whole
+#     repo and reads .claude-plugin/marketplace.json (at the REPO ROOT); each plugin is
+#     fetched from its `source`. This script does not touch that flow.
+#
+# VERSIONING: the bundle name and version are read LIVE from .claude-plugin/plugin.json,
+#   so the script is never tied to a hardcoded version — it always packs the latest manifest.
+#   Output name defaults to "<plugin name>.plugin" (e.g. p2p-v8c3.plugin).
+#
 # Usage: powershell -ExecutionPolicy Bypass -File pack.ps1 [output_name]
-# Default output: p2p-v8c2.plugin
 
 param(
-    [string]$OutputName = "p2p-v8c2.plugin"
+    [string]$OutputName
 )
 
 $ErrorActionPreference = "Stop"
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$OutputPath = Join-Path (Split-Path -Parent $ScriptDir) $OutputName
 
-Write-Host "═══════════════════════════════════════════════════════════"
-Write-Host "  P2P v8C.2 PACKAGING SCRIPT (PowerShell)"
-Write-Host "═══════════════════════════════════════════════════════════"
-Write-Host "  Source:  $ScriptDir"
-Write-Host "  Output:  $OutputPath"
-Write-Host "═══════════════════════════════════════════════════════════"
-
-# Validate plugin.json
+# --- Read & validate plugin.json (single source of truth for name + version) ---
 $PluginManifest = Join-Path $ScriptDir ".claude-plugin\plugin.json"
 if (-not (Test-Path $PluginManifest)) {
     Write-Error "plugin.json not found at $PluginManifest"
     exit 1
 }
-
-# Validate JSON parses
 try {
-    Get-Content $PluginManifest -Raw | ConvertFrom-Json | Out-Null
+    $Manifest = Get-Content $PluginManifest -Raw | ConvertFrom-Json
 } catch {
     Write-Error "plugin.json is not valid JSON: $_"
     exit 1
 }
+if (-not $Manifest.name) {
+    Write-Error "plugin.json has no 'name' field"
+    exit 1
+}
+
+$PluginName = $Manifest.name
+$PluginVer  = if ($Manifest.version) { $Manifest.version } else { "(unset → commit-SHA versioning)" }
+if (-not $OutputName) { $OutputName = "$PluginName.plugin" }
+$OutputPath = Join-Path (Split-Path -Parent $ScriptDir) $OutputName
+
+# --- Guard: a plugin folder must NOT contain its own marketplace.json (nested-marketplace bug) ---
+$NestedMarketplace = Join-Path $ScriptDir ".claude-plugin\marketplace.json"
+if (Test-Path $NestedMarketplace) {
+    Write-Error "Nested marketplace.json found inside the plugin ($NestedMarketplace). marketplace.json must live ONLY at the repo root, not inside a plugin."
+    exit 1
+}
+
+Write-Host "═══════════════════════════════════════════════════════════"
+Write-Host "  P2P PLUGIN PACKAGING (version-agnostic)"
+Write-Host "═══════════════════════════════════════════════════════════"
+Write-Host "  Plugin:   $PluginName"
+Write-Host "  Version:  $PluginVer"
+Write-Host "  Source:   $ScriptDir"
+Write-Host "  Output:   $OutputPath"
+Write-Host "═══════════════════════════════════════════════════════════"
 
 # Remove old output
 if (Test-Path $OutputPath) { Remove-Item $OutputPath -Force }
 
-# Build temporary staging directory excluding pack scripts and .plugin files
-$TempDir = Join-Path $env:TEMP "p2p-v8c2-pack-$(Get-Random)"
+# --- Stage everything except packaging artifacts ---
+$Excludes = @('.git', '.DS_Store', 'node_modules', '*.plugin', 'pack.sh', 'pack.ps1')
+$TempDir = Join-Path $env:TEMP "p2p-pack-$(Get-Random)"
 New-Item -ItemType Directory -Path $TempDir | Out-Null
 
 try {
-    # Copy everything except excluded patterns
     Get-ChildItem -Path $ScriptDir -Recurse -Force | ForEach-Object {
         $RelPath = $_.FullName.Substring($ScriptDir.Length + 1)
         $skip = $false
-        foreach ($pattern in @('.git', '.DS_Store', 'node_modules', '*.plugin', 'pack.sh', 'pack.ps1')) {
+        foreach ($pattern in $Excludes) {
             if ($RelPath -like "*$pattern*") { $skip = $true; break }
         }
         if (-not $skip) {
@@ -59,22 +85,36 @@ try {
         }
     }
 
+    # Sanity: staged plugin.json must still be the manifest we read
+    $StagedManifest = Join-Path $TempDir ".claude-plugin\plugin.json"
+    if (-not (Test-Path $StagedManifest)) {
+        Write-Error "Staging failed: plugin.json missing from staged tree"
+        exit 1
+    }
+
     # Create archive (.plugin = renamed .zip; Compress-Archive requires .zip extension)
     $ZipPath = [System.IO.Path]::ChangeExtension($OutputPath, ".zip")
     if (Test-Path $ZipPath) { Remove-Item $ZipPath -Force }
     Compress-Archive -Path "$TempDir\*" -DestinationPath $ZipPath -CompressionLevel Optimal -Force
     Rename-Item -Path $ZipPath -NewName (Split-Path -Leaf $OutputPath)
 
+    $FileCount = (Get-ChildItem -Path $TempDir -Recurse -File).Count
+    $SizeKB = [Math]::Round((Get-Item $OutputPath).Length / 1KB, 1)
+
     Write-Host ""
     Write-Host "✅ DONE" -ForegroundColor Green
-    $Size = (Get-Item $OutputPath).Length
-    $SizeKB = [Math]::Round($Size / 1KB, 1)
-    Write-Host "   Size:  $SizeKB KB"
-    Write-Host "   Path:  $OutputPath"
+    Write-Host "   Bundle: $OutputName"
+    Write-Host "   Files:  $FileCount"
+    Write-Host "   Size:   $SizeKB KB"
     Write-Host ""
-    Write-Host "Install:"
+    Write-Host "This bundle is for MANUAL import only:"
     Write-Host "  • Cowork:      Settings → Skills → Upload a skill → $OutputName"
     Write-Host "  • Claude Code: /plugin install `"$OutputPath`""
+    Write-Host ""
+    Write-Host "For normal distribution use the MARKETPLACE (no bundle needed):"
+    Write-Host "  • /plugin marketplace add sanic732/P2P-4PDA-edition"
+    Write-Host "  • /plugin install $PluginName@P2P-4PDA-edition"
+    Write-Host "  • Update later: /plugin marketplace update P2P-4PDA-edition"
     Write-Host "═══════════════════════════════════════════════════════════"
 
 } finally {
