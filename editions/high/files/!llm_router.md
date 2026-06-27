@@ -5,7 +5,7 @@ type: HOST_ENGINE
 priority: HIGH
 load_order: 6.6
 triggers: "router|маршрут|llm router|выбор провайдера|fallback|contract translation|какая модель"
-depends_on: "!host_profiles.md, !!db_v8H.md, _live/live_core.md, _live/live_specs_20260617.md"
+depends_on: "!host_profiles.md, !!db_v8H.md, _live/live_core.md, _live/live_specs.md"
 last_verified: 2026-06-27
 compatible_with: "all v8H files"
 tags: router, multi-provider, fallback, contract-translation, v8h3
@@ -16,7 +16,7 @@ tags: router, multi-provider, fallback, contract-translation, v8h3
 // Порт из 8G.1 !llm_router.md; расширен Fable 5 / Opus 4.8; default primary = HOST_MODEL.
 // ═══════════════════════════════════════════════════════
 
-// §1. CAPABILITY MATRIX (источник истины — live_specs_20260617 / live_core)
+// §1. CAPABILITY MATRIX (источник истины — live_specs / live_core)
 CAPABILITY_MATRIX:
   // provider | model display       | api_string              | context | cost/1M in-out | prio
   claude:   Claude Fable 5          | claude-fable-5          | 200K  | $10/$50   | 1  // #1 Agent/WebDev; Safety Nanny ~5%→Opus4.8

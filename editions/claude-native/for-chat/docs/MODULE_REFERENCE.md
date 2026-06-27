@@ -34,10 +34,10 @@ tags: docs, reference, token-budget, modules
 | Файл | Назначение | ~Токены | Загрузка |
 |------|-----------|---------|---------|
 | `_live/live_vendors.md` | API strings, цены, routing guide, Translation Rules | ~1,600 | Ежедневно |
-| `vendors/live_specs_20260617.md` | Полные live specs PRIORITY:OVERRIDE (все вендоры + G-errors) | ~14,000 | По необходимости |
+| `vendors/live_specs.md` | Полные live specs PRIORITY:OVERRIDE (все вендоры + G-errors) | ~14,000 | По необходимости |
 
 > `live_vendors.md` — краткий quick reference.  
-> `live_specs_20260617.md` — полный источник правды (OVERRIDE). Загружай при сомнениях в данных.
+> `live_specs.md` — полный источник правды (OVERRIDE). Загружай при сомнениях в данных.
 
 ---
 
@@ -166,7 +166,7 @@ BASE ≈ 14,200
 | Отладка промпта | !templates.md, !scope.md | BASE + !debug.md + !optimization.md |
 | Обучение P2P | !agents.md, !scope.md | BASE + !teacher.md + !mentor.md |
 | Быстрый T0-1 | всё ON-DEMAND | Только BASE |
-| Бюджетная модель (<50K ctx) | live_specs_20260617.md, !teacher.md | BASE + LIVE краткие |
+| Бюджетная модель (<50K ctx) | live_specs.md, !teacher.md | BASE + LIVE краткие |
 
 ---
 

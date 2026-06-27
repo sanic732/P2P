@@ -125,7 +125,7 @@ LOAD_SEQUENCE:
   6.5 !host_profiles.md   ← HOST_CAPS по HOST_MODEL (Heavy-16 gate) — ВСЕГДА после live
   6.6 !llm_router.md      ← multi-provider router (default primary = HOST_MODEL) — ВСЕГДА
   6.7 !routing_matrix.md  ← аудируемая карта маршрутизации — по запросу/при routing
-  7. _live/live_specs_20260617.md ← OVERRIDE-спека v8.4 (Fable 5, Opus 4.8) при наличии
+  7. _live/live_specs.md ← OVERRIDE-спека v8.6.1 (Fable 5, Opus 4.8) при наличии
   8-N. ON-DEMAND          ← По триггеру ИЛИ MODULE_*=true|or (см. !!core_v8H.md §TRIGGERS)
 
   // Шаг загрузки v8H.3-модулей (после BASE+LIVE):
@@ -180,4 +180,4 @@ VERSION_METADATA:
   COMPATIBLE:  all v8H files
   NEW_IN_v8H3: VERSION_COMPAT (legacy/v3 + 6 MODULE_* flags), CONFLICT_RESOLVER v1.0,
                6 ON-DEMAND triggers (rag/reasoning/routing/compression/security/optimization),
-               live_specs_20260617 в LOAD_SEQUENCE
+               live_specs в LOAD_SEQUENCE

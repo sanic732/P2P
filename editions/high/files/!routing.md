@@ -99,6 +99,6 @@ Formula: cost = (in_tok/1M × price_in) + (out_tok/1M × price_out)   // пра�
 VERSION_METADATA:
   SYSTEM:      P2P v8H.3 Normal · Routing Module
   TECHNIQUES:  Semantic_Router, Cascade_Routing, Cost_Aware_Routing, LLM_Router
-  SOURCE:      donor v8C.3 !routing.md, универсализирован под 8 хостов + live_specs_20260617
+  SOURCE:      donor v8C.3 !routing.md, универсализирован под 8 хостов + live_specs
   MENU_ITEM:   28
   COMPATIBLE:  !!core_v8H.md | !!db_v8H.md | _live/live_core.md | !metrics.md

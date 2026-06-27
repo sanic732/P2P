@@ -11,7 +11,7 @@ last_verified: 2026-06-27
 // ═══════════════════════════════════════════════════════
 // P2P v8N.3 — LIVE VENDORS
 // G-ошибки G1-G20 детально, правила маршрутизации.
-// OVERRIDE приоритет: live_specs_20260617 > live_vendors > vendors/*.md > !!db_v8N.md
+// OVERRIDE приоритет: live_specs > live_vendors > vendors/*.md > !!db_v8N.md
 // ═══════════════════════════════════════════════════════
 
 // ─────────────────────────────────────────────────────
@@ -212,7 +212,7 @@ G20: KIMI_SWARM_TIMEOUT
     # Получить через webhook или polling
 
 // ─────────────────────────────────────────────────────
-// §2b. v8.5 NEW ISSUES (2026-06-12, import из live_specs_20260617)
+// §2b. v8.6.1 NEW ISSUES (2026-06-12, import из live_specs)
 // ─────────────────────────────────────────────────────
 
 V84_ISSUES:
@@ -304,11 +304,11 @@ TRANSLATION_RULES:
 VERSION_METADATA:
   SYSTEM:      live_vendors v8N.3
   SCOPE:       G-errors G1-G20, v8.5 issues, Translation Rules, Capability Matrix
-  SOURCE:      _live/live_specs_20260617.md (v8.5 OVERRIDE)
+  SOURCE:      _live/live_specs.md (v8.6.1 OVERRIDE)
   OVERRIDE:    Этот файл имеет приоритет над vendors/*.md при конфликтах
   COMPATIBLE:  !!core_v8N.md | !!db_v8N.md | all v8N files
 // ═══════════════════════════════════════════════════════
-// §V8.5 DELTA (2026-06-27 import — live_specs_20260617.md OVERRIDE governs on conflict)
+// §V8.5 DELTA (2026-06-27 import — live_specs.md OVERRIDE governs on conflict)
 // ═══════════════════════════════════════════════════════
 V85_DELTA:
   Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404 (no redirect).

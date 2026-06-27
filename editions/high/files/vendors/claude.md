@@ -10,7 +10,7 @@ tags: claude, fable-5, opus-4-8, vendor, v8h3
 
 // ═══════════════════════════════════════════════════════
 // P2P v8H.3 — VENDOR: CLAUDE (для claude host; полные специи — vendors/tier1.md)
-// OVERRIDE: live_specs_20260617 > live_vendors > этот файл.
+// OVERRIDE: live_specs > live_vendors > этот файл.
 // ═══════════════════════════════════════════════════════
 
 CLAUDE_MODELS:
@@ -32,5 +32,5 @@ WHEN_TO_USE: coding/reasoning (Opus 4.8), agentic/WebDev/текст (Fable 5), �
 
 VERSION_METADATA:
   SYSTEM:      P2P v8H.3 · Vendor Claude
-  SOURCE:      donor 8G.1 vendors/claude.md + live_specs_20260617 (Fable 5/Opus 4.8)
+  SOURCE:      donor 8G.1 vendors/claude.md + live_specs (Fable 5/Opus 4.8)
   COMPATIBLE:  !llm_router.md | vendors/tier1.md | _live/live_vendors.md

@@ -19,7 +19,7 @@ MANIFEST:
   STATUS:        BETA (technique import from v8C.3)
   FILES:         24 base + 7 docs = 31 total
   PHILOSOPHY:    Universal · Any-host · Any-target · 8 host models
-  LIVE_SPECS_REF: _live/live_specs_20260617.md (v8.5, OVERRIDE)
+  LIVE_SPECS_REF: _live/live_specs.md (v8.6.1, OVERRIDE)
 
 VERSIONS:
   !!core_v8H.md:        v8H.3  verified: 2026-06-27
@@ -28,7 +28,7 @@ VERSIONS:
   _live/MANIFEST.md:    v8H.3  verified: 2026-06-27
   _live/live_core.md:   v8H.3  verified: 2026-06-27
   _live/live_vendors.md: v8H.3 verified: 2026-06-27
-  _live/live_specs_20260617.md: v8.5 verified: 2026-06-27  // OVERRIDE source
+  _live/live_specs.md: v8.6.1 verified: 2026-06-27  // OVERRIDE source
   !agents.md:           v8H.3  verified: 2026-06-27
   !pipeline.md:         v8H.3  verified: 2026-06-27
   !toolkit.md:          v8H.3  verified: 2026-06-27
@@ -95,7 +95,7 @@ FROM_8A1_8G1:  // 8H.3 = merge 8A.1 (Gemini) ⊕ 8G.1 (Grok)
     - !agents.md host-gated merge (Heavy-16 8G ⊕ QUORUM 8A); ANON host-gated; security → !security.md
     - Grok host-engine: !llm_router, !routing_matrix, !tool_budget, !x_realtime (порт 8G.1)
     - 8C.3 parity: 6 ON-DEMAND модулей [35-40], VERSION_COMPAT, CONFLICT_RESOLVER v1.0
-    - Нативный live_specs_20260617 (Fable 5, Opus 4.8); старые спеки доноров не переносились
+    - Нативный live_specs (Fable 5, Opus 4.8); старые спеки доноров не переносились
     - G-errors G1-G20 union обоих доноров + Grok Type B/H/T/X/V
     - Native plugin: .claude/agents/p2p-*.md + .claude-plugin/
   BREAKING_CHANGES: нет относительно функционала доноров (новые техник-модули по умолчанию OFF)

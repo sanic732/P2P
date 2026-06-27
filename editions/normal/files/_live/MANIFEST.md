@@ -19,7 +19,7 @@ MANIFEST:
   STATUS:        BETA (technique import from v8C.3)
   FILES:         24 base + 7 docs = 31 total
   PHILOSOPHY:    Universal · Any-host · Any-target · 8 host models
-  LIVE_SPECS_REF: _live/live_specs_20260617.md (v8.5, OVERRIDE)
+  LIVE_SPECS_REF: _live/live_specs.md (v8.6.1, OVERRIDE)
 
 VERSIONS:
   !!core_v8N.md:        v8N.3  verified: 2026-06-27
@@ -28,7 +28,7 @@ VERSIONS:
   _live/MANIFEST.md:    v8N.3  verified: 2026-06-27
   _live/live_core.md:   v8N.3  verified: 2026-06-27
   _live/live_vendors.md: v8N.3 verified: 2026-06-27
-  _live/live_specs_20260617.md: v8.5 verified: 2026-06-27  // OVERRIDE source
+  _live/live_specs.md: v8.6.1 verified: 2026-06-27  // OVERRIDE source
   !agents.md:           v8N.3  verified: 2026-06-27
   !pipeline.md:         v8N.3  verified: 2026-06-27
   !toolkit.md:          v8N.3  verified: 2026-06-27
@@ -112,7 +112,7 @@ FROM_v8N1:
   ADDITIVE_CHANGES (v8N.3, append-only — база v8N.1 не сломана):
     - 6 ON-DEMAND модулей: !rag !reasoning !routing !compression !security !optimization (меню [26-31])
     - VERSION_COMPAT (legacy/v3 + 6 MODULE_* flags) + CONFLICT_RESOLVER v1.0 в _preloader.md
-    - Нативный импорт live_specs_20260617.md (v8.5): Claude Fable 5, Opus 4.8, MRCR-регрессия
+    - Нативный импорт live_specs.md (v8.6.1): Claude Fable 5, Opus 4.8, MRCR-регрессия
     - Расширения консолидированных модулей: !memory (Advanced Memory), !agents (Advanced Agents),
       !metrics (Hallucination/Quality eval), !toolkit (Activation/Inference debug)
     - live_specs_20260519.md удалён (заменён 20260612)
