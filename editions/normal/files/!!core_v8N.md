@@ -5,7 +5,7 @@ type: CORE
 priority: CRITICAL
 load_order: 2
 compatible_with: "_preloader.md | all v8N files"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -204,7 +204,8 @@ SIGNAL_TO_NOISE_PROTOCOL:
 ██║      ███████╗ ██║     
 ╚═╝      ╚══════╝ ╚═╝     
 P2P v8N.3 - NORMAL EDITION 
-LiveSpecs: 2026-06-12
+LiveSpecs: {LIVE_SPECS_DATE}
+HOST: {HOST_MODEL} | MODE: {LOAD_MODE}
 ```
 
 Затем — СРАЗУ единое меню (арты режимов вверху + полный список [1-31]). ОДИН экран, без отдельной витрины.
@@ -559,7 +560,7 @@ CORE_RULES:
     - Добавлять >7 MUST/MUST NOT пар для GPT цели (G9)
     - Обращаться к GLM с >100K контекстом (G19)
 
-  [DEADLINE STATUS — 2026-06-17]:
+  [DEADLINE STATUS — 2026-06-27]:
     PASSED 2026-06-15: Claude dated legacy aliases ретайрнуты → claude-opus-4-8/4-7, claude-sonnet-4-6
     PASSED 2026-06-05: gpt-5.x legacy → gpt-5.5
     ACTIVE 2026-07-24: deepseek-chat → deepseek-v4-pro | deepseek-reasoner → deepseek-v4-flash
