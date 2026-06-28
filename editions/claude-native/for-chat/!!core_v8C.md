@@ -1,4 +1,5 @@
-	source_id: CORE_V8C
+---
+source_id: CORE_V8C
 version: v8C.3
 module_type: base
 depends_on: _preloader.md, _live/MANIFEST.md, _live/live_core.md, _live/live_claude.md
