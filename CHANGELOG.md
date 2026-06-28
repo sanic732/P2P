@@ -6,6 +6,18 @@
 
 ---
 
+## [v8.3.9] — 2026-06-28 · SESSION split (8L.3) + light → local-only + bump доставки
+
+### Changed
+- **Маркетплейс `P2P-4PDA-edition` теперь содержит только `p2p-v8c3`** (8C.3 Claude Native). Плагин **`p2p-v8l3` (8L.3) убран из `marketplace.json`** — отныне доступен **только локальной установкой** через `.plugin`-бандл (релиз-ассет `p2p-v8l3.plugin`). Существующие маркетплейс-инсталляции 8L.3 при синке станут orphaned — это намеренно.
+- **Bump обоих плагинов `8.3.8` → `8.3.9`** (`p2p-v8c3`, `p2p-v8l3`) — строгий SemVer, триггер кнопки **Update** в Claude (доставка SESSION-сплита и for-chat фикса).
+
+### Fixed
+- **🔴 SESSION-чанк превышал token-ceiling (8L.3, FIX D5).** Монолит `gist_session.md` (45.9 KB, ~11.5K т.) разрезан на **`gist_session_core.md`** (40.0 KB — toolkit+scope+memory+sandbox) и **`gist_session_metrics.md`** (7.1 KB, ~1.8K т. — metrics+quality eval). `OPTIMIZATION` теперь тянет только `SESSION_METRICS + CORE_PLUS` вместо всего SESSION → экономия при optimize ~36 KB (~9K токенов). Обновлены контракты в `_index_v8L.md` (routing table, DEPENDENCY_MAP, MUTEX_MATRIX, SIZE_NOTES, VALIDATION_CHECK), меню и `COMMAND_CHUNK_MAP` в `!!core_v8L.md`, ссылка в `!!db_v8L.md`.
+- **for-chat 8C.3:** исправлен YAML-frontmatter `!!core_v8C.md` — добавлен открывающий `---`, убран таб перед `source_id`.
+
+---
+
 ## [v8.3.8] — 2026-06-27 · фикс live_specs OVERRIDE + bump доставки
 
 ### Fixed
