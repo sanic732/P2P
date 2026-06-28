@@ -80,9 +80,15 @@ last_verified: 2026-06-27
 - active QUORUM: +21.6 KB · optimize (транзитивно): +72.9 KB · full arsenal (11): ~227 KB ≈ 57K т.
 - Честная вилка: **~18K idle / ~25-40K active**. Никаких «-86% всегда».
 
+### FIX D5 — SESSION split (2026-06-28)
+- `gist_session.md` (45.9 KB, ~11.5K т.) разделён на:
+  - **`gist_session_core.md`** (40.0 KB, ~10K т.) — toolkit+scope+memory+sandbox
+  - **`gist_session_metrics.md`** (7.1 KB, ~1.8K т.) — metrics+quality eval ✅ под ceiling
+- `OPTIMIZATION` теперь требует `SESSION_METRICS + CORE_PLUS` вместо `SESSION + CORE_PLUS`.
+- Экономия при optimize: ~36 KB (~9K токенов) — с ~72.9 KB до ~35 KB.
+- Обновлены: `_index_v8L.md` (контракты, DEPENDENCY_MAP, MUTEX, SIZE_NOTES), `!!core_v8L.md` (меню, COMMAND_CHUNK_MAP).
+
 ### Открытые вопросы
-- ⚠ `SESSION` 45.9 KB (~11.5K т.) превышает VECTOR-ceiling ≤6K токенов/чанк → кандидат на сплит
-  (выделить metrics-only под-чанк). Отложено: +1 fetch round-trip.
 - Хостинг Gist: public (открытая IP) vs private+token vs обфускация — **решение за пользователем**.
 
 ### FETCH_CAPABILITY_GATE → активная канарейка — 2026-06-27 (эмпирика)

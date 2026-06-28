@@ -78,6 +78,26 @@ GIST_ROUTING_TABLE:
     mutex:    [scope_cascade]                 # MUTEX с !scope Cascade
     fallback: SKIP
 
+  SESSION_CORE:                                 # toolkit+scope+memory+sandbox (FIX D5: split from SESSION)
+    trigger:  "debug|Arena|scope|CAPSULE|sandbox|исследуй|exploration|toolkit|writing|тон|enhance|combinator|memory|сохрани|загрузи|состояние|resume"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/4a6f7a3a345c485a29ae5a4d2c0a60bbb2ecea5c/gist_session_core.md"
+    sha256:   "73664527066810d07fe84661e16094452d82a9cd007458d85a96611efbbe658d"
+    eof_hash: "EOF_MARKER_SESSION_CORE_VALIDATED"
+    size_kb:  40.0                            # real (split from 45.9 KB SESSION)
+    requires: []
+    mutex:    [scope_cascade]                 # содержит !scope.md
+    fallback: SKIP
+
+  SESSION_METRICS:                              # metrics+quality eval (FIX D5: split from SESSION)
+    trigger:  "метрики|SESSION_EFFICIENCY|routing memory|статистика|quality|evaluation"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/82e7aef3943b87fc2554f255d2a0ab31d1725dd7/gist_session_metrics.md"
+    sha256:   "18a098a42981469076cf7540cbae7bd62ef3474c2164d638cee646ec6eede5c8"
+    eof_hash: "EOF_MARKER_SESSION_METRICS_VALIDATED"
+    size_kb:  7.1                             # real (~1.8K токенов — ✅ под ceiling)
+    requires: []
+    mutex:    []
+    fallback: SKIP
+
   LIVE:                                       # единый авто-обновляемый источник live specs
     trigger:  "pricing|цена|ELO|arena rating|live specs|обновления|свежие данные|fresh"
     url:      "https://gist.githubusercontent.com/sanic732/a64245c3f824f45708519d57e0d62408/raw/live_specs.md"
@@ -97,10 +117,9 @@ GIST_ROUTING_TABLE:
 # ═══════════════════════════════════════════════════════════════
 MUTEX_MATRIX:
   single_compressor: [COMPRESS]              # нельзя 2 компрессора одновременно
-  scope_cascade:     [ROUTE, SESSION.scope]  # ROUTE vs scope-каскад
+  scope_cascade:     [ROUTE, SESSION_CORE.scope]  # ROUTE vs scope-каскад (SESSION_CORE содержит !scope.md)
   THINKING_ON:       [REASONING]             # один бюджет thinking
   GUARDIAN_ON:       [SECURITY]
-  metrics_required:  [OPTIMIZATION]          # требует SESSION(metrics) загруженным
   # Правило: если план резолвера содержит 2+ чанка одного эксклюзивного класса
   #          с несовместимыми настройками → HALT с объяснением, fetch НЕ выполняется.
 
@@ -129,16 +148,17 @@ MUTEX_MATRIX:
 # DEPENDENCY_MAP (быстрый референс; источник истины = requires в таблице выше)
 # ═══════════════════════════════════════════════════════════════
 DEPENDENCY_MAP:
-  CORE_PLUS     REQUIRES: (none)
-  SESSION       REQUIRES: (none)
-  VENDORS       REQUIRES: (none)
-  HOST_ENGINE   REQUIRES: (none)
-  REASONING     REQUIRES: CORE_PLUS               | MUTEX: THINKING_ON
-  OPTIMIZATION  REQUIRES: SESSION + CORE_PLUS     | MUTEX: metrics_required
-  RAG           REQUIRES: SESSION + CORE_PLUS
-  SECURITY      REQUIRES: (none)                  | MUTEX: GUARDIAN_ON
-  COMPRESS      REQUIRES: (none)                  | MUTEX: single_compressor
-  ROUTE         REQUIRES: (none)                  | MUTEX: scope_cascade
+  CORE_PLUS       REQUIRES: (none)
+  SESSION_CORE    REQUIRES: (none)                   # toolkit+scope+memory+sandbox
+  SESSION_METRICS REQUIRES: (none)                   # metrics+quality eval
+  VENDORS         REQUIRES: (none)
+  HOST_ENGINE     REQUIRES: (none)
+  REASONING       REQUIRES: CORE_PLUS               | MUTEX: THINKING_ON
+  OPTIMIZATION    REQUIRES: SESSION_METRICS + CORE_PLUS   # FIX D5: только metrics, не весь SESSION
+  RAG             REQUIRES: SESSION_CORE + CORE_PLUS
+  SECURITY        REQUIRES: (none)                  | MUTEX: GUARDIAN_ON
+  COMPRESS        REQUIRES: (none)                  | MUTEX: single_compressor
+  ROUTE           REQUIRES: (none)                  | MUTEX: scope_cascade
 
 # ═══════════════════════════════════════════════════════════════
 # MACROS
@@ -155,23 +175,25 @@ MACROS:
 # RU: size_kb выше = байт-КБ (то, что проверяет verify). Токены ≈ КБ/4.
 # ═══════════════════════════════════════════════════════════════
 SIZE_NOTES:
-  idle (BOOT, 4 файла): 73 KB ≈ 18K токенов   # лучше прежней оценки ~33K (eager-live убран)
+  idle (BOOT, 4 файла): 73 KB ≈ 18K токенов
   active QUORUM (CORE_PLUS): +21.6 KB ≈ +5.4K токенов
-  optimize (CORE_PLUS+SESSION+OPTIMIZATION): +72.9 KB ≈ +18K токенов  # транзитивно (D2)
+  optimize (CORE_PLUS+SESSION_METRICS+OPTIMIZATION): ~35 KB ≈ ~9K токенов  # FIX D5: было 72.9 KB
   VECTOR-ceiling violations (≤6K токенов/чанк):
-    SESSION 45.9 KB (~11.5K т.) → SPLIT CANDIDATE: выделить metrics-only под-чанк,
-      т.к. OPTIMIZATION требует лишь metrics, а тянет весь SESSION. (отложено: +1 fetch round-trip)
+    SESSION_CORE 40.0 KB (~10K т.) → всё ещё превышает, но 4 модуля неразделимы по co-load
     VENDORS 25.1 KB (~6.3K т.) → borderline, OK.
-  full arsenal (10 модулей + LIVE): ~227 KB ≈ 57K токенов  # почти никогда сразу
+  SESSION_METRICS 7.1 KB (~1.8K т.) → ✅ под ceiling
+  full arsenal (11 модулей + LIVE): ~228 KB ≈ 57K токенов  # +1 chunk header overhead
 
 VALIDATION_CHECK:
-  ✅ 4 BOOT (local) + 10 module chunks + LIVE (remote)
+  ✅ 4 BOOT (local) + 11 module chunks + LIVE (remote)
   ✅ FIX D1: gist_10 → SECURITY|COMPRESS|ROUTE (раздельные MUTEX)
-  ✅ FIX D2: OPTIMIZATION/RAG требуют транзитивно SESSION+CORE_PLUS
+  ✅ FIX D2: OPTIMIZATION/RAG требуют транзитивно SESSION_*+CORE_PLUS
   ✅ FIX D4: sha256 на каждом чанке — реальные значения из packaging (не TBD)
+  ✅ FIX D5: SESSION (45.9 KB) → SESSION_CORE (40.0 KB) + SESSION_METRICS (7.1 KB).
+             OPTIMIZATION теперь тянет только SESSION_METRICS (~1.8K т.) вместо всего SESSION (~11.5K т.).
+             Экономия при optimize: ~36 KB (~9K токенов).
   ✅ FIX (packaging): live_specs 80.5 KB → LAZY (не eager); дедлайны → LITE_SNAPSHOT
   ✅ DATOS: HOST_ENGINE реально 16.7 KB (занижение ×3 подтвердилось)
-  ⚠ OPEN: SESSION split candidate (45.9 KB > token-ceiling)
   Циклические ссылки: отсутствуют. Все requires разрешимы.
 
 # ═══════════════════════════════════════════════════════════════

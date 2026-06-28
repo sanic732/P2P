@@ -165,11 +165,13 @@ SIGNAL_TO_NOISE_PROTOCOL:
 При `/start`, `start`, `старт`, `/p2p`, `/menu` — ПЕРВЫМ в отдельном code-fence:
 
 ```text
- ######   #######   ###### 
- ##   ##       ##   ##   ##
- ######   #######   ###### 
- ##       ##        ##     
- ##       #######   ##
+  _____ ___  _____ 
+ |  __ \__ \|  __ \
+ | |__) | ) | |__) |
+ |  ___/ / /|  ___/ 
+ | |    / /_| |     
+ |_|   |____|_|
+
 P2P v8L.3 — LITE/LIVE HYBRID 
 LiveSpecs: {LIVE_SPECS_DATE}
 HOST: {HOST_MODEL} | MODE: {LOAD_MODE}
@@ -227,21 +229,21 @@ HARD_HONESTY (P8, обязательно):
 10. 🔍 DATOS (Researcher)            [CORE_PLUS]
 11. 🏗️ ARCHITECTON (Structure)       [CORE_PLUS]
 12. 👁️ HELIOS (Synthesis)            [CORE_PLUS]
-13. 💾 SCOPE.HELM                    [SESSION]
+13. 💾 SCOPE.HELM                    [SESSION_CORE]
 14. 🎨 CREATIVE SUITE                [CORE_PLUS]
 15. 👁️ VISUAL CODING
-16. 📚 MEMORY BRIDGE                 [SESSION]
-17. 📋 DEBUG ENGINE                  [SESSION]
+16. 📚 MEMORY BRIDGE                 [SESSION_CORE]
+17. 📋 DEBUG ENGINE                  [SESSION_CORE]
 18. 📚 KB BROWSER (_index_v8L.md)
 19. 💡 MENTOR METHOD
-20. 🧪 PROMPT ENHANCE                [SESSION]
+20. 🧪 PROMPT ENHANCE                [SESSION_CORE]
 21. 🔗 TECH COMBINATOR
-22. 📊 ARENA BUILDER                 [SESSION]
-23. 🗺️ ATLAS v2                      [SESSION]
+22. 📊 ARENA BUILDER                 [SESSION_CORE]
+23. 🗺️ ATLAS v2                      [SESSION_CORE]
 24. 🧠 CONTRACT BUILDER              [CORE_PLUS]
-25. 📝 EXPLORATION MODE              [SESSION]
-26. 📊 SESSION METRICS               [SESSION]
-27. 🔄 ROUTING MEMORY v2             [SESSION]
+25. 📝 EXPLORATION MODE              [SESSION_CORE]
+26. 📊 SESSION METRICS               [SESSION_METRICS]
+27. 🔄 ROUTING MEMORY v2             [SESSION_METRICS]
 27a.🧬 KARPATHY MODE (Template M)    [CORE_PLUS]
 27b.⏰ DEADLINE SCANNER (LITE_SNAPSHOT; gist_live для свежих) (/deadline)
 28. 🔗 CHAIN MODE (/chain)
@@ -274,8 +276,8 @@ MENU_DISPLAY_RULE (v8L.3):
 QUICK_COMMANDS:
   /p2p-quorum [задача]   → пункт 1 (FULL QUORUM)   | resolve → CORE_PLUS
   /p2p-quorum fast       → FAST_TRIO
-  /p2p-scope             → пункт 13 | resolve → SESSION
-  /p2p-capsule save|load → SESSION
+  /p2p-scope             → пункт 13 | resolve → SESSION_CORE
+  /p2p-capsule save|load → SESSION_CORE
   /p2p-deadline          → 27b (источник: !!db_v8L §0 LITE_SNAPSHOT; без fetch)
   /p2p-verify            → пункт 35 (Manifest Reconciliation)
   /p2p-download              → пункт 36 (полная интеграция — fetch 10 модулей + LIVE, ~57K токенов)
@@ -310,16 +312,17 @@ AUTO_ROUTING:
     "агент|swarm|tool call"     → AGENTIC
     Default                     → GENERAL
   AGENT_WEIGHTS: load from !!db_v8L.md §DYNAMIC_WEIGHTING
-  ROUTING_MEMORY: from SESSION chunk (metrics) — bias ±10/15%, max ±50%, decay ×0.95/30d
+  ROUTING_MEMORY: from SESSION_METRICS chunk — bias ±10/15%, max ±50%, decay ×0.95/30d
 
 COMMAND_CHUNK_MAP:  // FIX: slash-команды НЕ входят в trigger-регексы чанков → явный маппинг.
   /p2p-quorum, /p2p-chain, /p2p-explore, /p2p-karpathy → CORE_PLUS
-  /p2p-scope, /p2p-capsule, /p2p-metrics, /p2p-atlas, /p2p-feedback → SESSION
+  /p2p-scope, /p2p-capsule, /p2p-atlas, /p2p-explore → SESSION_CORE
+  /p2p-metrics, /p2p-feedback → SESSION_METRICS
   /p2p-rag → RAG | /p2p-reasoning → REASONING | /p2p-route → ROUTE
   /p2p-compress → COMPRESS | /p2p-security → SECURITY | /p2p-optimize → OPTIMIZATION
   /p2p-deadline → (нет fetch: LITE_SNAPSHOT) | /p2p-verify → (читает _index, без fetch)
-  /p2p-download → ALL (полная интеграция: 10 модулей + LIVE — CORE_PLUS,SESSION,VENDORS,HOST_ENGINE,
-              REASONING,OPTIMIZATION,RAG,SECURITY,COMPRESS,ROUTE,LIVE)
+  /p2p-download → ALL (полная интеграция: 11 модулей + LIVE — CORE_PLUS,SESSION_CORE,SESSION_METRICS,
+              VENDORS,HOST_ENGINE,REASONING,OPTIMIZATION,RAG,SECURITY,COMPRESS,ROUTE,LIVE)
   /host, /lang, /p2p, /start → (нет fetch)
   // Резолвер берёт целевой чанк отсюда И дотягивает его requires транзитивно.
   // ПРИМ /p2p-download: план = все чанки; MUTEX-классы РАЗНЫЕ (по одному чанку на класс) →
@@ -379,7 +382,7 @@ DEEP_THINK_VALUE_GATE:
 // ─────────────────────────────────────────────────────
 
 CONSTRAINT_REINJECTION:
-  AUTO: 25→LIGHT (top5) · 50→FULL · 75→CAPSULE (compressed state from SESSION)
+  AUTO: 25→LIGHT (top5) · 50→FULL · 75→CAPSULE (compressed state from SESSION_CORE)
   MANUAL: [30] или "REINJECT"
   HOST_NOTES: gemini каждые 25 (G13) · claude каждые 50 · grok anchor /3 turn (G3)
 
@@ -440,12 +443,12 @@ DEADLINE_SCANNER:
   AUTO_NOTICE: "[DEADLINE] Устаревшая API строка {string} → замените на {replacement}. Дедлайн {date}."
 
 // ─────────────────────────────────────────────────────
-// §13. SESSION METRICS v0.2 (логика в SESSION chunk)
+// §13. SESSION METRICS v0.2 (логика в SESSION_METRICS chunk)
 // ─────────────────────────────────────────────────────
 
 SESSION_METRICS:
   FORMULA: SESSION_EFFICIENCY = (TASKS × QUALITY_WEIGHT) / MESSAGES × 100
-  DISPLAY: /p2p-metrics → требует SESSION chunk (resolve_deps подтянет).
+  DISPLAY: /p2p-metrics → требует SESSION_METRICS chunk (resolve_deps подтянет).
   TRACK: messages, tasks, quality 1-5, routing_memory, host_model, target_models, arena_results,
          + chunks_fetched (NEW v8L: сколько чанков загружено и суммарный вес).
 
