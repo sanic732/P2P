@@ -46,12 +46,12 @@ CONSTRAINT_OVERRIDE: CRITICAL INVARIANT. FORBIDDEN to shorten or hide menu items
 DATA_BINDING: Replace {LIVE_SPECS_DATE} with VERSION from MANIFEST header.
 LOGO_BLOCK:
 ```text
-██████╗  ██████   ██████  
-██╔══██╗ ╚════██╗ ██╔══██╗
-██████╔╝  █████╔╝ ██████╔╝
-██╔═══╝  ██╔═══╝  ██╔═══╝ 
-██║      ███████╗ ██║     
-╚═╝      ╚══════╝ ╚═╝     
+  _____ ___  _____ 
+ |  __ \__ \|  __ \
+ | |__) | ) | |__) |
+ |  ___/ / /|  ___/ 
+ | |    / /_| |     
+ |_|   |____|_|
 ```
 P2P v8 LiveSpecs: 2026-06-27
 
