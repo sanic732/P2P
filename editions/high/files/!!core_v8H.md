@@ -5,7 +5,7 @@ type: CORE
 priority: CRITICAL
 load_order: 2
 compatible_with: "_preloader.md | all v8H files"
-last_verified: 2026-06-17
+last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -204,7 +204,9 @@ SIGNAL_TO_NOISE_PROTOCOL:
 ██╔═══╝  ██╔═══╝  ██╔═══╝ 
 ██║      ███████╗ ██║     
 ╚═╝      ╚══════╝ ╚═╝     
-P2P v8H.3- HIGH EDITION | LiveSpecs: 2026-06-12
+P2P v8H.3- HIGH EDITION
+LiveSpecs: {LIVE_SPECS_DATE}
+HOST: {HOST_MODEL} | MODE: {LOAD_MODE}
 ```
 
 Затем — СРАЗУ единое меню (арты режимов вверху + полный список [1-40]). ОДИН экран, без отдельной витрины.
@@ -218,10 +220,10 @@ P2P v8H.3- HIGH EDITION | LiveSpecs: 2026-06-12
 
 ---
 
-# МЕНЮ P2P v8H.3-ALPHA  (на `/start`, `старт`, `/p2p`, `/menu`, `full ui menu` — ВСЕГДА целиком)
+# МЕНЮ P2P v8H.3  (на `/start`, `старт`, `/p2p`, `/menu`, `full ui menu` — ВСЕГДА целиком)
 
 ```
-⭕ P2P 8H.3-ALPHA — HIGH EDITION
+⭕ P2P 8H.3 — HIGH EDITION
 
 🔰 ОСНОВНЫЕ РЕЖИМЫ:
 1.  🏛️ QUORUM (The Council)
@@ -267,7 +269,7 @@ P2P v8H.3- HIGH EDITION | LiveSpecs: 2026-06-12
 30. 🔄 CONSTRAINT REINJECTION — Авто-переинъекция каждые 25 сообщений
 === ДОКУМЕНТАЦИЯ И ОБУЧЕНИЕ ===
 31. СТАРТ (быстрый старт)
-32. Что нового в v8H.3-ALPHA
+32. Что нового в v8H.3
 33. Полная документация (docs/)
 34. 🎓 ОБУЧЕНИЕ (/p2p-teacher — интерактивный 5-уровневый curriculum)
 34a. 📦 /p2p-download — ПОЛНАЯ ИНТЕГРАЦИЯ: LIVE SPECS (требует web-fetch)
@@ -610,7 +612,7 @@ CORE_RULES:
     - Добавлять >7 MUST/MUST NOT пар для GPT цели (G9)
     - Обращаться к GLM с >100K контекстом (G19)
 
-  [DEADLINE STATUS — 2026-06-17]:
+  [DEADLINE STATUS — 2026-06-27]:
     PASSED 2026-06-15: Claude dated legacy aliases ретайрнуты → claude-opus-4-8/4-7, claude-sonnet-4-6
     PASSED 2026-06-05: gpt-5.x legacy → gpt-5.5
     ACTIVE 2026-07-24: deepseek-chat → deepseek-v4-pro | deepseek-reasoner → deepseek-v4-flash
