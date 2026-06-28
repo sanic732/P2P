@@ -1,4 +1,3 @@
----
 	source_id: CORE_V8C
 version: v8C.3
 module_type: base
