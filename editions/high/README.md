@@ -4,6 +4,8 @@
 
 **Версия:** 8H.3 · **Токен-бюджет:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
 
+> 📖 **Полная инструкция (Google Docs):** https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
+
 ## Для кого
 Тех, кто сидит на **Grok** или хочет «всё в одном» — максимальную универсальную сборку под 8 хостов.
 

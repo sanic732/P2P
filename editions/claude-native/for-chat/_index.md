@@ -11,6 +11,8 @@ changelog: 2026-05-14 — v8C.2 BUMP; +!teacher.md ON-DEMAND; +/p2p-teacher comm
 
 # P2P v8C.3 — МАСТЕР ИНДЕКС (_index.md)
 
+> 📖 Полная инструкция (Google Docs): https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
+
 ---
 
 ## СТРУКТУРА ФАЙЛОВ

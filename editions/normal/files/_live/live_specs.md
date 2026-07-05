@@ -1,37 +1,57 @@
 // ================================================================
-// P2P LIVE SPECS v8.6.1 — OVERRIDE (27.06.2026 DELTA MERGE + CORRECTIVE REFRESH)
+// P2P LIVE SPECS v8.6.2 — OVERRIDE (05.07.2026 DELTA MERGE + CORRECTIVE PASS)
 // ================================================================
 [P2P_LIVE_SPECS]
-VERSION: 2026-06-27
-EDITION: v8.6.1 (P2P 8C.3 claude-native / 8H.3 high-hybrid / 8N.3 normal / 8L.3 light)
+VERSION: 2026-07-05
+EDITION: v8.6.2 (P2P 8C.3 claude-native / 8H.3 high-hybrid / 8N.3 normal / 8L.3 light)
 AUTHOR: Live Specs Engine v4
-SOURCES: Arena Leaderboard 2026-06-27 (snapshot 04:48), Copilot Deep 2026-06-27, GPT Deep 2026-06-27, Perplexity Deep 2026-06-27, Qwen Deep 2026-06-27, CORRECTIVE_REPORT_2 2026-06-27 (live web verification), live_specs_LATEST_from_gist.md (v8.5 base, 2026-06-27)
+SOURCES: Arena Leaderboard snapshots 2026-06-29..07-02 (11 categories, including the new Video Edit Arena), Perplexity Deep 2026-07-05, PDF-report "LLM Market in July 2026" 2026-07-05, live_specs.md (v8.6.1 base, 2026-06-27), Claude web-search verification (Fable 5 restoration), corrective_report_2 (2026-07-05, full audit of 14 UNRESOLVED/DISPUTED/MONITORING positions)
 PRIORITY: OVERRIDE
-// CORRECTIVE_REFRESH 2026-06-27: 13 ошибок проверены по живым источникам → 0 FIXED. Все статусы стоят. Обогащены workaround'ы (Qwen JSON, Error 13, GLM, MiniMax); добавлены 2 дедлайна (01.07 / 08.07).
+// PERMITTED CONFLICT: Gemini 3.5 Pro GA — PDF-report claims GA, but Perplexity explicitly
+// checked ai.google.dev/gemini-api/docs/changelog (priority 1: official changelog) and
+// confirmed that the -preview suffix is NOT removed as of 05.07. Status remains Preview [src1: Perplexity/
+// official changelog], PDF-version is marked as [src2: DISPUTED, weak justification].
 //
-// При конфликте с vendor-файлами — этот файл имеет приоритет.
-// Условие победы: VERSION > LAST_VERIFIED vendor-файла.
-// Потребители: 8C.3 (Claude) / 8H.3 (High) / 8N.3 (Normal) / 8L.3 (Light)
+// In case of conflict with vendor-files — this file takes priority.
+// Win condition: VERSION > LAST_VERIFIED of the vendor-file.
+// Consumers: 8C.3 (Claude) / 8H.3 (High) / 8N.3 (Normal) / 8L.3 (Light)
 //
-// CRITICAL_DELTA_v8.6 (период 2026-06-27 … 2026-06-27):
-//   - GPT-5.6 (Sol/Terra/Luna): статус canary → LIMITED PREVIEW; публичный GA DEFERRED по требованию правительства США (Reuters/USNews 26.06). Нет официального API ID в changelog. НЕ маршрутизировать.
-//   - GPT-4.5: RETIRED из ChatGPT App 27.06 (доступ только pay-as-you-go API).
-//   - Gemini Nano Banana preview SHUTDOWN: ВЫПОЛНЕН 25.06; GA-замены gemini-3.1-flash-image / gemini-3-pro-image активны.
-//   - Gemini 3.5 Pro: GA-окно ИЮНЯ СОРВАНО → перенос на ИЮЛЬ 2026; остаётся Preview (суффикс -preview не снят в офиц. changelog). Gemini 3.5 Flash подтверждён GA.
-//   - GLM-5.2: НОВАЯ модель подтверждена GA (середина июня), ctx 1M, MIT, ~$1.40/$4.40; уже в Arena (#2 WebDev, #10 Agent).
-//   - Grok 4.4: STILL DELAYED (нет релиза); Heavy16 Shadow Downgrade остаётся DISPUTED.
-//   - MiniMax M3: бесплатный период TokenRouter завершён 17.06; TokenHub 50%-скидка ($0.30/$1.20) закреплена как новая базовая цена.
-//   - Все UNRESOLVED-баги подтверждены corrective_report_2 как НЕ исправленные; ни одного FIXED за период.
-//   - Arena 27.06 snapshot интегрирован (Claude держит топ Overall/WebDev/Agent/Vision).
+// CRITICAL_DELTA_v8.7 (period 2026-06-27 … 2026-07-05):
+//   - Claude Sonnet 5: NEW MODEL, launch 2026-06-30, GA. Replaces Sonnet 4.6 as default
+//     Free/Pro. 1M ctx, 128K output (up to 300K batch). Intro $2/$10 until 31.08.2026, then
+//     $3/$15 from 01.09.2026. Uses the Opus 4.7/4.8/Fable 5 tokenizer line (+30-42% tokens).
+//     Arena: WebDev #6 thinking (1551), Document #11 thinking (1476), Overall #32/#7 Expert.
+//   - Claude Fable 5: GLOBALLY RESTORED 2026-07-01 (export controls lifted 30.06).
+//     New safety-classifier blocks the reported jailbreak >99% (Anthropic's claim) /
+//     ~90% (independent tests) — increase in false-positives on coding/security tasks. Restored
+//     on AWS Bedrock, GCP, MS Foundry. 50% weekly-include for Pro/Max/Team/select Enterprise
+//     until 07.07, afterwards — usage credits.
+//   - Claude Mythos 5: partial restoration WITHOUT CHANGES since 26.06 (~100+ trusted US-
+//     organizations via Project Glasswing). No expansion recorded over the period.
+//   - Claude Sonnet 4.6: RETIRED 2026-06-30 (replaced by Sonnet 5 as default).
+//   - Sonnet 5 — first week of operation: a series of stabilization bugs (CLI, AWS Bedrock,
+//     pricing display, GitHub PR-feedback).
+//   - Gemini 3.5 Pro: DISPUTED — PDF-report claims GA transition, official changelog (Perplexity)
+//     does not confirm this. Status left as Preview until a record appears in the official source.
+//   - GPT-5.6 Sol/Terra/Luna: API IDs and rates officially locked in (LIMITED PREVIEW,
+//     only trusted partners + US-agencies). No public GA.
+//   - GLM-5.2: new independent benchmarks confirm near-Sonnet-5 level (SWE-bench Pro
+//     62.1% vs Sonnet 5 63.2% vs GPT-5.5 58.6%).
+//   - Grok 4.4, all other P2 UNRESOLVED-bugs: no changes over the period (NO_UPDATE).
+//   - New Arena category: Video Edit Arena (7 models) added to BENCHMARK_TABLE.
+//   - CORRECTIVE PASS (2026-07-05, corrective_report_2): all 14 tracked errors verified —
+//     0 moved to FIXED; statuses confirmed. Key clarifications: tokenizer-inflation
+//     officially applies to Sonnet 5; Gemini 3.5 Pro formally remains Preview
+//     (official changelog); Meta-Manus unwind operationally completed, travel ban persists.
 //
-// UPCOMING_DEADLINES (от 2026-06-27):
-//   2026-07-01 (T-4 дня): правила КНР по исходящим инвестициям в силе → принудительный unwind дефолтным механизмом (риск Manus + кит. вендоров)
-//   2026-07-08 (T-11 дней): Anthropic privacy policy (сбор гос. ID + биометрии) → возможное восстановление Fable 5 ТОЛЬКО для граждан США (UNCONFIRMED)
-//   2026-07-24 (T-27 дней): deepseek-chat + deepseek-reasoner aliases → HTTP 404
-//   ИЮЛЬ 2026 (дата TBD): Gemini 3.5 Pro Preview → GA (перенос с июня)
-//   TBD: GPT-5.6 Sol/Terra/Luna публичный GA (отложен по требованию правительства США)
+// UPCOMING_DEADLINES (from 2026-07-05):
+//   2026-07-07 (T-2 days): Fable 5 — end of 50%-weekly-include for Pro/Max/Team → usage credits
+//   2026-07-24 (T-19 days): deepseek-chat + deepseek-reasoner aliases → HTTP 404
+//   2026-08-31 (T-57 days): Claude Sonnet 5 intro-pricing ($2/$10) expires → $3/$15 from 01.09
+//   JULY 2026 (date TBD, DISPUTED): Gemini 3.5 Pro Preview → GA
+//   TBD: GPT-5.6 Sol/Terra/Luna public GA (still no date)
 //
-// ────────────────────────────────────────────────────────────────
+
 ╔══════════════════════════════════════════════════════════════════╗
 ║  USER SANDBOX & CONFIG (CONTROL PANEL)                           ║
 ║  Rules inside this block have HIGHEST PRIORITY (Override).       ║
@@ -45,239 +65,253 @@ ACTION: Upon receiving triggers "/start", "start", "/p2p" or "/menu" strictly fo
 CONSTRAINT_OVERRIDE: CRITICAL INVARIANT. FORBIDDEN to shorten or hide menu items.
 DATA_BINDING: Replace {LIVE_SPECS_DATE} with VERSION from MANIFEST header.
 LOGO_BLOCK:
-██████╗  ██████   ██████  
-██╔══██╗ ╚════██╗ ██╔══██╗
-██████╔╝  █████╔╝ ██████╔╝
-██╔═══╝  ██╔═══╝  ██╔═══╝ 
-██║      ███████╗ ██║     
-╚═╝      ╚══════╝ ╚═╝     
-P2P v8 LiveSpecs: 2026-06-27
+```text
+  _____ ___  _____ 
+ |  __ \__ \|  __ \
+ | |__) | ) | |__) |
+ |  ___/ / /|  ___/ 
+ | |    / /_| |     
+ |_|   |____|_|
+```
+
+P2P v8 LiveSpecs: 2026-07-05
+
 ∆ ∆ ∆ END USER_SANDBOX ∆ ∆ ∆
 ╚══════════════════════════════════════════════════════════════════╝
 
 // ────────────────────────────────────────────────────────────────
 [VENDOR: Claude]
-LAST_VERIFIED: 2026-06-27
+LAST_VERIFIED: 2026-07-05
 
 APP_MODELS:
-  - Claude Fable 5 | claude.ai/app | tier: Pro/Max/Team/Enterprise | select: SUSPENDED | ctx: 1M | effort: adaptive
-  NOTE: API ID claude-fable-5; SUSPENDED globally (US export controls, заявление 11-12.06). Возврата за период НЕТ; даты восстановления нет; системные карточки Fable 5 / Mythos 5 удалены с сайта. Arena stats retained: #1 Text (1508), #1 WebDev (1654), #1 Agent (14.00%).
-  NOTE (corrective 27.06): Anthropic privacy policy effective 2026-07-08 собирает гос. ID + биометрию — вероятный механизм восстановления ТОЛЬКО для граждан США (международные остаются на Opus 4.8). UNCONFIRMED. Слух "возврат за 48ч" (BridgeMind 16.06) НЕ от Anthropic.
-  - Claude Opus 4.8 | claude.ai/app | tier: Pro/Max/Team/Enterprise | select: primary | ctx: 1M | effort: high default
-  NOTE: GA since 2026-05-28; primary Opus на ВСЕХ поверхностях; SWE-bench Pro 69.2%; GraphWalks F1 1M 68.1%.
+  - Claude Sonnet 5 | claude.ai/app | tier: Free/Pro/Max/Team/Enterprise | select: default (Free/Pro) | ctx: 1M | effort: adaptive
+  NOTE: launch 2026-06-30; GA; the most agentic model in the Sonnet lineup; benchmarks are close to Opus 4.8 at a significantly lower price; replaces Sonnet 4.6 as default.
+  NOTE: first week — stabilization bugs: claude-sonnet-5 does not appear in the terminal CLI models list (unlike the VSCode extension); incorrect line breaks in agentic output via AWS Bedrock; outdated (non-promotional) pricing displayed in some third-party systems; failures sending PR-feedback to GitHub after update.
+  - Claude Fable 5 | claude.ai/app | tier: Pro/Max/Team/Enterprise | select: primary (restored) | ctx: 1M | effort: adaptive
+  NOTE: GLOBALLY restored 2026-07-01 after export controls were lifted (30.06). New safety-classifier blocks the reported Amazon jailbreak >99% (Anthropic's claim) / ~90% according to independent tests — false-positive rate increased on coding/security tasks (blocked requests fall back to Opus 4.8 at no extra charge). Restored on AWS Bedrock, GCP, MS Foundry.
+  NOTE: 50% weekly-include for Pro/Max/Team/select Enterprise until 07.07, afterwards — usage credits ($10/$50). For standard Enterprise seats, there is no included limit initially (only credits).
+  - Claude Mythos 5 | Project Glasswing only | tier: ~100+ trusted US-organizations | ctx: 1M | effort: adaptive
+  NOTE: partial restoration since 26.06, NO CHANGES over the period 27.06-05.07; not publicly available.
+  - Claude Opus 4.8 | claude.ai/app | tier: Pro/Max/Team/Enterprise | select: primary (complex tasks) | ctx: 1M | effort: high default
+  NOTE: GA since 2026-05-28; SWE-bench Pro 69.2%; GraphWalks F1 1M 68.1%; no changes over the period.
   - Claude Opus 4.7 | claude.ai/app | tier: Pro/Max/Team/Enterprise | select: yes | ctx: 1M
-  NOTE: GA; fallback если 4.8 недоступен; Arena #3 Text thinking (1502).
+  NOTE: fallback if 4.8 is unavailable; Arena #3 Text thinking (1502); no changes.
   - Claude Opus 4.6 | claude.ai/app | tier: Pro/Max/Team/Enterprise | select: pin for >500K recall | ctx: 1M
-  NOTE: Arena #1 Document (1507); tokenizer 10-35% эффективнее 4.7/4.8; MRCR v2 1M 78.3% — PREFERRED для needle retrieval >500K.
-  - Claude Sonnet 4.6 | claude.ai/app | tier: Free/Pro/Max/Team/Enterprise | select: default Free | ctx: 1M
-  NOTE: Arena #6 Document (1487); Free tier default.
+  NOTE: Arena #1-2 Document (1505); MRCR v2 1M 78.3% — PREFERRED for needle retrieval >500K; no changes.
+  - Claude Sonnet 4.6 | RETIRED 2026-06-30 (replaced by Sonnet 5 as default)
+  NOTE: remains available via API for legacy compatibility; not recommended for new integrations.
   - Claude Haiku 4.5 | claude.ai/app | tier: Max/Team/Enterprise | select: fast fallback | ctx: 200K
 
 API_MODELS:
-  - Claude Fable 5 | api: claude-fable-5 | status: GA (SUSPENDED — HTTP 4xx во всех регионах) | ctx: 1,000,000 | output: 128,000 | pricing: $10/$50
-  - Claude Opus 4.8 | api: claude-opus-4-8 | status: GA | ctx: 1,000,000 | output: 128,000 (sync) | 300,000 (batch)
-  - Claude Opus 4.7 | api: claude-opus-4-7 | status: GA | ctx: 1,000,000 | output: 128,000 (sync) | 300,000 (batch)
-  - Claude Opus 4.6 | api: claude-opus-4-6 | status: GA | ctx: 1,000,000 | output: 64,000 (sync) | 300,000 (batch)
-  - Claude Sonnet 4.6 | api: claude-sonnet-4-6 | status: GA | ctx: 1,000,000 | output: 64,000 (sync) | 300,000 (batch)
-  - Claude Haiku 4.5 | api: claude-haiku-4-5-20251001 | status: GA | ctx: 200,000 | output: 64,000
-  // Legacy claude-opus-4-20250514 / claude-sonnet-4-20250514 — RETIRED 2026-06-15 (HTTP 404). См. ERROR_REGISTRY_RESOLVED.
+  - claude-sonnet-5 | api: claude-sonnet-5 | status: GA | ctx: 1,000,000 | output: 128,000 (up to 300,000 in batch) | pricing: intro $2/$10 (until 2026-08-31) → standard $3/$15 (from 2026-09-01)
+  - claude-fable-5 | api: claude-fable-5 | status: GA (restored globally) | ctx: 1,000,000 | output: 128,000 | pricing: $10/$50
+  - claude-mythos-5 | api: claude-mythos-5 | status: Limited (trusted US orgs only, Project Glasswing) | ctx: 1,000,000 | output: 128,000 | pricing: $10/$50 (shared with Fable)
+  - claude-opus-4-8 | status: GA | ctx: 1,000,000 | output: 128,000 | pricing: no changes (see PRICING)
+  - claude-opus-4-7 | status: GA | no changes
+  - claude-opus-4-6 | status: GA | no changes
+  - claude-sonnet-4-6 | status: RETIRED (2026-06-30) | available via API, not for new integrations
+  - claude-haiku-4-5 | status: GA | no changes
 
 CONTEXT_WINDOW:
-  - Fable 5 / Opus 4.8 / 4.7 / 4.6 / Sonnet 4.6: 1,000,000 tokens
-  - Haiku 4.5: 200,000 tokens
+  - Claude Sonnet 5 / Fable 5 / Mythos 5 / Opus 4.8/4.7/4.6: 1,000,000 tokens
+  - Claude Haiku 4.5: 200,000 tokens
 
 OUTPUT_LIMIT:
-  - Fable 5 / Opus 4.8 / 4.7: 128,000 tokens (sync) | 300,000 (batch с header)
-  - Opus 4.6 / Sonnet 4.6: 64,000 tokens (sync) | 300,000 (batch с header)
-  - Haiku 4.5: 64,000 tokens (sync)
+  - Claude Sonnet 5: 128,000 tokens (sync) | up to 300,000 tokens (batch)
+  - Claude Fable 5 / Mythos 5 / Opus 4.8/4.7/4.6: 128,000 tokens
 
 REASONING:
-  Type: effort-based (Adaptive Thinking framework)
+  Type: effort-based (Adaptive Thinking)
   Levels: low | medium | high | xhigh | max
-  NOTE: Opus 4.8 default = high на всех поверхностях; max только для Opus 4.8/4.7/4.6. Fable 5: adaptive auto-tuned (нет manual effort).
-  NOTE: thinking:{"type":"adaptive"} — единственный поддерживаемый синтаксис на Opus 4.8+; budget_tokens УДАЛЁН.
+  NOTE: Sonnet 5 inherits the same tokenizer line as Opus 4.7/4.8/Fable 5 (unified tokenizer since the release of Opus 4.7; has not changed between versions).
   COT_GUARD: no | Hidden tokens billing: yes
-  G7_RULE: НИКОГДА не передавать temperature/top_p/top_k при thinking=enabled → HTTP 400 BY DESIGN
-  Cache_TTL: default 5min | extended 1hr через ttl:"1h" (см. CACHE_TTL_SILENT_CHANGE)
+  G7_RULE: NEVER pass temperature when thinking=enabled → HTTP 400
+  Cache_TTL: default [X]min | extended [Y] via ttl:"[Z]h" (no changes)
 
 P2P_8C3_SPECIFICS:
   effort_mapping: T0-T1=low | T2=medium | T3=high | T4=xhigh/max
-  primary_model: claude-opus-4-8 (coding FIXED; default effort=high)
-  preview_model: claude-fable-5 (SUSPENDED — не маршрутизировать до офиц. восстановления)
-  fallback_recall: claude-opus-4-6 (pin для >500K needle retrieval; MRCR 78.3%)
-  tokenizer_watch: G6 OPUS4X_TOKENIZER_INFLATION UNRESOLVED — pin 4.6 для cost-sensitive
-  recall_rule: G8 OPUS4X_MRCR_REGRESSION MONITORING — pin 4.6 для >500K
-  payload_normalizer: strip temperature/top_p/top_k для Opus 4.7/4.8/Fable 5; adaptive thinking syntax
+  tokenizer_watch: OPUS4X_TOKENIZER_INFLATION — now EXPLICITLY confirmed to apply to Sonnet 5 (+30-42% tokens on English prose vs Sonnet 4.6/Opus 4.6 baseline)
+  recall_rule: OPUS4X_MRCR_REGRESSION — MONITORING, no new data >500K for Opus 4.8 over the period
   xml_native: yes — role/tone/rules/examples/task/thinking/output_format
+  routing_update: Sonnet 5 — new Tier 3 default for cost-efficient agentic tasks (near-Opus 4.8 quality)
 
 P2P_8H3_SPECIFICS:
   host: Claude (max tier)
-  hybrid_notes: Opus 4.8 effort=max для аудита; pin 4.6 для длинного recall; Fable 5 недоступен как host (suspended)
+  hybrid_notes: Fable 5 restored — available as a high-effort option; Mythos 5 is NOT routed (unavailable outside Project Glasswing)
 
 P2P_8N3_SPECIFICS:
-  translation_layer: XML-теги добавляются автоматически при HOST_MODEL=claude
+  translation_layer: XML tags added automatically when HOST_MODEL=claude
 
 P2P_8L3_SPECIFICS:
-  context_cap: 200K (recommended для light)
+  context_cap: [context limit for light mode] (no changes)
   vendor_fetch: gist live_specs (unpinned/latest)
 
 CAPABILITIES:
-  vision: true (3.75MP / 2576px; 3x token cost at max res) | audio: false | computer_use: true (beta)
+  vision: true | audio: false | computer_use: true (Fable 5/Opus 4.8 via Claude Code/Cowork)
   image_gen: false | real_time: false | on_prem: false | open_weight: false
-  dynamic_workflows: true (research preview; Enterprise/Team/Max; до 1000 subagents)
 
 PRICING:
-  - Fable 5: $10.00/1M input | $50.00/1M output
-  - Opus 4.8: $5.00/1M input | $25.00/1M output | cache write 5min: $6.25/1M | 1hr: $10.00/1M | read: $0.50/1M | batch: $2.50/$12.50
-  - Opus 4.7: $5.00/1M input | $25.00/1M output | cache: $6.25/$10.00/1M | read: $0.50/1M | batch: $2.50/$12.50
-  - Opus 4.6: $5.00/1M input | $25.00/1M output | cache: $6.25/$10.00/1M | read: $0.50/1M | batch: $2.50/$12.50
-  - Sonnet 4.6: $3.00/1M input | $15.00/1M output | cache: $3.75/$6.00/1M | read: $0.30/1M | batch: $1.50/$7.50
-  - Haiku 4.5: $1.00/1M input | $5.00/1M output | batch: $0.50/$2.50
+  - Claude Sonnet 5: $2.00/1M input | $10.00/1M output (intro until 2026-08-31) → $3.00/1M input | $15.00/1M output (standard from 2026-09-01)
+  - Claude Fable 5: $10.00/1M input | $50.00/1M output | cache: 90% discount on input (prompt caching)
+  - Claude Mythos 5: $10.00/1M input | $50.00/1M output (shared pricing with Fable 5); US-only inference: 1.1x to base price
+  - Claude Opus 4.8/4.7/4.6, Sonnet 4.6 (legacy), Haiku 4.5: no changes over the period
 
 LATENCY:
-  TTFT: high/~1.95s (Opus std) | very_low/~0.3s (Opus Fast Mode) | med/~0.73s (Sonnet) | low/~0.74s (Haiku)
-  TPS: ~67 t/s (Opus) | ~250 t/s (Opus Fast Mode est) | ~55 t/s (Sonnet) | ~96-200 t/s (Haiku)
+  TTFT: [per model] (no changes; for Sonnet 5 — TBD, insufficient community data)
+  TPS: [per model] (no changes)
 
 KNOWN_ISSUES:
-  - [Type B] [G7] [OPUS4X_API_BREAKING] Severity:CRITICAL | Non-default temperature/top_p/top_k → HTTP 400 (Opus 4.7/4.8/Fable 5); budget_tokens удалён | WORKAROUND: strip temperature/top_p/top_k; thinking:{"type":"adaptive"}
-  - [Type F] [G6] [OPUS4X_TOKENIZER_INFLATION] Severity:HIGH | Tokenizer Opus 4.8/4.7/Fable 5 даёт +10-35% токенов vs 4.6; независимые тесты ~1.46x на system prompts; патча нет (подтв. 27.06) | WORKAROUND: pin claude-opus-4-6 для cost-sensitive
-  - [Type F] [G8] [OPUS4X_MRCR_REGRESSION] Severity:MONITORING | MRCR v2 1M: Opus 4.7 32.2% vs 4.6 78.3%; новых recall-бенчей для 4.8 >500K за период нет | WORKAROUND: pin Opus 4.6 для >500K needle retrieval
-  - [Type I] [CLAUDE_DYNAMIC_WORKFLOWS_BURN] Severity:HIGH | Dynamic Workflows (до 1000 subagents) сжигают 100K+ токенов на простых промптах | WORKAROUND: строгие budget-лимиты; не для простых задач
-  - [Type D] [CLAUDE_FABLE5_SAFETY_REDIRECT] Severity:HIGH | Safety Nanny (~5% сессий) переклассифицирует легитимные промпты и редиректит на Opus 4.8 без уведомления | STATUS: UNRESOLVED BY DESIGN | WORKAROUND: Opus 4.8 напрямую (Fable 5 в любом случае suspended)
-  - [Type I] [CACHE_TTL_SILENT_CHANGE] Severity:HIGH | Claude Code cache TTL тихо снижен 1hr → 5min (апр 2026) | WORKAROUND: явно задавать cache_control ttl:"1h"
+  - [Type B] [G7] [OPUS4X_API_BREAKING] Severity:CRITICAL | Non-default temperature/top_p/top_k → HTTP 400; budget_tokens removed | WORKAROUND: strip temperature/top_p/top_k; thinking:{"type":"adaptive"} | STATUS: UNRESOLVED (BY DESIGN)
+  - [Type F] [G6] [OPUS4X_TOKENIZER_INFLATION] Severity:HIGH | Tokenizer Opus 4.7/4.8/Fable 5/Sonnet 5 (unified line) yields +30-42% tokens on English prose vs Sonnet 4.6/Opus 4.6 baseline; Anthropic officially claims ≈30%; independent analytics (ByteIota) — upon moving to standard pricing after 31.08, the final cost could increase up to +90% vs Sonnet 4.6 | WORKAROUND: pin claude-opus-4-6 or claude-sonnet-4-6 (legacy) for cost-sensitive pipelines; revise formatting of system prompts for Sonnet 5 | STATUS: UNRESOLVED (extended to Sonnet 5, conf. 05.07)
+  - [Type F] [G8] [OPUS4X_MRCR_REGRESSION] Severity:MONITORING | MRCR v2 1M — Opus 4.7 32.2% vs 4.6 78.3%; no new data for Opus 4.8/Sonnet 5 >500K over the period | WORKAROUND: pin Opus 4.6 for >500K needle retrieval | STATUS: MONITORING (no changes)
+  - [Type D] [FABLE5_CLASSIFIER_FALSE_POSITIVES] Severity:MED | New safety-classifier for Fable 5 (>99% block jailbreak per Anthropic / ~90% independently) yields an increase in false-positives on legitimate coding/security tasks; blocked requests fall back to Opus 4.8 at no extra charge, but with a notification | WORKAROUND: use explicit fallback to Opus 4.8 for security research and pentest-like tasks | STATUS: MONITORING (new, 01-05.07)
+  - [Type B/H] [SONNET5_LAUNCH_STABILITY] Severity:MED | Series of launch-week bugs: claude-sonnet-5 missing from the terminal CLI models list; incorrect line-breaks in agentic output via AWS Bedrock; outdated (non-promotional) pricing displayed in some third-party systems; failures sending PR-feedback on GitHub | WORKAROUND: use VSCode extension instead of CLI; verify pricing manually on platform.claude.com; for Bedrock — temporary workaround via explicit \n handling | STATUS: UNRESOLVED (new, GitHub issues #9879, #1461, litellm #31868)
+  // CLAUDE_FABLE5_SAFETY_REDIRECT and CLAUDE_FABLE5_SUSPENSION moved to ERROR_REGISTRY_RESOLVED (see resp. section)
 
 COMMUNITY_INSIGHTS:
-  - [claude5.ai | 2026-06-25 | High]: Fable 5 / Mythos 5 остаются suspended глобально; переговоры продолжаются, даты нет.
-  - [Reddit r/ClaudeAI | 2026-06-23 | High]: Fable 5 API возвращает ошибку; Anthropic рекомендует Opus 4.8.
-  - [Reddit r/ClaudeAI | 2026-06-20 | Med]: субъективные жалобы — Sonnet 4.6 "как Haiku с бюджетом мышления", Opus 4.7 "потерял качество" (не верифицировано бенчами).
+  - [Panstag blog | 2026-07-01 | Med]: Fable 5 "returns" to claude.ai/Claude Code; 50% limit until 07.07 makes the model suitable for intensive testing over the week, afterwards — pay-per-use.
+  - [Techtimes | 2026-07-01 | High]: >99% block of specific jailbreak, but noticeable increase in false-positives for security/coding; recommended server-side fallback to Opus 4.8.
+  - [High Learning Rate / Substack | 2026-06-30 | High]: agent-evals of Sonnet 5 confirm gains in Terminal-Bench/SWE-bench/OSWorld; recommendation to migrate agentic workflows from Opus 4.8 to Sonnet 5 for cost savings.
+  - [ByteIota | 2026-07-01 | Niche/dev]: breakdown of the Sonnet 5 "tokenizer tax" — upon transition to $3/$15 after 31.08, actual cost could jump up to +90% vs Sonnet 4.6.
+  - [Reddit r/ClaudeAI | 2026-07-01 | High]: mixed reaction — approval for Fable 5's return, but complaints about Sonnet 5 launch-week bugs (CLI, Bedrock).
 
 ROUTING_WEIGHT:
-  PRIMARY: complex_code (Opus 4.8), architecture_review, creative_writing, vision (Opus 4.7-thinking), webdev, document_processing (Opus 4.6)
-  AVOID: simple_crud, high_volume_batch (tokenizer inflation), precise_long_context_recall >500K (pin Opus 4.6), agentic via Fable 5 (suspended → Opus 4.8)
+  PRIMARY: complex_code_audit (Opus 4.8), agentic_coding_cost_efficient (Sonnet 5 — NEW), multi_day_autonomy (Fable 5 — restored), vision_analysis (Opus 4.7-thinking), document_processing (Opus 4.6)
+  AVOID: cost-sensitive high-volume on Fable 5/Sonnet 5 without factoring in tokenizer-inflation; security/pentest tasks on Fable 5 (high false-positive risk — use Opus 4.8)
   P2P_TIER:
-    Claude Opus 4.8: Tier 4 FULL+ (primary; coding FIXED; SWE-bench Pro 69.2%)
-    Claude Opus 4.7: Tier 3 FULL / Tier 4 FULL+ (vision #1; fallback)
-    Claude Opus 4.6: Tier 3 FULL / Tier 4 FULL+ (pin >500K recall; Document #1; MRCR 78.3%)
-    Claude Sonnet 4.6: Tier 2 ADVANCED (Free default)
+    Claude Sonnet 5: Tier 3 FULL (agentic, cost-efficient, near-Opus 4.8 quality) — NEW default for 8N.3 agentic_coding
+    Claude Fable 5: Tier 4 FULL+ (restored; multi-day autonomy)
+    Claude Mythos 5: N/A (not routed — unavailable outside Project Glasswing)
+    Claude Opus 4.8: Tier 4 FULL+ (complex_code/audit primary)
+    Claude Opus 4.7: Tier 3 FULL / Tier 4 FULL+ (vision primary)
+    Claude Opus 4.6: Tier 3 FULL / Tier 4 FULL+ (pin for >500K recall; MRCR 78.3%)
+    Claude Sonnet 4.6 (legacy): not recommended for new integrations — migrate to Sonnet 5
     Claude Haiku 4.5: Tier 0 NANO / Tier 1 STANDARD
-    Claude Fable 5: SUSPENDED (был Tier 4 FULL+; не маршрутизировать)
   P2P_EDITION_NOTES:
-    8C.3: primary Opus 4.8 (effort high default); pin 4.6 для recall/cost; payload strip temp/top_p/top_k
-    8H.3: Opus 4.8 max для аудита; Fable 5 host недоступен
-    8N.3: XML translation layer auto при HOST_MODEL=claude
-    8L.3: context_cap 200K; gist unpinned
+    8C.3: Sonnet 5 — new default option for agentic_coding instead of Sonnet 4.6
+    8H.3: Fable 5 available as high-effort; Mythos 5 is not routed
+    8N.3: HOST_MODEL=claude — no changes
+    8L.3: no changes
 
 CHANGES:
-  - [2026-06-27]: Fable 5 suspension подтверждена продолжающейся; системные карточки удалены
-  - [2026-06-27]: Tokenizer inflation + MRCR regression подтверждены UNRESOLVED (corrective_report_2)
-  - [2026-06-27]: Arena 27.06 snapshot интегрирован (Claude держит #1-5 Overall)
+  - [2026-06-30]: Claude Sonnet 5 launched — new default Free/Pro, replaces Sonnet 4.6
+  - [2026-07-01]: Claude Fable 5 restored globally after export controls lifted (30.06); new safety-classifier
+  - [2026-07-05]: Tokenizer inflation confirmed for Sonnet 5 as well (+30-42%)
+  - [2026-07-05]: Launch-week stabilization bugs for Sonnet 5 logged (CLI, Bedrock, pricing display, GitHub PR)
+  - [2026-07-05]: Mythos 5 — no changes (still ~100+ trusted US orgs)
 
 // ────────────────────────────────────────────────────────────────
 [VENDOR: GPT]
-LAST_VERIFIED: 2026-06-27
+LAST_VERIFIED: 2026-07-05
 
 APP_MODELS:
-  - GPT-5.5 Instant | chatgpt.com | tier: Free/Go/Plus/Pro/Biz/Ent/Edu | select: default | ctx: 128K-400K | api: gpt-5.5
+  - GPT-5.5 Instant | chatgpt.com | tier: Free/Go/Plus/Pro/Biz/Ent/Edu | select: default | ctx: 128K-400K
   - GPT-5.5 Thinking | chatgpt.com | tier: Plus/Pro/Biz/Ent/Edu | select: yes | ctx: 256K | effort: Light/Standard/Extended/Heavy
   - GPT-5.5 Pro | chatgpt.com | tier: Pro/Biz/Ent/Edu | select: yes | ctx: 196K | thinking: max budget
   - GPT-5.4 | chatgpt.com | tier: Free/Plus/API | select: yes | ctx: 128K
-  NOTE: GPT-4.5 RETIRED из ChatGPT App 27.06.2026 (доступ только pay-as-you-go API); default для custom GPTs у бизнес-аккаунтов теперь GPT-5.1.
-  NOTE: 272K context threshold billing ОСТАЁТСЯ; >272K → 2x input / 1.5x output на всю сессию.
+  - GPT-5.3 Instant | RETIRED 2026-06-27 | was: Free/Plus/API | ctx: 128K
+  NOTE: GPT-4.5 remains RETIRED from ChatGPT App (accessible only via pay-as-you-go API); no changes over the period.
+  NOTE: GPT-5.6 Sol/Terra/Luna — API Only, LIMITED PREVIEW (only trusted partners + US-agencies); NO public access via ChatGPT as of 05.07.
 
 API_MODELS:
   - gpt-5.5 | api: gpt-5.5 | status: GA | ctx: 1,050,000 | output: 128,000
   - gpt-5.5-pro | api: gpt-5.5-pro | status: GA | ctx: 1,000,000-1,050,000 | output: 128,000
   - gpt-5.4 | api: gpt-5.4 | status: active | ctx: 1,050,000 | output: 128,000
-  - GPT-5.6 Sol | api: gpt-5.6-sol | status: LIMITED PREVIEW (нет в офиц. changelog; partner-only) | ctx: ~1.5M (leak, unverified) | pricing: $5/$30 [leak, unverified]
-  - GPT-5.6 Terra | api: gpt-5.6-terra | status: LIMITED PREVIEW (partner-only) | ctx: TBD | pricing: $2.50/$15 [leak, unverified]
-  - GPT-5.6 Luna | api: gpt-5.6-luna | status: LIMITED PREVIEW (partner-only) | ctx: TBD | pricing: $1/$6 [leak, unverified]
-  NOTE: GPT-5.6 публичный GA DEFERRED по требованию правительства США (Reuters/USNews 26.06). Официального API ID в developers.openai.com/changelog НЕТ. НЕ маршрутизировать до офиц. модель-карточки.
+  - gpt-5.3-instant | status: RETIRED (2026-06-27) | was: ctx 128K | no longer route
+  - gpt-5.6-sol | api: gpt-5.6-sol | status: LIMITED PREVIEW (trusted partners/US-agencies) | ctx: 128K [src: PDF-table, official Help Center] (previously claimed leak ~1.5M — unconfirmed, removed as incorrect) | output: 128K | pricing: $5.00/$30.00
+  - gpt-5.6-terra | api: gpt-5.6-terra | status: LIMITED PREVIEW | ctx: 128K | output: 128K | pricing: $2.50/$15.00
+  - gpt-5.6-luna | api: gpt-5.6-luna | status: LIMITED PREVIEW | ctx: 128K | output: 128K | pricing: DISPUTED — $1.00/$6.00 [src1: Perplexity/Help Center article] vs $1.00/$1.00 [src2: PDF-table]; canon accepted as $1.00/$6.00 as more detailedly sourced
+  NOTE: the three GPT-5.6 models are positioned by tiers — Sol (max performance: code/biology/cybersecurity), Terra (price/performance balance), Luna (fastest/cheapest).
+  NOTE: canonical prices for gpt-5.5 ($5.00/$30.00) and gpt-5.4 ($2.50/$11.25-15.00) from v8.6.1 are CONFIRMED by Perplexity as [NO_DELTA]; the PDF-report provides conflicting figures ($3.00/$15.00 and $1.75/$7.00 respectively) without a clear source for the change — rejected as likely aggregator inaccuracy, canon maintained.
 
 CONTEXT_WINDOW:
-  - GPT-5.5 / 5.5 Pro: 1,000,000-1,050,000 (API) | 128K-256K (UI)
-  - GPT-5.4: 1,050,000 (API) | 256K-400K (UI)
-  - GPT-5.6 Sol: ~1.5M (leak, unverified)
+  - GPT-5.5 / GPT-5.5 Pro: 1,000,000-1,050,000 tokens (API) | 128K-256K (ChatGPT UI)
+  - GPT-5.4: 1,050,000 tokens (API) | 256K-400K (ChatGPT UI)
+  - GPT-5.6 Sol/Terra/Luna: 128,000 tokens (API only; see DISPUTED note above)
 
 OUTPUT_LIMIT:
-  - GPT-5.5 / 5.5 Pro / 5.4: 128,000 tokens
-  - GPT-5.6: TBD
+  - GPT-5.5 / GPT-5.5 Pro / GPT-5.4: 128,000 tokens
+  - GPT-5.6 Sol/Terra/Luna: 128,000 tokens
 
 REASONING:
   Type: effort-based API (none|low|medium|high|xhigh); UI: Light/Standard/Extended/Heavy
   COT_GUARD: no | Hidden tokens billing: yes
-  G9_RULE: cap MUST/MUST NOT pairs at 7 max → избежать тихой деградации качества
-  G10_RULE: >272K context threshold → 2x вход / 1.5x выход на всю сессию (BY DESIGN; подтв. 27.06)
+  G9_RULE: cap MUST/MUST NOT pairs at 7 max → avoid silent quality degradation
+  G10_RULE: >272K context threshold → 2x input / 1.5x output for the entire session (BY DESIGN; conf. Perplexity 05.07 — no changes)
 
-P2P_8C3_SPECIFICS: N/A (GPT не является хостом в 8C.3)
+P2P_8C3_SPECIFICS: N/A (GPT is not a host in 8C.3)
 P2P_8H3_SPECIFICS: N/A
 P2P_8N3_SPECIFICS:
   HOST_MODEL=gpt: JSON formatting; 7-pair rule auto-enforced; 272K session guard (intercept >250K, cut at 260K)
-P2P_8L3_SPECIFICS: N/A
+  GPT56_GUARD: DO NOT route gpt-5.6-* — not publicly available, trusted-partner API keys only
 
 CAPABILITIES:
   vision: true | audio: true | computer_use: true (Codex)
-  image_gen: true (gpt-image-2 #1 Text-to-Image 1386; #1 Image-Edit 1465) | real_time: false | on_prem: false
+  image_gen: true (gpt-image-2 #1 Text-to-Image; new gpt-image-1.5-high-fidelity appeared — see MEDIA_MODELS) | real_time: false | on_prem: false
 
 PRICING:
   - gpt-5.5: $5.00/1M input | $30.00/1M output | cached: $0.50/1M | long ctx (>272K): $10.00/$45.00
   - gpt-5.5-pro: $30.00/1M input | $180.00/1M output | long ctx: $60.00/$270.00
   - gpt-5.4: $2.50/1M input (<=272K) | $11.25-15.00/1M output | >272K: 2x/1.5x | cache: $1.25/1M
-  - gpt-5.6 Sol/Terra/Luna: TBD (официально не объявлено; leaked $5/$30, $2.50/$15, $1/$6)
-  NOTE: >272K threshold → 2x/1.5x на ВСЮ сессию (standard/batch/flex)
+  - gpt-5.3-instant (retired): was $0.50/$2.00 — do not route
+  - gpt-5.6-sol: $5.00/1M input | $30.00/1M output (LIMITED PREVIEW — unavailable to general public)
+  - gpt-5.6-terra: $2.50/1M input | $15.00/1M output
+  - gpt-5.6-luna: $1.00/1M input | $6.00/1M output (DISPUTED — see API_MODELS)
+  NOTE: >272K threshold → 2x/1.5x for the ENTIRE session (standard/batch/flex) — no changes
 
 LATENCY:
   TTFT: very_low (~0.5-0.8s GPT-5.5 Instant) | med (5.4/5.5 Thinking) | high (5.5 Pro)
   TPS: ~50-60 t/s (5.5 Instant) | med (5.4) | low (5.5 Pro)
 
 KNOWN_ISSUES:
-  - [Type I] [SILENT_DOWNGRADE_TO_MINI] Severity:HIGH | При rate cap — тихий downgrade GPT-5.5 Thinking → GPT-5.4 mini | STATUS: UNRESOLVED (подтв. 27.06) | WORKAROUND: мониторить Upfront Plan block; Pro снижает частоту
-  - [Type I] [G10] [CONTEXT_PRICING_TRAP_272K] Severity:HIGH | >272K → 2x/1.5x на всю сессию | STATUS: UNRESOLVED BY DESIGN | WORKAROUND: P2P intercept >250K; cut at 260K; reroute Claude Opus / Gemini
-  - [Type C] [G9] [SEVEN_PAIR_MUST_LIMIT] Severity:HIGH | >7 MUST/MUST NOT пар → галлюцинации | WORKAROUND: cap at 7; позитивные формулировки
-  - [Type I] [OPENAI_BILLING_GHOST_USERS] Severity:HIGH | Авто-деактивация Business Workspace из-за "ghost users" | STATUS: UNRESOLVED (подтв. 27.06) | WORKAROUND: мониторить активные сиды; monthly billing
-  - [Type C] [OPENAI_MEMORY_ROUTING_BUG] Severity:MED | Saved memory / Project context игнорирует выбор Heavy reasoning | STATUS: UNRESOLVED (подтв. 27.06) | WORKAROUND: отключать Saved memory для Heavy
+  - [Type I] [SILENT_DOWNGRADE_TO_MINI] Severity:HIGH | On rate cap — silent downgrade GPT-5.5 Thinking → GPT-5.4 mini; community (OpenAI Forum 28.06) logs stealth-downgrade of Codex Pro | WORKAROUND: monitor Upfront Plan block; Pro reduces frequency | STATUS: UNRESOLVED (conf. 05.07, no official patch)
+  - [Type I] [G10] [CONTEXT_PRICING_TRAP_272K] Severity:HIGH | >272K → 2x/1.5x for the entire session | WORKAROUND: P2P intercept >250K; cut at 260K; reroute Claude/Gemini | STATUS: UNRESOLVED BY DESIGN (no changes)
+  - [Type C] [G9] [SEVEN_PAIR_MUST_LIMIT] Severity:HIGH | >7 MUST/MUST NOT pairs → hallucinations | WORKAROUND: cap at 7; positive phrasing | STATUS: UNRESOLVED BY DESIGN (no changes)
+  - [Type I] [OPENAI_BILLING_GHOST_USERS] Severity:HIGH | Auto-deactivation of Business Workspace due to "ghost users"; case escalated (Case #10698925, 29.06) with no systemic fix | WORKAROUND: monitor active seats; monthly billing | STATUS: UNRESOLVED (conf. 05.07)
+  - [Type C] [OPENAI_MEMORY_ROUTING_BUG] Severity:MED | Saved memory / Project context ignores Heavy reasoning selection | WORKAROUND: disable Saved memory for Heavy | STATUS: NO_UPDATE (05.07)
+  - [Type P] [GPT56_PUBLIC_GA_DEFERRED] Severity:MED | GPT-5.6 (Sol/Terra/Luna) public GA delayed at the request of the US government; API IDs and rates are now officially locked in (Help Center 29.06), but GA date still missing | WORKAROUND: do not route gpt-5.6-*; keep GPT-5.5 as flagship | STATUS: MONITORING (detailed 05.07)
 
 COMMUNITY_INSIGHTS:
-  - [Reuters | 2026-06-26 | High]: OpenAI откладывает публичный запуск GPT-5.6 по просьбе правительства США; доступ только проверенным партнёрам.
-  - [MacRumors / ixbt | 2026-06-26..27 | High]: GPT-5.6 (Sol/Terra/Luna) только limited preview; контекст ~1.5M (leak); цена не объявлена.
-  - [Reddit r/OpenAI | 2026-06-20 | High]: отзыв GPT-4.5 вызвал ностальгию/критику; API считается стабильнее UI.
+  - [OpenAI Community Forum | 2026-06-28 | High]: thread noting that Codex Pro feels noticeably weaker after a forced-update and routes to GPT-5.4/5.4 mini; members are analyzing logs and model-labels.
+  - [Reddit r/OpenAI, r/ChatGPTComplaints | late June, active till 05.07 | High]: discussions on 272K context-trap, ghost users, workspace deactivations; workaround discussions, no replies from OpenAI over the period.
+  - [Reuters | 2026-06-26 | High]: OpenAI delays public launch of GPT-5.6 at the request of the US government — a direct parallel to the Fable 5/Mythos 5 story.
 
 ROUTING_WEIGHT:
-  PRIMARY: terminal_agent, computer_use (Codex), structured_data_extraction, image_gen (gpt-image-2), agent_tasks
-  AVOID: context >272K без необходимости, large_codebase_debugging, Heavy reasoning с включённой Saved memory, маршрутизация на gpt-5.6-* (preview/deferred)
+  PRIMARY: terminal_agent, computer_use (Codex), structured_data_extraction, image_gen (gpt-image-2/1.5-high-fidelity), agent_tasks
+  AVOID: context >272K without necessity, large_codebase_debugging, Heavy reasoning with Saved memory, routing to gpt-5.6-* (not publicly available)
   P2P_TIER:
     GPT-5.5 Pro: Tier 4 FULL+ (GUI/computer_use; Codex)
-    GPT-5.5: Tier 3 FULL / Tier 4 FULL+ (agentic coding; Agent #3 xHigh 8.04%)
+    GPT-5.5: Tier 3 FULL / Tier 4 FULL+ (agentic coding)
     GPT-5.4: Tier 2 ADVANCED / Tier 3 FULL
-    GPT-5.4 mini: Tier 0 NANO / Tier 1 STANDARD (fallback only)
-    GPT-5.6 Sol/Terra/Luna: PREVIEW (не маршрутизировать)
+    GPT-5.3 Instant: RETIRED — exclude from routing
+    GPT-5.6 Sol/Terra/Luna: PREVIEW (do not route — trusted-partner only)
   P2P_EDITION_NOTES:
-    8N.3 (gpt host): JSON, 7-pair, 272K guard
+    8N.3 (gpt host): JSON, 7-pair, 272K guard; GPT56_GUARD active
 
 CHANGES:
-  - [2026-06-27]: GPT-5.6 статус canary → LIMITED PREVIEW; публичный GA отложен (правительство США)
-  - [2026-06-27]: GPT-4.5 RETIRED из ChatGPT App
-  - [2026-06-27]: 272K threshold подтверждён действующим
-
+  - [2026-06-27]: GPT-5.3 Instant RETIRED
+  - [2026-06-29]: GPT-5.6 Sol/Terra/Luna — API IDs and rates officially locked in (Help Center); GA still not announced
+  - [2026-07-05]: Confirmed [NO_DELTA] for prices/limits of GPT-5.5/5.4; conflicting figures from PDF-report rejected
 // ────────────────────────────────────────────────────────────────
 [VENDOR: Gemini]
-LAST_VERIFIED: 2026-06-27
+LAST_VERIFIED: 2026-07-05
 
 GEMINI_APP_MODELS:
   - Gemini 3.5 Flash | gemini.google.com | tier: Free/AI Plus/AI Pro/AI Ultra | select: default | ctx: 1M
   - Gemini 3.5 Pro | gemini.google.com | tier: AI Ultra | select: yes (Preview only) | ctx: 2M | Deep Think
-  NOTE: GA-окно ИЮНЯ СОРВАНО → перенос на ИЮЛЬ 2026; остаётся ограниченный Vertex/Enterprise preview.
+  NOTE: DISPUTED — PDF-report claims transition to GA by early July, but official Gemini API changelog (ai.google.dev/gemini-api/docs/changelog, verified by Perplexity 05.07) DOES NOT confirm removal of the -preview suffix. Canon: remains Preview. The GA-window, previously promised for July, is not documentary confirmed as of 05.07.
   - Gemini Omni Flash | gemini.google.com | tier: AI Plus/Pro/Ultra | select: yes | any-to-any multimodal | ctx: 1M
-  NOTE: GA; #1 Text-to-Video (1527); в Image-to-Video теперь #2 (1469, уступил dreamina-seedance).
+  NOTE: GA; in Image-to-Video Arena dropped to #2 (1469), yielding to dreamina-seedance-2.0 (#1, 1474); in the new Video Edit Arena category — #2 (1347).
 
 AI_STUDIO_MODELS:
-  - Gemini 3.5 Flash | api_id: gemini-3.5-flash | ctx: 1,048,576 | out: 65,536 | thinkingLevel: MEDIUM default | status: GA (подтв. без -preview, 27.06) | $1.50/$9.00
-  - Gemini 3.5 Pro | api_id: gemini-3.5-pro-preview | ctx: 2M | out: 128K | status: PREVIEW (суффикс -preview не снят в офиц. changelog) | pricing: $15/$60 expected (не финализировано)
-  - Gemini Omni Flash | api_id: gemini-omni-flash | ctx: 1M | status: GA | pricing: est $2.00/$10.00
+  - Gemini 3.5 Flash | api_id: gemini-3.5-flash | ctx: 1,048,576 | out: 65,536 | status: GA | $1.50/$9.00 | no changes
+  - Gemini 3.5 Pro | api_id: gemini-3.5-pro-preview | ctx: 2M | out: 128K | status: PREVIEW (suffix NOT removed, DISPUTED — see above) | pricing: not finalized
+  - Gemini Omni Flash | api_id: gemini-omni-flash | ctx: 1M | status: GA | pricing: est $2.00/$10.00 (no changes)
   - Gemini 3.1 Pro Preview | api_id: gemini-3.1-pro-preview | ctx: 2M | out: 128K | status: GA | $2/$12 (<=200K)
-  - Gemini 3.1 Flash-Lite | api_id: gemini-3.1-flash-lite | status: GA (переведён в GA за период; самая дешёвая в семействе)
-  - gemini-3.1-flash-image (Nano Banana 2) | image_gen | status: GA | ~$0.039/img (1024x1024)
-  - gemini-3-pro-image (Nano Banana Pro) | image_gen 4K | status: GA (до 14 reference images)
-  // gemini-3.1-flash-image-preview + gemini-3-pro-image-preview — SHUTDOWN 2026-06-25 (выполнено)
+  - Gemini 3.1 Flash-Lite | api_id: gemini-3.1-flash-lite | status: GA | no changes
+  - gemini-3.1-flash-image (Nano Banana 2) | image_gen | status: GA | no changes
+  - gemini-3.1-flash-lite-image (Nano Banana 2 Lite) | image_gen | status: GA | NEW MODEL (discovered in Arena text2img 02.07, #5, 1250) — previously untracked
+  - gemini-3-pro-image (Nano Banana Pro) | image_gen 4K | status: GA | no changes
 
 CONTEXT_WINDOW:
   - Gemini 3.5 Pro / 3.1 Pro: 2,000,000 tokens
@@ -288,91 +322,90 @@ OUTPUT_LIMIT:
   - Gemini 3.5 Flash / Omni Flash: 64,000-65,536 tokens
 
 REASONING:
-  Type: thinkingLevel parameter (MINIMAL | LOW | MEDIUM | HIGH); Deep Think (Chain of Hierarchy) для 3.5 Pro
-  API_Parameter: thinkingLevel (LOW|MEDIUM|HIGH); thinking_budget DEPRECATED (G4)
-  Temperature: строго 1.0 для Deep Think (G1); 0.0-2.0 для прочих режимов
-  COT_GUARD: G2 — ZERO XML в system context обязательно для 8H.3 (Gemini host)
-  Hidden tokens billing: yes (thinking включён в $9.00/1M output для 3.5 Flash)
+  Type: thinkingLevel parameter (MINIMAL | LOW | MEDIUM | HIGH); Deep Think (Chain of Hierarchy) for 3.5 Pro
+  Temperature: strictly 1.0 for Deep Think (G1); 0.0-2.0 for other modes
+  COT_GUARD: G2 — ZERO XML in system context mandatory for 8H.3
+  Hidden tokens billing: yes
 
 P2P_8C3_SPECIFICS: N/A
 P2P_8H3_SPECIFICS:
-  ZERO_XML: абсолютный инвариант в system context (G2 blocker)
-  G1_RULE: temperature строго 1.0 при Deep Think → HTTP 400 иначе
-  G2_RULE: любой XML в system context → CoH деградация → CRITICAL
-  G13_RULE: Memory Nuke / Error 13 при 100-128K active tokens → Constraint Reinjection; cap chat history 80K
-  GUARDIAN: OFF (нет счётчика токенов в AI Studio)
-  Context_Caching: статичный PREFIX → 70-90% экономия; использовать вместо chat history
+  ZERO_XML: absolute invariant (G2 blocker)
+  G1_RULE: temperature strictly 1.0 on Deep Think → HTTP 400
+  G2_RULE: XML in system context → CoH degradation → CRITICAL
+  G13_RULE: Error 13 at 100-128K active tokens → Constraint Reinjection; cap chat history 80K
+  Context_Caching: static PREFIX → 70-90% savings
 P2P_8N3_SPECIFICS:
   HOST_MODEL=gemini: plain text only, no XML, G1/G2/G13 enforced
 P2P_8L3_SPECIFICS: N/A
 
 AI_STUDIO_SPECIFICS:
   Context_Caching: 3.5 Flash / 3.1 Pro / Omni Flash
-  Grounding: 3.1 Pro (gemini-3.1-pro-grounding Arena #7 Search 1214)
+  Grounding: 3.1 Pro (gemini-3.1-pro-grounding, Arena Search #7, 1213)
   Computer_Use: gemini-3-flash-preview (preview)
-  Code_Execution: 3.5 Flash / 3.1 Pro
-  NOTE: Gemini CLI бесплатный доступ ЗАКРЫТ с 18.06 (теперь corporate-only) — монетизация.
+  NOTE: Gemini CLI free access closed since 18.06 — no changes
 
 CAPABILITIES:
   vision: true | audio: true (Live API) | video_gen: true (Omni Flash)
-  image_gen: true (Nano Banana 2 / Pro GA) | music_gen: false | real_time: true (Live API <200ms)
-  computer_use: true (gemini-3-flash-preview only) | on_prem: false | workspace_agents: true
+  image_gen: true (Nano Banana 2/Pro/2-Lite GA) | real_time: true | computer_use: true (gemini-3-flash-preview only) | on_prem: false
 
 PRICING:
-  - Gemini 3.5 Pro (Preview): $15.00/1M input | $60.00/1M output expected (не финализировано)
+  - Gemini 3.5 Pro (Preview): $15.00/1M input | $60.00/1M output expected (NOT finalized — DISPUTED status GA unconfirmed, price respectively too)
   - Gemini Omni Flash (GA): est $2.00/1M input | $10.00/1M output (TBD)
   - Gemini 3.5 Flash: $1.50/1M input | $9.00/1M output | cached: $0.15/1M
   - Gemini 3.1 Pro (<=200K): $2.00/1M input | $12.00/1M output | cached: $0.20/1M
+  NOTE: PDF-report gives unified price $0.15/$0.60 for Flash/Omni Flash/Nano Banana 2 — rejected as clearly erroneous (cannot be identical for models of different power); canon maintained.
 
 LATENCY:
-  TTFT: med/~0.8-1.2s (3.1 Pro) | low/~0.4-0.6s (3.5 Flash) | very_low/~0.2-0.4s (Omni Flash est)
+  TTFT: med/~0.8-1.2s (3.1 Pro) | low/~0.4-0.6s (3.5 Flash) | very_low (Omni Flash est)
   TPS: ~45-60 t/s (3.1 Pro) | ~80-120 t/s (3.5 Flash) | ~100-150 t/s (Omni Flash est)
 
 KNOWN_ISSUES:
-  - [Type F] [G2] [XML_CONTEXT_ROT_COH] Severity:HIGH | XML в system context → CoH деградация | WORKAROUND: ABSOLUTE ZERO_XML в 8H.3
-  - [Type F] [G13_WORSENED] [CONTEXT_SLICING_ERROR_13] Severity:CRITICAL | При 100-128K active tokens → "Error 13" + полная амнезия контекста; затрагивает 3.5 Flash и 3.5 Pro preview; доп. триггеры (corrective 27.06): mass upload 30+ изображений, pure non-English / mixed-language ввод (encoding). Серверного фикса нет, только клиентские обходы | STATUS: UNRESOLVED CRITICAL (подтв. 27.06) | WORKAROUND: Context Caching API / AI Studio вместо chat history; cap 80K; избегать пакетов 30+ изображений в одном треде
-  - [Type D] [GEMINI_SAFETY_ERASURE] Severity:HIGH | Safety Filters стирают уже сгенерированный текст mid-generation в 3.5 Flash/Pro | STATUS: UNRESOLVED (подтв. 27.06; нет "creative_mode") | WORKAROUND: API напрямую с relaxed thresholds (BLOCK_SOME / BLOCK_NONE где политика позволяет)
+  - [Type F] [G2] [XML_CONTEXT_ROT_COH] Severity:HIGH | XML in system context → CoH degradation | WORKAROUND: ABSOLUTE ZERO_XML in 8H.3 | STATUS: UNRESOLVED BY DESIGN (no changes)
+  - [Type F] [G13_WORSENED] [CONTEXT_SLICING_ERROR_13] Severity:CRITICAL | At 100-128K active tokens → "Error 13" + amnesia; add. triggers: 30+ images, mixed-language input | WORKAROUND: Context Caching API instead of chat history; cap 80K; avoid batches of 30+ images | STATUS: UNRESOLVED CRITICAL (conf. 05.07 — only generic troubleshooting from Google: new chat/clear cache/incognito, no server-side fix)
+  - [Type D] [GEMINI_SAFETY_ERASURE] Severity:HIGH | Safety Filters erase text mid-generation in 3.5 Flash/Pro | WORKAROUND: API directly with relaxed thresholds (BLOCK_SOME/BLOCK_NONE) | STATUS: NO_UPDATE (05.07, "creative_mode" hasn't appeared)
+  - [Type P] [GEMINI35PRO_GA_SLIP] Severity:LOW | Gemini 3.5 Pro GA DISPUTED — PDF claims transition, official changelog does not confirm | WORKAROUND: leave Preview status until record without -preview appears in official Gemini API changelog | STATUS: MONITORING (data conflict logged 05.07)
 
 COMMUNITY_INSIGHTS:
-  - [ai.google.dev | 2026-06-24 | Official]: Nano Banana preview отключены 25.06; GA-замены gemini-3.1-flash-image / gemini-3-pro-image; структура запроса совместима.
-  - [ai-blogs.org / pondero | 2026-06-23..25 | High]: Gemini 3.5 Pro GA перенесён на июль 2026; остаётся Vertex preview.
-  - [Reddit r/Gemini | 2026-06-26 | Med]: сообщения о массовых ошибках (коды 1076/1099) и перебоях.
+  - Over the period 27.06-05.07 no notable new threads on Error 13 and Safety Erasure appeared; earlier discussions remain active (Reddit r/Gemini, late June — error codes 1076/1099), official Google advice has not changed.
 
 ROUTING_WEIGHT:
-  PRIMARY: real_time_audio_video (Live API), grounded_search (3.1 Pro), document_analysis_large, video_gen (Omni Flash), fast_draft (3.5 Flash), science/math (3.1 Pro Deep Think)
-  AVOID: precise_long_ctx_recall >700K (G2 rot), XML-scaffolded prompts, creative writing в UI (Safety Erasure), активная маршрутизация на 3.5 Pro (preview)
+  PRIMARY: real_time_audio_video (Live API), grounded_search (3.1 Pro), document_analysis_large, video_gen (Omni Flash — with caveat on #2 position), fast_draft (3.5 Flash)
+  AVOID: precise_long_ctx_recall >700K (G2 rot), XML-scaffolded prompts, creative writing in UI (Safety Erasure), active routing to 3.5 Pro as "GA" (Preview in fact)
   P2P_TIER:
-    Gemini 3.5 Pro: Tier 4 FULL+ (Preview; 2M ctx; Deep Think)
-    Gemini Omni Flash: Tier 4 FULL+ (GA; any-to-any; #1 T2V)
-    Gemini 3.1 Pro: Tier 3 FULL / Tier 4 FULL+ (thinking; grounding; Arena #7 Overall)
-    Gemini 3.5 Flash: Tier 2 ADVANCED ($1.50/$9.00; fast draft; GA)
-    Gemini 3.1 Flash-Lite: Tier 0 NANO / Tier 1 STANDARD (cheapest; GA)
+    Gemini 3.5 Pro: Tier 4 FULL+ (Preview status, ignore DISPUTED GA-claims until official confirmation)
+    Gemini Omni Flash: Tier 4 FULL+ (GA; #2 T2V/I2V/VideoEdit)
+    Gemini 3.1 Pro: Tier 3 FULL / Tier 4 FULL+
+    Gemini 3.5 Flash: Tier 2 ADVANCED (entered Arena Overall Top11, #11, 1479)
+    Gemini 3.1 Flash-Lite: Tier 0 NANO / Tier 1 STANDARD
   P2P_EDITION_NOTES:
     8H.3: ZERO XML, Deep Think temp=1.0, Context Caching, Error 13 cap 80K
     8N.3 (gemini host): plain text, G1/G2/G13 enforced
 
 CHANGES:
-  - [2026-06-27]: Nano Banana preview SHUTDOWN выполнен 25.06; GA-замены активны
-  - [2026-06-27]: Gemini 3.5 Pro GA перенесён на июль (остаётся Preview); 3.5 Flash подтверждён GA
-  - [2026-06-27]: Gemini 3.1 Flash-Lite → GA; Gemini CLI free доступ закрыт (18.06)
-  - [2026-06-27]: Omni Flash в Image-to-Video опустился на #2 (dreamina-seedance #1)
-
-// ────────────────────────────────────────────────────────────────
+  - [2026-07-05]: Gemini 3.5 Pro GA-status DISPUTED — PDF-report vs official changelog conflict; canon = Preview
+  - [2026-07-02]: Nano Banana 2 Lite (gemini-3.1-flash-lite-image) discovered in Arena — new model, previously untracked
+  - [2026-07-05]: Omni Flash yielded #1 in Image-to-Video Arena (now #2, 1469 vs dreamina-seedance 1474)
+  - [2026-07-05]: CONTEXT_SLICING_ERROR_13 confirmed UNRESOLVED CRITICAL, no server-side fix
+  
+  // ────────────────────────────────────────────────────────────────
 [VENDOR: Grok]
-LAST_VERIFIED: 2026-06-27
+LAST_VERIFIED: 2026-07-05
 
 APP_MODELS:
   - Grok 4.3 | x.com/grok | tier: SuperGrok ($30/mo) / API | api_id: grok-4.3 | ctx: 1M | native video
   - Grok 4.20 Multi-Agent | x.com/grok | tier: SuperGrok Heavy ($300/mo) / API | api_id: grok-4.20 | ctx: 2M | 16 parallel agents
   - Grok Build 0.1 | API / early access | api_id: grok-build-0.1 | coding specialist | ctx: 256K | $1.00/$2.00
   - Grok Aurora | x.com/grok / API | api_id: grok-aurora | image_gen
-  NOTE: Grok 4.4 STILL DELAYED (нет релиза за период); Colossus 2 / 4.4 в статусе "coming weeks" по roadmap.
+  NOTE: Grok 4.4 — STILL DELAYED, no changes over the period 27.06-05.07. Official docs.x.ai catalog was not updated; roadmap-phrasing "coming weeks" remains without new ETA. [NO_DELTA] confirmed by Perplexity 05.07.
 
 API_MODELS:
   - grok-4.3 | status: GA | ctx: 1,000,000 | output: ~32K (est) | reasoning: none/low/medium/high
   - grok-4.20-multi-agent | status: GA | ctx: 2,000,000 | Heavy 16 multi-agent
-  - grok-build-0.1 | status: GA | ctx: 256,000 | $1.00/$2.00 | coding specialist
-  - grok-imagine-video-1.5-preview-720p | status: GA | Arena #3 Image-to-Video (1466)
+  - grok-build-0.1 | status: GA | ctx: 256,000 | $1.00/$2.00
+  - grok-imagine-video-1.5-preview-720p | status: GA | Arena Image-to-Video #3 (1466)
+  - grok-imagine-video-720p / -480p | status: GA | Arena Image-to-Video #6/#10
+  - grok-imagine-image-quality | status: GA | Arena Text-to-Image #9 (1229), Image-Edit #4/#9 (1389/1358, two versions by date)
+  NOTE: no changes in the models list over the period; Grok 4.4 did not appear anywhere in API/docs.
 
 CONTEXT_WINDOW:
   - Grok 4.3: 1,000,000 tokens
@@ -382,18 +415,18 @@ OUTPUT_LIMIT:
   - Grok 4.3: ~32,000 tokens (est)
 
 REASONING:
-  Type: native reasoning / Heavy parallel (до 16 агентов); safe-list levels (none|low|medium|high)
+  Type: native reasoning / Heavy parallel (up to 16 agents); safe-list levels (none|low|medium|high)
   COT_GUARD: no | Hidden tokens billing: yes
-  Drift_risk: tool forgetting после ~15 tool calls
+  Drift_risk: tool forgetting after ~15 tool calls
 
 P2P_8C3_SPECIFICS: N/A
 P2P_8H3_SPECIFICS:
-  HEAVY_16: до 16 агентов параллельно через нативный Tool Calling
-  TOOL_BUDGET: 20-25 вызовов; re-injection каждые 8; ANON/FORGE лимит 18
-  JSON_ONLY: весь output через JSON схемы
-  G14_RULE: strip unknown params (presencePenalty/frequencyPenalty/stop/logprobs) → HTTP 400 иначе
-  X_FIREHOSE: VALUE_GATE обоснование $0.50+ перед вызовом; CACHE 7-дн; FALLBACK web_search при value < threshold
-  CONTEXT: 2M tokens (4.20) — крупнейший CAPSULE
+  HEAVY_16: up to 16 agents in parallel via native Tool Calling
+  TOOL_BUDGET: 20-25 calls; re-injection every 8; ANON/FORGE limit 18
+  JSON_ONLY: all output via JSON schemas
+  G14_RULE: strip unknown params (presencePenalty/frequencyPenalty/stop/logprobs) → HTTP 400
+  X_FIREHOSE: VALUE_GATE $0.50+ before call; CACHE 7-day; FALLBACK web_search if value < threshold
+  CONTEXT: 2M tokens (4.20) — largest CAPSULE
 P2P_8N3_SPECIFICS:
   HOST_MODEL=grok: JSON formatting; G14 param strip; Heavy threshold check
 P2P_8L3_SPECIFICS:
@@ -408,19 +441,19 @@ PRICING:
   - Grok 4.3 API: $1.25/1M input | $2.50/1M output | cached: $0.20/1M
   - Grok 4.20 Heavy: $2.00/1M input | $6.00/1M output
   - Grok Build 0.1: $1.00/1M input | $2.00/1M output
+  NOTE: PDF-table lists Grok 4.3/4.20 at $1.25/$5.00 (no changes for 4.3, but 4.20 diverges from previous $2.00/$6.00) — divergence on 4.20 not confirmed by secondary source, canon maintained ($2.00/$6.00).
 
 LATENCY:
   TTFT: med (4.3) | high (4.20 Heavy multi-agent)
   TPS: med (4.3)
 
 KNOWN_ISSUES:
-  - [Type H] [G14] [SAFE_LIST_API_UNKNOWN_PARAMS] Severity:CRITICAL | presencePenalty/frequencyPenalty/stop/logprobs → HTTP 400 BY DESIGN | WORKAROUND: P2P router strip перед вызовом Grok API
-  - [Type I] [HEAVY16_SHADOW_DOWNGRADE] Severity:HIGH | SuperGrok Heavy ($300/mo) — тихий downgrade до grok-4.3 без уведомления | STATUS: DISPUTED (Colossus 2 rollout не подтверждён, подтв. 27.06) | WORKAROUND: мониторить маркеры качества; API для предсказуемости
-  - [Type C] [TOOL_FORGETTING_HEAVY] Severity:MED | Heavy 16 после ~15+ tool calls → потеря состояния | WORKAROUND: короткие сессии; re-state правил
+  - [Type H] [G14] [SAFE_LIST_API_UNKNOWN_PARAMS] Severity:CRITICAL | presencePenalty/frequencyPenalty/stop/logprobs → HTTP 400 BY DESIGN | WORKAROUND: P2P router strip before call | STATUS: UNRESOLVED BY DESIGN (no changes)
+  - [Type I] [HEAVY16_SHADOW_DOWNGRADE] Severity:HIGH | SuperGrok Heavy ($300/mo) — silent downgrade to grok-4.3 without notice | WORKAROUND: monitor quality markers; API for predictability | STATUS: DISPUTED / NO_UPDATE (conf. 05.07 — neither confirmation nor denial from xAI over the period)
+  - [Type C] [TOOL_FORGETTING_HEAVY] Severity:MED | Heavy 16 after ~15+ tool calls → loss of state | WORKAROUND: short sessions; re-state of rules | STATUS: UNRESOLVED (no changes)
 
 COMMUNITY_INSIGHTS:
-  - [docs.x.ai | 2026-06-24 | Official]: модель-лист — grok-4.3, grok-4.20-*, grok-build-0.1; Grok 4.4 НЕ упоминается.
-  - [Reddit r/grok | 2026-06-24 | Med]: нет новостей о 4.4; жалобы на Heavy-лимиты/shadow downgrade.
+  - Over the period 27.06-05.07 no new xAI posts on Grok 4.4 or Heavy16 found; discussions rely on earlier materials (docs.x.ai catalog without updates; Reddit r/grok without fresh threads).
 
 ROUTING_WEIGHT:
   PRIMARY: x_realtime_data (X Firehose), cost_sensitive_high_volume, voice_agent, video_input_analysis, ultra_long_context (4.20: 2M)
@@ -434,22 +467,23 @@ ROUTING_WEIGHT:
     8N.3 (grok host): G14 param strip, JSON
 
 CHANGES:
-  - [2026-06-27]: Grok 4.4 подтверждён STILL DELAYED; Heavy16 shadow downgrade остаётся DISPUTED
+  - [2026-07-05]: Grok 4.4 confirmed STILL DELAYED, [NO_DELTA] on model lineup; Heavy16 downgrade remains DISPUTED without movement
 
 // ────────────────────────────────────────────────────────────────
 [VENDOR: DeepSeek]
-LAST_VERIFIED: 2026-06-27
+LAST_VERIFIED: 2026-07-05
 
 APP_MODELS:
   - DeepSeek V4 Pro | chat.deepseek.com / API | tier: Public | api_id: deepseek-v4-pro | ctx: 1M | PERMANENT pricing $0.435/$0.87
   - DeepSeek V4 Flash | chat.deepseek.com / API | tier: Public | api_id: deepseek-v4-flash | ctx: 1M | $0.14/$0.28
   - DeepSeek Vision | API | api_id: deepseek-vision | ctx: 1M | BETA | $0.50/$1.00
+  NOTE: [NO_DELTA] on models/prices over the period 27.06-05.07 (conf. Perplexity — official docs and API-quickstart without changes).
 
 API_MODELS:
   - deepseek-v4-pro | status: GA | ctx: 1,000,000 | output: 384,000 | $0.435/$0.87
   - deepseek-v4-flash | status: GA | ctx: 1,000,000 | output: 384,000 | $0.14/$0.28
-  NOTE: legacy aliases deepseek-chat / deepseek-reasoner → HTTP 404 с 2026-07-24 15:59 UTC (T-27 дней). Мигрировать на explicit V4 IDs.
-  NOTE: расхождение цены V4-Pro: $0.435/$0.87 [base+perplexity] vs $1.74/$3.48 [GPT-deep, вероятно standard non-promo]. Сохранён $0.435/$0.87 (PERMANENT) как канон.
+  NOTE: legacy aliases deepseek-chat / deepseek-reasoner → HTTP 404 from 2026-07-24 15:59 UTC (T-19 days as of 05.07). Date and rule NO CHANGES over the period; grace-period not provided — docs explicitly confirm this. In the transition window, aliases are already routing to V4-Flash (non-thinking/thinking).
+  NOTE: PDF-report lists "2026-06-27" as launch dates for deepseek-v4-pro/flash — this is an aggregator inaccuracy: models were already GA in the previous version of live_specs (prior to 27.06); treated as a re-confirmation of status, not a new release.
 
 CONTEXT_WINDOW:
   - V4 Pro / Flash: 1,000,000 tokens
@@ -465,8 +499,9 @@ P2P_8C3_SPECIFICS: N/A
 P2P_8H3_SPECIFICS: N/A
 P2P_8N3_SPECIFICS:
   HOST_MODEL=deepseek:
-    G15_RULE: reasoning_content store + re-inject после tool calls (BY DESIGN; не cleanup в multi-turn с tools)
+    G15_RULE: reasoning_content store + re-inject after tool calls (BY DESIGN)
     translation_layer: reasoning management auto-injected
+    ALIAS_GUARD: from 2026-07-24 15:59 UTC — strictly block deepseek-chat/deepseek-reasoner in router, force explicit V4 IDs
 P2P_8L3_SPECIFICS: N/A
 
 CAPABILITIES:
@@ -476,39 +511,45 @@ CAPABILITIES:
 PRICING:
   - V4 Pro: $0.435/1M input | $0.87/1M output (PERMANENT)
   - V4 Flash: $0.14/1M input | $0.28/1M output
+  NOTE: potential plans for peak/off-peak pricing are mentioned in analytics (PDF-report), but no official confirmation from DeepSeek over the period — status TBD, do not include in canon until confirmed.
 
 LATENCY:
   TTFT: med | TPS: med
 
 KNOWN_ISSUES:
-  - [Type P] [ALIAS_MIGRATION_TRANSITION] Severity:HIGH | deepseek-chat/reasoner → HTTP 404 с 2026-07-24 | STATUS: UPCOMING DEADLINE T-27 дней | WORKAROUND: мигрировать на deepseek-v4-flash/v4-pro немедленно
+  - [Type P] [ALIAS_MIGRATION_TRANSITION] Severity:HIGH | deepseek-chat/reasoner → HTTP 404 from 2026-07-24 15:59 UTC | WORKAROUND: migrate to deepseek-v4-flash/v4-pro immediately; no grace-period | STATUS: CONFIRMED DEADLINE, T-19 days
+  - [Type L] [EU_REGULATORY_SCRUTINY] Severity:MED | Multiple EU regulators initiated investigations into data transfers of EU citizens to China (GDPR-risks) | WORKAROUND: avoid DeepSeek for EU-PII data until status clarifies | STATUS: MONITORING (new, 03.07)
 
 COMMUNITY_INSIGHTS:
-  - [Reddit r/DeepSeek | 2026-06-22 | Low]: обсуждение дедлайна миграции; новые проекты уже на V4 IDs.
+  - [HackerNews | 2026-07-03 | Med]: discussions on potential GDPR-ban of DeepSeek in Europe following the start of regulators' investigation; no tech limits yet.
 
 ROUTING_WEIGHT:
   PRIMARY: surgical_code_edits, cost_sensitive_code_gen, long_context_low_cost, self_hosted, budget_reasoning
-  AVOID: multimodal (Vision BETA), enterprise_gov_compliance_strict
+  AVOID: multimodal (Vision BETA), enterprise_gov_compliance_strict, EU_PII_processing (due to GDPR scrutiny)
   P2P_TIER:
     DeepSeek V4 Pro: Tier 2 ADVANCED / Tier 3 FULL (SWE-bench Verified 80.6%)
     DeepSeek V4 Flash: Tier 0 NANO / Tier 1 STANDARD (cheapest)
 
 CHANGES:
-  - [2026-06-27]: alias retirement T-27 дней (24.07.2026); NO_DELTA по моделям/ценам
+  - [2026-07-05]: Alias retirement confirmed T-19 days (24.07.2026); NO_DELTA on models/pricing
+  - [2026-07-03]: New regulatory risk in EU (GDPR scrutiny) noted
 
 // ────────────────────────────────────────────────────────────────
 [VENDOR: Qwen]
-LAST_VERIFIED: 2026-06-27
+LAST_VERIFIED: 2026-07-05
 
 APP_MODELS:
   - Qwen3.7 Max | chat.qwen.ai / Alibaba Cloud | tier: Pro/API | api_id: qwen3.7-max | ctx: 1M | out: 131K | Agent Era
-  NOTE: Arena WebDev #10 (1530); JSON errors UNRESOLVED.
+  NOTE: Arena WebDev #11 (1526, snapshot 01.07 — minimal drop from 1530); JSON errors still UNRESOLVED.
   - Qwen3.6-Plus | chat.qwen.ai / API | tier: Standard | api_id: qwen3.6-plus | ctx: 1M | budget reasoning
+  NOTE: Arena img2webdev #11 (1467, snapshot 14.05, no changes).
+  NOTE (MONITORING, outside strict delta window): PDF-report mentions an earlier (June) launch of open dense-models Qwen3.6-27B and Qwen3.6-35B-A3B (AIME 2026, MMLU-ProX) — Perplexity explicitly confirmed [NO_DELTA] on new models strictly for 27.06-05.07, so full cards are NOT added in this cycle; logged as a candidate for verification in the next request.
 
 API_MODELS:
   - qwen3.7-max | status: GA | ctx: 1,000,000 | output: 131,000
   - qwen3.6-plus | status: GA | ctx: 1,000,000
-  - qwen-image-2.0-pro | api_id: qwen-image-2.0-pro-2026-06-22 | image_gen | status: GA (новая, Arena Text-to-Image #10 1193)
+  - qwen-image-2.0-pro | api_id: qwen-image-2.0-pro-2026-06-22 | image_gen | status: GA | Arena Text-to-Image #11 (1192, was #10 1193 — minimal drop)
+  NOTE: [NO_DELTA] on models and prices over the period.
 
 CONTEXT_WINDOW:
   - Qwen3.7 Max / 3.6-Plus: 1,000,000 tokens
@@ -519,60 +560,60 @@ OUTPUT_LIMIT:
 REASONING:
   Type: thinking_budget (explicit token count 0-81920)
   COT_GUARD: no
-  JSON_MODE_NOTE: enable_thinking несовместим с JSON mode → двухшаговый pipeline (raw thinking → лёгкая модель чинит JSON)
+  JSON_MODE_NOTE: enable_thinking incompatible with JSON mode → two-step pipeline (raw thinking → lighter model fixes JSON)
 
 P2P_8C3_SPECIFICS: N/A
 P2P_8H3_SPECIFICS: N/A
 P2P_8N3_SPECIFICS:
   HOST_MODEL=qwen:
-    G17_RULE: preserve_thinking: true для агентных задач
-    G18_RULE: правильный endpoint prefix bailian/[model_id] (иначе silent routing fail)
+    G17_RULE: preserve_thinking: true for agentic tasks
+    G18_RULE: correct endpoint prefix bailian/[model_id] (otherwise silent routing fail)
     translation_layer: thinking preservation auto-injected
 
 P2P_8L3_SPECIFICS: N/A
 
 CAPABILITIES:
   vision: true | audio: false | computer_use: false
-  on_prem: true | open_weight: true | image_gen: true (qwen-image-2.0-pro)
+  on_prem: true | open_weight: true | image_gen: true
 
 PRICING:
-  - Qwen3.7 Max: $2.50-7.50/1M (tiered, по base v8.5)
+  - Qwen3.7 Max: $2.50-7.50/1M (tiered)
   - Qwen3.6-Plus: $1.00-6.00/1M
 
 LATENCY:
   TTFT: med | TPS: med
 
 KNOWN_ISSUES:
-  - [Type B] [QWEN37_MAX_JSON_ERRORS] Severity:HIGH | Qwen3.7 Max — ошибки structured-output/JSON; hard errors в MindTrial. Ограничения JSON Mode (corrective 27.06): (a) messages ДОЛЖНЫ содержать слово "json" иначе HTTP 400; (b) НЕ задавать max_tokens со structured output (обрезает/ломает JSON); (c) thinking mode несовместим со structured output; (d) reasoning-текст утекает в content | STATUS: UNRESOLVED (патча нет) | WORKAROUND: response_format={"type":"json_object"} + "JSON" в prompt + БЕЗ max_tokens; thinking → двухшаговый pipeline; fallback 3.6-Plus или GPT для строгого JSON
-  - [Type H] [G18] [PROVIDER_PREFIX_MISMATCH] Severity:CRITICAL | Отсутствие bailian/ prefix → silent failure в Alibaba Cloud | STATUS: UNRESOLVED BY DESIGN | WORKAROUND: P2P router нормализует все Qwen payloads к bailian/[model_id]
+  - [Type B] [QWEN37_MAX_JSON_ERRORS] Severity:HIGH | Qwen3.7 Max — structured-output/JSON errors; hard errors in MindTrial | WORKAROUND: response_format={"type":"json_object"} + "JSON" in prompt + NO max_tokens; thinking → two-step pipeline; fallback 3.6-Plus or GPT for strict JSON | STATUS: UNRESOLVED (no patch)
+  - [Type H] [G18] [PROVIDER_PREFIX_MISMATCH] Severity:CRITICAL | Missing bailian/ prefix → silent failure in Alibaba Cloud | WORKAROUND: P2P router normalizes all Qwen payloads to bailian/[model_id] | STATUS: UNRESOLVED BY DESIGN
 
 COMMUNITY_INSIGHTS:
-  - [Zhihu | 2026-06-22 | Med]: Qwen3.7 Max по-прежнему выдаёт JSON-ошибки; workaround работает, патча нет.
-  - [Alibaba Cloud Model Studio docs | 2026-06 | Official]: JSON Mode response_format задокументирован для семейства Qwen.
+  - Over the period 27.06-05.07 no new discussions; JSON workaround continues to be used.
 
 ROUTING_WEIGHT:
   PRIMARY: ultra_long_agentic (Agent Era 35h+), multilingual_chinese, open_weight_local, webdev
-  AVOID: strict_json_extraction (use 3.6-Plus или GPT), real_time_search
+  AVOID: strict_json_extraction (use 3.6-Plus or GPT), real_time_search
   P2P_TIER:
-    Qwen3.7 Max: Tier 4 FULL+ (Agent Era; WebDev #10)
+    Qwen3.7 Max: Tier 4 FULL+ (Agent Era; WebDev #11)
     Qwen3.6-Plus: Tier 2 ADVANCED / Tier 3 FULL (budget reasoning; JSON fallback)
 
 CHANGES:
-  - [2026-06-27]: JSON Mode задокументирован (смягчение workaround); статус остаётся UNRESOLVED
-  - [2026-06-27]: добавлена qwen-image-2.0-pro (новая, Arena T2I #10)
+  - [2026-07-05]: [NO_DELTA] on models; JSON errors status NO_UPDATE
 
 // ────────────────────────────────────────────────────────────────
 [VENDOR: Kimi]
-LAST_VERIFIED: 2026-06-27
+LAST_VERIFIED: 2026-07-05
 
 APP_MODELS:
   - Kimi K2.6 | kimi.ai | tier: paid | api_id: kimi-k2.6 | ctx: 256K-1M | Swarm 300 agents
-  - Kimi K2.7 Code | kimi.ai | tier: open-source | api_id: kimi-k2.7-code | ctx: 256K | released 12 June
-  NOTE: Open-weight coding agent; 1T MoE; -30% thinking-tokens vs K2.6.
+  NOTE: Arena Image-to-WebDev #7 (1522, snapshot 14.05, no changes over the period).
+  - Kimi K2.7 Code | kimi.ai | tier: open-source (self-host) + API | api_id: kimi-k2.7-code | ctx: 256K | released 12 June
+  NOTE: Open-weight coding agent; 1T MoE; -30% thinking-tokens vs K2.6; positioned as Kimi's most capable coding model — improved instruction-following in long contexts, higher task success rate.
+  NOTE (new): in addition to self-host (free/local), available as a paid API endpoint — see PRICING.
 
 API_MODELS:
   - kimi-k2.6 | status: GA | ctx: 256,000-1,000,000 | Swarm 300
-  - kimi-k2.7-code | status: GA (open-weight) | ctx: 256,000
+  - kimi-k2.7-code | status: GA (open-weight/hosted) | ctx: 256,000
 
 CONTEXT_WINDOW:
   - K2.6: 256K-1M | K2.7 Code: 256K
@@ -583,15 +624,15 @@ OUTPUT_LIMIT:
 REASONING:
   Type: on/off toggle per request
   COT_GUARD: conditional
-  Agent_Swarm: sync limit ~N; async webhooks обязательны для длинных swarm
+  Agent_Swarm: sync limit ~N; async webhooks mandatory for long swarm
 
 P2P_8C3_SPECIFICS: N/A
 P2P_8H3_SPECIFICS: N/A
 P2P_8N3_SPECIFICS:
   HOST_MODEL=kimi:
-    G20_RULE: swarm cap sync agents (>N → timeout без ошибки)
-    PARL_ASYNC: для больших swarm использовать async PARL / webhooks
-    MLA_ARCH: ultra-long context MLA особенности
+    G20_RULE: swarm cap sync agents (>N → timeout without error)
+    PARL_ASYNC: for large swarm use async PARL / webhooks
+    MLA_ARCH: ultra-long context MLA specifics
 
 P2P_8L3_SPECIFICS: N/A
 
@@ -600,40 +641,41 @@ CAPABILITIES:
   computer_use: false | on_prem: true | open_weight: true (K2.7 Code)
 
 PRICING:
-  - K2.6: TBD | K2.7 Code: free/local (open-weight)
+  - K2.6: TBD | K2.7 Code: free/local or API ($0.95/$4.00)
 
 LATENCY:
   TTFT: med | TPS: med
 
 KNOWN_ISSUES:
-  - [Type M] [KIMI_INFINITE_REPETITION] Severity:HIGH | Бесконечная репетиция (часто токен "!") в Thinking-режиме через стандартный API (kimi-k2.6); заполняет 256K контекст; воспроизводится ~1/3 случаев | STATUS: UNRESOLVED (подтв. 27.06, NVIDIA forum) | WORKAROUND: детекция повторов в клиенте + принудительное завершение; frequency_penalty снижает но не устраняет; отключать Thinking / использовать Swarm orchestrator
-  - [Type I] [SWARM_TIMEOUT_RISK] Severity:HIGH | Swarm >1h через REST → timeout | STATUS: RESOLVED (Workaround) | WORKAROUND: async webhooks обязательны; chunking 25 iterations x 240 сек
+  - [Type M] [KIMI_INFINITE_REPETITION] Severity:HIGH | Infinite repetition (often token "!") in Thinking-mode via standard API (kimi-k2.6); fills 256K context; reproduces ~1/3 cases | WORKAROUND: repetition detection in client + force quit; frequency_penalty mitigates but doesn't solve; disable Thinking / use Swarm orchestrator | STATUS: UNRESOLVED (NO_UPDATE 05.07)
+  - [Type I] [SWARM_TIMEOUT_RISK] Severity:HIGH | Swarm >1h via REST → timeout | WORKAROUND: async webhooks mandatory; chunking 25 iterations x 240 sec | STATUS: RESOLVED (Workaround)
 
 COMMUNITY_INSIGHTS:
-  - [NVIDIA Developer Forums | 2026-06-22 | Med]: баг бесконечной репетиции K2.6 Thinking подтверждён; патча нет.
+  - Threads on infinite repetition remained active since early May; no new updates from Moonshot or NVIDIA for 27.06-05.07 found.
 
 ROUTING_WEIGHT:
-  PRIMARY: multi_agent_orchestration, long_horizon_agentic, coding_agent_openweight (K2.7 Code)
-  AVOID: sync_rest_swarm, Thinking mode через стандартный API
+  PRIMARY: multi_agent_orchestration, long_horizon_agentic, coding_agent_openweight (K2.7 Code — now also hosted API option)
+  AVOID: sync_rest_swarm, Thinking mode via standard API
   P2P_TIER:
     Kimi K2.6: Tier 3 FULL (Swarm 300; long-horizon)
     Kimi K2.7 Code: Tier 2 ADVANCED / Tier 3 FULL (open-weight coding; img2webdev #7)
 
 CHANGES:
-  - [2026-06-27]: KIMI_INFINITE_REPETITION подтверждён UNRESOLVED (NVIDIA forum); NO_DELTA по моделям
+  - [2026-07-05]: KIMI_INFINITE_REPETITION confirmed UNRESOLVED, no movement; K2.7 Code — discovered potential hosted-API option ($0.95/$4.00, requires confirmation); [NO_DELTA] on new models
 
 // ────────────────────────────────────────────────────────────────
 [VENDOR: GLM]
-LAST_VERIFIED: 2026-06-27
+LAST_VERIFIED: 2026-07-05
 
 APP_MODELS:
   - GLM-5.2 | z.ai / open.bigmodel.cn | tier: paid / open-weight | api_id: glm-5.2 | ctx: 1M (~1,048,576) | MIT
-  NOTE: НОВЫЙ флагман (GA середина июня); long-horizon coding/agent; Arena #2 WebDev (1593), #10 Agent (4.40%), #25 Overall.
+  NOTE: no status change from GA (since mid-June); over the period 27.06-05.07 — a wave of INDEPENDENT benchmarks (28.06-01.07) confirming near-Sonnet-5 level: SWE-bench Pro GLM-5.2 ≈62.1% vs Claude Sonnet 5 ≈63.2% vs GPT-5.5 ≈58.6%; Terminal-Bench 2.1: GLM-5.2 ≈81.0% vs Sonnet 5 ≈80.4%. Available via Hugging Face and 20+ third-party coding tools.
+  NOTE: Arena WebDev (max) #2 — 1584 (was 1593, minimal drop); Agent Net Improvement — rose to #7 (6.93%, was #10/4.40%).
   - GLM-5.1 | z.ai / open.bigmodel.cn | tier: paid | api_id: glm-5.1 | ctx: 200K | effective ~120K
   - GLM-5.1-HighSpeed | z.ai API | tier: paid | api_id: glm-5.1-highspeed | ctx: 256K | 400 t/s
 
 API_MODELS:
-  - glm-5.2 | status: GA | ctx: 1,048,576 | output: 32K-131K | ~$1.40/$4.40
+  - glm-5.2 | status: GA | ctx: 1,048,576 | output: 32K-131K | ~$1.40/$4.40 (canon); real spread by provider ~$0.77-1.40 input / ~$2.42-4.40 output (Zhipu API, OpenRouter, DeepInfra etc., conf. 28.06-01.07)
   - glm-5.1 | status: GA | ctx: 200,000 (effective ~120K)
   - glm-5.1-highspeed | status: GA | ctx: 256,000
 
@@ -641,7 +683,7 @@ CONTEXT_WINDOW:
   - GLM-5.2: 1,048,576 tokens
   - GLM-5.1: 200,000 (effective ~120K)
   - GLM-5.1-HighSpeed: 256,000
-  WARNING: G19 — GLM-5.1 context collapse при >120K; cap working context 100-120K.
+  WARNING: G19 — GLM-5.1 context collapse at >120K; cap working context 100-120K.
 
 OUTPUT_LIMIT:
   - GLM-5.2: 32K-131K tokens
@@ -656,8 +698,8 @@ P2P_8C3_SPECIFICS: N/A
 P2P_8H3_SPECIFICS: N/A
 P2P_8N3_SPECIFICS:
   HOST_MODEL=glm:
-    G19_RULE: hard context limit ~120K для 5.1 (>120K → hallucination collapse); 5.2 расширяет до 1M
-    NO_XML: Markdown (##) only, XML ломает output
+    G19_RULE: hard context limit ~120K for 5.1 (>120K → hallucination collapse); 5.2 expands to 1M
+    NO_XML: Markdown (##) only, XML breaks output
     translation_layer: context cap + markdown enforced
 
 P2P_8L3_SPECIFICS: N/A
@@ -667,7 +709,7 @@ CAPABILITIES:
   on_prem: true | open_weight: true (MIT) | Claude_compat_API: true
 
 PRICING:
-  - GLM-5.2: ~$1.40/1M input | ~$4.40/1M output (партнёрский ориентир OpenRouter/Together)
+  - GLM-5.2: ~$1.40/1M input | ~$4.40/1M output (reference); spread by provider $0.77-1.40 / $2.42-4.40
   - GLM-5.1 / HighSpeed: TBD
 
 LATENCY:
@@ -675,548 +717,589 @@ LATENCY:
   TPS: ~400 t/s (HighSpeed)
 
 KNOWN_ISSUES:
-  - [Type F] [G19] [CONTEXT_COLLAPSE_LONG_SESSION_GLM51] Severity:MONITORING | Context collapse >120K (5.1); серверный патч применён, требует мониторинга | WORKAROUND: cap 100-120K; для длинного контекста использовать GLM-5.2 (1M)
-  - [Type F] [GLM51_COMPACT_HANG] Severity:HIGH | GLM-5.1 через OpenCode → бесконечный thinking loop при /compact (issue #18415); патча для 5.1 нет (подтв. 27.06) | STATUS: UNRESOLVED | WORKAROUND: избегать /compact; атомарные запросы; МИГРАЦИЯ на GLM-5.2 (auto-compact с окном 1,000,000) для compact-зависимых workflow
+  - [Type F] [G19] [CONTEXT_COLLAPSE_LONG_SESSION_GLM51] Severity:MONITORING | Context collapse >120K (5.1); server-side patch applied earlier, stability requires monitoring | WORKAROUND: cap 100-120K; use GLM-5.2 (1M) for long context | STATUS: MONITORING (no changes)
+  - [Type F] [GLM51_COMPACT_HANG] Severity:HIGH | GLM-5.1 via OpenCode → infinite thinking loop on /compact (issue #18415); no official patch for 5.1 itself | WORKAROUND: avoid /compact on 5.1; atomic requests; MIGRATION to GLM-5.2 (auto-compact window 1,000,000) as main practical solution | STATUS: UNRESOLVED for GLM-5.1 (bug NOT patched; effectively mitigated only by switching to another model, not a proper FIXED)
+  - [Type H] [GLM52_OPENROUTER_GATEWAY_FAIL] Severity:MED | GLM-5.2 unavailable via OpenRouter when using AI Gateway (GitHub issue #26469) — third-party integration issue | WORKAROUND: direct Zhipu API or DeepInfra instead of OpenRouter+AI Gateway | STATUS: UNRESOLVED (new, logged 27.06-05.07)
 
 COMMUNITY_INSIGHTS:
-  - [techsy.io / z.ai blog | 2026-06 | Official]: GLM-5.2 анонсирован — 1M ctx, MIT, long-horizon coding.
-  - [GitHub zai-org/GLM-5 | 2026-06-22 | Low]: баг /compact в 5.1 остаётся; workaround — не использовать команду.
+  - [llm-stats.com, emergent.sh, datacamp.com, o-mega.ai | 28.06-01.07 | High]: wave of independent benchmarks confirms GLM-5.2 as a cheap alternative to Sonnet 5/GPT-5.5 for coding-agents at a fraction of the price of closed alternatives.
+  - [GitHub coder/coder #26469 | late June | Low/dev]: GLM-5.2 integration bug with OpenRouter AI Gateway; recommendation — direct API.
 
 ROUTING_WEIGHT:
   PRIMARY: on_prem_coding, webdev_generation (GLM-5.2 #2 WebDev), cost_efficient_coding, open_weight_local, long_horizon_agent (5.2)
-  AVOID: GLM-5.1 high-stakes recall >120K, XML-scaffolded prompts, /compact на 5.1
+  AVOID: GLM-5.1 high-stakes recall >120K, XML-scaffolded prompts, /compact on 5.1, OpenRouter+AI Gateway for 5.2
   P2P_TIER:
-    GLM-5.2: Tier 3 FULL / Tier 4 FULL+ (WebDev #2; Agent #10; 1M ctx; MIT)
-    GLM-5.1: Tier 3 FULL (WebDev #11; cost-efficient)
+    GLM-5.2: Tier 3 FULL / Tier 4 FULL+ (WebDev #2; Agent #7; near-Sonnet-5 benchmarks; 1M ctx; MIT)
+    GLM-5.1: Tier 3 FULL (cost-efficient)
     GLM-5.1-HighSpeed: Tier 2 ADVANCED / Tier 3 FULL (batch; 400 t/s)
 
 CHANGES:
-  - [2026-06-27]: добавлен GLM-5.2 (GA; 1M ctx; MIT; ~$1.40/$4.40; Arena #2 WebDev)
-  - [2026-06-27]: GLM51_COMPACT_HANG подтверждён UNRESOLVED
-
-// ────────────────────────────────────────────────────────────────
-[VENDOR: Manus AI]
-// TRACK-ONLY: нет P2P-роутинга; трекинг корпоративного статуса
-LAST_VERIFIED: 2026-06-27
-STATUS: CRITICAL GEOPOLITICAL RISK — Meta–Manus $2B сделка заблокирована NDRC и в стадии завершённого операционного unwind; ко-фаундеры (Xiao Hong, Yichao Ji) под travel ban из Китая; финансовый unwind (buyback, поиск $1B) в процессе.
-
-APP_MODELS:
-  - Manus 1.6 Max | manus.ai | Agent Mode | tier: Pro/Team | deep research
-  NOTE: features Mobile Development, Design View; экстремальный credit burn.
-
-PRICING:
-  - Pro/Team: кредиты, expire без rollover ("use it or lose it")
-
-KNOWN_ISSUES:
-  - [Type I] [MANUS_CREDIT_EXPIRY] Severity:HIGH | Месячные кредиты сгорают без переноса | WORKAROUND: budget planning
-  - [Type I] [META_MANUS_UNWINDING] Severity:CRITICAL | NDRC заблокировал $2B сделку Meta; операционное разъединение завершено к июню; data firewall; travel ban основателей; нет регуляторного разрешения | STATUS: UNRESOLVED CRITICAL (подтв. 27.06) | WORKAROUND: избегать critical production на Manus; мигрировать на альтернативы
-
-COMMUNITY_INSIGHTS:
-  - [TechCrunch / Bloomberg / aioapex | 2026-06 | High]: операционный unwind завершён; Manus работает автономно; travel ban в силе.
-
-CHANGES:
-  - [2026-06-27]: NO_DELTA по платформе; геополитический кризис продолжается
+  - [2026-07-05]: wave of independent benchmarks (28.06-01.07) confirms near-Sonnet-5 level of GLM-5.2 (SWE-bench Pro 62.1%, Terminal-Bench 81.0%)
+  - [2026-07-05]: new bug discovered integrating GLM-5.2 with OpenRouter AI Gateway
+  - [2026-07-05]: GLM51_COMPACT_HANG — clarified: NOT resolved, only mitigated via migration to 5.2
 
 // ────────────────────────────────────────────────────────────────
 [VENDOR: MiniMax]
-// TRACK-ONLY: нет P2P-роутинга; трекинг моделей и биллинга
-LAST_VERIFIED: 2026-06-27
+// TRACK-ONLY: no P2P routing; tracking models and billing
+LAST_VERIFIED: 2026-07-05
 
 APP_MODELS:
-  - MiniMax M3 | API/Hailuo | tier: flagship | api_id: minimax-m3 | ctx: 1M (500K на старте; 1M обещан) | multimodal
+  - MiniMax M3 | API/Hailuo | tier: flagship | api_id: minimax-m3 | ctx: up to 1M (500K at launch) | multimodal
   - MiniMax M2.7 | API | api_id: minimax-m2.7 | ctx: 128K
 
 API_MODELS:
-  - minimax-m3 | api.minimax.info | status: GA | ctx: до 1M | output: 32K
+  - minimax-m3 | api.minimax.info | status: GA | ctx: up to 1M | output: 32K
   - minimax-m2.7 | status: GA | ctx: 128K
 
 CONTEXT_WINDOW:
-  - M3: до 1,000,000 (на старте 500K) | M2.7: 128,000
+  - M3: up to 1,000,000 (500K at launch) | M2.7: 128,000
 
 PRICING:
-  - M3: $0.30/1M input | $1.20/1M output (TokenHub 50% — закреплено как новая базовая цена)
-  NOTE: бесплатный период TokenRouter завершён 17.06; TokenHub 50%-скидка (input/output/cache-hit) с 15.06 действует как permanent baseline (Tencent Cloud офиц.). Дата окончания не объявлена.
+  - M3: $0.30/1M input | $1.20/1M output (TokenHub 50% — confirmed as PERMANENT baseline, no changes over period)
 
 KNOWN_ISSUES:
-  - [Type I] [MINIMAX_TOKEN_PLAN_BILLING] Severity:HIGH | remains_time пассивно падает без API-вызовов. Root cause (corrective 27.06, issue #47): remains_time = таймер ОБРАТНОГО ОТСЧЁТА, не счётчик токенов (не документировано); Token Plan Plus исчерпывается за ~4-5ч agentic-кодинга. MiniMax выпустил извинения + refund-план (02.06), но баг НЕ исправлен | STATUS: UNRESOLVED | WORKAROUND: ручной мониторинг; трактовать Token Plan как time-boxed
+  - [Type I] [MINIMAX_TOKEN_PLAN_BILLING] Severity:HIGH | remains_time = countdown timer, not a token counter (issue #47, root cause confirmed earlier); Token Plan Plus exhausted in ~4-5h of agentic coding | WORKAROUND: manual monitoring; treat Token Plan as time-boxed | STATUS: NO_UPDATE (05.07 — web scraper failed to access issue #47 contents in this cycle; Token Plan FAQ/migration public docs have no explicit mention of a fix; issue closure or official patch not found)
 
 COMMUNITY_INSIGHTS:
-  - [Tencent Cloud | 2026-06-19 | Official]: TokenHub 50% скидка на M3 с 15.06; $0.30/$1.20; дата окончания TBD.
-  - [MiniMax X | 2026-06 | Official]: бесплатный TokenRouter-доступ завершён 17.06.
+  - No mentions of issue #47 being closed or a special fix for remains_time in MiniMax public channels for 27.06-05.07.
 
 CHANGES:
-  - [2026-06-27]: TokenRouter free период завершён 17.06; TokenHub 50% закреплён как базовая цена; добавлена M2.7
+  - [2026-07-05]: [NO_DELTA] on models and prices; MINIMAX_TOKEN_PLAN_BILLING confirmed NO_UPDATE
 
-// ================================================================
+// ────────────────────────────────────────────────────────────────
+[VENDOR: Manus AI]
+// TRACK-ONLY: no P2P routing; tracking corporate status
+LAST_VERIFIED: 2026-07-05
+STATUS: CRITICAL GEOPOLITICAL RISK, NO DE-ESCALATION — NDRC requires full annulment of the Meta-Manus deal ($2B, April 2026, the first such ban in China's AI sector since 2021); operational unwind completed; travel ban on co-founders (Xiao Hong, Ji Yichao) in effect without lift; from 2026-07-01 new PRC rules on outbound investments took effect, cementing forced unwind as the default mechanism for such deals.
+
+APP_MODELS:
+  - Manus 1.6 Max | manus.ai | Agent Mode | tier: Pro/Team | deep research
+  NOTE: product platform availability for 27.06-05.07 was not redefined; dynamics are exclusively regulatory, not technological.
+
+PRICING:
+  - Pro/Team: credits, expire without rollover ("use it or lose it") — no changes
+
+KNOWN_ISSUES:
+  - [Type I] [MANUS_CREDIT_EXPIRY] Severity:HIGH | Monthly credits expire without carry-over | WORKAROUND: budget planning | STATUS: no changes
+  - [Type I] [META_MANUS_UNWINDING] Severity:CRITICAL | NDRC requires full annulment of $2B Meta deal; operational separation completed; data firewall; travel ban on founders without lift; from 01.07 new PRC rules on outbound investments in effect, raising risk for SIMILAR deals in the sector | WORKAROUND: avoid critical production on Manus; migrate to alternatives | STATUS: UNRESOLVED CRITICAL (escalation confirmed 05.07 — no new mitigations)
+
+COMMUNITY_INSIGHTS:
+  - [TechCrunch, legal reviews (OMM, Morgan Lewis) | late June-01.07 | High]: detailed breakdown of new PRC outbound investment rules (effective 01.07) using the Manus/Meta case as a landmark cross-border AI risk precedent.
+  - [Instagram/social media | early July | Med]: reports of MiroMind service suspension (another Chinese AI startup) amid regulatory unpredictability following the Manus incident — indirect sector-wide effect.
+
+CHANGES:
+  - [2026-07-01]: new PRC rules on outbound investments took effect — reinforce the regulatory backdrop for Manus and similar cases
+  - [2026-07-05]: confirmed absence of de-escalation; travel ban and unwind remain in effect; indirect sector-wide effect logged (MiroMind suspension)
+
+// ────────────────────────────────────────────────────────────────
 [ERROR_REGISTRY]
-DATE: 2026-06-27
+DATE: 2026-07-05
 
 [2026-06-10] [Type D] [CLAUDE_FABLE5_SAFETY_REDIRECT] Severity:HIGH
   VENDOR: Anthropic / Claude
   STATUS: UNRESOLVED BY DESIGN
-  DESCRIPTION: Safety-фильтры Fable 5 редиректят ~5% легитимных промптов на Opus 4.8 без уведомления.
-  WORKAROUND: Opus 4.8 напрямую (Fable 5 в любом случае suspended).
+  DESCRIPTION: Fable 5 safety filters redirect ~5% of legitimate prompts to Opus 4.8 without notification. The model is active again from 01.07 (see CRITICAL_DELTA) — the issue is relevant again.
+  WORKAROUND: Opus 4.8 directly for sensitive content.
   P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
+  LAST_CHECKED: 2026-07-05
 
-[2026-04-16] [Type B] [G7] [OPUS4X_API_BREAKING] Severity:CRITICAL
-  VENDOR: Anthropic / Claude
-  STATUS: UNRESOLVED (BY DESIGN)
-  DESCRIPTION: Non-default temperature/top_p/top_k → HTTP 400; budget_tokens удалён.
-  WORKAROUND: strip temperature/top_p/top_k; thinking:{"type":"adaptive"}.
+[2026-06-11] [Type I] [META_MANUS_UNWINDING] Severity:CRITICAL
+  VENDOR: Manus AI
+  STATUS: UNRESOLVED CRITICAL (escalation)
+  DESCRIPTION: NDRC requires full annulment of $2B Meta deal; operational unwind completed; travel ban on founders without lift; from 01.07 new PRC outbound investment rules in effect (cementing unwind as default mechanism); indirect sector-wide effect — MiroMind service suspension.
+  WORKAROUND: avoid critical production on Manus; migrate to alternatives.
   P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-04-16] [Type F] [G6] [OPUS4X_TOKENIZER_INFLATION] Severity:HIGH
-  VENDOR: Anthropic / Claude
-  STATUS: UNRESOLVED
-  DESCRIPTION: Tokenizer Opus 4.7/4.8/Fable 5 даёт +10-35% токенов vs 4.6; ~1.46x на system prompts. Патча нет (подтв. 27.06).
-  WORKAROUND: pin claude-opus-4-6 для cost-sensitive пайплайнов.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-04-16] [Type F] [G8] [OPUS4X_MRCR_REGRESSION] Severity:MONITORING
-  VENDOR: Anthropic / Claude
-  STATUS: MONITORING
-  DESCRIPTION: MRCR v2 1M — Opus 4.7 32.2% vs 4.6 78.3%; новых recall-бенчей для 4.8 >500K за период нет.
-  WORKAROUND: pin Opus 4.6 для >500K needle retrieval.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-04-28] [Type I] [G10] [CONTEXT_PRICING_TRAP_272K] Severity:HIGH
-  VENDOR: OpenAI / GPT
-  STATUS: UNRESOLVED BY DESIGN
-  DESCRIPTION: GPT-5.4/5.5 >272K → 2x input / 1.5x output на всю сессию. Подтв. как офиц. политика (27.06).
-  WORKAROUND: P2P intercept >250K; cut at 260K; reroute Claude / Gemini.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-06-15] [Type I] [SILENT_DOWNGRADE_TO_MINI] Severity:HIGH
-  VENDOR: OpenAI / GPT
-  STATUS: UNRESOLVED
-  DESCRIPTION: При rate cap — тихий downgrade GPT-5.5 Thinking → GPT-5.4 mini.
-  WORKAROUND: мониторить Upfront Plan block; Pro снижает частоту.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-05-20] [Type I] [OPENAI_BILLING_GHOST_USERS] Severity:HIGH
-  VENDOR: OpenAI / GPT
-  STATUS: UNRESOLVED
-  DESCRIPTION: Авто-деактивация Business Workspace из-за "ghost users".
-  WORKAROUND: мониторить активные сиды; monthly billing.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-05-20] [Type C] [OPENAI_MEMORY_ROUTING_BUG] Severity:MED
-  VENDOR: OpenAI / GPT
-  STATUS: UNRESOLVED
-  DESCRIPTION: Saved memory / Project context игнорирует выбор Heavy reasoning intensity.
-  WORKAROUND: отключать Saved memory для Heavy reasoning задач.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
+  LAST_CHECKED: 2026-07-05
 
 [2026-03-05] [Type F] [G13_WORSENED] [CONTEXT_SLICING_ERROR_13] Severity:CRITICAL
   VENDOR: Google / Gemini
   STATUS: UNRESOLVED CRITICAL
-  DESCRIPTION: При 100-128K active tokens → "Error 13" + полная амнезия. Активно на офиц. форуме Google; серверного фикса нет. Доп. триггеры (corrective 27.06): пакет 30+ изображений; pure non-English / mixed-language ввод.
-  WORKAROUND: Context Caching API / AI Studio вместо chat history; cap 80K; избегать пакетов 30+ изображений.
+  DESCRIPTION: "Error 13" + full context amnesia at 100-128K active tokens. 
+  WORKAROUND: Context Caching API; cap chat history at 80K.
   P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
+  LAST_CHECKED: 2026-07-05
+
+[2026-04-16] [Type B] [G7] [OPUS4X_API_BREAKING] Severity:CRITICAL
+  VENDOR: Anthropic / Claude
+  STATUS: UNRESOLVED (BY DESIGN)
+  DESCRIPTION: Non-default temperature/top_p/top_k → HTTP 400.
+  WORKAROUND: strip parameters; thinking:{"type":"adaptive"}.
+  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
+  LAST_CHECKED: 2026-07-05
+
+[2026-04-28] [Type I] [G10] [CONTEXT_PRICING_TRAP_272K] Severity:HIGH
+  VENDOR: OpenAI / GPT
+  STATUS: UNRESOLVED BY DESIGN
+  DESCRIPTION: >272K context → 2x input / 1.5x output cost for whole session.
+  WORKAROUND: P2P intercept >250K; cut at 260K.
+  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
+  LAST_CHECKED: 2026-07-05
+
+[2026-04-16] [Type F] [G6] [OPUS4X_TOKENIZER_INFLATION] Severity:HIGH
+  VENDOR: Anthropic / Claude
+  STATUS: UNRESOLVED
+  DESCRIPTION: Tokenizer (+30-42%) confirmed for Sonnet 5.
+  WORKAROUND: pin claude-opus-4-6 for cost-sensitive.
+  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
+  LAST_CHECKED: 2026-07-05
 
 [2026-06-12] [Type D] [GEMINI_SAFETY_ERASURE] Severity:HIGH
   VENDOR: Google / Gemini
   STATUS: UNRESOLVED
-  DESCRIPTION: Safety Filters стирают уже сгенерированный текст mid-generation в 3.5 Flash/Pro. Нет "creative_mode".
-  WORKAROUND: API напрямую с relaxed thresholds (BLOCK_SOME / BLOCK_NONE).
+  DESCRIPTION: Safety Filters erase mid-generation in 3.5 Flash/Pro.
+  WORKAROUND: API with BLOCK_SOME/BLOCK_NONE.
   P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
+  LAST_CHECKED: 2026-07-05
 
-[2026-04-20] [Type I] [HEAVY16_SHADOW_DOWNGRADE] Severity:HIGH
-  VENDOR: xAI / Grok
-  STATUS: DISPUTED
-  DESCRIPTION: SuperGrok Heavy shadow downgrade до grok-4.3 без уведомления; Colossus 2 rollout не подтверждён.
-  WORKAROUND: мониторить маркеры качества; API для предсказуемости.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-06-11] [Type I] [META_MANUS_UNWINDING] Severity:CRITICAL
-  VENDOR: Manus AI
-  STATUS: UNRESOLVED CRITICAL
-  DESCRIPTION: NDRC заблокировал $2B сделку Meta; операционный unwind завершён; data firewall; travel ban основателей.
-  WORKAROUND: избегать critical production; мигрировать на альтернативы.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-06-12] [Type F] [GLM51_COMPACT_HANG] Severity:HIGH
-  VENDOR: Zhipu AI / GLM
-  STATUS: UNRESOLVED
-  DESCRIPTION: GLM-5.1 → бесконечный thinking loop при /compact в OpenCode (issue #18415). Патча для 5.1 нет (подтв. 27.06).
-  WORKAROUND: избегать /compact; атомарные запросы; МИГРАЦИЯ на GLM-5.2 (auto-compact окно 1,000,000).
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-06-08] [Type M] [KIMI_INFINITE_REPETITION] Severity:HIGH
-  VENDOR: Moonshot / Kimi
-  STATUS: UNRESOLVED
-  DESCRIPTION: Бесконечная репетиция в Thinking-режиме (kimi-k2.6); ~1/3 случаев; подтв. NVIDIA forum 22.06.
-  WORKAROUND: детекция повторов + force stop; frequency_penalty частично; Swarm orchestrator.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-06-05] [Type B] [QWEN37_MAX_JSON_ERRORS] Severity:HIGH
-  VENDOR: Alibaba / Qwen
-  STATUS: UNRESOLVED
-  DESCRIPTION: Qwen3.7 Max — ошибки structured-output/JSON. JSON Mode документирован, но hard-патча нет. Ограничения (corrective 27.06): messages обязаны содержать "json" (иначе 400); max_tokens ломает вывод; thinking несовместим; reasoning утекает в content.
-  WORKAROUND: response_format=json_object + "JSON" в prompt + БЕЗ max_tokens; thinking → двухшаговый pipeline; fallback 3.6-Plus/GPT.
-  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[2026-06-26] [Type P] [GPT56_PUBLIC_GA_DEFERRED] Severity:MED
-  VENDOR: OpenAI / GPT
+[2026-07-01] [Type D] [FABLE5_CLASSIFIER_FALSE_POSITIVES] Severity:MED
+  VENDOR: Anthropic / Claude
   STATUS: MONITORING
-  DESCRIPTION: GPT-5.6 (Sol/Terra/Luna) публичный GA отложен по требованию правительства США; нет офиц. API ID.
-  WORKAROUND: не маршрутизировать gpt-5.6-*; держать GPT-5.5 как флагман до офиц. модель-карточки.
-  P2P_EDITIONS_AFFECTED: 8N.3
-  LAST_CHECKED: 2026-06-27
+  DESCRIPTION: New safety-classifier yields high false-positives on security/coding tasks.
+  WORKAROUND: explicit fallback to Opus 4.8.
+  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
+  LAST_CHECKED: 2026-07-05
+
+[2026-07-01] [Type B/H] [SONNET5_LAUNCH_STABILITY] Severity:MED
+  VENDOR: Anthropic / Claude
+  STATUS: UNRESOLVED
+  DESCRIPTION: CLI/Bedrock/pricing/GitHub launch-week bugs for Sonnet 5.
+  WORKAROUND: Use VSCode extension; explicit \n for Bedrock.
+  P2P_EDITIONS_AFFECTED: 8C.3 | 8N.3
+  LAST_CHECKED: 2026-07-05
+
+[2026-06-15] [Type I] [SILENT_DOWNGRADE_TO_MINI] Severity:HIGH
+  VENDOR: OpenAI / GPT
+  STATUS: UNRESOLVED
+  DESCRIPTION: Stealth downgrade to GPT-5.4 mini on rate cap.
+  WORKAROUND: monitor Upfront Plan block.
+  P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
+  LAST_CHECKED: 2026-07-05
 
 [2026-06-23] [Type P] [GEMINI35PRO_GA_SLIP] Severity:LOW
   VENDOR: Google / Gemini
-  STATUS: MONITORING
-  DESCRIPTION: Gemini 3.5 Pro GA-окно июня сорвано → перенос на июль 2026; остаётся Preview.
-  WORKAROUND: оставить статус Preview до записи без -preview в офиц. Gemini API changelog.
+  STATUS: DISPUTED / MONITORING
+  DESCRIPTION: GA status disputed between PDF and official changelog.
+  WORKAROUND: treat as Preview.
   P2P_EDITIONS_AFFECTED: 8H.3 | 8N.3
-  LAST_CHECKED: 2026-06-27
+  LAST_CHECKED: 2026-07-05
 
-[2026-06-03] [Type I] [MINIMAX_TOKEN_PLAN_BILLING] Severity:HIGH
-  VENDOR: MiniMax
-  STATUS: UNRESOLVED
-  DESCRIPTION: remains_time = таймер обратного отсчёта, не счётчик токенов (issue #47); Token Plan Plus исчерпывается за ~4-5ч. MiniMax выпустил извинения + refund-план (02.06), но баг не исправлен.
-  WORKAROUND: ручной мониторинг; трактовать Token Plan как time-boxed.
+[2026-07-03] [Type L] [EU_REGULATORY_SCRUTINY] Severity:MED
+  VENDOR: DeepSeek
+  STATUS: MONITORING
+  DESCRIPTION: GDPR investigations into data transfers to China.
+  WORKAROUND: avoid DeepSeek for EU-PII data.
   P2P_EDITIONS_AFFECTED: 8N.3
-  LAST_CHECKED: 2026-06-27
+  LAST_CHECKED: 2026-07-05
 
+// ────────────────────────────────────────────────────────────────
+[ERROR_REGISTRY_RESOLVED]
+DATE: 2026-07-05
 [2026-06-11] [Type P] [CLAUDE_FABLE5_SUSPENSION] Severity:CRITICAL
   VENDOR: Anthropic / Claude
-  STATUS: MONITORING
-  DESCRIPTION: Fable 5 / Mythos 5 suspended globally (US export controls); Day 15, без даты восстановления. NEW: privacy policy с 08.07 (гос. ID + биометрия) → вероятный US-only restoration path (UNCONFIRMED).
-  WORKAROUND: использовать Opus 4.8; не маршрутизировать Fable 5 до офиц. восстановления.
+  STATUS: RESOLVED: 2026-07-01 (Global restoration)
+  DESCRIPTION: Fable 5 / Mythos 5 were suspended globally from 12.06 (US export controls). Export restrictions lifted by US Commerce Dept 30.06; Fable 5 restored GLOBALLY for all users 01.07 — on Claude Platform, claude.ai, Claude Code, Claude Cowork, AWS, GCP, MS Foundry. Mythos 5 restored partially (~100+ trusted US orgs, since 26.06, with no further expansion).
+  HOW_RESOLVED: Anthropic deployed a new safety-classifier (>99% block of targeted jailbreak); US government lifted export controls 30.06.
   P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
-
-[ERROR_REGISTRY_RESOLVED]
-DATE: 2026-06-27
+  LAST_CHECKED: 2026-07-05
 
 [2026-06-15] [Type P] [CLAUDE_LEGACY_RETIREMENT] Severity:CRITICAL
   VENDOR: Anthropic / Claude
   STATUS: COMPLETED (Retired 2026-06-15)
-  DESCRIPTION: claude-opus-4-20250514 и claude-sonnet-4-20250514 retired; HTTP 400/404 без авто-редиректа.
-  HOW_RESOLVED: Модели декоммиссированы; HTTP 404 активен.
+  DESCRIPTION: claude-opus-4-20250514 and claude-sonnet-4-20250514 retired; HTTP 400/404 without auto-redirect.
+  HOW_RESOLVED: Models decommissioned; HTTP 404 active.
   P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
+  LAST_CHECKED: 2026-07-05
 
 [2026-04-24] [Type H] [G15] [V4_REASONING_CONTENT_CARRYOVER] Severity:CRITICAL
   VENDOR: DeepSeek
   STATUS: RESOLVED (BY DESIGN): 2026-06-12
-  DESCRIPTION: reasoning_content накопление в multi-turn tool-chains.
-  HOW_RESOLVED: Офиц. документация DeepSeek — это архитектурная фича; re-inject требуется.
+  DESCRIPTION: reasoning_content accumulation in multi-turn tool-chains.
+  HOW_RESOLVED: Official DeepSeek documentation states it's an architectural feature; re-inject required.
   P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
+  LAST_CHECKED: 2026-07-05
 
 [2026-05-07] [Type B] [INTERACTIONS_API_BREAKING] Severity:HIGH
   VENDOR: Google / Gemini
   STATUS: FIXED: 2026-06-08 (Legacy schema removed)
-  DESCRIPTION: outputs array → steps array; legacy удалён 2026-06-08.
-  HOW_RESOLVED: Legacy schema удалён навсегда.
+  DESCRIPTION: outputs array → steps array; legacy removed 2026-06-08.
+  HOW_RESOLVED: Legacy schema removed permanently.
   P2P_EDITIONS_AFFECTED: 8C.3 | 8H.3 | 8N.3 | 8L.3
-  LAST_CHECKED: 2026-06-27
+  LAST_CHECKED: 2026-07-05
 
 [2026-06-25] [Type I] [GEMINI_NANO_BANANA_PREVIEW_SHUTDOWN] Severity:HIGH
   VENDOR: Google / Gemini
   STATUS: COMPLETED (2026-06-25)
-  DESCRIPTION: gemini-3.1-flash-image-preview + gemini-3-pro-image-preview отключены по графику.
-  HOW_RESOLVED: Preview shutdown выполнен; GA-замены gemini-3.1-flash-image / gemini-3-pro-image активны.
+  DESCRIPTION: gemini-3.1-flash-image-preview + gemini-3-pro-image-preview turned off according to schedule.
+  HOW_RESOLVED: Preview shutdown executed; GA replacements active.
   P2P_EDITIONS_AFFECTED: 8H.3 | 8N.3
-  LAST_CHECKED: 2026-06-27
-
-// ================================================================
+  LAST_CHECKED: 2026-07-05
+  
+  // ================================================================
 [BENCHMARK_TABLE]
-DATE: 2026-06-27
-SOURCE: Arena.ai Leaderboard Snapshot 2026-06-27 (04:48; ELO pairwise voting)
-// ПРЕДУПРЕЖДЕНИЕ: HLE ~15% эталонных ответов некорректны (аудит 2026). Приоритет: SWE-bench + GPQA. HLE вес снижен.
-// Примечание: точные SWE-bench/GPQA/ARC-AGI/HLE/AIME цифры не обновлялись в отчётах за период; перенесены из v8.5 где были. Arena Elo обновлён.
+DATE: 2026-07-05
+SOURCE: Arena.ai Leaderboard, multiple snapshots 2026-06-23..07-02 (11 categories, including new Video Edit Arena); Overall Leaderboard 663 models (663 votes/July 1)
+// WARNING: HLE ~15% reference answers are incorrect (2026 audit). Priority: SWE-bench + GPQA. HLE weight reduced.
 
-ARENA_OVERALL_TOP11 (27.06.26):
-  #1 claude-fable-5: 1508 (Suspended, stats retained)
-  #2 claude-opus-4-6-thinking: 1503
-  #3 claude-opus-4-7-thinking: 1502
-  #4 claude-opus-4-6: 1499
-  #5 claude-opus-4-7: 1494
-  #6 muse-spark (Meta): 1487
-  #7 gemini-3.1-pro-preview: 1486
-  #8 gemini-3-pro: 1486
-  #9 claude-opus-4-8-thinking: 1484
-  #10 gpt-5.5-high: 1481
-  #11 claude-opus-4-8: 1479
+ARENA_OVERALL_TOP11 (snapshot 01.07.26):
+  #1 claude-fable-5: 1509±9
+  #2 claude-opus-4-6-thinking: 1504±4
+  #3 claude-opus-4-7-thinking: 1502±4
+  #4 claude-opus-4-6: 1499±4
+  #5 claude-opus-4-7: 1494±4
+  #6 muse-spark (Meta): 1487±6
+  #7 gemini-3.1-pro-preview: 1486±4
+  #8 gemini-3-pro: 1486±4
+  #9 claude-opus-4-8-thinking: 1484±5
+  #10 gpt-5.5-high: 1481±5
+  #11 gemini-3.5-flash: 1479±6 (NEW entry into top11, displaced claude-opus-4-8)
+  NOTE: claude-sonnet-5-thinking — #32 Overall / #7 Expert / #22 Hard Prompts / #22 Coding / #34 Math / #41 Creative Writing / #25 Instruction Following / #21 Longer Query (full overall-leaderboard, 663 models, snapshot 01.07).
 
-ARENA_AGENT_NET_IMPROVEMENT (27.06.26; snapshot 18.06):
-  #1 Claude Fable 5 (High): 14.00%
-  #2 Claude Opus 4.8 (Thinking): 8.89%
-  #3 GPT 5.5 (xHigh): 8.04%
-  #4 Claude Opus 4.7 (Thinking): 7.98%
-  #5 GPT 5.5 (High): 7.96%
-  #6 Claude Opus 4.7: 7.83%
-  #7 Claude Opus 4.6: 7.03%
-  #8 GPT 5.5: 6.80%
-  #9 GPT 5.4 (High): 6.58%
-  #10 GLM 5.2 (Max): 4.40%
-  #11 Claude Opus 4.8: 4.09%
+ARENA_AGENT_NET_IMPROVEMENT (sessions 29.06.26):
+  #1 Claude Fable 5 (High): 13.34%±1.55%
+  #2 Claude Opus 4.8 (Thinking): 9.37%±1.29%
+  #3 GPT 5.5 (xHigh): 8.21%±1.02%
+  #4 Claude Opus 4.7: 8.16%±1.28%
+  #5 Claude Opus 4.7 (Thinking): 8.07%±1.23%
+  #6 GPT 5.5 (High): 7.13%±0.78%
+  #7 GLM 5.2 (Max): 6.93%±1.40% (rose from #10/4.40%)
+  #8 GPT 5.4 (High): 6.65%±0.79%
+  #9 Claude Opus 4.6: 6.47%±1.21%
+  #10 GPT 5.5: 6.22%±0.77%
+  #11 Claude Opus 4.8: 3.74%±1.49%
+  NOTE: Claude Sonnet 5 is not yet ranked in Agent Net Improvement (insufficient data as of 05.07).
 
-ARENA_WEBDEV_TOP11 (27.06.26; snapshot 19.06):
-  #1 claude-fable-5: 1654
-  #2 glm-5.2 (max): 1593
-  #3 claude-opus-4-8-thinking: 1565
-  #4 claude-opus-4-7-thinking: 1563
+ARENA_WEBDEV_TOP11 (snapshot 01.07.26):
+  #1 claude-fable-5: 1653
+  #2 glm-5.2 (max): 1584
+  #3 claude-opus-4-8-thinking: 1561
+  #4 claude-opus-4-7-thinking: 1559
   #5 claude-opus-4-7: 1557
-  #6 claude-opus-4-8: 1542
+  #6 claude-sonnet-5-thinking: 1551 (NEW entry, displaced glm-5.1)
   #7 claude-opus-4-6-thinking: 1542
   #8 seed-2.1-pro-preview (ByteDance): 1539
-  #9 claude-opus-4-6: 1538
-  #10 qwen3.7-max-20260517: 1530
-  #11 glm-5.1: 1529
+  #9 claude-opus-4-6: 1536
+  #10 claude-opus-4-8: 1535
+  #11 qwen3.7-max-20260517: 1526
 
-ARENA_DOCUMENT_TOP5 (27.06.26; snapshot 10.06):
-  #1 claude-opus-4-6: 1507
-  #2 claude-opus-4-6-thinking: 1507
-  #3 claude-opus-4-7-thinking: 1498
-  #4 claude-opus-4-7: 1496
-  #5 claude-fable-5: 1495
+ARENA_DOCUMENT_TOP11 (snapshot 01.07.26):
+  #1 claude-opus-4-6-thinking: 1505
+  #2 claude-opus-4-6: 1505
+  #3 claude-opus-4-7: 1500
+  #4 claude-opus-4-7-thinking: 1500
+  #5 claude-fable-5: 1497
+  #6 claude-sonnet-4-6: 1488
+  #7 gpt-5.5-high: 1487
+  #8 gpt-5.5: 1481
+  #9 gemini-3.5-flash: 1481
+  #10 claude-opus-4-8-thinking: 1477
+  #11 claude-sonnet-5-thinking: 1476 (NEW entry)
 
-ARENA_VISION_TOP5 (27.06.26; snapshot 25.06):
+ARENA_VISION_TOP11 (snapshot 01.07.26):
   #1 claude-fable-5: 1311
-  #2 claude-opus-4-7-thinking: 1308
-  #3 claude-opus-4-6-thinking: 1299
-  #4 claude-opus-4-7: 1298
+  #2 claude-opus-4-7-thinking: 1307
+  #3 claude-opus-4-7: 1298
+  #4 claude-opus-4-6-thinking: 1298
   #5 claude-opus-4-6: 1297
+  #6 muse-spark: 1294
+  #7 gemini-3-pro: 1289
+  #8 claude-opus-4-8-thinking: 1286
+  #9 gpt-5.5: 1286
+  #10 gpt-5.4-high: 1283
+  #11 gpt-5.5-high: 1282
+  NOTE: [NO_DELTA] vs v8.6.1, only expanded to top11.
 
-ARENA_SEARCH_TOP5 (27.06.26; snapshot 15.06):
-  #1 claude-opus-4-6-search: 1252
+ARENA_SEARCH_TOP11 (snapshot 01.07.26):
+  #1 claude-opus-4-6-search: 1253
   #2 gpt-5.5-search: 1240
   #3 claude-fable-5: 1237
-  #4 claude-opus-4-7: 1232
-  #5 ernie-5.1: 1226
+  #4 claude-opus-4-7: 1233
+  #5 ernie-5.1: 1227
+  #6 claude-sonnet-4-6-search: 1220
+  #7 gemini-3.1-pro-grounding: 1213
+  #8 gemini-3-pro-grounding: 1207
+  #9 grok-4.20-multi-agent-beta-0309: 1206
+  #10 gpt-5.2-search: 1206
+  #11 claude-opus-4-8: 1204
+  NOTE: minimal fluctuations (±1) vs v8.6.1; claude-sonnet-5-search not yet ranked.
 
-ARENA_TEXT_TO_IMAGE_TOP5 (27.06.26; snapshot 26.06):
+ARENA_TEXT_TO_IMAGE_TOP11 (snapshot 02.07.26):
   #1 gpt-image-2 (medium): 1386
-  #2 reve-2.0: 1275
-  #3 gemini-3.1-flash-image-preview (nano-banana-2): 1269
-  #4 mai-image-2.5: 1256
-  #5 gemini-3-pro-image-preview-2k (nano-banana-pro): 1245
+  #2 reve-2.0: 1272
+  #3 gemini-3.1-flash-image-preview (nano-banana-2): 1270
+  #4 mai-image-2.5: 1257
+  #5 gemini-3.1-flash-lite-image (nano-banana-2-lite): 1250 [NEW MODEL, previously untracked]
+  #6 gemini-3-pro-image-preview-2k (nano-banana-pro): 1245
+  #7 gpt-image-1.5-high-fidelity: 1241 [NEW MODEL]
+  #8 gemini-3-pro-image-preview (nano-banana-pro): 1232
+  #9 grok-imagine-image-quality: 1229
+  #10 ideogram-4.0-quality: 1207
+  #11 qwen-image-2.0-pro-2026-06-22: 1192
 
-ARENA_IMAGE_EDIT_TOP5 (27.06.26; snapshot 26.06):
-  #1 gpt-image-2 (medium): 1465
-  #2 mai-image-2.5: 1402
-  #3 grok-imagine-image-quality: 1389
-  #4 chatgpt-image-latest-high-fidelity: 1389
-  #5 gemini-3-pro-image-preview-2k (nano-banana-pro): 1389
+ARENA_IMAGE_EDIT_TOP11 (snapshot 29.06.26):
+  #1 gpt-image-2 (medium): 1464
+  #2 mai-image-2.5: 1403
+  #3 chatgpt-image-latest-high-fidelity (20251216): 1390
+  #4 grok-imagine-image-quality (20260519): 1389
+  #5 gemini-3-pro-image-preview-2k (nano-banana-pro): 1388
+  #6 gemini-3.1-flash-image-preview (nano-banana-2): 1387
+  #7 gemini-3-pro-image-preview (nano-banana-pro): 1385
+  #8 gpt-image-1.5-high-fidelity: 1373 [NEW MODEL]
+  #9 grok-imagine-image-quality: 1358
+  #10 reve-2.0: 1357
+  #11 uni-1.1-max: 1334
 
-ARENA_TEXT_TO_VIDEO_TOP5 (27.06.26; snapshot 10.06):
+ARENA_TEXT_TO_VIDEO_TOP5 (snapshot 10.06.26, [NO_DELTA]):
   #1 gemini-omni-flash: 1527
   #2 dreamina-seedance-2.0-720p: 1466
   #3 happyhorse-1.0: 1437
   #4 veo-3.1-audio-1080p: 1369
   #5 wan2.7-t2v: 1368
 
-ARENA_IMAGE_TO_VIDEO_TOP5 (27.06.26; snapshot 23.06):
+ARENA_IMAGE_TO_VIDEO_TOP11 (snapshot 23.06.26):
   #1 dreamina-seedance-2.0-720p: 1474
   #2 gemini-omni-flash: 1469
   #3 grok-imagine-video-1.5-preview-720p: 1466
   #4 happyhorse-1.0: 1444
   #5 wan2.7-i2v: 1434
+  #6 grok-imagine-video-720p: 1422
+  #7 veo-3.1-audio: 1398
+  #8 veo-3.1-audio-1080p: 1391
+  #9 veo-3.1-fast-audio: 1385
+  #10 grok-imagine-video-480p: 1384
+  #11 veo-3.1-fast-audio-1080p: 1374
+  NOTE: Omni Flash yielded #1 to dreamina-seedance-2.0 (was vice versa in v8.6.1).
 
-ARENA_IMG2WEBDEV_TOP5 (27.06.26; snapshot 14.05):
+ARENA_VIDEO_EDIT_TOP7 (NEW CATEGORY, snapshot 29.06.26):
+  #1 dreamina-seedance-2.0-720p: 1377
+  #2 gemini-omni-flash: 1347
+  #3 happyhorse-1.0: 1308
+  #4 grok-imagine-video: 1264
+  #5 kling-o3-pro (KlingAI): 1251
+  #6 kling-o1-pro (KlingAI): 1203
+  #7 runway-gen4-aleph (Runway): 1194
+
+ARENA_IMG2WEBDEV_TOP5 (snapshot 14.05.26, [NO_DELTA]):
   #1 claude-opus-4-7-thinking: 1581
   #2 claude-sonnet-4-6: 1557
   #3 claude-opus-4-7: 1556
   #4 claude-opus-4-6-thinking: 1538
   #5 gpt-5.5-xhigh (codex-harness): 1537
 
-// ================================================================
+INDEPENDENT_BENCHMARKS (28.06-01.07, outside Arena Elo):
+  SWE-bench Pro: Claude Sonnet 5 ≈63.2% | GLM-5.2 ≈62.1% | GPT-5.5 ≈58.6%
+  Terminal-Bench 2.1: Claude Sonnet 5 ≈80.4% | GLM-5.2 ≈81.0%
+  NOTE: sources — llm-stats.com, emergent.sh, independent analytics; not Arena Elo, provided for cross-reference on coding tasks.
+  
+  // ================================================================
 [ROUTING_MATRIX]
-DATE: 2026-06-27
+DATE: 2026-07-05
 
-- complex_code / audit         | Claude Opus 4.8 (effort:xhigh) | Claude Opus 4.6 | $25-37/1M | high | SWE-bench Pro 69.2%; pin 4.6 для >500K | 8C.3 primary
-- agentic_coding / autonomous  | Claude Opus 4.8 (Thinking) | GPT-5.5 (xHigh) | $25-50/1M | med | Fable 5 suspended → Opus 4.8 (Agent #2 8.89%) | 8C.3 / 8N.3
+- complex_code / audit         | Claude Opus 4.8 (effort:xhigh) | Claude Opus 4.6 | $25-37/1M | high | SWE-bench Pro 69.2%; pin 4.6 for >500K | 8C.3 primary
+- agentic_coding / autonomous  | Claude Fable 5 (restored, multi-day) | Claude Sonnet 5 (cost-efficient) | $10-50/1M | med | Fable 5 RESTORED 01.07 — again primary for multi-day autonomy; Sonnet 5 as cost-efficient fallback (near-Opus 4.8 on benchmarks) | 8C.3 / 8N.3
+- agentic_coding_cost_efficient (NEW) | Claude Sonnet 5 | GLM-5.2 (Max) | $2-10/1M | med | Sonnet 5 SWE-bench Pro ≈63.2%; GLM-5.2 ≈62.1% at noticeably lower price | 8C.3 / 8N.3
 - wide_web_research / batch    | Gemini 3.5 Flash | GPT-5.5 / GPT-5.4 | $9/1M | low | 3.5 Flash GA; caching | 8H.3
 - rpa / computer_use           | GPT-5.5 Pro (Codex CU) | Claude Opus 4.8 | $180/1M | med | Codex background CU | 8C.3 / 8N.3
 - science / math / arc_agi     | Gemini 3.1 Pro Deep Think | Claude Opus 4.8 (effort:max) | $12-18/1M | high | ARC-AGI-2 Deep Think | 8H.3 Ultra
-- interactive_ui / chat        | Claude Sonnet 4.6 (Free) | Gemini 3.5 Flash | $3-9/1M | low | Sonnet Free default | all
+- interactive_ui / chat        | Claude Sonnet 5 (Free/Pro default) | Gemini 3.5 Flash | $2-10/1M | low | Sonnet 5 replaced Sonnet 4.6 as default (30.06) | all
 - on_prem / air_gapped         | GLM-5.2 (MIT; 1M) | DeepSeek V4-Pro | free/infra | varies | GLM-5.2 MIT open-weight 1M | 8N.3
 - multilingual / chinese       | Qwen3.6-Plus | GLM-5.2 | $1-6/1M | med | native multilingual | all
 - architecture / high_level    | Claude Opus 4.8 (Thinking) | Gemini 3.1 Pro | $25/1M | high | Opus top Overall/Hard | 8C.3
 - budget_reasoning             | DeepSeek V4-Pro ($0.435/$0.87) | Qwen3.6-Plus | $0.87/1M | high | PERMANENT; SWE-bench 80.6% | 8N.3
-- vision / image_analysis      | Claude Opus 4.7-thinking | Claude Opus 4.6-thinking | $25-50/1M | high | Vision #2 (Fable suspended) | 8C.3 primary
-- media_generation_image       | gpt-image-2 | gemini-3.1-flash-image | per-asset | — | gpt-image-2 #1 T2I & Edit | all
-- media_generation_video       | gemini-omni-flash (T2V) | dreamina-seedance-2.0 (I2V) | $0.2+0.1/s | — | Omni #1 T2V; seedance #1 I2V | all
-- on_prem (legacy GLM-5.1)     | GLM-5.1 (стабильно <120K) | GLM-5.2 | free/infra | varies | избегать /compact; >120K → GLM-5.2 | 8N.3
-- ultra_long_context (>500K)   | Grok 4.20 (2M ctx) | Gemini 3.1 Pro | $2.50/1M | low | Grok 4.20 2M; pin Opus 4.6 для 1M reliable | 8L.3
-- realtime_social_data         | Grok 4.3 / 4.20 (X Firehose) | GPT-5.5 | $2.50/1M | med | X Firehose | 8H.3 (Grok)
-- heavy_parallel (Tier 4+)     | Grok 4.20 Heavy 16 | Kimi K2.6 Swarm | $2.00-6.00/1M | varies | Heavy 16; shadow downgrade DISPUTED | 8H.3 Heavy 16
-- document_processing / pdf    | Claude Opus 4.6 | Claude Sonnet 4.6 | $25/1M | high | Opus 4.6 #1 Document Arena | 8C.3
-- coding_agent_openweight      | Kimi K2.7 Code | GLM-5.2 | free/local | varies | K2.7 Code open-weight; GLM-5.2 #2 WebDev | 8N.3
+- vision / image_analysis      | Claude Fable 5 | Claude Opus 4.7-thinking | $10-50/1M | high | Fable 5 restored — again #1 Vision Arena (1311); 4.7-thinking #2 fallback | 8C.3 primary
+- media_generation_image       | gpt-image-2 | gemini-3.1-flash-image / gpt-image-1.5-high-fidelity | per-asset | — | gpt-image-2 #1 T2I & Edit; 2 new image-models appeared (Nano Banana 2 Lite, gpt-image-1.5-hf) | all
+- media_generation_video       | gemini-omni-flash (T2V) | dreamina-seedance-2.0 (I2V/VideoEdit) | $0.2+0.1/s | — | dreamina-seedance now #1 I2V and #1 Video Edit (new category) | all
+- video_editing (NEW)          | dreamina-seedance-2.0-720p | gemini-omni-flash | per-asset | — | new Arena category Video Edit; seedance #1 (1377) | all
+- on_prem (legacy GLM-5.1)     | GLM-5.1 (stable <120K) | GLM-5.2 | free/infra | varies | avoid /compact on 5.1 (bug NOT patched); >120K → GLM-5.2 | 8N.3
+- ultra_long_context (>500K)   | Grok 4.20 (2M ctx) | Gemini 3.1 Pro | $2.50/1M | low | Grok 4.20 2M; pin Opus 4.6 for 1M reliable | 8L.3
+- realtime_social_data         | Grok 4.3 / 4.20 (X Firehose) | GPT-5.5 | $2.50/1M | med | X Firehose; Grok 4.4 STILL DELAYED | 8H.3 (Grok)
+- heavy_parallel (Tier 4+)     | Grok 4.20 Heavy 16 | Kimi K2.6 Swarm | $2.00-6.00/1M | varies | Heavy 16; shadow downgrade DISPUTED (no movement) | 8H.3 Heavy 16
+- document_processing / pdf    | Claude Opus 4.6 | Claude Sonnet 5 | $2-25/1M | high | Opus 4.6 #1-2 Document Arena; Sonnet 5 new #11 thinking fallback | 8C.3
+- coding_agent_openweight      | Kimi K2.7 Code (self-host/API) | GLM-5.2 | free/local or $0.95-4.00/1M | varies | K2.7 Code now also a hosted API option; GLM-5.2 #2 WebDev | 8N.3
 - multi_agent_swarm            | Kimi K2.6 Swarm (300) | Grok 4.20 Heavy | $2.50-4.50/1M | varies | K2.6 300 async; Thinking bug — disable | 8N.3 / 8L.3
+- security_research / pentest (NEW) | Claude Opus 4.8 | GPT-5.5 Pro | $25-30/1M | high | Fable 5 avoid — increase in false-positive from new safety-classifier on security tasks | 8C.3
 
 // ================================================================
 [MEDIA_MODELS]
-DATE: 2026-06-27
+DATE: 2026-07-05
 
 IMAGE_GEN:
-  - gpt-image-2 (medium) | OpenAI | #1 Text-to-Image (1386) & #1 Image-Edit (1465) | pixel-perfect text | GA
-  - reve-2.0 | Reve (Trilogy AI) | #2 Text-to-Image (1275) | two-stage planning+rendering | GA
-  - gemini-3.1-flash-image (Nano Banana 2) | Google | #3 Text-to-Image (1269) | GA (preview shutdown 25.06) | ~$0.039/img
-  - mai-image-2.5 | Microsoft AI | #4 Text-to-Image (1256); #2 Image-Edit (1402) | product consistency | GA
-  - gemini-3-pro-image (Nano Banana Pro) | Google | #5 Text-to-Image (1245); 4K, до 14 refs | GA
-  - grok-imagine-image-quality | xAI | #3 Image-Edit (1389) | GA
-  - qwen-image-2.0-pro | Alibaba | #10 Text-to-Image (1193) | новая (2026-06-22) | GA
+  - gpt-image-2 (medium) | OpenAI | #1 Text-to-Image (1386) & #1 Image-Edit (1464) | pixel-perfect text | GA
+  - reve-2.0 | Reve (Trilogy AI) | #2 Text-to-Image (1272) | two-stage planning+rendering | GA
+  - gemini-3.1-flash-image (Nano Banana 2) | Google | #3 Text-to-Image (1270) | GA | ~$0.039/img
+  - mai-image-2.5 | Microsoft AI | #4 Text-to-Image (1257); #2 Image-Edit (1403) | product consistency | GA
+  - gemini-3.1-flash-lite-image (Nano Banana 2 Lite) | Google | #5 Text-to-Image (1250) | NEW MODEL (discovered 02.07, previously untracked) | GA
+  - gemini-3-pro-image (Nano Banana Pro) | Google | #6 Text-to-Image (1245); 4K, up to 14 refs | GA
+  - gpt-image-1.5-high-fidelity | OpenAI | #7 Text-to-Image (1241); #8 Image-Edit (1373) | NEW MODEL (discovered during period) | GA
+  - chatgpt-image-latest-high-fidelity (20251216) | OpenAI | #3 Image-Edit (1390) | GA
+  - grok-imagine-image-quality | xAI | #9 Text-to-Image (1229); #4/#9 Image-Edit (1389/1358, two versions) | GA
+  - ideogram-4.0-quality | Ideogram | #10 Text-to-Image (1207) | Ideogram Open Model
+  - qwen-image-2.0-pro | Alibaba | #11 Text-to-Image (1192) | GA (no changes)
+  - uni-1.1-max | Luma AI | #11 Image-Edit (1334) | GA
 
 VIDEO_GEN:
-  - gemini-omni-flash | Google | #1 Text-to-Video (1527); #2 Image-to-Video (1469) | GA any-to-any; replaces Veo 3.1
-  - dreamina-seedance-2.0-720p | ByteDance | #2 T2V (1466); #1 Image-to-Video (1474); #1 Video Edit (1379) | GA
-  - happyhorse-1.0 | Alibaba ATH | #3 T2V (1437); #4 I2V (1444) | 1080p audio-native; $0.14/s 720p
+  - dreamina-seedance-2.0-720p | ByteDance | #1 Image-to-Video (1474); #1 Video Edit (1377, new category); #2 T2V (1466) | GA
+  - gemini-omni-flash | Google | #1 Text-to-Video (1527); #2 Image-to-Video (1469, yielded to seedance); #2 Video Edit (1347) | GA any-to-any
+  - happyhorse-1.0 | Alibaba ATH | #3 T2V (1437); #4 I2V (1444); #3 Video Edit (1308) | 1080p audio-native
   - grok-imagine-video-1.5-preview-720p | xAI | #3 Image-to-Video (1466) | 15s 24fps; native audio
+  - grok-imagine-video (no version) | xAI | #4 Video Edit (1264) | GA
+  - kling-o3-pro / kling-o1-pro | KlingAI | #5/#6 Video Edit (1251/1203) | NEW in list (new category)
+  - runway-gen4-aleph | Runway | #7 Video Edit (1194) | NEW in list
   - wan2.7-i2v / t2v | Alibaba | #5 I2V (1434); #5 T2V (1368) | GA
 
 MUSIC_GEN:
-  - TBD (нет данных за период)
+  - TBD (no data over the period)
 
 // ================================================================
 [CHANGES_LOG]
-DATE: 2026-06-27
-VERSION: v8.6
+DATE: 2026-07-05
+VERSION: v8.6.2
 
-- [2026-06-26] [GPT]: GPT-5.6 (Sol/Terra/Luna) canary → LIMITED PREVIEW; публичный GA отложен (правительство США) | routing impact: не маршрутизировать gpt-5.6-* | editions: 8N.3
-- [2026-06-27] [GPT]: GPT-4.5 RETIRED из ChatGPT App; default custom GPT → GPT-5.1 | routing impact: minor | editions: 8N.3
-- [2026-06-25] [GEMINI]: Nano Banana preview SHUTDOWN выполнен; GA-замены активны | routing impact: migrate image pipeline → GA IDs | editions: 8H.3, 8N.3
-- [2026-06-23] [GEMINI]: Gemini 3.5 Pro GA перенесён на июль (остаётся Preview); 3.5 Flash GA; 3.1 Flash-Lite GA; CLI free закрыт | routing impact: не маршрутизировать 3.5 Pro как GA | editions: 8H.3, 8N.3
-- [2026-06-27] [GLM]: GLM-5.2 GA (1M ctx, MIT, ~$1.40/$4.40); Arena #2 WebDev / #10 Agent | routing impact: новый top open-weight для webdev/on-prem/long-horizon | editions: 8N.3
-- [2026-06-27] [GROK]: Grok 4.4 STILL DELAYED; Heavy16 shadow downgrade DISPUTED | routing impact: rely on 4.3/4.20 | editions: 8L.3, 8N.3
-- [2026-06-27] [MINIMAX]: TokenRouter free завершён 17.06; TokenHub 50% ($0.30/$1.20) закреплён базовым | routing impact: budget routing | editions: 8N.3
-- [2026-06-22] [QWEN]: JSON Mode задокументирован (смягчение); добавлена qwen-image-2.0-pro | routing impact: strict JSON всё ещё fallback | editions: 8N.3
-- [2026-06-27] [CLAUDE]: Fable 5 suspension продолжается (карточки удалены); все Claude-баги UNRESOLVED | routing impact: Opus 4.8 primary | editions: 8C.3
-- [2026-07-24] [DEEPSEEK]: deepseek-chat/reasoner → HTTP 404 (T-27 дней) | routing impact: migrate to V4 IDs | editions: 8N.3
-- [2026-06-27] [CORRECTIVE]: 13 ошибок проверены по живым источникам → 0 FIXED; обогащены workaround'ы (Qwen JSON / Error 13 / GLM / MiniMax); добавлены MINIMAX_TOKEN_PLAN_BILLING и CLAUDE_FABLE5_SUSPENSION в ERROR_REGISTRY; +2 дедлайна (01.07 кит. правила, 08.07 Anthropic ID/биометрия) | editions: all
+- [2026-06-30] [CLAUDE]: Claude Sonnet 5 launched — new default Free/Pro, replaces Sonnet 4.6; shared tokenizer with Opus 4.7/4.8/Fable 5 | routing impact: new Tier 3 default for agentic_coding_cost_efficient | editions: 8C.3, 8N.3
+- [2026-07-01] [CLAUDE]: Claude Fable 5 restored GLOBALLY (export controls lifted 30.06); new safety-classifier; AWS/GCP/MS Foundry restored | routing impact: Fable 5 again primary for multi-day autonomy/vision; avoid for security-research (false-positive) | editions: 8C.3, 8H.3, 8N.3
+- [2026-07-05] [CLAUDE]: Sonnet 5 launch-week bugs (CLI, Bedrock, pricing display, GitHub PR) | routing impact: minimal, but monitor | editions: 8C.3, 8N.3
+- [2026-06-29] [GPT]: GPT-5.6 Sol/Terra/Luna — API IDs and rates officially locked in; GA still not announced | routing impact: do not route | editions: 8N.3
+- [2026-06-27] [GPT]: GPT-5.3 Instant RETIRED | routing impact: exclude from routing | editions: 8N.3
+- [2026-07-05] [GEMINI]: Gemini 3.5 Pro GA-status DISPUTED (PDF vs official changelog) — canon Preview maintained | routing impact: do not route as GA until confirmed | editions: 8H.3, 8N.3
+- [2026-07-02] [GEMINI]: Nano Banana 2 Lite discovered (new image-model) | routing impact: add. cheap option for image_gen | editions: 8H.3, 8N.3
+- [2026-07-05] [GEMINI]: Omni Flash yielded #1 Image-to-Video (now #2, dreamina-seedance #1) | routing impact: revise fallback-order for I2V | editions: 8H.3
+- [2026-07-05] [GLM]: wave of independent benchmarks confirms near-Sonnet-5 level of GLM-5.2 (SWE-bench Pro 62.1%) | routing impact: strengthen position as cost-efficient alternative | editions: 8N.3
+- [2026-07-02] [GLM]: bug discovered integrating GLM-5.2 with OpenRouter AI Gateway | routing impact: avoid this combination | editions: 8N.3
+- [2026-07-05] [GROK]: Grok 4.4 confirmed STILL DELAYED, [NO_DELTA] | routing impact: rely on 4.3/4.20 | editions: 8L.3, 8N.3
+- [2026-07-05] [DEEPSEEK]: alias retirement T-19 days (24.07.2026), no grace-period confirmed; NEW — EU regulatory risk (GDPR scrutiny) | routing impact: migrate to V4 IDs; avoid EU-PII | editions: 8N.3
+- [2026-07-05] [QWEN]: [NO_DELTA] on models; JSON errors NO_UPDATE | routing impact: no changes | editions: 8N.3
+- [2026-07-05] [KIMI]: [NO_DELTA] on models; K2.7 Code — discovered potential hosted-API option | routing impact: add. variant besides self-host | editions: 8N.3
+- [2026-07-01] [MANUS]: PRC rules on outbound investments came into effect; escalation without de-escalation; indirect effect — suspension of MiroMind | routing impact: avoid critical production | editions: all
+- [2026-07-05] [MINIMAX]: [NO_DELTA] on models/prices; MINIMAX_TOKEN_PLAN_BILLING NO_UPDATE | routing impact: no changes | editions: 8N.3
+- [2026-07-05] [SYNTHESIS]: 19 errors in ERROR_REGISTRY verified and updated; CLAUDE_FABLE5_SUSPENSION moved to RESOLVED (2026-07-01); added 4 new entries (SONNET5_LAUNCH_STABILITY, FABLE5_CLASSIFIER_FALSE_POSITIVES, GLM52_OPENROUTER_GATEWAY_FAIL, EU_REGULATORY_SCRUTINY); +3 deadlines (07.07 Fable5 credits, 31.08 Sonnet5 pricing, resolved conflict Gemini 3.5 Pro GA) | editions: all
+- [2026-07-05] [CORRECTIVE]: corrective_report_2 applied — 14 entries of ERROR_REGISTRY verified, 0 FIXED; LAST_CHECKED confirmed 2026-07-05 for all positions; clarifications: tokenizer-inflation expanded to Sonnet 5 (officially), Fable 5 classifier — FP metrics are not published, Gemini 3.5 Pro remains Preview, Manus unwind completed | routing impact: no changes to routing | editions: all
 
 // ================================================================
 [CORRECTIVE_QUERY_2]
-DATE: 2026-06-27
-PURPOSE: Проверка устранения UNRESOLVED ошибок в новых обновлениях моделей (цикл v8.7)
+DATE: 2026-07-05
+PURPOSE: Check resolution of UNRESOLVED/DISPUTED/MONITORING errors in new model updates (v8.6.3 cycle)
 
-<corrective_report_2 date="2026-06-27" cycle="v8.6 → status refresh">
+VENDOR: Anthropic / Claude
+  ERROR: OPUS4X_TOKENIZER_INFLATION — Tokenizer inflation (+30-42%), now including Sonnet 5
+  FIRST_SEEN: 2026-04-16
+  SEARCH_QUERY: "Claude Sonnet 5 tokenizer fix July 2026" OR "Anthropic tokenizer inflation patch Opus 4.8"
+  OFFICIAL_SOURCES: platform.claude.com/docs, anthropic.com/news
+  STATUS_HINT: Check if an official tokenizer patch has appeared or new independent analytics of real cost after moving to standard-pricing of Sonnet 5 (from 01.09).
 
-SUMMARY: 13 tracked errors verified against live web sources (27.06.2026).
-RESULT: 0 FIXED. All UNRESOLVED / DISPUTED / MONITORING statuses confirmed standing.
-1 new material development (Fable 5 US-citizen restoration path). Several workaround enrichments.
+VENDOR: Anthropic / Claude
+  ERROR: SONNET5_LAUNCH_STABILITY — CLI/Bedrock/pricing display/GitHub PR bugs
+  FIRST_SEEN: 2026-07-01
+  SEARCH_QUERY: "Claude Sonnet 5 CLI bug fix" OR "claude-sonnet-5 AWS Bedrock line breaks fixed"
+  OFFICIAL_SOURCES: github.com/anthropics, docs.anthropic.com/release-notes
+  STATUS_HINT: Typical launch-week bugs — check if GitHub issues #9879, #1461, litellm #31868 are closed.
+
+VENDOR: Anthropic / Claude
+  ERROR: FABLE5_CLASSIFIER_FALSE_POSITIVES — increase in false-positive on coding/security tasks
+  FIRST_SEEN: 2026-07-01
+  SEARCH_QUERY: "Claude Fable 5 classifier false positive rate update" OR "Fable 5 safety filter coding block July 2026"
+  OFFICIAL_SOURCES: anthropic.com/news, HackerOne program updates
+  STATUS_HINT: Check if the false-positive rate has decreased as classifiers are "tuned" (Anthropic promised iterations "over weeks").
+
+VENDOR: Google / Gemini
+  ERROR: GEMINI35PRO_GA_SLIP — DISPUTED GA-status
+  FIRST_SEEN: 2026-06-23
+  SEARCH_QUERY: "Gemini 3.5 Pro GA official changelog July 2026" OR "gemini-3.5-pro preview suffix removed"
+  OFFICIAL_SOURCES: ai.google.dev/gemini-api/docs/changelog
+  STATUS_HINT: CRITICAL to resolve conflict: strictly check the official changelog for removal of the -preview suffix and price finalization.
+
+VENDOR: Google / Gemini
+  ERROR: CONTEXT_SLICING_ERROR_13 — amnesia at 100-128K
+  FIRST_SEEN: 2026-03-05
+  SEARCH_QUERY: "Gemini Error 13 server fix 2026" OR "Gemini context amnesia patch July"
+  OFFICIAL_SOURCES: ai.google.dev/gemini-api/docs/changelog, support.google.com/gemini
+  STATUS_HINT: CRITICAL — search for any server-side fix, not just client-side workaround.
+
+VENDOR: Google / Gemini
+  ERROR: GEMINI_SAFETY_ERASURE — erasure of text mid-generation
+  FIRST_SEEN: 2026-06-12
+  SEARCH_QUERY: "Gemini creative_mode safety filter update July 2026"
+  OFFICIAL_SOURCES: ai.google.dev/gemini-api/docs
+  STATUS_HINT: Check for the appearance of a new mode or relaxation of thresholds.
+
+VENDOR: xAI / Grok
+  ERROR: HEAVY16_SHADOW_DOWNGRADE — DISPUTED
+  FIRST_SEEN: 2026-04-20
+  SEARCH_QUERY: "xAI Heavy 16 downgrade statement 2026" OR "SuperGrok Heavy quality investigation"
+  OFFICIAL_SOURCES: x.ai/news, docs.x.ai
+  STATUS_HINT: Look for official confirmation/denial — the issue has been lingering since April without movement.
+
+VENDOR: Zhipu AI / GLM
+  ERROR: GLM51_COMPACT_HANG — /compact infinite loop (GLM-5.1)
+  FIRST_SEEN: 2026-06-12
+  SEARCH_QUERY: "GLM 5.1 compact bug fix" OR "Zhipu OpenCode infinite loop patch"
+  OFFICIAL_SOURCES: docs.z.ai, github.com/anomalyco/opencode
+  STATUS_HINT: Check if a patch has been released specifically for 5.1, and not just a migration recommendation to 5.2.
+
+VENDOR: Zhipu AI / GLM
+  ERROR: GLM52_OPENROUTER_GATEWAY_FAIL — integration failure with AI Gateway
+  FIRST_SEEN: 2026-07-02
+  SEARCH_QUERY: "GLM-5.2 OpenRouter AI Gateway fix" OR "coder/coder issue 26469"
+  OFFICIAL_SOURCES: github.com/coder/coder, openrouter.ai
+  STATUS_HINT: New bug — check the status of issue #26469.
+
+VENDOR: Moonshot / Kimi
+  ERROR: KIMI_INFINITE_REPETITION — repetition loop in Thinking-mode
+  FIRST_SEEN: 2026-06-08
+  SEARCH_QUERY: "Kimi K2.6 thinking repetition fix" OR "Moonshot infinite loop patch July 2026"
+  OFFICIAL_SOURCES: platform.kimi.ai/docs, forums.developer.nvidia.com
+  STATUS_HINT: Check for official fix from Moonshot; the bug has persisted since May-June.
+
+VENDOR: Alibaba / Qwen
+  ERROR: QWEN37_MAX_JSON_ERRORS — structured-output errors
+  FIRST_SEEN: 2026-06-05
+  SEARCH_QUERY: "Qwen3.7 Max JSON hard fix 2026" OR "Alibaba structured output patch July"
+  OFFICIAL_SOURCES: alibabacloud.com/help/model-studio, qwen.ai/blog
+  STATUS_HINT: Check for a hard-patch vs the current workaround-only status.
+
+VENDOR: MiniMax
+  ERROR: MINIMAX_TOKEN_PLAN_BILLING — remains_time countdown bug
+  FIRST_SEEN: 2026-06-03
+  SEARCH_QUERY: "MiniMax remains_time fix" OR "GitHub MiniMax-M2.7 issue 47 closed"
+  OFFICIAL_SOURCES: github.com/MiniMax-AI/MiniMax-M2.7, platform.minimaxi.com/docs
+  STATUS_HINT: Try to retrieve the contents of issue #47 again (failed in this cycle via scraper).
+
+VENDOR: Manus AI
+  ERROR: META_MANUS_UNWINDING — regulatory crisis
+  FIRST_SEEN: 2026-06-11
+  SEARCH_QUERY: "Manus AI Meta unwind status July 2026" OR "Manus founders travel ban lifted"
+  OFFICIAL_SOURCES: techcrunch.com, reuters.com/technology
+  STATUS_HINT: Check for any de-escalation after PRC rules took effect 01.07; status of travel ban.
+
+VENDOR: DeepSeek
+  ERROR: EU_REGULATORY_SCRUTINY — GDPR/data transfer investigations
+  FIRST_SEEN: 2026-07-03
+  SEARCH_QUERY: "DeepSeek EU GDPR investigation update July 2026" OR "DeepSeek data transfer China ruling"
+  OFFICIAL_SOURCES: mlex.com, iapp.org, euronews.com
+  STATUS_HINT: New track — clarify specific initiating countries and potential access restrictions in the EU.
 
 // ────────────────────────────────────────────────────────────────
-[1] OPUS4X_TOKENIZER_INFLATION — Anthropic / Claude
-STATUS: UNRESOLVED (confirmed)
-FINDING: Shared tokenizer across Opus 4.7 / 4.8 / Fable 5 / Mythos 5; up to +35% tokens vs prior; tokenizer did NOT change between 4.7 and 4.8. No correction patch. GitHub claude-code issue #64961 reports 2-3x token-usage regression + Opus 4.8 disconnects.
-WORKAROUND (unchanged): pin claude-opus-4-6 for cost-sensitive pipelines.
-SOURCES: platform.claude.com/docs whats-new-claude-4-8; github.com/anthropics/claude-code/issues/64961; thenewstack.io opus-4-8 token discipline; therouter.ai fable-5 tokenizer 30%
+NET ACTIONS FOR live_specs v8.6.3 (confirmed by corrective_report_2, 2026-07-05):
+- 22 entries in ERROR_REGISTRY verified; CLAUDE_FABLE5_SUSPENSION moved to RESOLVED (2026-07-01).
+- 4 new entries added: SONNET5_LAUNCH_STABILITY, FABLE5_CLASSIFIER_FALSE_POSITIVES, GLM52_OPENROUTER_GATEWAY_FAIL, EU_REGULATORY_SCRUTINY.
+- CRITICAL for next cycle: resolve GEMINI35PRO_GA_SLIP — direct check of official changelog is mandatory (current conflict PDF vs Perplexity).
+- Track exp. date of Fable 5 usage-credits (07.07) and Sonnet 5 intro-pricing (31.08) — both are approaching the trigger in the next window.
+- deepseek alias retirement (24.07) — next cycle must capture actual deactivation of aliases.
+- CORRECTIVE PASS TOTAL: 14/14 positions of CORRECTIVE_QUERY_2 remain UNRESOLVED/DISPUTED/MONITORING —
+  the entire CORRECTIVE_QUERY_2 block carries over to the v8.6.3 cycle without reductions.
 
-[2] CLAUDE_FABLE5_SUSPENSION — Anthropic / Claude
-STATUS: UNRESOLVED (confirmed) — NEW DETAIL
-FINDING: Day 15, still globally offline; no official restoration date. NEW: Anthropic privacy policy update effective 2026-07-08 collects government ID + biometrics — interpreted as mechanism for US-citizens-only restoration while export directive stays in force (international users remain on Opus 4.8). "48-hour return" rumor (BridgeMind, 16.06) is NOT from Anthropic.
-ACTION FOR v8.7: add UPCOMING note — 2026-07-08 potential US-only Fable 5 reinstatement via ID/biometric verification (UNCONFIRMED mechanism).
-SOURCES: anthropic.com/news/claude-fable-5-mythos-5; x.com/AnthropicAI status 2065597531644743999; explainx.ai is-fable-5-back-2026; natlawreview.com; gtlaw.com insights
-
-[3] GPT56_PUBLIC_GA_DEFERRED — OpenAI / GPT
-STATUS: MONITORING (confirmed)
-FINDING: No official GPT-5.6 announcement, model card, API ID, pricing or benchmarks. June window slipped (prediction-market odds 83% → 18%); July 2026 most probable. Current officially released flagship remains GPT-5.5 (API GA 2026-04-24).
-WORKAROUND (unchanged): do not route gpt-5.6-*; keep GPT-5.5 as flagship.
-SOURCES: openai.com/index/introducing-gpt-5-5; help.openai.com model-release-notes; qcode.cc gpt-5-6-guide; manifold.markets gpt5.6
-
-[4] CONTEXT_PRICING_TRAP_272K — OpenAI / GPT
-STATUS: UNRESOLVED BY DESIGN (confirmed)
-FINDING: No change. 272K long-context multiplier remains documented policy for GPT-5.x; no removal tied to (unreleased) GPT-5.6.
-WORKAROUND (unchanged): intercept >250K; cut at 260K; reroute Claude / Gemini.
-SOURCES: developers.openai.com api/docs/models; openai.com pricing
-
-[5] GEMINI35PRO_GA_SLIP — Google / Gemini
-STATUS: MONITORING (confirmed)
-FINDING: Still NOT GA. Limited Vertex AI preview only; absent from consumer Gemini app, AI Studio public picker, and stable API. GA target July 2026 (Pichai: "give us until next month"). Gemini 3.5 Flash already GA.
-WORKAROUND (unchanged): keep 3.5 Pro = Preview until -preview suffix dropped in official Gemini API changelog.
-SOURCES: ai.google.dev/gemini-api/docs/changelog; docs.cloud.google.com gemini enterprise release-notes; codersera.com gemini-3-5-pro-launch-guide-2026
-
-[6] CONTEXT_SLICING_ERROR_13 — Google / Gemini
-STATUS: UNRESOLVED CRITICAL (confirmed)
-FINDING: Persistent internal-server error on long/high-context threads (>5h dialogue). Additional triggers identified: mass image upload (30+) and pure non-English / mixed-language input (encoding-related). Only client-side workarounds (new chat, toggle Memory, clear cache, incognito, wait). NO server fix.
-WORKAROUND (unchanged + refined): Context Caching API / AI Studio; cap active context ~80K; avoid 30+ image batches in one thread.
-SOURCES: support.google.com/gemini threads 418564089 / 418296411; workalizer.com error-13 guides; izoate.com fix-something-went-wrong-13
-
-[7] GEMINI_SAFETY_ERASURE — Google / Gemini
-STATUS: UNRESOLVED (confirmed)
-FINDING: No "creative_mode" toggle or relaxed thresholds introduced; mid-generation erasure complaints persist for 3.5 Flash/Pro.
-WORKAROUND (unchanged): API direct with BLOCK_SOME / BLOCK_NONE where policy permits; avoid creative tasks in UI.
-SOURCES: ai.google.dev/gemini-api/docs; workalizer.com gemini insights
-
-[8] HEAVY16_SHADOW_DOWNGRADE (+ GROK_4.4_DELAY) — xAI / Grok
-STATUS: DISPUTED (confirmed) | Grok 4.4: STILL DELAYED (confirmed)
-FINDING: No xAI statement confirming or denying SuperGrok Heavy shadow downgrade. Colossus 2 is referenced as the training cluster for Grok 5 (10T params), not a Heavy patch. Grok 4.4 (~1T params) reported "2-3 weeks out" (May reports) but no GA as of 27.06. SuperGrok tiers unchanged ($30 / $300 Heavy 16).
-WORKAROUND (unchanged): rely on grok-4.3 / 4.20; monitor Heavy output quality; API for predictability.
-SOURCES: x.ai/news; mindstudio.ai xai-grok-roadmap; adwaitx.com colossus-2; verdent.ai grok-for-coding-2026
-
-[9] GLM51_COMPACT_HANG — Zhipu AI / GLM
-STATUS: UNRESOLVED for GLM-5.1 (confirmed)
-FINDING: No 5.1 patch. OpenCode issue #18415 (infinite action loop, 20.03). NEW MITIGATION: GLM-5.2 (GA 13.06) ships auto-compact with 1M window (set auto-compact to 1,000,000 in Claude Code/OpenCode) — migration path for compact-dependent workflows.
-WORKAROUND (unchanged + path): avoid /compact on 5.1; migrate compact workloads to GLM-5.2.
-SOURCES: github.com/anomalyco/opencode/issues/18415; docs.z.ai/guides/llm/glm-5.2; explainx.ai glm-5-2; digitalapplied.com glm-5-2
-
-[10] QWEN37_MAX_JSON_ERRORS — Alibaba / Qwen
-STATUS: UNRESOLVED (confirmed) — workaround refined
-FINDING: No hard patch. JSON Mode documented but with strict constraints: (a) messages MUST contain word "json" or 400 error; (b) do NOT set max_tokens with structured output (causes truncated/invalid JSON); (c) thinking mode incompatible with structured output; (d) reasoning text leaks into content, breaking parse.
-WORKAROUND (refined): response_format=json_object + include "JSON" in prompt + omit max_tokens; for thinking tasks use two-step pipeline; fallback 3.6-Plus / GPT for strict extraction.
-SOURCES: alibabacloud.com/help model-studio/qwen-structured-output + json-mode; github.com/vllm-project/vllm/issues/18819; github.com/plastic-labs/honcho/issues/453
-
-[11] KIMI_INFINITE_REPETITION — Moonshot / Kimi
-STATUS: UNRESOLVED (confirmed)
-FINDING: No official Moonshot fix. Confirmed via NVIDIA NIM forum (K2.6 spams "!" in thinking, 256K) + GitHub Kimi-K2.5 issue #46 (coding loops) + SGLang deploys. K2.7 Code (12.06) is separate (coding variant), not a thinking-mode fix.
-WORKAROUND (unchanged): repetition detection + forced session end; frequency_penalty (partial); disable Thinking / use Swarm orchestrator.
-SOURCES: forums.developer.nvidia.com kimi-k2-6 repetition 368740; github.com/MoonshotAI/Kimi-K2.5/issues/46; platform.kimi.ai docs thinking-model
-
-[12] META_MANUS_UNWINDING — Manus AI
-STATUS: UNRESOLVED CRITICAL (confirmed) — escalation
-FINDING: Operational split complete (Meta cut Manus from internal data/infra). Co-founders Xiao Hong & Ji Yichao barred from leaving China since March 2026; no lift. NDRC $2B unwind = first formal reversal of a completed foreign AI deal. China outbound-investment rules (released 01.06) take effect 2026-07-01, making forced unwind the default mechanism — raises sector-wide cross-border risk.
-WORKAROUND (unchanged): avoid critical production on Manus; migrate to alternatives.
-SOURCES: techcrunch.com 2026/06/13 + 2026/04/27 manus; cryptobriefing.com meta-manus split; thenextweb.com china outbound rules; finance.yahoo.com meta-unwinding-manus
-
-[13] MINIMAX_TOKEN_PLAN_BILLING — MiniMax
-STATUS: UNRESOLVED (confirmed) — root cause identified
-FINDING: GitHub MiniMax-M2.7 issue #47 confirms remains_time is a real-time COUNTDOWN timer, not a token-consumption counter (undocumented) — drains without API calls; Token Plan Plus ($20/mo) exhausts in ~4-5h of agentic coding. Cache-read 10:1 discount not verifiable in balance deductions. MiniMax issued apology + compensation/refund plan (02.06) for billing-model change, but the remains_time bug itself is NOT fixed.
-WORKAROUND (unchanged): manual usage monitoring; treat Token Plan as time-boxed.
-SOURCES: github.com/MiniMax-AI/MiniMax-M2.7/issues/47 + /48; platform.minimax.io docs/guides/pricing-token-plan; x-cmd.com/blog/260602; news.aibase.com 28699
-
-// ────────────────────────────────────────────────────────────────
-NET ACTIONS FOR live_specs v8.7:
-- All 13 ERROR_REGISTRY entries: keep status, bump LAST_CHECKED → 2026-06-27 (already current in v8.6).
-- ADD UPCOMING_DEADLINE: 2026-07-08 — Anthropic privacy policy (gov ID + biometrics); potential US-only Fable 5 reinstatement path (UNCONFIRMED).
-- ADD UPCOMING_DEADLINE: 2026-07-01 — China outbound-investment rules in force (raises Manus + Chinese-vendor cross-border risk).
-- ENRICH QWEN37_MAX_JSON_ERRORS workaround: add "omit max_tokens" + "no thinking mode" constraints.
-- ENRICH CONTEXT_SLICING_ERROR_13: add 30+ image-batch and mixed-language triggers.
-- ENRICH GLM51_COMPACT_HANG: note GLM-5.2 auto-compact (1M) as migration path.
-- ENRICH MINIMAX_TOKEN_PLAN_BILLING: note remains_time = countdown timer (root cause) + MiniMax refund plan (not a fix).
-- No FIXED moves; ERROR_REGISTRY_RESOLVED unchanged.
-
-</corrective_report_2>
 
 // ================================================================
-// P2P LIVE SPECS v8.6.1 — COMPLETE (27.06.2026 DELTA MERGE)
-// DATE: 2026-06-27
-// BASE: live_specs_LATEST_from_gist.md (v8.5, 2026-06-27)
+// P2P LIVE SPECS v8.6.2 — COMPLETE (05.07.2026 DELTA MERGE + CORRECTIVE PASS)
+// DATE: 2026-07-05
+// BASE: live_specs.md (v8.6.1, 2026-06-27)
 // KEY CHANGES:
-//   - GPT-5.6 limited preview (GA deferred); GPT-4.5 retired from app
-//   - Gemini Nano Banana preview shutdown COMPLETED; 3.5 Pro GA slipped to July; 3.1 Flash-Lite GA
-//   - GLM-5.2 added (GA, 1M, MIT)
-//   - MiniMax TokenHub 50% locked as baseline
-//   - All prior bugs UNRESOLVED (corrective_report_2 confirmed)
-// NEXT: v8.7 (target после Gemini 3.5 Pro GA или GPT-5.6 GA)
+//   - Claude Sonnet 5 launched (30.06) — new default Free/Pro, near-Opus 4.8 benchmarks
+//   - Claude Fable 5 restored GLOBALLY (01.07) — export controls lifted 30.06
+//   - Claude Mythos 5 — no changes (~100+ trusted US orgs)
+//   - GPT-5.6 Sol/Terra/Luna — API IDs/rates locked in, still no GA
+//   - Gemini 3.5 Pro GA — DISPUTED, canon remains Preview
+//   - GLM-5.2 — independent benchmarks confirm near-Sonnet-5 level
+//   - New Arena category: Video Edit Arena
+//   - 4 new bugs discovered; 1 CRITICAL (Fable 5 suspension) resolved
+//   - v8.6.2: corrective_report_2 applied — 14 positions confirmed, 0 FIXED
+// NEXT: v8.6.3 (target 2026-07-07/08 — Fable5 credits switch, or earlier upon GA of Gemini 3.5 Pro/GPT-5.6)
 // END OF FILE

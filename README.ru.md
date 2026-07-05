@@ -2,7 +2,7 @@
 
 > 🇷🇺 **Русский** · 🇬🇧 [English](README.md)
 
-[![Version](https://img.shields.io/badge/version-v8.3--ALPHA-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-ALPHA-red)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
+[![Version](https://img.shields.io/badge/version-v8.4.0-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-BETA-yellow)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
 
 **Мета-промпт, который пишет промпты — и выполняет задачи.** Поток сознания на входе → выверенный промпт под нужную модель на выходе. Цель проекта: **убрать классический prompt engineering для рядового пользователя.**
 
@@ -40,6 +40,8 @@ P2P (Prompt-to-Prompt) — модульная оркестрирующая си�
 ---
 
 ## 🚀 Быстрый старт
+
+> 📖 **Полная инструкция (Google Docs):** https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
 
 ### Вариант A — плагин (Claude Code / Cowork)
 
