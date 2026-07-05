@@ -4,6 +4,10 @@
 
 **Версия:** 8L.3 · **Токен-бюджет:** BOOT ~18K (старт) · Active ~25-40K · Full arsenal ~57K (/p2p-download)
 
+> 📖 **Полная инструкция (Google Docs):** https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
+>
+> ⚙️ **Плагин 8L.3 (`p2p-v8l3.plugin`) — только ручная установка** (не через маркетплейс). Файл лежит в этом архиве, см. `INSTALL.md`.
+
 ## Для кого
 Тех, кому важна **экономия токенов** или кто в чате с лимитом контекста. Новичкам — стартовый вариант.
 

@@ -4,6 +4,8 @@
 
 **Версия:** 8N.3 · **Токен-бюджет:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
 
+> 📖 **Полная инструкция (Google Docs):** https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
+
 ## Для кого
 Тех, чьей модели нет среди «нативных» (GPT, DeepSeek, Qwen, Kimi, GLM, Gemini…). Самая простая в запуске.
 

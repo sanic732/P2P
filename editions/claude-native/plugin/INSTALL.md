@@ -2,6 +2,8 @@
 
 Выбери метод по среде. Детальный гайд: [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md).
 
+> 📖 **Полная инструкция (Google Docs):** https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
+
 ---
 
 ## 🚀 Метод 1 — One-click (.plugin файл) — рекомендуется
