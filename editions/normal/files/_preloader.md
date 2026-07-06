@@ -13,45 +13,11 @@ last_verified: 2026-06-27
 // Загружается ПЕРВЫМ. Устанавливает контекст сессии.
 // ═══════════════════════════════════════════════════════
 
-// ─── БЛОК 0: HOST_MODEL AUTODETECT (нативный SELF_IDENTIFY, порт из 8N/8H) ───
-// RU: v8N.3 — УНИВЕРСАЛЬНАЯ сборка (любой из 10 хостов). Прелоадер сам определяет, на какой
-//     модели запущен, чтобы не спрашивать зря. Не удалось надёжно → ручной список (БЛОК 4).
-// EN: Auto-identify the host LLM up front. Fall back to the manual numbered list only if unsure.
-
-HOST_MODEL_AUTODETECT:
-  WHEN: HOST_CONFIG.HOST_MODEL пусто        // если задан вручную — пропустить весь блок
-  METHOD: SELF_IDENTIFY                      // модель, читающая этот файл, ЕСТЬ хост.
-                                             // Определи собственную идентичность (вендор/семейство).
-  SIGNALS → HOST_MODEL:
-    self=="Claude" / "Anthropic" ; "[SYSTEM: anthropic]" ; "You are Claude"     → claude
-    self=="Grok" / "xAI" ; X/Twitter-инструменты ; "You are Grok"               → grok
-    self=="Gemini" / "Google" ; AI Studio / Vertex-маркеры ; "You are Gemini"   → gemini
-    self=="ChatGPT" / "OpenAI" ; "You are ChatGPT" / "GPT-*"                     → gpt
-    self=="DeepSeek"                                                             → deepseek
-    self=="Qwen" / "Tongyi" / "Alibaba"                                         → qwen
-    self=="Kimi" / "Moonshot"                                                    → kimi
-    self=="GLM" / "ChatGLM" / "Zhipu"                                           → glm
-    self=="MiniMax" / "abab" / "Hailuo"                                         → minimax
-    self=="Manus" / "Manus AI" (autonomous agent)                              → manus
-  CONFIDENCE_GATE:
-    HIGH (уверенно узнал себя)              → set HOST_MODEL ; тихо ;
-                                              баннер "🌐 Хост определён: <model> (авто)"
-    LOW / противоречивые сигналы / не знаю → НЕ угадывать → HOST_PICK_LIST (БЛОК 4)
-  // ПРИНЦИП: лучше спросить, чем угадать неверно. ПРИМ: у Qwen автодетект часто не срабатывает
-  //          (self-identify слабый) → штатно уходим в ручной HOST_PICK_LIST, это НЕ ошибка.
-  RESOLVE_LOCAL:                             // всё из локальных файлов сборки
-    HOST_PROFILE ← !!core_v8N.md §1 HOST_PROFILES → PROFILE[<HOST_MODEL>]
-                   (HOST_IDENTITY / SYNTAX_SELF / THINKING_API / KNOWN_ISSUES / CONTEXT_LIMIT)
-    minimax / manus → отдельного PROFILE в §1 пока нет → дефолт PLAIN_TEXT + adaptive XML +
-                      simulated QUORUM; лимиты/цены — из _live/live_specs.md (TRACK-ONLY).
-    per-vendor правила ← vendors/ (tier1-4) ; цены/лимиты ← _live/live_core.md + live_specs.md
-  SUBMODEL: по возможности уточни субмодель (opus-4-8 / gemini-3.1-pro-latest / qwen3-max), иначе "".
-
-// ─── БЛОК 1: HOST CONFIG (пусто → сработает автодетект БЛОК 0) ───
+// ─── БЛОК 1: HOST CONFIG (ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ) ───
 
 HOST_CONFIG:
-  HOST_MODEL: ""       // пусто → HOST_MODEL_AUTODETECT (БЛОК 0); при неудаче — HOST_PICK_LIST [1..10].
-  // Допустимые значения: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm | minimax | manus
+  HOST_MODEL: "gemini"
+  // Допустимые значения: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
   // Влияет на: синтаксис промптов, правила форматирования, thinking API
 
 PROJECT_CARD:
@@ -168,26 +134,14 @@ ON_DEMAND_TRIGGERS:
 // ─── БЛОК 4: STARTUP BEHAVIOR ───
 
 ON_LOAD:
-  1. ЕСЛИ HOST_CONFIG.HOST_MODEL пусто → HOST_MODEL_AUTODETECT (БЛОК 0):
-       • HIGH confidence → set HOST_MODEL + баннер "🌐 Хост определён: <model> (авто)"
-       • LOW / не знаю     → HOST_PICK_LIST (ниже) → ЖДАТЬ выбора хоста ПЕРЕД меню. НЕ угадывать, НЕ печатать меню.
-  2. Установить HOST_PROFILE из ЛОКАЛЬНОГО !!core_v8N.md §1 HOST_PROFILES → PROFILE[HOST_MODEL]
-       (+ HOST_ENV из БЛОК 2 HOST_DETECT_BRIDGE)
-  3. Читать PROJECT_CARD → контекст проекта
-  4. LOAD_SEQUENCE (BASE + LIVE; ON-DEMAND по триггеру ИЛИ MODULE_*=true|or)
-  5. Вывести STARTUP MENU СТРОГО через !!core_v8N.md §4 MENU_RENDER_ALGORITHM (НЕ печатать сырой список):
-       прогнать EXTENSIONS_SCAN → AVAILABILITY по [1-31] → напечатать AVAILABLE, LOCKED свести в 🔒-футер.
-       Баннер: HOST_MODEL (обязательно) + HOST_ENV + MODE + «EXT:» (активные модули, если есть).
-  6. Ждать выбора пользователя
+  1. Читаем HOST_CONFIG.HOST_MODEL → устанавливаем HOST_PROFILE
+  2. Читаем PROJECT_CARD → устанавливаем контекст проекта
+  3. Выводим STARTUP MENU (из !!core_v8N.md §MENU)
+  4. Ждём выбора пользователя
 
-HOST_PICK_LIST:  // fallback — ручной выбор, если автодетект (БЛОК 0) неуверен (частый случай: Qwen)
-  EMIT: "🌐 Не удалось надёжно определить хост. На какой LLM ты запускаешь P2P v8N.3?
-     [1] claude    [2] gemini   [3] gpt      [4] grok    [5] deepseek
-     [6] qwen      [7] kimi     [8] glm      [9] minimax [10] manus"
-  ON_CHOICE: записать выбор в HOST_CONFIG.HOST_MODEL → применить HOST_PROFILE + SYNTAX_SELF (XML_POLICY).
-             (minimax/manus → дефолт PLAIN_TEXT-профиль, см. БЛОК 0 RESOLVE_LOCAL.)
-             Затем ПРОДОЛЖИТЬ ON_LOAD с шага 2 → и ТОЛЬКО ПОТОМ (шаг 5) показать меню.
-  CHANGE_LATER: команда /host <модель> (или правка HOST_CONFIG.HOST_MODEL).
+ЕСЛИ HOST_CONFIG не заполнен:
+  → Спрашиваем: "Какая модель является хостом? (claude/gemini/gpt/grok/другое)"
+  → Устанавливаем HOST_MODEL автоматически
 
 ЕСЛИ PROJECT_CARD пустой:
   → Предлагаем заполнить, но НЕ блокируем работу
@@ -200,6 +154,3 @@ VERSION_METADATA:
   NEW_IN_v8N3: VERSION_COMPAT (legacy/v3 + 6 MODULE_* flags), CONFLICT_RESOLVER v1.0,
                6 ON-DEMAND triggers (rag/reasoning/routing/compression/security/optimization),
                live_specs в LOAD_SEQUENCE
-  NEW_2026_07: HOST_MODEL_AUTODETECT (SELF_IDENTIFY + CONFIDENCE_GATE, HOST_MODEL="" по умолчанию, 10 хостов),
-               HOST_PICK_LIST [1..10] (ручной fallback, host ПЕРЕД меню; фикс Qwen-автодетекта),
-               меню через core §4 EXTENSIONS_SCAN + MENU_RENDER_ALGORITHM (пункты [26-31] по факту загрузки)

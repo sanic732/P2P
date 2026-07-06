@@ -18,7 +18,7 @@ MANIFEST:
   BUILD_DATE:    2026-06-27
   STATUS:        BETA (technique import from v8C.3)
   FILES:         24 base + 7 docs = 31 total
-  PHILOSOPHY:    Universal · Any-host · Any-target · 10 host models (8 routing-targets + minimax/manus host-only, TRACK-ONLY)
+  PHILOSOPHY:    Universal · Any-host · Any-target · 8 host models
   LIVE_SPECS_REF: _live/live_specs.md (v8.6.1, OVERRIDE)
 
 VERSIONS:
@@ -90,7 +90,7 @@ FRESHNESS:
 
 FROM_8A1_8G1:  // 8H.3 = merge 8A.1 (Gemini) ⊕ 8G.1 (Grok)
   MERGE_CHANGES:
-    - Универсальный preloader (10 хостов: +minimax +manus host-only) + HOST_CAPS + GROK_FLAGS + VERSION_COMPAT
+    - Универсальный preloader (8 хостов) + HOST_CAPS + GROK_FLAGS + VERSION_COMPAT
     - !host_profiles.md гейтит Heavy-16 (grok) vs simulated QUORUM (иначе)
     - !agents.md host-gated merge (Heavy-16 8G ⊕ QUORUM 8A); ANON host-gated; security → !security.md
     - Grok host-engine: !llm_router, !routing_matrix, !tool_budget, !x_realtime (порт 8G.1)

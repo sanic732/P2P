@@ -17,8 +17,7 @@ menu_item: 37
 // ═══════════════════════════════════════════════════════
 // P2P v8H.3 — ROUTING MODULE (!routing.md) — слой ТЕХНИК
 // Загружен: добавлен пункт [37] в меню.
-// Universal: маршрутизация по 8 хостам-ЦЕЛЯМ (claude/gemini/gpt/grok/deepseek/qwen/kimi/glm).
-//   minimax/manus — host-only (в live_specs TRACK-ONLY): P2P может РАБОТАТЬ на них, но НЕ роутит НА них.
+// Universal: маршрутизация по 8 хостам (claude/gemini/gpt/grok/deepseek/qwen/kimi/glm).
 // ═══════════════════════════════════════════════════════
 // ⚠ BOUNDARY (8H): ЖИВОЙ выбор модели/провайдера и исполнение делает !llm_router.md.
 //   Этот файл — КАТАЛОГ техник (Semantic Router / Cascade / Cost-Aware / LLM-Router как паттерны),

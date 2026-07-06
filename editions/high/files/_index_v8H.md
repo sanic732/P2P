@@ -31,7 +31,6 @@ MODULE_REGISTRY:
     11. !memory.md            TRIGGER: "memory|capsule|сохрани|загрузи|состояние"
     12. !metrics.md           TRIGGER: "метрики|SESSION_EFFICIENCY|routing memory"
     13. !sandbox.md           TRIGGER: "sandbox|исследуй|exploration|эксперимент"
-    13d. !domain.md      [41] TRIGGER: "domain|react|react 19|jsx|hooks|typescript|kotlin|coroutine|flow|KMP|android|домен|реакт|котлин"
 
   HOST-ENGINE (8H — host-choice + Grok advantage):
     H1. !host_profiles.md     ALWAYS — HOST_CAPS по HOST_MODEL (Heavy-16 gate)
@@ -90,7 +89,6 @@ DEPENDENCY_MAP:
   !memory.md       REQUIRES: !!core_v8H.md + !scope.md
   !metrics.md      REQUIRES: !!core_v8H.md + !memory.md
   !sandbox.md      REQUIRES: !!core_v8H.md + !!db_v8H.md
-  !domain.md       REQUIRES: !!core_v8H.md + !!db_v8H.md                | inject into !pipeline <context>
   vendors/*        REQUIRES: !!db_v8H.md
   // ─── Host-engine (8H) ───
   !host_profiles.md REQUIRES: _preloader.md + !!core_v8H.md          | гейтит Heavy-16 vs simulated
@@ -117,12 +115,11 @@ MACROS:
   /p2p-capsule save|load|show|clear → !memory.md CAPSULE_COMMANDS
   /p2p-deadline → DEADLINE Scanner (!!core_v8H.md §12)
   /p2p-metrics  → Session Metrics dashboard (!metrics.md §3)
-  /p2p-domain   → Domain Knowledge (!domain.md §3) — add domain / React+Kotlin reference [41]
   // v8H.3 модули:
   /p2p-rag | /p2p-reasoning | /p2p-route | /p2p-compress | /p2p-security | /p2p-optimize → [35-40]
 
 VALIDATION_CHECK:
-  ✅ INDEX v8H.3 Hybrid — host-engine (5) + 6 v8H.3 модулей + !domain [41] (React/Kotlin) + native plugin (8 агентов)
+  ✅ INDEX v8H.3 Hybrid — host-engine (5) + 6 v8H.3 модулей + native plugin (8 агентов)
   Циклические ссылки: отсутствуют. Уникальные id для каждого модуля.
   Host: 8 моделей; Heavy-16 native при HOST_MODEL=grok, иначе simulated QUORUM.
   Architecture: BASE (3) + LIVE (3 + live_specs) + HOST-ENGINE (5) + ON_DEMAND (7 + 6 v8H.3)

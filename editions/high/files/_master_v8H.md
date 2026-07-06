@@ -19,7 +19,7 @@ BUILD_SIZES:
   MINIMAL:   ~60K токенов   | 4 файла  | Тест, T0-T2, строгий лимит
   STANDARD:  ~120K токенов  | 8 файлов | Большинство задач, T2-T3
   FULL:      ~200K токенов  | 18 файлов | T3-T4, QUORUM, длинные задачи (+ live_specs)
-  FULL+:     ~220K токенов  | 25 файлов | FULL + 6 модулей v8H.3 (RAG/Reasoning/Routing/Compression/Security/Optimization) + !domain (React/Kotlin)
+  FULL+:     ~215K токенов  | 24 файла | FULL + 6 модулей v8H.3 (RAG/Reasoning/Routing/Compression/Security/Optimization)
   // ВНИМАНИЕ (mutex): не грузить все 6 модулей при LIGHT-контексте — макс 2-3 одновременно (context overflow).
   // По умолчанию модули OFF (VERSION_COMPAT.v3=off); включать через MODULE_*=true|or при необходимости.
 
@@ -71,14 +71,11 @@ FULL:
       vendors/tier4.md \
       > p2p_normal_full.md
 
-FULL_PLUS:  # FULL + 6 модулей v8H.3 + !domain (по умолчанию OFF; включать осознанно)
+FULL_PLUS:  # FULL + 6 модулей v8H.3 (по умолчанию OFF; включать осознанно)
   cat p2p_normal_full.md \
       !rag.md !reasoning.md !routing.md \
       !compression.md !security.md !optimization.md \
-      !domain.md \
       > p2p_normal_full_plus.md
-  # !domain.md — контекст проекта + встроенный React 19/TS & Kotlin/KMP reference (порт из v7A).
-  #   Грузится по триггеру domain/react/kotlin или /p2p-domain; можно не префетчить.
   # Альтернатива: грузить модули по триггеру / MODULE_*=true в _preloader (экономия токенов).
   # MUTEX (CONFLICT_RESOLVER): reasoning↔THINKING:ON, rag↔compression компрессор,
   #   routing↔!scope, security→GUARDIAN:ON, optimization→!metrics. Макс 2-3 модуля при LIGHT.

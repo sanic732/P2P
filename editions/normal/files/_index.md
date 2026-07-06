@@ -96,23 +96,10 @@ MACROS:
   // v8N.3 модули:
   /p2p-rag | /p2p-reasoning | /p2p-route | /p2p-compress | /p2p-security | /p2p-optimize → [26-31]
 
-// ─── EXTENSIONS ANCHOR (детект загруженных модулей [26-31] — в !!core_v8N.md §4 EXTENSIONS_SCAN) ───
-// Модули 13a-13f (пункты [26-31]) грузятся по триггеру ИЛИ MODULE_*=true|or и по умолчанию скрыты.
-// Отображение в меню (🔒/доступен) — ЕДИНОЕ, в статичном ядре core §4 (всегда в памяти, не отдельный файл).
-EXTENSIONS_ANCHOR:
-  DETECT_AND_RENDER: !!core_v8N.md §4 → EXTENSIONS_SCAN + MENU_RENDER_ALGORITHM (источник истины)
-  TRIGGERS_MENU:  /start | start | старт | /p2p | /menu  → всегда прогнать EXTENSIONS_SCAN перед меню
-  EXT_TRIGGERS:   rag | reasoning | routing | compression | security | optimization | модуль
-  MODULE_MAP (файл → пункт): !rag.md→[26] · !reasoning.md→[27] · !routing.md→[28] ·
-                             !compression.md→[29] · !security.md→[30] · !optimization.md→[31]
-  RULE: пункт [26-31] AVAILABLE ⇔ тело файла `!<module>.md` в контексте (заголовок «… MODULE (!x.md)» +
-        frontmatter id/menu_item). Флаг MODULE_*=true без приложенного файла → пункт остаётся LOCKED.
-
 VALIDATION_CHECK:
   ✅ INDEX v8N.3 — 24 base + 7 docs, все учтены (18 base + 6 новых модулей; 5 docs + 2 новых)
   Циклические ссылки: отсутствуют. Уникальные id для каждого модуля.
-  Host: 10 хостов (claude | gemini | gpt | grok | deepseek | qwen | kimi | glm | minimax | manus);
-        автодетект + ручной HOST_PICK_LIST [1..10] (_preloader БЛОК 0/4). minimax/manus — дефолт-профиль.
+  Host: 8 моделей (claude | gemini | gpt | grok | deepseek | qwen | kimi | glm)
   Architecture: BASE (3) + LIVE (3 + live_specs) + ON_DEMAND (7 + 6 v8N.3) + VENDORS (4) + META (3) + DOCS (7)
 
 VERSION_METADATA:
