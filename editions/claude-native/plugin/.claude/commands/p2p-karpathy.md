@@ -1,6 +1,6 @@
 ---
-description: P2P Karpathy Coding Mode — precision behavioral constraints for surgical code edits. Minimalist approach — Template M + PRE_CODE_DECLARATION. Composable with agentic (M+R) and IDE (M+I) templates.
-argument-hint: "[task description | file:path function:name]"
+description: P2P Karpathy Coding Mode — precision behavioral constraints for surgical code edits. Minimalist approach: Template M + PRE_CODE_DECLARATION. Composable with agentic (M+R) and IDE (M+I) templates.
+argument-hint: [task description | file:path function:name]
 ---
 
 Активируй skill `p2p`. Запусти **Karpathy Coding Mode** (Template M) для задачи: $ARGUMENTS

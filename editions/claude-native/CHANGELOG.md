@@ -9,14 +9,6 @@ tags: docs, changelog, v8c3, alpha
 
 # P2P v8C.3 — CHANGELOG
 
-## [HOTFIX · 8.4.2 · 2026-07-06] Claude Code не грузил команды плагина (битый YAML frontmatter)
-**Симптом:** после 8.4.1 в Claude Code исчезли все команды `p2p-v8c3` (в Cowork работали). 
-**Причина:** в `skills/p2p/SKILL.md` описание содержало `(core.md): no task` — двоеточие+пробел ломает
-строгий YAML-парсер Code (Cowork парсит мягко → там работало). Битый **скилл** роняет загрузку всего плагина.
-**Фикс:** убран `: ` из описания `SKILL.md`; заодно вычищены унаследованные дефекты — `commands/p2p-karpathy.md`
-(`approach:` → `approach —`, кавычки на `argument-hint`), `commands/p2p-download.md` (добавлен `description`).
-Проверено строгим YAML-парсером: 12 команд + 8 скиллов — 0 ошибок. Bump `p2p-v8c3 8.4.1 → 8.4.2`.
-
 > v8C.2 → v8C.3 changes only.  
 > For v8C.1 → v8C.2 history see the v8C.2 release docs.
 

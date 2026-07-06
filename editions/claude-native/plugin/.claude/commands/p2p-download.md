@@ -1,5 +1,4 @@
 ---
-description: "/p2p-download — fetch the latest LIVE SPECS from the gist and refresh the session context."
 source_id: CMD_DOWNLOAD_V8C
 version: v8C.3
 module_type: command
