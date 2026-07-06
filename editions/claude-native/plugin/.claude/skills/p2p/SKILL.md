@@ -1,6 +1,6 @@
 ---
 name: p2p
-description: P2P v8C.3 — main Skill entry point of the Prompt-to-Prompt meta-prompt system for Claude. Use when the user types /p2p, /start, старт, or /menu, or asks to build/generate/optimize a prompt, run a QUORUM multi-agent review, SCOPE.HELM scoping, or any /p2p-* workflow. Entry point and main menu for the P2P system. Not for the interactive course (use p2p-teacher).
+description: P2P v8C.3 — main Skill entry point of the Prompt-to-Prompt meta-prompt system for Claude. Use when the user types /p2p, /start, старт, /menu, or asks to build/generate/optimize a prompt, run a QUORUM multi-agent review, SCOPE.HELM scoping, or any /p2p-* workflow. Loads the dispatcher (core.md): no task → menu; a task → auto-routes (complex → QUORUM via native sub-agents, simple → co-pilot). Entry point and main menu for the P2P system. Not for the interactive course (use p2p-teacher).
 source_id: SKILL_V8C
 version: v8C.3
 module_type: skill
@@ -24,6 +24,18 @@ P2P v8C.3 — мета-промпт система для:
 - Управления большими задачами (SCOPE.HELM)
 - Cross-model адаптации (Translation Layer для 8 LLM)
 - **NEW:** Интерактивного обучения системе (`/p2p-teacher`)
+
+## Поведение — ДИСПЕТЧЕР (обязательно, единый источник истины)
+
+При активации: поднять бандл `core.md` (PILOT_MODE, TIER_SYSTEM + LoadScore, SIR,
+DEEP_THINK_VALUE_GATE, QUORUM) + `db.md`. Логику НЕ дублировать здесь — только запустить.
+
+- **Нет задачи / `старт`/`menu`** → показать STARTUP_LOGO + меню [0-40] + баннер. Ждать выбор.
+- **Есть задача** → авто-оркестрация (как for-chat): SIR-скан → `LoadScore`→`Tier` →
+  `Tier ≥ 3` **QUORUM** (нативные sub-агенты `.claude/agents/*` в Code; в Cowork — скилл `p2p-quorum`),
+  `Tier ≤ 2` **co-pilot** (молча техника/модель/effort). Вывод в синтаксисе `TARGET_MODEL`.
+
+> Полный функционал сохранён: в Claude Code QUORUM — реальные параллельные sub-агенты, не симуляция.
 
 ## Команды (11)
 

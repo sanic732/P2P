@@ -9,15 +9,54 @@ last_verified: 2026-06-27
 ---
 
 // ═══════════════════════════════════════════════════════
-// P2P v8H.3 — PRELOADER
+// P2P v8H.3 — PRELOADER (NATIVE / auto-host, порт механики 8L.3)
 // Загружается ПЕРВЫМ. Устанавливает контекст сессии.
+// NEW: сам определяет модель-хост (SELF_IDENTIFY); не удалось → список [1..10].
 // ═══════════════════════════════════════════════════════
 
-// ─── БЛОК 1: HOST CONFIG (ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ) ───
+// ─── БЛОК 0: HOST_MODEL AUTODETECT (NEW — «нативный» детект как в 8L.3) ───
+// RU: 8H.3 — сборка на любом из 10 хостов. Прелоадер сам определяет, на какой
+//     модели он запущен, чтобы не спрашивать зря. Не удалось уверенно → список.
+// EN: Auto-identify the host LLM up front. Fall back to the manual list only if unsure.
+
+HOST_MODEL_AUTODETECT:
+  WHEN: HOST_CONFIG.HOST_MODEL пусто        // если задан вручную — пропустить весь блок
+  METHOD: SELF_IDENTIFY                      // модель, читающая этот файл, ЕСТЬ хост.
+                                             // Определи собственную идентичность (вендор/семейство).
+  SIGNALS → HOST_MODEL:
+    self=="Claude" / "Anthropic" ; "[SYSTEM: anthropic]" ; "You are Claude"     → claude
+    self=="Grok" / "xAI" ; X/Twitter-инструменты ; "You are Grok"               → grok
+    self=="Gemini" / "Google" ; AI Studio / Vertex-маркеры ; "You are Gemini"   → gemini
+    self=="ChatGPT" / "OpenAI" ; "You are ChatGPT" / "GPT-*"                     → gpt
+    self=="DeepSeek"                                                             → deepseek
+    self=="Qwen" / "Tongyi" / "Alibaba"                                         → qwen
+    self=="Kimi" / "Moonshot"                                                    → kimi
+    self=="GLM" / "ChatGLM" / "Zhipu"                                           → glm
+    self=="MiniMax" / "abab" / "Hailuo"                                         → minimax
+    self=="Manus" / "Manus AI" (autonomous agent)                              → manus
+  CONFIDENCE_GATE:
+    HIGH (уверенно узнал себя)              → set HOST_MODEL ; тихо ;
+                                              баннер "🌐 Хост определён: <model> (авто)"
+    LOW / противоречивые сигналы / не знаю → НЕ угадывать → HOST_PICK_LIST (см. БЛОК 4)
+  // ПРИНЦИП: лучше спросить, чем угадать неверно — неверный хост даёт неверный
+  //          синтаксис промптов / thinking API / путь агентов.
+  RESOLVE_LOCAL:                             // ВСЁ из локальных файлов сборки — БЕЗ сети / fetch.
+    HOST_PROFILE / HOST_CAPS ← !host_profiles.md (HOST_PROFILE_TABLE по HOST_MODEL)
+                               + !!core_v8H.md §1 HOST_PROFILES (identity / thinking / G-rules)
+    per-vendor правила        ← vendors/{claude,grok,tier1..4}.md
+    цены / лимиты / субмодели ← _live/live_specs.md (вшитый локальный файл, НЕ Gist)
+    minimax / manus (NEW)     ← PROFILE[minimax]/PROFILE[manus] в !host_profiles.md + !!core §1
+                                (host-only; в live_specs TRACK-ONLY → НЕ цели роутинга);
+                                свежие цены/лимиты — из _live/live_specs.md
+  // Канарейки / GIST-fetch из 8L.3 здесь НЕ нужны: вся справка уже лежит рядом файлами.
+  SUBMODEL: по возможности уточни субмодель (opus-4-8 / grok-4.3 / gemini-3.1-pro-latest),
+            иначе оставь "". Точные лимиты — из локального _live/live_specs.md.
+
+// ─── БЛОК 1: HOST CONFIG (пусто → сработает автодетект БЛОК 0) ───
 
 HOST_CONFIG:
-  HOST_MODEL: "gemini"
-  // Допустимые значения: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
+  HOST_MODEL: ""       // пусто → HOST_MODEL_AUTODETECT (БЛОК 0); при неудаче — список [1..10].
+  // Допустимые значения: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm | minimax | manus
   // Влияет на: синтаксис промптов, правила форматирования, thinking API
   HOST_SUBMODEL: ""    // напр. grok-4.3 | claude-opus-4-8 | gemini-3.1-pro-latest | claude-fable-5
   ENV: "auto"          // auto | api | studio | notebooks | chat | code
@@ -107,11 +146,13 @@ HOST_DETECT_BRIDGE:
   ENV_GEMINI_STUDIO:  HOST_ENV = Studio | GUARDIAN = OFF
   ENV_CHAT_GENERIC:   HOST_ENV = Chat   | GUARDIAN = OFF
 
-  DETECTION_SIGNALS:
-    [SYSTEM: anthropic]  → HOST_ENV = Code
+  DETECTION_SIGNALS:                        // определяют HOST_ENV; часть — подсказка модели (БЛОК 0)
+    [SYSTEM: anthropic]  → HOST_ENV = Code    (+ сильный сигнал HOST_MODEL = claude)
     [API header present] → HOST_ENV = API
+    [Studio markers]     → HOST_ENV = Studio  (+ сигнал HOST_MODEL = gemini)
+    [X/Twitter tools]    → HOST_ENV = Chat/API (+ сигнал HOST_MODEL = grok)
     [No system prompt]   → HOST_ENV = Chat
-    [Studio markers]     → HOST_ENV = Studio
+  // ENV и MODEL — разные оси: HOST_ENV = где запущено, HOST_MODEL = чем (БЛОК 0).
 
 // ─── БЛОК 3: LOAD ORDER ───
 
@@ -150,6 +191,7 @@ ON_DEMAND_TRIGGERS:
   !memory.md      → "memory|capsule|сохрани|загрузи|состояние"
   !metrics.md     → "метрики|SESSION_EFFICIENCY|routing memory"
   !sandbox.md     → "sandbox|исследуй|exploration|эксперимент"
+  !domain.md      → "domain|domain knowledge|project context|add domain|react|react 19|jsx|hooks|typescript|frontend|kotlin|coroutine|flow|stateflow|sealed class|KMP|multiplatform|android|домен|контекст проекта|реакт|котлин"
   // ─── v8H.3 ON-DEMAND модули (загружаются по триггеру ИЛИ MODULE_*=true|or) ───
   !rag.md         → "rag|retrieval|ретривал|поиск по базе|векторная БД|документы|база знаний|raptor"
   !reasoning.md   → "reasoning|TTS|думай глубже|budget thinking|self-consistency|MCTS|цепочка рассуждений"
@@ -161,23 +203,39 @@ ON_DEMAND_TRIGGERS:
 // ─── БЛОК 4: STARTUP BEHAVIOR ───
 
 ON_LOAD:
-  1. Читаем HOST_CONFIG.HOST_MODEL → устанавливаем HOST_PROFILE
-  2. Читаем PROJECT_CARD → устанавливаем контекст проекта
-  3. Выводим STARTUP MENU (из !!core_v8H.md §MENU)
-  4. Ждём выбора пользователя
+  1. ЕСЛИ HOST_CONFIG.HOST_MODEL пусто → HOST_MODEL_AUTODETECT (БЛОК 0):
+       • HIGH confidence → set HOST_MODEL + баннер "🌐 Хост определён: <model> (авто)"
+       • LOW / не знаю     → HOST_PICK_LIST (ниже) → ЖДАТЬ выбора ПЕРЕД меню. Не угадывать.
+  2. Установить HOST_PROFILE из ЛОКАЛЬНЫХ файлов (без сети): !host_profiles.md по HOST_MODEL
+       → HOST_CAPS ; + !!core_v8H.md §1 (thinking/G-rules) ; + GROK_FLAGS (если HOST_MODEL == grok)
+       ; + HOST_ENV (BLOCK 2 HOST_DETECT_BRIDGE)
+  3. Читать PROJECT_CARD → контекст проекта
+  4. LOAD_SEQUENCE (BASE + LIVE + модули по VERSION_COMPAT)
+  5. Вывести STARTUP MENU (из !!core_v8H.md §MENU) c баннером: HOST_MODEL + HOST_ENV
+  6. Ждать выбора пользователя
 
-ЕСЛИ HOST_CONFIG не заполнен:
-  → Спрашиваем: "Какая модель является хостом? (claude/gemini/gpt/grok/другое)"
-  → Устанавливаем HOST_MODEL автоматически
+HOST_PICK_LIST:  // fallback — ручной выбор, если автодетект (БЛОК 0) неуверен
+  EMIT: "🌐 Не удалось надёжно определить хост. На какой LLM ты запускаешь P2P v8H.3?
+     [1] claude    [2] gemini   [3] gpt      [4] grok    [5] deepseek
+     [6] qwen      [7] kimi     [8] glm      [9] minimax [10] manus"
+  ON_CHOICE: записать выбор в HOST_CONFIG.HOST_MODEL → применить HOST_PROFILE + XML_POLICY
+             + GROK_FLAGS (если grok). Затем продолжить ON_LOAD с шага 2.
+  CHANGE_LATER: команда /host <модель> (или правка HOST_CONFIG.HOST_MODEL).
 
 ЕСЛИ PROJECT_CARD пустой:
   → Предлагаем заполнить, но НЕ блокируем работу
   → Используем разумные значения по умолчанию
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8H.3 Normal · Preloader
-  ROLE:        HOST_CONFIG, PROJECT_CARD, FLAGS, VERSION_COMPAT, env detection, load order
+  SYSTEM:      P2P v8H.3 High · Preloader (NATIVE / auto-host)
+  ROLE:        HOST autodetect, HOST_CONFIG, PROJECT_CARD, FLAGS, VERSION_COMPAT, env detection, load order
+  HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm | minimax | manus (10; автодетект → /host)
   COMPATIBLE:  all v8H files
   NEW_IN_v8H3: VERSION_COMPAT (legacy/v3 + 6 MODULE_* flags), CONFLICT_RESOLVER v1.0,
                6 ON-DEMAND triggers (rag/reasoning/routing/compression/security/optimization),
                live_specs в LOAD_SEQUENCE
+  NEW_NATIVE:  HOST_MODEL_AUTODETECT (SELF_IDENTIFY + CONFIDENCE_GATE), HOST_PICK_LIST [1..10],
+               HOST_MODEL="" по умолчанию (порт нативного детекта из 8L.3);
+               10 хостов (+minimax +manus, данные в live_specs)
+  API_STRINGS: claude-fable-5, claude-opus-4-8, claude-opus-4-7, claude-sonnet-4-6
+// EOF_MARKER_PRELOADER_V8H_NATIVE_VALIDATED
