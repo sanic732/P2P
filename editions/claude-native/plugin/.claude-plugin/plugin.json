@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "p2p-v8c3",
-  "displayName": "P2P 8.4.2-C — Claude Native",
-  "version": "8.4.2",
+  "displayName": "P2P 8.4.3-C — Claude Native",
+  "version": "8.4.3",
   "description": "Meta-prompt system for Claude Fable 5 / Opus 4.8 / Sonnet 4.6. 8 QUORUM agents, 11 /p2p-* commands, XML-native, SCOPE.HELM, interactive teacher mode.",
   "author": {
     "name": "P2P Project"
