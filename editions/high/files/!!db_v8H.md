@@ -34,6 +34,7 @@ KNOWLEDGE_LAYERS:
     #LINK_KIMI     → vendors/tier4.md §Kimi
     #LINK_GLM      → vendors/tier4.md §GLM
     #LINK_LIVE     → _live/live_vendors.md (G1-G20, OVERRIDE)
+    #DB_LINK_DOMAINS → !domain.md (React 19/TS · Kotlin/Coroutines/KMP reference — по триггеру domain/react/kotlin)
     PRIORITY: live_vendors > vendors_*.md > db defaults
     FRESHNESS: >60 дней → активировать DATOS Deep Search
 

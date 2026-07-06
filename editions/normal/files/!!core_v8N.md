@@ -205,11 +205,65 @@ SIGNAL_TO_NOISE_PROTOCOL:
 ╚═╝      ╚══════╝ ╚═╝     
 P2P v8N.3 - NORMAL EDITION 
 LiveSpecs: {LIVE_SPECS_DATE}
-HOST: {HOST_MODEL} | MODE: {LOAD_MODE}
+HOST: {HOST_MODEL} | MODE: {NORMAL | NORMAL+MODULES}
 ```
 
-Затем — СРАЗУ единое меню (арты режимов вверху + полный список [1-31]). ОДИН экран, без отдельной витрины.
-STARTUP_MENU:
+Затем — СРАЗУ единое меню. Печатать его ТОЛЬКО через `MENU_RENDER_ALGORITHM` (ниже) — НЕ печатать
+сырой список напрямую. Базовые [1-25] всегда AVAILABLE; модули [26-31] — AVAILABLE только если их
+файл-модуль реально загружен (EXTENSIONS_SCAN), иначе сводятся в 🔒-футер. ОДИН экран, без витрины.
+
+MENU_HEADER_RULE:
+  Строка лого: "HOST: {HOST_MODEL} | MODE: {NORMAL | NORMAL+MODULES}".
+    ЕСЛИ HOST_MODEL пусто → сначала автодетект/выбор хоста (_preloader ON_LOAD), меню ПОСЛЕ.
+    MODE = NORMAL+MODULES, если EXTENSIONS_SCAN нашёл ≥1 файл-модуль; иначе NORMAL.
+    ЕСЛИ ACTIVE непусто → добавить строку "MODULES: {имена активных модулей}".
+
+// ═════════════════════════════════════════════════════════════════════
+// 🔴 EXTENSIONS_SCAN — единый детект загруженных модулей [26-31] (источник истины).
+// RU: определяет по ФАКТУ присутствия ТЕЛА ФАЙЛА-МОДУЛЯ в контексте, а НЕ по флагам/упоминаниям.
+//     Привязан к триггерам меню (TRIGGERS_MENU) и к ext-триггерам. Ссылается _index (EXTENSIONS_ANCHOR).
+// ═════════════════════════════════════════════════════════════════════
+
+TRIGGERS_MENU: `/start` | `start` | `старт` | `/p2p` | `/menu`
+  // При ЛЮБОМ — СНАЧАЛА EXTENSIONS_SCAN, потом MENU_RENDER_ALGORITHM.
+  // Также прогонять EXTENSIONS_SCAN при первом ext-триггере (rag|reasoning|routing|compression|
+  // security|optimization|модуль) — вдруг файл-модуль дослали в текущую сессию.
+
+EXTENSIONS_SCAN:  // выполнять перед КАЖДЫМ рендером меню и при ext-триггере
+  ПРИНЦИП ДЕТЕКТА (устраняет ложный результат):
+    Модуль [26-31] считается ЗАГРУЖЕННЫМ, только если в контексте присутствует ТЕЛО его файла как
+    отдельный документ. Упоминания имени/триггера ВНУТРИ base-файлов (ядро, _preloader, _index,
+    _master) — НЕ считать (иначе всегда true). Сигнал присутствия = совпали маркеры тела модуля:
+      (a) заголовок «P2P v8N.3 — <NAME> MODULE (!<module>.md)»  И
+      (b) frontmatter «id: <name>_module_v8N» / «menu_item: NN» в теле ТОГО ЖЕ документа.
+  DETECT_TABLE:  // файл-модуль → пункт меню
+    !rag.md          (id rag_module_v8N,          menu_item 26) → [26] ACTIVE
+    !reasoning.md    (id reasoning_module_v8N,     menu_item 27) → [27] ACTIVE
+    !routing.md      (id routing_module_v8N,       menu_item 28) → [28] ACTIVE
+    !compression.md  (id compression_module_v8N,   menu_item 29) → [29] ACTIVE
+    !security.md     (id security_module_v8N,      menu_item 30) → [30] ACTIVE
+    !optimization.md (id optimization_module_v8N,  menu_item 31) → [31] ACTIVE
+  FLAG_OVERRIDE: если VERSION_COMPAT.MODULE_X=true|or, но тело файла НЕ найдено →
+    пункт остаётся LOCKED (флаг ≠ наличие данных; не галлюцинировать содержимое модуля).
+  OUTPUT: множество ACTIVE = {модули, чьё тело найдено}. Передать в AVAILABILITY / MENU_RENDER / баннер MODULES:.
+
+AVAILABILITY(item):
+  IF item ∈ [1-25]            → AVAILABLE                 // BASE, всегда из base-файлов
+  IF item ∈ [26-31]:
+     IF item ∈ ACTIVE (EXTENSIONS_SCAN) → AVAILABLE       // файл-модуль реально в контексте
+     ELSE                               → LOCKED          // файла нет → в 🔒-футер
+
+MENU_RENDER_ALGORITHM (ПЕРЕД печатью меню — ОБЯЗАТЕЛЬНО, после EXTENSIONS_SCAN):
+  1. Пересчитать ACTIVE через EXTENSIONS_SCAN, затем AVAILABILITY каждого пункта [1-31].
+  2. Печатать нумерованным списком ТОЛЬКО AVAILABLE. [1-25] попадают всегда.
+  3. LOCKED-пункты [26-31] НЕ печатать как рабочие. Свести в ОДНУ строку-футер:
+     "🔒 Модули (не загружены): {названия LOCKED}. Приложи `!<module>.md` из сборки → пункт разблокируется."
+  4. IF ACTIVE = все 6 → показать [26-31] рабочими, футера нет (MODE: NORMAL+MODULES · MODULES: все).
+  5. Частично → показать ACTIVE в блоке «🚀 РАСШИРЕННЫЕ МОДУЛИ», остальные — в 🔒-футер.
+  ЗАПРЕТ (анти-галлюцинация): НИКОГДА не печатать LOCKED-пункт как доступный и не выдумывать содержимое
+     незагруженного модуля. Выбор LOCKED → «модуль <X> не приложен; приложи !<X>.md — тогда подключу».
+
+STARTUP_MENU:  // ← ИСХОДНЫЙ реестр; печатается ТОЛЬКО через MENU_RENDER_ALGORITHM выше
   🔰 ГЕНЕРАЦИЯ И ОРКЕСТРАЦИЯ
 1.  ⚡ Quick Prompt            — Сгенерировать промпт (быстрый, Tier 0-1)
 2.  🧠 Contract Builder        — 11-шаговый архитектурный промпт-контракт (Tier 2-3)
@@ -248,15 +302,17 @@ STARTUP_MENU:
 23. 🏢 Vendor Check            — Актуальные данные по модели
 24. ⏰ DEADLINE Scanner        — Проверка устаревших API строк
 25. ❓ Help                    — Справка по командам
-26. 📦 /p2p-download           — Загрузка актуальных Live Specs по fetch
 
-🚀 РАСШИРЕННЫЕ МОДУЛИ (v8N.3) (активны при загрузке модуля)
-26. 📚 RAG / RAPTOR            — Векторный поиск и ретривал
-27. 💭 Reasoning Chains        — CoT, TTS, MCTS, Self-Consistency
-28. 🔀 Smart Routing           — Выбор модели по задаче
-29. 🗜️ Compression             — LLMLingua, Gist Tokens
-30. 🛡️ Security Audit          — Аудит промптов на уязвимости
-31. ⚙️ Optimization            — APO, OPRO, автооптимизация
+🚀 РАСШИРЕННЫЕ МОДУЛИ (v8N.3) — печатать по AVAILABILITY (загружен файл-модуль), иначе в 🔒-футер
+26. 📚 RAG / RAPTOR            — Векторный поиск и ретривал                    [MODULE: !rag.md]
+27. 💭 Reasoning Chains        — CoT, TTS, MCTS, Self-Consistency              [MODULE: !reasoning.md]
+28. 🔀 Smart Routing           — Выбор модели по задаче                        [MODULE: !routing.md]
+29. 🗜️ Compression             — LLMLingua, Gist Tokens                        [MODULE: !compression.md]
+30. 🛡️ Security Audit          — Аудит промптов на уязвимости                  [MODULE: !security.md]
+31. ⚙️ Optimization            — APO, OPRO, автооптимизация                    [MODULE: !optimization.md]
+
+// СЛЭШ-КОМАНДЫ (не нумерованные пункты меню): /p2p-download — загрузка актуальных Live Specs по fetch;
+// /start /carry /diagnose /graph /enhance /arena /host /p2p-capsule /p2p-deadline /p2p-metrics (см. _index MACROS).
 
 // ─────────────────────────────────────────────────────
 // §5. TIER SYSTEM + LOAD SCORE

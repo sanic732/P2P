@@ -34,6 +34,9 @@ CAPABILITY_MATRIX:
 // §2. ROUTING LOGIC
 ROUTING_LOGIC:
   DEFAULT_PRIMARY: = HOST_CONFIG.HOST_MODEL   // НЕ хардкод Grok — primary это текущий хост
+  // NEW-хосты minimax/manus (TRACK-ONLY): могут быть primary (P2P РАБОТАЕТ на них, self-exec,
+  //   adaptive plain-text контракт), но как ЦЕЛЬ роутинга не выбираются — routed sub-tasks идут
+  //   по FALLBACK_CHAIN (grok/claude/gemini/deepseek).
   Tier 0-1   → cheapest/fastest (deepseek-v4-flash, qwen3-plus, gemini-3.1-flash)
   Tier 2     → balanced (grok-4.3, claude-sonnet-4-6, gemini-3.1-pro-latest)
   Tier 3-4   → top (claude-fable-5 / claude-opus-4-8 ; grok Heavy-16 ТОЛЬКО на grok host)
@@ -60,6 +63,8 @@ CONTRACT_TRANSLATION:
   qwen:     tool_use plain; preserve_thinking:true agentic (G18)
   kimi:     thinking on|off; Mental Sandbox для strict format; checkpoint before writes
   glm:      ## Structured Segmentation; temp=0 для JSON
+  minimax:  adaptive plain-text/Markdown (host-only; Token Plan billing — таймер, не токены)
+  manus:    adaptive plain-text/Markdown (host-only; agent mode; ⚠ CRITICAL geopolitical risk)
 
 // §5. UNIFIED OUTPUT SCHEMA (downstream !memory/!metrics/!debug зависят от этого)
 UNIFIED_OUTPUT:
