@@ -6,6 +6,38 @@
 
 ---
 
+## [v8.4.2] — 2026-07-07 · UNRELEASED — pxpipe refusal-фикс + docs 8C.3 + YAML-шапки light + rename папок
+
+### Added
+- **8C.3: полный набор документации в `editions/8.4.2-C/docs/`** (раньше — только PXPIPE_GUIDE): `README.md` (навигатор + выбор формы поставки), `INSTALL_GUIDE.md` (обе формы: Code/Cowork плагин И Chat/Projects for-chat), `FAQ_И_ОШИБКИ.md` (FAQ + ошибки E1–E8: префикс `/p2p-v8c3:`, Code≠Cowork, YAML strict, pxpipe…), `AGENTS_GUIDE.md` (QUORUM: ростер, запуск, паттерны, веса, VETO).
+- **`ЧТО_ЗАГРУЖАТЬ.txt` в трёх сборках** (`8.4.2-C/for-chat/docs/`, `8.4.2-H/docs/`, `8.4.2-N/docs/`) — простой текст без markdown: обязательный минимум (C: 6 файлов ~28K т.; N: 6 файлов ~27K; H: 8 файлов ~32K, +1 на Grok) и пронумерованный список всех остальных файлов с токен-оценками (gpt-tokenizer по реальным файлам) и описаниями. Закрывает постоянный вопрос пользователей «какие файлы обязательны и сколько это токенов». Ссылки добавлены в docs/README (H/N) и INSTALL_GUIDE/README docs (C).
+
+### Fixed
+- **🚨 8C.3 pxpipe: safety-refusal у Fable 5 на одиночных PNG** (live-трафик, `events.jsonl`): профиль «1 PNG со static-слэбом ~16k симв + почти без текста» (headless `claude -p`) флагается ~70% (5/7) — `stop_reason: refusal`; multi-PNG чист (15/15). Фикс: **`PXPIPE_MIN_COMPRESS_CHARS=24000`**; upstream pxpipe-proxy v0.8.0 ручки не имеет → задокументирован патч transform-фабрики в `dist/node.js` (перезатирается `npm install`). Обновлены `PXPIPE_GUIDE.md`, `commands/p2p-pxpipe.md` (алгоритм `on`: npm/npx вместо устаревшего pnpm build), `skills/pxpipe/VERIFICATION.md`.
+- **🔴 8L.3: YAML-шапки плагина** (хвост, отмеченный в 8.4.1): 14 команд без `description` (добавлен из `scope`) + `p2p-karpathy.md` с незакавыченным `: ` (ронял парсер Claude Code). 15 файлов проверены pyyaml.
+
+### Changed
+- **Bump плагинов `8.4.1 → 8.4.2`** (`p2p-v8c3`, `p2p-v8l3`) — триггер кнопки Update.
+- **Каталоги редакций** `editions/8.4.1-{C,H,N,L}` → **`editions/8.4.2-{C,H,N,L}`** (папка = номер релиза); обновлены `marketplace.json → source`, корневые README (ru/en), COMPARISON.md, README редакций, skill p2p-release.
+
+---
+
+## [v8.4.1] — 2026-07-07 · pxpipe optical compression (8C.3) + rename редакций (запись восстановлена)
+
+> Запись добавлена задним числом 2026-07-07 (релиз ушёл без строки в корневом CHANGELOG).
+
+### Added
+- **⭐ 8C.3: pxpipe** — оптическое сжатие токенов (текст → плотный PNG; vision-биллинг по площади пикселей; **только Fable 5**): слой L-OPTICAL (compression), PXPIPE_GATE (хендофф QUORUM/CAPSULE), команда `/p2p-pxpipe` + skill `pxpipe` (compress/measure/byte-guard). Замеры: ~82% экономии на блок; прокси — 53% холодный / 93.5% тёплый ход. Гейты: READER (Fable 5/GPT-5.6), PROFIT (≥8k симв), BYTE-GUARD + DECISION LEDGER. Атрибуция: [teamchong/pxpipe](https://github.com/teamchong/pxpipe) (MIT), DeepSeek-OCR (arXiv 2510.18234).
+- Релиз [v8.4.1](https://github.com/sanic732/P2P-4PDA-edition/releases/tag/v8.4.1): 4 zip-ассета + `p2p-v8c3.plugin` (бандл дозалит 2026-07-07).
+
+### Changed
+- **Каталоги редакций** `editions/{claude-native,high,normal,light}` → `editions/8.4.1-{C,H,N,L}`; Fable 5 / Opus 4.8 в `compatibility.models`; displayName «8.4.1-C».
+
+### Known issues
+- ⚠️ git-тег `v8.4.1` указывает на коммит `ff34c27` (06.07, БЕЗ pxpipe) — merge pxpipe (`b733548`, PR #38) произошёл после создания тега → авто-ассеты «Source code» релиза не содержат pxpipe. Zip-ассеты собраны из правильного состояния.
+
+---
+
 ## [v8.3.9] — 2026-06-28 · SESSION split (8L.3) + light → local-only + bump доставки
 
 ### Changed
