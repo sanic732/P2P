@@ -9,9 +9,9 @@
   "plugins": [
     {
       "name": "p2p-v8c3",
-      "source": "./editions/claude-native/plugin",
-      "description": "P2P v8C.3-BETA Claude Native Edition — PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 11 commands, XML-native, SCOPE.HELM",
-      "tags": ["latest", "beta", "claude-native"]
+      "source": "./editions/8.4.1-C/plugin",
+      "description": "P2P 8.4.1-C Claude Native Edition — PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 12 commands, XML-native, SCOPE.HELM, pxpipe optical token compression (Fable 5)",
+      "tags": ["latest", "claude-native", "pxpipe"]
     }
   ]
 }

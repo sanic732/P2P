@@ -37,7 +37,7 @@
 - **Проверка свежести.** По маркерам `VERSION:` + `// END OF FILE` (не sha256 — для live-контента содержимое меняется). Для статичных чанков (8L.3) — sha256 + EOF-маркер + размер ±15%.
 - **Поведение без сети.** Используется вшитый snapshot (`LITE_SNAPSHOT` в `!!db`) + предупреждение о дате; удалённые модули недоступны.
 - **8L.3 (4-слойная lazy-модель).** `L0 BOOT → L1 RESOLVER → L2 TRANSPORT → L3 GIST CLOUD`. DEPENDENCY_RESOLVER строит план загрузки (транзитивные `requires` + dedup + MUTEX-чек) **до** обращения к сети, затем fetch с проверкой целостности.
-- Источник механики: `editions/light/CHANGELOG.md` (8L.3) и `Live_UPDATE/INTEGRATION_SNIPPET.md` (переносится в 8C/8H/8N).
+- Источник механики: `editions/8.4.1-L/CHANGELOG.md` (8L.3) и `Live_UPDATE/INTEGRATION_SNIPPET.md` (переносится в 8C/8H/8N).
 
 > 13 форумных постов «Live Specs changelog» (раздел «Архив» в дереве постов) — это история дельт справочника (C/A/N/G).
 
