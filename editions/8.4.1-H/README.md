@@ -1,0 +1,29 @@
+# 🟥 P2P 8.4.1-H — High \ Hybrid Edition  <sub>(внутр. тег: 8H.3)</sub>
+
+> 🇷🇺 Русский · 🇬🇧 [English](README.en.md) · ⬆️ [Назад к выбору редакции](../../README.md) · 📖 [Расшифровка имени](../../NAMING.md)
+
+**Версия:** 8H.3 · **Токен-бюджет:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
+
+> 📖 **Полная инструкция (Google Docs):** https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
+
+## Для кого
+Тех, кто сидит на **Grok** или хочет «всё в одном» — максимальную универсальную сборку под 8 хостов.
+
+## Чем отличается
+Слияние веток **8A.1 (Gemini AI Studio) + 8G.1 (Grok)**. Поведение агентов host-gated: на Grok активируется нативный **Heavy-16** (параллелизм в 5-7× быстрее) и **X Firehose**, на остальных — симулированный QUORUM. Универсальный выбор хоста в `_preloader.md`.
+
+## Плюсы и минусы
+- ✅ Максимальная капасити и универсальность; нативный параллелизм на Grok; полный арсенал техник.
+- ⚠️ Тяжёлая (FULL ~200K токенов) — не для слабых хостов; плагин-форма пока в работе (поставка — плоские `.md` + ZIP).
+
+## Требования к хосту
+Grok 4.x/Heavy, Gemini 3.x, GPT-5.5, DeepSeek, Qwen, Kimi, GLM, MiniMax — 8 хостов; хост задаётся в `_preloader.md`.
+
+## Что нового
+Поколение .3: 6 ON-DEMAND модулей, VERSION_COMPAT, динамическое меню, base-model идентификаторы, live specs 17.06.26. Объединяет бывшие A.1 и G.1.
+
+## Установка
+Плоский набор `.md` → грузить в Projects/NotebookLM/system prompt; в `_preloader.md` указать `HOST_MODEL`. ZIP-ассет: `p2p-high-8H.3.zip`.
+
+> ⚠️ Не смешивайте файлы разных редакций — архитектуры синтаксически несовместимы.
+> 📊 Сравнение всех 4 редакций — [`COMPARISON.md`](../COMPARISON.md).

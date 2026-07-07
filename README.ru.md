@@ -30,10 +30,10 @@ P2P (Prompt-to-Prompt) — модульная оркестрирующая си�
 
 | Редакция | Для кого | Хост | Старт |
 |---|---|---|---|
-| 🟦 **[claude-native](editions/claude-native/README.md)** (8C.3) | Работаешь в **Claude** (Code / Cowork / Projects) | только Claude | ~7K |
-| 🟥 **[high](editions/high/README.md)** (8H.3) | Хочешь максимум / сидишь на **Grok** | 8 хостов (нативно Grok) | ~60K |
-| 🟩 **[normal](editions/normal/README.md)** (8N.3) | Твоей модели нет среди «нативных» | любой из 8 | ~60K |
-| 🟦 **[light](editions/light/README.md)** (8L.3) | Экономия токенов / лимит контекста / **новичкам** | универсальный | **~18K** |
+| 🟦 **[8.4.1-C](editions/8.4.1-C/README.md)** (Claude, внутр. 8C.3) | Работаешь в **Claude** (Code / Cowork / Projects) | только Claude | ~7K |
+| 🟥 **[8.4.1-H](editions/8.4.1-H/README.md)** (внутр. 8H.3) | Хочешь максимум / сидишь на **Grok** | 8 хостов (нативно Grok) | ~60K |
+| 🟩 **[8.4.1-N](editions/8.4.1-N/README.md)** (внутр. 8N.3) | Твоей модели нет среди «нативных» | любой из 8 | ~60K |
+| 🟦 **[8.4.1-L](editions/8.4.1-L/README.md)** (внутр. 8L.3) | Экономия токенов / лимит контекста / **новичкам** | универсальный | **~18K** |
 
 📊 Подробное сравнение — [`editions/COMPARISON.md`](editions/COMPARISON.md) · 📖 расшифровка имён — [`NAMING.md`](NAMING.md).
 
