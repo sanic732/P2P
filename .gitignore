@@ -1,6 +1,15 @@
 # Release artifacts (built locally, never committed)
 *.plugin
 *.zip
+*.7z
+*.rar
+
+# Local working artifacts (не канон, не публикуем)
+*.patch
+experiments/
+HANDOFF_*.md
+editions/841*.txt
+editions/gemini_lite.txt
 
 # OS
 .DS_Store

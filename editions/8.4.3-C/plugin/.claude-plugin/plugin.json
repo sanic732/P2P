@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "p2p-v8c3",
+  "displayName": "8.4.3-C — Claude Native Edition",
+  "version": "8.4.3",
+  "description": "Meta-prompt system for Claude Fable 5 / Opus 4.8 / Sonnet 4.6. 8 QUORUM agents, 12 /p2p-* commands, XML-native, SCOPE.HELM, teacher mode, pxpipe optical token compression (Fable 5).",
+  "author": {
+    "name": "P2P Project"
+  },
+  "keywords": [
+    "prompt-engineering",
+    "meta-prompt",
+    "quorum",
+    "multi-agent",
+    "claude-native",
+    "xml-native",
+    "scope-helm",
+    "teacher",
+    "pxpipe",
+    "optical-compression",
+    "token-optimization"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
+  "repository": "https://github.com/sanic732/P2P-4PDA-edition.git",
+  "commands": "./.claude/commands",
+  "agents": [
+    "./.claude/agents/p2p-anon.md",
+    "./.claude/agents/p2p-architecton.md",
+    "./.claude/agents/p2p-axiom.md",
+    "./.claude/agents/p2p-datos.md",
+    "./.claude/agents/p2p-helios.md",
+    "./.claude/agents/p2p-iris.md",
+    "./.claude/agents/p2p-tecton.md",
+    "./.claude/agents/p2p-vector.md"
+  ],
+  "skills": "./.claude/skills",
+  "engines": {
+    "claude-code": ">=1.0.0",
+    "cowork": ">=0.1.0"
+  },
+  "compatibility": {
+    "platforms": [
+      "claude-code",
+      "cowork",
+      "claude-app"
+    ],
+    "models": [
+      "claude-fable-5",
+      "claude-opus-4-8",
+      "claude-opus-4-7",
+      "claude-sonnet-4-6",
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-6"
+    ]
+  }
+}

@@ -6,6 +6,34 @@
 
 ---
 
+## [v8.4.3] — 2026-07-13 · UNRELEASED (Cowork) — Live Specs v8.6.3 + host-detect fix + Grok knowledge + Agent Skills + канон ошибок
+
+### Added
+- **Agent Skills генератор (`!skills.md`, E1):** новый ON-DEMAND модуль в **C(for-chat)/H/N** — генерирует `SKILL.md` по стандарту agentskills.io (frontmatter-правила name/description, progressive disclosure, description-валидатор, анти-паттерны, таргеты Grok/Claude/Cursor/Codex). Пункт меню **[42]** (H/C) / **[32]** (N, EXTENSIONS_SCAN-гейт) + команда `/p2p-skill`. **Lite — намеренно без skills** (решение Master).
+- **Grok target-слой (E3):** `vendors/grok.md` (grok-4.5/4.3, G14 safe-params) в **C/N**; секция `GROK_JSON_TARGET` (строгий JSON envelope + `json_schema strict:true` + Type H guard) в contract-модулях. Полный Heavy-16 пак остаётся High/Light-эксклюзивом.
+- **`docs/GROK_HOST_GUIDE.md` (E4, High):** Grok Build CLI (install/device-auth/headless), grok.com (нативные агенты, Agent Skills), offload-подводный камень.
+- **`editions/G_ERRORS_CANON_AUDIT_8.4.3.md` (E6):** отчёт-diff аудита реестров ошибок.
+
+### Changed
+- **Live Specs → v8.6.3 (E2):** во всех 4 сборках (H/C/N + L через Gist; L-заливка отложена до `gh auth login`). Grok 4.5 GA 2026-07-08, GPT-5.6 GA, Fable 5 #1 Overall.
+- **⭐ Интеграция Live Specs в BASE (Code-ревизия 2026-07-14):** Cowork только ПОДМЕНИЛ live_specs, но НЕ перенёс данные в BASE-файлы (застряли на 06-12). Приведены к канону 2026-07-13 во всех 4 сборках: `tier1-4`, `live_vendors`/`_live_specs`, `live_claude`/`_live_claude`, `MANIFEST`/`_live_manifest`, db-реестры (`!!db_v8x` §API_STRINGS), L-монолит `!!db_v8L`/`!!core_v8L`. Добавлены: Sonnet 5, GPT-5.6 Sol/Terra/Luna, Grok 4.5, GLM-5.2, Kimi K2.7 Code, Mythos 5; ретайр Sonnet 4.6; снят ложный «Fable 5 SUSPENDED». **⚠ Пред-баг H исправлен:** Claude context 200K→1M, Opus 4.x $15/$75→$5/$25. Логика/паттерны/G-errors-каталог не тронуты. Карта размещения данных + audit-скрипт → `_SERVICE/`.
+- **Дубль `vendors/grok.md` удалён (Code-ревизия):** в **C** (обе формы) и **N** — Grok уже в tier2/tier3; ссылки (`!!core`/`_index`/`_master`/`!contract`/`contract_builder`/`!pipeline`) → tier2/tier3. В **H** `grok.md` сохранён (легитимный host-профиль).
+- **✂️ live_specs → ДЕЛЬТА (2026-07-14): 91849 → 31061 б (−66%), токены 31351 → 10614.** Реализован 2-слойный контракт из `_SERVICE/LIVE_SPECS_DATA_MAP.md`: стабильные спеки моделей живут в BASE (`vendors/tier*`, `live_vendors`, `db`), а live_specs несёт только волатильное — CRITICAL_DELTA, UPCOMING_DEADLINES, USER_SANDBOX, per-vendor `CHANGES`, активный `ERROR_REGISTRY`, weekly `ARENA`, `MEDIA_MODELS`, `CHANGES_LOG`. Раскатано на канон + 4 embedded (все идентичны, sha `3190449145d6`) и залито в оба gist (LIVE `a64245c3` + арсенальный); новый revision арсенала `cfc670a8…`, канарейка/CORE_PLUS в `_index_v8L` перепиннуты, `size_kb: 90→30`. **Эффект:** в наборах H/N live_specs 27 800 → 10 600 токенов.
+- **📊 `ЧТО_ЗАГРУЖАТЬ.txt` (C/H/N) пересчитан реальным токенайзером** (o200k / gpt-tokenizer) по фактическим файлам: H минимум 32 000→**34 400** (на Grok 35 000→**38 600**), N 27 000→**29 200**, C **28 400** (+ исправлен заголовок «8.4.2-C»→8.4.3-C); добавлен `!skills.md`.
+- **🔴 Фиксы фактических ошибок в docs (C/H/N):** неверный маппинг DeepSeek `chat→v4-pro` → **`chat`/`reasoner`→`v4-flash`** (live_specs: «NOT to V4-Pro»), дедлайн уточнён `24.07 15:59 UTC, no grace`; `qwen3-plus`→`qwen3.6-plus`; `glm-5.1-flash`→`glm-5.2`/`glm-5.1`.
+- **🔴 `vendors/grok.md` (H) — исправлена атрибуция:** Heavy-16 и 2M приписывались `grok-4.3` → разделено на `grok-4.5` (500K, ⚠ не EU) · `grok-4.3` (1M) · `grok-4.20` (2M, Heavy-16) · `grok-build-0.1`. В H файл остаётся легитимно (от него зависит `!grok_heavy.md`); в C/N удалён как дубль tier-данных.
+- **🗑 BREAKING — плагинная форма 8L.3 УДАЛЕНА (2026-07-14):** `editions/8.4.3-L/plugin/` (27 файлов) + бандл `p2p-v8l3.plugin` удалены навсегда. Причина: команды/скиллы Lite-плагина пересекались с 8C.3 → при установке обоих плагинов в Claude Code происходило взаимное «заражение» одноимёнными файлами. **8L.3 теперь только файловая сборка:** `boot/` (4 файла) + `docs/`. Для Claude Code/Cowork → **8C.3 (`p2p-v8c3`)**; плагин в репо теперь ровно один. Ссылки починены в README(.en)/INSTALL/docs/RELEASE_CHECKLIST; `marketplace.json` не трогали (`p2p-v8l3` убран оттуда ещё в 8.3.9).
+- **⭐ 8L.3 BOOT: форсирование fetch + компрессия −52% (Antigravity-пасс 2026-07-14, лог реконструирован):** прежние правки L дали побочку — Gemini сразу отказывался («нет fetch»). Фикс: **режим `LITE_ONLY` удалён** (вместе с `FETCH_HONESTY`/P8 и `DECLINE`-fallback), `FETCH_CAPABILITY_GATE.JUDGE` сделан безусловным, все 8 хостов → `GIST_LAZY_FETCH ✓`; добавлены `NO_OFFLINE_ILLUSION` (ЗАПРЕЩЕНО «OFFLINE/SKIPPED/ограничения сессии»), форс-инструкция в `/p2p-verify`, класс ошибки `R. Refusal/Laziness`. Автодетект хоста (E5) → явный вопрос [1..8]. BOOT сжат ~87→~42 KB (−52%). **Итог: fetch работает на claude/gemini/gpt/grok/deepseek/qwen.** ⚠ Побочно утрачена честная деградация (риск фабрикации чанков на хосте без реального fetch) — см. `_SERVICE/CHANGELOG.md`.
+- **L Gist-слой → v8.6.3 (E2-L ЗАКРЫТ, 2026-07-14):** LIVE gist `a64245c3` → v8.6.3; арсенальный gist `7727406` (`gist_vendors`/`gist_host_engine`/`gist_live_specs`) → канон; новый revision `85411b2f`; `_index_v8L` канарейка + CORE_PLUS перепиннуты (gist_route не менялся, sha256 валиден). Заливка через `gh gist edit` (git push блокируется sandbox).
+- **Host-detect fix (E5, H/N/L `_preloader` БЛОК 0):** `NORMALIZE` HOST_MODEL (lowercase + синонимы grok), `ENV_SIGNALS` (HIGH при неуверенном self-name), заметный `HOST_PICK_LIST` fallback, `PERSIST`, хинт `/host grok`. **C — Claude-only, не трогали.**
+- **Канон ошибок (E6):** `Type Q — L-OPTICAL` синхронизирован в обе C-формы (было только в plugin-эталоне); заголовки «Type A–P» → «Type A–Q».
+- **Bump 8.4.2 → 8.4.3:** каталоги `editions/8.4.3-*`, `plugin.json` (C/L), `marketplace.json` source/description, README редакций.
+
+### Deferred (требует `gh auth login`, делает Master/Claude Code)
+- ~~Заливка live_specs v8.6.3 в Gist `a64245c3f824f45708519d57e0d62408` (E2-L).~~ ✅ ВЫПОЛНЕНО 2026-07-14 (+ арсенальный gist + re-pin канарейки).
+- Пере-упаковка архивов, ветка + PR, push (BASE-правки в `new_version` ещё не запушены). См. `HANDOFF_8.4.3_для_Claude_Code.md`.
+- (опц.) live_specs trim 91KB→дельта — файл регенерируется апстримом, durable-фикс = политика в `_SERVICE/LIVE_SPECS_DATA_MAP.md §4`.
+
 ## [v8.4.2] — 2026-07-07 · UNRELEASED — pxpipe refusal-фикс + docs 8C.3 + YAML-шапки light + rename папок
 
 ### Added
