@@ -21,10 +21,10 @@ Claude Code кэширует плагин по строке версии:
 ## Чеклист (по шагам)
 
 ### 1. Версии
-- [ ] Менял что-либо в `editions/claude-native/plugin/**`? → бампни `version` в
-      `editions/claude-native/plugin/.claude-plugin/plugin.json` (напр. `8.3.3-C` → `8.3.4-C`).
-- [ ] Менял `editions/light/plugin/**`? → бампни `editions/light/plugin/.claude-plugin/plugin.json`
-      (напр. `8.3.2-L` → `8.3.3-L`).
+- [ ] Менял что-либо в `editions/<ver>-C/plugin/**`? → бампни `version` в
+      `editions/<ver>-C/plugin/.claude-plugin/plugin.json` (напр. `8.4.2` → `8.4.3`) + `displayName`.
+- [ ] ⚠️ **У 8L.3 плагина НЕТ** (удалён 2026-07-14 — конфликт команд/скиллов с 8C.3 при установке обоих).
+      Lite — только файловая сборка (`editions/<ver>-L/boot/` + `docs/`). Плагин в репо ровно один: `p2p-v8c3`.
 - [ ] Версия задана ТОЛЬКО в `plugin.json`, НЕ дублируется в корневом `marketplace.json`.
 - [ ] Запись в `CHANGELOG.md`.
 
@@ -41,13 +41,13 @@ Claude Code кэширует плагин по строке версии:
 Каждый меняется, если менялись его файлы:
 | Ассет | Источник | Как собрать |
 |---|---|---|
-| `p2p-v8c3.plugin` | `editions/claude-native/plugin/` | forward-slash zip (Python `zipfile`), искл. `pack.*`,`*.plugin`,`*.zip`,`.git` |
+| `p2p-v8c3.plugin` | `editions/<ver>-C/plugin/` | forward-slash zip (Python `zipfile`), искл. `pack.*`,`*.plugin`,`*.zip`,`.git` |
 | `p2p-8C.3-cowork-code.zip` | = копия `p2p-v8c3.plugin` | `cp` |
-| `p2p-v8l3.plugin` | `editions/light/plugin/` | forward-slash zip |
-| `p2p-8C.3-for-chat.zip` | `editions/claude-native/for-chat/` | файлы в КОРНЕ (без обёртки) |
-| `p2p-high-8H.3.zip` | `editions/high/` | обёртка `high/` |
-| `p2p-normal-8N.3.zip` | `editions/normal/` | обёртка `normal/` |
-| `p2p-light-8L.3.zip` | `editions/light/` | обёртка `light/`, БЕЗ `.plugin`-артефакта |
+| `p2p-8C.3-for-chat.zip` | `editions/<ver>-C/for-chat/` | файлы в КОРНЕ (без обёртки) |
+| `p2p-high-8H.3.zip` | `editions/<ver>-H/` | обёртка `high/` |
+| `p2p-normal-8N.3.zip` | `editions/<ver>-N/` | обёртка `normal/` |
+| `p2p-light-8L.3.zip` | `editions/<ver>-L/` | обёртка `light/` (boot/ + docs/ + README/INSTALL/CHANGELOG) |
+> ⚠️ `p2p-v8l3.plugin` **больше не собирается** — плагинная форма Lite удалена 2026-07-14.
 
 > `.plugin` — это zip с forward-slash путями. `Compress-Archive` на Windows кладёт
 > **backslash** → нестандартно, часть распаковщиков ломается. Собирай Python `zipfile`
