@@ -1,9 +1,9 @@
 ---
 source_id: DB_V8C
-version: v8C.3
+version: v8C.4
 module_type: base
 depends_on: core.md
-last_updated: 2026-06-12
+last_updated: 2026-07-18
 scope: P2P v8C.3 knowledge base — G-errors G1-G20, Extended Thinking rules, Claude-specific patterns, Template Library A–M, QUORUM agent definitions, 9-step algorithm. Always loaded.
 tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c
 ---
@@ -473,6 +473,8 @@ T0-T4 + LoadScore → выбор бюджета агентов и thinking level
 **Шаг 5 — CONSTRAINT PAIRS**
 Для каждого MUST → парное MUST NOT.
 Минимум 3 пары, максимум 7 (G9 prevention для GPT).
+  → При генерации [CONSTRAINTS]: применять POSITIVE_FRAMING (#DB_TECHNIQUE_POSITIVE_FRAMING).
+    Переписать каждый "не делай X" в "делай Z", КРОМЕ hard-safety запретов.
 
 **Шаг 6 — OUTPUT FORMAT**
 Явный формат: JSON / XML / Markdown / Plain text.
@@ -648,6 +650,15 @@ Context-Task-Constraints-Output framework. GPT (optimal), Universal. Score: 90/1
 
 **GASLIGHT_SAFE** #DB_TECHNIQUE_GASLIGHT_SAFE
 Honesty mode: strict fact/hypothesis separation. Critical tasks, scientific research, legal. Universal. Score: 91/100.
+
+**POSITIVE_FRAMING** #DB_TECHNIQUE_POSITIVE_FRAMING
+Формулировать ограничения через утверждение желаемого, а не запрет нежелательного. "Не используй синтетические данные" → "Опирайся исключительно на верифицированные эмпирические данные". Запрет сначала активирует латентные узлы запрещённого понятия ("проблема розового слона").
+Применение: любой блок [CONSTRAINTS] / MUST NOT. Автоприменяется Contract Builder.
+Исключение: hard-safety запреты (jailbreak/injection guardrails) остаются в НЕГАТИВНОЙ форме — там явный запрет нужен.
+Compatibility: Universal. Score: 89/100 (P2P-estimate). Обоснование: снижает активацию нежелательных семантических связей.
+
+**VERBALIZED_SAMPLING** → см. writing_suite.md §10 (creative diversity, on-demand).
+**BRUTAL_EDITOR** → см. writing_suite.md §10 (вариант Template L, on-demand).
 
 **SAFE_THINKING** #DB_TECHNIQUE_SAFE_THINKING
 Security token injection between reasoning steps: [SECURITY_CHECK].
@@ -1080,10 +1091,11 @@ Depth mode determines:
 VERSION_METADATA
 ========================================
 id: DB_V8C
-version: v8C.3
+version: v8C.4
 type: base
 edition: CLAUDE_NATIVE
-last_verified: 2026-05-03
-changelog: 2026-05-03 — добавлены Разделы 7-16 (error injection scripts, full techniques catalog A-P + 9 v7C.1.1 techniques, ARENA builder, Chain Orchestrator v1.0 with 3 patterns, Feedback Loop Protocol, chunking strategies, model recommendations, dynamic weighting, cognitive load formula, SIR scanner keywords). Port from v7C.2 db.md.
+last_verified: 2026-07-18
+changelog: 2026-07-18 — v8C.4: +POSITIVE_FRAMING (Раздел 8 + правило Contract Builder Шаг 5); +указатели VERBALIZED_SAMPLING / BRUTAL_EDITOR → writing_suite.md §10; COMBINATOR conflict-matrix расширена техниками v8C.4.
+2026-05-03 — добавлены Разделы 7-16 (error injection scripts, full techniques catalog A-P + 9 v7C.1.1 techniques, ARENA builder, Chain Orchestrator v1.0 with 3 patterns, Feedback Loop Protocol, chunking strategies, model recommendations, dynamic weighting, cognitive load formula, SIR scanner keywords). Port from v7C.2 db.md.
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

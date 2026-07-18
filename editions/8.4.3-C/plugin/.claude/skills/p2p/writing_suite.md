@@ -1,12 +1,12 @@
 ---
 source_id: WRITING_V8C
-version: v8C.3
+version: v8C.4
 module_type: on_demand
 depends_on: [db.md, contract_builder.md, agents.md]
 tags: [writing, constraint-prompting, tone, humanization, anti-ai-detector]
 triggers: [write, написать, текст, статья, article, post, пост, copy, copywriting, humanize, humanized, anti-ai, ai-detector]
-last_updated: 2026-05-03
-last_verified: 2026-05-03
+last_updated: 2026-07-18
+last_verified: 2026-07-18
 ---
 
 # writing_suite.md — Writing Quality Control (v8C.3)
@@ -254,6 +254,25 @@ ELSE → CASUAL_COMMENT (safest default)
 
 ---
 
+## §10. CREATIVE DIVERSITY & SELF-CRITIQUE (v8C.4)
+
+> On-demand творческие техники. Полные блоки живут здесь; строки-указатели — в db.md Раздел 8.
+
+**VERBALIZED_SAMPLING** #DB_TECHNIQUE_VERBALIZED_SAMPLING
+Против mode collapse: запросить N ответов + явную вероятность каждого, семплировать из хвостов — В РАМКАХ content-policy. Ортогонально temperature.
+Pattern: "Generate 5 responses to the query, each in a separate <response> tag with <text> and numeric <probability>. Sample from the tails: each probability < 0.10. Stay within content policy."
+Применение: creative writing, диалоги/симуляции, синтез данных, open-ended QA, brainstorm-фаза QUORUM (IRIS).
+DEFAULT OFF для research/legal/factual — вероятности плохо калиброваны вне creative.
+Compatibility: Universal (сильнее на способных моделях). Score: 90/100 creative / 60/100 factual (P2P-estimate).
+Источник/Метрики: arXiv 2510.01171 (ICML'26): ×1.6–2.1 diversity, +25.7% human eval, recovers 66.8% base diversity.
+
+**BRUTAL_EDITOR** #DB_TECHNIQUE_BRUTAL_EDITOR (вариант Template L → db.md #DB_TEMPLATE_L)
+Хук в конце промпта: "First, score your answer 1-10 on clarity, usefulness, accuracy. Then rewrite it to hit a 10. Flag anything you're guessing at."
+НЕ для reasoning-native моделей в reasoning-режиме (дублирует внутренний critique → downgrade).
+Compatibility: Claude/GPT/Gemini standard. Score: 90/100 письмо/анализ (P2P-estimate).
+
+---
+
 <!-- SOURCE_META: type=on-demand | priority=4 | writing=true | constraint-prompting=true | tone-spectrum=9 | banned-words=extended | qc-4-criteria=true | ported-from=v7C.2 -->
 
 
@@ -261,9 +280,10 @@ ELSE → CASUAL_COMMENT (safest default)
 VERSION_METADATA
 ========================================
 id: WRITING_V8C
-version: v8C.3
+version: v8C.4
 type: on_demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-12
+last_verified: 2026-07-18
+changelog: 2026-07-18 — v8C.4: +§10 CREATIVE DIVERSITY & SELF-CRITIQUE (VERBALIZED_SAMPLING; BRUTAL_EDITOR как вариант Template L). Указатели — db.md Раздел 8.
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
