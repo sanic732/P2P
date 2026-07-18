@@ -136,7 +136,7 @@ MUST NOT: Hallucinate факты вне контекста.
 VERSION_METADATA
 ========================================
 id: RAG_MODULE_V8C3
-version: v8C.3
+version: v8C.4
 type: on-demand
 edition: CLAUDE_NATIVE
 last_verified: 2026-07-18
