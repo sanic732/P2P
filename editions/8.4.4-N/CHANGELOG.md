@@ -12,6 +12,13 @@
 - **Внутренняя версия** v8N.3 → **v8N.4**; **внешний релиз** 8.4.3 → **8.4.4** (координированно).
 - **Источники техник:** `docs/CREDITS_TECHNIQUES.md` (arXiv, авторы, лицензии).
 
+### [HOTFIX · 2026-07-18] !!core_v8N.md — восстановлены 3 потерянных блока данных
+Сравнение с эталоном `!!core_v8H.md` (v8.4.3-H) выявило 3 потери при сборке ядра v8N.4:
+- **🔴 QUICK_COMMANDS:** полный блок 24 слэш-команд отсутствовал (осталась 1 строка-комментарий) → восстановлен с адаптацией нумерации под N-edition (25+7 пунктов).
+- **🔴 HOST_PROFILES minimax/manus:** 2 TRACK-ONLY host-only профиля полностью исчезли → восстановлены (v8N.4 identity, совпадают с _index.md «10 хостов»).
+- **🔴 VERSION_METADATA.NEW_IN_v8N:** файл обрезан на строке 649 (`- G-`) → восстановлен полный список (14 строк из v8H + 5 строк дельты v8N.3/v8N.4).
+- Аудит 8.4.4-H и 8.4.4-L потерь не выявил.
+
 ## [8.4.3-N · 2026-07-13 · Cowork] Live Specs v8.6.3 · host-detect fix · Grok target-слой · Agent Skills
 - **E2 Live Specs → v8.6.3:** `files/_live/live_specs.md` обновлён; MANIFEST version-пины → v8.6.3.
 - **E5 Host-detect fix (`_preloader` БЛОК 0):** `NORMALIZE` HOST_MODEL → lowercase + синонимы grok; `ENV_SIGNALS` (HIGH при неуверенном self-name); LOW → обязательный `HOST_PICK_LIST` перед меню; `PERSIST`; хинт `/host grok`.
