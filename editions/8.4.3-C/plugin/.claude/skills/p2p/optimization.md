@@ -6,12 +6,12 @@ triggers: "optim|оптимиз|APO|OPRO|автоматическ|улучши �
 depends_on: core.md
 last_updated: 2026-07-18
 token_estimate: ~3000
-scope: Автоматическая оптимизация промптов для P2P v8C.3 — APO, OPRO, EvoPrompt, итеративное улучшение. Загружается по триггеру или MODULE_OPTIMIZATION=true.
+scope: Автоматическая оптимизация промптов для P2P v8C.4 — APO, OPRO, EvoPrompt, GEPA, MASPO, итеративное улучшение. Загружается по триггеру или MODULE_OPTIMIZATION=true.
 tags: optimization, apo, opro, evoprompt, auto-tune, on-demand, v8c3
 conflict_with_v8C2: Contract_Builder (or mode, minor)
 ---
 
-# P2P v8C.3 — OPTIMIZATION MODULE (optimization.md)
+# P2P v8C.4 — OPTIMIZATION MODULE (optimization.md)
 
 > Загружен: добавлен пункт [40] в меню.
 

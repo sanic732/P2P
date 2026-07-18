@@ -9,7 +9,7 @@ tags: memory, capsule, cross-session, context-compression, state-persistence, on
 triggers: "память", "CAPSULE", "сохрани контекст", "восстанови", "/p2p-capsule", "[24]"
 ---
 
-# P2P v8C.3 — MEMORY BRIDGE (memory_bridge.md)
+# P2P v8C.4 — MEMORY BRIDGE (memory_bridge.md)
 
 ---
 

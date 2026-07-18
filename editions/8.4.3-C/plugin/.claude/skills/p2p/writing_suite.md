@@ -9,7 +9,7 @@ last_updated: 2026-07-18
 last_verified: 2026-07-18
 ---
 
-# writing_suite.md — Writing Quality Control (v8C.3)
+# writing_suite.md — Writing Quality Control (v8C.4)
 
 > Перенос из v7C.2 `writing_suite.md`. Constraint prompting, tone management, humanization.
 

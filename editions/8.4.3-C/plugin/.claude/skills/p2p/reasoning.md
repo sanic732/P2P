@@ -6,12 +6,12 @@ triggers: "reasoning|цепочка рассуждений|chain of thought|cot|
 depends_on: core.md
 last_updated: 2026-07-18
 token_estimate: ~3200
-scope: Расширенные техники reasoning для P2P v8C.3 — TTS, Self-Consistency, MCTS, rStar-Math, критические цепочки. Загружается по триггеру или MODULE_REASONING=true.
+scope: Расширенные техники reasoning для P2P v8C.4 — TTS, Self-Consistency, MCTS, rStar-Math, критические цепочки, Context-Grounding CoT. Загружается по триггеру или MODULE_REASONING=true.
 tags: reasoning, cot, tts, self-consistency, mcts, on-demand, v8c3
 conflict_with_v8C2: DEEP_THINK_VALUE_GATE (or mode)
 ---
 
-# P2P v8C.3 — REASONING MODULE (reasoning.md)
+# P2P v8C.4 — REASONING MODULE (reasoning.md)
 
 > Загружен: добавлен пункт [36] в меню.  
 > ⚠ Конфликт с v8C.2 DEEP_THINK_VALUE_GATE возможен — см. CONFLICT_RESOLVER.

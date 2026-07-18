@@ -6,12 +6,12 @@ triggers: "rag|raptor|retrieval|вектор|поиск по базе|document s
 depends_on: core.md, db.md
 last_updated: 2026-07-18
 token_estimate: ~2800
-scope: RAG техники для P2P v8C.3 — RAPTOR, векторный поиск, адаптивный ретривал. Загружается по триггеру или MODULE_RAG=true.
+scope: RAG техники для P2P v8C.4 — RAPTOR, векторный поиск, адаптивный ретривал. Загружается по триггеру или MODULE_RAG=true.
 tags: rag, raptor, retrieval, vectors, on-demand, v8c3
 conflict_with_v8C2: none
 ---
 
-# P2P v8C.3 — RAG MODULE (rag.md)
+# P2P v8C.4 — RAG MODULE (rag.md)
 
 > Загружен: добавлен пункт [35] в меню.
 

@@ -154,7 +154,7 @@ _preloader.md + core.md + db.md + _live/*
 | `plugin` | .claude-plugin/plugin.json, INSTALL.md |
 | `install` | INSTALL.md, docs/INSTALL_GUIDE.md, pack.sh, pack.ps1 |
 | `verbalized` | writing_suite.md |
-| `positive-framing` | db.md, contract_builder.md |
+| `positive-framing` | db.md |
 | `context-engineering` | compression.md, memory_bridge.md |
 
 <!-- SOURCE_META: type=meta | priority=1 | index=true | navigation=true -->

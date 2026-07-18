@@ -4,11 +4,11 @@ version: v8C.4
 module_type: base
 depends_on: core.md
 last_updated: 2026-07-18
-scope: P2P v8C.3 knowledge base — G-errors G1-G20, Extended Thinking rules, Claude-specific patterns, Template Library A–M, QUORUM agent definitions, 9-step algorithm. Always loaded.
+scope: P2P v8C.4 knowledge base — G-errors G1-G20, Extended Thinking rules, Claude-specific patterns, Template Library A–M, QUORUM agent definitions, 9-step algorithm. Always loaded.
 tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c
 ---
 
-# P2P v8C.3 — БАЗА ЗНАНИЙ (db.md)
+# P2P v8C.4 — БАЗА ЗНАНИЙ (db.md)
 
 ---
 

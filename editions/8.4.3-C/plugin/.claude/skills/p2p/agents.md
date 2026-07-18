@@ -10,7 +10,7 @@ tags: agents, quorum, iris, tecton, axiom, vector, datos, anon, architecton, hel
 triggers: "агент", "QUORUM", "IRIS", "TECTON", "AXIOM", "VECTOR", "DATOS", "ANON", "ARCHITECTON", "HELIOS", "консилиум"
 ---
 
-# P2P v8C.3 — АГЕНТЫ (agents.md)
+# P2P v8C.4 — АГЕНТЫ (agents.md)
 
 ---
 

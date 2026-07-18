@@ -6,12 +6,12 @@ triggers: "compress|сжат|llmlingua|gist token|токен бюджет|contex
 depends_on: core.md
 last_updated: 2026-07-18
 token_estimate: ~2400
-scope: Сжатие контекста для P2P v8C.3 — LLMLingua, Gist Tokens, Verbatim Deletion, Selective Summarization. Загружается по триггеру или MODULE_COMPRESSION=true.
+scope: Сжатие контекста для P2P v8C.4 — LLMLingua, Gist Tokens, Verbatim Deletion, Selective Summarization, Context Engineering. Загружается по триггеру или MODULE_COMPRESSION=true.
 tags: compression, llmlingua, gist-tokens, context, kv-cache, on-demand, v8c3
 conflict_with_v8C2: CAPSULE (or mode, minor)
 ---
 
-# P2P v8C.3 — COMPRESSION MODULE (compression.md)
+# P2P v8C.4 — COMPRESSION MODULE (compression.md)
 
 > Загружен: добавлен пункт [38] в меню.
 
