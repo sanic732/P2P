@@ -5,6 +5,13 @@
 
 ---
 
+## [8.4.4-H · 2026-07-18 · Code] v8H.4 — +8 техник промпт-инжиниринга
+- **8 техник** (add-only, компактный for-chat): POSITIVE_FRAMING / VERBALIZED_SAMPLING / BRUTAL_EDITOR (в `!!db_v8H §2`, host-adaptive — VS без хардкода XML для мультихоста, G2); GEPA / MASPO / SePO-backlog (`!optimization`); Context-Grounding CoT (`!reasoning` + ссылка `!rag`); Context Engineering (`!compression` + `!memory`).
+- COMBINATOR + FABRICATION_SCAN расширены (VS≠USC, GEPA≠GoT, MASPO≠ToT); MASPO note у WEIGHT_TABLE (I7=8 неизменно); POSITIVE_FRAMING правило в `!!core` P5.
+- **Внутренняя версия** v8H.3 → **v8H.4** (тронутые модули + системные `_preloader`/`_index`/`_master`).
+- **Внешний релиз** 8.4.3 → **8.4.4** (координированно со всеми сборками C/N/L).
+- **Источники техник:** `docs/CREDITS_TECHNIQUES.md` (arXiv, авторы, лицензии).
+
 ## [8.4.3-H · 2026-07-13 · Cowork pass] Live Specs v8.6.3 · host-detect fix · GROK_HOST_GUIDE · Agent Skills
 - **E2 Live Specs → v8.6.3:** `files/_live/live_specs.md` обновлён (Grok 4.5 GA 2026-07-08, GPT-5.6 GA, Fable 5 #1); MANIFEST version-пины → v8.6.3.
 - **E5 Host-detect fix (`_preloader` БЛОК 0):** `NORMALIZE` HOST_MODEL → lowercase + синонимы (`GROK`/`Grok`/`xai` → grok); `ENV_SIGNALS` (X-инструменты / grok.com / Grok Build → grok HIGH даже при неуверенном self-name); LOW → обязательный `HOST_PICK_LIST` перед меню; `PERSIST`; хинт `/host grok`. Тестовый хардкод `HOST_MODEL: "GROK"` сброшен на `""`.

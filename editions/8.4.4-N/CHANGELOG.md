@@ -6,6 +6,12 @@
 
 ---
 
+## [8.4.4-N · 2026-07-18 · Code] v8N.4 — +8 техник промпт-инжиниринга
+- **8 техник** (add-only, компактный формат): POSITIVE_FRAMING / VERBALIZED_SAMPLING / BRUTAL_EDITOR (в `!!db_v8N §2`, host-adaptive); GEPA / MASPO / SePO-backlog (`!optimization`); Context-Grounding CoT (`!reasoning` + ссылка `!rag`); Context Engineering (`!compression` + `!memory`).
+- COMBINATOR + VECTOR fabrication-list расширены (VS≠USC, GEPA≠GoT, MASPO≠ToT); MASPO note (I7=8 неизменно); POSITIVE_FRAMING правило в `!!core` P5.
+- **Внутренняя версия** v8N.3 → **v8N.4**; **внешний релиз** 8.4.3 → **8.4.4** (координированно).
+- **Источники техник:** `docs/CREDITS_TECHNIQUES.md` (arXiv, авторы, лицензии).
+
 ## [8.4.3-N · 2026-07-13 · Cowork] Live Specs v8.6.3 · host-detect fix · Grok target-слой · Agent Skills
 - **E2 Live Specs → v8.6.3:** `files/_live/live_specs.md` обновлён; MANIFEST version-пины → v8.6.3.
 - **E5 Host-detect fix (`_preloader` БЛОК 0):** `NORMALIZE` HOST_MODEL → lowercase + синонимы grok; `ENV_SIGNALS` (HIGH при неуверенном self-name); LOW → обязательный `HOST_PICK_LIST` перед меню; `PERSIST`; хинт `/host grok`.

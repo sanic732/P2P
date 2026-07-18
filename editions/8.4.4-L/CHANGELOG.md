@@ -11,6 +11,12 @@ last_verified: 2026-07-07
 > 4 локальных BOOT-файла + 11 lazy Gist-чанков, загружаемых по триггеру через
 > dependency-resolver с проверкой целостности sha256.
 
+## [8.4.4-L] — 2026-07-18 (Code: v8L.4 — +техники промпт-инжиниринга, Light-scope)
+- **Техники** (add-only, компактно в `!!db_v8L`): POSITIVE_FRAMING, VERBALIZED_SAMPLING, BRUTAL_EDITOR, CONTEXT_GROUNDING_COT, CONTEXT_ENGINEERING (одностроч.); COMBINATOR + TECHNIQUE_COMBINATOR DO_NOT_BLOCK (VS≠USC, GEPA≠GoT, MASPO≠ToT); POSITIVE_FRAMING правило в `!!core_v8L` P5.
+- **Фреймворки GEPA/MASPO/SePO** — только справочно (нужен eval-harness → в Lite не активируются, чтобы держать токен-экономию).
+- **Внутренняя версия** v8L.3 → **v8L.4**; **внешний релиз** 8.4.3 → **8.4.4** (координированно).
+- **Источники техник:** `docs/CREDITS_TECHNIQUES.md` (arXiv, авторы, лицензии).
+
 ## [8.4.3-L] — 2026-07-13 (Cowork: Live Specs v8.6.3 + host-normalize)
 
 - **E2 Live Specs → v8.6.3 (Gist):** L тянет live_specs из отдельного unpinned gist `a64245c3f824f45708519d57e0d62408` (raw/live_specs.md). Canon v8.6.3 готов к заливке (`VERSION:` + `// END OF FILE` → integrity-gate проходит). ⚠ Сама заливка `gh gist edit` — ОТДЕЛЬНЫМ шагом после `gh auth login` (см. HANDOFF).
