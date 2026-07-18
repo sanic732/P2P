@@ -1,10 +1,10 @@
 ---
 source_id: RAG_MODULE_V8C3
-version: v8C.3
+version: v8C.4
 module_type: on-demand
 triggers: "rag|raptor|retrieval|вектор|поиск по базе|document search|ретривал|векторная"
 depends_on: core.md, db.md
-last_updated: 2026-06-12
+last_updated: 2026-07-18
 token_estimate: ~2800
 scope: RAG техники для P2P v8C.3 — RAPTOR, векторный поиск, адаптивный ретривал. Загружается по триггеру или MODULE_RAG=true.
 tags: rag, raptor, retrieval, vectors, on-demand, v8c3
@@ -66,6 +66,8 @@ Query Classification:
   thematic/summary → level 1-2
   abstract/overview → level 2-3
 ```
+
+> Для контекст-зависимых ответов — Context-Grounding CoT (reasoning.md): извлекать правила из чанков ДО генерации.
 
 ---
 
@@ -137,8 +139,9 @@ id: RAG_MODULE_V8C3
 version: v8C.3
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-12
+last_verified: 2026-07-18
 techniques: [RAPTOR, LongRAG, adRAP, Dynamic_RAPTOR]
+changelog: 2026-07-18 — v8C.4: +перекрёстная ссылка на Context-Grounding CoT (reasoning.md) в конце «ТЕХНИКИ RAG».
 menu_item: 35
 conflict_with_v8C2: none
 ========================================

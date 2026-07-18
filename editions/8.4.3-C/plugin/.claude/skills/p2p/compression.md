@@ -1,10 +1,10 @@
 ---
 source_id: COMPRESSION_MODULE_V8C3
-version: v8C.3
+version: v8C.4
 module_type: on-demand
 triggers: "compress|сжат|llmlingua|gist token|токен бюджет|context window full|контекст переполнен|длинный контекст|KV-cache"
 depends_on: core.md
-last_updated: 2026-06-12
+last_updated: 2026-07-18
 token_estimate: ~2400
 scope: Сжатие контекста для P2P v8C.3 — LLMLingua, Gist Tokens, Verbatim Deletion, Selective Summarization. Загружается по триггеру или MODULE_COMPRESSION=true.
 tags: compression, llmlingua, gist-tokens, context, kv-cache, on-demand, v8c3
@@ -152,6 +152,18 @@ ANON MUST NOT блокировать L-OPTICAL как fabricated: это отд�
 
 ---
 
+## CONTEXT ENGINEERING (Anthropic framing)
+Сдвиг: не «формулировка промпта», а «курирование набора токенов» (system prompt, tools, примеры, история, память).
+Приёмы (сшивка с модулями P2P):
+  • compaction   → LLMLingua / selective summarization
+  • note-taking  → memory_bridge / CAPSULE
+  • JIT retrieval→ rag.md adaptive retrieval
+  • labeled sections <background>/<instructions>/## Tool guidance → CONTEXT_CACHE_ANCHOR
+Экономика: prompt caching — до 90% cost / 85% latency (Anthropic); OpenAI 50% на cached input.
+Предостережение: агрессивный compaction выбрасывает критичный нюанс — держать якорь ключевых фактов.
+
+---
+
 <!-- SOURCE_META: type=on-demand | module=compression | priority=P2 | v8c3=true | menu_item=38 | token_estimate=2400 -->
 
 
@@ -159,11 +171,12 @@ ANON MUST NOT блокировать L-OPTICAL как fabricated: это отд�
 VERSION_METADATA
 ========================================
 id: COMPRESSION_MODULE_V8C3
-version: v8C.3
+version: v8C.4
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-12
+last_verified: 2026-07-18
 techniques: [LLMLingua, Gist_Tokens, Verbatim_Deletion, Selective_Summarization]
+changelog: 2026-07-18 — v8C.4: +раздел «CONTEXT ENGINEERING (Anthropic framing)» (сшивка compaction / note-taking / JIT-retrieval / labeled-sections). Ссылка из memory_bridge.md.
 menu_item: 38
 conflict_with_v8C2: CAPSULE_minor
 ========================================

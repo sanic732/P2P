@@ -1,10 +1,10 @@
 ---
 source_id: REASONING_MODULE_V8C3
-version: v8C.3
+version: v8C.4
 module_type: on-demand
 triggers: "reasoning|цепочка рассуждений|chain of thought|cot|self-consistency|mcts|tts|test-time|scaling|подумай|think step"
 depends_on: core.md
-last_updated: 2026-06-12
+last_updated: 2026-07-18
 token_estimate: ~3200
 scope: Расширенные техники reasoning для P2P v8C.3 — TTS, Self-Consistency, MCTS, rStar-Math, критические цепочки. Загружается по триггеру или MODULE_REASONING=true.
 tags: reasoning, cot, tts, self-consistency, mcts, on-demand, v8c3
@@ -98,6 +98,18 @@ N: 3-5 (для T2-3) / 7-9 (для T4 critical)
 
 ---
 
+### Context-Grounding CoT (извлечение правил перед ответом)
+**Источник/Метрики:** arXiv 2605.25354 (май 2026, in-window). +3.79pp на CL-Bench.
+**Отличие от CCP:** CCP про критический путь решения; Context-Grounding — про извлечение правил/определений из данных ДО генерации. Дополняет rag-grounding (rag.md).
+```
+[CONTEXT_GROUNDING]
+1. EXTRACTED_RULES: [правила/определения/ограничения из контекста, релевантные задаче]
+2. Ответ строится ТОЛЬКО на EXTRACTED_RULES, с явными ссылками.
+Применение: long-context, RAG, документы/спецификации. Дополняет rag-grounding.
+```
+
+---
+
 ## REASONING ROUTER
 
 ```
@@ -137,11 +149,12 @@ v8C.3 НИКОГДА не использует `budget_tokens` (удалён и�
 VERSION_METADATA
 ========================================
 id: REASONING_MODULE_V8C3
-version: v8C.3
+version: v8C.4
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-12
-techniques: [s1_extended, Self_Consistency, MCTS_reasoning, rStar_Math, CCP]
+last_verified: 2026-07-18
+techniques: [s1_extended, Self_Consistency, MCTS_reasoning, rStar_Math, CCP, Context_Grounding_CoT]
+changelog: 2026-07-18 — v8C.4: +Context-Grounding CoT (извлечение правил из контекста ДО ответа; дополняет CCP и rag-grounding). Перекрёстная ссылка в rag.md.
 menu_item: 36
 conflict_with_v8C2: DEEP_THINK_VALUE_GATE
 ========================================

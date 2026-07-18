@@ -1,9 +1,9 @@
 ---
 source_id: MEMORY_V8C
-version: v8C.3
+version: v8C.4
 module_type: on-demand
 depends_on: core.md
-last_updated: 2026-06-12
+last_updated: 2026-07-18
 scope: Memory Bridge — CAPSULE protocol, cross-session state persistence, context compression for long sessions.
 tags: memory, capsule, cross-session, context-compression, state-persistence, on-demand
 triggers: "память", "CAPSULE", "сохрани контекст", "восстанови", "/p2p-capsule", "[24]"
@@ -111,6 +111,8 @@ P2P получает CAPSULE →
 5. Записать routing_memory biases
 
 **Коэффициент сжатия:** ~10:1 (100 сообщений → 10 предложений)
+
+> Мета-фрейминг: memory_bridge / CAPSULE = приём **note-taking** в CONTEXT ENGINEERING (compression.md, раздел «CONTEXT ENGINEERING (Anthropic framing)»).
 
 ---
 
@@ -270,9 +272,10 @@ ON NEW SESSION:
 VERSION_METADATA
 ========================================
 id: MEMORY_V8C
-version: v8C.3
+version: v8C.4
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-12
+last_verified: 2026-07-18
+changelog: 2026-07-18 — v8C.4: +ссылка на CONTEXT ENGINEERING (compression.md); memory_bridge / CAPSULE = приём note-taking.
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
