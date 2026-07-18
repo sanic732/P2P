@@ -1,8 +1,8 @@
-# 🟩 P2P 8N.3 — Normal / Universal Edition
+# 🟩 P2P 8N.4 — Normal / Universal Edition
 
 > 🇷🇺 Русский · 🇬🇧 [English](README.en.md) · ⬆️ [Назад к выбору редакции](../../README.md) · 📖 [Расшифровка имени](../../NAMING.md)
 
-**Версия:** 8N.3 · **Токен-бюджет:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
+**Версия:** 8N.4 · **Токен-бюджет:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
 
 > 📖 **Полная инструкция (Google Docs):** https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
 

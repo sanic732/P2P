@@ -1,12 +1,12 @@
-# 🟦 P2P 8.4.3-L — Lite / Live Edition  <sub>(внутр. тег: 8L.3)</sub>
+# 🟦 P2P 8.4.4-L — Lite / Live Edition  <sub>(внутр. тег: 8L.4)</sub>
 
 > 🇷🇺 Русский · 🇬🇧 [English](README.en.md) · ⬆️ [Назад к выбору редакции](../../README.md) · 📖 [Расшифровка имени](../../NAMING.md)
 
-**Версия:** 8L.3 · **Токен-бюджет:** BOOT ~10K (старт) · Active ~25-40K · Full arsenal ~57K (`/p2p-download`)
+**Версия:** 8L.4 · **Токен-бюджет:** BOOT ~10K (старт) · Active ~25-40K · Full arsenal ~57K (`/p2p-download`)
 
 > 📖 **Полная инструкция (Google Docs):** https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
 >
-> 📄 **8L.3 — файловая сборка** (4 BOOT-файла в контекст). Плагинной формы нет — для Claude Code/Cowork используй **8C.3**.
+> 📄 **8L.4 — файловая сборка** (4 BOOT-файла в контекст). Плагинной формы нет — для Claude Code/Cowork используй **8C.3**.
 
 ## Для кого
 Тех, кому важна **экономия токенов** или кто в чате с лимитом контекста. Новичкам — стартовый вариант.
