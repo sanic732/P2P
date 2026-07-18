@@ -1,11 +1,11 @@
 ---
 id: core_v8H
-version: v8H.3
+version: v8H.4
 type: CORE
 priority: CRITICAL
 load_order: 2
 compatible_with: "_preloader.md | all v8H files"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -183,6 +183,7 @@ PRINCIPLES:
   P5. CONSTRAINTS_NOT_PRESSURE:
       Никакого "ОБЯЗАТЕЛЬНО!!!" или "КРИТИЧЕСКИ ВАЖНО!!!".
       Только структурные ограничения.
+      POSITIVE_FRAMING (v8H.4): формулировать "не X" → "делай Z" (эффект розового слона); КРОМЕ hard-safety запретов (см. !!db_v8H).
 
   P6. FAILURE_MODES_FIRST:
       Перед любой новой фичей → проверка anti-patterns.md (Type A-P).

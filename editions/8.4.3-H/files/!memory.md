@@ -1,11 +1,11 @@
 ---
 id: memory_v8H
-version: v8H.3
+version: v8H.4
 type: ON_DEMAND
 load_trigger: "memory|capsule|сохрани|загрузи|состояние|resume"
 priority: SYSTEM
 compatible_with: "!!core_v8H.md | !scope.md"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -135,7 +135,10 @@ ADVANCED_MEMORY:  // v8H.3 — опционально, активируется 
              + Constraint Reinjection (!!core_v8H §8). Для Gemini — bridge каждые 25 сообщений (G13).
   MUTEX:     при активном RAG/LLMLingua — единый компрессор состояния (не сжимать память дважды).
 
+// [v8H.4] Мета-фрейминг: !memory / CAPSULE = приём note-taking в CONTEXT ENGINEERING (!compression, раздел «CONTEXT ENGINEERING»).
+
 VERSION_METADATA:
-  SYSTEM:      P2P v8H.3 Normal · Memory Bridge
+  SYSTEM:      P2P v8H.4 · Memory Bridge
+  CHANGELOG:   2026-07-18 v8H.4 — +ссылка на CONTEXT ENGINEERING (!compression); memory/CAPSULE = note-taking
   SECTIONS:    Storage by env, CAPSULE protocol, Routing Memory v2, Gemini bridge, [v8H.3] Advanced Memory
   COMPATIBLE:  !!core_v8H.md | !scope.md | !metrics.md | !rag.md

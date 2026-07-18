@@ -1,11 +1,11 @@
 ---
 id: reasoning_module_v8H
-version: v8H.3
+version: v8H.4
 type: on-demand
 module_type: on-demand
 triggers: "reasoning|цепочка рассуждений|chain of thought|cot|self-consistency|mcts|tts|test-time|подумай глубже|think step|budget thinking"
 depends_on: "!!core_v8H.md, !!db_v8H.md, !pipeline.md"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 token_estimate: ~3000
 scope: Расширенные техники reasoning — TTS, Self-Consistency, MCTS/rStar-Math, Critical Chain. Загружается по триггеру или MODULE_REASONING=true.
 compatible_with: "all v8H files"
@@ -67,6 +67,15 @@ v8H база управляет thinking через DEEP_THINK_VALUE_GATE. Эт�
 [CCP]  Перед ответом: 1. CRITICAL_PATH [ключевые шаги] 2. DEPENDENCIES 3. RISKS → затем выполнение по пути.
 ```
 
+## Context-Grounding CoT (извлечение правил перед ответом)
+Источник: arXiv 2605.25354 (май 2026). +3.79pp на CL-Bench. Отличие от CCP: CCP про критический путь решения; здесь — извлечение правил/определений из данных ДО генерации. Дополняет RAG-grounding (!rag).
+```
+[CONTEXT_GROUNDING]
+  1. EXTRACTED_RULES: [правила/определения/ограничения из контекста, релевантные задаче]
+  2. Ответ строится ТОЛЬКО на EXTRACTED_RULES, с явными ссылками.
+  Применение: long-context, RAG, документы/спецификации.
+```
+
 # REASONING ROUTER
 ```
 Math/Logic T4    → MCTS_REASONING (QUORUM: IRIS+AXIOM+ARCHITECTON)
@@ -82,8 +91,9 @@ Simple T0-1      → Direct (нет overhead)
 - budget_tokens: НИКОГДА (удалён из API) — используем effort/thinkingLevel/thinking_budget по хосту.
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8H.3 Normal · Reasoning Module
-  TECHNIQUES:  s1_extended, Self_Consistency, MCTS_reasoning, rStar_Math, CCP
+  SYSTEM:      P2P v8H.4 · Reasoning Module
+  TECHNIQUES:  s1_extended, Self_Consistency, MCTS_reasoning, rStar_Math, CCP, Context_Grounding_CoT
+  CHANGELOG:   2026-07-18 v8H.4 — +Context-Grounding CoT (извлечение правил из контекста ДО ответа); ссылка в !rag
   SOURCE:      donor v8C.3 !reasoning.md, универсализирован (host-gated thinking, без budget_tokens)
   MENU_ITEM:   27
   COMPATIBLE:  !!core_v8H.md | !!db_v8H.md | !pipeline.md

@@ -1,11 +1,11 @@
 ---
 id: rag_module_v8H
-version: v8H.3
+version: v8H.4
 type: on-demand
 module_type: on-demand
 triggers: "rag|raptor|retrieval|ретривал|вектор|поиск по базе|векторная БД|document search|база знаний|документы"
 depends_on: "!!core_v8H.md, !!db_v8H.md, !memory.md, !agents.md"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 token_estimate: ~2800
 scope: RAG техники — RAPTOR, векторный поиск, адаптивный ретривал. Загружается по триггеру или MODULE_RAG=true.
 compatible_with: "all v8H files"
@@ -59,6 +59,8 @@ menu_item: 35
   abstract/overview → level 2-3
 ```
 
+> Для контекст-зависимых ответов — Context-Grounding CoT (!reasoning.md): извлекать правила из чанков ДО генерации.
+
 # RAG ROUTING (интеграция с !routing.md)
 ```
 IF corpus < 20 docs AND < 50K tokens → Naive RAG (прямая загрузка)  → модель с большим ctx
@@ -87,8 +89,9 @@ MUTEX: RAG + !memory CAPSULE + LLMLingua → один компрессор (не
 ```
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8H.3 Normal · RAG Module
+  SYSTEM:      P2P v8H.4 · RAG Module
   TECHNIQUES:  RAPTOR, LongRAG, adRAP, Dynamic_RAPTOR
+  CHANGELOG:   2026-07-18 v8H.4 — +перекрёстная ссылка на Context-Grounding CoT (!reasoning) в конце «ТЕХНИКИ RAG»
   SOURCE:      donor v8C.3 !rag.md, универсализирован под 8N (model strings, !memory/!routing refs)
   MENU_ITEM:   26
   COMPATIBLE:  !!core_v8H.md | !!db_v8H.md | !memory.md | !routing.md

@@ -1,11 +1,11 @@
 ---
 id: agents_v8H
-version: v8H.3
+version: v8H.4
 type: AGENTS
 priority: HIGH
 triggers: "QUORUM|агент|Q:|FULL|FAST_TRIO|Heavy-16|heavy|multi-agent"
 depends_on: "!!core_v8H.md, !!db_v8H.md, !host_profiles.md"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 compatible_with: "all v8H files"
 tags: agents, quorum, heavy-16, host-gated, merge, v8h3
 ---
@@ -67,6 +67,7 @@ QUORUM_SIMULATED:
     R8 HELIOS  → FINAL_DELIVERABLE + confidence summary
   SPAWN ECONOMY by tier: T0-1→1 агент | T2→3 | T3→5 | T4→8 (QUORUM mandatory)
   FABRICATION_SCAN (ANON gate): блокировать MoE/ToT/GoT/USC/within-session chaining → AXIOM даёт замену.
+    [v8H.4 EXCEPTION] НЕ блокировать VERBALIZED_SAMPLING (≠USC), GEPA (≠GoT), MASPO (≠ToT) — легитимные техники/фреймворки P2P.
   ZERO-XML дисциплина обязательна при HOST_MODEL=gemini (G2).
 
 # ОБЩЕЕ (оба режима)
@@ -76,12 +77,14 @@ WEIGHT_TABLE (HELIOS назначает по task type — union 8A):
   RESEARCH: IRIS10 TECTON20 VECTOR5 DATOS40 ARCHITECTON25
   ANALYTICAL: IRIS10 TECTON20 AXIOM35 DATOS25
   SECURITY: → активировать !security.md [39] (НЕ ANON); IRIS5 TECTON25 AXIOM20 ARCHITECTON20
+  [v8H.4] MASPO (!optimization) тюнит эти веса и промпты агентов; число агентов = 8 неизменно (I7 не нарушен).
 COLLISION_PATCH (union): ANON+ThinkingModel→effort:low | VECTOR+SECURITY_AUDIT→GASLIGHT_SAFE bypass |
   ARCHITECTON+DeepThink→нет XML в CoT | STEP_BY_STEP+ReasoningModels→BLOCK (o3/DeepSeek-R/Kimi/Gemini DeepThink)
 DIRECT CALLS: /p2p-chain IRIS→TECTON→AXIOM (быстрый ресерч без полного консилиума)
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8H.3 Hybrid · Agents (8A simulated QUORUM ⊕ 8G Heavy-16)
+  SYSTEM:      P2P v8H.4 Hybrid · Agents (8A simulated QUORUM ⊕ 8G Heavy-16)
+  CHANGELOG:   2026-07-18 v8H.4 — FABRICATION_SCAN +exception (VS/GEPA/MASPO); MASPO note у WEIGHT_TABLE (I7=8 неизменно)
   AGENTS:      8 канонических; поведение host-gated; ANON host-gated; security → !security.md
   SOURCE:      donor 8A.1 !agents.md (QUORUM/FABRICATION_SCAN) + 8G.1 !agents.md (Heavy-16/Tool Budget)
   COMPATIBLE:  !!core_v8H.md | !host_profiles.md | !tool_budget.md | !x_realtime.md | !security.md

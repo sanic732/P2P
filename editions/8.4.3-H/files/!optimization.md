@@ -1,6 +1,6 @@
 ---
 id: optimization_module_v8H
-version: v8H.3
+version: v8H.4
 type: on-demand
 module_type: on-demand
 triggers: "optim|оптимиз|APO|OPRO|автоматическ|улучши промпт|improve prompt|auto-tune|DSPy|few-shot bootstrap|prompt evolution"
@@ -54,12 +54,33 @@ menu_item: 40
   Когда: радикальная переработка. Стоимость высокая → только T3-4.
 ```
 
+## GEPA — рефлексивная эволюция (апгрейд EvoPrompt)
+Источник: arXiv 2507.19457 (июль 2025, ICLR'26 Oral). +6..19pp над GRPO, 35× меньше роллаутов; +12pp AIME-2025 vs MIPROv2. Отличие: NL-рефлексия «почему провал» + Pareto-фронт, не одна фитнес-функция.
+```
+[GEPA_CYCLE]  (framework, T3-4, нужен eval-harness + !metrics)
+  1. Прогнать промпт → 2-5 трейсов (успех/провал)
+  2. РЕФЛЕКСИЯ: "Почему провал? Сформулируй 1-3 урока."
+  3. Мутация С УЧЁТОМ уроков (не случайная)
+  4. Pareto-фронт: недоминируемые по {accuracy, tokens, cost}
+  5. stop: нет улучшения фронта 2 итерации / бюджет исчерпан
+```
+
 ## Iterative Refinement через QUORUM
 ```
 [QUORUM_OPTIMIZATION]
   R1 IRIS: слабые места | R2 TECTON: структурные улучшения | R3 AXIOM: anti-patterns (Type A-P)
   R4 ANON: adversarial test (сломать промпт) | R5 HELIOS: синтез → v_final
   Выход: промпт v_final + changelog улучшений
+```
+
+## MASPO — совместная оптимизация QUORUM (мета-режим тюнинга)
+Источник: arXiv 2605.06623 (май 2026, ICML'26). +2.9pp над SOTA; без ground-truth для промежуточных агентов.
+⚠ Инвариант: оптимизирует веса/промпты 8 агентов (!agents), число агентов = 8 неизменно (I7 не нарушен).
+```
+[MASPO_QUORUM]  (мета-режим тюнинга QUORUM, T4)
+  Кандидат промпта агента X по 3 осям: local validity / lookahead / global alignment.
+  Joint reward = f(local, lookahead, global); hard-negative mining на рассогласованиях;
+  trace-guided beam search по конфигурации промптов ВСЕХ агентов.
 ```
 
 # OPTIMIZATION PIPELINE [40]
@@ -70,14 +91,18 @@ OPTIMIZATION_REPORT: Исходный score X | Финальный Y | Итер�
 PREREQUISITE: !metrics.md загружен (источник score). Иначе → "требуется !metrics для оптимизации".
 ```
 
+## SePO — BACKLOG (не в релиз)
+Источник: arXiv 2606.04465 (июнь 2026). +4.49pp vs Manual-CoT. Требует тренировочного бюджета → в inference-only среде неактивируемо. Оформлено как направление в backlog (self-tuning ядра), НЕ пункт внедрения.
+
 # CONFLICT_RESOLVER DECLARATIONS
 - vs Contract Builder [2] (!pipeline): дополняют — CB создаёт с нуля, Optimization тюнит готовое.
   При `or`: CB для создания → Optimization для тюнинга.
 - MUTEX: требует !metrics (метрика). Нет метрики → refuse (не оптимизировать вслепую).
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8H.3 Normal · Optimization Module
-  TECHNIQUES:  APO, OPRO, EvoPrompt, QUORUM_Optimization
+  SYSTEM:      P2P v8H.4 · Optimization Module
+  TECHNIQUES:  APO, OPRO, EvoPrompt, GEPA, QUORUM_Optimization, MASPO, SePO_backlog
+  CHANGELOG:   2026-07-18 v8H.4 — +GEPA (апгрейд EvoPrompt), +MASPO (мета-тюнинг QUORUM, I7 не нарушен), +SePO backlog
   SOURCE:      donor v8C.3 !optimization.md, универсализирован (!metrics-зависимость, host-нота judge)
   MENU_ITEM:   31
   COMPATIBLE:  !!core_v8H.md | !!db_v8H.md | !pipeline.md | !metrics.md

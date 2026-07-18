@@ -1,13 +1,13 @@
 ---
 id: index_v8H
-version: v8H.3
+version: v8H.4
 type: META
 priority: REFERENCE
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
-// P2P v8H.3 — MODULE INDEX
+// P2P v8H.4 — MODULE INDEX
 // Полный реестр модулей, триггеры загрузки, зависимости.
 // ═══════════════════════════════════════════════════════
 
@@ -132,6 +132,6 @@ VALIDATION_CHECK:
                 + VENDORS (6) + META (3) + NATIVE (.claude) + DOCS (8)
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8H.3 Hybrid · Module Index
+  SYSTEM:      P2P v8H.4 Hybrid · Module Index
   ROLE:        Семантический граф, реестр модулей, триггеры загрузки, зависимости
   COMPATIBLE:  all v8H files

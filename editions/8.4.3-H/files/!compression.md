@@ -1,11 +1,11 @@
 ---
 id: compression_module_v8H
-version: v8H.3
+version: v8H.4
 type: on-demand
 module_type: on-demand
 triggers: "compress|сжат|llmlingua|gist token|токен бюджет|context window full|контекст переполнен|длинный контекст|constrained output|JSON schema|grammar"
 depends_on: "!!core_v8H.md, !!db_v8H.md, !pipeline.md"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 token_estimate: ~2400
 scope: Сжатие контекста — LLMLingua, Gist Tokens, Verbatim Deletion, Selective Summarization + constrained generation. Загружается по триггеру или MODULE_COMPRESSION=true.
 compatible_with: "all v8H files"
@@ -85,9 +85,20 @@ ctx > 90%   → CAPSULE сохранить + новая сессия (см. !mem
   При `or`: P2P спросит — сжать контекст или сохранить CAPSULE.
 - MUTEX: один компрессор за раз (LLMLingua ИЛИ CAPSULE-gist), один constrained-decoding подход.
 
+# CONTEXT ENGINEERING (Anthropic framing)
+Сдвиг: не «формулировка промпта», а «курирование набора токенов» (system prompt, tools, примеры, история, память).
+Приёмы (сшивка с модулями v8H):
+  • compaction    → LLMLingua / Selective Summary (выше)
+  • note-taking   → !memory / CAPSULE
+  • JIT retrieval → !rag adaptive retrieval
+  • labeled sections <background>/<instructions> → CONTEXT_CACHE_ANCHOR (!!db_v8H)
+Экономика: prompt caching — до 90% cost / 85% latency (Anthropic); OpenAI 50% на cached input.
+Предостережение: агрессивный compaction выбрасывает критичный нюанс — держать якорь ключевых фактов.
+
 VERSION_METADATA:
-  SYSTEM:      P2P v8H.3 Normal · Compression Module
-  TECHNIQUES:  LLMLingua, Gist_Tokens, Verbatim_Deletion, Selective_Summarization, Constrained_Gen
+  SYSTEM:      P2P v8H.4 · Compression Module
+  TECHNIQUES:  LLMLingua, Gist_Tokens, Verbatim_Deletion, Selective_Summarization, Constrained_Gen, Context_Engineering
+  CHANGELOG:   2026-07-18 v8H.4 — +раздел «CONTEXT ENGINEERING (Anthropic framing)»; ссылка из !memory
   SOURCE:      donor v8C.3 !compression.md, универсализирован (logit-access caveat, host-gated schema)
   MENU_ITEM:   29
   COMPATIBLE:  !!core_v8H.md | !!db_v8H.md | !pipeline.md | !memory.md

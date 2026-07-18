@@ -1,15 +1,15 @@
 ---
 id: preloader_v8H
-version: v8H.3
+version: v8H.4
 type: PRELOADER
 priority: CRITICAL
 load_order: 1
 compatible_with: "!!core_v8H.md | all v8H files"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
-// P2P v8H.3 — PRELOADER (NATIVE / auto-host, порт механики 8L.3)
+// P2P v8H.4 — PRELOADER (NATIVE / auto-host, порт механики 8L.3)
 // Загружается ПЕРВЫМ. Устанавливает контекст сессии.
 // NEW: сам определяет модель-хост (SELF_IDENTIFY); не удалось → список [1..10].
 // ═══════════════════════════════════════════════════════
@@ -236,7 +236,7 @@ ON_LOAD:
   6. Ждать выбора пользователя
 
 HOST_PICK_LIST:  // fallback — ручной выбор, если автодетект (БЛОК 0) неуверен
-  EMIT: "🌐 Не удалось надёжно определить хост. На какой LLM ты запускаешь P2P v8H.3?
+  EMIT: "🌐 Не удалось надёжно определить хост. На какой LLM ты запускаешь P2P v8H.4?
      [1] claude    [2] gemini   [3] gpt      [4] grok    [5] deepseek
      [6] qwen      [7] kimi     [8] glm      [9] minimax [10] manus"
   ON_CHOICE: записать выбор в HOST_CONFIG.HOST_MODEL → применить HOST_PROFILE + XML_POLICY
@@ -248,7 +248,7 @@ HOST_PICK_LIST:  // fallback — ручной выбор, если автоде�
   → Используем разумные значения по умолчанию
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8H.3 High · Preloader (NATIVE / auto-host)
+  SYSTEM:      P2P v8H.4 High · Preloader (NATIVE / auto-host)
   ROLE:        HOST autodetect, HOST_CONFIG, PROJECT_CARD, FLAGS, VERSION_COMPAT, env detection, load order
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm | minimax | manus (10; автодетект → /host)
   COMPATIBLE:  all v8H files
