@@ -1,13 +1,13 @@
 ---
 id: master_v8N
-version: v8N.3
+version: v8N.4
 type: META
 priority: REFERENCE
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
-// P2P v8N.3 — MASTER ASSEMBLY
+// P2P v8N.4 — MASTER ASSEMBLY
 // Три уровня сборки, API код, caching guide.
 // ═══════════════════════════════════════════════════════
 
@@ -186,5 +186,5 @@ CHECKLIST:
   [ ] CHANGELOG обновлён
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8N.3 · Master Assembly
+  SYSTEM:      P2P v8N.4 · Master Assembly
   COMPATIBLE:  all v8N files

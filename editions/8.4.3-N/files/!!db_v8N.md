@@ -1,11 +1,11 @@
 ---
 id: db_v8N
-version: v8N.3
+version: v8N.4
 type: KNOWLEDGE_BASE
 priority: CRITICAL
 load_order: 3
 compatible_with: "!!core_v8N.md | all v8N files"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -41,7 +41,7 @@ KNOWLEDGE_LAYERS:
     ARENA результаты, эффективность техник, ARENA_SCORE per technique.
 
 // ─────────────────────────────────────────────────────
-// §2. PROMPT ENGINEERING TECHNIQUES (38 техник)
+// §2. PROMPT ENGINEERING TECHNIQUES (41 техника)
 // ─────────────────────────────────────────────────────
 
 TECHNIQUES:
@@ -68,6 +68,8 @@ TECHNIQUES:
 
   // ── SAFETY & QUALITY ──
   GASLIGHT_SAFE:     Honesty mode: строгое разделение факт/гипотеза. 91/100.
+  POSITIVE_FRAMING:  Ограничения через утверждение желаемого, не запрет ("розовый слон"): "не X" → "делай Z".
+                     Искл: hard-safety запреты остаются НЕГАТИВНЫМИ. Автоприменяется Contract Builder. Universal. 89/100.
   SAFE_THINKING:     Токен [SECURITY_CHECK] между шагами рассуждения. 92/100.
   LLM_COUNCIL:       Multi-model верификация через консенсус. 96/100.
   EXCELLENT:         Обход over-refusal: Defensive Framing, Objective Abstraction,
@@ -84,6 +86,11 @@ TECHNIQUES:
   RAG_GROUNDING:     "Отвечай ТОЛЬКО из предоставленного контекста." Claude optimal. 94/100.
   PERSONA_CASCADE:   Цепочка ролей: Role A → Role B. BANNED для R1/Kimi Thinking. 88/100.
   REFLECTION_LOOP:   Сгенерировать → Критиковать → Переписать. Только Tier 2+. 90/100.
+  VERBALIZED_SAMPLING: Против mode collapse: N ответов + явная вероятность каждого, семпл из хвостов (p<0.10),
+                     в рамках content-policy. Ортогонально temperature. Creative/brainstorm/синтез. DEFAULT OFF для factual.
+                     Host-adaptive формат (Claude: <response>-теги; Gemini: plain — G2). 90/100 creative / 60 factual.
+  BRUTAL_EDITOR:     Хук в конце: "score 1-10 (clarity/usefulness/accuracy), затем перепиши до 10, помечай догадки."
+                     Self-reflection (эмуляция CoT). НЕ для reasoning-native в reasoning-режиме → downgrade. 90/100.
   GATE_PATTERN:      Сначала классифицировать, потом роутить. Universal. 91/100.
   SCAFFOLD_PATTERN:  Сначала outline, потом заполнить по секциям. 89/100.
   ADVERSARIAL_PAIR:  [GENERATOR] создаёт → [CRITIC] критикует → фикс. 92/100.
@@ -98,6 +105,9 @@ TECHNIQUES:
   COMBINATOR:
     Цепочки техник. Конфликт: IF reasoning_model + STEP_BY_STEP → BLOCK.
     Высший ARENA_SCORE побеждает.
+    [v8N.4] IF reasoning_model + BRUTAL_EDITOR → DOWNGRADE (дублирует внутренний critique).
+            IF VERBALIZED_SAMPLING + GASLIGHT_SAFE → RETAIN GASLIGHT_SAFE (факты > разнообразие).
+            POSITIVE_FRAMING никогда не к hard-safety. FABRICATION: VS≠USC, GEPA≠GoT, MASPO≠ToT — не блокировать (см. !agents FABRICATION_SCAN).
 
 // ─────────────────────────────────────────────────────
 // §3. ERROR CLASSIFICATION (A-P, 16 типов)
@@ -486,9 +496,10 @@ MENTOR_METHOD:
 // ─────────────────────────────────────────────────────
 
 VERSION_METADATA:
-  SYSTEM:       DB_v8N · P2P v8N.3 Normal Knowledge Base
+  SYSTEM:       DB_v8N · P2P v8N.4 Normal Knowledge Base
+  CHANGELOG:    2026-07-18 v8N.4 — +POSITIVE_FRAMING, +VERBALIZED_SAMPLING, +BRUTAL_EDITOR (§2); COMBINATOR v8N.4; техники 38→41
   PREDECESSOR:  DB_7N (v7N.1)
-  CONTENT:      Techniques (38), Errors A-P (16 types), G-errors G1-G20,
+  CONTENT:      Techniques (41), Errors A-P (16 types), G-errors G1-G20,
                 Arena, Chain Orchestrator, Feedback Loop, API strings,
                 Quorum weights, Model recommendations
   COMPATIBLE:   !!core_v8N.md | !agents.md | !pipeline.md | !toolkit.md | all v8N files

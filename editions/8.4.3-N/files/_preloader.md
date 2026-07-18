@@ -1,15 +1,15 @@
 ---
 id: preloader_v8N
-version: v8N.3
+version: v8N.4
 type: PRELOADER
 priority: CRITICAL
 load_order: 1
 compatible_with: "!!core_v8N.md | all v8N files"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
-// P2P v8N.3 — PRELOADER
+// P2P v8N.4 — PRELOADER
 // Загружается ПЕРВЫМ. Устанавливает контекст сессии.
 // ═══════════════════════════════════════════════════════
 
@@ -199,7 +199,7 @@ ON_LOAD:
   6. Ждать выбора пользователя
 
 HOST_PICK_LIST:  // fallback — ручной выбор, если автодетект (БЛОК 0) неуверен (частый случай: Qwen)
-  EMIT: "🌐 Не удалось надёжно определить хост. На какой LLM ты запускаешь P2P v8N.3?
+  EMIT: "🌐 Не удалось надёжно определить хост. На какой LLM ты запускаешь P2P v8N.4?
      [1] claude    [2] gemini   [3] gpt      [4] grok    [5] deepseek
      [6] qwen      [7] kimi     [8] glm      [9] minimax [10] manus"
   ON_CHOICE: записать выбор в HOST_CONFIG.HOST_MODEL → применить HOST_PROFILE + SYNTAX_SELF (XML_POLICY).
@@ -212,7 +212,7 @@ HOST_PICK_LIST:  // fallback — ручной выбор, если автоде�
   → Используем разумные значения по умолчанию
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8N.3 Normal · Preloader
+  SYSTEM:      P2P v8N.4 Normal · Preloader
   ROLE:        HOST_CONFIG, PROJECT_CARD, FLAGS, VERSION_COMPAT, env detection, load order
   COMPATIBLE:  all v8N files
   NEW_IN_v8N3: VERSION_COMPAT (legacy/v3 + 6 MODULE_* flags), CONFLICT_RESOLVER v1.0,

@@ -1,11 +1,11 @@
 ---
 id: agents_v8N
-version: v8N.3
+version: v8N.4
 type: ON_DEMAND
 load_trigger: "QUORUM|агент|Q:|FULL|FAST_TRIO|HELIOS|IRIS|TECTON"
 priority: SYSTEM
 compatible_with: "!!core_v8N.md | !!db_v8N.md"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -28,6 +28,8 @@ AGENTS:
   6  | ANON       | ⚫   | Code Specialist             | Round 6
   7  | ARCHITECTON| 🔵   | Integration Specialist      | Round 7
   8  | HELIOS     | ☀️   | Final Synthesizer           | Round 8 (NEW)
+
+// [v8N.4] MASPO (!optimization) может тюнить QUORUM_WEIGHT и промпты этих агентов; число агентов = 8 неизменно (I7 не нарушен).
 
 // ─────────────────────────────────────────────────────
 // §2. AGENT PROFILES
@@ -88,6 +90,7 @@ VECTOR (🟠 Red Teamer):
       * Tree of Thought (нет реального параллелизма)
       * Graph of Thought (нужен внешний движок)
       * Universal Self-Consistency (контаминация)
+      // [v8N.4 EXCEPTION] НЕ считать fabricated: VERBALIZED_SAMPLING (≠USC), GEPA (≠GoT), MASPO (≠ToT) — легитимные техники/фреймворки P2P.
     - Изменять смысл при de-noising (preserve all nouns/verbs/terms)
   VETO: IF [CRITICAL_RISK] → все веса = 0 → блокировка → Audit Mode
   QUORUM_WEIGHT: 20% security, 40% security tasks
@@ -300,7 +303,8 @@ ADVANCED_AGENTS:  // v8N.3 — паттерны оркестрации (не м�
   MUTEX:     Branch-Solve-Merge с RAG → один источник памяти (Graphiti ИЛИ CAPSULE, не оба).
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8N.3 Normal · Agents Registry + [v8N.3] Advanced Agents
+  SYSTEM:      P2P v8N.4 Normal · Agents Registry + [v8N.3] Advanced Agents
+  CHANGELOG:   2026-07-18 v8N.4 — VECTOR fabrication-list +exception (VS/GEPA/MASPO); MASPO note (I7=8 неизменно)
   AGENTS:      8 (IRIS, TECTON, AXIOM, VECTOR, DATOS, ANON, ARCHITECTON, HELIOS)
   NEW_IN_v8N1: HELIOS (8-й агент, финальный синтезатор — выделен из ARCHITECTON)
   COMPATIBLE:  !!core_v8N.md | !!db_v8N.md | !rag.md | !memory.md

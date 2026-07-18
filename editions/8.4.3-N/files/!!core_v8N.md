@@ -1,11 +1,11 @@
 ---
 id: core_v8N
-version: v8N.3
+version: v8N.4
 type: CORE
 priority: CRITICAL
 load_order: 2
 compatible_with: "_preloader.md | all v8N files"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -162,6 +162,7 @@ PRINCIPLES:
   P5. CONSTRAINTS_NOT_PRESSURE:
       Никакого "ОБЯЗАТЕЛЬНО!!!" или "КРИТИЧЕСКИ ВАЖНО!!!".
       Только структурные ограничения.
+      POSITIVE_FRAMING (v8N.4): формулировать "не X" → "делай Z" (эффект розового слона); КРОМЕ hard-safety запретов (см. !!db_v8N).
 
   P6. FAILURE_MODES_FIRST:
       Перед любой новой фичей → проверка anti-patterns (Type A-Q).

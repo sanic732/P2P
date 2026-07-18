@@ -1,13 +1,13 @@
 ---
 id: index_v8N
-version: v8N.3
+version: v8N.4
 type: META
 priority: REFERENCE
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 // ═══════════════════════════════════════════════════════
-// P2P v8N.3 — MODULE INDEX
+// P2P v8N.4 — MODULE INDEX
 // Полный реестр модулей, триггеры загрузки, зависимости.
 // ═══════════════════════════════════════════════════════
 
@@ -118,6 +118,6 @@ VALIDATION_CHECK:
   Architecture: BASE (3) + LIVE (3 + live_specs) + ON_DEMAND (7 + 6 v8N.3) + VENDORS (4) + META (3) + DOCS (7)
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8N.3 Normal · Module Index
+  SYSTEM:      P2P v8N.4 Normal · Module Index
   ROLE:        Семантический граф, реестр модулей, триггеры загрузки, зависимости
   COMPATIBLE:  all v8N files
