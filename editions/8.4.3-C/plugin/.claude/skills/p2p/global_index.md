@@ -1,15 +1,16 @@
 ---
 source_id: INDEX_V8C
-version: v8C.3
+version: v8C.4
 module_type: meta
-last_updated: 2026-06-12
-last_verified: 2026-06-12
-scope: P2P v8C.3 master index — all files, load order, tags, module types.
+last_updated: 2026-07-18
+last_verified: 2026-07-18
+scope: P2P v8C.4 master index — all files, load order, tags, module types.
 tags: index, navigation, load-order, v8c, teacher, plugin
-changelog: 2026-05-14 — v8C.2 BUMP; +teacher.md ON-DEMAND; +/p2p-teacher command; +.claude-plugin/ manifests; +.claude/skills/p2p-teacher/
+changelog: 2026-07-18 — v8C.4: +теги verbalized / positive-framing / context-engineering; система → v8C.4 (8 новых техник, add-only).
+  2026-05-14 — v8C.2 BUMP; +teacher.md ON-DEMAND; +/p2p-teacher command; +.claude-plugin/ manifests; +.claude/skills/p2p-teacher/
 ---
 
-# P2P v8C.3 — МАСТЕР ИНДЕКС (_index.md)
+# P2P v8C.4 — МАСТЕР ИНДЕКС (_index.md)
 
 ---
 
@@ -152,6 +153,9 @@ _preloader.md + core.md + db.md + _live/*
 | `onboarding` | teacher.md, docs/НАЧАЛО_РАБОТЫ.md, docs/TEACHER_GUIDE.md |
 | `plugin` | .claude-plugin/plugin.json, INSTALL.md |
 | `install` | INSTALL.md, docs/INSTALL_GUIDE.md, pack.sh, pack.ps1 |
+| `verbalized` | writing_suite.md |
+| `positive-framing` | db.md, contract_builder.md |
+| `context-engineering` | compression.md, memory_bridge.md |
 
 <!-- SOURCE_META: type=meta | priority=1 | index=true | navigation=true -->
 
@@ -160,9 +164,9 @@ _preloader.md + core.md + db.md + _live/*
 VERSION_METADATA
 ========================================
 id: INDEX_V8C
-version: v8C.3
+version: v8C.4
 type: meta
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-12
+last_verified: 2026-07-18
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

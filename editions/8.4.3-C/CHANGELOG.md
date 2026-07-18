@@ -2,8 +2,8 @@
 source_id: CHANGELOG_V8C3
 version: v8C.3
 module_type: docs
-last_updated: 2026-07-07
-scope: Full changelog for v8C.3 release. Covers only v8C.2 → v8C.3 changes. For earlier history see v8C.2 docs.
+last_updated: 2026-07-18
+scope: Full changelog for v8C.3/v8C.4 release line. Covers v8C.2 → v8C.4 changes. For earlier history see v8C.2 docs.
 tags: docs, changelog, v8c3, alpha
 ---
 
@@ -16,6 +16,14 @@ tags: docs, changelog, v8c3, alpha
 - **E3 Grok target-слой:** новый `vendors/grok.md` (grok-4.5/4.3, G14 safe-params, TARGET-профиль) в for-chat и plugin; секция **GROK_JSON_TARGET** (строгий JSON envelope + STRICT_MODE `json_schema` + Type H guard) в `!contract.md` и `contract_builder.md`; GROK-ветка в CORE RULES. Полный Heavy-16 пак — НЕ в C (эксклюзив High/Light).
 - **E1 Agent Skills:** новый ON-DEMAND `!skills.md` — генератор `SKILL.md` по стандарту agentskills.io (frontmatter-правила name/description, progressive disclosure, description-валидатор, анти-паттерны, таргеты Grok/Claude/Cursor/Codex); пункт меню **[42]** + `/p2p-skill`; регистрация в `_preloader`/`_index`.
 - **E7:** bump 8.4.2 → 8.4.3 (`plugin.json`, `marketplace.json` source/description, README, каталог `editions/8.4.3-C`).
+
+### Code 2026-07-18 — v8C.4: +8 техник промпт-инжиниринга (add-only, внутренняя версия ядра)
+- **Внутренняя версия ядра v8C.3 → v8C.4.** Внешний плагин остаётся **8.4.3**; slug `p2p-v8c3` и SemVer в `plugin.json` НЕ тронуты (bump SemVer / marketplace-sync = отдельное релизное действие Master).
+- **Фаза 1 (db.md, writing_suite.md):** +`POSITIVE_FRAMING` (#DB_TECHNIQUE_POSITIVE_FRAMING, always-loaded) + правило в Contract Builder Шаг 5; +§10 writing_suite (`VERBALIZED_SAMPLING`; `BRUTAL_EDITOR` как вариант Template L); строки-указатели в db §8.
+- **Фаза 2 (optimization.md):** +GEPA (апгрейд EvoPrompt, Pareto-фронт), +MASPO (мета-тюнинг QUORUM — `I7_agents_8` не нарушен, 8 агентов), +SePO backlog. Фреймворки-процессы, не пункты меню.
+- **Фаза 3 (reasoning/rag/compression/memory_bridge):** +Context-Grounding CoT (reasoning + перекрёстная ссылка rag); +раздел «CONTEXT ENGINEERING (Anthropic framing)» в compression + ссылка memory_bridge.
+- **Фаза 4:** COMBINATOR conflict-matrix v8C.4 (db) + §308 FABRICATION_SCAN расширен (agents: VS≠USC, GEPA≠GoT, MASPO≠ToT) + MASPO note у WEIGHT DISTRIBUTION; теги `verbalized`/`positive-framing`/`context-engineering` в global_index; bump v8C.4 в preloader/master/global_index + VERSION_METADATA всех тронутых модулей.
+- Инварианты I1/I4/I5/I6/I7 сохранены; hard-safety запреты не переписаны в позитив; `budget_tokens` не введён (G6).
 
 ### Code 2026-07-14 — live_specs→дельта + docs/токен-карта
 - **✂️ `live_specs.md` → ДЕЛЬТА** (обе формы): 91849→31061 б, **31 351→10 614 токенов**. Стабильные спеки моделей — в `vendors/tier*` + `live_vendors`; live_specs несёт волатильное (deltas/deadlines/ERROR_REGISTRY/ARENA/media/changelog).

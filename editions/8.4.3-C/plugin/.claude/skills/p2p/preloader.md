@@ -1,14 +1,14 @@
 ---
 source_id: PRELOADER_V8C
-version: v8C.3
+version: v8C.4
 module_type: base
 depends_on: none
-last_updated: 2026-06-12
-scope: P2P v8C.3 entry point — USER_CONTEXT detection, PROJECT_CARD, TRI_MODE_BRIDGE v3 environment detection, load order declaration. Always loaded first.
+last_updated: 2026-07-18
+scope: P2P v8C.4 entry point — USER_CONTEXT detection, PROJECT_CARD, TRI_MODE_BRIDGE v3 environment detection, load order declaration. Always loaded first.
 tags: preloader, user-context, project-card, tri-mode, env-detection, always-loaded
 ---
 
-# P2P v8C.3 — PRELOADER (_preloader.md)
+# P2P v8C.4 — PRELOADER (_preloader.md)
 
 > Этот файл загружается **первым**. Он задаёт контекст для всей сессии.
 
@@ -45,7 +45,7 @@ ELSE:
 ```
 
 **Сообщи пользователю среду при старте:**
-`[P2P v8C.3 | Среда: {СРЕДА} | Guardian: {ON/OFF}]`
+`[P2P v8C.4 | Среда: {СРЕДА} | Guardian: {ON/OFF}]`
 
 ---
 
@@ -189,7 +189,7 @@ IF MODULE_X = false AND v8C3 = off:  Не загружать, пункт мен�
      Если SHERPA активен (auto = ON при co-pilot) → подсветить релевантные фичи среды до выполнения.
 4. Если запрос = "СТАРТ" / "/p2p" / "/menu" / "[31]" / "full ui menu" → показать ПОЛНОЕ меню одним экраном: лого + арт-баннеры (если art.md загружен) + строка РЕЖИМОВ (буквы C/A/M/S/Q/H/E) + все пункты [1-40] (см. core.md).
 5. Если запрос = задача → сразу начинать (Tier ≥ T2 → предложи QUORUM)
-6. Выведи: [P2P v8C.3 | {СРЕДА} | {TIER}]
+6. Выведи: [P2P v8C.4 | {СРЕДА} | {TIER}]
 ```
 
 <!-- SOURCE_META: type=base | priority=1 | preloader=true | always-loaded=true | loaded-first=true -->
@@ -199,9 +199,10 @@ IF MODULE_X = false AND v8C3 = off:  Не загружать, пункт мен�
 VERSION_METADATA
 ========================================
 id: PRELOADER_V8C
-version: v8C.3
+version: v8C.4
 type: base
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-12
+last_verified: 2026-07-18
+changelog: 2026-07-18 — v8C.4: bump версии продукта (баннеры старта, шапка); система v8C.3→v8C.4 (8 add-only техник). Флаги v8C2/v8C3 и исторические метки не тронуты.
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

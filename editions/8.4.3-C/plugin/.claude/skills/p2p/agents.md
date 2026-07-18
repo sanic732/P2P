@@ -1,10 +1,10 @@
 ---
 source_id: AGENTS_V8C
-version: v8C.3
+version: v8C.4
 module_type: on-demand
 depends_on: core.md, db.md
-last_updated: 2026-05-03
-last_verified: 2026-05-03
+last_updated: 2026-07-18
+last_verified: 2026-07-18
 scope: Full agent profiles — IRIS, TECTON, AXIOM, VECTOR, DATOS, ANON, ARCHITECTON, HELIOS. QUORUM orchestration patterns, direct invocation, sub-QUORUM compositions.
 tags: agents, quorum, iris, tecton, axiom, vector, datos, anon, architecton, helios, on-demand
 triggers: "агент", "QUORUM", "IRIS", "TECTON", "AXIOM", "VECTOR", "DATOS", "ANON", "ARCHITECTON", "HELIOS", "консилиум"
@@ -275,6 +275,8 @@ WEIGHT DISTRIBUTION by task_type (default; tunable via `routing_memory`):
 | WRITING   | 20%    | 35%  | 5%    | 5%   | 15%   | 25% |
 | FRONTIER  | 20%    | 5%   | 35%   | 15%  | 25%   | 5%  |
 
+> **MASPO note (v8C.4):** MASPO (optimization.md) оптимизирует эти веса и промпты агентов, но число агентов = **8 неизменно** — `I7_agents_8` НЕ нарушен. Меняются веса/промпты, не состав QUORUM.
+
 ---
 
 ## CROSS-AGENT PROTOCOLS
@@ -306,6 +308,7 @@ WEIGHT DISTRIBUTION by task_type (default; tunable via `routing_memory`):
 
 **FABRICATION_SCAN** (before output): ANON scans for MoE/ToT/GoT/USC/chaining; if found → block + suggest alternative; log substitution.
   EXCEPTION (v8C.3 — do NOT block P2P's own techniques): Self-Consistency (SC, Wang 2023) ≠ USC; MCTS (algorithmic search) ≠ ToT-forcing; RAPTOR/LongRAG (retrieval) ≠ GoT; L-OPTICAL/pxpipe (pixel-space render, DeepSeek-OCR) ≠ LLMLingua ≠ Gist. See `db.md` #DB_TECHNIQUE_COMBINATOR disambiguation. ANON MUST consult it before blocking any `reasoning.md` / `rag.md` / `compression.md` technique.
+  EXCEPTION (v8C.4 — do NOT block new techniques): VERBALIZED_SAMPLING (VS, arXiv 2510.01171, tail-sampling within content policy) ≠ USC-forcing; GEPA (reflective evolutionary optimization) ≠ GoT; MASPO (multi-agent joint prompt optimization) ≠ ToT. These are optimization/creative frameworks, not banned prompt-forcing patterns. See `db.md` #DB_TECHNIQUE_COMBINATOR. ANON MUST NOT block VS / GEPA / MASPO on FABRICATION grounds.
 
 ---
 
@@ -316,9 +319,10 @@ WEIGHT DISTRIBUTION by task_type (default; tunable via `routing_memory`):
 VERSION_METADATA
 ========================================
 id: AGENTS_V8C
-version: v8C.3
+version: v8C.4
 type: on-demand
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-12
+last_verified: 2026-07-18
+changelog: 2026-07-18 — v8C.4: §308 FABRICATION_SCAN расширен (VS≠USC, GEPA≠GoT, MASPO≠ToT — не блокировать); +MASPO note у WEIGHT DISTRIBUTION (I7 не нарушен, 8 агентов).
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

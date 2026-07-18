@@ -735,6 +735,13 @@ Fabrication Banned List disambiguation (CRITICAL — VECTOR MUST NOT veto P2P's 
 - L-OPTICAL / pxpipe (compression.md — pixel-space render to PNG, DeepSeek-OCR arXiv 2510.18234) is NOT LLMLingua (token-space) and NOT Gist (learned marker). Distinct compression axis. ALLOWED. Reader-gated (Fable 5); byte-exact → text sidecar.
 - VECTOR MUST consult this disambiguation before flagging any v8C.3 reasoning/rag/compression technique as fabrication.
 
+Conflict matrix — v8C.4 techniques (added 2026-07-18):
+- IF target=reasoning_model AND combined=(BRUTAL_EDITOR) → DOWNGRADE (дублирует внутренний critique)
+- IF combined=(VERBALIZED_SAMPLING + GASLIGHT_SAFE) → RETAIN GASLIGHT_SAFE (факты > разнообразие)
+- VERBALIZED_SAMPLING + POSITIVE_FRAMING → совместимы
+- POSITIVE_FRAMING никогда не применяется к hard-safety запретам
+- FABRICATION_SCAN: VS ≠ USC, GEPA ≠ GoT, MASPO ≠ ToT — НЕ блокировать (см. agents.md §308 disambiguation)
+
 ### ADVANCED TECHNIQUES v7C.1.1 (9 новых)
 
 **STRUCTURED_DECOMPOSITION**

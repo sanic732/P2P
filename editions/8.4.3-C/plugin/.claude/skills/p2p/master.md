@@ -1,13 +1,13 @@
 ---
 source_id: MASTER_V8C
-version: v8C.3
+version: v8C.4
 module_type: meta
-last_updated: 2026-06-12
+last_updated: 2026-07-18
 scope: _master.md — assembly instructions for single-file API deployment (v8C.2). Not for direct use — follow assembly guide.
 tags: master, assembly, api, single-file, deployment
 ---
 
-# P2P v8C.3 — МАСТЕР СБОРКИ (_master.md)
+# P2P v8C.4 — МАСТЕР СБОРКИ (_master.md)
 
 > Этот файл описывает как собрать v8C.2 в единый промпт для API.
 > Для детальных инструкций → docs/ASSEMBLY_GUIDE.md
@@ -146,9 +146,10 @@ response = client.messages.create(
 VERSION_METADATA
 ========================================
 id: MASTER_V8C
-version: v8C.3
+version: v8C.4
 type: meta
 edition: CLAUDE_NATIVE
-last_verified: 2026-06-12
+last_verified: 2026-07-18
+changelog: 2026-07-18 — v8C.4: bump версии. Файл — инструкции по cat-сборке; новые on-demand вставки (8 техник) подхватываются существующей конкатенацией, копий контента не хранит.
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
