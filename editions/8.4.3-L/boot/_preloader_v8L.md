@@ -1,6 +1,6 @@
 ---
 id: preloader_v8L
-version: v8L.3
+version: v8L.4
 type: PRELOADER
 priority: CRITICAL
 load_order: 1
@@ -124,7 +124,7 @@ ON_LOAD:
   8. Ждать выбора пользователя
 
 ЕСЛИ HOST_CONFIG.HOST_MODEL не заполнен:
-  → Вывести: "🌐 На какой LLM ты запускаешь P2P v8L.3? Выбери хост:
+  → Вывести: "🌐 На какой LLM ты запускаешь P2P v8L.4? Выбери хост:
      [1] claude  [2] gemini  [3] gpt  [4] grok  [5] deepseek  [6] qwen  [7] kimi  [8] glm"
   → Записать выбор в HOST_MODEL; применить HOST_PROFILE + XML_POLICY + fetch-ожидание.
   → PERSIST: зафиксировать HOST_MODEL на сессию (не переспрашивать).
@@ -133,7 +133,7 @@ ON_LOAD:
   → Предложить заполнить, НЕ блокировать; разумные дефолты.
 
 VERSION_METADATA:
-  SYSTEM:      P2P v8L.3 · Lite/Live Hybrid · Preloader
+  SYSTEM:      P2P v8L.4 · Lite/Live Hybrid · Preloader
   ROLE:        Host selection, FETCH gate, LOAD_MODE, HOST_CONFIG, PROJECT_CARD, FLAGS, VERSION_COMPAT
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
   COMPATIBLE:  _index_v8L, !!core_v8L, !!db_v8L

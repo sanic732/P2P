@@ -1,11 +1,11 @@
 ---
 id: db_v8L
-version: v8L.3
+version: v8L.4
 type: KNOWLEDGE_BASE
 priority: CRITICAL
 load_order: 4
 compatible_with: "!!core_v8L.md | _index_v8L.md | all v8L files"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 LITE_SNAPSHOT:
@@ -44,6 +44,7 @@ TECHNIQUES:
   ANCHOR_CONTEXT:  Повтор ключевых инструкций на границах документа. 90/100.
   LATE_CHUNKING:   100K блоки для Gemini. Gemini optimal. 91/100.
   GASLIGHT_SAFE:   Honesty mode: строгое разделение факт/гипотеза. 91/100.
+  POSITIVE_FRAMING: Ограничения через утверждение желаемого ("не X" → "делай Z", розовый слон). Искл: hard-safety = негатив. Universal. 89/100.
   SAFE_THINKING:   Токен [SECURITY_CHECK] между шагами рассуждения. 92/100.
   LLM_COUNCIL:     Multi-model верификация через консенсус. 96/100.
   EXCELLENT:       Обход over-refusal: Defensive Framing, Objective Abstraction, Clinical Tone.
@@ -55,6 +56,10 @@ TECHNIQUES:
   RAG_GROUNDING:   "Отвечай ТОЛЬКО из предоставленного контекста." Claude optimal. 94/100.
   PERSONA_CASCADE: Цепочка ролей: Role A → Role B. BANNED для R1/Kimi Thinking. 88/100.
   REFLECTION_LOOP: Сгенерировать → Критиковать → Переписать. Только Tier 2+. 90/100.
+  VERBALIZED_SAMPLING: Против mode collapse: N ответов + явная вероятность, семпл из хвостов (p<0.10), в content-policy. Creative. DEFAULT OFF factual. 90/100.
+  BRUTAL_EDITOR:   Хук: "score 1-10 (clarity/usefulness/accuracy), перепиши до 10, помечай догадки." Не для reasoning-native в reasoning-режиме. 90/100.
+  CONTEXT_GROUNDING_COT: Извлечь EXTRACTED_RULES из контекста ДО ответа; отвечать только по ним, с ссылками. Long-context/RAG. arXiv 2605.25354. 90/100.
+  CONTEXT_ENGINEERING: Курировать набор токенов (system/tools/примеры/история/память): compaction/note-taking/JIT-retrieval/labeled-sections. prompt caching до 90% cost (Anthropic).
   GATE_PATTERN:    Сначала классифицировать, потом роутить. Universal. 91/100.
   SCAFFOLD_PATTERN: Сначала outline, потом заполнить по секциям. 89/100.
   ADVERSARIAL_PAIR: [GENERATOR] создаёт → [CRITIC] критикует → фикс. 92/100.
@@ -65,13 +70,16 @@ TECHNIQUES:
     STEP_BY_STEP: Gemini/R1/Kimi Thinking = запрещён в reasoning.
   COMBINATOR:
     Цепочки техник. Конфликт: IF reasoning_model + STEP_BY_STEP → BLOCK. Высший ARENA_SCORE побеждает.
+    [v8L.4] reasoning_model + BRUTAL_EDITOR → DOWNGRADE. VS + GASLIGHT_SAFE → RETAIN GASLIGHT_SAFE. POSITIVE_FRAMING не к hard-safety.
 
 TECHNIQUE_COMBINATOR:
   DO_NOT_BLOCK:
     Self-Consistency (SC, Wang 2023)  ≠ Universal Self-Consistency (USC)
     MCTS (algorithmic search)          ≠ Tree-of-Thought forcing
     RAPTOR / LongRAG (retrieval)       ≠ Graph-of-Thought
+    VERBALIZED_SAMPLING ≠ USC ; GEPA ≠ GoT ; MASPO ≠ ToT   [v8L.4]
   RULE: ANON/VECTOR ОБЯЗАН свериться с этим блоком до VETO любой reasoning/rag техники.
+  NOTE [v8L.4]: GEPA/MASPO/SePO — фреймворки-процессы (нужен eval-harness) → в Lite справочно, не активируются.
 
 ERRORS_AP:
   A. Silent timeout:  Кредиты сняты, нет ответа. Fix: уменьши thinking, чанки.
@@ -182,7 +190,8 @@ GROK_HEAVY_FAILURE_MODES:
   Type V — Tool Result Verify Failed: результат противоречит контексту. Fix: AXIOM+VECTOR cross-verify.
 
 VERSION_METADATA:
-  SYSTEM:      DB_v8L · P2P v8L.3 Lite/Live Hybrid Knowledge Base
+  SYSTEM:      DB_v8L · P2P v8L.4 Lite/Live Hybrid Knowledge Base
+  CHANGELOG:   2026-07-18 v8L.4 — +POSITIVE_FRAMING/VERBALIZED_SAMPLING/BRUTAL_EDITOR/CONTEXT_GROUNDING_COT/CONTEXT_ENGINEERING (compact); COMBINATOR+DO_NOT_BLOCK v8L.4 (VS/GEPA/MASPO). Фреймворки — справочно (eval-harness).
   CONTENT:     LITE_SNAPSHOT, Techniques, COMBINATOR disambig, Errors A-P, G1-G20, Grok Heavy, Arena, Chains, Feedback, API strings, QUORUM weights
   COMPATIBLE:  !!core_v8L | _index_v8L
   API_STRINGS: claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-haiku-4-5-20251001

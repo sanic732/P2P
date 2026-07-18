@@ -1,6 +1,6 @@
 ---
 id: index_v8L
-version: v8L.3
+version: v8L.4
 type: META
 priority: REFERENCE
 edition: LITE_LIVE_HYBRID
@@ -91,7 +91,7 @@ MACROS:
   /p2p-rag | /p2p-reasoning | /p2p-compress | /p2p-security | /p2p-optimize → соответств. чанки
 
 VERSION_METADATA:
-  SYSTEM:     P2P v8L.3 · Lite/Live Hybrid · Gist Routing Table
+  SYSTEM:     P2P v8L.4 · Lite/Live Hybrid · Gist Routing Table
   ROLE:       Contract registry, triggers, transitive deps, MUTEX, integrity
   COMPATIBLE: _preloader_v8L, !!core_v8L, !!db_v8L
   API_STRINGS: claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-haiku-4-5-20251001

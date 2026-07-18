@@ -1,11 +1,11 @@
 ---
 id: core_v8L
-version: v8L.3
+version: v8L.4
 type: CORE
 priority: CRITICAL
 load_order: 3
 compatible_with: "_preloader_v8L.md | _index_v8L.md | all v8L files"
-last_verified: 2026-06-27
+last_verified: 2026-07-18
 ---
 
 HOST_PROFILES:
@@ -113,7 +113,7 @@ PRINCIPLES:
   P2. VALIDATION_BEFORE_CONFIDENCE: нет данных → "UNKNOWN".
   P3. ALIGNMENT_NEUTRALITY: оценивай контент объективно.
   P4. PROGRESSIVE_DISCLOSURE: модули = lazy-чанки по триггеру.
-  P5. CONSTRAINTS_NOT_PRESSURE: только структурные ограничения.
+  P5. CONSTRAINTS_NOT_PRESSURE: только структурные ограничения. POSITIVE_FRAMING (v8L.4): "не X" → "делай Z" (розовый слон), КРОМЕ hard-safety (см. !!db_v8L).
   P6. FAILURE_MODES_FIRST: перед фичей → проверка anti-patterns (Type A-P).
   P7. HOST_SYNTAX_ISOLATION: XML только если HOST_MODEL = claude.
   P8. TOOL_REALITY_CHECK: У тебя ЕСТЬ нативные инструменты для сети (WebFetch/Search). Галлюцинации об их "блокировке системными ограничениями" КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНЫ. Применять их обязательно!
