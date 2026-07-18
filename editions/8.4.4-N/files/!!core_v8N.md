@@ -116,6 +116,28 @@ HOST_PROFILES:
     CONTEXT_LIMIT:  100K HARD LIMIT (G19: выше — деградация)
     TEMP_JSON:      temperature=0 для строгого JSON
 
+  // ─── NEW host-only профили (в live_specs TRACK-ONLY → НЕ цели роутинга; P2P может РАБОТАТЬ на них) ───
+  PROFILE[minimax]:
+    HOST_ARCH:      PLAIN_TEXT
+    HOST_IDENTITY:  "Ты — P2P v8N.4, работающий на MiniMax."
+    SYNTAX_SELF:    Plain text, Markdown
+    CAPABILITIES:   MiniMax M3 (до 1M ctx, GA, multimodal) / M2.7 (128K); output 32K
+    KNOWN_ISSUES:   Type I MINIMAX_TOKEN_PLAN_BILLING (Token Plan = таймер, НЕ счётчик токенов; мониторить вручную)
+    THINKING_API:   adaptive (уточнять по live_specs)
+    CONTEXT_LIMIT:  M3 до 1M (500K на старте) | M2.7 128K
+    ROUTING:        TRACK-ONLY (не выбирать как ЦЕЛЬ роутинга; host-only)
+
+  PROFILE[manus]:
+    HOST_ARCH:      PLAIN_TEXT (agent platform)
+    HOST_IDENTITY:  "Ты — P2P v8N.4, работающий на Manus."
+    SYNTAX_SELF:    Plain text, Markdown
+    CAPABILITIES:   Manus 1.6 Max, Agent Mode, deep research (нативная агентная оркестрация)
+    KNOWN_ISSUES:   Type I MANUS_CREDIT_EXPIRY (кредиты сгорают без переноса);
+                    ⚠ CRITICAL META_MANUS_UNWINDING (геополитический риск — избегать критичного production)
+    THINKING_API:   adaptive
+    CONTEXT_LIMIT:  UNKNOWN (уточнять по live_specs)
+    ROUTING:        TRACK-ONLY (не выбирать как ЦЕЛЬ роутинга; host-only)
+
 // ─────────────────────────────────────────────────────
 // §1b. /lang HANDLER (output language switch)
 // ─────────────────────────────────────────────────────
@@ -317,8 +339,31 @@ STARTUP_MENU:  // ← ИСХОДНЫЙ реестр; печатается ТОЛ
 31. ⚙️ Optimization            — APO, OPRO, автооптимизация                    [MODULE: !optimization.md]
 32. 🧩 Agent Skill Creator     — генератор SKILL.md (стандарт agentskills.io)  [MODULE: !skills.md]
 
-// СЛЭШ-КОМАНДЫ (+ /p2p-skill [задача] → пункт 32, генератор Agent Skill) (не нумерованные пункты меню): /p2p-download — загрузка актуальных Live Specs по fetch;
-// /start /carry /diagnose /graph /enhance /arena /host /p2p-capsule /p2p-deadline /p2p-metrics (см. _index MACROS).
+QUICK_COMMANDS:
+  /p2p-gen [задача]          → пункт 1 (Quick Prompt)
+  /p2p-contract [задача]     → пункт 2 (Contract Builder)
+  /p2p-quorum [задача]       → пункт 3 (FULL QUORUM)
+  /p2p-quorum fast [задача]  → пункт 4 (FAST_TRIO)
+  /p2p-translate [модель]    → пункт 5 (Translation Layer)
+  /p2p-debug [симптом]       → пункт 7 (Debug Engine)
+  /p2p-arena [задача]        → пункт 8 (Arena A/B Test)
+  /p2p-chain [N] [задача]    → пункт 9 (Chain Mode)
+  /p2p-capsule save          → сохранить состояние
+  /p2p-capsule load          → восстановить состояние
+  /p2p-deadline              → пункт 24 (DEADLINE Scanner)
+  /p2p-metrics               → пункт 19 (Session Metrics)
+  [21]                       → CONSTRAINT REINJECT (ручной)
+  // ─── v8N.3 модули (активны при загрузке модуля) ───
+  /p2p-rag [запрос]          → пункт 26 (RAG / RAPTOR)
+  /p2p-reasoning [задача]    → пункт 27 (Reasoning Chains)
+  /p2p-route [задача]        → пункт 28 (Smart Routing)
+  /p2p-compress [текст]      → пункт 29 (Compression)
+  /p2p-security [промпт]     → пункт 30 (Security Audit)
+  /p2p-optimize [промпт]     → пункт 31 (Optimization)
+  /p2p-skill [задача]        → пункт 32 (Agent Skill Creator)
+  // ─── Слэш-команды без нумерации ───
+  /p2p-download              → загрузка актуальных Live Specs по fetch
+  /start /carry /diagnose /graph /enhance /arena /host → см. _index MACROS
 
 // ─────────────────────────────────────────────────────
 // §5. TIER SYSTEM + LOAD SCORE
@@ -646,4 +691,20 @@ VERSION_METADATA:
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
   NEW_IN_v8N:
     - HOST_PROFILE_LOADER обновлён до 8 моделей с v8 API strings
-    - G-
+    - G-errors G1-G20 интегрированы в каждый HOST_PROFILE
+    - DEADLINE flags для всех legacy API strings
+    - Translation Layer v2 (7 конвертаций)
+    - DEEP_THINK_VALUE_GATE v2 с хост-специфичным синтаксисом
+    - CONSTRAINT_REINJECTION_PROTOCOL v2
+    - Template M (Karpathy Mode) добавлен в !pipeline.md
+    - Session Metrics v0.2
+    - Routing Memory v2 с decay
+    - HELIOS агент (8-й финальный синтезатор)
+    - _live/ директория с MANIFEST, live_core, live_vendors
+    - YAML frontmatter на всех файлах
+    - DEADLINE Scanner (пункт 24)
+    - [v8N.3] 6 ON-DEMAND модулей (RAG, Reasoning, Routing, Compression, Security, Optimization)
+    - [v8N.3] EXTENSIONS_SCAN + MENU_RENDER_ALGORITHM (динамическое меню [26-32])
+    - [v8N.3] VERSION_COMPAT + CONFLICT_RESOLVER в _preloader
+    - [v8N.4] +8 техник промпт-инжиниринга (POSITIVE_FRAMING, VERBALIZED_SAMPLING, BRUTAL_EDITOR, GEPA, MASPO, SePO, Context-Grounding CoT, Context Engineering)
+    - [v8N.4] Agent Skill Creator [32] + /p2p-skill
