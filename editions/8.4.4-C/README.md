@@ -1,8 +1,8 @@
-# 🟦 P2P 8.4.3-C — Claude Native Edition
+# 🟦 P2P 8.4.4-C — Claude Native Edition
 
 > 🇷🇺 Русский · 🇬🇧 [English](README.en.md) · ⬆️ [Назад к выбору редакции](../../README.md) · 📖 [Расшифровка имени](../../NAMING.md)
 
-**Версия:** 8.4.3-C (внутренние теги v8C.3) · **Токен-бюджет:** MINIMAL ~7K · LIGHT ~16K · MEDIUM ~30K · FULL ~59K
+**Версия:** 8.4.4-C (внутренние теги v8C.4) · **Токен-бюджет:** MINIMAL ~7K · LIGHT ~16K · MEDIUM ~30K · FULL ~59K
 
 ## Для кого
 Тех, кто работает в **Claude** (Opus 4.8 / Sonnet 4.6 / Fable 5): Claude Code, Cowork или Claude.ai Projects.

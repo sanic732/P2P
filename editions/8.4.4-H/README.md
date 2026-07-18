@@ -1,8 +1,8 @@
-# 🟥 P2P 8.4.3-H — High \ Hybrid Edition  <sub>(внутр. тег: 8H.3)</sub>
+# 🟥 P2P 8.4.4-H — High \ Hybrid Edition  <sub>(внутр. тег: 8H.4)</sub>
 
 > 🇷🇺 Русский · 🇬🇧 [English](README.en.md) · ⬆️ [Назад к выбору редакции](../../README.md) · 📖 [Расшифровка имени](../../NAMING.md)
 
-**Версия:** 8H.3 · **Токен-бюджет:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
+**Версия:** 8H.4 · **Токен-бюджет:** MINIMAL ~60K · STANDARD ~120K (реком.) · FULL ~200K
 
 > 📖 **Полная инструкция (Google Docs):** https://docs.google.com/document/d/e/2PACX-1vS2Xo8p7cEFYfrW7Lfxr2YxrbxSojmMp6-ueRgq3_9-Q-MGKeSiRUDuQmHSj1QUHXaHA3LFvYyPNI2e/pub
 
