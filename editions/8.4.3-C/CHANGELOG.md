@@ -17,8 +17,9 @@ tags: docs, changelog, v8c3, alpha
 - **E1 Agent Skills:** новый ON-DEMAND `!skills.md` — генератор `SKILL.md` по стандарту agentskills.io (frontmatter-правила name/description, progressive disclosure, description-валидатор, анти-паттерны, таргеты Grok/Claude/Cursor/Codex); пункт меню **[42]** + `/p2p-skill`; регистрация в `_preloader`/`_index`.
 - **E7:** bump 8.4.2 → 8.4.3 (`plugin.json`, `marketplace.json` source/description, README, каталог `editions/8.4.3-C`).
 
-### Code 2026-07-18 — v8C.4: +8 техник промпт-инжиниринга (add-only, внутренняя версия ядра)
-- **Внутренняя версия ядра v8C.3 → v8C.4.** Внешний плагин остаётся **8.4.3**; slug `p2p-v8c3` и SemVer в `plugin.json` НЕ тронуты (bump SemVer / marketplace-sync = отдельное релизное действие Master).
+### Code 2026-07-18 — РЕЛИЗ 8.4.4-C / v8C.4: +8 техник промпт-инжиниринга (add-only)
+- **Версии:** внутреннее ядро v8C.3 → **v8C.4**; внешний плагин **8.4.3 → 8.4.4** (`plugin.json` version+displayName, `marketplace.json` source/description → `editions/8.4.4-C`). Slug `p2p-v8c3` неизменен (кнопка Update). ⚠ Физический `git mv editions/8.4.3-C → 8.4.4-C` выполняет Master (в сессии заблокирован file-lock загруженных скиллов).
+- **Также интегрированы H/N/L** (v8H.4 / v8N.4 / v8L.4) — те же 8 техник, адаптированы под их структуру (см. их CHANGELOG).
 - **Фаза 1 (db.md, writing_suite.md):** +`POSITIVE_FRAMING` (#DB_TECHNIQUE_POSITIVE_FRAMING, always-loaded) + правило в Contract Builder Шаг 5; +§10 writing_suite (`VERBALIZED_SAMPLING`; `BRUTAL_EDITOR` как вариант Template L); строки-указатели в db §8.
 - **Фаза 2 (optimization.md):** +GEPA (апгрейд EvoPrompt, Pareto-фронт), +MASPO (мета-тюнинг QUORUM — `I7_agents_8` не нарушен, 8 агентов), +SePO backlog. Фреймворки-процессы, не пункты меню.
 - **Фаза 3 (reasoning/rag/compression/memory_bridge):** +Context-Grounding CoT (reasoning + перекрёстная ссылка rag); +раздел «CONTEXT ENGINEERING (Anthropic framing)» в compression + ссылка memory_bridge.
