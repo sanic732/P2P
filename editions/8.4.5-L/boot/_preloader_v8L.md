@@ -84,7 +84,8 @@ CONFLICT_RESOLVER:
     RAG + memory CAPSULE      → один компрессор (LLMLingua ИЛИ CAPSULE)
     COMPRESS                  → один constrained-decoding подход за раз (single_compressor)
     ROUTE + scope             → не дублировать Cascade (scope_cascade)
-    SECURITY                  → требует GUARDIAN:ON
+    SECURITY                  → требует GUARDIAN:ON. Если OFF → GUARDIAN_AUTO_ELEVATE
+                                (поднять на время команды, сообщить, затем вернуть). НЕ refuse.
     OPTIMIZATION              → требует SESSION(metrics) в плане, иначе refuse
     LITE preset               → максимум 2-3 чанка одновременно (context overflow)
 
@@ -109,7 +110,8 @@ LOAD_SEQUENCE:
   5. LIVE_SPECS: fetch LIVE.url → OVERRIDE LITE_SNAPSHOT
 
   PREFETCH_STEP:
-    FOR each MODULE_X in VERSION_COMPAT WHERE value in [true, or]:
+    FOR each MODULE_X in VERSION_COMPAT WHERE value in [true, on, auto, or]:
+    // допустимые значения флага: true | on | auto | or | false | off
         plan = resolve_deps(trigger_of(MODULE_X))
         execute_plan(plan)
 
@@ -118,7 +120,7 @@ ON_LOAD:
   2. Выполнить FETCH_CAPABILITY_GATE → зафиксировать LOAD_MODE
   3. Установить HOST_PROFILE + AGENT_PATH
   4. Читать PROJECT_CARD
-  5. LIVE_SPECS: fetch LIVE.url → OVERRIDE LITE_SNAPSHOT
+  5. LIVE_SPECS: fetch LIVE.url → OVERRIDE LITE_SNAPSHOT  // ЕДИНСТВЕННАЯ загрузка LIVE, до меню
   6. Выполнить PREFETCH_STEP
   7. Вывести STARTUP MENU c баннером: HOST_MODEL + LOAD_MODE + AGENT_PATH
   8. Ждать выбора пользователя

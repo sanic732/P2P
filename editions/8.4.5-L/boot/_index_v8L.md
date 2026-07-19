@@ -11,6 +11,15 @@ depends_on: _preloader_v8L.md
 LOAD_MODES:
   GIST_LAZY_FETCH:
 
+CANARY_POLICY: frozen_probe
+  // Канарейка НАМЕРЕННО запинена на отдельную (замороженную) ревизию gist_route.md
+  // и НЕ обязана совпадать с ревизией записи ROUTE в таблице ниже.
+  // Причина: канарейка проверяет только СПОСОБНОСТЬ хоста делать fetch (доступность
+  // + совпадение EOF-маркера), а не актуальность контента. Замороженный пробник
+  // даёт стабильный ответ независимо от обновлений арсенала.
+  // Расхождение ревизий preloader / FETCH_CANARY / ROUTE — ожидаемо, не баг.
+  // Если политика меняется на track_ROUTE — синхронизировать все три пина.
+
 FETCH_CANARY:
   url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/cfc670a84171a6e631e2b374b3fb3621ecd7c8a1/gist_route.md"
   expect:   "// EOF_MARKER_ROUTE_VALIDATED"
