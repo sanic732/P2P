@@ -1,6 +1,6 @@
 # P2P — Prompt-to-Prompt
 
-> 🇬🇧 **English** · 🇷🇺 [Русский](README.ru.md)
+> **English** · [Русский](README.ru.md)
 
 [![Version](https://img.shields.io/badge/version-v8.4.3-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-BETA-yellow)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
 

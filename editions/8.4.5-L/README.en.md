@@ -1,6 +1,6 @@
 # 🟦 P2P 8L.3 — Lite / Live Edition
 
-> 🇬🇧 English · 🇷🇺 [Русский](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
+> [RU](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 
 **Version:** 8L.3 · **Token budget:** BOOT ~10K (start) · Active ~25-40K · Full arsenal ~57K (`/p2p-download`)
 
@@ -12,7 +12,7 @@
 > are intended for task routing, legitimate audit and false-positive calibration only.
 > Using them to circumvent provider policies, security controls or law is prohibited.
 > The operator is responsible for anything they run.
->
+
 > ⚙️ **Principle (since v3.2):** "The best prompt is not the one that is beautifully
 > written, but the one that has proven its effectiveness in testing." When in doubt
 > between variants — run an A/B via ARENA instead of arguing.

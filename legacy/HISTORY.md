@@ -1,8 +1,8 @@
 # История и эволюция P2P · Project History
 
 > Связный рассказ об эволюции проекта **P2P (Prompt-to-Prompt)** от одного текстового промпта до модульной мета-промпт-ОС. Реконструкция по форумным постам 4PDA (особенно **DevLog ч.1/ч.2**), ретроспективному `P2P_v6.html` и архивным файлам в `old_version/`. Даты — историческая реконструкция *(backfilled)*; git-коммиты задним числом не создаются.
->
-> 🇷🇺 Русский · 🇬🇧 English (краткое резюме в конце)
+
+> краткое резюме в конце
 
 ---
 
@@ -32,8 +32,7 @@ P2P родился из простой лени: автору надоело к�
 
 ---
 
-## 🇬🇧 English — short summary
-
+## Short summary
 P2P evolved from a single English text prompt (**v1**) into a modular meta-prompt OS. **v2** added per-model system prompts; **v3.2 Dynamic Lab** split logic from data; **v4 Constraint Prompting** replaced step-by-step with constraints+goals for reasoning models. **v5 CHIMERA** went modular (three-layer KB, anchor links) — the "OS inside a prompt"; **v6 LEGION** added domain knowledge, NotebookLM bridge and Tier-4 QUORUM. **v7 CORTEX** formalized FULL/NORMAL/LITE editions and SCOPE.HELM; its **7C.2** became the public **v1.1 English GitHub release**. **v8 NEXUS** is current: branches 8C/8A/8G/8N (.1/.2) merged into the **.3** line of four editions — **8C.3** (Claude), **8H.3** (High \ Hybrid = Gemini-A ⊕ Grok-G), **8N.3** (Normal), **8L.3** (Lite/Live) — RAG architecture, 8 QUORUM agents, auto-updating live specs. The mission never changed: **kill classical prompt engineering for the everyday user.**
 
 ---

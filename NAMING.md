@@ -1,6 +1,6 @@
 # NAMING — расшифровка нейминга P2P · Naming Guide
 
-> Почему сборки так называются и как читать версии. 🇷🇺 Русский · 🇬🇧 [English below](#-english)
+> Почему сборки так называются и как читать версии. 
 
 ---
 
@@ -57,7 +57,6 @@ v 8   C    .3    - ALPHA
 
 ---
 
-## 🇬🇧 English
 
 ### Version scheme: `v8C.3`
 `8` = major architecture generation (NEXUS) · `C` = **edition letter** · `.3` = minor iteration · `ALPHA` = maturity status.
