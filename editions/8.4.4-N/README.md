@@ -17,7 +17,7 @@
 - ⚠️ Не использует нативные фишки конкретного вендора (для этого — C для Claude, H для Grok).
 
 ## Требования к хосту
-Любой из 8: GPT-5.5, DeepSeek V4, Qwen 3.6, Kimi K2.x, GLM-5.1, Gemini 3.x, MiniMax, Manus. Хост — в `_preloader.md`.
+Любой из 8: GPT-5.6, DeepSeek V4, Qwen 3.6, Kimi K2.x, GLM-5.1, Gemini 3.x, MiniMax, Manus. Хост — в `_preloader.md`.
 
 ## Что нового
 Поколение .3: те же 6 ON-DEMAND модулей и VERSION_COMPAT; live specs 17.06.26 (Fable 5 + Opus 4.8 в тирах и роутинге).

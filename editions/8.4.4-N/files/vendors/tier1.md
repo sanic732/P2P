@@ -11,7 +11,7 @@ last_verified: 2026-07-13
 // ═══════════════════════════════════════════════════════
 // P2P v8N.3 — VENDORS TIER 1
 // Flagship models: Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7 (legacy),
-//                  GPT-5.5, Gemini 3.1 Pro
+//                  GPT-5.6/5.5, Gemini 3.x
 // ═══════════════════════════════════════════════════════
 // OVERRIDE: live_specs > live_vendors.md > этот файл при конфликтах.
 

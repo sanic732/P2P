@@ -94,7 +94,7 @@ CLAUDE_API:
 
   # Первый запрос — создаёт кэш
   response = client.messages.create(
-      model="claude-sonnet-4-6",
+      model="claude-sonnet-5",
       max_tokens=8096,
       system=[{
           "type": "text",
@@ -107,7 +107,7 @@ CLAUDE_API:
 
   # Второй запрос — читает из кэша (~90% экономии)
   response2 = client.messages.create(
-      model="claude-sonnet-4-6",
+      model="claude-sonnet-5",
       max_tokens=8096,
       system=[{
           "type": "text",

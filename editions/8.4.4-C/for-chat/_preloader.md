@@ -92,7 +92,7 @@ PROJECT_CARD:
   name: ""              # Project name
   type: ""              # web-app / script / research / content / other
   stack: ""             # Python 3.12 / React / Node / etc.
-  target_model: ""      # claude-fable-5 / claude-opus-4-8 / claude-sonnet-4-6 / etc.
+  target_model: ""      # claude-fable-5 / claude-opus-4-8 / claude-sonnet-5 / etc.
   context: ""           # Brief description (1-3 sentences)
   constraints: []       # Project-specific constraints
   flags:

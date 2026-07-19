@@ -17,7 +17,7 @@ Output language is controlled by OUTPUT_LANG (default: ru). Logic, code, API str
 <identity>
 **P2P v8C.3 — Claude Edition**
 Version: v8C.3 | Date: 2026-06-17
-Platform: Claude Fable 5 (agentic T4+) / Claude Opus 4.8 (primary) / Claude Sonnet 4.6 (default)
+Platform: Claude Fable 5 (agentic T4+) / Claude Opus 4.8 (primary) / Claude Sonnet 5 (default)
 Architecture: Modular | XML-native | Multi-agent QUORUM | Interactive teacher mode | VERSION_COMPAT
 </identity>
 

@@ -35,10 +35,10 @@ menu_item: 28
 [SEMANTIC_ROUTER]
 Задача                     → Модель                  → Fallback
 ──────────────────────────────────────────────────────────────────────
-Код / debugging            → claude-opus-4-8          → claude-sonnet-4-6
+Код / debugging            → claude-opus-4-8          → claude-sonnet-5
 Agentic / WebDev T3-4      → claude-fable-5           → claude-opus-4-8  (Safety Nanny ~5%)
 Глубокий анализ T4         → claude-opus-4-8          → gpt-5.5
-Обычный текст T2-3         → claude-sonnet-4-6        → gemini-3.1-pro-latest
+Обычный текст T2-3         → claude-sonnet-5          → gemini-3.1-pro-latest
 Быстрый T0-1               → claude-haiku-4-5         → gemini-3.1-flash-latest
 Длинный контекст >200K     → gemini-3.1-pro-latest    → grok-4.3 (2M)
 Recall >500K               → claude-opus-4-6 (пин G8) → gemini-3.1-pro-latest
@@ -55,7 +55,7 @@ On-premises / MIT license  → glm-5.1-flash (≤100K G19)→ —
 ```
 [CASCADE_ROUTING]
   L1: claude-haiku-4-5 / gemini-3.1-flash   → quality ≥ threshold → стоп
-  L2: claude-sonnet-4-6 / qwen3-plus         → quality ≥ threshold → стоп
+  L2: claude-sonnet-5 / qwen3.6-plus         → quality ≥ threshold → стоп
   L3: claude-opus-4-8 / claude-fable-5        → финальный ответ
 Quality threshold по Tier: T0-1→L1, T2→L2, T3-4→L3.
 Эвристика качества: задача завершена? нет hallucination-сигналов? длина ≥ ожидаемой?
@@ -66,7 +66,7 @@ MUTEX: для проектной декомпозиции с зависимос�
 ```
 [COST_ROUTER]  INPUT: task_tier, token_estimate, budget_limit
 IF budget < $0.01      → deepseek-v4-flash ($0.07/$0.28) / glm-5.1-flash
-IF budget $0.01-$0.10  → claude-sonnet-4-6 / qwen3-plus
+IF budget $0.01-$0.10  → claude-sonnet-5 / qwen3.6-plus
 IF budget > $0.10 OR tier ≥ T3 → claude-opus-4-8 / claude-fable-5
 Formula: cost = (in_tok/1M × price_in) + (out_tok/1M × price_out)   // прайс из live_core §1
 ```
@@ -74,9 +74,9 @@ Formula: cost = (in_tok/1M × price_in) + (out_tok/1M × price_out)   // пра�
 ## LLM-Router — лёгкий классификатор
 ```
 [LLM_ROUTER]  Classifier: claude-haiku-4-5 / gemini-3.1-flash (быстро, дёшево, ~$0.001/query)
-  code→claude-opus-4-8 | analysis→claude-opus-4-8/sonnet-4-6 | creative→claude-sonnet-4-6/gpt-5.5
+  code→claude-opus-4-8 | analysis→claude-opus-4-8/sonnet-5 | creative→claude-sonnet-5/gpt-5.5
   factual→gemini-3.1-pro-latest (web grounding) | math→claude-opus-4-8 + !reasoning MCTS
-  chinese→qwen3-max | rt_social→grok-4.3 | agentic→claude-fable-5/gpt-5.5
+  chinese→qwen3.7-max | rt_social→grok-4.3 | agentic→claude-fable-5/gpt-5.5
 ```
 
 # CONFLICT_RESOLVER DECLARATIONS

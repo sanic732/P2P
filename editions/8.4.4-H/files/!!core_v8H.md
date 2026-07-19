@@ -518,14 +518,14 @@ RESOURCE_STRATEGY:
   IDEALIST:    Игнорируй стоимость, максимальное качество.
   PRAGMATIST:  Бюджетные выборы: DeepSeek V4-Flash, GLM-5.1, Qwen3-Plus.
 
-  COST_ESTIMATE (примерный, 2026-05-02):
-    Claude Opus 4.7:   $15/$75 per M (in/out)
-    Claude Sonnet 4.6: $3/$15 per M
-    Gemini 3.1 Pro:    $3.50/$10.50 per M (без Deep Think)
-    GPT-5.5:           $7/$28 per M (<272K), $14/$56 per M (>272K — G10)
-    Grok 4.3:          $5/$15 per M
-    DeepSeek V4-Pro:   $0.27/$1.10 per M
-    DeepSeek V4-Flash: $0.07/$0.28 per M
+  COST_ESTIMATE (примерный, 2026-07-13):
+    Claude Opus 4.8/4.7: $5/$25 per M (in/out)
+    Claude Sonnet 5:   $2/$10 per M (intro до 31.08, затем $3/$15)
+    Gemini 3.1 Pro:    $2/$12 per M (≤200K, без Deep Think)
+    GPT-5.6 Sol:       $5/$30 per M (Terra $2.50/$15, Luna $1/$6); GPT-5.5 $5/$30, >272K ×2/×1.5 (G10)
+    Grok 4.5:          $2/$6 per M (Grok 4.3 — $1.25/$2.50)
+    DeepSeek V4-Pro:   $0.435/$0.87 per M
+    DeepSeek V4-Flash: $0.14/$0.28 per M
     Qwen3-Plus:        $0.40/$1.20 per M
     Kimi K2.x:         $0.50/$2.50 per M
     GLM-5.1:           $0.60/$1.80 per M (MIT license)
@@ -583,14 +583,14 @@ DEADLINE_SCANNER:
 
   SCAN_FOR:
     [PASSED 2026-06-15] — Claude dated legacy aliases УЖЕ ретайрнуты (HTTP 400/404).
-      Актуальные: claude-fable-5 | claude-opus-4-8 | claude-opus-4-7 | claude-sonnet-4-6
+      Актуальные: claude-fable-5 | claude-sonnet-5 | claude-opus-4-8 | claude-opus-4-7 (sonnet-4-6 — API-legacy)
       Действие: историческое; в текущей сборке литералы отсутствуют.
 
     [PASSED 2026-06-05] — gpt-5.x legacy aliases УЖЕ ретайрнуты → gpt-5.5.
 
     [RETIRE 2026-07-24] — АКТИВНЫЙ дедлайн (DeepSeek):
-      deepseek-chat            → deepseek-v4-pro
-      deepseek-reasoner        → deepseek-v4-flash
+      deepseek-chat            → deepseek-v4-flash (non-thinking)
+      deepseek-reasoner        → deepseek-v4-flash (thinking); НЕ V4-Pro
       Проверить: grep -r "deepseek-chat\|deepseek-reasoner" .
 
   AUTO_NOTICE: При обнаружении любой legacy строки →
@@ -647,7 +647,7 @@ CORE_RULES:
   [DEADLINE STATUS — 2026-06-27]:
     PASSED 2026-06-15: Claude dated legacy aliases ретайрнуты → claude-opus-4-8/4-7, claude-sonnet-4-6
     PASSED 2026-06-05: gpt-5.x legacy → gpt-5.5
-    ACTIVE 2026-07-24: deepseek-chat → deepseek-v4-pro | deepseek-reasoner → deepseek-v4-flash
+    ACTIVE 2026-07-24: deepseek-chat/reasoner → deepseek-v4-flash (non-thinking/thinking); НЕ V4-Pro
 
 // ─────────────────────────────────────────────────────
 // VERSION

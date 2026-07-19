@@ -321,5 +321,5 @@ VERSION_METADATA:
   COMPATIBLE:  all v8H files
   PORTED_FROM: P2P v7A !domain_knowledge.md (omitted when v8H was built; restored 2026-07-05)
   LANGUAGE:    English (fully)
-  API_STRINGS: claude-fable-5, claude-opus-4-8, claude-opus-4-7, claude-sonnet-4-6
+  API_STRINGS: claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7
 // EOF_MARKER_DOMAIN_V8H_VALIDATED

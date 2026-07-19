@@ -96,7 +96,7 @@ DEEPSEEK_V4_PRO:
   KNOWN_ISSUES:
     G15: Reasoning carryover в multi-turn.
          Fix: re-inject reasoning_content (store+re-inject, НЕ обнулять) — RESOLVED BY DESIGN.
-    G16: deepseek-chat RETIRE 2026-07-24. Используй deepseek-v4-pro.
+    G16: deepseek-chat/reasoner RETIRE 2026-07-24 → alias-замена deepseek-v4-flash; для Tier 2-4 — deepseek-v4-pro.
 
   THINKING_API:
     Native reasoning (R1). Не управляется извне.

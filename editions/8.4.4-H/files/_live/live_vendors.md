@@ -179,10 +179,10 @@ G15: DEEPSEEK_REASONING_CARRYOVER
 G16: DEEPSEEK_ALIAS_RETIRE
   Model:    deepseek-chat, deepseek-reasoner
   Error:    API вызовы перестанут работать после дедлайна
-  DEADLINE: 2026-07-24 ★ КРИТИЧНО — 83 дня
+  DEADLINE: 2026-07-24 15:59 UTC ★ КРИТИЧНО
   Fix:
-    deepseek-chat      → deepseek-v4-pro
-    deepseek-reasoner  → deepseek-v4-flash
+    deepseek-chat      → deepseek-v4-flash (non-thinking)
+    deepseek-reasoner  → deepseek-v4-flash (thinking); НЕ V4-Pro
   Scan:     grep -r "deepseek-chat\|deepseek-reasoner" .
 
 G17: QWEN_PROVIDER_PREFIX

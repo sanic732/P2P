@@ -258,5 +258,5 @@ VERSION_METADATA:
   NEW_NATIVE:  HOST_MODEL_AUTODETECT (SELF_IDENTIFY + CONFIDENCE_GATE), HOST_PICK_LIST [1..10],
                HOST_MODEL="" по умолчанию (порт нативного детекта из 8L.3);
                10 хостов (+minimax +manus, данные в live_specs)
-  API_STRINGS: claude-fable-5, claude-opus-4-8, claude-opus-4-7, claude-sonnet-4-6
+  API_STRINGS: claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7
 // EOF_MARKER_PRELOADER_V8H_NATIVE_VALIDATED

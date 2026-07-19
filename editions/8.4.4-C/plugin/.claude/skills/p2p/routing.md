@@ -31,12 +31,12 @@ conflict_with_v8C2: Translation_Layer (or mode)
 ─────────────────────────────────────────────────────────────────
 Код / debugging           → claude-opus-4-8     → claude-opus-4-7
 Глубокий анализ T4        → claude-opus-4-8     → claude-opus-4-7
-Обычный текст T2-3        → claude-sonnet-4-6   → claude-opus-4-7
-Быстрый T0-1              → claude-haiku-4-5    → claude-sonnet-4-6
+Обычный текст T2-3        → claude-sonnet-5     → claude-opus-4-7
+Быстрый T0-1              → claude-haiku-4-5    → claude-sonnet-5
 Длинный контекст >200K    → gemini-3.1-pro-preview → grok-4.3
 Длинный контекст >1M      → grok-4.3            → —
 Real-time X/Twitter data  → grok-4.3            → —
-Agentic / computer use    → gpt-5.5             → manus/manus-1.6-max
+Agentic / computer use    → gpt-5.6-sol         → gpt-5.5-pro (Codex)
 Swarm многоагентный       → kimi-k2.6           → —
 Китайский контент         → qwen3.6-plus        → qwen3.7-max
 On-premises / MIT license → glm-5.1             → —
@@ -53,7 +53,7 @@ On-premises / MIT license → glm-5.1             → —
 [CASCADE_ROUTING]
 Уровни каскада:
   L1: claude-haiku-4-5 (cost=$1/$5)    → если quality ≥ threshold → стоп
-  L2: claude-sonnet-4-6 (cost=$3/$15)  → если quality ≥ threshold → стоп
+  L2: claude-sonnet-5 (cost=$2/$10)    → если quality ≥ threshold → стоп
   L3: claude-opus-4-8 (cost=$5/$25)    → финальный ответ
 
 Quality threshold:
@@ -81,7 +81,7 @@ IF budget_limit < $0.01:
     → или MiniMax-M3 ($0.30/$1.20 promo)
 
 IF budget_limit = $0.01-$0.10:
-    → claude-sonnet-4-6 или qwen3.6-plus
+    → claude-sonnet-5 или qwen3.6-plus
 
 IF budget_limit > $0.10 OR tier ≥ T3:
     → claude-opus-4-8 (best quality)
@@ -100,8 +100,8 @@ Formula:
 Classifier: claude-haiku-4-5 (быстро, дёшево)
 Классы:
   code        → claude-opus-4-8
-  analysis    → claude-opus-4-8 / claude-sonnet-4-6
-  creative    → claude-sonnet-4-6
+  analysis    → claude-opus-4-8 / claude-sonnet-5
+  creative    → claude-sonnet-5
   factual     → gemini-3.1-pro (web grounding если нужно)
   multimodal  → claude-opus-4-8
   math        → claude-opus-4-8 + reasoning.md MCTS

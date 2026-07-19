@@ -68,7 +68,7 @@ v8C.2/
 │   ├── vendors/tier1.md       DeepSeek V4-Flash, Qwen 3.6, Kimi K2.x
 │   ├── vendors/tier2.md       Claude Sonnet 4.6, Gemini Flash
 │   ├── vendors/tier3.md       Claude Opus 4.7, Gemini 3.1 Pro, Grok 4.3
-│   ├── vendors/tier4.md       Maximum quality: Grok Heavy, GPT-5.5
+│   ├── vendors/tier4.md       Maximum quality: Grok Heavy, GPT-5.6 Sol
 │   └── (Grok 4.5/4.3 TARGET-данные → vendors/tier3.md; strict JSON контракт → !contract.md GROK_JSON_TARGET)
 │
 ├── .claude/

@@ -19,17 +19,17 @@ tags: router, multi-provider, fallback, contract-translation, v8h3
 // §1. CAPABILITY MATRIX (источник истины — live_specs / live_core)
 CAPABILITY_MATRIX:
   // provider | model display       | api_string              | context | cost/1M in-out | prio
-  claude:   Claude Fable 5          | claude-fable-5          | 200K  | $10/$50   | 1  // #1 Agent/WebDev; Safety Nanny ~5%→Opus4.8
-  claude:   Claude Opus 4.8         | claude-opus-4-8         | 200K  | $15/$75   | 2  // coding #1
-  grok:     Grok Heavy-16           | grok-4.3 + Heavy        | 2M    | $15-20    | 3  // нативный параллелизм (только grok host)
-  grok:     Grok 4.3 Standard       | grok-4.3                | 2M    | $5/$15    | 4
-  claude:   Claude Sonnet 4.6       | claude-sonnet-4-6       | 200K  | $3/$15    | 5
-  gemini:   Gemini 3.1 Pro          | gemini-3.1-pro-latest   | 1M    | $3.50/$10.50 | 6
-  gpt:      GPT-5.5                  | gpt-5.5                 | 128K  | $7/$28    | 7  // G10 >272K
-  deepseek: DeepSeek V4-Flash       | deepseek-v4-flash       | 32K   | $0.07/$0.28 | 8 // budget
-  qwen:     Qwen3-Plus              | qwen3-plus              | 128K  | $0.40/$1.20 | 9
-  kimi:     Kimi K2.x               | moonshot-v2-128k        | 128K  | $0.50/$2.50 | 10 // swarm 300 agents; async webhooks >1h (G20)
-  glm:      GLM-5.1                  | glm-5.1-flash           | 100K  | $0.60/$1.80 | 11 // MIT; G19 100K hard
+  claude:   Claude Fable 5          | claude-fable-5          | 1M    | $10/$50   | 1  // #1 Agent/WebDev; Safety Nanny ~5%→Opus4.8
+  claude:   Claude Opus 4.8         | claude-opus-4-8         | 1M    | $5/$25    | 2  // coding #1 (SWE-bench Pro 69.2%)
+  grok:     Grok Heavy-16           | grok-4.20               | 2M    | $2/$6     | 3  // нативный параллелизм (только grok host)
+  grok:     Grok 4.5                | grok-4.5                | 500K  | $2/$6     | 4  // GA 08.07; ⚠ не в EU (grok-4.3: 1M, $1.25/$2.50)
+  claude:   Claude Sonnet 5         | claude-sonnet-5         | 1M    | $2/$10    | 5  // intro до 31.08 → $3/$15
+  gemini:   Gemini 3.1 Pro          | gemini-3.1-pro-latest   | 2M    | $2/$12 (≤200K) | 6
+  gpt:      GPT-5.6 Sol              | gpt-5.6-sol             | 1.05M | $5/$30    | 7  // GA 09.07; legacy gpt-5.5 $5/$30 (G10 >272K)
+  deepseek: DeepSeek V4-Flash       | deepseek-v4-flash       | 1M    | $0.14/$0.28 | 8 // budget
+  qwen:     Qwen 3.6-Plus           | qwen3.6-plus            | 1M    | budget    | 9
+  kimi:     Kimi K2.6               | kimi-k2.6               | 256K  | TBD       | 10 // swarm 300 agents; async webhooks >1h (G20)
+  glm:      GLM-5.2                  | glm-5.2                 | 1M    | ~$1.40/$4.40 | 11 // MIT; WebDev #3 (GLM-5.1 legacy — G19 >120K)
 
 // §2. ROUTING LOGIC
 ROUTING_LOGIC:
@@ -38,17 +38,17 @@ ROUTING_LOGIC:
   //   adaptive plain-text контракт), но как ЦЕЛЬ роутинга не выбираются — routed sub-tasks идут
   //   по FALLBACK_CHAIN (grok/claude/gemini/deepseek).
   Tier 0-1   → cheapest/fastest (deepseek-v4-flash, qwen3-plus, gemini-3.1-flash)
-  Tier 2     → balanced (grok-4.3, claude-sonnet-4-6, gemini-3.1-pro-latest)
+  Tier 2     → balanced (grok-4.3, claude-sonnet-5, gemini-3.1-pro-latest)
   Tier 3-4   → top (claude-fable-5 / claude-opus-4-8 ; grok Heavy-16 ТОЛЬКО на grok host)
   X Firehose нужен  → grok ТОЛЬКО (иначе web_search)
-  Long ctx >200K    → grok-4.3 (2M) или gemini-3.1-pro-latest (1M)
+  Long ctx >200K    → gemini-3.1-pro-latest (2M) или grok-4.20 (2M)
   Recall >500K      → claude-opus-4-6 пин (G8)
 
 // §3. FALLBACK CHAIN (host-agnostic)
 FALLBACK_CHAIN:
   1. primary (= HOST_MODEL)
   2. grok-4.3
-  3. claude-sonnet-4-6
+  3. claude-sonnet-5
   4. gemini-3.1-pro-latest
   5. deepseek-v4-flash
   // Fable 5 в цепочке: при Safety Nanny redirect → claude-opus-4-8 (см. live_vendors §2b)

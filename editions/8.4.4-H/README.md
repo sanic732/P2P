@@ -17,7 +17,7 @@
 - ⚠️ Тяжёлая (FULL ~200K токенов) — не для слабых хостов; плагин-форма пока в работе (поставка — плоские `.md` + ZIP).
 
 ## Требования к хосту
-Grok 4.x/Heavy, Gemini 3.x, GPT-5.5, DeepSeek, Qwen, Kimi, GLM, MiniMax — 8 хостов; хост задаётся в `_preloader.md`.
+Grok 4.x/Heavy, Gemini 3.x, GPT-5.6, DeepSeek, Qwen, Kimi, GLM, MiniMax — 8 хостов; хост задаётся в `_preloader.md`.
 
 ## Что нового
 Поколение .3: 6 ON-DEMAND модулей, VERSION_COMPAT, динамическое меню, base-model идентификаторы, live specs 17.06.26. Объединяет бывшие A.1 и G.1.

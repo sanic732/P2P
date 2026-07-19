@@ -5,6 +5,16 @@
 
 ---
 
+## [8.4.4-H · 2026-07-19 · Code] HOTFIX — data-drift по внешнему аудиту
+- **Powод:** внешний аудит (GPT) указал на data-drift; подтверждено скриптом `_SERVICE/audit_model_data.py` на 8.4.4. Итог: **39 файлов, 108 строк** (C: 15 ф., H: 14, N: 10; **L чист**). Только данные — логика/структура/якоря не тронуты.
+- **🔴 DeepSeek-миграция противоречила сама себе (H+N):** `!!core`/`live_vendors` говорили `deepseek-chat → deepseek-v4-pro`, а `!!db`/`MANIFEST` — `→ deepseek-v4-flash`. Приведено к канону: **оба алиаса → v4-flash (non-thinking/thinking), НЕ V4-Pro**; убраны неверные `[ex:]`-теги в db; tier2 G16-note уточнён.
+- **🔴 Retired `claude-sonnet-4-6` в живых маршрутах → `claude-sonnet-5`:** fallback/cascade-цепочки `!routing` (C обе формы/H/N), `FALLBACK_CHAIN`+Tier2 в `!llm_router` (H), `!routing_matrix`/`!scope`/`_master`-шаблоны, `fallback_model` в `live_core` (C обе формы), sandbox-примеры, API_STRINGS-списки (`_preloader`/`!domain`/`!!core` SCAN_FOR). Historical-пометки ([PASSED]/[COMPLETED]/tier2-legacy-справка) сохранены.
+- **🔴 Цены к канону 07-13:** Opus `$15/$75`→`$5/$25` (COST_ESTIMATE `!!core` H/N — пропуск фикса 07-14); GPT-5.5 `$7/$28`→`$5/$30` (+GPT-5.6 линейка); Sonnet→Sonnet 5 `$2/$10`; Gemini 3.1 Pro `$2/$12 ≤200K`; Grok 4.5 `$2/$6`/4.3 `$1.25/$2.50`; DeepSeek Pro `$0.435/$0.87`/Flash `$0.14/$0.28`.
+- **🔴 H `!llm_router.md` CAPABILITY_MATRIX был целиком стар (2026-05-02, пропущен интеграцией 07-14):** Opus 200K/$15/$75, sonnet-4-6, GPT-5.5 128K/$7/$28, DeepSeek 32K, `moonshot-v2-128k`, `glm-5.1-flash`. → канон: 1M-линейка Claude, **grok-4.20 (Heavy-16)**, **grok-4.5**, **gpt-5.6-sol**, **kimi-k2.6**, **glm-5.2**, qwen3.6-plus; Long-ctx правило → gemini 2M / grok-4.20 2M.
+- **🟡 Синхронизация двух форм C:** plugin `core.md` identity (был «Opus 4.7 / Sonnet 4.6 primary») → как for-chat: «Fable 5 / Opus 4.8 (primary) / Sonnet 5 (default)»; plugin `preloader.md` примеры target_model; plugin `CLAUDE.md` список API-строк (+sonnet-5, sonnet-4-6 → API-legacy).
+- **🟡 Agentic-роутинг C:** `gpt-5.5 → manus/manus-1.6-max` → `gpt-5.6-sol → gpt-5.5-pro (Codex)` — Manus track-only и по канону не маршрутизируется; db «Coding | Opus 4.7» → Opus 4.8 (соответствие routing-модулю); индексы/README: GPT-5.5 → GPT-5.6.
+- **⚙ `_SERVICE/audit_model_data.py` → pre-release gate:** EDITIONS → 8.4.4; +6 паттернов (deepseek→pro-миграция, sonnet-4-6 как routing source/target/шаблон, `$15/$75`, `$7/$28`). Прогон после правок: 0 хитов по новым паттернам во всех 4 сборках.
+
 ## [8.4.4-H · 2026-07-18 · Code] v8H.4 — +8 техник промпт-инжиниринга
 - **8 техник** (add-only, компактный for-chat): POSITIVE_FRAMING / VERBALIZED_SAMPLING / BRUTAL_EDITOR (в `!!db_v8H §2`, host-adaptive — VS без хардкода XML для мультихоста, G2); GEPA / MASPO / SePO-backlog (`!optimization`); Context-Grounding CoT (`!reasoning` + ссылка `!rag`); Context Engineering (`!compression` + `!memory`).
 - COMBINATOR + FABRICATION_SCAN расширены (VS≠USC, GEPA≠GoT, MASPO≠ToT); MASPO note у WEIGHT_TABLE (I7=8 неизменно); POSITIVE_FRAMING правило в `!!core` P5.

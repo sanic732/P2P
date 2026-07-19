@@ -53,7 +53,7 @@ MODULE_REGISTRY:
   VENDORS (reference, по запросу):
     14. vendors/grok.md       Grok 4.5 / 4.3 / 4.20 Heavy-16 / X Firehose (primary для grok host)
     15. vendors/claude.md     Fable 5, Opus 4.8/4.7, Sonnet 4.6
-    16. vendors/tier1.md      Claude Fable 5, Claude Opus 4.8/4.7, GPT-5.5, Gemini 3.1 Pro
+    16. vendors/tier1.md      Claude Fable 5, Claude Opus 4.8/4.7, GPT-5.6, Gemini 3.x
     17. vendors/tier2.md      Sonnet 4.6, Grok 4.3, DeepSeek V4-Pro, Qwen 3.6-Max
     18. vendors/tier3.md      Gemini Flash, DeepSeek V4-Flash, Qwen Plus, Haiku 4.5
     19. vendors/tier4.md      GLM-5.1 (MIT), Kimi K2.x (Swarm)

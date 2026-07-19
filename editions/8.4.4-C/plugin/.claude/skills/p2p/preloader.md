@@ -83,7 +83,7 @@ PROJECT_CARD:
   name: ""              # Название проекта
   type: ""              # web-app / script / research / content / other
   stack: ""             # Python 3.12 / React / Node / etc.
-  target_model: ""      # claude-opus-4-7 / claude-sonnet-4-6 / etc.
+  target_model: ""      # claude-fable-5 / claude-opus-4-8 / claude-sonnet-5 / etc.
   context: ""           # Краткое описание (1-3 предложения)
   constraints: []       # Специфические ограничения проекта
   flags:

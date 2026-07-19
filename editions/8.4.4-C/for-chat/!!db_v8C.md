@@ -146,7 +146,7 @@ tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c
 ```python
 # Правильная структура payload:
 {
-    "model": "claude-opus-4-7",           # или claude-sonnet-4-6
+    "model": "claude-opus-4-7",           # или claude-sonnet-5
     "thinking": {
         "type": "enabled",
         "effort": "low" | "medium" | "high"
@@ -978,7 +978,7 @@ If different error type appears → iterate from Step 1 with new diagnosis.
 
 | Задача | Топ-1 | Топ-2 | Топ-3 | Budget |
 |--------|-------|-------|-------|--------|
-| Coding | Claude Opus 4.7 | Gemini 3.1 Pro | GPT-5.5 | GLM-5.1 ($0.60/M) |
+| Coding | Claude Opus 4.8 | Gemini 3.1 Pro | GPT-5.5 | GLM-5.1 ($0.60/M) |
 | Analytical | Gemini 3.1 Pro (GPQA 94.3%) | GPT-5.5 Thinking | Claude Opus 4.7 | DeepSeek V4 |
 | Research | Gemini 3.1 Pro | Kimi K2.x | Claude Opus 4.7 | Qwen 3.6 |
 | Visual | Kimi K2.x (MoonViT-3D) | GLM-5V | Gemini 3.1 Pro (VEO) | Qwen3-VL |

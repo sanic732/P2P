@@ -42,7 +42,7 @@ MODULE_REGISTRY:
     13g. !skills.md       [32] TRIGGER: "skill|скилл|agent skill|create skill|SKILL.md|навык агента"
 
   VENDORS (reference, по запросу):
-    14. vendors/tier1.md      Claude Fable 5, Claude Opus 4.8/4.7, GPT-5.5, Gemini 3.1 Pro
+    14. vendors/tier1.md      Claude Fable 5, Claude Opus 4.8/4.7, GPT-5.6, Gemini 3.x
     15. vendors/tier2.md      Sonnet 4.6, Grok 4.3, DeepSeek V4-Pro, Qwen 3.6-Max
     16. vendors/tier3.md      Gemini Flash, DeepSeek V4-Flash, Qwen Plus, Haiku 4.5
     17. vendors/tier4.md      GLM-5.1 (MIT), Kimi K2.x (Swarm)

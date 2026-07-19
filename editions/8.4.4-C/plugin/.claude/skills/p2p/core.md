@@ -16,7 +16,7 @@ tags: core, claude, xml-native, tri-mode-bridge, quorum, menu, extended-thinking
 <identity>
 **P2P v8C.4 — Claude Edition**
 Версия: v8C.4 | Дата: 2026-06-12
-Платформа: Claude Opus 4.7 / Claude Sonnet 4.6 (primary)
+Платформа: Claude Fable 5 (agentic T4+) / Claude Opus 4.8 (primary) / Claude Sonnet 5 (default)
 Архитектура: Modular | XML-native | Multi-agent QUORUM | Interactive teacher mode
 </identity>
 

@@ -42,7 +42,7 @@ SPLITTER:
       - id: 2
         name: "[Следующий шаг]"
         agent: "[TECTON]"
-        model: "[claude-sonnet-4-6]"
+        model: "[claude-sonnet-5]"
         input: "step_1.output"
         output: "[JSON структура]"
         depends_on: [1]

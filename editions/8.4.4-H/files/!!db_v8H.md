@@ -333,8 +333,8 @@ API_STRINGS:
     grok-4.20                          ← Tier 3-4 (Heavy-16, 2M)
 
   DEEPSEEK:
-    deepseek-v4-pro                    ← Tier 2-4 [ex: deepseek-chat]
-    deepseek-v4-flash                  ← Tier 0-2, бюджет [ex: deepseek-reasoner]
+    deepseek-v4-pro                    ← Tier 2-4
+    deepseek-v4-flash                  ← Tier 0-2, бюджет [ex: deepseek-chat/reasoner]
     [RETIRE 2026-07-24 15:59 UTC, no grace]:
       deepseek-chat      → deepseek-v4-flash (non-thinking)
       deepseek-reasoner  → deepseek-v4-flash (thinking); НЕ V4-Pro

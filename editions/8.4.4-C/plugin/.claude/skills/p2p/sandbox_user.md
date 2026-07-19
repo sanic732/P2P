@@ -49,7 +49,7 @@ last_verified: 2026-06-12
 
 > MODEL_OVERRIDE: ""
   // Принудительная модель/режим Extended Thinking.
-  // Примеры: "claude-opus-4-7 effort=high" | "claude-sonnet-4-6 effort=low"
+  // Примеры: "claude-opus-4-7 effort=high" | "claude-sonnet-5 effort=low"
 
 > AGENT_PREFERENCE: ""
   // Предпочитаемые агенты для сессии.
@@ -87,7 +87,7 @@ sandbox_user.md (this file — session overrides)
 | Поменять стек проекта | `PROJECT_OVERRIDE` |
 | Снизить педагогичность | `PERSONA_HINT: "expert"` |
 | Включить Karpathy Mode | `QUICK_RULE: "Karpathy mode, no fluff"` |
-| Принудить Sonnet вместо Opus | `MODEL_OVERRIDE: "claude-sonnet-4-6"` |
+| Принудить Sonnet вместо Opus | `MODEL_OVERRIDE: "claude-sonnet-5"` |
 | Отключить агентов | `AGENT_PREFERENCE: "no agents, single pass"` |
 
 ---

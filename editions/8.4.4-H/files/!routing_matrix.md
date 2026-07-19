@@ -31,7 +31,7 @@ ROUTING_EXAMPLES:
   Research/Fact-check: gemini-3.1-pro-latest (grounding) / grok-4.3 (X realtime) → deepseek-v4-flash
   UI/Design:          claude-fable-5 (#1 WebDev) / glm-5v → gemini-3.1-pro-latest
   High-Stakes Reason: claude-opus-4-8 (max quality) → grok Heavy-16 → gemini-3.1-pro-latest
-  Long Context:       grok-4.3 (2M) / gemini-3.1-pro-latest (1M) → claude-sonnet-4-6
+  Long Context:       gemini-3.1-pro-latest (2M) / grok-4.20 (2M) → claude-sonnet-5 (1M)
   Budget:             deepseek-v4-flash → glm-5.1-flash → qwen3-plus
 
 // §3. HOST-GATING

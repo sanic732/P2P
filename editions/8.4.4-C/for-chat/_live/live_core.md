@@ -82,7 +82,7 @@ active_constraints: []     # Ключевые активные ограниче�
 
 ```yaml
 primary_model: "claude-opus-4-7"
-fallback_model: "claude-sonnet-4-6"
+fallback_model: "claude-sonnet-5"
 current_thinking_level: null   # null / low / medium / high
 temperature: null              # null при thinking=enabled
 ```
