@@ -30,10 +30,10 @@ One architecture, four entry points for different hosts and form factors. **Unsu
 
 | Edition | For whom | Host | Start |
 |---|---|---|---|
-| 🟦 **[8.4.3-C](editions/8.4.3-C/README.en.md)** (Claude, внутр. 8C.3) | You work in **Claude** (Code / Cowork / Projects) | Claude only | ~7K |
-| 🟥 **[8.4.3-H](editions/8.4.3-H/README.en.md)** (внутр. 8H.3) | You want maximum / use **Grok** | 8 hosts (native Grok) | ~60K |
-| 🟩 **[8.4.3-N](editions/8.4.3-N/README.en.md)** (внутр. 8N.3) | Your model isn't "native" | any of 8 | ~60K |
-| 🟦 **[8.4.3-L](editions/8.4.3-L/README.en.md)** (внутр. 8L.3) | Token economy / context limits / **newcomers** | universal | **~18K** |
+| 🟦 **[8.4.5-C](editions/8.4.5-C/README.en.md)** (Claude, внутр. 8C.3) | You work in **Claude** (Code / Cowork / Projects) | Claude only | ~7K |
+| 🟥 **[8.4.5-H](editions/8.4.5-H/README.en.md)** (внутр. 8H.3) | You want maximum / use **Grok** | 8 hosts (native Grok) | ~60K |
+| 🟩 **[8.4.5-N](editions/8.4.5-N/README.en.md)** (внутр. 8N.3) | Your model isn't "native" | any of 8 | ~60K |
+| 🟦 **[8.4.5-L](editions/8.4.5-L/README.en.md)** (внутр. 8L.3) | Token economy / context limits / **newcomers** | universal | **~18K** |
 
 📊 Full comparison — [`editions/COMPARISON.md`](editions/COMPARISON.md) · 📖 naming guide — [`NAMING.md`](NAMING.md).
 
