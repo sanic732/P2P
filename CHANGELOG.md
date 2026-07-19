@@ -6,7 +6,15 @@
 
 ---
 
-## [v8.4.5] — 2026-07-19 · UNRELEASED (Code) — комплаенс-формулировки + возврат принципа A/B
+## [v8.4.5] — 2026-07-19 · **РЕЛИЗ** (PR #43 → merge `d7c2dcf`, тег `v8.4.5`, Latest) — комплаенс-формулировки + возврат принципа A/B
+
+> ⏳ **Хотфикс Lite `8.4.5-L / 2026-07-19b`** (коммит `b525d34`) — поверх релиза, только сборка Lite:
+> `/p2p-download` грузил 4 чанка из 12 (`ALL` в ядре разошёлся с манифестом) · `/p2p-security`
+> был нерабочим в чате (`GUARDIAN=OFF` ↔ чанк требует `ON`) · `PREFETCH_STEP` не срабатывал
+> никогда (условие `[true, or]` не совпадало с фактическими `on`/`auto`) · объявлена
+> `CANARY_POLICY: frozen_probe` · уточнена граница жизненного цикла LIVE.
+> Найдено внешним статическим аудитом (Copilot 365 / GPT-5.5 thinking), перепроверено по файлам.
+> Полный разбор — `editions/8.4.5-L/CHANGELOG.md`.
 
 ### Changed
 - **Блок `EXCELLENT_TECHNIQUES` (все 4 сборки).** Убраны 3 пункта, не относящиеся к точности промптинга:
@@ -78,7 +86,7 @@
 
 ---
 
-## [v8.4.4-hotfix] — 2026-07-19 · UNRELEASED (Code) — data-drift фикс по внешнему аудиту
+## [v8.4.4-hotfix] — 2026-07-19 · вошёл в релиз **v8.4.5** (коммит `ae83e86`) — data-drift фикс по внешнему аудиту
 
 ### Fixed
 - **Powод:** внешний аудит (GPT) указал на data-drift; подтверждено скриптом `_SERVICE/audit_model_data.py` на 8.4.4. Итог: **39 файлов, 108 строк** (C: 15 ф., H: 14, N: 10; **L чист**). Только данные — логика/структура/якоря не тронуты.
@@ -92,7 +100,26 @@
 
 > ⚠ Примечание: отдельная запись о релизе **v8.4.4 (2026-07-18)** в этом root-CHANGELOG отсутствует (есть в per-edition CHANGELOG и `_SERVICE/CHANGELOG.md`) — добить при следующем проходе.
 
-## [v8.4.3] — 2026-07-13 · UNRELEASED (Cowork) — Live Specs v8.6.3 + host-detect fix + Grok knowledge + Agent Skills + канон ошибок
+## [v8.4.4] — 2026-07-18 · **РЕЛИЗ** (merge `fafb0d8`, тег `v8.4.4`) — +8 техник промпт-инжиниринга
+
+_(запись восстановлена 2026-07-19 — при выпуске 8.4.4 её в root-чейнджлоге не создали)_
+
+### Added
+- **5 copy-paste техник** во все 4 сборки: `POSITIVE_FRAMING` (ограничения через утверждение
+  желаемого, кроме hard-safety), `VERBALIZED_SAMPLING` (против mode collapse, разнообразие
+  ×1.6–2.1), `BRUTAL_EDITOR` (self-critique хук), `Context-Grounding CoT` (+3.79 на CL-Bench),
+  `CONTEXT_ENGINEERING` (фрейминг Anthropic, prompt caching до 90% экономии).
+- **3 фреймворка авто-тюнинга**: GEPA, MASPO, SePO (последний — в backlog, нужен train-бюджет).
+- Источники и атрибуция — `docs/CREDITS_TECHNIQUES.md` в каждой сборке.
+
+### Changed
+- Внутренние теги сборок `v8*.3` → `v8*.4`; каталоги `editions/8.4.3-*` → `editions/8.4.4-*`.
+- Плагин `p2p-v8c3` → `8.4.4`.
+- Хотфикс `8.4.4-N` (коммит `12d4d5a`): восстановлены 3 потерянных блока данных в `!!core_v8N.md`.
+
+---
+
+## [v8.4.3] — 2026-07-13 · **РЕЛИЗ** (merge `ff6feb6`, тег `v8.4.3`) (Cowork) — Live Specs v8.6.3 + host-detect fix + Grok knowledge + Agent Skills + канон ошибок
 
 ### Added
 - **Agent Skills генератор (`!skills.md`, E1):** новый ON-DEMAND модуль в **C(for-chat)/H/N** — генерирует `SKILL.md` по стандарту agentskills.io (frontmatter-правила name/description, progressive disclosure, description-валидатор, анти-паттерны, таргеты Grok/Claude/Cursor/Codex). Пункт меню **[42]** (H/C) / **[32]** (N, EXTENSIONS_SCAN-гейт) + команда `/p2p-skill`. **Lite — намеренно без skills** (решение Master).
