@@ -273,16 +273,29 @@ COMMAND_CHUNK_MAP:
   /p2p-scope, /p2p-capsule, /p2p-atlas, /p2p-explore → SESSION_CORE
   /p2p-metrics, /p2p-feedback → SESSION_METRICS
   /p2p-rag → RAG | /p2p-reasoning → REASONING | /p2p-route → ROUTE
-  /p2p-compress → COMPRESS | /p2p-security → SECURITY | /p2p-optimize → OPTIMIZATION
+  /p2p-compress → COMPRESS | /p2p-optimize → OPTIMIZATION
+  /p2p-security → SECURITY. ЕСЛИ FLAGS.GUARDIAN == OFF (по умолчанию в Chat/Studio) →
+      GUARDIAN_AUTO_ELEVATE: поднять GUARDIAN=ON на время выполнения этой команды,
+      сообщить строкой "GUARDIAN временно включён для security-аудита",
+      по завершении вернуть прежнее значение. НЕ отказывать и НЕ останавливаться.
   /p2p-deadline → LITE_SNAPSHOT | /p2p-verify → _index_v8L
   /p2p-download → ALL
   /host, /lang, /p2p, /start → (нет fetch)
+      УТОЧНЕНИЕ (граница жизненного цикла): "нет fetch" относится к САМИМ командам —
+      они только рендерят уже инициализированное состояние. Единственная загрузка LIVE
+      выполняется ОДИН РАЗ в _preloader ON_LOAD, ДО первого показа меню. Повторно
+      /start и /p2p её не инициируют.
 
 LAZY_FETCH_DISPATCH:
   ON every user_input:
     0. IF user_input начинается со слэш-команды → seed = COMMAND_CHUNK_MAP[cmd]
        ИНАЧЕ → seed = match_triggers(user_input)
-    1. IF seed == ALL → plan = [CORE_PLUS, SESSION_CORE, SESSION_METRICS, LIVE]
+    1. IF seed == ALL → plan = ВСЕ записи GIST_ROUTING_TABLE из _index_v8L.md
+           (источник истины — манифест, НЕ статический список здесь).
+           На 2026-07-19 это 11 чанков арсенала + LIVE:
+           CORE_PLUS, SESSION_CORE, SESSION_METRICS, HOST_ENGINE, VENDORS, RAG,
+           REASONING, ROUTE, COMPRESS, SECURITY, OPTIMIZATION, LIVE.
+           Если в манифесте появились новые записи — включать их тоже.
        ELSE → plan = resolve_deps(seed)
     2. IF plan empty → обычный диалог, выход.
     3. IF AGENT_PATH == LOCAL AND plan == [CORE_PLUS] AND нужны ТОЛЬКО агенты (не pipeline):
@@ -387,6 +400,7 @@ CORE_RULES:
 
 VERSION_METADATA:
   SYSTEM:      P2P v8L.4 · Lite/Live Hybrid · Core Dispatcher
+  HOTFIX:      2026-07-19b — ALL=полный манифест · /p2p-security auto-elevate · prefetch-условие · CANARY_POLICY
   PHILOSOPHY:  Universal · Any-host · Any-target · 8 host models · Lazy-fetch arsenal
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
   API_STRINGS: claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-haiku-4-5-20251001
