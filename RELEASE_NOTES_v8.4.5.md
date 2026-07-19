@@ -1,10 +1,8 @@
 # P2P v8.4.5 — Compliance wording, UI disclaimer, A/B principle restored
 
-**RU** · [EN below](#en)
 
 ---
 
-## 🇷🇺 Русский
 
 Релиз вырос из публичного разбора: пользователь заявил, что P2P — «небезопасное решение, грозящее
 потерей данных и аккаунта», сославшись на чат-форму Claude Edition. Сборка была проверена построчно.
@@ -75,9 +73,6 @@
 
 ---
 
-<a name="en"></a>
-
-## 🇬🇧 English
 
 This release came out of a public claim that P2P is "an unsafe solution risking data and account
 loss", pointed at the Claude Edition chat form. The build was audited line by line. The data-loss

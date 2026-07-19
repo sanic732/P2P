@@ -1,6 +1,6 @@
 # 🟦 P2P 8.4.3-C — Claude Native Edition
 
-> 🇬🇧 English · 🇷🇺 [Русский](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
+> [RU](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 
 **Version:** 8.4.3-C (internal tags v8C.3) · **Token budget:** MINIMAL ~7K · LIGHT ~16K · MEDIUM ~30K · FULL ~59K
 
@@ -10,7 +10,7 @@
 > are intended for task routing, legitimate audit and false-positive calibration only.
 > Using them to circumvent provider policies, security controls or law is prohibited.
 > The operator is responsible for anything they run.
->
+
 > ⚙️ **Principle (since v3.2):** "The best prompt is not the one that is beautifully
 > written, but the one that has proven its effectiveness in testing." When in doubt
 > between variants — run an A/B via ARENA instead of arguing.

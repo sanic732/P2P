@@ -70,6 +70,11 @@ unzip -Z1 /tmp/chk/p2p-v8c3.plugin | grep -c marketplace.json                   
 - [ ] Старых меток (ALPHA / прошлой версии) нет.
 - [ ] Вложенного `marketplace.json` нет, пути forward-slash.
 
+### 6b. Оформление текста релиза
+- [ ] В теле релиза и в `RELEASE_NOTES_*.md` **нет флагов стран и подписей языков**
+      (`## Русский`, `## English` и т.п.). Русская часть первой, английская ниже.
+- [ ] В README/FAQ/NAMING/COMPARISON ссылки между парными файлами — `[RU]` / `[EN]`.
+
 ### 7. Сообщить пользователям
 - [ ] Обновление: `/plugin marketplace update p2p` → `/plugin update p2p-v8c3`.
 - [ ] Застрявшим на старой/альфа-копии (десктоп-маркетплейс `local-desktop-app-uploads`):

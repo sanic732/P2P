@@ -1,6 +1,6 @@
 # FAQ — P2P (Prompt-to-Prompt)
 
-> 🇷🇺 Русский · 🇬🇧 [English](FAQ.en.md) · ⬆️ [README](README.md)
+> [EN](FAQ.en.md) · ⬆️ [README](README.md)
 > Собрано из полезных постов автора на 4PDA. Каждый ответ — кратко + ссылка на первоисточник для глубины.
 
 ## Содержание
