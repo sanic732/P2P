@@ -1,0 +1,291 @@
+---
+source_id: CHANGELOG_V8C3
+version: v8C.3
+module_type: docs
+last_updated: 2026-07-18
+scope: Full changelog for v8C.3/v8C.4 release line. Covers v8C.2 → v8C.4 changes. For earlier history see v8C.2 docs.
+tags: docs, changelog, v8c3, alpha
+---
+
+# P2P v8C.3 — CHANGELOG
+
+## [8.4.6-C] — 2026-07-26
+
+Изменения с версии 8.4.5-C. Обе формы поставки (`for-chat` и `plugin`) синхронны.
+
+### Added
+- **Техники релиза 8.4.4 теперь доступны и в chat-форме** (раньше были только в плагине):
+  VERBALIZED_SAMPLING и BRUTAL_EDITOR (`!writing.md`), GEPA и MASPO (`!optimization.md`),
+  CONTEXT ENGINEERING (`!compression.md`), Context-Grounding CoT (`!reasoning.md`),
+  POSITIVE_FRAMING (`!!db_v8C.md`). SePO внесена как backlog, без активации.
+- **Атрибуция техник** (`docs/CREDITS_TECHNIQUES.md`, 6 arXiv-источников) добавлена
+  в поставку chat-формы — раньше была доступна только пользователям плагина.
+- **Правило кросс-модельной генерации:** если целевая модель не указана, TARGET = HOST;
+  при HOST = TARGET = Claude контракт выдаётся в XML, а не markdown.
+- **`claude-opus-5` — основная модель** (1M/128K, $5/$25, thinking включён по умолчанию).
+  Добавлены `gemini-3.6-flash`, `gemini-3.5-flash-lite`, `kimi-k3` (с меткой ACCESS-RISK,
+  не назначается основным), `kimi-k2.7-code-highspeed`.
+- **Automatic Fallbacks** в профиле Claude: параметр, beta-header, наблюдаемый блок ответа,
+  расщепление биллинга, как отключить.
+- **Две новые записи в базе ошибок:** G21 (несовпадение заявленной и фактической модели —
+  сверять `resolved_model_slug`) и G22 (агентная опасность GPT-5.6 Sol).
+- Пороги удорожания по вендорам: xAI 200K (кэш дорожает тоже) против OpenAI 272K
+  (**кэшированный ввод не дорожает**) — общей формулой не описываются.
+
+### Changed
+- **`/p2p <задача>` больше не открывает меню, а запускает разбор задачи:**
+  SIR Scanner → определение сложности → Contract Builder. Меню вызывается голым `/p2p`,
+  а также `start` / `старт` / `menu` / `меню`.
+- **Версия отображается одна во всех местах** — `8.4.6-C`. До этого chat-форма показывала
+  `v8C.3`, а плагин `v8C.4`: одна редакция выглядела двумя разными версиями.
+- **pxpipe: оптическое сжатие разрешено только для Fable 5.** GPT-5.6 убран из гейта вслед
+  за автором pxpipe: на проверке точности модель не воспроизвела ни одного из четырёх
+  идентификаторов и выдала четыре вымышленных значения. Обойти осознанно — флаг `--force`.
+- **Fable 5 выведен из автоматической маршрутизации** (с 20.07 тарифицируется по usage
+  credits) — вызывается только явно. `claude-opus-4-8` остаётся доступным: пропал из
+  селектора интерфейса, но не из API.
+- Токенизатор Claude: канон **~+30%** к оценке (одна официальная цифра вместо вилки),
+  добавлен Token Counting API.
+- `SKILL.md` объявляет 13 команд — по числу файлов в `commands/`.
+- **Сборка стала легче на ~6 200 символов (≈2 000 токенов при полной загрузке).** Из рабочих
+  файлов убраны служебные хвосты: в каком поколении появилась секция, даты правок,
+  построчные changelog-заметки. Это история — её место здесь, а не в контексте модели
+  при каждом запуске.
+- **Номер версии теперь стоит в одном месте каждого файла — YAML-шапке.** Раньше он
+  дублировался в заголовке файла, в поле `scope` и в хвостовом блоке метаданных — до четырёх
+  копий на файл, и копии расходились. Обе формы поставки правятся одинаково.
+- **Восемь агентов QUORUM больше не представляются с номером версии** («Ты — TECTON,
+  системный архитект P2P v8C.3»). Версия у сборки одна и объявляется ядром.
+
+### Fixed
+- **Меню плагина обрывалось на `[40]`** — пункты `[41]` и `[42]` были только в chat-форме.
+  Теперь обе формы дают одинаковый ряд `[0]`–`[42]`.
+- **`[41] /p2p-download` показывается только там, где доступен web-fetch** — раньше пункт
+  предлагался и в обычном чате, где выполнить его нечем.
+- **Ссылка «SHERPA [21]»** вела не туда: `[21]` — это CONSTRAINT REINJECTION, а SHERPA —
+  режим, а не пункт меню.
+- **В предписании оставалась `claude-sonnet-4-6`** (снята с обслуживания 30.06), хотя тот же
+  файл объявлял Sonnet 5 моделью по умолчанию → `claude-sonnet-5`.
+- **Правило миграции DeepSeek было перевёрнуто:** бывший `deepseek-reasoner` идёт на
+  **v4-pro**, а не на v4-flash — иначе reasoning тихо деградирует.
+- **Цена Grok на кэшированный ввод:** `$0.30` short / `$0.60` long вместо `$0.50`.
+- **Grok в EU:** доступ открыт 21.07; ограничение переформулировано с недоступности
+  на персональные данные (размещение данных не гарантируется).
+- Ссылки на несуществующие в chat-форме файлы (`!exploration.md`, `!scope.md`, `!metrics.md`)
+  вели в пустоту — исправлены.
+- Цена GLM-5.2 помечена как неподтверждённая, а не подана как факт.
+- `VERSION_METADATA` в ядре плагина был обрезан на середине строки — восстановлен.
+- **Строка статуса и рамки показывали разные версии в двух формах:** `[P2P v8C.4 | Среда: …]`
+  в плагине против `[P2P v8C.3 | ENV: …]` в chat-форме; то же в рамках SESSION METRICS
+  и SANDBOX. Приведены к одной версии, из рамок номер убран.
+- **Строка идентификации в chat-форме** несла устаревшую дату сборки (`| Date: 2026-07-25`)
+  и отличалась от плагина по формату — формы приведены к одному виду.
+
+---
+
+## [8.4.5 · 2026-07-19 · Code] Комплаенс-формулировки + возврат принципа A/B
+
+### Changed
+- `EXCELLENT_TECHNIQUES`: убраны `Alien Archivist`, `Environmental Storytelling`, `Emotional Intimacy`
+  (не относятся к точности промптинга). Заголовок → `False-positive calibration for legitimate
+  professional domains` (мед./юр./аудит безопасности/техспеки) + `SCOPE`-ограничитель.
+
+### Added
+- Двуязычный дисклеймер (EN+RU) в `STARTUP_LOGO` ядра и в `USER SANDBOX` блоке `live_specs.md`:
+  «P2P генерирует текстовые контракты, кода не исполняет; ответственность за запуск — на операторе».
+- Блок «Назначение и ответственность» в `README.md` / `README.en.md`.
+- Возврат `PRINCIPLE` в полной формулировке v3.2: «Лучший промпт — это не тот, который красиво
+  написан, а тот, который доказал свою эффективность в тесте» (утерян при миграции ядра 7 → 8).
+
+Контекст: `P2P_SELF_STUDY/_NEXT_RELEASE/03_PLAN_8.4.5_compliance_and_arena.md`
+
+---
+
+## 8.4.3 (2026-07-13, unreleased · Cowork) — Live Specs v8.6.3 · Grok target-слой · Agent Skills · канон ошибок
+
+- **E2 Live Specs → v8.6.3:** `live_specs.md` обновлён в `for-chat/_live/` и `plugin/.claude/skills/p2p/vendors/` (Grok 4.5 GA, GPT-5.6 GA, Fable 5 #1 Overall); MANIFEST version-пины → v8.6.3.
+- **E6 Канон ошибок:** добавлен **Type Q — Lossy Optical Misfire (L-OPTICAL/pxpipe)** в `for-chat/!!core_v8C.md` (был только в plugin-эталоне); заголовки сканера «Type A–P» → «Type A–Q» в обеих C-формах (core+db). Отчёт: `editions/G_ERRORS_CANON_AUDIT_8.4.3.md`.
+- **E3 Grok target-слой:** новый `vendors/grok.md` (grok-4.5/4.3, G14 safe-params, TARGET-профиль) в for-chat и plugin; секция **GROK_JSON_TARGET** (строгий JSON envelope + STRICT_MODE `json_schema` + Type H guard) в `!contract.md` и `contract_builder.md`; GROK-ветка в CORE RULES. Полный Heavy-16 пак — НЕ в C (эксклюзив High/Light).
+- **E1 Agent Skills:** новый ON-DEMAND `!skills.md` — генератор `SKILL.md` по стандарту agentskills.io (frontmatter-правила name/description, progressive disclosure, description-валидатор, анти-паттерны, таргеты Grok/Claude/Cursor/Codex); пункт меню **[42]** + `/p2p-skill`; регистрация в `_preloader`/`_index`.
+- **E7:** bump 8.4.2 → 8.4.3 (`plugin.json`, `marketplace.json` source/description, README, каталог `editions/8.4.3-C`).
+
+### Code 2026-07-19 — data-drift фикс по внешнему аудиту (обе формы C синхронно)
+- **Powод:** внешний аудит (GPT) указал на data-drift; подтверждено скриптом `_SERVICE/audit_model_data.py` на 8.4.4. Итог: **39 файлов, 108 строк** (C: 15 ф., H: 14, N: 10; **L чист**). Только данные — логика/структура/якоря не тронуты.
+- **🔴 DeepSeek-миграция противоречила сама себе (H+N):** `!!core`/`live_vendors` говорили `deepseek-chat → deepseek-v4-pro`, а `!!db`/`MANIFEST` — `→ deepseek-v4-flash`. Приведено к канону: **оба алиаса → v4-flash (non-thinking/thinking), НЕ V4-Pro**; убраны неверные `[ex:]`-теги в db; tier2 G16-note уточнён.
+- **🔴 Retired `claude-sonnet-4-6` в живых маршрутах → `claude-sonnet-5`:** fallback/cascade-цепочки `!routing` (C обе формы/H/N), `FALLBACK_CHAIN`+Tier2 в `!llm_router` (H), `!routing_matrix`/`!scope`/`_master`-шаблоны, `fallback_model` в `live_core` (C обе формы), sandbox-примеры, API_STRINGS-списки (`_preloader`/`!domain`/`!!core` SCAN_FOR). Historical-пометки ([PASSED]/[COMPLETED]/tier2-legacy-справка) сохранены.
+- **🔴 Цены к канону 07-13:** Opus `$15/$75`→`$5/$25` (COST_ESTIMATE `!!core` H/N — пропуск фикса 07-14); GPT-5.5 `$7/$28`→`$5/$30` (+GPT-5.6 линейка); Sonnet→Sonnet 5 `$2/$10`; Gemini 3.1 Pro `$2/$12 ≤200K`; Grok 4.5 `$2/$6`/4.3 `$1.25/$2.50`; DeepSeek Pro `$0.435/$0.87`/Flash `$0.14/$0.28`.
+- **🔴 H `!llm_router.md` CAPABILITY_MATRIX был целиком стар (2026-05-02, пропущен интеграцией 07-14):** Opus 200K/$15/$75, sonnet-4-6, GPT-5.5 128K/$7/$28, DeepSeek 32K, `moonshot-v2-128k`, `glm-5.1-flash`. → канон: 1M-линейка Claude, **grok-4.20 (Heavy-16)**, **grok-4.5**, **gpt-5.6-sol**, **kimi-k2.6**, **glm-5.2**, qwen3.6-plus; Long-ctx правило → gemini 2M / grok-4.20 2M.
+- **🟡 Синхронизация двух форм C:** plugin `core.md` identity (был «Opus 4.7 / Sonnet 4.6 primary») → как for-chat: «Fable 5 / Opus 4.8 (primary) / Sonnet 5 (default)»; plugin `preloader.md` примеры target_model; plugin `CLAUDE.md` список API-строк (+sonnet-5, sonnet-4-6 → API-legacy).
+- **🟡 Agentic-роутинг C:** `gpt-5.5 → manus/manus-1.6-max` → `gpt-5.6-sol → gpt-5.5-pro (Codex)` — Manus track-only и по канону не маршрутизируется; db «Coding | Opus 4.7» → Opus 4.8 (соответствие routing-модулю); индексы/README: GPT-5.5 → GPT-5.6.
+- **⚙ `_SERVICE/audit_model_data.py` → pre-release gate:** EDITIONS → 8.4.4; +6 паттернов (deepseek→pro-миграция, sonnet-4-6 как routing source/target/шаблон, `$15/$75`, `$7/$28`). Прогон после правок: 0 хитов по новым паттернам во всех 4 сборках.
+
+### Code 2026-07-18 — РЕЛИЗ 8.4.4-C / v8C.4: +8 техник промпт-инжиниринга (add-only)
+- **Версии:** внутреннее ядро v8C.3 → **v8C.4**; внешний плагин **8.4.3 → 8.4.4** (`plugin.json` version+displayName, `marketplace.json` source/description → `editions/8.4.4-C`). Slug `p2p-v8c3` неизменен (кнопка Update). ⚠ Физический `git mv editions/8.4.3-C → 8.4.4-C` выполняет Master (в сессии заблокирован file-lock загруженных скиллов).
+- **Также интегрированы H/N/L** (v8H.4 / v8N.4 / v8L.4) — те же 8 техник, адаптированы под их структуру (см. их CHANGELOG).
+- **Фаза 1 (db.md, writing_suite.md):** +`POSITIVE_FRAMING` (#DB_TECHNIQUE_POSITIVE_FRAMING, always-loaded) + правило в Contract Builder Шаг 5; +§10 writing_suite (`VERBALIZED_SAMPLING`; `BRUTAL_EDITOR` как вариант Template L); строки-указатели в db §8.
+- **Фаза 2 (optimization.md):** +GEPA (апгрейд EvoPrompt, Pareto-фронт), +MASPO (мета-тюнинг QUORUM — `I7_agents_8` не нарушен, 8 агентов), +SePO backlog. Фреймворки-процессы, не пункты меню.
+- **Фаза 3 (reasoning/rag/compression/memory_bridge):** +Context-Grounding CoT (reasoning + перекрёстная ссылка rag); +раздел «CONTEXT ENGINEERING (Anthropic framing)» в compression + ссылка memory_bridge.
+- **Фаза 4:** COMBINATOR conflict-matrix v8C.4 (db) + §308 FABRICATION_SCAN расширен (agents: VS≠USC, GEPA≠GoT, MASPO≠ToT) + MASPO note у WEIGHT DISTRIBUTION; теги `verbalized`/`positive-framing`/`context-engineering` в global_index; bump v8C.4 в preloader/master/global_index + VERSION_METADATA всех тронутых модулей.
+- Инварианты I1/I4/I5/I6/I7 сохранены; hard-safety запреты не переписаны в позитив; `budget_tokens` не введён (G6).
+
+### Code 2026-07-14 — live_specs→дельта + docs/токен-карта
+- **✂️ `live_specs.md` → ДЕЛЬТА** (обе формы): 91849→31061 б, **31 351→10 614 токенов**. Стабильные спеки моделей — в `vendors/tier*` + `live_vendors`; live_specs несёт волатильное (deltas/deadlines/ERROR_REGISTRY/ARENA/media/changelog).
+- **📊 `for-chat/docs/ЧТО_ЗАГРУЖАТЬ.txt` пересчитан** реальным токенайзером (o200k): минимум **28 400**, рекоменд. старт **32 100**; live_specs 27 800→10 600; добавлен `!skills.md` [42]; исправлен заголовок «8.4.2-C»→«8.4.3-C».
+- **`for-chat/docs/MODULE_REFERENCE.md`** — числа были занижены вдвое (ядро ~5,200 при реальных ~8,300; db ~4,800 при ~13,400) → пересчитаны; меню «40 пунктов»→42; добавлены `!skills.md` [42] и `!art.md`; vendor-тиры описаны под канон (Sonnet 5 / Opus 4.8 / Grok 4.5 / Fable 5 / GPT-5.6) + примечание, что отдельного `vendors/grok.md` в C нет (данные в tier3, контракт в `!contract.md`).
+- `docs/PXPIPE_GUIDE.md` — версия 8.4.1-C → **8.4.3-C**. `docs/FAQ_И_ОШИБКИ.md` — актуальные дедлайны (19.07 / 24.07 15:59 UTC no grace → `v4-flash` / 31.08) + retire Sonnet 4.6.
+
+### Code-ревизия 2026-07-14 (интеграция Live Specs в BASE)
+- **Live Specs v8.6.3 интегрирована в BASE** (Cowork только подменил файл, не перенёс данные): `for-chat/vendors/tier1-4`, `for-chat/_live/{live_vendors,live_claude,MANIFEST}`, plugin `vendors/{tier1-4,_live_claude,_live_manifest,_live_specs}`, db-реестры (`!!db_v8C`/`db.md` §API Strings) → канон 2026-07-13. +Sonnet 5/GPT-5.6/Grok 4.5/GLM-5.2/Mythos 5; retire Sonnet 4.6; снят ложный «Fable 5 SUSPENDED».
+- **Дубль `vendors/grok.md` удалён** (обе формы) — Grok 4.5/4.3 вложен в tier3; ссылки (`!!core`/`_index`/`_master`/`!contract`/`contract_builder`) → tier3.
+- **Bump-фиксы:** `plugin.json` displayName 8.4.2→8.4.3.
+- Метод: правил только канон-метрики; логику/примеры/G-errors-каталог не трогал.
+
+## 8.4.2 (2026-07-07, unreleased) — refusal-фикс + документация редакции + rename папок
+
+- 📚 **Новая документация редакции в `docs/`** (раньше был только PXPIPE_GUIDE; полный набор — как у H/N/L): **README.md** (навигатор: какой файл о чём, выбор формы поставки), **INSTALL_GUIDE.md** (установка ОБЕИХ форм: Claude Code/Cowork плагином И Claude.ai Chat/Projects файлами for-chat; обновление, префикс `/p2p-v8c3:`), **FAQ_И_ОШИБКИ.md** (FAQ + типовые ошибки E1–E8), **AGENTS_GUIDE.md** (ростер QUORUM, запуск, sub-паттерны, веса, VETO, параллельный запуск).
+- 📋 **`ЧТО_ЗАГРУЖАТЬ.txt`** в `for-chat/docs/` (и аналогичные в редакциях H/N) — простой текст без разметки: обязательный минимум (6 файлов, ~28K токенов) и пронумерованный список остальных файлов с честными токен-оценками (gpt-tokenizer) и описаниями. Ответ на постоянный вопрос пользователей «что именно грузить»; старые цифры в `_index.md` («минимальная сборка ~80K») были невнятны.
+- 📁 **Каталоги редакций переименованы** `editions/8.4.1-*` → **`editions/8.4.2-*`** (все 4; папка = номер релиза). Обновлены: `marketplace.json → plugins[].source`, корневые README (ru/en), COMPARISON.md, README редакций.
+- 🚨 **Safety-refusal фикс (live-трафик, 2026-07-07):** Fable 5 систематически (~70%, 5/7 в events.jsonl) флагает сжатые запросы «1 PNG со static-слэбом ~16k симв + почти без текста» (headless `claude -p`) — `stop_reason: refusal`, `safety_flagged: true`; multi-PNG (4–5) не флагается (15/15). Фикс: **`PXPIPE_MIN_COMPRESS_CHARS=24000`** (мелкие слэбы passthrough, большие сессии жмутся). Upstream v0.8.0 ручки не имеет → задокументирован патч transform-фабрики в `dist/node.js` (перезатирается `npm install`). Обновлены: `docs/PXPIPE_GUIDE.md` (подраздел в прокси-режиме), `commands/p2p-pxpipe.md` (алгоритм `on`: npm install/npx вместо устаревшего pnpm build + шаг про порог), `skills/pxpipe/VERIFICATION.md` (лог паттерна).
+- Bump `8.4.1 → 8.4.2` (plugin.json) — контентное изменение поверх выпущенного 8.4.1 (релиз v8.4.1 опубликован 2026-07-07 05:12).
+
+## 8.4.1 (2026-07-07) — pxpipe optical compression
+
+- ⭐ **NEW: pxpipe** — оптическое сжатие токенов (текст → плотный PNG; vision-биллинг по площади пикселей). Три слоя:
+  - **L-OPTICAL** в модуле compression (роутер сжатия, техника №4 рядом с LLMLingua/Gist);
+  - **PXPIPE_GATE** в agents.md — оптический хендофф между агентами QUORUM + CAPSULE optical-backend (memory_bridge);
+  - команда **`/p2p-pxpipe`** (proxy on/off/status/measure) + skill **`pxpipe`** (executor: compress.mjs / measure.mjs / byte-guard).
+- 📊 Замерено на реальном контенте P2P: **~82%** экономии на блок (ratio ~5.6×, безопасная зона <10× по DeepSeek-OCR); прокси-режим: **53%** холодный ход / **93.5%** тёплый (боевой трафик, events.jsonl).
+- 🛡️ Гейты (enforcement, не советы): READER (только claude-fable-5 / gpt-5.6), PROFIT (≥8000 симв), BYTE-GUARD (хеши/суммы/ID → text-sidecar; DECISION LEDGER — числам с картинки не доверять).
+- 🧭 Fable 5 / Opus 4.8 добавлены в plugin.json compatibility.models; displayName → «8.4.1-C».
+- 🔧 Фиксы YAML frontmatter: p2p-karpathy.md (незакавыченный `: `), p2p-download.md (нет description) — уроки 8.4.2.
+- 🙏 Атрибуция: [teamchong/pxpipe](https://github.com/teamchong/pxpipe) (MIT) — оптический рендерер и прокси; теория: DeepSeek-OCR (arXiv 2510.18234).
+
+
+> v8C.2 → v8C.3 changes only.  
+> For v8C.1 → v8C.2 history see the v8C.2 release docs.
+
+---
+
+## Maintenance: v8.3.5-C (2026-06-26)
+
+- **🔴 Removed nested `.claude-plugin/marketplace.json` from inside the plugin** (had `source: "."` + a stale `version: 8.3.2-C`). Bundled into the `.plugin` it made the desktop app create a self-referential `local-desktop-app-uploads` marketplace (commands reappearing after restart) and risked masking updates. Now `.claude-plugin/` holds **only `plugin.json`**; the single marketplace lives at repo root. Fixed dangling refs in `CLAUDE.md`, `global_index.md`, `INSTALL.md`.
+- **Edition renamed `cloud-claude` → `claude-native`** (folder, marketplace source, displayName «Claude Native Edition»). Plugin id `p2p-v8c3` unchanged.
+- **8/8 sub-agents** now carry required `name` + `description` frontmatter (were showing the generic «Agent from plugin» placeholder; auto-delegation now works).
+- **11/11 commands** now carry `description` + `argument-hint` frontmatter.
+- **🔴 Fixed ~234 broken file references (E3):** command/skill/module files pointed to non-existent chat-edition filenames (`!!core_v8C.md`, `!teacher.md`, `!templates.md`, `!contract.md`…) — load directives that resolved to nothing in the plugin. Rewritten to the real plugin module names (`core.md`, `teacher.md`, `templates_library.md`, `contract_builder.md`…) across 28 files in `.claude/` + `INSTALL.md`. Verified: **0 broken refs**; `.plugin` builds clean (forward-slash, no nested marketplace, version 8.3.5-C inside).
+- Version bump `8.3.4-C → 8.3.5-C` to deliver the above (pinned version must bump on content change).
+
+---
+
+## Release: v8C.3 (2026-06-12)
+
+### Core architecture
+
+| Change | v8C.2 | v8C.3 |
+|--------|-------|-------------|
+| Primary model | Opus 4.8 | Opus 4.8 + **Fable 5** (Arena #1 Agent) |
+| New modules | 0 | **6** (!rag, !reasoning, !routing, !compression, !security, !optimization) |
+| Menu items | 34 | **40** (items 35-40 dynamic, shown only when module is loaded) |
+| VERSION_COMPAT | no | **yes** — v8C2/v8C3 on/off + 6 MODULE flags |
+| CONFLICT_RESOLVER | no | **v1.0** — activates when v8C2=on AND v8C3=on |
+| STARTUP_LOGO | no | **ASCII P2P logo** shown on /start |
+| Language | Russian | Russian default, **English switchable** |
+| Live specs | live_specs_20260609.md (v8.3) | **live_specs_20260617.md** (v8.4, Fable 5 added) |
+| Docs | 1 file | **5 files** in docs/ |
+| File language | Russian | **English** (comments bilingual) |
+
+---
+
+### New modules (v8C.3 ON-DEMAND tier)
+
+| Module | File | Menu | Techniques |
+|--------|------|------|-----------|
+| RAG | !rag.md | [35] | RAPTOR (Stanford 2024), LongRAG, Dynamic RAPTOR |
+| Reasoning Chains | !reasoning.md | [36] | Self-Consistency (Wang et al. 2023), rStar-Math/MCTS (MS 2025), s1 Budget Forcing |
+| Smart Routing | !routing.md | [37] | Semantic Router, Cascade, Cost-Aware, LLM-Router |
+| Compression | !compression.md | [38] | LLMLingua (MS 2023/2024), Gist Tokens (Stanford 2024), Verbatim Deletion |
+| Security Audit | !security.md | [39] | Injection Scanner, Jailbreak Classification, SelfCheckGPT (arXiv 2502.01812) |
+| Optimization | !optimization.md | [40] | APO cycle, OPRO (DeepMind 2023), EvoPrompt |
+
+---
+
+### VERSION_COMPAT system (new in v8C.3)
+
+```yaml
+VERSION_COMPAT:
+  v8C2: on      # stable v8C.2 logic
+  v8C3: on     # v8C.3 techniques (set to on to enable all)
+
+  MODULE_RAG: auto           # false | true | auto | or
+  MODULE_REASONING: auto
+  MODULE_ROUTING: auto
+  MODULE_COMPRESSION: auto
+  MODULE_SECURITY: auto
+  MODULE_OPTIMIZATION: auto
+```
+
+- `false` — not loaded, menu item hidden
+- `true` — always loaded, menu item visible
+- `auto` — SIR Scanner decides based on task context
+- `or` — loaded, conflicts resolved by CONFLICT_RESOLVER
+- Both `v8C2: on` AND `v8C3: on` → CONFLICT_RESOLVER activates on technique conflicts
+
+---
+
+### Live specs updates (v8.3 → v8.4, 2026-06-12)
+
+| Change | Detail |
+|--------|--------|
+| **Claude Fable 5 DEBUT** | GA 2026-06-10; API: `claude-fable-5`; $10/$50; Arena #1 Agent (12.94% win rate), #1 Text (1510), #1 WebDev (1665) |
+| **Opus 4.8 GraphWalks F1** | 40.3% (4.7) → **68.1%** (+27.8pp; largest improvement across all 4.8 metrics) |
+| **MRCR regression** | Opus 4.7/4.8 MRCR v2 1M: 32.2% vs Opus 4.6: 78.3% — pin 4.6 for >500K recall |
+| **Fable 5 Safety Nanny** | UNRESOLVED BY DESIGN — ~5% sessions redirected to Opus 4.8 silently |
+| **Cache TTL change** | Claude Code cache 1hr→5min (silent, not announced; add ephemeral block workaround) |
+| **Legacy model retire** | `claude-*-4-20250514` → HTTP 400/404 from 2026-06-15 (T-3 days); NO auto-redirect |
+| **DeepSeek aliases** | `deepseek-chat` / `deepseek-reasoner` → HTTP 404 from 2026-07-24 (T-42 days) |
+| **Gemini Error 13** | UNRESOLVED CRITICAL — threshold worsened; affects 3.5 Flash + 3.5 Pro Preview |
+| **Manus AI CRITICAL** | Meta unwinding $2B acquisition (NDRC block); financial instability ~$1B |
+| **GLM-5.1 Compact Hang** | NEW BUG — infinite thinking loop on /compact |
+| **OpenAI new bugs** | Billing Ghost Users + Memory Routing Bug (confirmed 2026-06-12) |
+
+---
+
+### Documentation added (docs/)
+
+| File | Description |
+|------|-------------|
+| `MODULE_REFERENCE.md` | Token budget per file, presets, module parameter reference |
+| `MINDMAP_v8C3.md` | ASCII architecture diagram — file hierarchy, QUORUM, presets |
+| `TECHNIQUES_v8C3.md` | All 11 new techniques with arXiv citations and author credits |
+| `INSTALL_GUIDE.md` | v8C.2 → v8C.3 migration guide (no v7 content) |
+| `CHANGELOG_v8C3.md` | This file |
+
+---
+
+### Files changed from v8C.2 baseline
+
+| File | Change |
+|------|--------|
+| `_preloader.md` | + VERSION_COMPAT block, + CONFLICT_RESOLVER v1.0, + v8C.3 module load order |
+| `!!core_v8C.md` | + ASCII startup logo, + dynamic menu [35-40], + CONFLICT_RESOLVER rules |
+| `_live/MANIFEST.md` | + Claude Fable 5, + Nano Banana deadline, updated live_specs_ref |
+| `_live/live_vendors.md` | + Claude Fable 5, updated routing guide and fallback chain |
+| All *.md | Version bumped to v8C.3, dates updated to 2026-06-12 |
+| All *.md | Content converted to English (comments bilingual RU/EN) |
+
+---
+
+## Presets summary
+
+| Preset | Files | ~Tokens |
+|--------|-------|---------|
+| MINIMAL | _preloader + !!core | ~7K |
+| LIGHT | BASE (6) + live_vendors | ~16K |
+| v8C3-RAG | LIGHT + !rag + !routing | ~21K |
+| MEDIUM | LIGHT + !agents + !contract + !scope + !memory + !debug | ~30K |
+| v8C3-DEV | LIGHT + !rag + !reasoning + !routing + !optimization | ~27K |
+| FULL v8C3 | BASE + ALL ON-DEMAND v8C.2 + ALL v8C.3 modules | ~59K |
+
+---
+
+<!-- SOURCE_META: type=docs | changelog=v8C3 | from=v8C2 | to=v8C3-ALPHA -->
