@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "p2p-v8c3",
-      "source": "./editions/8.4.5-C/plugin",
-      "description": "P2P 8.4.5-C Claude Native Edition — v8C.4 (комплаенс-формулировки, дисклеймер в UI, возврат принципа A/B), PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 12 commands, XML-native, SCOPE.HELM, pxpipe (Fable 5)",
+      "source": "./editions/8.4.6-C/plugin",
+      "description": "P2P 8.4.6-C Claude Native Edition — канон версий (одна версия продукта вместо внешней/внутренней пары), PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 13 commands, XML-native, SCOPE.HELM, pxpipe (Fable 5)",
       "tags": ["latest", "claude-native", "pxpipe"]
     }
   ]

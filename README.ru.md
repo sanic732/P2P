@@ -2,7 +2,7 @@
 
 > **Русский** · [English](README.md)
 
-[![Version](https://img.shields.io/badge/version-v8.4.3-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-BETA-yellow)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
+[![Version](https://img.shields.io/badge/version-v8.4.6-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-BETA-yellow)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
 
 **Мета-промпт, который пишет промпты — и выполняет задачи.** Поток сознания на входе → выверенный промпт под нужную модель на выходе. Цель проекта: **убрать классический prompt engineering для рядового пользователя.**
 
@@ -30,10 +30,10 @@ P2P (Prompt-to-Prompt) — модульная оркестрирующая си�
 
 | Редакция | Для кого | Хост | Старт |
 |---|---|---|---|
-| 🟦 **[8.4.5-C](editions/8.4.5-C/README.md)** (Claude, внутр. 8C.3) | Работаешь в **Claude** (Code / Cowork / Projects) | только Claude | ~7K |
-| 🟥 **[8.4.5-H](editions/8.4.5-H/README.md)** (внутр. 8H.3) | Хочешь максимум / сидишь на **Grok** | 8 хостов (нативно Grok) | ~60K |
-| 🟩 **[8.4.5-N](editions/8.4.5-N/README.md)** (внутр. 8N.3) | Твоей модели нет среди «нативных» | любой из 8 | ~60K |
-| 🟦 **[8.4.5-L](editions/8.4.5-L/README.md)** (внутр. 8L.3) | Экономия токенов / лимит контекста / **новичкам** | универсальный | **~18K** |
+| 🟦 **[8.4.6-C](editions/8.4.6-C/README.md)** (Claude, внутр. 8C.3) | Работаешь в **Claude** (Code / Cowork / Projects) | только Claude | ~7K |
+| 🟥 **[8.4.6-H](editions/8.4.6-H/README.md)** (внутр. 8H.3) | Хочешь максимум / сидишь на **Grok** | 8 хостов (нативно Grok) | ~60K |
+| 🟩 **[8.4.6-N](editions/8.4.6-N/README.md)** (внутр. 8N.3) | Твоей модели нет среди «нативных» | любой из 8 | ~60K |
+| 🟦 **[8.4.6-L](editions/8.4.6-L/README.md)** (внутр. 8L.3) | Экономия токенов / лимит контекста / **новичкам** | универсальный | **~18K** |
 
 📊 Подробное сравнение — [`editions/COMPARISON.md`](editions/COMPARISON.md) · 📖 расшифровка имён — [`NAMING.md`](NAMING.md).
 
