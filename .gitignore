@@ -34,3 +34,6 @@ __pycache__/
 # Staging / artifacts dirs (in case someone clones into a parent)
 _release-staging/
 _release-artifacts/
+
+# Сборка чанков Lite — промежуточные артефакты, канон лежит в гисте
+build/

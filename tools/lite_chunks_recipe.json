@@ -1,0 +1,48 @@
+{
+  "CORE_PLUS": [
+    "!agents.md",
+    "!pipeline.md"
+  ],
+  "SESSION_CORE": [
+    "!toolkit.md",
+    "!scope.md",
+    "!memory.md",
+    "!sandbox.md"
+  ],
+  "SESSION_METRICS": [
+    "!metrics.md"
+  ],
+  "HOST_ENGINE": [
+    "!host_profiles.md",
+    "!llm_router.md",
+    "!routing_matrix.md",
+    "!tool_budget.md",
+    "!x_realtime.md"
+  ],
+  "VENDORS": [
+    "vendors/tier1.md",
+    "vendors/tier2.md",
+    "vendors/tier3.md",
+    "vendors/tier4.md",
+    "vendors/grok.md",
+    "vendors/claude.md"
+  ],
+  "RAG": [
+    "!rag.md"
+  ],
+  "REASONING": [
+    "!reasoning.md"
+  ],
+  "ROUTE": [
+    "!routing.md"
+  ],
+  "COMPRESS": [
+    "!compression.md"
+  ],
+  "SECURITY": [
+    "!security.md"
+  ],
+  "OPTIMIZATION": [
+    "!optimization.md"
+  ]
+}
