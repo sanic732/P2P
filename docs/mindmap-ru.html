@@ -4,116 +4,366 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>P2P · Полезные посты</title>
+<meta name="description" content="Каталог публикаций Sanic27 в ветке «Промпты для Искусственного Интеллекта» на 4PDA: промпты, инструменты, гайды, разборы. Список и интерактивная карта.">
 <style>
   :root{--bg:#0b1120;--line:#24314d;--text:#e8eefc;--muted:#8aa0c6;--accent:#38bdf8;--card:#13203b}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;min-height:100%;background:radial-gradient(1200px 800px at 70% -10%,#16233f,transparent),var(--bg);
     color:var(--text);font-family:'Segoe UI',Roboto,system-ui,Arial,sans-serif}
-  @media(min-width:769px){body{overflow:hidden}#mob{display:none}}
-  #top{position:fixed;left:0;right:0;top:0;z-index:10;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-    padding:10px 16px;background:linear-gradient(180deg,#0b1120ee,#0b112099);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+
+  /* ── шапка ── */
+  #top{position:sticky;left:0;right:0;top:0;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    padding:10px 16px;background:linear-gradient(180deg,#0b1120f2,#0b1120e0);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   #title{display:flex;flex-direction:column;line-height:1.2}
   #title b{font-size:16px;letter-spacing:.3px}
   #title span{font-size:11px;color:var(--muted)}
   .grow{flex:1}
-  .btn{background:#16233f;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;white-space:nowrap;transition:.15s}
+  .btn{background:#16233f;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 12px;
+    font-size:12px;cursor:pointer;white-space:nowrap;transition:.15s;font-family:inherit}
   .btn:hover{border-color:var(--accent);color:#fff}
-  #search{background:#0b1428;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 12px;font-size:13px;min-width:140px;outline:none;flex:1;max-width:260px}
+  #search{background:#0b1428;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 12px;
+    font-size:14px;min-width:150px;outline:none;flex:1;max-width:280px;font-family:inherit}
   #search:focus{border-color:var(--accent)}
-  .chip{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+  .chip{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 10px;white-space:nowrap}
   a.langlink{color:var(--accent);font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:7px 12px;transition:.15s}
   a.langlink:hover{border-color:var(--accent);background:#16233f}
-  #stage{position:fixed;inset:0;top:0;cursor:grab}
+  /* переключатель вида */
+  #modes{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  #modes button{background:#16233f;border:0;color:var(--muted);padding:8px 14px;font-size:12px;cursor:pointer;font-family:inherit;transition:.15s}
+  #modes button.on{background:var(--accent);color:#0b1120;font-weight:700}
+
+  /* ── вид «список» (гармошка) ── */
+  #list{max-width:1080px;margin:0 auto;padding:18px 12px 60px}
+  .m-cat{margin:0 0 10px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+  .m-cat-head{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;-webkit-user-select:none;user-select:none}
+  .m-cat-head:hover{background:#16233f66}
+  .m-cat-head .ico{font-size:22px;line-height:1}
+  .m-cat-head .h{font-weight:700;font-size:15px;flex:1;min-width:0;overflow-wrap:anywhere}
+  .more a{overflow-wrap:anywhere}
+  @media(max-width:560px){
+    #top{padding:8px 10px;gap:8px}
+    #title b{font-size:15px}#title span{display:none}
+    #search{max-width:none;order:9;flex-basis:100%}
+    .btn .lbl{display:none}                       /* на телефоне кнопки — значками */
+    a.langlink{padding:7px 10px}
+    .btn,a.langlink,#modes button{min-height:38px}   /* палец, а не курсор */
+  }
+  .m-cat-head .cnt{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+  .m-cat-head .arrow{font-size:13px;color:var(--muted);transition:.2s}
+  .m-cat.open .arrow{transform:rotate(180deg)}
+  .m-items{display:none;padding:0 10px 12px}
+  .m-cat.open .m-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:8px;align-items:start}
+  .m-cell{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .m-item{display:block;flex:1;text-decoration:none;color:var(--text);border-radius:10px;padding:12px 14px;
+    border:1px solid var(--line);background:#0e1830;transition:.12s}
+  .m-item:hover,.m-item:active{border-color:var(--accent);background:#13203bcc}
+  .m-item .mt{font-weight:600;font-size:14px;line-height:1.3;margin:0 0 4px;overflow-wrap:anywhere}
+  .m-item .md{font-size:12px;color:var(--muted);line-height:1.45;overflow-wrap:anywhere}
+  .m-item .mdt{font-size:10px;color:#5f7099;margin-top:7px}
+  .more{display:flex;flex-wrap:wrap;align-items:flex-start;gap:5px;padding:0 2px 2px}
+  .more a{flex:0 0 auto;font-size:11px;color:var(--accent);text-decoration:none;border:1px solid var(--line);
+    border-radius:999px;padding:3px 9px;background:#0b1428;transition:.12s;line-height:1.5}
+  .more a:hover{border-color:var(--accent);background:#16233f}
+  .hidden{display:none!important}
+  .hit{outline:2px solid var(--accent);outline-offset:1px}
+  #empty{text-align:center;color:var(--muted);font-size:14px;padding:40px 20px}
+
+  /* ── вид «карта» ── */
+  #mapwrap{position:relative;height:calc(100vh - var(--topH,58px));height:calc(100dvh - var(--topH,58px));overflow:hidden}
+  #stage{position:absolute;inset:0;cursor:grab}
   #stage.drag{cursor:grabbing}
   svg{width:100%;height:100%;display:block}
   .link{fill:none;stroke-width:2}
+  .link.thin{stroke-width:1.2}
   .node-card{cursor:pointer}
-  .nfo{position:fixed;left:0;right:0;bottom:0;z-index:10;font-size:11px;color:var(--muted);text-align:center;padding:8px;background:linear-gradient(0deg,#0b1120ee,transparent)}
-  .fo-card{height:100%;width:100%;display:flex;flex-direction:column;justify-content:center;border-radius:12px;padding:8px 12px;border:1px solid var(--line);background:linear-gradient(180deg,#13203b,#0e1830);box-shadow:0 6px 18px #0006;overflow:hidden}
+  .fo-card{height:100%;width:100%;display:flex;flex-direction:column;justify-content:center;border-radius:12px;
+    padding:8px 12px;border:1px solid var(--line);background:linear-gradient(180deg,#13203b,#0e1830);box-shadow:0 6px 18px #0006;overflow:hidden}
   .fo-card .t{font-size:13px;font-weight:600;color:#eaf2ff;margin:0 0 3px;line-height:1.25}
   .fo-card .d{font-size:11px;color:var(--muted);line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .fo-card .dt{font-size:10px;color:#5f7099;margin-top:5px}
-  .fo-leaf{transition:.12s}.fo-leaf:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .fo-leaf{transition:.12s}.fo-leaf:hover{border-color:var(--accent)}
   .fo-root{align-items:center;text-align:center;border:1px solid #2b4a7a;background:linear-gradient(180deg,#1b2f55,#10203f)}.fo-root .t{font-size:18px}
   .fo-cat{align-items:flex-start}.fo-cat .t{font-size:14px;font-weight:700}
   .badge{display:inline-block;font-size:10px;color:#0b1120;border-radius:999px;padding:1px 8px;font-weight:700;margin-top:4px}
-  .dim{opacity:.18}.fo-card.hit{outline:2px solid var(--accent);outline-offset:1px}
+  .dim{opacity:.18}
   .toggle{font-size:11px;color:#0b1120;font-weight:800}
-  @media(max-width:768px){
-    #stage,.nfo{display:none}
-    #top{position:sticky;top:0}
-    .desk-only{display:none!important}
-    body{overflow:auto;padding-bottom:40px}
-  }
-  @media(min-width:769px){#mob{display:none}}
-  #mob{padding:80px 12px 40px}
-  .m-cat{margin:0 0 6px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
-  .m-cat-head{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;-webkit-user-select:none;user-select:none}
-  .m-cat-head .ico{font-size:22px}.m-cat-head .h{font-weight:700;font-size:15px;flex:1}
-  .m-cat-head .cnt{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
-  .m-cat-head .arrow{font-size:14px;color:var(--muted);transition:.2s}
-  .m-cat.open .arrow{transform:rotate(180deg)}
-  .m-items{display:none;padding:0 10px 10px}.m-cat.open .m-items{display:block}
-  .m-item{display:block;text-decoration:none;color:var(--text);border-radius:10px;padding:12px 14px;margin:6px 0;border:1px solid var(--line);background:#0e1830;transition:.12s}
-  .m-item:hover,.m-item:active{border-color:var(--accent);background:#13203bcc}
-  .m-item .mt{font-weight:600;font-size:14px;line-height:1.3;margin:0 0 4px}
-  .m-item .md{font-size:12px;color:var(--muted);line-height:1.4}
-  .m-item .mdt{font-size:10px;color:#5f7099;margin-top:6px}
-  .m-item.dim{opacity:.18}.m-item.hit{outline:2px solid var(--accent);outline-offset:1px}
+  .nfo{position:absolute;left:0;right:0;bottom:0;font-size:11px;color:var(--muted);text-align:center;
+    padding:8px;background:linear-gradient(0deg,#0b1120ee,transparent);pointer-events:none}
+  #zoom{position:absolute;right:14px;bottom:44px;display:flex;flex-direction:column;gap:6px}
+  #zoom button{width:38px;height:38px;font-size:18px;border-radius:10px;background:#16233fdd;border:1px solid var(--line);
+    color:var(--text);cursor:pointer;font-family:inherit}
+  #zoom button:hover{border-color:var(--accent)}
+  #zoom #zone{font-size:12px;font-weight:700}
+  footer{max-width:1080px;margin:0 auto;padding:0 12px 40px;color:var(--muted);font-size:12px;
+    border-top:1px solid var(--line);padding-top:14px}
 </style>
 </head>
 <body>
 <div id="top">
-  <div id="title"><b>P2P · Полезные посты</b><span>Кураторская карта публикаций Sanic27 · 4PDA</span></div>
+  <div id="title"><b>P2P · Полезные посты</b><span>Каталог публикаций Sanic27 · 4PDA</span></div>
   <span class="chip" id="cnt"></span>
   <div class="grow"></div>
   <input id="search" placeholder="Поиск по постам…">
-  <button class="btn desk-only" id="exp">Развернуть всё</button>
-  <button class="btn desk-only" id="col">Свернуть всё</button>
-  <button class="btn desk-only" id="rst">Сброс вида</button>
+  <div id="modes">
+    <button id="mList" class="on">Список</button>
+    <button id="mMap">Карта</button>
+  </div>
+  <button class="btn" id="exp" title="Развернуть всё">⌄<span class="lbl">&nbsp;Развернуть всё</span></button>
+  <button class="btn" id="col" title="Свернуть всё">⌃<span class="lbl">&nbsp;Свернуть всё</span></button>
   <a class="langlink" href="mindmap-en.html">English version</a>
 </div>
-<div id="stage"><svg id="svg"><g id="vp"></g></svg></div>
-<div class="nfo">Клик по разделу — свернуть/развернуть · клик по посту — открыть на 4PDA · колесо — зум · тащить — двигать карту</div>
-<div id="mob"></div>
+
+<div id="list"></div>
+<div id="empty" class="hidden">Ничего не нашлось — попробуй другое слово.</div>
+
+<div id="mapwrap" class="hidden">
+  <div id="stage"><svg id="svg"><g id="vp"></g></svg></div>
+  <div id="zoom"><button id="zin">+</button><button id="zout">−</button><button id="zfit" title="Вписать в экран">⤢</button><button id="zone" title="1:1">1:1</button></div>
+  <div class="nfo">Клик по разделу — свернуть/развернуть · клик по посту — открыть на 4PDA · колесо — зум · тащить — двигать карту</div>
+</div>
+
+<footer>P2P — Prompt-to-Prompt · мета-промпт, который пишет другие промпты. Собрано из ветки 4PDA «Промпты для Искусственного Интеллекта». Каждая карточка ведёт на оригинальный пост.</footer>
+
 <script>
-const DATA=[{"t": "P2P — ядро проекта", "color": "#3b82f6", "icon": "🧠", "children": [{"t": "P2P v8 NEXUS — основной пост", "d": "Главный хаб проекта: версии 8C.3 / 8H.3 / 8N.3 / 8L.3, RAG-архитектура, 8 агентов QUORUM, установка, FAQ и каталог техник.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576", "date": "12.06.25"}, {"t": "Обновление P2P для Claude → 8C.2", "d": "Релиз ветки Claude Native Edition 8C.2: что изменилось и как обновиться.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143383283", "date": "14.05.26"}, {"t": "Гайд: ошибки, обновления и большие промпты", "d": "Как создавать «работу над ошибками» под целевую модель, обновлять P2P при выходе версии и собирать большие промпты (3 способа).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142243608", "date": "03.03.26"}, {"t": "Template M (Karpathy Mode)", "d": "Минималистичный режим «лучший промпт — чистый контекст»: что делает по-новому и как вызывать.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143033099", "date": "21.04.26"}, {"t": "Параллельные P2P-агенты в одном вызове", "d": "Лайфхак для 8C.3 (Claude): запуск нескольких агентов QUORUM параллельно за один вызов.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143396222", "date": "15.05.26"}, {"t": "Claude Code + P2P — воркфлоу", "d": "Почему агент пишет код с нуля и как это починить без слива токенов; как ТЗ вписывается в воркфлоу с P2P.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143697302", "date": "03.06.26"}, {"t": "Статусы сборок: ALPHA / BETA / STABLE", "d": "Что означают статусы релизов P2P и какую версию выбрать.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142547413", "date": "21.03.26"}, {"t": "Как пользоваться UI-меню P2P", "d": "Разбор сквозного меню, режимов AUTO/QUORUM, прямого вызова агентов и почему можно просто писать текстом.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142199454", "date": "28.02.26"}, {"t": "Live Specs — постоянная ссылка", "d": "Актуальные цены/квоты/баги моделей для P2P (C/A/N/G), обновляется раз в 1-2 недели.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142685423", "date": "30.05.26"}, {"t": "Экономия токенов в Gemini через NotebookLM", "d": "Как загрузить базу P2P в NotebookLM, чтобы резко снизить расход токенов в Gemini.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143234252&anchor=Spoil-143234252-1", "date": "03.05.26"}, {"t": "Запуск P2P частями (лимит файлов)", "d": "Как загрузить систему, когда хост ограничивает число файлов на одно сообщение.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143670563&anchor=Spoil-143670563-1", "date": "02.06.26"}, {"t": "Варианты запуска на Gemini", "d": "3 рабочих способа запуска редакций P2P на Gemini, нюансы NotebookLM и прямого добавления .md.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143474710", "date": "20.05.26"}, {"t": "Запуск P2P на Qwen", "d": "Как запустить систему в проектах Qwen: HOST_MODEL и обход лимита файлов.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143350627", "date": "12.05.26"}, {"t": "Персонализация аккаунта и P2P", "d": "Почему глобальные Custom Instructions ломают агентов P2P и 4 способа это изолировать.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142364315&anchor=Spoil-142364315-1", "date": "10.03.26"}, {"t": "P2P CORE v5.5 «CHIMERA» — релиз", "d": "Крупное обновление ядра: переход от монолита к модульной «Химере», release notes.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141969850", "date": "15.02.26"}, {"t": "SCOPE.HELM v1.0 — управление сессией", "d": "Pre-work движок для P2P v7: 4 механизма контроля и оптимизации больших сессий.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142654977", "date": "28.03.26"}, {"t": "CORTEX Patch 001 (P2P v7)", "d": "Экспериментальный патч: три контура, которых не хватало ядру v7.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142550801", "date": "21.03.26"}, {"t": "RAG «туннельное зрение», fetch и Gem-бот с P2P", "d": "Эффект «туннельного зрения» в RAG и как он решён в P2P (RAPTOR, ANCHOR_CONTEXT, CONSTRAINT_REINJECTION). Динамическая загрузка live_specs через fetch. Пошаговая сборка Gem-бота из файлов P2P.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143927483", "date": "19.06.26"}, {"t": "Пайплайн NotebookLM vs напрямую, fetch по моделям", "d": "Чем отличается прикрепление файлов напрямую vs через NotebookLM RAG. Поддержка fetch по моделям: Gemini/Claude/Qwen/Grok ✅, DeepSeek ❌, GPT ⚠️. Архитектура 8L.3.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143928151", "date": "19.06.26"}], "n": 19}, {"t": "Промпты и инструменты", "color": "#22c55e", "icon": "⚙️", "children": [{"t": "SunoForge v2.0 — AI Music Orchestrator", "d": "Мультиплатформенный музыкальный продюсер и промпт-оркестратор (Suno v5 и др.), синтаксис и RAG.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142556185", "date": "22.03.26"}, {"t": "BET_OS v4.0 — спортивное моделирование", "d": "Вычислительная станция спортивного моделирования для Perplexity с anti-hallucination.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143655003", "date": "01.06.26"}, {"t": "NotebookLLM MultiMedia Architect v1.3.2", "d": "Модульная система для инфографики, презентаций и подкастов (Audio Architect).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141174529", "date": "03.01.26"}, {"t": "OCR Data Extraction Pipeline", "d": "Промпт-пайплайн для извлечения структурированных данных из изображений/сканов.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140949343", "date": "21.12.25"}, {"t": "Extract for Excel — парсер данных", "d": "Промпт для Gemini + NotebookLM: превращение текста в структурированные таблицы.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142091989", "date": "22.02.26"}, {"t": "Perplexity PDF Generator (кириллица)", "d": "Промпт для создания PDF с корректным отображением кириллицы (copy & paste).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141350578", "date": "12.01.26"}, {"t": "The Encoding Fixer — патч кодировки", "d": "Промпт-патч, чинит «кракозябры» и битую кодировку текста без ручной перекодировки.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141187273", "date": "04.01.26"}, {"t": "ARENA v3.0 Builder — A/B-тест промптов", "d": "Инструмент сравнения промптов с trap-маркерами и числовой оценкой результата.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142252035", "date": "03.03.26"}, {"t": "Режим отладки + FIX-Patch", "d": "Как уменьшить «фантазии» модели: режим отладки и патч для любых промптов.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142239341", "date": "02.03.26"}, {"t": "Психотерапевт — личный психолог", "d": "Промпт-ассистент психологической поддержки (создан в P2P v8), с базой знаний.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143657129", "date": "01.06.26"}, {"t": "V-CDSS — ветеринарная поддержка решений", "d": "Veterinary Clinical Decision Support System: клинический помощник по XML-каркасу.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143026646", "date": "20.04.26"}, {"t": "Конструктор детского бота по книгам", "d": "Метапромпт для быстрого создания интерактивного обучающего бота для детей по книгам.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142091929", "date": "22.02.26"}, {"t": "RootStech Assistant v1.1", "d": "Профильный ассистент (собран на P2P 3): ядро + база знаний.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140974528", "date": "22.12.25"}, {"t": "Assistant for KernelSuNext", "d": "Помощник для перехода с Magisk на KernelSuNext: цель, сценарий, тело промпта.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140940226", "date": "21.12.25"}, {"t": "DOCU-SYNTH v1.0 — анализ по скриншоту", "d": "Аналитическое ядро визуализации и логики: результат по одному скриншоту.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141973513", "date": "15.02.26"}, {"t": "Голосовой режим Claude + P2P (live)", "d": "Полноценная работа P2P v8C.2 в голосовом live-режиме без компромиссов.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143568995", "date": "26.05.26"}, {"t": "Промпты для Gemini Deep Think + 50 команд", "d": "Коллекция сценариев глубокого режима и 50+ внутренних команд Gemini.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140734399", "date": "10.12.25"}, {"t": "Мета-промпты для Grok / GPT / Gemini", "d": "Подборка инструкций под каждую модель + универсальный мета-промпт для всех.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140738366", "date": "10.12.25"}, {"t": "PocketPal Navigator — подбор локальных LLM", "d": "Динамический подборщик локальных моделей под ваше железо.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142413027", "date": "13.03.26"}, {"t": "Visual Commander", "d": "Промпт-инструмент для визуальных задач (новая пересборка), с режимом отладки.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142095629", "date": "22.02.26"}, {"t": "Промпт-разбор по скриншоту (ptp 3)", "d": "Демонстрация: из скриншота запроса — готовый профессиональный промпт.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141186006", "date": "04.01.26"}, {"t": "USER SANDBOX — fix-патч v1.0", "d": "Патч-исправление для промптов + альтернативный вариант fix.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141382032", "date": "14.01.26"}, {"t": "Киберспорт-аналитика (Dota 2 / CS)", "d": "Промпт для прогнозной аналитики по киберспортивным дисциплинам.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141623868", "date": "27.01.26"}, {"t": "Инфографика и схемы по данным", "d": "Промпт для построения инфографики/схем из исходных данных (3 варианта, NotebookLM).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140589552", "date": "03.12.25"}], "n": 24}, {"t": "Образовательные гайды", "color": "#f59e0b", "icon": "📚", "children": [{"t": "DevLog ч.1: от «костылей» к архитектуре", "d": "История эволюции P2P от v2.0 к v3.2 Dynamic Lab: какая «боль» стояла за сборками и какой инженерный путь пройден.", "u": "https://4pda.to/forum/index.php?showtopic=1077922&view=findpost&p=140958693", "date": "22.12.25"}, {"t": "DevLog ч.2: «ОС внутри промпта» (v5.7)", "d": "Продолжение: крах монолита, рождение «Химеры» и превращение чата в IDE — эволюция Prompt-to-Prompt до v5.7.", "u": "https://4pda.to/forum/index.php?showtopic=1077922&view=findpost&p=142005543", "date": "16.02.26"}, {"t": "Claude — боевой гайд", "d": "Как перестать получать generic-ответы и начать работать с моделью правильно. Деградация, промпт-нищета, Extended Thinking, Plan Mode, паттерны-убийцы.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142391090", "date": "11.03.26"}, {"t": "Боевой гайд: интерактивные визуализации в чате", "d": "Дополнение: визуализации прямо в чате, сценарии, сохранение/экспорт, пример на Android.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142410536", "date": "13.03.26"}, {"t": "8 шагов настроить Claude Cowork с нуля", "d": "Пошаговая настройка Cowork — «hot start», чтобы больше к этому не возвращаться.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142398719", "date": "12.03.26"}, {"t": "Claude — боевой гайд 2: выкрути на max!", "d": "Context Engineering серия: 9-Step Framework, Blueprint/Contract Prompting, Cowork, Claude Code — с позиции архитектуры.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142442253", "date": "15.03.26"}, {"t": "Context Engineering — определения", "d": "Определения от Anthropic, Карпати и LangChain; при чём тут деградация.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142446056", "date": "15.03.26"}, {"t": "Claude Skills — образовательный гайд с нуля", "d": "Полная механика скиллов: лёгкий/средний/про уровни, плагины, маркетплейсы + каталог GitHub.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142807349", "date": "07.04.26"}, {"t": "Брендинг через AI — почему не работает", "d": "Почему ИИ-брендинг проваливается и как починить: инструменты, сводная таблица, чеклист старта.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142897508", "date": "12.04.26"}, {"t": "Контекст, токенизация и zip-сжатие", "d": "Контекстное окно, лимиты файлов по платформам, ультра-zip-сжатие, кэширование, практические нюансы.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142276672", "date": "05.03.26"}, {"t": "Почему нет «волшебного промпта»", "d": "Ликбез по генеративным движкам видео/изображений и тройной системе фильтрации.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142092733", "date": "22.02.26"}, {"t": "Jailbreak и иллюзия контроля", "d": "Как джейлбрейки убивают аккаунты: деанон, «чёрная метка», эшелонированная оборона, white-hat песочница.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142093413", "date": "22.02.26"}, {"t": "White Hat Prompt Engineering", "d": "Подборка по легальному промпт-инжинирингу: что работает без нарушения правил.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142218452", "date": "01.03.26"}, {"t": "Claude Desktop Buddy + P2P", "d": "Физический ИИ-компаньон за $30: ClawdMeter (ESP32), Tamagotchi-состояния, Flipper Zero, схема с QUORUM.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143580331", "date": "27.05.26"}, {"t": "LLM в юриспруденции — гайд, ч.1", "d": "«От промпта до архитектуры»: инженерный подход к правовым LLM-системам (RAG и не только).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143792807", "date": "10.06.26"}, {"t": "LLM в юриспруденции — гайд, ч.2", "d": "Продолжение: примеры кода и практическая реализация правовых LLM-систем.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143795117", "date": "10.06.26"}, {"t": "QWEN report — что реально работает", "d": "Разбор «под капотом»: что реально работает и полезно, а что псевдо-эффекты (в т.ч. Gemini).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=139778198", "date": "22.10.25"}], "n": 17}, {"t": "Медиа · изображение · видео", "color": "#a855f7", "icon": "🎨", "children": [{"t": "Nanobanana Collection — промпты изображений", "d": "Большая подборка image-промптов на все случаи (Gemini): портреты, дизайн, инфографика и др.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140622630", "date": "04.12.25"}, {"t": "NanoBanana Lego-Prompt Collection", "d": "Промпты-конструкторы для Gemini 3 Pro: артист, архитектура, инфографика, дизайн, конструктор одежды и др.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140748954", "date": "11.12.25"}, {"t": "POSE REFERENCE CREATOR v1.0", "d": "Системный промпт-инструмент для генерации pose-референсов + доп. материалы.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140817755", "date": "14.12.25"}, {"t": "Анимация и видео через Veo 3.1", "d": "Промпт для анимации стрелок и круговых циклов; 3D и динамический режим в Gemini Veo 3.1.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140590829", "date": "03.12.25"}, {"t": "Реставрация старых фото (Remini)", "d": "Промпт расширенной реставрации старых фотографий: до/после, точность.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140603776", "date": "03.12.25"}, {"t": "SUNO.AI Architect v2.0 (Polymath)", "d": "Музыкальный продюсер и промпт-инженер для Suno (ранний предшественник SunoForge).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141610364", "date": "26.01.26"}, {"t": "Инфографика-система (точность кириллицы)", "d": "Модульная система для инфографики с упором на корректную кириллицу; changelog и модули.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141323673", "date": "11.01.26"}], "n": 7}, {"t": "Архив · версии и changelog'и", "color": "#64748b", "icon": "🗄️", "children": [{"t": "BET_OS v1.5 TITAN (beta)", "d": "Ранняя версия станции спортивного моделирования для Perplexity.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141598293", "date": "26.01.26"}, {"t": "BET_OS v2.0 ALPHA", "d": "Предрелиз второй версии станции спортивного моделирования.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141695951", "date": "31.01.26"}, {"t": "BET_OS v3 final", "d": "Третья финальная версия станции спортивного моделирования.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142017913", "date": "17.02.26"}, {"t": "BET_OS v4.0 (ранний релиз)", "d": "Версия 4.0 с anti-hallucination и 2-stage (предшествует релизу 01.06).", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142558448", "date": "22.03.26"}, {"t": "Live Specs changelog 2026-04-06", "d": "Дельта цен/квот/багов моделей (C/A/N/G) — delta vs 30.03.2026.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142804563", "date": "06.04.26"}, {"t": "Live Specs changelog 2026-04-24", "d": "Дельта цен/квот/багов моделей (C/A/N/G) — delta vs 18.04.2026.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143089685", "date": "24.04.26"}, {"t": "Live Specs changelog 2026-04-25", "d": "Дельта цен/квот/багов моделей (C/A/N/G) — delta vs 24.04.2026.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143110374", "date": "25.04.26"}, {"t": "Live Specs changelog 2026-05-01", "d": "Дельта цен/квот/багов моделей (C/A/N/G) — delta vs 25.04.2026.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143204188", "date": "01.05.26"}, {"t": "Live Specs changelog 2026-05-12", "d": "Дельта цен/квот/багов моделей (C/A/N/G) — delta vs 01.05.2026.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143350511", "date": "12.05.26"}, {"t": "Live Specs changelog 2026-05-19", "d": "Дельта цен/квот/багов моделей (C/A/N/G) — delta vs 12.05.2026.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143463820", "date": "19.05.26"}, {"t": "Live Specs changelog 2026-05-27", "d": "Дельта цен/квот/багов моделей (C/A/N/G) — delta vs 19.05.2026.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143578074", "date": "27.05.26"}, {"t": "Live Specs changelog 2026-05-30", "d": "Дельта цен/квот/багов моделей (C/A/N/G) — delta vs 27.05.2026.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143635314", "date": "30.05.26"}, {"t": "Live Specs changelog 2026-06-09", "d": "Дельта цен/квот/багов моделей (C/A/N/G) — delta vs 30.05.2026.", "u": "https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143784228", "date": "09.06.26"}], "n": 13}];
-const S={"root": "P2P · Полезные посты", "sub": "Кураторская карта публикаций Sanic27 · 4PDA", "search": "Поиск по постам…", "expand": "Развернуть всё", "collapse": "Свернуть всё", "hint": "Клик по разделу — свернуть/развернуть · клик по посту — открыть на 4PDA · колесо — зум · тащить — двигать карту", "total": "постов", "other": "English version", "reset": "Сброс вида", "open": "Открыть пост ↗"};
-const TOTAL=80;
-document.getElementById('cnt').textContent=TOTAL+' '+S.total;
-function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function renderMob(){const mob=document.getElementById('mob');let h='';DATA.forEach((cat,ci)=>{h+='<div class="m-cat open" data-ci="'+ci+'">';h+='<div class="m-cat-head" style="border-left:4px solid '+cat.color+'">';h+='<span class="ico">'+cat.icon+'</span><span class="h" style="color:'+cat.color+'">'+esc(cat.t)+'</span>';h+='<span class="cnt">'+cat.n+'</span><span class="arrow">▼</span></div><div class="m-items">';cat.children.forEach(leaf=>{h+='<a class="m-item" href="'+esc(leaf.u)+'" target="_blank" data-txt="'+esc((leaf.t+' '+leaf.d).toLowerCase())+'">';h+='<div class="mt">'+esc(leaf.t)+'</div><div class="md">'+esc(leaf.d)+'</div>';h+='<div class="mdt">'+(leaf.date||'')+' · '+S.open+'</div></a>';});h+='</div></div>';});mob.innerHTML=h;mob.querySelectorAll('.m-cat-head').forEach(el=>{el.addEventListener('click',()=>el.parentElement.classList.toggle('open'));});}
-if(window.innerWidth<=768)renderMob();
-window.addEventListener('resize',()=>{if(window.innerWidth<=768&&!document.getElementById('mob').children.length)renderMob();});
-const search=document.getElementById('search');
-function applySearch(){const q=search.value.trim().toLowerCase();document.querySelectorAll('.leaf,.m-item').forEach(el=>{const t=(el.getAttribute('data-txt')||'');const card=el.querySelector('.fo-card')||el;if(!q){el.classList.remove('dim');card.classList.remove('hit');}else if(t.includes(q)){el.classList.remove('dim');card.classList.add('hit');}else{el.classList.add('dim');card.classList.remove('hit');}});}
-search.addEventListener('input',applySearch);
-const ROOT_W=240,ROOT_H=80,CAT_W=240,CAT_H=64,LEAF_W=300,LEAF_H=92,COL_GAP=140,V_GAP=14;
-const collapsed={};let nodes=[],links_=[];
-function layout(){nodes=[];links_=[];const cats=DATA.map((c,i)=>({...c,idx:i}));let y=0;const cl=[];cats.forEach(c=>{const vis=collapsed[c.idx]?0:c.children.length;const h=Math.max(1,vis)*(LEAF_H+V_GAP);cl.push({c,y0:y,h,vis});y+=h+30;});const tH=Math.max(y,ROOT_H+40);const xR=40,xC=xR+ROOT_W+COL_GAP,xL=xC+CAT_W+COL_GAP;nodes.push({id:"root",type:"root",x:xR,y:tH/2-ROOT_H/2,w:ROOT_W,h:ROOT_H,t:S.root});cl.forEach(c=>{const cy=c.y0+c.h/2-CAT_H/2,cid="c"+c.c.idx;nodes.push({id:cid,type:"cat",x:xC,y:cy,w:CAT_W,h:CAT_H,t:c.c.t,color:c.c.color,icon:c.c.icon,n:c.c.n,idx:c.c.idx});links_.push({a:"root",b:cid,color:c.c.color});if(!collapsed[c.c.idx]){let ly=c.y0;c.c.children.forEach((leaf,j)=>{const lid=cid+"_"+j;nodes.push({id:lid,type:"leaf",x:xL,y:ly,w:LEAF_W,h:LEAF_H,leaf,color:c.c.color});links_.push({a:cid,b:lid,color:c.c.color});ly+=LEAF_H+V_GAP;});}});return{totalH:tH,width:xL+LEAF_W+60};}
+const DATA=[{"t":"P2P — ядро проекта","color":"#1e88e5","icon":"🧠","children":[{"t":"P2P v8 NEXUS — основной пост","d":"Главный хаб проекта: версии 8C.3 / 8H.3 / 8N.3 / 8L.3, RAG-архитектура, 8 агентов QUORUM, установка, FAQ и каталог техник.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576","date":"12.06.25"},{"t":"Руководство пользователя P2P","d":"Первые шаги и практические кейсы: около 150 разобранных примеров, публичная версия в Google Docs.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144058877","date":"29.06.26"},{"t":"Чем P2P отличается от «мега-промптов»","d":"Ответ на критику always-on промптов: принцип модульной загрузки и почему эта критика бьёт мимо.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144224666","date":"12.07.26"},{"t":"Чем отличаются сборки","d":"Сравнение редакций 8C.3 / 8H.3 / 8N.3 / 8L.3 — какую брать под свою модель.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143945518&anchor=Spoil-143945518-1","date":""},{"t":"Что такое «маркетплейс» на Claude \\ установка по линку GitHub","d":"Установка через маркетплейс Claude по ссылке на GitHub, скриншоты пошагово.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143945518&anchor=Spoil-143945518-2","date":""},{"t":"Установка с помощью плагина","d":"Установка плагином в Claude Code / Cowork, скриншоты пошагово.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143945518&anchor=Spoil-143945518-3","date":""},{"t":"Гайд: ошибки, обновления и большие промпты","d":"Как создавать «работу над ошибками» под целевую модель, обновлять P2P при выходе версии и собирать большие промпты (3 способа).","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142243608","date":"03.03.26"},{"t":"Template M (Karpathy Mode)","d":"Минималистичный режим «лучший промпт — чистый контекст»: что делает по-новому и как вызывать.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143033099","date":"21.04.26"},{"t":"Параллельные P2P-агенты в одном вызове","d":"Лайфхак для 8C.3 (Claude): запуск нескольких агентов QUORUM параллельно за один вызов.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143396222","date":"15.05.26"},{"t":"Claude Code + P2P — воркфлоу","d":"Почему агент пишет код с нуля и как это починить без слива токенов; как ТЗ вписывается в воркфлоу с P2P.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143697302","date":"03.06.26"},{"t":"Статусы сборок: ALPHA / BETA / STABLE","d":"Что означают статусы релизов P2P и какую версию выбрать.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142547413","date":"21.03.26"},{"t":"Как пользоваться UI-меню P2P","d":"Разбор сквозного меню, режимов AUTO/QUORUM, прямого вызова агентов и почему можно просто писать текстом.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142199454","date":"28.02.26"},{"t":"Live Specs — постоянная ссылка","d":"Актуальные цены/квоты/баги моделей для P2P, обновляется раз в 1-2 недели.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142685423","date":"30.03.26"},{"t":"Какие файлы сборки грузить и зачем","d":"ASSEMBLY_GUIDE: все сборки с v8 модульные, грузить всё подряд не нужно.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143463914","date":"19.05.26"},{"t":"Экономия токенов в Gemini через NotebookLM","d":"Как загрузить базу P2P в NotebookLM, чтобы резко снизить расход токенов.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143234252","date":"03.05.26"},{"t":"Запуск P2P частями (лимит файлов)","d":"Как загрузить систему, когда хост ограничивает число файлов на сообщение.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143670563","date":"02.06.26"},{"t":"Варианты запуска на Gemini","d":"3 рабочих способа запуска редакций P2P на Gemini, нюансы NotebookLM и прямого добавления .md.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143474710","date":"20.05.26"},{"t":"Запуск P2P на Qwen","d":"Как запустить систему в проектах Qwen: HOST_MODEL и обход лимита файлов.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143350627","date":"12.05.26"},{"t":"Персонализация аккаунта и P2P","d":"Почему глобальные Custom Instructions ломают агентов P2P и 4 способа это изолировать.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142364315","date":"10.03.26"},{"t":"Как не жечь лимиты впустую","d":"От чего зависит расход: разделение BASE и ON-DEMAND, кэш контекста, когда не надо запускать QUORUM.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143508988","date":"22.05.26"},{"t":"Вес каждого файла сборки","d":"Посчитано по факту, для планирования контекста.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144164297","date":"07.07.26"},{"t":"Автообновление сборки с облака","d":"Найдено решение: live_specs больше не нужно скачивать руками.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143899618","date":"18.06.26"},{"t":"P2P CORE v5.5 «CHIMERA» — релиз","d":"Крупное обновление ядра: переход от монолита к модульной «Химере», release notes.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141969850","date":"15.02.26"},{"t":"SCOPE.HELM v1.0 — управление сессией","d":"Pre-work движок для P2P v7: 4 механизма контроля и оптимизации больших сессий.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142654977","date":"28.03.26"},{"t":"CORTEX Patch 001 (P2P v7)","d":"Экспериментальный патч: три контура, которых не хватало ядру v7.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142550801","date":"21.03.26"},{"t":"P2P и блокировка аккаунта — аудит по фактам","d":"Построчный разбор сборки в ответ на претензию: что проверять самому, что лежит в !security.md, какие предохранители заложены.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144314961","date":"19.07.26"}],"n":26},{"t":"Промпты и инструменты","color":"#43a047","icon":"⚙","children":[{"t":"SunoForge v3.0 — AI Music Orchestrator","d":"Оркестратор музыкальных промптов под 5 платформ, 12 файлов; с честным разбором четырёх «механик», которые проверка не подтвердила.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144417544","date":"27.07.26"},{"t":"SunoForge v2.0","d":"Мультиплатформенный музыкальный продюсер и промпт-оркестратор (Suno v5 и др.), синтаксис и RAG.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142556185","date":"22.03.26"},{"t":"Visual Commander 4 · beta","d":"Три файла в блокнот: разбор обычной речи в параметры, 42 стиля и 219 рецептов изображений.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144541567","date":"05.08.26","more":[{"t":"тестовый исходник и лог","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144542036"}]},{"t":"Visual Commander (пересборка)","d":"Промпт-инструмент для визуальных задач, с режимом отладки.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142095629","date":"22.02.26"},{"t":"BET_OS v4.1_mod — спортивное моделирование","d":"Вычислительная станция спортивного моделирования для Perplexity с anti-hallucination.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143655003","date":"01.06.26"},{"t":"BB4PDA — автоформаттер постов 4PDA","d":"Текст → BB-код и скриншот → BB-код, с перечнем ограничений движка форума; пять месяцев доработки.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143711763","date":"04.06.26","more":[{"t":"первая редакция «Ассистент 4pda»","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140451344"}]},{"t":"NotebookLLM MultiMedia Architect v1.3.2","d":"Модульная система для инфографики, презентаций и подкастов (Audio Architect).","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141174529","date":"03.01.26","more":[{"t":"обновление и механика патчей","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141377213"},{"t":"PDF по страницам","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141202604"}]},{"t":"Universal Master Prompt","d":"Модульный мастер-шаблон постановки задач, а не промпт «под одну задачу».","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=139850592","date":"26.10.25"},{"t":"OCR Data Extraction Pipeline","d":"Промпт-пайплайн для извлечения структурированных данных из изображений/сканов.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140949343","date":"21.12.25"},{"t":"Extract for Excel — парсер данных","d":"Промпт для Gemini + NotebookLM: превращение текста в структурированные таблицы.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142091989","date":"22.02.26"},{"t":"Perplexity PDF Generator (кириллица)","d":"Промпт для создания PDF с корректным отображением кириллицы (copy & paste).","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141350578","date":"12.01.26"},{"t":"The Encoding Fixer — патч кодировки","d":"Промпт-патч, чинит «кракозябры» и битую кодировку текста без ручной перекодировки.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141187273","date":"04.01.26"},{"t":"ARENA v3.0 Builder — A/B-тест промптов","d":"Инструмент сравнения промптов с trap-маркерами и числовой оценкой результата.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142252035","date":"03.03.26"},{"t":"Режим отладки + FIX-Patch","d":"Как уменьшить «фантазии» модели: режим отладки и патч для любых промптов.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142239341","date":"02.03.26","more":[{"t":"USER SANDBOX fix-патч","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141382032"}]},{"t":"THERAPIST ORCHESTRATOR — психологическая поддержка","d":"Разбор чужого промпта «психотерапевт» + своя система: интейк → триаж → профильный модуль → капсула, с рабочим слоем безопасности.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143657129","date":"01.06.26"},{"t":"V-CDSS Pro v2 — ветеринарная поддержка решений","d":"Клинический помощник по XML-каркасу, с фазой экстренного триажа.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143026646","date":"20.04.26"},{"t":"Конструктор детского бота по книгам","d":"Метапромпт под NotebookLM с родительским аудитом и сканом контента на 18+.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142091929","date":"22.02.26"},{"t":"RootStech Assistant v1.1","d":"Профильный ассистент по Android-рут-решениям (собран на P2P 3): ядро + база знаний.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140974528","date":"22.12.25"},{"t":"Assistant for KernelSuNext","d":"Помощник для перехода с Magisk на KernelSuNext: цель, сценарий, тело промпта.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140940226","date":"21.12.25"},{"t":"DOCU-SYNTH v1.0 — анализ по скриншоту","d":"Аналитическое ядро визуализации и логики: результат по одному скриншоту.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141973513","date":"15.02.26","more":[{"t":"демонстрация приёма","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141186006"}]},{"t":"PocketPal Navigator — подбор локальных LLM","d":"Динамический подборщик GGUF-моделей под ваше железо, с аудитом настроек.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142413027","date":"13.03.26"},{"t":"Голосовой режим Claude + P2P (live)","d":"Полноценная работа P2P v8C.2 в голосовом live-режиме без компромиссов.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143568995","date":"26.05.26"},{"t":"Промпты для Gemini Deep Think + 50 команд","d":"Коллекция сценариев глубокого режима и 50+ внутренних команд Gemini.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140734399","date":"10.12.25"},{"t":"Мета-промпты для Grok / GPT / Gemini","d":"Подборка инструкций под каждую модель + универсальный мета-промпт для всех.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140738366","date":"10.12.25"},{"t":"Киберспорт-аналитика (Dota 2 / CS)","d":"Промпт для прогнозной аналитики по киберспортивным дисциплинам.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141623868","date":"27.01.26"},{"t":"Инфографика и схемы по данным","d":"Промпт для построения инфографики/схем из исходных данных (3 варианта, NotebookLM).","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140589552","date":"03.12.25","more":[{"t":"авто-режим без подсказок","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140589727"}]},{"t":"Шаблон адаптации резюме (Multilingual CV)","d":"Готовый каркас под переписывание резюме под вакансию.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141629514","date":"27.01.26"},{"t":"!Think.txt — модуль интерпретации языка","d":"Доработка к чужому промпту: модуль сам интерпретирует естественный язык вместо заучивания команд.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=138878652","date":"30.08.25"}],"n":28},{"t":"Образовательные гайды","color":"#fb8c00","icon":"📚","children":[{"t":"Claude — боевой гайд (как 90% убивают потенциал)","d":"Большой гайд: деградация в долгих сессиях, промпт-нищета, Extended Thinking, Plan Mode, паттерны-убийцы.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142391090","date":"11.03.26"},{"t":"Claude Code для промпт-инженера","d":"Командный слой как продолжение промпта: /effort, /compact, plan mode, субагенты, хуки, режимы прав, границы автономной работы.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144564243","date":"06.08.26"},{"t":"8 шагов настроить Claude Cowork с нуля","d":"Пошаговая настройка Cowork — «hot start», чтобы больше к этому не возвращаться.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142398719","date":"12.03.26"},{"t":"Интерактивные визуализации в чате Claude","d":"Дополнение к боевому гайду: сценарии, сохранение/экспорт, пример на Android.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142410536","date":"13.03.26"},{"t":"Claude Skills — образовательный гайд с нуля","d":"Полная механика скиллов: лёгкий/средний/про уровни, плагины, маркетплейсы + каталог GitHub.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142807349","date":"07.04.26"},{"t":"Context Engineering — серия гайдов","d":"9-Step Framework, Blueprint/Contract Prompting, Cowork, Claude Code — с позиции архитектуры.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142442253","date":"15.03.26","more":[{"t":"определения и терминология","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142446056"}]},{"t":"RAG с нуля для облачных моделей","d":"Большой образовательный гайд в трёх уровнях: какую среду выбрать под задачу и как писать промпт под неё; видеоинструкции и пошаговые скриншоты.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143951296","date":"21.06.26"},{"t":"Эффект «туннельного зрения» в RAG","d":"Почему модель строит ответ по первым 1–3 документам, где это вылезает в NotebookLM и чем лечится: правило 30/55/15, RAPTOR и LongRAG, ANCHOR_CONTEXT.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143927483","date":"19.06.26"},{"t":"Файлы прямо в Gem-бот против NotebookLM","d":"Чем отличается пайплайн, когда какой хуже, таблица поддержки fetch по моделям.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143928151","date":"19.06.26"},{"t":"Промпт-инженерия как программирование недетерминированных систем","d":"Почему один промпт для всех моделей не работает: родной синтаксис Claude / Gemini / GPT, баги G2, G9, G13.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143929735","date":"20.06.26"},{"t":"Почему модули, а не монолит","d":"Progressive Disclosure, граф зависимостей и YAML-якоря, U-образная кривая внимания, каталог предотвращаемых ошибок.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144154536","date":"06.07.26"},{"t":"Почему GPT «тупит» в чате и работает в API","d":"Слои оболочки продукта, «командный промпт без инструмента», куда класть длинный системный промпт.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144154240","date":"06.07.26"},{"t":"Оптическое сжатие токенов: текст → PNG (pxpipe)","d":"Механика, замеры на живом трафике, ограничения по моделям и правило дублировать точные значения текстом.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144156611","date":"07.07.26"},{"t":"+8 техник промпт-инжиниринга из arXiv","d":"POSITIVE_FRAMING, VERBALIZED_SAMPLING, BRUTAL_EDITOR, Context-Grounding CoT, GEPA, MASPO, SePO — проблема → приём → пример.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144303697","date":"18.07.26"},{"t":"Полевые заметки: токен-экономика Claude","d":"Где на самом деле сгорает бюджет в chat / project / cowork / code, с собственными замерами.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144438348","date":"28.07.26"},{"t":"Полевые заметки 2: Gemini Notebook","d":"Что изменилось в движке рендеринга бывшего NotebookLM: кириллица в презентациях против инфографики, замеры лимитов, оригиналы приложены.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144455712","date":"29.07.26"},{"t":"Контекст, токенизация и zip-сжатие","d":"Контекстное окно, лимиты файлов по платформам, ультра-zip-сжатие, кэширование, практические нюансы.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142276672","date":"05.03.26"},{"t":"Брендинг через AI — почему стиль рассыпается","d":"Чем фиксируется стиль (seed, --style raw, --sref), структура визуального промпта, LoRA против IP-Adapter, чеклист старта.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142897508","date":"12.04.26"},{"t":"LLM в юриспруденции — гайд, ч.1","d":"«От промпта до архитектуры»: галлюцинации, RAG для закрытого документооборота, графы НПА, коллизии права, деонтическая логика.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143792807","date":"10.06.26"},{"t":"LLM в юриспруденции — гайд, ч.2","d":"Темпоральность, битемпоральные схемы, разрешение коллизий норм, SMT-кодирование через Z3, 18 блоков кода.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143795117","date":"10.06.26"},{"t":"Claude Desktop Buddy + P2P","d":"Физический ИИ-компаньон за $30: ClawdMeter (ESP32), Tamagotchi-состояния, Flipper Zero, схема с QUORUM.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143580331","date":"27.05.26"},{"t":"Почему нет «волшебного промпта»","d":"Ликбез по генеративным движкам видео/изображений и тройной системе фильтрации.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142092733","date":"22.02.26"},{"t":"Jailbreak и иллюзия контроля","d":"Как джейлбрейки убивают аккаунты: деанон, «чёрная метка», эшелонированная оборона, white-hat песочница.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142093413","date":"22.02.26"},{"t":"White Hat Prompt Engineering","d":"Подборка по легальному промпт-инжинирингу: что работает без нарушения правил.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142218452","date":"01.03.26"},{"t":"QWEN report — что реально работает","d":"Разбор «под капотом»: что реально работает и полезно, а что псевдо-эффекты.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=139778198","date":"22.10.25"},{"t":"DevLog ч.1: от «костылей» к архитектуре","d":"История эволюции P2P от v2.0 к v3.2 Dynamic Lab: какая «боль» стояла за сборками.","u":"https://4pda.to/forum/index.php?showtopic=1077922&view=findpost&p=140958693","date":"22.12.25","more":[{"t":"ч.2: «ОС внутри промпта» (v5.7)","u":"https://4pda.to/forum/index.php?showtopic=1077922&view=findpost&p=142005543"}]}],"n":26},{"t":"Медиа, изображение, видео","color":"#8e24aa","icon":"🎨","children":[{"t":"Nanobanana Collection — 219 промптов","d":"Крупнейшая подборка image-промптов ветки (Gemini): портреты, дизайн, инфографика и др.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140622630","date":"04.12.25","more":[{"t":"часть 2 (106–219)","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140737362"},{"t":"текстовая версия файлом","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141965209"}]},{"t":"NanoBanana Lego-Prompt Collection","d":"Промпты-конструкторы для Gemini 3 Pro: артист, архитектура, инфографика, дизайн, конструктор одежды.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140748954","date":"11.12.25"},{"t":"Image Collection: for work","d":"Системные промпты для работы и дизайна: аналитик данных, визуализатор, стилевые пресеты.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140712455","date":"09.12.25"},{"t":"POSE REFERENCE CREATOR v1.0","d":"Системный промпт-инструмент для генерации pose-референсов: позирование, анатомия, ControlNet.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140817755","date":"14.12.25"},{"t":"Анимация и видео через Veo 3.1","d":"Промпт для анимации стрелок и круговых циклов; 3D и динамический режим в Gemini.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140590829","date":"03.12.25"},{"t":"Реставрация старых фото (Remini)","d":"Промпт расширенной реставрации старых фотографий: до/после, точность.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140603776","date":"03.12.25"},{"t":"SUNO.AI Architect v2.0 (Polymath)","d":"Музыкальный продюсер и промпт-инженер для Suno (ранний предшественник SunoForge).","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141610364","date":"26.01.26"},{"t":"Инфографика-система (точность кириллицы)","d":"Модульная система для инфографики с упором на корректную кириллицу; changelog и модули.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141323673","date":"11.01.26"},{"t":"Сборник «leak system prompts»","d":"Системные промпты Anthropic / Google / xAI / OpenAI и другие.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142667939","date":"29.03.26","more":[{"t":"+ утечка Gemini 3.1 Pro с переводом","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143449220"}]},{"t":"SuperPrompt_3.1_censored — обновление","d":"Финальная сборка v3.1: отказоустойчивость и гармонизация (материал живёт в теме 1107326).","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=138851609","date":"28.08.25"}],"n":10},{"t":"Разборы и ответы в теме","color":"#e53935","icon":"💬","children":[{"t":"Проверка чужого pdf-inspector","d":"Код рабочий, к описанию вопросы: два числа в посте противоречат друг другу.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144563927","date":"06.08.26","more":[{"t":"дополнение с прогоном на своих текстах","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144565412"}]},{"t":"«Чистой модели у вас уже нет»","d":"Что происходит с чатом с момента загрузки метапромпта.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143510698","date":"22.05.26"},{"t":"Шесть типовых дефектов промпта","d":"Разбор на медицинском примере: галлюцинация источников, нет формата вывода, Lost-in-the-Middle, мягкие инструкции, запрет без альтернативы, нет stop conditions + готовый XML-каркас.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143026504","date":"20.04.26"},{"t":"Разбор чужой системы V11.4","d":"Что работает (auto-complexity L1/L2/L3), а что нет.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142664163","date":"28.03.26"},{"t":"Описание не соответствует телу промпта","d":"Пустые обещания вместо архитектурных ограничений, по пунктам.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142652638","date":"27.03.26"},{"t":"Разбор «Atlas»: JSON с якорями — не система управления","d":"С каких пор конфиг стал промпт-инженерией.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141601396","date":"26.01.26"},{"t":"«Ловушка Имитации»","d":"Почему нельзя применять конфиг, который не можешь верифицировать.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141603011","date":"26.01.26"},{"t":"Зачем блокировать вывод триггер-командой","d":"Разбор приёма из чужого промпта.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141326897","date":"11.01.26"},{"t":"НРИ и State Management","d":"Почему модель «дрейфует» между ходами и что с этим делать архитектурно.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142377115","date":"11.03.26"},{"t":"Медицинская диагностика: ролевая инструкция не тянет задачу","d":"Почему задача высокой когнитивной нагрузки не решается ролью.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141198604","date":"04.01.26"},{"t":"Почему «универсальный промпт» — утопия","d":"Почему одна инструкция не закрывает разом все модели и все задачи.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140801682","date":"13.12.25"},{"t":"Milvus и Qdrant — выбор векторной базы под RAG","d":"Гибридный поиск, reranking, метаданные.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=139381549","date":"28.09.25","more":[{"t":"стек Transformers + Milvus + Llama","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=139382210"}]},{"t":"Гигиена работы с промптами","d":"Отдельный аккаунт, удаление чатов, отключение обучения на своих данных.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=139496796","date":"05.10.25"},{"t":"В чужих промптах бывает работа с внешними источниками","d":"Предупреждение и почему это важно.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140778468","date":"12.12.25","more":[{"t":"тот же разговор в 2025-м","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=138877829"},{"t":"продолжение","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=138878218"}]},{"t":"О копирайте и транслитерации названий","d":"Что на самом деле нарушает авторское право, а что нет.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140779108","date":"12.12.25"},{"t":"ИИ в научных текстах","d":"Писать самому, ИИ — на вычитку; почему иначе видно.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=140802097","date":"13.12.25"},{"t":"Отказ помогать с обходом антиплагиата","d":"С объяснением, почему это оффтоп и почему подход ошибочен.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142564441","date":"22.03.26","more":[{"t":"развёрнутый ответ","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143349099"}]},{"t":"Напоминание о п.3 правил ветки","d":"Оформление постов.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141315065","date":"11.01.26"}],"n":18},{"t":"Архив · релизы, changelog'и, служебное","color":"#607d8b","icon":"🗃","children":[{"t":"Релизы P2P, ветки v5 → v8","d":"Все объявления линии одной строкой — 25 шт.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141998162","date":"","more":[{"t":"5.6","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141998162"},{"t":"5.7","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142003520"},{"t":"5.8","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142029292"},{"t":"5.9 STABLE","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142057809"},{"t":"6.1","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142240643"},{"t":"6.1_fix","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142242150"},{"t":"6.2 ALPHA","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142270039"},{"t":"6.3_fix2","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142361106"},{"t":"6.3 доп.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142370070"},{"t":"7 BETA","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142665840"},{"t":"7N.1","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142685087"},{"t":"7C.2","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142833164"},{"t":"8C.2","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143383283"},{"t":"анонс 8xx.3","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143840587"},{"t":"8.3","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143893481"},{"t":"8.3 плагин","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143926863"},{"t":"8.3.4","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143968326"},{"t":"8.3.9","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144031349"},{"t":"8.4.2","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144124502"},{"t":"8.4.0 исходники","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144147196"},{"t":"8.4.1-H","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144151413"},{"t":"8.4.2-C","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144156611"},{"t":"8.4.3","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144253981"},{"t":"8.4.5","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144303697"},{"t":"8.4.6","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144408901"}]},{"t":"Live Specs — отдельная линия обновлений","d":"Все объявления линии одной строкой — 11 шт.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142804563","date":"","more":[{"t":"06.04","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142804563"},{"t":"18.04","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142989034"},{"t":"24.04","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143089685"},{"t":"25.04","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143110374"},{"t":"01.05","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143204188"},{"t":"12.05","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143350511"},{"t":"19.05","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143463820"},{"t":"27.05","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143578074"},{"t":"30.05","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143635314"},{"t":"09.06","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143784228"},{"t":"Gem-боты под свежие спеки","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143676292"}]},{"t":"BET_OS — линия версий","d":"Все объявления линии одной строкой — 6 шт.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141598293","date":"","more":[{"t":"v1.5 TITAN beta","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141598293"},{"t":"апдейт v1.5","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141629157"},{"t":"+FAQ и дисклеймер","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141638043"},{"t":"v2.0 ALPHA","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141695951"},{"t":"v3 final","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142017913"},{"t":"v4.0","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142558448"}]},{"t":"SunoForge / Assistant NotebookLLM — прежние выпуски","d":"Все объявления линии одной строкой — 5 шт.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141631531","date":"","more":[{"t":"Suno v2.0 апдейт","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141631531"},{"t":"SunoForge v1.1","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142638730"},{"t":"SunoForge v2","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143364447"},{"t":"зеркало","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142641800"},{"t":"анонс мета-промпта под NotebookLM","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141163996"}]},{"t":"Служебное по шапке и сборкам","d":"Все объявления линии одной строкой — 7 шт.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143536395","date":"","more":[{"t":"все версии переехали в этот пост","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143536395"},{"t":"где актуальная версия","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142561588"},{"t":"тяжёлая / средняя / лёгкая","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142655027"},{"t":"спеки для P2P 4","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142003186"},{"t":"архив «ядро + БД» одним файлом","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=141999652"},{"t":"ретроспектива","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142206462"},{"t":"планы по родительскому посту","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=144304089"}]},{"t":"как собирается changelog: сырьё deepsearch и шаблоны запросов","d":"Кухня сборки live_specs: сырые данные deepsearch, шаблоны запросов v7 и v8, промпт-генератор сводки.","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143361529","date":"","more":[{"t":"аудио-обзор «Фабрика ИИ-агентов в P2P 7C.2»","u":"https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142871849"}]}],"n":6}];
+const S={"root":"P2P · Полезные посты","total":"постов","links":"ссылок","open":"Открыть пост ↗"};
+
+const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const TOTAL=DATA.reduce((a,c)=>a+c.children.length,0);
+const ССЫЛОК=DATA.reduce((a,c)=>a+c.children.reduce((k,x)=>k+1+((x.more||[]).length),0),0);
+document.getElementById('cnt').textContent=TOTAL+' '+S.total+' · '+ССЫЛОК+' '+S.links;
+
+/* ─────────── вид «список»: гармошка, работает на любой ширине ─────────── */
+function renderList(){
+  const box=document.getElementById('list');
+  let h='';
+  DATA.forEach((cat,ci)=>{
+    h+='<section class="m-cat open" data-ci="'+ci+'">';
+    h+='<div class="m-cat-head" style="border-left:4px solid '+cat.color+'">';
+    h+='<span class="ico">'+cat.icon+'</span><span class="h" style="color:'+cat.color+'">'+esc(cat.t)+'</span>';
+    h+='<span class="cnt"><span class="cshow">'+cat.children.length+'</span></span><span class="arrow">▼</span></div>';
+    h+='<div class="m-items">';
+    cat.children.forEach(leaf=>{
+      const хвост=((leaf.more||[]).map(m=>m.t).join(' '));
+      // ячейка сетки — обёртка: карточка + чипсы под ней, иначе чипсы уезжают в свою колонку
+      h+='<div class="m-cell" data-txt="'+esc((leaf.t+' '+(leaf.d||'')+' '+хвост).toLowerCase())+'">';
+      h+='<a class="m-item" href="'+esc(leaf.u)+'" target="_blank" rel="noopener">';
+      h+='<div class="mt">'+esc(leaf.t)+'</div>';
+      if(leaf.d) h+='<div class="md">'+esc(leaf.d)+'</div>';
+      h+='<div class="mdt">'+(leaf.date?esc(leaf.date)+' · ':'')+S.open+'</div>';
+      h+='</a>';
+      if(leaf.more&&leaf.more.length){
+        h+='<div class="more">';
+        leaf.more.forEach(m=>{h+='<a href="'+esc(m.u)+'" target="_blank" rel="noopener">'+esc(m.t)+'</a>';});
+        h+='</div>';
+      }
+      h+='</div>';
+    });
+    h+='</div></section>';
+  });
+  box.innerHTML=h;
+  box.querySelectorAll('.m-cat-head').forEach(el=>{
+    el.addEventListener('click',()=>el.parentElement.classList.toggle('open'));
+  });
+}
+
+/* «более» — чипсы прячем вместе с их карточкой */
+function applySearch(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  let найдено=0;
+  document.querySelectorAll('#list .m-cat').forEach(cat=>{
+    let видимых=0;
+    cat.querySelectorAll('.m-cell').forEach(el=>{
+      const ок=!q||(el.getAttribute('data-txt')||'').includes(q);
+      el.classList.toggle('hidden',!ок);
+      const card=el.querySelector('.m-item');
+      if(card) card.classList.toggle('hit',!!q&&ок);
+      if(ок) видимых++;
+    });
+    найдено+=видимых;
+    cat.classList.toggle('hidden',видимых===0);
+    if(q&&видимых) cat.classList.add('open');
+    const c=cat.querySelector('.cshow'); if(c) c.textContent=видимых;
+  });
+  document.getElementById('empty').classList.toggle('hidden',найдено>0);
+  // карта
+  document.querySelectorAll('#vp .leaf').forEach(el=>{
+    const t=el.getAttribute('data-txt')||'';
+    const card=el.querySelector('.fo-card')||el;
+    if(!q){el.classList.remove('dim');card.classList.remove('hit');}
+    else if(t.includes(q)){el.classList.remove('dim');card.classList.add('hit');}
+    else{el.classList.add('dim');card.classList.remove('hit');}
+  });
+}
+document.getElementById('search').addEventListener('input',applySearch);
+document.getElementById('exp').onclick=()=>{document.querySelectorAll('#list .m-cat').forEach(c=>c.classList.add('open'));DATA.forEach((c,i)=>collapsed[i]=false);if(режим==='map')render();};
+document.getElementById('col').onclick=()=>{document.querySelectorAll('#list .m-cat').forEach(c=>c.classList.remove('open'));DATA.forEach((c,i)=>collapsed[i]=true);if(режим==='map')render();};
+
+/* ─────────── вид «карта» ─────────── */
+const ROOT_W=210,ROOT_H=74,CAT_W=215,CAT_H=62,LEAF_W=250,LEAF_H=84,GAP=12,R1=225;
+const collapsed={};let nodes=[],links_=[],построена=false;
+DATA.forEach((c,i)=>collapsed[i]=i>0);   // на карте по умолчанию раскрыт только первый раздел
+
+// Радиальная раскладка: корень в центре, разделы лучами по кругу,
+// карточки раздела — компактным блоком в своём секторе. Так диаграмма растёт
+// во все стороны, а не одной вертикальной простынёй на 12 000 пикселей.
+// Форма блока подбирается под направление луча: у верхнего/нижнего лепестка выгодна
+// широкая и низкая сетка, у бокового — узкая и высокая. Иначе силуэт вытягивается
+// в ту же простыню, от которой уходили.
+function сетка(n,θ){
+  const cos=Math.abs(Math.cos(θ)), sin=Math.abs(Math.sin(θ));
+  let лучш=null;
+  for(let c=1;c<=5;c++){
+    const r=Math.ceil(n/c);
+    const w=c*LEAF_W+(c-1)*GAP, h=r*LEAF_H+(r-1)*GAP;
+    const вдоль=(w*cos+h*sin)/2, поперёк=(w*sin+h*cos)/2;
+    const R=R1+CAT_H/2+110+вдоль;
+    const цена=(R+вдоль)+поперёк;                 // как далеко лепесток раздувает габарит
+    if(!лучш||цена<лучш.цена) лучш={cols:c,w,h,вдоль,поперёк,R,цена};
+  }
+  return лучш;
+}
+function layout(){
+  nodes=[];links_=[];
+  const N=DATA.length, шаг=2*Math.PI/N;
+  const лепестки=DATA.map((c,i)=>{
+    const θ=-Math.PI/2+i*шаг;                     // первый раздел — наверх
+    const vis=collapsed[i]?0:c.children.length;
+    const g=vis?сетка(vis,θ):{cols:0,w:0,h:0,R:0};
+    return {c,i,θ,vis,g,R:g.R};                   // столкновения разводит цикл ниже
+  });
+
+  // Формула сектора не спасает, когда у соседей блоки разного размера, — разводим
+  // итеративно: пересеклись, значит внешний уезжает дальше по своему лучу.
+  const прям=п=>({x:п.R*Math.cos(п.θ)-п.g.w/2,y:п.R*Math.sin(п.θ)-п.g.h/2,w:п.g.w,h:п.g.h});
+  const жмут=(a,b,зазор)=>a.x<b.x+b.w+зазор&&b.x<a.x+a.w+зазор&&a.y<b.y+b.h+зазор&&b.y<a.y+a.h+зазор;
+  const узлыРаздела=лепестки.map(п=>({x:R1*Math.cos(п.θ)-CAT_W/2,y:R1*Math.sin(п.θ)-CAT_H/2,w:CAT_W,h:CAT_H}));
+  const корень={x:-ROOT_W/2,y:-ROOT_H/2,w:ROOT_W,h:ROOT_H};
+  for(let шагов=0;шагов<400;шагов++){
+    let двигали=false;
+    const занятые=лепестки.filter(п=>п.vis);
+    for(let i=0;i<занятые.length;i++){
+      const a=занятые[i];
+      let плохо=жмут(прям(a),корень,30)||узлыРаздела.some((у,k)=>k!==a.i&&жмут(прям(a),у,20));
+      if(!плохо) for(let j=0;j<занятые.length&&!плохо;j++){
+        const b=занятые[j];
+        if(b.i!==a.i&&жмут(прям(a),прям(b),30)&&a.R<=b.R) плохо=true;
+      }
+      if(плохо){a.R+=24;двигали=true;}
+    }
+    if(!двигали) break;
+  }
+  const cx=0,cy=0;
+  nodes.push({id:'root',type:'root',x:cx-ROOT_W/2,y:cy-ROOT_H/2,w:ROOT_W,h:ROOT_H,t:S.root});
+  лепестки.forEach(п=>{
+    const kx=cx+R1*Math.cos(п.θ), ky=cy+R1*Math.sin(п.θ), cid='c'+п.i;
+    nodes.push({id:cid,type:'cat',x:kx-CAT_W/2,y:ky-CAT_H/2,w:CAT_W,h:CAT_H,
+      t:п.c.t,color:п.c.color,icon:п.c.icon,n:п.c.children.length,idx:п.i});
+    links_.push({a:'root',b:cid,color:п.c.color});
+    if(!п.vis) return;
+    const bx=cx+п.R*Math.cos(п.θ)-п.g.w/2, by=cy+п.R*Math.sin(п.θ)-п.g.h/2;
+    п.c.children.forEach((leaf,j)=>{
+      const col=j%п.g.cols, row=(j-col)/п.g.cols;
+      const lid=cid+'_'+j;
+      nodes.push({id:lid,type:'leaf',x:bx+col*(LEAF_W+GAP),y:by+row*(LEAF_H+GAP),
+        w:LEAF_W,h:LEAF_H,leaf,color:п.c.color});
+      links_.push({a:cid,b:lid,color:п.c.color,тонкая:true});
+    });
+  });
+  // сдвигаем всё в положительные координаты
+  const x0=Math.min(...nodes.map(n=>n.x))-60, y0=Math.min(...nodes.map(n=>n.y))-60;
+  nodes.forEach(n=>{n.x-=x0;n.y-=y0;});
+  return{width:Math.max(...nodes.map(n=>n.x+n.w))+60, totalH:Math.max(...nodes.map(n=>n.y+n.h))+60};
+}
 const vp=document.getElementById('vp'),svg=document.getElementById('svg');
-function nodeById(id){return nodes.find(n=>n.id===id);}
-function edgePath(a,b){const x1=a.x+a.w,y1=a.y+a.h/2,x2=b.x,y2=b.y+b.h/2,mx=(x1+x2)/2;return`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`;}
-function render(){layout();let h='';links_.forEach(l=>{const a=nodeById(l.a),b=nodeById(l.b);if(a&&b)h+=`<path class="link" d="${edgePath(a,b)}" style="stroke:${l.color}55"></path>`;});nodes.forEach(n=>{if(n.type==='root'){h+=`<foreignObject x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-root"><div class="t">${esc(n.t)}</div></div></foreignObject>`;}else if(n.type==='cat'){const sign=collapsed[n.idx]?'＋':'－';h+=`<foreignObject class="node-card" data-cat="${n.idx}" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-cat" style="border-color:${n.color}88"><div class="t" style="color:${n.color}">${n.icon} ${esc(n.t)}</div><span class="badge" style="background:${n.color}">${n.n} · <span class="toggle">${sign}</span></span></div></foreignObject>`;}else{h+=`<foreignObject class="node-card leaf" data-url="${esc(n.leaf.u)}" data-txt="${esc((n.leaf.t+' '+n.leaf.d).toLowerCase())}" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-leaf" style="border-left:3px solid ${n.color}"><div class="t">${esc(n.leaf.t)}</div><div class="d">${esc(n.leaf.d)}</div><div class="dt">${n.leaf.date?esc(n.leaf.date)+' · ':''}`+S.open+`</div></div></foreignObject>`;}});vp.innerHTML=h;bindNodes();applySearch();}
-function bindNodes(){vp.querySelectorAll('[data-cat]').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();const i=+el.getAttribute('data-cat');collapsed[i]=!collapsed[i];render();}));vp.querySelectorAll('.leaf').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();const u=el.getAttribute('data-url');if(u)window.open(u,'_blank');}));}
-let tx=0,ty=70,scale=1;
-function applyVP(){vp.setAttribute('transform',`translate(${tx},${ty}) scale(${scale})`);};
-function fit(){const dim=layout();const vw=window.innerWidth,vh=window.innerHeight-80;scale=Math.min(1,Math.min(vw/(dim.width+40),vh/(dim.totalH+40)));if(!isFinite(scale)||scale<=0)scale=1;tx=20;ty=80+Math.max(0,(vh-dim.totalH*scale)/2);applyVP();}
+const nodeById=id=>nodes.find(n=>n.id===id);
+const centr=n=>({x:n.x+n.w/2,y:n.y+n.h/2});
+function edgePath(a,b){                    // мягкая дуга от центра к центру, притянутая к середине
+  const p=centr(a),q=centr(b);
+  const mx=(p.x+q.x)/2,my=(p.y+q.y)/2;
+  const dx=q.x-p.x,dy=q.y-p.y,len=Math.hypot(dx,dy)||1;
+  const k=Math.min(60,len*0.16);
+  return`M${p.x},${p.y} Q${mx-dy/len*k},${my+dx/len*k} ${q.x},${q.y}`;
+}
+function render(){
+  layout();let h='';
+  links_.forEach(l=>{const a=nodeById(l.a),b=nodeById(l.b);if(!a||!b)return;
+    h+=`<path class="link${l.тонкая?' thin':''}" d="${edgePath(a,b)}" style="stroke:${l.color}${l.тонкая?'44':'88'}"></path>`;});
+  nodes.forEach(n=>{
+    if(n.type==='root'){h+=`<foreignObject x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-root"><div class="t">${esc(n.t)}</div></div></foreignObject>`;}
+    else if(n.type==='cat'){const sign=collapsed[n.idx]?'＋':'－';
+      h+=`<foreignObject class="node-card" data-cat="${n.idx}" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-cat" style="border-color:${n.color}88"><div class="t" style="color:${n.color}">${n.icon} ${esc(n.t)}</div><span class="badge" style="background:${n.color}">${n.n} · <span class="toggle">${sign}</span></span></div></foreignObject>`;}
+    else{h+=`<foreignObject class="node-card leaf" data-url="${esc(n.leaf.u)}" data-txt="${esc((n.leaf.t+' '+(n.leaf.d||'')).toLowerCase())}" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"><div xmlns="http://www.w3.org/1999/xhtml" class="fo-card fo-leaf" style="border-left:3px solid ${n.color}"><div class="t">${esc(n.leaf.t)}</div><div class="d">${esc(n.leaf.d||'')}</div><div class="dt">${n.leaf.date?esc(n.leaf.date)+' · ':''}${S.open}</div></div></foreignObject>`;}
+  });
+  vp.innerHTML=h;
+  vp.querySelectorAll('[data-cat]').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();const i=+el.getAttribute('data-cat');collapsed[i]=!collapsed[i];render();}));
+  vp.querySelectorAll('.leaf').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();const u=el.getAttribute('data-url');if(u)window.open(u,'_blank','noopener');}));
+  applySearch();
+}
+let tx=20,ty=20,scale=1;
+const applyVP=()=>vp.setAttribute('transform',`translate(${tx},${ty}) scale(${scale})`);
+// высота шапки живая: на телефоне она в три ряда, и карта иначе вылезает за экран
+function замеритьШапку(){document.documentElement.style.setProperty('--topH',document.getElementById('top').offsetHeight+'px');}
+// Карта открывается в читаемом масштабе и возится мышью/пальцем.
+// «Вписать всё» — отдельная кнопка: обзор с высоты, по явному желанию.
+// Центрируем не габарит, а сам корень: у радиальной карты это точка фокуса,
+// иначе при одном раскрытом лепестке хаб уезжает за нижний край.
+function начальныйВид(){
+  layout();
+  const вр=document.getElementById('mapwrap');
+  const r=nodes.find(n=>n.type==='root');
+  scale=1;
+  tx=вр.clientWidth/2-(r.x+r.w/2);
+  ty=вр.clientHeight/2-(r.y+r.h/2);
+  applyVP();
+}
+function вписать(){
+  const dim=layout(),vw=window.innerWidth,vh=document.getElementById('mapwrap').clientHeight||window.innerHeight-58;
+  scale=Math.max(.15,Math.min(1,Math.min(vw/(dim.width+40),vh/(dim.totalH+40))));
+  tx=(vw-dim.width*scale)/2;ty=(vh-dim.totalH*scale)/2;applyVP();
+}
+function zoomBy(f){const ns=Math.max(.3,Math.min(2.5,scale*f));const vw=window.innerWidth/2,vh=(document.getElementById('mapwrap').clientHeight||window.innerHeight-58)/2;
+  tx=vw-(vw-tx)*(ns/scale);ty=vh-(vh-ty)*(ns/scale);scale=ns;applyVP();}
+document.getElementById('zin').onclick=()=>zoomBy(1.2);
+document.getElementById('zout').onclick=()=>zoomBy(1/1.2);
+document.getElementById('zfit').onclick=()=>вписать();
+document.getElementById('zone').onclick=()=>начальныйВид();
 const stage=document.getElementById('stage');let drag=false,sx,sy,stx,sty;
 stage.addEventListener('mousedown',e=>{drag=true;stage.classList.add('drag');sx=e.clientX;sy=e.clientY;stx=tx;sty=ty;});
 window.addEventListener('mousemove',e=>{if(!drag)return;tx=stx+(e.clientX-sx);ty=sty+(e.clientY-sy);applyVP();});
 window.addEventListener('mouseup',()=>{drag=false;stage.classList.remove('drag');});
-stage.addEventListener('wheel',e=>{e.preventDefault();const f=e.deltaY<0?1.12:0.89;const r=svg.getBoundingClientRect();const mx=e.clientX-r.left,my=e.clientY-r.top;const ns=Math.max(.25,Math.min(2.5,scale*f));tx=mx-(mx-tx)*(ns/scale);ty=my-(my-ty)*(ns/scale);scale=ns;applyVP();},{passive:false});
+stage.addEventListener('wheel',e=>{e.preventDefault();const f=e.deltaY<0?1.12:0.89;const r=svg.getBoundingClientRect();
+  const mx=e.clientX-r.left,my=e.clientY-r.top,ns=Math.max(.3,Math.min(2.5,scale*f));
+  tx=mx-(mx-tx)*(ns/scale);ty=my-(my-ty)*(ns/scale);scale=ns;applyVP();},{passive:false});
 let pinch=null,ps=1;
+const dist=e=>{const a=e.touches[0],b=e.touches[1];return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);};
 stage.addEventListener('touchstart',e=>{if(e.touches.length===1){drag=true;sx=e.touches[0].clientX;sy=e.touches[0].clientY;stx=tx;sty=ty;}else if(e.touches.length===2){pinch=dist(e);ps=scale;}},{passive:true});
-stage.addEventListener('touchmove',e=>{if(e.touches.length===1&&drag){tx=stx+(e.touches[0].clientX-sx);ty=sty+(e.touches[0].clientY-sy);applyVP();}else if(e.touches.length===2&&pinch){const d=dist(e);scale=Math.max(.25,Math.min(2.5,ps*d/pinch));applyVP();}},{passive:true});
+stage.addEventListener('touchmove',e=>{if(e.touches.length===1&&drag){tx=stx+(e.touches[0].clientX-sx);ty=sty+(e.touches[0].clientY-sy);applyVP();}
+  else if(e.touches.length===2&&pinch){scale=Math.max(.3,Math.min(2.5,ps*dist(e)/pinch));applyVP();}},{passive:true});
 stage.addEventListener('touchend',()=>{drag=false;pinch=null;});
-function dist(e){const a=e.touches[0],b=e.touches[1];return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);}
-document.getElementById('exp').onclick=()=>{DATA.forEach((c,i)=>collapsed[i]=false);render();};
-document.getElementById('col').onclick=()=>{DATA.forEach((c,i)=>collapsed[i]=true);render();};
-document.getElementById('rst').onclick=()=>{search.value='';render();fit();};
-if(window.innerWidth>768){render();fit();}
-window.addEventListener('resize',()=>{if(window.innerWidth>768)applyVP();});
+
+/* ─────────── переключение вида ─────────── */
+let режим='list';
+function setMode(m){
+  режим=m;
+  document.getElementById('list').classList.toggle('hidden',m!=='list');
+  document.getElementById('mapwrap').classList.toggle('hidden',m!=='map');
+  document.getElementById('mList').classList.toggle('on',m==='list');
+  document.getElementById('mMap').classList.toggle('on',m==='map');
+  document.querySelector('footer').classList.toggle('hidden',m!=='list');
+  if(m==='map'){if(!построена){render();начальныйВид();построена=true;}else applyVP();}
+  else document.getElementById('empty').classList.toggle('hidden',!!document.querySelectorAll('#list .m-cat:not(.hidden)').length);
+  try{localStorage.setItem('p2p_view',m);}catch(e){}
+}
+document.getElementById('mList').onclick=()=>setMode('list');
+document.getElementById('mMap').onclick=()=>setMode('map');
+
+renderList();
+замеритьШапку();
+let стартовый='list';
+try{const v=localStorage.getItem('p2p_view');if(v==='map'&&window.innerWidth>768)стартовый=v;}catch(e){}
+setMode(стартовый);
+window.addEventListener('resize',()=>{замеритьШапку();if(режим==='map')applyVP();});
 </script>
 </body>
 </html>
