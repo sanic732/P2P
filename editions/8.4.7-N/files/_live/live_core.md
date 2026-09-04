@@ -28,7 +28,7 @@ PRICING:
   claude-opus-4-8:           $5     / $25   / 1M    / coding; effort default=high; out 128K/300K batch; ACTIVE, НЕ депрекирован (floor «не ранее 2027-05-28»); API-only surface — UI-видимость ≠ доступность
   claude-opus-4-7:           $5     / $25   / 1M    / legacy; G6 общий токенизатор
   claude-opus-4-6:           $5     / $25   / 1M    / пин для >500K recall (MRCR 78.3%); токенизатор эффективнее 4.7/4.8
-  gpt-5.6-sol:               $5     / $30   / 1.05M / GA 09.07; cached 0.50; >272K → 10/45 при cached EXEMPT; ⚠ G22 агентная опасность — вне judge-ролей и harness с записью в ФС/секреты
+  gpt-5.6-sol:               $5     / $30   / 1.05M / GA 09.07; cached 0.50; >272K → 10/45 при cached тоже ×2; ⚠ G22 агентная опасность — вне judge-ролей и harness с записью в ФС/секреты
   gemini-3.6-flash:          $1.50  / $7.50 / 1,048,576 / GA 21.07 workhorse; cache-read 0.15; ~304 tok/s; нативный Computer Use; ⚠ G13 НЕ тестирован — не очищен, обходы применять
   gemini-3.5-flash:          $1.50  / $9.00 / 1M    / вытеснен 3.6 Flash; thinkingLevel MEDIUM default
   gemini-3.1-pro-preview:    $2     / $12   / 2M    / Deep Think; grounding (<=200K цена)

@@ -37,7 +37,7 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Grok** | 4.5 | `grok-4.5` | 500K | $2/$0.30 cached/$6 · от 200K → $4/$0.60/$12 | T3-4 (coding flagship; EU без residency) | G14 |
 | **Grok** | 4.3 | `grok-4.3` | 1M | $1.25/$2.50 | T2-3 | G14 |
 | **Grok** | 4.20 Heavy | `grok-4.20` | 2M | $2/$6 | T3-4 (Heavy-16) | G14 |
-| **GPT** | 5.6 Sol | `gpt-5.6-sol` | 1.05M | $5/$0.50 cached/$30 · >272K → $10/$45, cached EXEMPT | T4 (⚠ агентная опасность) | G9, G10 |
+| **GPT** | 5.6 Sol | `gpt-5.6-sol` | 1.05M | $4/$0.40 cached/$20 (промо ≥21.11) · >272K → $8/$0.80/$30 | T4 (⚠ агентная опасность) | G9, G10 |
 | **GPT** | 5.6 Terra | `gpt-5.6-terra` | 1.05M | $2.50/$15 (long-context НЕ документирован) | T3 (замена 5.5) | G9, G10 |
 | **GPT** | 5.6 Luna | `gpt-5.6-luna` | ⚠ офиц. строки нет | $1/$6 (long-context НЕ документирован) | T1-2 (⚠ MRCR collapse >512K) | G9, G10 |
 | **DeepSeek** | V4 Pro | `deepseek-v4-pro` | 1M | $0.435/$0.87 | T2-3 (⚠ офиц. PREVIEW) | G15 |
@@ -178,8 +178,8 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
     "max_tokens": 4096
     # Constraints: максимум 7 MUST/MUST NOT пар
 }
-# G10 механика: выше 272K весь запрос → ×2 uncached input, ×1.5 output.
-#   cached input EXEMPT — остаётся $0.50, скидка 90% переживает обрыв.
+# G10 механика: выше 272K весь запрос → ×2 input, ×2 cached input, ×1.5 output.
+#   cached input тоже ×2 — прежняя пометка EXEMPT была ошибкой (исправлено 8.4.7).
 #   Значит для нагрузки со стабильным префиксом переход через 272K может быть приемлем.
 #   У xAI порог устроен иначе (200K, удваивается и кэш) — одна общая заглушка два случая не описывает.
 # ПРОВЕРКА ЛИЧНОСТИ МОДЕЛИ: сверять resolved_model_slug, а НЕ model_slug.
@@ -215,7 +215,7 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
 | Вендор | Порог | Что множится | Кэш |
 |---|---|---|---|
 | xAI (grok-4.5) | 200K | ×2 input, ×2 output | ⚠ кэш ТОЖЕ ×2 — кэширование не спасает, резать контекст |
-| OpenAI (Sol) | 272K | ×2 uncached input, ×1.5 output | ✅ cached input EXEMPT ($0.50) — скидка 90% переживает обрыв |
+| OpenAI (Sol) | 272K | ×2 input, ×2 cached, ×1.5 output | ❌ cached НЕ освобождён — исправлено 8.4.7 |
 | Anthropic / Google | порога не опубликовано | — | — |
 
 > Перехват: xAI — на 190K, жёсткий обрыв 195K. OpenAI — перехват 250K, обрыв 260K, и решать
@@ -272,7 +272,7 @@ V872_DELTA:
     кэш ТОЖЕ удваивается. EU открыт 21.07 БЕЗ data-residency. reasoning_effort high и не отключается,
     reasoning биллится как output. HEAVY16_SHADOW_DOWNGRADE — CLOSED AS OBSOLETE (не resolved:
     ничего не чинили, описанная конфигурация перестала существовать).
-  GPT: 5.6 Sol/Terra/Luna GA 09.07; Sol $5/$0.50 cached/$30, >272K → $10/$45 при cached EXEMPT.
+  GPT: 5.6 Sol/Terra/Luna GA 09.07; Sol $4/$0.40 cached/$20 (промо не раньше 21.11), >272K → $8/$0.80/$30, cached тоже ×2.
     Terra/Luna long-context ставки НЕ документированы (ходившие $5/$22.5 и $2/$9 — экстраполяция).
     Окно контекста Luna официальной строки не имеет. Голый алиас gpt-5.6 → Sol.
     Sol: по system card вендора — удаление файлов без запроса и использование неавторизованных
