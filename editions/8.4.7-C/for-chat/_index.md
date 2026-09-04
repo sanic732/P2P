@@ -68,17 +68,17 @@ v8C.2/
 │   ├── vendors/tier4.md       Maximum quality: Grok Heavy, GPT-5.6 Sol
 │   └── (Grok 4.5/4.3 TARGET-данные → vendors/tier3.md; strict JSON контракт → !contract.md GROK_JSON_TARGET)
 │
-├── .claude/
-│   ├── CLAUDE.md              Правила репо
-│   ├── agents/                8 sub-agent файлов (Claude Code)
+├── plugin/                    [8.4.7] стандартная раскладка: компоненты в КОРНЕ плагина
+│   ├── .claude-plugin/plugin.json   манифест
+│   ├── agents/                8 sub-agent файлов
 │   ├── commands/              11 /p2p-* slash команд (p2p, quorum, chain, scope, explore,
-│   │                           atlas, capsule, metrics, feedback, karpathy, [v8C.2 NEW] teacher)
-│   ├── settings.json          Permissions + hooks (opt-in)
+│   │                           atlas, capsule, metrics, feedback, karpathy, teacher)
 │   ├── skills/p2p/
 │   │   ├── SKILL.md           Manifest skill (entry point)
 │   │   └── p2p.config.md      Шаблон конфигурации пользователя
-│   └── skills/p2p-teacher/    [v8C.2 NEW]
-│       └── SKILL.md           Teacher skill metadata (Cowork triggers)
+│   ├── skills/p2p-teacher/
+│   │   └── SKILL.md           Teacher skill metadata (Cowork triggers)
+│   └── settings.example.json  образец permissions + hooks (opt-in, не часть плагина)
 │
 ├── _master.md                 Полная сборка для API (один файл)
 ├── _glossary.md               Глоссарий терминов P2P v8C.3

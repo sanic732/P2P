@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "_comment": "P2P v8C.3 — safe defaults for Claude Code / Cowork. Review before enabling hooks.",
+  "_comment": "P2P 8.4.7 — ОБРАЗЕЦ настроек проекта, не часть плагина. Скопируйте нужное в .claude/settings.json своего проекта. Хуки выключены (_disabled) намеренно.",
   "permissions": {
     "allow": [
       "Read",
@@ -55,7 +55,7 @@
     ]
   },
   "env": {
-    "P2P_VERSION": "8C.1",
+    "P2P_VERSION": "8.4.7",
     "P2P_HOST": "claude",
     "P2P_LIVE_SPECS_OVERRIDE": "true",
     "P2P_CORTEX_BUILTIN": "true"

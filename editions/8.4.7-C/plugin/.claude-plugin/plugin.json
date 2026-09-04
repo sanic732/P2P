@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "p2p-v8c3",
   "displayName": "8.4.7-C — Claude Native Edition",
-  "version": "8.4.6",
+  "version": "8.4.7",
   "description": "Meta-prompt system for Claude Opus 5 / Fable 5.1 / Sonnet 5 and generation 4.6-4.8. 8 QUORUM agents, 11 /p2p-* commands, XML-native, SCOPE.HELM, teacher mode.",
   "author": {
     "name": "P2P Project"
@@ -21,18 +21,18 @@
   "license": "MIT",
   "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
   "repository": "https://github.com/sanic732/P2P-4PDA-edition.git",
-  "commands": "./.claude/commands",
+  "commands": "./commands",
   "agents": [
-    "./.claude/agents/p2p-anon.md",
-    "./.claude/agents/p2p-architecton.md",
-    "./.claude/agents/p2p-axiom.md",
-    "./.claude/agents/p2p-datos.md",
-    "./.claude/agents/p2p-helios.md",
-    "./.claude/agents/p2p-iris.md",
-    "./.claude/agents/p2p-tecton.md",
-    "./.claude/agents/p2p-vector.md"
+    "./agents/p2p-anon.md",
+    "./agents/p2p-architecton.md",
+    "./agents/p2p-axiom.md",
+    "./agents/p2p-datos.md",
+    "./agents/p2p-helios.md",
+    "./agents/p2p-iris.md",
+    "./agents/p2p-tecton.md",
+    "./agents/p2p-vector.md"
   ],
-  "skills": "./.claude/skills",
+  "skills": "./skills",
   "engines": {
     "claude-code": ">=1.0.0",
     "cowork": ">=0.1.0"
@@ -44,12 +44,15 @@
       "claude-app"
     ],
     "models": [
+      "claude-opus-5",
+      "claude-sonnet-5",
+      "claude-fable-5-1",
       "claude-fable-5",
       "claude-opus-4-8",
       "claude-opus-4-7",
+      "claude-opus-4-6",
       "claude-sonnet-4-6",
-      "claude-haiku-4-5-20251001",
-      "claude-opus-4-6"
+      "claude-haiku-4-5-20251001"
     ]
   }
 }

@@ -58,8 +58,9 @@ Marketplace-манифесты:
 **Для:** Claude Code открытого как папка-проект
 
 ```bash
-# 1. Скопировать v8C.2/.claude/ в корень своего проекта
-cp -r v8C.2/.claude /path/to/your/project/
+# 1. Компоненты плагина лежат в его КОРНЕ (8.4.7) — разложить их в .claude/ проекта
+mkdir -p /path/to/your/project/.claude
+cp -r plugin/agents plugin/commands plugin/skills /path/to/your/project/.claude/
 
 # 2. Скопировать BASE + ON-DEMAND модули
 cp v8C.2/!*.md /path/to/your/project/
