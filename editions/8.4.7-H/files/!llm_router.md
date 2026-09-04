@@ -22,7 +22,7 @@ CAPABILITY_MATRIX:
   claude:   Claude Opus 4.8         | claude-opus-4-8         | 1M    | $5/$25    | 2  // coding #1 (SWE-bench Pro 69.2%)
   grok:     Grok Heavy-16           | grok-4.20               | 2M    | $2/$6     | 3  // нативный параллелизм (только grok host)
   grok:     Grok 4.5                | grok-4.5                | 500K  | 2/0.30cached/6 | 4  // GA 08.07; EU открыт 21.07 БЕЗ residency; от 200K → 4/0.60/12 (grok-4.3: 1M, 1.25/2.50)
-  claude:   Claude Sonnet 5         | claude-sonnet-5         | 1M    | $2/$10    | 5  // intro до 31.08 → $3/$15
+  claude:   Claude Sonnet 5         | claude-sonnet-5         | 1M    | $2/$10    | 5  // подорожание 01.09 отменено 10.08
   gemini:   Gemini 3.1 Pro          | gemini-3.1-pro-latest   | 2M    | $2/$12 (≤200K) | 6
   gpt:      GPT-5.6 Sol              | gpt-5.6-sol             | 1.05M | $5/$30    | 7  // GA 09.07; legacy gpt-5.5 $5/$30 (G10 >272K)
   deepseek: DeepSeek V4-Flash       | deepseek-v4-flash       | 1M    | $0.14/$0.28 | 8 // budget

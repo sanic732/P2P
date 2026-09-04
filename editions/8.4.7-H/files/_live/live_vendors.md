@@ -28,7 +28,7 @@ CAPABILITY_MATRIX:
   claude-opus-4-7:     XML=NATIVE | Thinking=adaptive  | 1M      | Computer Use  | Yes
   claude-opus-4-6:     XML=NATIVE | Thinking=adaptive  | 1M      | Computer Use  | Yes  // pin >500K recall (MRCR 78.3%)
   claude-haiku-4-5:    XML=NATIVE | Thinking=limited   | 200K    | Tool Calling  | Yes
-  claude-sonnet-4-6:   XML=NATIVE | Thinking=effort    | 200K    | Tool Calling  | Yes  // RETIRED 30.06 (API-only legacy)
+  claude-sonnet-4-6:   XML=NATIVE | Thinking=effort    | 200K    | Tool Calling  | Yes  // активен, выбор по цене
   gemini-3.5-pro:      XML=BLOCK  | Deep Think=level   | 2M      | Code Exec     | Yes  // ⚠ PREVIEW (не GA)
   gemini-3.1-pro:      XML=BLOCK  | Deep Think=level   | 2M      | Code Exec     | Yes (native)
   gemini-3.6-flash:    XML=BLOCK  | Flash thinking     | 1,048,576 | Code Exec + Computer Use | Yes  // GA 21.07 workhorse; 1.50/7.50; cache-read 0.15; G13 НЕ тестирован — не очищен
@@ -329,8 +329,8 @@ FILE_META:
 // Актуальные модели — в CAPABILITY_MATRIX выше; ниже per-vendor нюансы.
 // ═══════════════════════════════════════════════════════
 DELTA_v872:
-  Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404; sonnet-4-6 RETIRED 30.06 (Sonnet 5 default).
-  Claude_5_line: Opus 5 PRIMARY (GA 24.07, $5/$25, 1M/128K, thinking ON BY DEFAULT) — заменил Opus 4.8 как дефолтную тяжёлую модель. Sonnet 5 (default Free/Pro, $2/$10→$3/$15 c 01.09), Fable 5 (USAGE CREDITS с 20.07 — cost-gated, не в автоциклы; $10/$50, batch $5/$25, cache-hit in $1), Mythos 5 (Glasswing, not routed).
+  Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404; sonnet-4-6 остаётся активным (с 30.06 дефолт — Sonnet 5).
+  Claude_5_line: Opus 5 PRIMARY (GA 24.07, $5/$25, 1M/128K, thinking ON BY DEFAULT) — заменил Opus 4.8 как дефолтную тяжёлую модель. Sonnet 5 (default Free/Pro, $2/$10 — подорожание отменено 10.08), Fable 5 (USAGE CREDITS с 20.07 — cost-gated, не в автоциклы; $10/$50, batch $5/$25, cache-hit in $1), Mythos 5 (Glasswing, not routed).
   Claude_specs: Opus 4.x/5 pricing $5/$25; context 1,000,000; output 128K sync/300K batch; effort default=high (low|medium|high|xhigh|max). Opus 4.8 ACTIVE, НЕ депрекирован — retirement floor «не ранее 2027-05-28»; убран из селектора приложения 24.07: это поверхность, НЕ депрекация, видимость в UI ≠ сигнал доступности. Opus 4.1 RETIRES 2026-08-05 (замена по офиц. таблице — opus-4-8). Fast mode у Opus 4.7 удалён.
   Claude_G6_tokenizer: UNRESOLVED BY DESIGN. КАНОН ~+30% (официальная цифра, одна, не вилка) для Opus 4.7+/Fable 5/Mythos 5/Sonnet 5/Opus 5 против моделей старше 4.7. Счётчик — официальный Token Counting API, ВСЕ активные модели. Прежние +30-42% и 10-35% — сторонние измерения, вторичные → pin claude-opus-4-6 для cost-sensitive.
   Claude_thinking: для 4.x ТОЛЬКО thinking:{"type":"adaptive"}; на Opus 5 включён по умолчанию; budget_tokens removed; G7 — никогда temperature/top_p/top_k.
@@ -344,4 +344,4 @@ DELTA_v872:
   Kimi: K3 GA 16.07 (3/15, ctx 1,048,576, thinking always-on) — Arena WebDev #1, но ACCESS-RISK: только hosted, приём подписок приостановлен, веса не опубликованы → НЕ primary, держать запасной путь. K2.6 (Swarm 300 async) + K2.7-Code (open-weight) + Code HighSpeed tier. Type M (infinite-repeat) документирован для K2.5/K2.6; на K3 не воспроизводился, обход «отключить Thinking» там неприменим. DEADLINE 2026-08-31: гасятся k2.5 и часть moonshot-v1.
   GLM: glm-5.2 (1M, MIT, WebDev #4) основной — цена ~1.40/4.40 UNCONFIRMED (единственный источник, внутренне противоречив, официальной страницей не подтверждён) → в canon не принята. Сильнейший open-weight, у которого веса ДЕЙСТВИТЕЛЬНО опубликованы. OpenRouter AI Gateway stream-break: DISPUTED, взвешено В СТОРОНУ ОТКРЫТОГО — первичная проверка тикета показала, что он открыт и PR не привязан; корень в SSE-событиях из одних комментариев, задевает любого провайдера с таким поведением → путь через этот шлюз обходить. glm-5.1 (eff ~120K, G19); /compact hang на 5.1.
   NEW_VENDORS: MiniMax M3 ($0.30/$1.20, track-only); Manus 1.6 Max (GEOPOLITICAL CRISIS — Meta unwinding $2B; track-only, avoid prod).
-  DEADLINES (from 2026-07-26): 2026-08-05 claude-opus-4-1 RETIRES; 2026-08-26 OpenAI Assistants API shutdown (вкл. Azure); 2026-08-31 Sonnet 5 intro → 3/15; 2026-08-31 kimi-k2.5 sunset; 2026-10-10 снятие пяти qwen3-*/qwen3.6-*.
+  DEADLINES (from 2026-07-26): 2026-08-05 claude-opus-4-1 RETIRES; 2026-08-26 OpenAI Assistants API shutdown (вкл. Azure); 2026-08-31 kimi-k2.5 sunset; 2026-10-10 снятие пяти qwen3-*/qwen3.6-*.

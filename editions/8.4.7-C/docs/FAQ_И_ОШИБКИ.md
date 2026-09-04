@@ -74,8 +74,8 @@ Code (парсер строгий; Cowork мягкий и маскирует). �
 - **2026-07-24 15:59 UTC** — отключение алиасов `deepseek-chat` / `deepseek-reasoner` (→ HTTP 404, без grace).
   Замена — `deepseek-v4-flash` (chat→non-thinking, reasoner→thinking; НЕ апгрейд на V4-Pro).
   Редакции C не касается напрямую (Claude-only), но затрагивает генерируемые промпты под DeepSeek.
-- **2026-08-31** — Sonnet 5: конец intro-цены ($2/$10 → $3/$15 с 01.09).
+- ~~2026-08-31 — Sonnet 5: конец intro-цены~~ — ОТМЕНЕНО 10.08, цена остаётся $2/$10.
 - `claude-*-4-20250514` мертвы с 2026-06-15 (HTTP 400/404) — в 8C.3 не используются.
-- `claude-sonnet-4-6` — RETIRED 2026-06-30 как default (заменён `claude-sonnet-5`); API-legacy остаётся.
+- `claude-sonnet-4-6` — 30.06 перестал быть моделью ПО УМОЛЧАНИЮ (её занял `claude-sonnet-5`); сам id активен.
 
 Свежие цены/квоты/баги — модуль live specs: меню `[26] LIVE SPECS` или `/p2p-v8c3:p2p-download`.

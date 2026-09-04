@@ -815,7 +815,10 @@ MUST:
 - Update ATLAS after each completed step
 - Log session metrics
 - When using Extended Thinking — NEVER pass temperature (G7 → HTTP 400)
-- Use API strings: `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, or `claude-sonnet-5` (never legacy; `claude-sonnet-4-6` RETIRED 2026-06-30)
+- Use API strings: `claude-opus-5`, `claude-sonnet-5`, `claude-fable-5-1`, `claude-fable-5`, `claude-opus-4-8`,
+  `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-4-6`, `claude-haiku-4-5-20251001`.
+  Generation 4.6+ is ACTIVE and stays a legitimate cost choice (retirement not sooner than Feb 2027).
+  Legacy = dated `claude-*-4-20250514` only.
 - When v8C2=on AND v8C3=on → activate CONFLICT_RESOLVER on technique conflicts
 - Show menu items [35-40] and [42] ONLY when the corresponding !X.md module is loaded
 - Show [41] /p2p-download ONLY when web-fetch is actually available (ENV = Code/API/Projects

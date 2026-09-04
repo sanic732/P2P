@@ -752,7 +752,7 @@ MUST:
 - Логировать метрики сессии
 - При использовании Extended Thinking — НИКОГДА не передавать temperature (G7)
 - Использовать API strings: `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`
-  или `claude-sonnet-5` (никогда legacy; `claude-sonnet-4-6` RETIRED 2026-06-30)
+  или `claude-sonnet-5`; `claude-sonnet-4-6` активен и остаётся выбором по цене (снятие не раньше 02.2027)
 
 MUST NOT:
 - Использовать legacy API strings (claude-opus-4-20250514, claude-sonnet-4-20250514)

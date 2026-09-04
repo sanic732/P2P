@@ -361,7 +361,7 @@ API_STRINGS:
     claude-opus-4-7                    ← Tier 3-4
     claude-opus-4-6                    ← Пинить для >500K recall (G8)
     claude-haiku-4-5-20251001          ← Tier 0-1, бюджет
-    claude-sonnet-4-6                  ← ⚠ RETIRED 30.06 (API-only legacy); claude-mythos-5 — не маршрутизируется
+    claude-sonnet-4-6                  ← ✅ активен, выбор по цене; claude-mythos-5 — не маршрутизируется
     [PASSED 2026-06-15]: Claude dated legacy aliases ретайрнуты (в реестре отсутствуют).
 
   GPT:

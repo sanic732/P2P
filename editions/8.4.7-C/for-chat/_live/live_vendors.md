@@ -23,12 +23,12 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 |----------|-------|-----------|---------|-----------------|------|--------------|
 | **Claude** | Opus 5 | `claude-opus-5` | 1M | $5/$25 | T3-4 PRIMARY (thinking default on) | G6, G7 |
 | **Claude** | Fable 5 | `claude-fable-5` | 1M | $10/$50 (batch $5/$25, cache-hit in $1) | T4 FULL+ — ⚠ COST-GATED с 20.07 | classifier FP |
-| **Claude** | Sonnet 5 | `claude-sonnet-5` | 1M | $2/$10→$3/$15 c 01.09 | T2-3 (default Free/Pro) | G6, G7 |
+| **Claude** | Sonnet 5 | `claude-sonnet-5` | 1M | $2/$10 | T2-3 (default Free/Pro) | G6, G7 |
 | **Claude** | Opus 4.8 | `claude-opus-4-8` | 1M | $5/$25 | T4 ACTIVE — API-only surface | G6, G7, G8 |
 | **Claude** | Opus 4.7 | `claude-opus-4-7` | 1M | $5/$25 | T3-4 | G6, G7, G8 |
 | **Claude** | Opus 4.6 | `claude-opus-4-6` | 1M | $5/$25 | T3-4 (pin >500K recall) | G6, G8 |
 | **Claude** | Haiku 4.5 | `claude-haiku-4-5-20251001` | 200K | $1/$5 | T0-1 | — |
-| **Claude** | Sonnet 4.6 | `claude-sonnet-4-6` | 200K | legacy | RETIRED 30.06 (API-only) | G7 |
+| **Claude** | Sonnet 4.6 | `claude-sonnet-4-6` | 200K | $3/$15 | ✅ активен, выбор по цене | G7 |
 | **Gemini** | 3.6 Flash | `gemini-3.6-flash` | 1,048,576 | $1.50/$7.50 (cache-read $0.15) | T2 (новый workhorse, ~304 tok/s) | G1,G2,G13 |
 | **Gemini** | 3.5 Flash-Lite | `gemini-3.5-flash-lite` | 1M | $0.30/$2.50 | T0-1 (дешевейший, ~350 tok/s) | G1,G2,G13 |
 | **Gemini** | 3.5 Pro | `gemini-3.5-pro-preview` | 2M | TBD | T4 (⚠ PREVIEW, третий пропуск GA) | G1,G2,G13 |
@@ -240,10 +240,10 @@ invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_versi
 // Актуальные модели/цены — в CAPABILITY MATRIX выше; ниже — per-vendor нюансы.
 // ═══════════════════════════════════════════════════════
 V872_DELTA:
-  Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404; sonnet-4-6 RETIRED 30.06.
+  Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404; sonnet-4-6 остаётся активным (с 30.06 дефолт — Sonnet 5).
     SCHEDULED — claude-opus-4-1-20250805 RETIRES 2026-08-05 (deprecated 05.06); замена в офиц. таблице opus-4-8.
   Claude_5_line: Opus 5 PRIMARY (GA 24.07, $5/$25, 1M/128K, thinking ON BY DEFAULT) — заменил Opus 4.8.
-    Sonnet 5 default Free/Pro ($2/$10→$3/$15 c 01.09); Fable 5 COST-GATED (usage credits с 20.07,
+    Sonnet 5 default Free/Pro ($2/$10, подорожание отменено 10.08); Fable 5 COST-GATED (usage credits с 20.07,
     $10/$50, batch $5/$25, cache-hit in $1); Mythos 5 (Glasswing, not routed).
   Claude_Opus48: ACTIVE, НЕ депрекирован; $5/$25; retirement floor «не ранее 2027-05-28»;
     убран из селектора приложения 24.07 — это поверхность, НЕ депрекация. Видимость в UI не читать
@@ -290,5 +290,5 @@ V872_DELTA:
     внутренне противоречив) → держать как unconfirmed; glm-5.1 (eff ~120K, G19) — /compact hang.
   NEW_VENDORS: MiniMax M3 ($0.30/$1.20, track-only); Manus 1.6 Max (track-only, avoid prod).
   DEADLINES (from 2026-07-26): 2026-08-05 opus-4-1 retire; 2026-08-26 OpenAI Assistants API
-    shutdown (вкл. Azure); 2026-08-31 Sonnet 5 → $3/$15; 2026-08-31 kimi-k2.5 sunset;
+    shutdown (вкл. Azure); 2026-08-31 kimi-k2.5 sunset;
     2026-10-10 снятие пяти qwen3-* / qwen3.6-*.

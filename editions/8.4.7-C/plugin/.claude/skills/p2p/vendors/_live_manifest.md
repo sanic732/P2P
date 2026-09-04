@@ -21,11 +21,11 @@ tags: manifest, deadlines, deprecation, live, v8c
 |----------|------------|-------------|----------|
 | **2026-08-05** [T-10 DAYS] | `claude-opus-4-1-20250805` → RETIRES (deprecated 05.06) | `claude-opus-4-8` (замена по официальной таблице) | 🔴 retirement |
 | **2026-08-26** [T-31 DAYS] | OpenAI Assistants API полное отключение (`/v1/assistants`, `/v1/threads`), включая Azure | → Responses API; автомиграции threads НЕТ | 🔴 shutdown |
-| **2026-08-31** [T-36 DAYS] | Sonnet 5 intro-цена истекает | $2/$10 → $3/$15 c 01.09 | 🟡 pricing |
+| ~~2026-08-31~~ | ~~Sonnet 5 intro-цена истекает~~ | ОТМЕНЕНО 10.08 — остаётся $2/$10 | ✅ снято |
 | **2026-08-31** [T-36 DAYS] | Moonshot гасит `kimi-k2.5` и часть `moonshot-v1` | → K2.6 / K2.7-Code | 🟡 sunset |
 | **2026-10-10** [T-76 DAYS] | Alibaba снимает пять `qwen3-*` / `qwen3.6-*` | → линейка 3.7 | 🟡 retirement |
 
-> ✅ COMPLETED: `claude-*-4-20250514` → 404 (15.06); `claude-sonnet-4-6` RETIRED как default (30.06);
+> ✅ COMPLETED: `claude-*-4-20250514` → 404 (15.06); дефолт сменился на `claude-sonnet-5` (30.06), сам `claude-sonnet-4-6` активен;
 > Nano Banana preview shutdown (25.06); Fable 5 → usage credits (20.07); `deepseek-chat` /
 > `deepseek-reasoner` мертвы 24.07 15:59 UTC без grace-периода.
 
@@ -54,7 +54,7 @@ grep -rn "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deeps
 | Claude Opus 4.8 | `claude-opus-4-8` | ✅ T4 ACTIVE (complex code) — API-only surface, НЕ депрекирован |
 | Claude Opus 4.7 / 4.6 | `claude-opus-4-7` · `claude-opus-4-6` | ✅ T3-4 (4.6 pin >500K recall) |
 | Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | ✅ Fast/cheap |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6` | ⚠️ RETIRED 30.06 (API-only) |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` | ✅ Active, cost-sensitive (снятие не раньше 17.02.2027) |
 
 ### Альтернативные модели
 | Модель | API String | Статус |
@@ -112,7 +112,7 @@ DELTA_v872:
   opus-4-8: ACTIVE, НЕ депрекирован; retirement floor «не ранее 2027-05-28»; убран из селектора 24.07 —
     видимость в UI НЕ читать как сигнал доступности.
   opus-4-1: RETIRES 2026-08-05 (deprecated 05.06); официальная замена в таблице — opus-4-8.
-  Sonnet 5 = default Free/Pro ($2/$10 → $3/$15 c 01.09).
+  Sonnet 5 = default Free/Pro ($2/$10; подорожание отменено 10.08).
   Fable5: $10/$50, batch $5/$25, cache-hit input $1 — USAGE CREDITS с 20.07, cost-gated, не в автоциклы.
   Mythos5: Limited (Glasswing) — не маршрутизируется.
   opus-4-6: пин >500K recall (MRCR 78.3%); Document #1.
@@ -136,4 +136,4 @@ DELTA_v872:
   deepseek: V4 официально PREVIEW (запись 24.04, GA не объявлен); алиасы мертвы с 24.07 15:59 UTC;
     бывший `deepseek-reasoner` → **v4-pro**, НЕ v4-flash-thinking.
   deadlines: 2026-08-05 opus-4-1 retire; 2026-08-26 OpenAI Assistants API shutdown (вкл. Azure);
-    2026-08-31 Sonnet 5 → $3/$15; 2026-08-31 kimi-k2.5 sunset; 2026-10-10 пять qwen3-*/3.6-*.
+    2026-08-31 kimi-k2.5 sunset (исполнено); 2026-10-10 снятие линейки qwen.

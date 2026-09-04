@@ -28,7 +28,7 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Claude** | Opus 4.7 | `claude-opus-4-7` | 1M | $5/$25 | T3-4 | G6, G7, G8 |
 | **Claude** | Opus 4.6 | `claude-opus-4-6` | 1M | $5/$25 | T3-4 (pin >500K recall) | G6, G8 |
 | **Claude** | Haiku 4.5 | `claude-haiku-4-5-20251001` | 200K | $1/$5 | T0-1 | — |
-| **Claude** | Sonnet 4.6 | `claude-sonnet-4-6` | 200K | legacy | RETIRED 30.06 (API-only) | G7 |
+| **Claude** | Sonnet 4.6 | `claude-sonnet-4-6` | 200K | $3/$15 | ✅ активен, выбор по цене | G7 |
 | **Gemini** | 3.6 Flash | `gemini-3.6-flash` | 1,048,576 | $1.50/$7.50 (cache-read $0.15) | T2 (новый workhorse, ~304 tok/s) | G1,G2,G13 |
 | **Gemini** | 3.5 Flash-Lite | `gemini-3.5-flash-lite` | 1M | $0.30/$2.50 | T0-1 (дешевейший, ~350 tok/s) | G1,G2,G13 |
 | **Gemini** | 3.5 Pro | `gemini-3.5-pro-preview` | 2M | TBD | T4 (⚠ PREVIEW, третий пропуск GA) | G1,G2,G13 |

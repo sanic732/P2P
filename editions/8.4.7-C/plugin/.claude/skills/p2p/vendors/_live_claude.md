@@ -58,7 +58,8 @@ Opus 4.6: pin для >500K recall (MRCR v2 78.3% vs 32.2% у 4.7); Arena Documen
 API:      claude-haiku-4-5-20251001 | Context: 200K | Cost: $1/$5 | fast fallback (T0-1)
 ```
 
-> ⚠ claude-sonnet-4-6 — RETIRED 2026-06-30; API-only legacy. claude-mythos-5 — Limited (Glasswing), НЕ маршрутизируется.
+> ✅ claude-sonnet-4-6 — активен (снятие не раньше 17.02.2027); 30.06 сменился лишь дефолт.
+> claude-mythos-5 — Limited (Glasswing), НЕ маршрутизируется.
 
 **Active G-Errors (Claude 4.x / 5):**
 - G6: новый токенизатор — Opus 4.7 и новее, Fable 5, Mythos 5, Sonnet 5, Opus 5 → тот же входной текст
@@ -73,7 +74,7 @@ API:      claude-haiku-4-5-20251001 | Context: 200K | Cost: $1/$5 | fast fallbac
 
 ```
 [COMPLETED 2026-06-15]: claude-*-4-20250514 → HTTP 404 (без авто-редиректа)
-[COMPLETED 2026-06-30]: claude-sonnet-4-6 → RETIRED как default (Sonnet 5); API-legacy остаётся
+[COMPLETED 2026-06-30]: дефолтной моделью стал claude-sonnet-5; claude-sonnet-4-6 остаётся активным
 [SCHEDULED 2026-08-05]: claude-opus-4-1-20250805 → RETIRES (deprecated 2026-06-05);
                         замена по официальной таблице — claude-opus-4-8
 ```

@@ -71,7 +71,7 @@ API:           claude-haiku-4-5-20251001
 Context:       200K | Cost: $1/$5 | fast fallback (Tier 0-1)
 ```
 
-> ⚠ Claude Sonnet 4.6 (`claude-sonnet-4-6`) — RETIRED 2026-06-30; API-only legacy, не для новых интеграций.
+> ✅ Claude Sonnet 4.6 (`claude-sonnet-4-6`) — активен, снятие не раньше 17.02.2027; 30.06 сменился лишь дефолт.
 > ⚠ Claude Mythos 5 (`claude-mythos-5`) — Limited (Project Glasswing, US-орг.); НЕ маршрутизируется.
 
 **Active G-Errors (Claude 4.x / 5):**
@@ -88,7 +88,7 @@ Context:       200K | Cost: $1/$5 | fast fallback (Tier 0-1)
 
 ```
 [COMPLETED 2026-06-15]: claude-*-4-20250514 → HTTP 404 (без авто-редиректа)
-[COMPLETED 2026-06-30]: claude-sonnet-4-6 → RETIRED как default (заменён Sonnet 5); API-legacy остаётся
+[COMPLETED 2026-06-30]: claude-sonnet-5 стал моделью по умолчанию; claude-sonnet-4-6 остаётся активным
 [SCHEDULED 2026-08-05]: claude-opus-4-1-20250805 → RETIRES (deprecated 2026-06-05);
                         рекомендованная замена по официальной таблице — claude-opus-4-8
 ```
