@@ -75,7 +75,7 @@ BREAKAGES_C = [
      "or `claude-sonnet-4-6` (never legacy)"),
     ("2   паритет меню нарушен", "for-chat/!!core_v8C.md",
      "[22] EXPLORATION MODE (экспериментальный режим)", "(пункт удалён)"),
-    ("14  SIR ROUTE потеряла DEFAULT-страховку", "plugin/.claude/skills/p2p/core.md",
+    ("14  SIR ROUTE потеряла DEFAULT-страховку", "plugin/skills/p2p/core.md",
      "DEFAULT (страховка от провала)", "УДАЛЕНО (страховка от провала)"),
     ("19  техника есть в plugin, но не в for-chat", "for-chat/!optimization.md",
      "### GEPA — рефлексивная эволюция", "### (блок вырезан)"),
@@ -142,13 +142,13 @@ def _selftest(base_dir, ed_name):
 
 if "--selftest" in sys.argv:
     sys.exit(_selftest(BASE, ED_NAME))
-PLUGIN_CORE = os.path.join(BASE, "plugin", ".claude", "skills", "p2p", "core.md")
+PLUGIN_CORE = os.path.join(BASE, "plugin", "skills", "p2p", "core.md")
 CHAT_CORE = os.path.join(BASE, "for-chat", "!!core_v8C.md")
-PLUGIN_PRELOADER = os.path.join(BASE, "plugin", ".claude", "skills", "p2p", "preloader.md")
+PLUGIN_PRELOADER = os.path.join(BASE, "plugin", "skills", "p2p", "preloader.md")
 CHAT_PRELOADER = os.path.join(BASE, "for-chat", "_preloader.md")
-CMD_P2P = os.path.join(BASE, "plugin", ".claude", "commands", "p2p.md")
-SKILL_MD = os.path.join(BASE, "plugin", ".claude", "skills", "p2p", "SKILL.md")
-CMD_DIR = os.path.join(BASE, "plugin", ".claude", "commands")
+CMD_P2P = os.path.join(BASE, "plugin", "commands", "p2p.md")
+SKILL_MD = os.path.join(BASE, "plugin", "skills", "p2p", "SKILL.md")
+CMD_DIR = os.path.join(BASE, "plugin", "commands")
 
 results = []   # (ok: bool, name: str, detail: str, checked: int)
 
@@ -562,7 +562,7 @@ TECHNIQUE_PARITY = [
 ]
 par_errors, par_checked = [], 0
 for tech, pl_name, fc_name, markers in TECHNIQUE_PARITY:
-    pl_txt = read(os.path.join(BASE, "plugin", ".claude", "skills", "p2p", pl_name))
+    pl_txt = read(os.path.join(BASE, "plugin", "skills", "p2p", pl_name))
     fc_txt = read(os.path.join(BASE, "for-chat", fc_name))
     if pl_txt is None or fc_txt is None:
         par_errors.append(f"«{tech}»: файл-носитель не найден ({pl_name} / {fc_name})")
@@ -585,7 +585,7 @@ record(not par_errors, "Паритет содержания форм по тех
 # Формы называют файлы по-разному (writing_suite.md ↔ !writing.md). Дословный
 # перенос блока тащит имя, которого в for-chat не существует: ссылка ведёт в
 # пустоту, а модель молча идёт дальше. Главный класс дефектов проекта.
-PLUGIN_SKILL_DIR = os.path.join(BASE, "plugin", ".claude", "skills", "p2p")
+PLUGIN_SKILL_DIR = os.path.join(BASE, "plugin", "skills", "p2p")
 plugin_names = {fn[:-3] for fn in os.listdir(PLUGIN_SKILL_DIR)
                 if fn.endswith(".md") and fn != "SKILL.md"} if os.path.isdir(PLUGIN_SKILL_DIR) else set()
 # ИСКЛЮЧЕНИЕ (осознанное, не «чтобы позеленело»): `p2p.config.md` в for-chat
