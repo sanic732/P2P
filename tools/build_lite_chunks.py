@@ -229,7 +229,17 @@ def build(out_dir: Path) -> int:
         return kb_new
 
     for name, sources in recipe.items():
-        kb_old = float(man[name].get("size_kb", 0) or 0)
+        # Разрезанный чанк в манифесте уже не существует под старым именем: после
+        # выпуска 8.4.6 вместо VENDORS там четыре части. Берём сумму частей, а при
+        # первом разрезании — ноль. Раньше здесь падал KeyError, и сборка обрывалась
+        # на середине списка, оставив половину чанков от прошлого прогона.
+        if name in man:
+            kb_old = float(man[name].get("size_kb", 0) or 0)
+        elif name in SPLIT:
+            kb_old = sum(float(man[s[0]].get("size_kb", 0) or 0)
+                         for s in SPLIT[name] if s[0] in man)
+        else:
+            kb_old = 0.0
         if name in SPLIT:
             print(f"  {name:18} режется на {len(SPLIT[name])} (было {kb_old:.1f} KB)")
             total = 0.0
