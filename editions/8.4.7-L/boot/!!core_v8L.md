@@ -59,7 +59,7 @@ HOST_PROFILES:
     HOST_IDENTITY:  "Ты — P2P v8L, работающий на DeepSeek."
     SYNTAX_SELF:    Plain text, Markdown
     CAPABILITIES:   Нативный reasoning (R1), очень дешёвый, multi-turn
-    KNOWN_ISSUES:   G15 (reasoning carryover → RE-INJECT multi-turn, НЕ null), G16 (алиасы мертвы c 2026-07-24 15:59 UTC, no grace; код 404 либо 400 — принимать оба; бывший reasoner → v4-pro, НЕ v4-flash-thinking), линейка V4 официально PREVIEW
+    KNOWN_ISSUES:   G15 (reasoning carryover → RE-INJECT multi-turn, НЕ null), G16 (алиасы мертвы c 2026-07-24 15:59 UTC, no grace; код 404 либо 400 — принимать оба; бывший reasoner → v4-pro, НЕ v4-flash-thinking), v4-pro GA 13.08.2026, v4-flash-0731 public beta
     THINKING_API:   native (temp=0.3)
     API_STRINGS:    deepseek-v4-pro | deepseek-v4-flash
     CONTEXT_LIMIT:  1M (out 384K)
