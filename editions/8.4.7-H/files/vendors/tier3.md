@@ -46,7 +46,7 @@ DEEPSEEK_V4_FLASH:
   arena_elo:    1441
   context:      1M | output: 384K
   pricing:      $0.14/$0.28 per M  (CHEAPEST REASONING)
-  status:       ⚠ линейка V4 официально PREVIEW (запись changelog 2026-04-24; более поздних,
+  status:       ✅ v4-pro GA 13.08.2026, v4-flash-0731 public beta (исправлено 8.4.7;
                 снимающих метку, нет). Заявления о GA — вторичные. Оставлена в маршрутизации
                 с пометкой: после ретайра алиасов других путей нет.
   strengths:    Fastest, cheapest, light reasoning

@@ -95,10 +95,10 @@ DEEPSEEK_V4_PRO:
   arena_elo:      SWE-bench Verified 80.6%
   context:        1M | output: 384K
   pricing:        $0.435/$0.87 per M  (BUDGET POWERHOUSE)
-  status:         ⚠ линейка V4 официально PREVIEW — свежайшая запись V4 в changelog вендора
-                  датирована 2026-04-24 и помечает V4 как Preview; более поздних записей,
-                  снимающих метку, нет. Заявления о GA — вторичные. Модель оставлена
-                  в маршрутизации с этой пометкой: после ретайра алиасов других путей нет.
+  status:         ✅ GA 13.08.2026 для deepseek-v4-pro (чекпойнт 0813, веса MIT, нативный
+                  OpenAI Responses API). deepseek-v4-flash-0731 — public beta, не GA.
+                  Прежняя пометка «вся линейка V4 — Preview» опиралась на changelog
+                  2026-04-24 и устарела (исправлено 8.4.7).
   strengths:      Native reasoning, очень дёшево, code quality
 
   KNOWN_ISSUES:

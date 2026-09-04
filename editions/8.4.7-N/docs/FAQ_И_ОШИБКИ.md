@@ -80,7 +80,7 @@ v8N.1 (Normal Edition) — если работаешь с несколькими
 
 | G# | Модель | Симптом | Критичность | Fix |
 |----|--------|---------|-------------|-----|
-| G1 | Gemini Pro | HTTP 400 | CRITICAL | temperature: 1.0 при Deep Think |
+| G1 | Gemini Pro | отказ / иное поведение | CRITICAL | не передавать temperature на линии 3.x; Deep Think — 1.0 или опустить |
 | G2 | Gemini | Quality fail | CRITICAL (BLOCKER) | ZERO XML |
 | G3 | Grok | Topic drift | HIGH | Anchor каждые 3 turn |
 | G4 | Gemini Pro | Ignored thinking | MEDIUM | thinkingLevel вместо thinking_budget |

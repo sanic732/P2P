@@ -17,10 +17,13 @@ tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c, p
 > Anchor: #DB_ERROR_G[N]
 
 ### G1 — GEMINI_DEEP_THINK_TEMP #DB_ERROR_G1
-**Модель:** Gemini 3.1 Pro  
-**Симптом:** HTTP 400 при Deep Think + temperature ≠ 1.0  
-**Причина:** Gemini Deep Think принимает только temperature=1.0 или опущенный параметр  
-**Fix:** Удали temperature или выставь строго 1.0 при thinkingLevel ≠ null
+**Модель:** Gemini 3.1 Pro (Deep Think)  
+**Симптом:** отказ или неожиданное поведение при Deep Think с заданной temperature  
+**Причина:** для Deep Think допустимо только temperature=1.0 либо опущенный параметр.
+**Уточнено 8.4.7:** для всей линии 3.x temperature / top_p / top_k помечены deprecated
+с 21.07.2026; что именно вернёт API при их передаче, вендор не описывает — «HTTP 400»
+как гарантию не заявлять.  
+**Fix:** не передавать temperature на линии 3.x вовсе; для Deep Think — либо опустить, либо 1.0
 
 ### G2 — GEMINI_XML_COH #DB_ERROR_G2
 **Модель:** Gemini 3.1 Pro / Flash  
@@ -140,10 +143,10 @@ EXEMPT» была ошибкой. По официальной странице �
 ⚠ **Ловушка миграции:** официальный маппинг вёл ОБА алиаса на `deepseek-v4-flash`. Нагрузку
 бывшего `deepseek-reasoner` вести на **`deepseek-v4-pro`**, а НЕ на v4-flash-thinking — иначе
 reasoning тихо деградирует. Вторая ловушка: у v4-flash thinking включён по умолчанию и не отключается.  
-⚠ **Статус линейки V4 — официально PREVIEW.** Свежайшая запись V4 в changelog вендора датирована
-2026-04-24 и помечает V4 как Preview; более поздних записей, снимающих метку, нет. Все заявления
-о GA — вторичные. Модели оставлены в маршрутизации с этой пометкой, потому что после ретайра
-алиасов других путей нет.
+⚠ **Статус линейки V4 — уточнён 8.4.7.** `deepseek-v4-pro` вышел из preview: **GA 13.08.2026**
+(чекпойнт 0813, веса MIT, нативный OpenAI Responses API). `deepseek-v4-flash-0731` по-прежнему
+**public beta**, не GA. Прежняя запись «вся линейка V4 — Preview» опиралась на changelog от
+2026-04-24 и с тех пор устарела.
 
 
 ### G17 — QWEN_PROVIDER_PREFIX #DB_ERROR_G17
