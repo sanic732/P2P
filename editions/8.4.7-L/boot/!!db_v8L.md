@@ -11,10 +11,10 @@ LITE_SNAPSHOT:
   AS_OF: 2026-07-13
   DEADLINES:
     [PASSED 2026-06-15] Claude dated legacy aliases retired
-    [PASSED 2026-06-30] claude-sonnet-4-6 RETIRED → claude-sonnet-5
+    [PASSED 2026-06-30] дефолтной моделью стал claude-sonnet-5; claude-sonnet-4-6 активен
     [ACTIVE 2026-07-19] Fable 5: конец 50%-weekly include → usage credits
     [ACTIVE 2026-07-24 15:59 UTC] deepseek-chat/reasoner → HTTP 404 → deepseek-v4-flash
-    [ACTIVE 2026-08-31] Sonnet 5 intro-цена → $3/$15
+    [CANCELLED 2026-08-10] Sonnet 5 остаётся $2/$10
   CURRENT_FLAGSHIPS:
     claude: claude-fable-5, claude-opus-4-8, claude-sonnet-5
     gpt: gpt-5.6-sol/terra/luna · gemini: gemini-3.1-pro-preview · grok: grok-4.5 / 4.3

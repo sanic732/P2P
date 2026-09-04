@@ -11,7 +11,9 @@ XML-native, TRI_MODE_BRIDGE v3, QUORUM 8 agents, interactive teacher mode, VERSI
 ## Mandatory rules
 
 1. **Before any change** — read the target file in full
-2. **API strings** — only current: `claude-fable-5`, `claude-sonnet-5`, `claude-opus-4-8`, `claude-opus-4-7` (`claude-sonnet-4-6` — API-legacy)
+2. **API strings** — only current: `claude-opus-5`, `claude-sonnet-5`, `claude-fable-5-1`, `claude-fable-5`,
+   `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-4-6` (generation 4.6+ is ACTIVE —
+   retirement not sooner than Feb 2027, a legitimate cost choice)
 3. **NEVER** pass temperature when thinking=enabled (G7 → HTTP 400)
 4. **NEVER** use budget_tokens (removed from API)
 5. **Versioning** — bump `version:` in the YAML frontmatter; describe the change in the

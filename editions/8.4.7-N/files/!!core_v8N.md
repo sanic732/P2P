@@ -522,7 +522,7 @@ RESOURCE_STRATEGY:
 
   COST_ESTIMATE (примерный, 2026-07-13):
     Claude Opus 4.8/4.7: $5/$25 per M (in/out)
-    Claude Sonnet 5:   $2/$10 per M (intro до 31.08, затем $3/$15)
+    Claude Sonnet 5:   $2/$10 per M (подорожание 01.09 отменено 10.08)
     Gemini 3.1 Pro:    $2/$12 per M (≤200K, без Deep Think)
     GPT-5.6 Sol:       $5/$30 per M (Terra $2.50/$15, Luna $1/$6); GPT-5.5 $5/$30, >272K ×2/×1.5 (G10)
     Grok 4.5:          $2/$6 per M (Grok 4.3 — $1.25/$2.50)
@@ -585,7 +585,7 @@ DEADLINE_SCANNER:
 
   SCAN_FOR:
     [PASSED 2026-06-15] — Claude dated legacy aliases УЖЕ ретайрнуты (HTTP 400/404).
-      Актуальные: claude-fable-5 | claude-sonnet-5 | claude-opus-4-8 | claude-opus-4-7 (sonnet-4-6 — API-legacy)
+      Актуальные: claude-fable-5 | claude-sonnet-5 | claude-opus-4-8 | claude-opus-4-7 (sonnet-4-6 — активен, дешевле)
       Действие: историческое; в текущей сборке литералы отсутствуют.
 
     [PASSED 2026-06-05] — gpt-5.x legacy aliases УЖЕ ретайрнуты → gpt-5.5.

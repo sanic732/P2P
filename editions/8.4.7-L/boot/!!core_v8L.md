@@ -384,7 +384,7 @@ DEADLINE_SCANNER:
   TRIGGER: /p2p-deadline | пункт [44] | "устаревший API"
   SCAN_FOR:
     [PASSED 2026-06-15] Claude dated legacy aliases
-    [PASSED 2026-06-30] claude-sonnet-4-6 RETIRED → claude-sonnet-5.
+    [PASSED 2026-06-30] дефолтной моделью стал claude-sonnet-5; claude-sonnet-4-6 активен.
     [ACTIVE 2026-07-19] Fable 5: 50%-weekly include → usage credits
     [RETIRE 2026-07-24 15:59 UTC] deepseek-chat/reasoner → deepseek-v4-flash
   AUTO_NOTICE: "[DEADLINE] Устаревшая API строка {string} → замените на {replacement}. Дедлайн {date}."

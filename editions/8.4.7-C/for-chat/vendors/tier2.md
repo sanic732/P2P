@@ -17,7 +17,8 @@ G-errors: G7 (temperature + thinking → HTTP 400), G6 (новый токени�
 
 Strengths: near-Opus-4.8 качество при низкой цене; отличный tool calling; Tier 3 default для cost-efficient agentic (8N.3). Adaptive thinking (low|medium|high|xhigh|max).
 
-> ⚠ Claude Sonnet 4.6 (`claude-sonnet-4-6`) — RETIRED 2026-06-30, доступен только через API для legacy-совместимости; для новых интеграций → Sonnet 5.
+> ✅ Claude Sonnet 4.6 (`claude-sonnet-4-6`) — активен: 30.06 он лишь перестал быть моделью по умолчанию.
+> Снятие не раньше 17.02.2027, поэтому остаётся законным выбором по цене.
 
 ## Gemini 3.6 Flash (новый workhorse)
 API: `gemini-3.6-flash`

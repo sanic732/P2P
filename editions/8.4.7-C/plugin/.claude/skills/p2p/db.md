@@ -269,13 +269,13 @@ MUST NOT:
 | Модель | API String | Статус |
 |--------|-----------|--------|
 | Claude Fable 5 | `claude-fable-5` | ✅ T4 FULL+ (Arena Overall/Text/Vision #1) |
-| Claude Sonnet 5 | `claude-sonnet-5` | ✅ default Free/Pro (GA 30.06; $2/$10→$3/$15 c 01.09) |
+| Claude Sonnet 5 | `claude-sonnet-5` | ✅ default Free/Pro (GA 30.06; $2/$10 — подорожание 01.09 отменено 10.08) |
 | Claude Opus 5 | `claude-opus-5` | ✅ PRIMARY (GA 24.07; thinking on by default) |
 | Claude Opus 4.8 | `claude-opus-4-8` | ✅ complex code (SWE-bench Pro 69.2%); ACTIVE, API-only surface |
 | Claude Opus 4.7 | `claude-opus-4-7` | ✅ Актуальный |
 | Claude Opus 4.6 | `claude-opus-4-6` | ✅ Pinned (>500K recall) |
 | Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | ✅ Актуальный (T0-1) |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6` | ⚠️ RETIRED 30.06 (API-only legacy) |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` | ✅ Active, cost-sensitive (снятие не раньше 17.02.2027) |
 | Claude Mythos 5 | `claude-mythos-5` | 🔒 Limited (Glasswing) — не маршрутизируется |
 | claude-*-4-20250514 | RETIRE | ❌ **2026-06-15** (HTTP 404) |
 

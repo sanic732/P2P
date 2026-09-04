@@ -24,7 +24,7 @@ CLAUDE_MODELS:
   claude-opus-4-7:   $5/$25   | 1M | legacy флагман; G6 общий токенизатор
   claude-opus-4-6:   $5/$25   | 1M | пин для >500K recall (G8; MRCR 78.3%)
   claude-haiku-4-5:  $1/$5    | 200K | fast fallback (T0-1)
-  claude-sonnet-4-6: legacy   | 200K | ⚠ RETIRED 30.06 (API-only)
+  claude-sonnet-4-6: active   | 200K | ✅ выбор по цене
   claude-mythos-5:   $10/$50  | 1M | 🔒 Limited (Glasswing) — НЕ маршрутизируется
 
 KNOWN_ISSUES:

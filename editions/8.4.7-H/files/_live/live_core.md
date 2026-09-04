@@ -42,7 +42,7 @@ PRICING:
   grok-4.3:                  $1.25  / $2.50 / 1M    / X Firehose; для 2M → grok-4.20 Heavy
   deepseek-v4-pro:           $0.435 / $0.87 / 1M    / Budget powerhouse; out 384K
   qwen3.7-max:               $2.50  / $7.50 / 1M    / Agent Era; out 131K
-  // ⚠ claude-sonnet-4-6 RETIRED 30.06 (API-only legacy) — заменён Sonnet 5 выше
+  // ✅ claude-sonnet-4-6 активен; с 30.06 дефолт — Sonnet 5 выше
 
   // TIER 3 — Budget/Fast
   gpt-5.6-luna:              $1     / $6    / ⚠ офиц. строки нет / cheap/fast; MRCR collapse >512K; long-context ставки НЕ документированы; голый алиас gpt-5.6 → Sol
@@ -111,7 +111,7 @@ ROUTING_WEIGHTS:
   CODING:
     claude-opus-5:      35%   // PRIMARY с 24.07; thinking on by default
     claude-opus-4-8:    25%   // ACTIVE, API-only surface
-    claude-sonnet-5:    20%   // (было sonnet-4-6, RETIRED → Sonnet 5)
+    claude-sonnet-5:    20%   // (было sonnet-4-6; дефолт сменился на Sonnet 5)
     qwen3.6-plus:       12%
     deepseek-v4-pro:    8%
     // claude-fable-5 выведен из автоматических весов: COST-GATED с 20.07 (usage credits),
@@ -134,7 +134,7 @@ ROUTING_WEIGHTS:
     claude-opus-4-7:      40%
     gpt-5.6-terra:        30%  // (было gpt-5.5 → GPT-5.6)
     gemini-3.1-pro:       20%
-    claude-sonnet-5:      10%  // (было sonnet-4-6, RETIRED → Sonnet 5)
+    claude-sonnet-5:      10%  // (было sonnet-4-6; дефолт сменился на Sonnet 5)
 
   BUDGET:
     deepseek-v4-flash:    40%
