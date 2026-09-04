@@ -272,9 +272,9 @@ G_ERRORS:
        ⚠ ЛОВУШКА: официальный маппинг вёл ОБА алиаса на deepseek-v4-flash. Нагрузку бывшего
          deepseek-reasoner вести на deepseek-v4-pro, НЕ на v4-flash-thinking — иначе reasoning
          тихо деградирует. У v4-flash thinking включён по умолчанию и не отключается.
-       ⚠ Линейка V4 официально PREVIEW: свежайшая запись V4 в changelog вендора — 2026-04-24,
-         метку Preview никто не снимал. Заявления о GA вторичны. Модели оставлены в маршрутизации
-         с этой пометкой: после ретайра алиасов других путей нет.
+       ⚠ Статус V4 уточнён 8.4.7: deepseek-v4-pro вышел из preview — GA 13.08.2026 (чекпойнт
+         0813, веса MIT, нативный OpenAI Responses API). deepseek-v4-flash-0731 остаётся
+         public beta. Прежняя запись опиралась на changelog 2026-04-24 и устарела.
 
   // ── QWEN ──
   G17: QWEN_PROVIDER_PREFIX

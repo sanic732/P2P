@@ -258,7 +258,7 @@ V872_DELTA:
     биллинг расщепляется; в app/Claude Code отключаемо.
   DeepSeek_G15_REVERSED: reasoning_content НАДО re-inject после tool calls — RESOLVED BY DESIGN.
     Алиасы deepseek-chat/reasoner мертвы 24.07 15:59 UTC (точный код не подтверждён: 404 либо 400).
-    Линейка V4 официально PREVIEW (запись 24.04); GA не объявлен, все заявления о GA — вторичные.
+    v4-pro GA 13.08.2026 (веса MIT); v4-flash-0731 — public beta. Исправлено 8.4.7.
     Бывший deepseek-reasoner → v4-pro, НЕ v4-flash-thinking (иначе тихая деградация reasoning).
   Gemini: 3.6 Flash GA 21.07 (1,048,576/65,536, $1.50/$7.50, cache-read $0.15, ~304 tok/s,
     на 17% меньше выходных токенов) — новый workhorse; 3.5 Flash-Lite GA ($0.30/$2.50, ~350 tok/s).

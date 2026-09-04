@@ -48,7 +48,7 @@ PRICING:
   gpt-5.6-luna:              $1     / $6    / ⚠ офиц. строки нет / cheap/fast; MRCR collapse >512K; long-context ставки НЕ документированы; голый алиас gpt-5.6 → Sol
   gemini-3.5-flash-lite:     $0.30  / $2.50 / 1M    / GA 21.07; самый дешёвый уровень; ~350 tok/s
   gemini-3.5-flash:          $1.50  / $9    / 1M    / High-freq safe (no G12)
-  deepseek-v4-flash:         $0.14  / $0.28 / 1M    / Cheapest reasoning; ⚠ линейка V4 официально PREVIEW; алиасы мертвы 24.07; thinking неотключаем
+  deepseek-v4-flash:         $0.22  / $0.66 / 1M    / Cheapest reasoning; v4-pro GA 13.08, flash-0731 public beta; алиасы мертвы 24.07; thinking неотключаем
   qwen3.7-plus:              $0.32  / $1.28 / 1M    / multimodal (расхождение по цене: и 0.40/1.60)
   qwen3.6-35b-a3b:           $0.14  / $1.00 / 262,144 / open-weight Apache-2.0
   qwen3.6-plus:              budget /       / 1M    /

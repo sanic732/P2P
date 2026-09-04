@@ -133,7 +133,7 @@ DELTA_v872:
   gpt: G10 порог 272K — ×2 input, ×2 **cached** input, ×1.5 output. «EXEMPT» было ошибкой.
     Sol — агентная опасность (удаление файлов, чужие креды): вне judge-ролей И вне любого
     harness с записью в ФС/секреты. Terra/Luna long-context ставки НЕ документированы.
-  deepseek: V4 официально PREVIEW (запись 24.04, GA не объявлен); алиасы мертвы с 24.07 15:59 UTC;
+  deepseek: v4-pro GA 13.08.2026, v4-flash-0731 public beta; алиасы мертвы с 24.07 15:59 UTC;
     бывший `deepseek-reasoner` → **v4-pro**, НЕ v4-flash-thinking.
   deadlines: 2026-08-05 opus-4-1 retire; 2026-08-26 OpenAI Assistants API shutdown (вкл. Azure);
     2026-08-31 kimi-k2.5 sunset (исполнено); 2026-10-10 снятие линейки qwen.
