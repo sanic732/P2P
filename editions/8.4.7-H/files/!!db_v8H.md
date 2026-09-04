@@ -439,8 +439,8 @@ QUORUM_WEIGHTS:
 
 RECOMMENDATIONS:
   CODING:    Claude Opus 4.7 (#1 Arena Code 1571), Qwen3-Coder, Kimi K2.x
-  REASONING: Claude Opus 4.7, GPT-5.5 Thinking, Gemini 3.1 Pro Deep Think
-  CREATIVE:  Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro
+  REASONING: Claude Opus 4.7, GPT-5.6 Sol, Gemini 3.1 Pro Deep Think
+  CREATIVE:  Claude Opus 4.7, GPT-5.6 Terra, Gemini 3.1 Pro
   RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.3 (X.com real-time)
   VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro, Claude Opus 4.7
   AGENTS:    Kimi K2.x (1500+ tool calls), Claude Opus 4.7 (Computer Use)

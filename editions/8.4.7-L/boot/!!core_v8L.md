@@ -326,7 +326,7 @@ LAZY_FETCH_DISPATCH:
 
 MODEL_ROUTING_BY_TASK:
   CODING:    Claude Sonnet 4.6, Qwen3-Coder
-  REASONING: Claude Opus 4.7, Gemini 3.1 Pro Deep Think, GPT-5.5 Thinking
+  REASONING: Claude Opus 5, Gemini 3.1 Pro Deep Think, GPT-5.6 Sol
   CREATIVE:  Claude Fable 5, Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro
   RESEARCH:  Gemini 3.1 Pro, Grok 4.3
   VISION:    Qwen3-VL, Gemini 3.1 Pro

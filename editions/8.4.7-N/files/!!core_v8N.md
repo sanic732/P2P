@@ -390,8 +390,8 @@ AUTO_ROUTING:
 
 MODEL_ROUTING_BY_TASK:
   CODING:    Claude Sonnet 4.6 (balanced), Qwen3-Coder (budget)
-  REASONING: Claude Opus 4.7, Gemini 3.1 Pro Deep Think, GPT-5.5 Thinking
-  CREATIVE:  Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro
+  REASONING: Claude Opus 5, Gemini 3.1 Pro Deep Think, GPT-5.6 Sol
+  CREATIVE:  Claude Opus 4.7, GPT-5.6 Terra, Gemini 3.1 Pro
   RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.3 (X.com real-time)
   VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro
   AGENTS:    Kimi K2.x (swarm), Claude Opus 4.7 (Computer Use)

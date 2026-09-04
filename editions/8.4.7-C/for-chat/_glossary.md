@@ -77,8 +77,8 @@ tags: glossary, terms, definitions, g-errors-reference, v8c
 | G6 | Opus 4.7+ / Fable 5 / Sonnet 5 / Opus 5 | ~+30% tokenizer inflation (офиц.; счётчик — Token Counting API) | 🟡 |
 | G7 | Claude 4.x | temperature + thinking → HTTP 400 | 🔴 |
 | G8 | Opus 4.7 | MRCR 32.2% at 1M (vs 78.3% у 4.6) | 🟡 |
-| G9 | GPT-5.5 | >7 rule pairs → silent downgrade | 🟡 |
-| G10 | GPT-5.5 | >272K input → pricing trap | 🟡 |
+| G9 | GPT-5.6 | >7 rule pairs → silent downgrade | 🟡 |
+| G10 | GPT-5.6 | >272K input → pricing trap (кэш тоже ×2) | 🟡 |
 | G11 | Gemini | thinkingLevel=HIGH billing shock | 🟡 |
 | G12 | Gemini Pro | Hard 429 (нет queue) | 🟡 |
 | G13 | Gemini | Memory nuke после ~80 сообщений | 🟡 |
@@ -112,7 +112,7 @@ tags: glossary, terms, definitions, g-errors-reference, v8c
 | Claude Sonnet 4.6 | `claude-sonnet-4-6` |
 | Claude Haiku 4.5 | `claude-haiku-4-5-20251001` |
 | Gemini 3.1 Pro | `gemini-3.1-pro-preview` |
-| GPT-5.5 | `gpt-5.5` |
+| GPT-5.6 Terra | `gpt-5.6-terra` |
 | Grok 4.3 | `grok-4.3` |
 | DeepSeek V4-Flash | `deepseek-v4-flash` |
 | Qwen 3.6-Plus | `qwen3-plus` |

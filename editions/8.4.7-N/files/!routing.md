@@ -36,7 +36,7 @@ menu_item: 28
 ──────────────────────────────────────────────────────────────────────
 Код / debugging            → claude-opus-4-8          → claude-sonnet-5
 Agentic / WebDev T3-4      → claude-fable-5           → claude-opus-4-8  (Safety Nanny ~5%)
-Глубокий анализ T4         → claude-opus-4-8          → gpt-5.5
+Глубокий анализ T4         → claude-opus-5            → gpt-5.6-sol
 Обычный текст T2-3         → claude-sonnet-5          → gemini-3.1-pro-latest
 Быстрый T0-1               → claude-haiku-4-5         → gemini-3.1-flash-latest
 Длинный контекст >200K     → gemini-3.1-pro-latest    → grok-4.3 (2M)
@@ -73,7 +73,7 @@ Formula: cost = (in_tok/1M × price_in) + (out_tok/1M × price_out)   // пра�
 ## LLM-Router — лёгкий классификатор
 ```
 [LLM_ROUTER]  Classifier: claude-haiku-4-5 / gemini-3.1-flash (быстро, дёшево, ~$0.001/query)
-  code→claude-opus-4-8 | analysis→claude-opus-4-8/sonnet-5 | creative→claude-sonnet-5/gpt-5.5
+  code→claude-opus-4-8 | analysis→claude-opus-4-8/sonnet-5 | creative→claude-sonnet-5/gpt-5.6-terra
   factual→gemini-3.1-pro-latest (web grounding) | math→claude-opus-4-8 + !reasoning MCTS
   chinese→qwen3.7-max | rt_social→grok-4.3 | agentic→claude-fable-5/gpt-5.5
 ```

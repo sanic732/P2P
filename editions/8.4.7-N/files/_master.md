@@ -138,7 +138,7 @@ GPT_API:
       system = f.read()  # GPT терпим к XML, но лучше убрать
 
   response = client.chat.completions.create(
-      model="gpt-5.5",
+      model="gpt-5.6-terra",
       messages=[
           {"role": "system", "content": system},
           {"role": "user", "content": "СТАРТ"}
