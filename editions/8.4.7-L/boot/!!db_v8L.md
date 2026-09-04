@@ -159,7 +159,7 @@ QUORUM_WEIGHTS:
   VETO: VECTOR — абсолютное право вето на [CRITICAL_RISK]. IF triggered → веса=0 → Audit Mode.
 
 RECOMMENDATIONS:
-  CODING: Claude Opus 4.8, Qwen3-Coder, Kimi K2.x · REASONING: Opus 4.7, GPT-5.5 Thinking, Gemini Deep Think
+  CODING: Claude Opus 4.8, Qwen3-Coder, Kimi K2.x · REASONING: Opus 4.7, GPT-5.6 Sol, Gemini Deep Think
   CREATIVE: Claude Fable 5, Opus 4.7, GPT-5.5 · RESEARCH: Gemini 3.1 Pro, Grok 4.3
   VISION: Qwen3-VL, Gemini 3.1 Pro · AGENTS: Claude Fable 5, Kimi K2.x, Opus 4.8
   BUDGET: DeepSeek V4-Flash, GLM-5.1 · LONG_CTX: Gemini 1M, Grok 2M · RECALL: Opus 4.6 pin

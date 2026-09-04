@@ -83,7 +83,7 @@ ARENA_ELO:
   claude-fable-5:            1665  (WebDev #1; Text #1 = 1510; Agent #1 = 12.94%)
   claude-opus-4-8:           1583  (Code #1)
   claude-opus-4-7:           1571  (legacy)
-  gpt-5.5:                   1563
+  gpt-5.6-terra:             1563  // 5.5 снят 09.07, счётчик сохранён для истории
   gemini-3.1-pro-latest:     1549
   claude-sonnet-4-6:         1518
   grok-4.3:                  1541
@@ -103,7 +103,7 @@ BENCHMARK_NOTES:
   Documents: claude-opus-4-6 #1 — старое поколение сильнее нового, «новее = лучше» здесь не работает
   Coding: Claude Opus 5 (PRIMARY) → Opus 4.8; Fable 5 силён в WebDev, но cost-gated
   Long context recall: Claude Opus 4.6 > Opus 4.7/4.8 for >500K (G8: MRCR 32.2% vs 78.3%)
-  Math: GPT-5.5 Thinking, Gemini 3.1 Pro Deep Think
+  Math: GPT-5.6 Sol, Gemini 3.1 Pro Deep Think
   Speed: Gemini Flash, Haiku 4.5, DeepSeek V4-Flash
 
 // ─────────────────────────────────────────────────────

@@ -71,13 +71,13 @@ Cost-sensitive → пин `claude-opus-4-6` / `claude-sonnet-4-6`.
 **Fix:** Для задач с >500K recall → пин на `claude-opus-4-6`
 
 ### G9 — GPT55_SILENT_QUALITY_DOWNGRADE #DB_ERROR_G9
-**Модель:** GPT-5.5  
+**Модель:** GPT-5.6 (Sol / Terra / Luna)  
 **Симптом:** Тихое снижение качества без ошибок  
 **Причина:** Over-constrained prompts (>7 MUST/MUST NOT пар) → silent downgrade  
 **Fix:** Максимум 7 rule pairs. Детект: запусти с/без heavy constraints.
 
 ### G10 — GPT_CONTEXT_PRICING_TRAP_272K #DB_ERROR_G10
-**Модель:** GPT-5.5, GPT-5.6 (Sol/Terra/Luna)  
+**Модель:** GPT-5.6 (Sol / Terra / Luna), GPT-5.6 (Sol/Terra/Luna)  
 **Симптом:** Внезапный прыжок стоимости  
 **Причина:** Выше 272K **весь запрос** считается по ×2 input, ×2 **cached** input и ×1.5 output.
 Порог не изменился с выходом 5.6. Sol: $4 / $0.40 / $20 → $8 / $0.80 / $30.
@@ -584,7 +584,7 @@ T0-T4 + LoadScore → выбор бюджета агентов и thinking level
 
 > Как P2P адаптирует промпт под разные LLM
 
-| Элемент | Claude | Gemini | Grok | GPT-5.5 |
+| Элемент | Claude | Gemini | Grok | GPT-5.6 |
 |---------|--------|--------|------|---------|
 | Структура | XML tags | Plain text hierarchy | JSON native | Plain text + JSON tools |
 | Thinking | `effort: "medium"` | `thinkingLevel: "MEDIUM"` | n/a | n/a |
@@ -939,7 +939,7 @@ Step 1 (Research): → Gemini 3.1 Pro или Grok 4.x (Deep Search, real-time)
   Output: Structured findings in JSON/Markdown
 Step 2 (Draft): → Claude Opus 4.7 или GPT-5.5 (long output, structured)
   Input: Findings from Step 1. Output: Full draft document
-Step 3 (Review): → GPT-5.5 Thinking или DeepSeek V4 (reasoning, critique)
+Step 3 (Review): → GPT-5.6 Sol или DeepSeek V4 (reasoning, critique)
   Input: Draft from Step 2. Output: Issues + severity
 Step 4 (Polish): → Claude Sonnet 4.6 (cost-efficient for edits)
   Input: Draft + Issues. Output: Final version
@@ -1045,7 +1045,7 @@ If different error type appears → iterate from Step 1 with new diagnosis.
 |--------|-----------|-------------|
 | Claude Opus 4.7 | Semantic Chunking | 64K blocks; recall деградирует >200K |
 | Claude Sonnet 4.6 | Semantic Chunking | 64K blocks |
-| GPT-5.5 | Document Map | 272K blocks; >272K → auto-compact |
+| GPT-5.6 | Document Map | 272K blocks; >272K → auto-compact |
 | Gemini 3.1 Pro | Late Chunking | 100K blocks; hard rate limit (G12) |
 | Grok 4.3 | Standard Chunking | 128K; topic anchor every 3rd turn |
 | DeepSeek V4 | Structured Segmentation | 128K blocks |
@@ -1061,13 +1061,13 @@ If different error type appears → iterate from Step 1 with new diagnosis.
 
 | Задача | Топ-1 | Топ-2 | Топ-3 | Budget |
 |--------|-------|-------|-------|--------|
-| Coding | Claude Opus 4.8 | Gemini 3.1 Pro | GPT-5.5 | GLM-5.1 ($0.60/M) |
-| Analytical | Gemini 3.1 Pro (GPQA 94.3%) | GPT-5.5 Thinking | Claude Opus 4.7 | DeepSeek V4 |
+| Coding | Claude Opus 4.8 | Gemini 3.1 Pro | GPT-5.6 Sol | GLM-5.3 |
+| Analytical | Gemini 3.1 Pro (GPQA 94.3%) | GPT-5.6 Sol | Claude Opus 4.7 | DeepSeek V4 |
 | Research | Gemini 3.1 Pro | Kimi K2.x | Claude Opus 4.7 | Qwen 3.6 |
 | Visual | Kimi K2.x (MoonViT-3D) | GLM-5V | Gemini 3.1 Pro (VEO) | Qwen3-VL |
-| Agents | GPT-5.5 (native computer use) | GLM-5 | Kimi K2.x Agent Swarm | DeepSeek V4 |
-| Writing | Claude Opus 4.7 (depth, empathy) | GPT-5.5 (structured) | Grok 4.3 (uncensored creative) | — |
-| Frontier | Gemini 3.1 Pro Deep Think | Claude Opus 4.7 | GPT-5.5 Thinking | — |
+| Agents | GPT-5.6 Sol (native computer use; ⚠ G22) | GLM-5.3 | Kimi K2.x Agent Swarm | DeepSeek V4 |
+| Writing | Claude Opus 4.7 (depth, empathy) | GPT-5.6 Terra (structured) | Grok 4.3 (uncensored creative) | — |
+| Frontier | Gemini 3.1 Pro Deep Think | Claude Opus 5 | GPT-5.6 Sol | — |
 
 **RESOURCE STRATEGY:**
 - IDEALIST: Игнорировать стоимость, максимизировать качество
