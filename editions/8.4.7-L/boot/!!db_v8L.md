@@ -118,7 +118,7 @@ G_ERRORS:
   G13 GEMINI_MEMORY_NUKE       Gemini 3.1 Pro · забывает после ~80 сообщений · Fix: REINJECT каждые 25.
   G14 GROK_UNSUPPORTED_PARAM   Grok 4.3/4.5/4.20 · HTTP 400 · Fix: safe params only (temp/max_tokens/stream/top_p/stop). ⚠ -heavy/-expert/-fast id НЕ существуют; от 200K тариф x2 ВКЛЮЧАЯ кэш (обрыв кэшем не смягчить); cached 0.30 short / 0.60 long — унаследованная 0.50 неверна.
   G15 DEEPSEEK_REASONING_CARRY DeepSeek V4 · загрязнение reasoning · Fix: re-inject reasoning_content (НЕ null) — RESOLVED BY DESIGN.
-  G16 DEEPSEEK_ALIAS_RETIRE    ★ИСПОЛНЕНО 2026-07-24 15:59 UTC (no grace) · код 404 либо 400 — принимать оба · Fix: бывший reasoner → deepseek-v4-pro, НЕ v4-flash-thinking (иначе тихая деградация). Линейка V4 официально PREVIEW.
+  G16 DEEPSEEK_ALIAS_RETIRE    ★ИСПОЛНЕНО 2026-07-24 15:59 UTC (no grace) · код 404 либо 400 — принимать оба · Fix: бывший reasoner → deepseek-v4-pro, НЕ v4-flash-thinking (иначе тихая деградация). v4-pro GA 13.08.2026 (веса MIT); v4-flash-0731 — public beta.
   G17 QWEN_PROVIDER_PREFIX     Qwen · HTTP 404 · Fix: DashScope qwen3.6-plus / OpenRouter qwen/qwen3.6-plus.
   G18 QWEN_PRESERVE_THINKING   Qwen 3.6 agentic · thinking теряется · Fix: preserve_thinking: true.
   G19 GLM_CONTEXT_COLLAPSE     GLM-5.1 · деградация >100K · Fix: hard limit 100K.
