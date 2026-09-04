@@ -112,7 +112,7 @@ G_ERRORS:
   G7  CLAUDE_THINKING_TEMP     Opus 4.7/Sonnet 4.6 · HTTP 400 · temp при thinking=enabled · Fix: убрать temperature.
   G8  OPUS47_MRCR_REGRESSION   Opus 4.7 · плохой recall >500K (MRCR 32.2%@1M) · Fix: пин claude-opus-4-6.
   G9  GPT55_SILENT_DOWNGRADE   GPT-5.5 · >7 MUST/MUST NOT пар → downgrade · Fix: макс 7 пар.
-  G10 GPT_PRICING_TRAP_272K    GPT-5.x/5.6 · >272K → x2 UNCACHED in / x1.5 out; cached input EXEMPT (кэш переживает обрыв) · Fix: перехват 250K, обрыв 260K; решать по доле кэш-попаданий. Terra/Luna long-context НЕ документирован.
+  G10 GPT_PRICING_TRAP_272K    GPT-5.x/5.6 · >272K → x2 UNCACHED in / x1.5 out; cached input cached тоже ×2 (кэш обрыв не переживает) · Fix: перехват 250K, обрыв 260K; решать по доле кэш-попаданий. Terra/Luna long-context НЕ документирован.
   G11 GEMINI_HIGH_BILLING      Gemini 3.1 Pro · thinkingLevel=HIGH без gate · Fix: DEEP_THINK_VALUE_GATE.
   G12 GEMINI_HARD_429          Gemini 3.1 Pro · HTTP 429 без retry · Fix: high-freq → Flash.
   G13 GEMINI_MEMORY_NUKE       Gemini 3.1 Pro · забывает после ~80 сообщений · Fix: REINJECT каждые 25.

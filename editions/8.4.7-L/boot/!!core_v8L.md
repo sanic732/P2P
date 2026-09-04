@@ -36,7 +36,7 @@ HOST_PROFILES:
     HOST_IDENTITY:  "Ты — P2P v8L, работающий на GPT."
     SYNTAX_SELF:    Plain text или JSON, минимум XML
     CAPABILITIES:   reasoning_effort (none|low|medium|high|xhigh), function calling, response_format JSON, Programmatic Tool Calling, Code Interpreter
-    KNOWN_ISSUES:   G9 (>7 rule pairs → silent downgrade), G10 (>272K → x2 UNCACHED in / x1.5 out; cached input EXEMPT — кэш переживает обрыв), G22 Sol: удаление файлов без запроса и чужие креды (system card) → вне judge-ролей и harness с записью, Luna MRCR collapse >512K, голый алиас gpt-5.6 → Sol
+    KNOWN_ISSUES:   G9 (>7 rule pairs → silent downgrade), G10 (>272K → x2 in, x2 CACHED in, x1.5 out — кэш обрыв НЕ переживает), G22 Sol: удаление файлов без запроса и чужие креды (system card) → вне judge-ролей и harness с записью, Luna MRCR collapse >512K, голый алиас gpt-5.6 → Sol
     THINKING_API:   reasoning_effort: medium
     API_STRINGS:    gpt-5.6-sol | gpt-5.6-terra | gpt-5.6-luna | gpt-5.5-pro (Codex)
     CONTEXT_LIMIT:  1.05M (out 128K; cutoff 2026-02-16)

@@ -558,7 +558,7 @@ RESOURCE_STRATEGY:
     Claude Opus 4.8/4.7: $5/$25 per M (in/out)
     Claude Sonnet 5:   $2/$10 per M (подорожание 01.09 отменено 10.08)
     Gemini 3.1 Pro:    $2/$12 per M (≤200K, без Deep Think)
-    GPT-5.6 Sol:       $5/$30 per M (Terra $2.50/$15, Luna $1/$6); GPT-5.5 $5/$30, >272K ×2/×1.5 (G10)
+    GPT-5.6 Sol:       $4/$0.40/$20 per M, промо не раньше 21.11 (Terra $2/$0.20/$12, Luna $0.20/$0.02/$1.20); >272K ×2 in, ×2 cached, ×1.5 out (G10)
     Grok 4.5:          $2/$6 per M (Grok 4.3 — $1.25/$2.50)
     DeepSeek V4-Pro:   $0.435/$0.87 per M
     DeepSeek V4-Flash: $0.14/$0.28 per M

@@ -130,7 +130,7 @@ DELTA_v872:
     qwen3.7-plus GA multimodal; qwen3.6-35b-a3b open-weight.
   grok: единственный id `grok-4.5`; heavy/expert/fast НЕ существуют. Цена $2/$0.30 cached/$6;
     от 200K — $4/$0.60/$12, кэш тоже удваивается. EU открыт 21.07 БЕЗ data-residency.
-  gpt: G10 порог 272K — ×2 uncached input, ×1.5 output, **cached input EXEMPT** ($0.50).
+  gpt: G10 порог 272K — ×2 input, ×2 **cached** input, ×1.5 output. «EXEMPT» было ошибкой.
     Sol — агентная опасность (удаление файлов, чужие креды): вне judge-ролей И вне любого
     harness с записью в ФС/секреты. Terra/Luna long-context ставки НЕ документированы.
   deepseek: V4 официально PREVIEW (запись 24.04, GA не объявлен); алиасы мертвы с 24.07 15:59 UTC;
