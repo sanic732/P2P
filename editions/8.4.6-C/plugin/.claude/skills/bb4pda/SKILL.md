@@ -1,16 +1,18 @@
 ---
 name: bb4pda
 description: >-
-  Convert text into ready-to-paste 4PDA forum BB-code (BBCode) markup, in the
-  author's signature style. Use when the user wants to "оформить пост на 4PDA",
-  "сделать bb-код / разметку для форума", "auto-format forum post", "переведи в
-  bb-код", "оформи как пост/гайд/анонс/FAQ", or attaches a SCREENSHOT of a
-  nicely-formatted 4PDA post to reverse-engineer its BB-code. Two modes:
-  (A) raw text → apply 4PDA BB-code (headers, nested spoilers, lists, colors,
-  fontello symbols, dividers); (B) screenshot of a formatted post → reproduce
-  its BB-code. Knows 4PDA parser limits (no nested [code], glue tags with no
-  blank lines between spoilers, only system [img]). NOT for Markdown/HTML output
-  and NOT for non-4PDA forums.
+  Build a LONGREAD publication for the 4PDA forum in BB-code, in the author's
+  signature style: full skeleton with centred header, tagline, nested spoilers,
+  dividers, ИТОГ block and signature. Use ONLY for material published as a
+  separate post: "оформи гайд", "свёрстай лонгрид/статью", "анонс релиза",
+  "changelog версии", "FAQ-статья", "шапка темы", or a SCREENSHOT of a formatted
+  4PDA longread to reverse-engineer its BB-code. Two modes: (A) raw text →
+  full-skeleton BB-code; (B) screenshot → reproduce its BB-code. Knows 4PDA
+  parser limits (no nested [code], glued spoilers, only system [img], no outer
+  quotes around formatted spoiler titles). DO NOT use for ordinary replies to
+  users, comments in a discussion, quoting someone, a short remark or a couple of
+  paragraphs — a reply needs at most [quote]/[b]/[list] and no skeleton at all.
+  NOT for Markdown/HTML output and NOT for non-4PDA forums.
 version: 1.0
 tags: [bb-code, bbcode, 4pda, forum, formatting, markup]
 ---
@@ -32,11 +34,34 @@ tags: [bb-code, bbcode, 4pda, forum, formatting, markup]
 
 ## Когда применять / когда НЕ применять
 
-**Применять:** посты и лонгриды для 4PDA (анонсы, гайды, FAQ, ответы, changelog),
-просьбы «оформи в bb-код», «сделай как пост», reverse из скриншота 4PDA.
+Скилл собран под **лонгрид** — материал, который выходит отдельной публикацией.
+Его каркас (шапка, таглайн, вложенные спойлеры, разделители, ИТОГ, подпись)
+на короткой реплике выглядит нелепо и мешает читать.
 
-**НЕ применять:** нужен Markdown/HTML; другой форум (не IP.Board/4PDA); короткое
-сообщение в чат без оформления; пользователь явно просит plain text.
+**Применять:** гайд, статья, лонгрид, анонс релиза, changelog, FAQ-статья,
+шапка темы, reverse из скриншота оформленного лонгрида 4PDA.
+
+**НЕ применять — это главное:**
+
+- **ответ пользователю в обсуждении**, реплика, комментарий, цитирование —
+  даже если ответ длинный и его надо слегка оформить;
+- разбор чужого поста, короткое уточнение, пара абзацев;
+- нужен Markdown/HTML; другой форум (не IP.Board/4PDA); просят plain text.
+
+### Что делать при обычном ответе (без этого скилла)
+
+Ответ на форуме верстается минимально, каркас не нужен вообще:
+
+```
+[SNAPBACK]<post_id>[/SNAPBACK] [B]<ник>[/B],
+[quote name="<ник>" date="<д.мм.гг, чч:мм>" post="<post_id>"]суть, на которую отвечаем[/quote]
+текст ответа, при необходимости [b]акцент[/b] и [list][*]пункты[/list]
+```
+
+Заготовки `[SNAPBACK]` и `[quote]` с настоящими ником и датой выдаёт команда
+`node D:\0001\4PDA\tools\4pda.js post <post_id>` — собирать руками не нужно.
+Из правил парсера при ответе актуальны только два: спойлеры склеивать встык
+и не вкладывать `[code]` в `[code]`.
 
 ## Рабочий процесс
 
@@ -57,8 +82,8 @@ tags: [bb-code, bbcode, 4pda, forum, formatting, markup]
 - **Вступление-крючок** по центру + `[offtop]…[/offtop]` (дисклеймер тона/охвата).
 - **Тело — вложенные спойлеры.** Крупные блоки `[spoiler=[b]🟢 БЛОК[/b]]`, внутри —
   главы `[spoiler=Глава N. [color=Teal]Название[/color]]`. Заголовок спойлера может
-  содержать цвет/жирность/ссылку (с внешними кавычками и без) — варианты и нюансы
-  в `reference/edge_cases.md`.
+  содержать цвет, жирность и ссылку, но **только без внешних кавычек** — с ними форум
+  выводит сырой код (см. правило 6 ниже и `reference/edge_cases.md`).
 - **Списки:** `[list][*]📌 пункт[/list]`. **Примеры/ASCII/код:** в `[code]…[/code]`.
 - **Контраст** `❌ … / ✅ …` в `[code]`. **Главное предупреждение** —
   `[color=OrangeRed]…[/color]`; **золотое правило** — `[color=Green]…[/color]`.
@@ -84,10 +109,19 @@ tags: [bb-code, bbcode, 4pda, forum, formatting, markup]
 5. **«Код в коде» при статьях о разметке** резко повышает галлюцинации. Если в
    тексте нужно ПОКАЗАТЬ bb-тег как пример — экранируй скобки (`&#91;` вместо `[`)
    или выноси в `[code]`, и обязательно перепроверь вручную.
-6. **Форматированный заголовок спойлера — БЕЗ внешних кавычек.** `[spoiler=[color=Red][b]Текст[/b][/color]]`
-   рендерится правильно; `[spoiler="[color=Red][b]Текст[/b][/color]"]` форум НЕ
-   парсит и выводит сырой код. Кавычки — только вокруг ПРОСТОГО текста заголовка.
-   Подробности и таблица рендера — в `reference/edge_cases.md`.
+6. **Кавычки в заголовке спойлера: вокруг текста — можно, вокруг тегов — нельзя.**
+   Перепроверено предпросмотром форума 08.08.2026, все пять вариантов:
+
+   | Код | Рендер |
+   |---|---|
+   | `[spoiler="Простой текст"]` | `Простой текст` — кавычки съедены ✅ |
+   | `[spoiler=Простой текст]` | то же ✅ |
+   | `[spoiler=[color=Red][b]Текст[/b][/color]]` | оформленный заголовок ✅ |
+   | `[spoiler="[color=Red][b]Текст[/b][/color]"]` | `[color=Red][b]Текст[/b][/color]` — **сырой код** ❌ |
+   | `[spoiler=[color=Red][b]"Текст"[/b][/color]]` | `"Текст"` — кавычки как часть текста ✅ |
+
+   Правило: кавычки допустимы только вокруг **простого** текста. Как только в заголовке
+   появляется BB-код — внешние кавычки убрать. Таблица рендера — `reference/edge_cases.md`.
 
 ## Символы и картинки — по смыслу
 
@@ -103,6 +137,20 @@ tags: [bb-code, bbcode, 4pda, forum, formatting, markup]
 - [ ] Между соседними спойлерами нет пустых строк (теги склеены).
 - [ ] Все `[img]` — из разрешённого системного списка, пробел в `//` убран.
 - [ ] Вывод — чистый BB-код, без markdown (`#`, `**`, `- ` не использовать).
+- [ ] Форматированные заголовки спойлеров — без внешних кавычек.
 - [ ] Тип публикации выдержан, шапка и итог на месте (для лонгридов).
 
 Если что-то не выполнено — исправь до показа.
+
+## Проверить рендер до публикации
+
+Разметку не обязательно проверять глазами — движок форума отрисует её сам,
+ничего не публикуя:
+
+```bash
+node D:\0001\4PDA\tools\4pda.js preview --file черновик.txt --forum 1240 --topic 1109539
+```
+
+Публикует только кнопка «Отправить», она не нажимается. Для лонгрида это дешевле,
+чем ловить сломанный спойлер уже в опубликованном посте. Механика — скилл
+`4pda-forum` и `D:\0001\4PDA\КАРТА_ФОРУМА_4PDA.md` §5.
