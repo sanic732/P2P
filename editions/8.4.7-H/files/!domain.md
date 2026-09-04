@@ -317,5 +317,5 @@ FILE_META:
   MENU_ITEM:   41 (/p2p-domain)
   COMPATIBLE:  all v8H files
   LANGUAGE:    English (fully)
-  API_STRINGS: claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7
+  API_STRINGS: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-sonnet-4-6
 // EOF_MARKER_DOMAIN_V8H_VALIDATED

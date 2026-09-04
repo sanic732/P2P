@@ -251,5 +251,5 @@ FILE_META:
   ROLE:        HOST autodetect, HOST_CONFIG, PROJECT_CARD, FLAGS, VERSION_COMPAT, env detection, load order
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm | minimax | manus (10; автодетект → /host)
   COMPATIBLE:  all v8H files
-  API_STRINGS: claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7
+  API_STRINGS: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-sonnet-4-6
 // EOF_MARKER_PRELOADER_V8H_NATIVE_VALIDATED

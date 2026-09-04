@@ -413,4 +413,4 @@ CORE_RULES:
 FILE_META:
   PHILOSOPHY:  Universal · Any-host · Any-target · 8 host models · Lazy-fetch arsenal
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
-  API_STRINGS: claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-haiku-4-5-20251001
+  API_STRINGS: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-sonnet-4-6, claude-opus-4-6, claude-haiku-4-5-20251001

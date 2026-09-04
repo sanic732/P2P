@@ -36,6 +36,32 @@ Reasoning:     adaptive thinking (low|medium|high|xhigh|max)
 Роль:          Tier 3 default для cost-efficient agentic (near-Opus-4.8)
 ```
 
+### Claude Fable 5.1 (frontier, новое в 8.4.7)
+```
+API:           claude-fable-5-1
+Status:        GA 2026-09-01 — Arena WebDev #1 (max effort), 1765, отрыв 77 пунктов
+Context:       1M | Output: 128K
+Cost:          $10/$50 — как у Fable 5, НО cache read $0.25/MTok (0.025x против 0.1x у остальных)
+Выгода:        на агентных циклах с тёплым кэшем это крупнейшее ценовое движение окна
+Оговорка:      на max effort пишет ~1.7x выходных токенов против Fable 5 → стоимость задачи
+               выросла ~20% несмотря на дешёвый кэш (Artificial Analysis)
+Контракт:      tool_choice "any"/"tool" → 400 (использовать strict tool use либо structured outputs);
+               thinking-блоки привязаны к точной истории для аккаунтов, созданных с 2026-08-31 →
+               append-only история обязательна, а не желательна
+Plan scope:    Max и premium seats Team/Enterprise — в плане до 50% недельного лимита;
+               Pro и standard seats — только usage credits; Free — нет
+Retirement:    официальный порог «не ранее 2027-09-01»
+Роль:          явный вызов для long-horizon agentic; дефолтная тяжёлая модель — Opus 5
+```
+
+### Claude Mythos 5.1
+```
+API:           claude-mythos-5-1
+Status:        та же модель, что Fable 5.1 — те же спеки и цена; отличие только в доступе:
+               Trusted Access (Project Glasswing). У Fable 5.1 дополнительные меры dual-use.
+Роль:          НЕ маршрутизируется
+```
+
 ### Claude Fable 5 (frontier)
 ```
 API:           claude-fable-5

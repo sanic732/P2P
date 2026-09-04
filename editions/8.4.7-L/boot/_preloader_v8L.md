@@ -137,4 +137,4 @@ FILE_META:
   ROLE:        Host selection, FETCH gate, LOAD_MODE, HOST_CONFIG, PROJECT_CARD, FLAGS, VERSION_COMPAT
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
   COMPATIBLE:  _index_v8L, !!core_v8L, !!db_v8L
-  API_STRINGS: claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-haiku-4-5-20251001
+  API_STRINGS: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-sonnet-4-6, claude-opus-4-6, claude-haiku-4-5-20251001
