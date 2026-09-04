@@ -144,7 +144,7 @@ API_STRINGS:
   GEMINI:   gemini-3.6-flash (GA 21.07 workhorse) | gemini-3.5-flash-lite (дешевейший, L primary) | gemini-3.1-pro-preview | gemini-3.5-flash | gemini-3.5-pro-preview (⚠ PREVIEW, 3-й пропуск GA)
   GROK:     grok-4.5 | grok-4.3 | grok-4.20
   DEEPSEEK: deepseek-v4-pro | deepseek-v4-flash
-  QWEN:     DashScope qwen3.7-max|qwen3.7-plus|qwen3.6-plus | OpenRouter qwen/qwen3.6-plus  // qwen3.8-max-preview НЕ маршрутизировать
+  QWEN:     DashScope qwen3.7-max|qwen3.7-plus|qwen3.6-plus | OpenRouter qwen/qwen3.6-plus  // qwen3.8-max GA 03.08, strict JSON ок
   KIMI:     kimi-k3 (WebDev #1, ⚠ ACCESS-RISK — не primary) | kimi-k2.6 | kimi-k2.7-code | kimi-for-coding-highspeed
   GLM:      glm-5.2 | glm-5.1
 

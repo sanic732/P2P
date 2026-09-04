@@ -87,8 +87,10 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
 - Голый алиас `gpt-5.6` — никогда в автоматических путях (резолвится в Sol, самый дорогой).
 - `grok-4.5-heavy` / `-expert` / `-fast` — таких эндпоинтов НЕ существует.
 - `deepseek-chat` / `deepseek-reasoner` — мертвы с 24.07 15:59 UTC.
-- `qwen3.8-max-preview` — вне BASE: preview, нет карточки, лицензии и цены; strict-JSON на нём
-  структурно невозможен (thinking не отключается, а deep-thinking не поддерживает structured output).
+- `qwen3.8-max` — **GA с 03.08.2026** ($2/$6, cache $0.25, 1M/128K), плюс открытые веса
+  Qwen3.8-27B (Apache 2.0). Запрет на strict-JSON СНЯТ: Model Studio (02.09) указывает
+  `json_schema strict` для линеек 3.8-Max и 3.8-Flash, thinking отключается `enable_thinking=false`.
+  Прежняя запись «preview, strict-JSON структурно невозможен» устарела.
 - Персональные данные EU — не в DeepSeek и не в Grok (residency не гарантирована).
 
 **Fallback chain (Claude primary):**
@@ -281,8 +283,9 @@ V872_DELTA:
     Assistants API (/v1/assistants, /v1/threads, вкл. Azure) — полное отключение 2026-08-26.
   Qwen: 3.7-Max text-only ($2.50/$7.50) + 3.7-Plus multimodal 1M + 3.6-35B-A3B (open-weight
     Apache-2.0, 262K, $0.14/$1.00) + 3.6-Plus. Deep-thinking режим НЕ поддерживает structured output;
-    response_format json_object доступен только в non-thinking. qwen3.8-max-preview thinking не
-    отключает → strict JSON на нём структурно невозможен, в BASE не вносить.
+    response_format json_object доступен только в non-thinking. qwen3.8-max — GA 03.08.2026
+    ($2/$6, 1M/128K, веса 3.8-27B Apache 2.0); strict JSON поддерживается (json_schema strict,
+    Model Studio 02.09), thinking off через enable_thinking=false.
   Kimi: K3 GA 16.07 ($3/$15, 1,048,576, thinking always-on) — WebDev #1, но hosted-only, приём
     подписок закрыт, веса не опубликованы → НЕ primary. K2.6 (Swarm 300) + K2.7-Code (open-weight).
     Type M (infinite-repeat) документирован для K2.5/K2.6; на K3 не воспроизводился.
