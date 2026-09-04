@@ -22,6 +22,7 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | Provider | Model | API String | Context | Cost/1M (in/out) | Tier | Ключевые G-ошибки |
 |----------|-------|-----------|---------|-----------------|------|-------------------|
 | **Claude** | Opus 5 | `claude-opus-5` | 1M | $5/$25 | T3-4 PRIMARY (thinking default on) | G6, G7 |
+| **Claude** | Fable 5.1 | `claude-fable-5-1` | 1M | $10/$50, **cache read $0.25/MTok (0.025x)** | T4 FULL+ (GA 01.09; Arena WebDev #1) | G6, G7 |
 | **Claude** | Fable 5 | `claude-fable-5` | 1M | $10/$50 (batch $5/$25, cache-hit in $1) | T4 FULL+ — ⚠ COST-GATED с 20.07 | classifier FP |
 | **Claude** | Sonnet 5 | `claude-sonnet-5` | 1M | $2/$10→$3/$15 c 01.09 | T2-3 (default Free/Pro) | G6, G7 |
 | **Claude** | Opus 4.8 | `claude-opus-4-8` | 1M | $5/$25 | T4 ACTIVE — API-only surface | G6, G7, G8 |
@@ -29,27 +30,33 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Claude** | Opus 4.6 | `claude-opus-4-6` | 1M | $5/$25 | T3-4 (pin >500K recall) | G6, G8 |
 | **Claude** | Haiku 4.5 | `claude-haiku-4-5-20251001` | 200K | $1/$5 | T0-1 | — |
 | **Claude** | Sonnet 4.6 | `claude-sonnet-4-6` | 200K | $3/$15 | ✅ активен, выбор по цене | G7 |
-| **Gemini** | 3.6 Flash | `gemini-3.6-flash` | 1,048,576 | $1.50/$7.50 (cache-read $0.15) | T2 (новый workhorse, ~304 tok/s) | G1,G2,G13 |
+| **Gemini** | 3.8 Flash | `gemini-3.8-flash` | 1,048,576 / out 65,536 | $0.75/$3.75, cache $0.075 (до 31.12; далее вдвое) | T2 PRIMARY bulk (GA 02.09) | G1,G2,G13 |
+| **Gemini** | 3.7 Flash | `gemini-3.7-flash` | 1,048,576 | та же цена линии Flash | T2 (GA 13.08) | G1,G2,G13 |
+| **Gemini** | 3.6 Flash | `gemini-3.6-flash` | 1,048,576 | та же цена линии Flash | T2 (~304 tok/s) | G1,G2,G13 |
 | **Gemini** | 3.5 Flash-Lite | `gemini-3.5-flash-lite` | 1M | $0.30/$2.50 | T0-1 (дешевейший, ~350 tok/s) | G1,G2,G13 |
-| **Gemini** | 3.5 Pro | `gemini-3.5-pro-preview` | 2M | TBD | T4 (⚠ PREVIEW, третий пропуск GA) | G1,G2,G13 |
+| **Gemini** | 3.5 Pro | `gemini-3.5-pro-preview` | 2M | TBD | T4 (⚠ PREVIEW, **четвёртый** пропуск GA; отсутствует в models/pricing/changelog) | G1,G2,G13 |
 | **Gemini** | 3.5 Flash | `gemini-3.5-flash` | 1M | $1.50/$9 | T2 (вытеснен 3.6 Flash) | G1,G2,G13 |
 | **Gemini** | 3.1 Pro | `gemini-3.1-pro-preview` | 2M | $2/$12 | T3-4 | G1,G2,G4,G11,G13 |
+| **Grok** | 4.6 | `grok-4.6` | 500K | $2/$6 · от 200K → $4/$12, cache $0.50 | T3-4 (12.08; AA 61, вровень с Sol) | G14 |
 | **Grok** | 4.5 | `grok-4.5` | 500K | $2/$0.30 cached/$6 · от 200K → $4/$0.60/$12 | T3-4 (coding; EU без residency) | G14 |
 | **Grok** | 4.3 | `grok-4.3` | 1M | $1.25/$2.50 | T2-3 | G14 |
 | **Grok** | 4.20 Heavy | `grok-4.20` | 2M | $2/$6 | T3-4 (Heavy-16) | G14 |
 | **GPT** | 5.6 Sol | `gpt-5.6-sol` | 1.05M | $4/$0.40 cached/$20 (промо ≥21.11) · >272K → $8/$0.80/$30 | T4 (⚠ агентная опасность) | G9, G10 |
 | **GPT** | 5.6 Terra | `gpt-5.6-terra` | 1.05M | $2.50/$15 (long-context НЕ документирован) | T3 | G9, G10 |
 | **GPT** | 5.6 Luna | `gpt-5.6-luna` | ⚠ офиц. строки нет | $1/$6 (long-context НЕ документирован) | T1-2 (⚠ MRCR >512K) | G9, G10 |
-| **DeepSeek** | V4 Pro | `deepseek-v4-pro` | 1M | $0.435/$0.87 | T2-3 (⚠ офиц. PREVIEW) | G15 |
-| **DeepSeek** | V4 Flash | `deepseek-v4-flash` | 1M | $0.14/$0.28 | T0-1 (⚠ офиц. PREVIEW) | G15, G16 (алиасы мертвы 24.07) |
+| **DeepSeek** | V4 Pro | `deepseek-v4-pro` | 1M | $0.66/$1.98 off-peak · $1.32/$3.96 peak, cache-hit $0.022/$0.044 | T2-3 ✅ GA 13.08 (веса MIT) | G15 |
+| **DeepSeek** | V4 Flash | `deepseek-v4-flash` | 1M | $0.22/$0.66 off-peak · $0.44/$1.32 peak | T0-1 (public beta, 0731) | G15, G16 (алиасы мертвы 24.07) |
+| **Qwen** | 3.8 Max | `qwen3.8-max` | 1M / out 128K | $2/$6, cache $0.25 | T4 ✅ GA 03.08 (веса 3.8-27B Apache 2.0; strict JSON ок) | G17, G18 |
 | **Qwen** | 3.7 Max | `qwen3.7-max` | 1M | $2.50/$7.50 | T4 (text-only, без vision) | G17, G18 |
 | **Qwen** | 3.7-Plus | `qwen3.7-plus` | 1M / out 65K | $0.32/$1.28 (расхождение: и $0.40/$1.60) | T2-3 (multimodal) | G17, G18 |
 | **Qwen** | 3.6-35B-A3B | `qwen3.6-35b-a3b` | 262,144 | $0.14/$1.00 | T1 (open-weight Apache-2.0) | G17, G18 |
 | **Qwen** | 3.6-Plus | `qwen3.6-plus` | 1M | budget | T2-3 | G17, G18 |
-| **Kimi** | K3 | `kimi-k3` | 1,048,576 | $3/$15 | T3 WebDev #1 — ⚠ ACCESS-RISK, не primary | thinking не отключается |
+| **Kimi** | K3 | `kimi-k3` | 1,048,576 | $0.30/$3 cached/$15 | T3 (⚠ ACCESS-RISK: подписки на паузе с ~18.07; Arena WebDev 1→4) | thinking не отключается |
 | **Kimi** | K2.6 | `kimi-k2.6` | 256K-1M | TBD | T3 swarm | G20, Type M |
 | **Kimi** | K2.7 Code | `kimi-k2.7-code` | 256K | $0.95/$4 | T2-3 (open-weight) | Type M |
-| **GLM** | 5.2 | `glm-5.2` | 1M | ⚠ unconfirmed (~$1.40/$4.40 — единственный источник) | T3-4 (MIT; WebDev #4) | — |
+| **GLM** | 5.3 | `glm-5.3` | 1M | $1.40/$4.40, cache $0.26 | T3-4 (14.08; веса на HF, 753B) | — |
+| **GLM** | 5.3 Flash | `glm-5.3-flash` | 300K / out 131K | $0.15/$0.50 (промо $0.075/$0.25 до 09.09) | T2 (26.08 = «Ox Alpha», MIT 320B/18B, мультимодальная) | — |
+| **GLM** | 5.2 | `glm-5.2` | 1M | $1.40/$4.40 | T3-4 (MIT; WebDev #4) | — |
 | **GLM** | 5.1 | `glm-5.1` | 200K (eff 120K) | budget | T3 | G19 |
 | **MiniMax** | M3 | `minimax-m3` | 1M | $0.30/$1.20 | track-only | — |
 | **Manus** | 1.6 Max | `manus/manus-1.6-max` | N/A | credit-based | track-only (⚠ geopol.) | — |

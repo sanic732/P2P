@@ -29,7 +29,9 @@ PRICING:
   claude-opus-4-7:           $5     / $25   / 1M    / legacy; G6 общий токенизатор
   claude-opus-4-6:           $5     / $25   / 1M    / пин для >500K recall (MRCR 78.3%); токенизатор эффективнее 4.7/4.8
   gpt-5.6-sol:               $5     / $30   / 1.05M / GA 09.07; cached 0.50; >272K → 10/45 при cached тоже ×2; ⚠ G22 агентная опасность — вне judge-ролей и harness с записью в ФС/секреты
-  gemini-3.6-flash:          $1.50  / $7.50 / 1,048,576 / GA 21.07 workhorse; cache-read 0.15; ~304 tok/s; нативный Computer Use; ⚠ G13 НЕ тестирован — не очищен, обходы применять
+  gemini-3.8-flash:          $0.75  / $3.75 / 1,048,576 / GA 02.09 PRIMARY bulk; out 65,536; cache 0.075 до 31.12 → 1.50/7.50 с 01.01.27; thinking_level minimal НЕ поддержан (ошибка)
+  gemini-3.7-flash:          $0.75  / $3.75 / 1,048,576 / GA 13.08; та же цена линии Flash
+  gemini-3.6-flash:          $0.75  / $3.75 / 1,048,576 / workhorse; ~304 tok/s; нативный Computer Use; ⚠ G13 НЕ тестирован — обходы применять
   gemini-3.5-flash:          $1.50  / $9.00 / 1M    / вытеснен 3.6 Flash; thinkingLevel MEDIUM default
   gemini-3.1-pro-preview:    $2     / $12   / 2M    / Deep Think; grounding (<=200K цена)
   // RECALL >500K: пинить claude-opus-4-6 (MRCR v2 1M: 4.7/4.8 = 32.2% vs 4.6 = 78.3% — G8/G6)
@@ -38,9 +40,11 @@ PRICING:
 
   // TIER 2 — Balanced
   gpt-5.6-terra:             $2.50  / $15   / 1.05M / GA 09.07; balanced (замена 5.5); long-context ставки НЕ документированы
-  grok-4.5:                  $2     / $6    / 500K  / GA 08.07: coding/agentic flagship, ~80 tps; cached $0.30; от 200K → $4 / $0.60 cached / $12 (удваивается и кэш); EU открыт 21.07 БЕЗ data-residency; strict JSON
+  grok-4.6:                  $2     / $6    / 500K  / GA 12.08; AA index 61 (вровень с GPT-5.6 Sol); cached $0.50; от 200K → $4 / $12
+  grok-4.5:                  $2     / $6    / 500K  / GA 08.07: coding/agentic flagship, ~80 tps; cached $0.30 (дешевле, чем у 4.6); от 200K → $4 / $0.60 cached / $12; EU открыт 21.07 БЕЗ data-residency; strict JSON
   grok-4.3:                  $1.25  / $2.50 / 1M    / X Firehose; для 2M → grok-4.20 Heavy
-  deepseek-v4-pro:           $0.435 / $0.87 / 1M    / Budget powerhouse; out 384K
+  deepseek-v4-pro:           $0.66  / $1.98 / 1M    / GA 13.08 (веса MIT); out 384K; peak 1.32/3.96, cache-hit 0.022/0.044; пик 01-04 и 06-10 UTC пн-пт
+  qwen3.8-max:               $2     / $6    / 1M    / GA 03.08; out 128K; cache 0.25; веса 3.8-27B Apache 2.0; strict JSON ок (enable_thinking=false)
   qwen3.7-max:               $2.50  / $7.50 / 1M    / Agent Era; out 131K
   // ✅ claude-sonnet-4-6 активен; с 30.06 дефолт — Sonnet 5 выше
 
@@ -55,9 +59,11 @@ PRICING:
   claude-haiku-4-5-20251001: $1     / $5    / 200K  / Fastest Claude
 
   // TIER 4 — Specialist/Budget
-  glm-5.2:                   ⚠ UNCONFIRMED  / 1M    / MIT; WebDev #4; цена ~1.40/4.40 из единственного источника, в canon НЕ принята
+  glm-5.3:                   $1.40  / $4.40 / 1M    / GA 14.08; cache 0.26; веса на HF (753B); Coding Plan молча поднимает 5.1/5.2 → 5.3
+  glm-5.3-flash:             $0.15  / $0.50 / 300K  / 26.08 = «Ox Alpha»; MIT 320B/18B; мультимодальная; промо 0.075/0.25 до 09.09
+  glm-5.2:                   $1.40  / $4.40 / 1M    / MIT; WebDev #4
   glm-5.1:                   budget /       / 120K  / MIT, G19 limit ~120K
-  kimi-k3:                   $3     / $15   / 1,048,576 / GA 16.07, WebDev #1; thinking always-on; ⚠ ACCESS-RISK: hosted-only, подписки закрыты, весов нет → НЕ primary
+  kimi-k3:                   $0.30  / $3 cached / $15 / 1,048,576 / GA 16.07; открытые веса с ~27.07 (HF, ~1.56 ТБ); thinking always-on; Arena WebDev 1 → 4; ⚠ подписки на паузе с ~18.07 «reopen in batches», даты нет → НЕ primary
   kimi-k2.6:                 TBD    /       / 256K-1M / Swarm 300; kimi-k2.7-code open-weight 0.95/4
 
 // ─────────────────────────────────────────────────────
@@ -93,7 +99,7 @@ BENCHMARK_NOTES:
   Arena Elo — general quality, not domain-specific.
   Agentic/Text/Vision: Claude Fable 5 #1 — но classifier FP → Opus 4.8 (точная доля НЕ опубликована;
                        ходившие «<5% сессий» и «на 85% реже у Opus 5» — вторичные, без методики)
-  WebDev: kimi-k3 #1 (доступ ограничен) → claude-fable-5 → glm-5.2 как всегда-доступный путь
+  WebDev: claude-fable-5-1 #1 (1765, отрыв 77) → kimi-k3 (упал на 4) → glm-5.3 как всегда-доступный путь
   Documents: claude-opus-4-6 #1 — старое поколение сильнее нового, «новее = лучше» здесь не работает
   Coding: Claude Opus 5 (PRIMARY) → Opus 4.8; Fable 5 силён в WebDev, но cost-gated
   Long context recall: Claude Opus 4.6 > Opus 4.7/4.8 for >500K (G8: MRCR 32.2% vs 78.3%)
