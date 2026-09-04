@@ -585,7 +585,7 @@ DEADLINE_SCANNER:
 
   SCAN_FOR:
     [PASSED 2026-06-15] — Claude dated legacy aliases УЖЕ ретайрнуты (HTTP 400/404).
-      Актуальные: claude-fable-5 | claude-sonnet-5 | claude-opus-4-8 | claude-opus-4-7 (sonnet-4-6 — активен, дешевле)
+      Актуальные: claude-opus-5 | claude-fable-5-1 | claude-fable-5 | claude-sonnet-5 | claude-opus-4-8 | claude-opus-4-7 | claude-opus-4-6 | claude-sonnet-4-6 (поколение 4.6+ активно)
       Действие: историческое; в текущей сборке литералы отсутствуют.
 
     [PASSED 2026-06-05] — gpt-5.x legacy aliases УЖЕ ретайрнуты → gpt-5.5.

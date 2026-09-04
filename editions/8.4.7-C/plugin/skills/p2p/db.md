@@ -271,6 +271,7 @@ MUST NOT:
 
 | Модель | API String | Статус |
 |--------|-----------|--------|
+| Claude Fable 5.1 | `claude-fable-5-1` | ✅ T4 FULL+ (GA 01.09; cache read $0.25/MTok = 0.025x; Arena WebDev #1) |
 | Claude Fable 5 | `claude-fable-5` | ✅ T4 FULL+ (Arena Overall/Text/Vision #1) |
 | Claude Sonnet 5 | `claude-sonnet-5` | ✅ default Free/Pro (GA 30.06; $2/$10 — подорожание 01.09 отменено 10.08) |
 | Claude Opus 5 | `claude-opus-5` | ✅ PRIMARY (GA 24.07; thinking on by default) |

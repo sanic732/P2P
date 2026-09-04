@@ -49,6 +49,7 @@ grep -rn "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deeps
 | Model | API String | Status |
 |-------|-----------|--------|
 | Claude Opus 5 | `claude-opus-5` | ✅ T3-4 PRIMARY (GA 24.07; thinking on by default) |
+| Claude Fable 5.1 | `claude-fable-5-1` | ✅ T4 FULL+ (GA 01.09; cache read $0.25/MTok = 0.025x; Arena WebDev #1) |
 | Claude Fable 5 | `claude-fable-5` | ✅ T4 FULL+ (Arena Text/Vision #1) — ⚠ usage credits с 20.07, cost-gated |
 | Claude Sonnet 5 | `claude-sonnet-5` | ✅ T2-3 default Free/Pro (GA 30.06) |
 | Claude Opus 4.8 | `claude-opus-4-8` | ✅ T4 ACTIVE (complex code) — API-only surface, НЕ депрекирован |

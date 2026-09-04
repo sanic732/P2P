@@ -352,6 +352,7 @@ API_STRINGS:
 
   CLAUDE:
     claude-opus-5                      ← PRIMARY (Tier 3-4; GA 24.07; thinking on by default)
+    claude-fable-5-1                   ← Tier 4 (GA 01.09; cache read 0.025x; Arena WebDev #1) — явный вызов для long-horizon
     claude-fable-5                     ← Tier 4 (Text/Vision #1; classifier FP→Opus 4.8) ⚠ usage credits с 20.07, cost-gated
     claude-sonnet-5                    ← v8N рекомендован (Tier 2-3, default Free/Pro; near-Opus)
     claude-opus-4-8                    ← Tier 3-4, coding; ACTIVE (НЕ депрекирован), API-only surface,
