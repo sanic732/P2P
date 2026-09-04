@@ -72,7 +72,7 @@ HOST_PROFILES:
     KNOWN_ISSUES:   G17 (provider prefix: DashScope vs OpenRouter), G18 (preserve_thinking: true для agentic)
     THINKING_API:   thinking_budget: 10000
     API_STRINGS:    DashScope→qwen3.7-max|qwen3.7-plus|qwen3.6-plus | OpenRouter→qwen/qwen3.6-plus
-                    ⚠ qwen3.8-max-preview: strict JSON структурно невозможен (thinking неотключаем) — не маршрутизировать
+                    ✅ qwen3.8-max: GA 03.08.2026, strict JSON поддерживается (enable_thinking=false)
     CONTEXT_LIMIT:  1M
 
   PROFILE[kimi]:

@@ -397,9 +397,9 @@ API_STRINGS:
     DashScope:   qwen3.7-max           ← Tier 4 (Agent Era) — TEXT-ONLY, без vision
     DashScope:   qwen3.7-plus          ← Tier 2-3 multimodal (1M / out 65K)
     DashScope:   qwen3.6-35b-a3b       ← Tier 1 open-weight Apache-2.0 (262K; $0.14/$1.00)
-    ⚠ qwen3.8-max-preview В BASE НЕ ВНОСИТЬ: preview, нет карточки модели, лицензии и цены.
-      Deep-thinking режим НЕ поддерживает structured output, а thinking там не отключается →
-      strict JSON на этой модели структурно невозможен.
+    DashScope:   qwen3.8-max          ← GA 03.08.2026 ($2/$6, cache $0.25, 1M / out 128K);
+      открытые веса Qwen3.8-27B (Apache 2.0). strict JSON ПОДДЕРЖИВАЕТСЯ — json_schema strict
+      по Model Studio 02.09; thinking выключается enable_thinking=false. Прежний запрет снят 8.4.7.
     DashScope:   qwen3.6-plus          ← Tier 2-3
     OpenRouter:  qwen/qwen3.6-plus     ← Tier 2-3 (G17: prefix required)
 
