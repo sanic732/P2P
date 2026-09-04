@@ -1,0 +1,34 @@
+# Line endings: git stores LF, working copies get what the tool needs.
+#
+# WHY. On 2026-08-29 two abandoned clones of this repository showed 56 and 288
+# "modified" files with identical insertion and deletion counts — 10042/10042
+# and 49519/49519. Not a single real change: an editor had rewritten LF to CRLF,
+# and git flagged every line as modified. `git diff --ignore-cr-at-eol` came back
+# empty on both.
+#
+# Without this file the same ghost diffs return whenever a file is touched by a
+# tool with different line-ending defaults — and real changes drown in the noise.
+* text=auto
+
+# Windows batch files MUST keep CRLF. cmd.exe reads them in byte-sized chunks
+# looking for CR; with LF only, the split lands mid-character in multi-byte
+# UTF-8 and the line tears in half. Invisible with ASCII — one byte, one char.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Shell scripts must keep LF even on Windows checkouts.
+*.sh text eol=lf
+
+# Binary: never diff, never merge, never touch line endings.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.7z binary
+*.gz binary
+*.plugin binary
