@@ -64,6 +64,8 @@ TECHNIQUES:
   CTCO:              Context-Task-Constraints-Output framework. GPT optimal. 90/100.
   CONTEXT_COMPRESSION: Сжатие тяжёлого контекста перед мержем. 88/100.
   ANCHOR_CONTEXT:    Повтор ключевых инструкций на границах документа. 90/100.
+  CONTEXT_CACHE_ANCHOR: [STATIC CONTEXT — CACHE THIS] сверху, [DYNAMIC QUERY] ниже.
+                     Kimi 75-83%, Claude 90% на чтении, Gemini 70-80%. 93/100.
   LATE_CHUNKING:     100K блоки для Gemini. Gemini optimal. 91/100.
 
   // ── SAFETY & QUALITY ──
