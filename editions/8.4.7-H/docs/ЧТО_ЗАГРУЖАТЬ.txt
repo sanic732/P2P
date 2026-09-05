@@ -51,7 +51,7 @@ Host-engine по запросу:
   9. !routing_matrix.md         ~800   аудируемая карта маршрутизации v2.0
  10. !x_realtime.md             ~500   X Firehose (ТОЛЬКО Grok; платный gate $0.50)
 
-Модули v8H.3 (пункты меню [35]-[42]; включаются и через MODULE_*-флаги):
+ON-DEMAND модули (пункты меню [35]-[42]; включаются и через MODULE_*-флаги):
 
  11. !rag.md                  ~1 300   RAG / RAPTOR / векторный поиск       [35]
  12. !reasoning.md            ~1 400   CoT / Self-Consistency / MCTS        [36]

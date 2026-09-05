@@ -1,4 +1,4 @@
-# P2P v8H.3 — Hybrid Edition (8A.1 ⊕ 8G.1)
+# P2P 8.4.7-H — Hybrid Edition (8A.1 ⊕ 8G.1)
 
 > 📋 **Какие файлы грузить и сколько это токенов** — простой список без разметки:
 > [docs/ЧТО_ЗАГРУЖАТЬ.txt](ЧТО_ЗАГРУЖАТЬ.txt) (обязательный минимум + все остальные файлы).
@@ -11,10 +11,10 @@
 
 | Edition | Хост | Специализация |
 |---------|------|---------------|
-| v8C.3 (Claude) | Claude only | XML-native, HELIOS, 6 техник-модулей |
+| C (Claude) | Claude only | XML-native, HELIOS, 6 техник-модулей |
 | v8A.1 (Gemini) | Gemini only | ZERO XML, simulated QUORUM |
 | v8G.1 (Grok) | Grok only | Heavy-16 native, X Firehose, Tool Budget |
-| **v8H.3 (Hybrid)** | **8 хостов** | host-gated Heavy-16⊕QUORUM, llm_router, 6 модулей [35-40], native plugin |
+| **H (Hybrid)** | **8 хостов** | host-gated Heavy-16⊕QUORUM, llm_router, 6 модулей [35-40], native plugin |
 
 ## Быстрый старт
 
@@ -39,7 +39,7 @@ cat _preloader.md !!core_v8H.md !!db_v8H.md _live/*.md \
     !*.md vendors/tier*.md > full.md
 ```
 
-## Новое в v8H.3
+## Новое в редакции H
 
 - **Host-gated агенты**: grok→Heavy-16 native; иначе→simulated QUORUM. ANON host-gated; security → `!security.md`.
 - **Grok host-engine**: `!llm_router` (primary=HOST_MODEL), `!routing_matrix`, `!tool_budget`, `!x_realtime`, `!host_profiles`.
@@ -65,7 +65,7 @@ cat _preloader.md !!core_v8H.md !!db_v8H.md _live/*.md \
 ## Структура
 
 ```
-v8H.3_release/
+8.4.7-H/files/
 ├── _preloader.md       ← Загружается первым
 ├── !!core_v8H.md       ← Диспетчер, меню, протоколы
 ├── !!db_v8H.md         ← Техники, G-errors, API strings

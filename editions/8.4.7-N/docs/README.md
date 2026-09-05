@@ -1,4 +1,4 @@
-# P2P v8N.3 — Normal Edition
+# P2P 8.4.7-N — Normal Edition
 
 > 📋 **Какие файлы грузить и сколько это токенов** — простой список без разметки:
 > [docs/ЧТО_ЗАГРУЖАТЬ.txt](ЧТО_ЗАГРУЖАТЬ.txt) (обязательный минимум + все остальные файлы).
@@ -11,9 +11,9 @@
 
 | Edition | Файлов | Хост | Специализация |
 |---------|--------|------|---------------|
-| v8C.3 (Claude) | 50+ | Claude only | XML-native, HELIOS, 6 техник-модулей |
+| C (Claude) | 50+ | Claude only | XML-native, HELIOS, 6 техник-модулей |
 | v8A.1 (Gemini) | 26 | Gemini only | ZERO XML, thinkingLevel |
-| **v8N.3 (Normal)** | **31** | **8 хостов** | HOST_PROFILE_LOADER + 6 модулей v8N.3 (OFF by default) |
+| **N (Normal)** | **31** | **8 хостов** | HOST_PROFILE_LOADER + 6 ON-DEMAND модулей (OFF by default) |
 
 ## Быстрый старт
 
@@ -38,7 +38,7 @@ cat _preloader.md !!core_v8N.md !!db_v8N.md _live/*.md \
     !*.md vendors/tier*.md > full.md
 ```
 
-## Новое в v8N.3 vs v8N.1
+## Новое в редакции N vs v8N.1
 
 - **6 ON-DEMAND модулей** [26-31]: RAG/RAPTOR, Reasoning (CoT/MCTS/SC), Smart Routing,
   Compression (LLMLingua), Security Audit, Optimization (APO/OPRO). По умолчанию OFF.

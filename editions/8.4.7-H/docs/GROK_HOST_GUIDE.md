@@ -1,4 +1,4 @@
-# P2P v8H.3 — GROK HOST GUIDE (запуск на Grok: CLI и веб)
+# P2P 8.4.7-H — GROK HOST GUIDE (запуск на Grok: CLI и веб)
 
 > Дополнение к `HOST_GUIDE.md` (см. там общую таблицу хостов и профиль `grok`).
 > Основа — живой прогон High на реальном Grok-4.5 (Grok Build CLI), 2026-07-13.

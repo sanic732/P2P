@@ -35,7 +35,7 @@ deepseek / qwen / kimi / glm) — вложениями, в Project Knowledge и�
   6. !metrics.md              ~1 300   метрики сессии, Routing Memory
   7. !sandbox.md              ~1 000   режим исследования / песочница
 
-Модули v8N.3 (пункты меню [26]-[32]; включаются и через MODULE_*-флаги):
+ON-DEMAND модули (пункты меню [26]-[32]; включаются и через MODULE_*-флаги):
 
   8. !rag.md                  ~1 300   RAG / RAPTOR / векторный поиск       [26]
   9. !reasoning.md            ~1 400   CoT / Self-Consistency / MCTS        [27]

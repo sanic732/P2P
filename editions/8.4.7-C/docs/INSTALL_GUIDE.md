@@ -1,13 +1,13 @@
 ---
 source_id: DOCS_INSTALL_GUIDE_V8C3
-version: v8C.3
+version: 8.4.7-C
 module_type: docs
 last_updated: 2026-07-07
 scope: "Установка редакции C в обеих формах поставки: Claude.ai Chat/Projects (for-chat) и Claude Code/Cowork (plugin). Обновление, проверка, требования."
 tags: docs, install, plugin, for-chat, v8c3
 ---
 
-# P2P 8C.3 — установка (обе формы поставки)
+# P2P 8.4.7-C — установка (обе формы поставки)
 
 > Кратко: **Code/Cowork → плагин** (одна команда, авто-обновления).
 > **Claude.ai Chat/Projects/API → for-chat** (загрузка `.md`-файлов руками).

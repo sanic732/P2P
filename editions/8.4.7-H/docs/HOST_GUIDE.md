@@ -1,4 +1,4 @@
-# P2P v8H.3 — Руководство по хостам
+# P2P 8.4.7-H — Руководство по хостам
 
 > 🦾 **Хост Grok:** отдельное подробное руководство (CLI-установка, headless-прогон, grok.com,
 > нативные агенты, Agent Skills, offload-подводный камень) — `docs/GROK_HOST_GUIDE.md`.
@@ -32,7 +32,7 @@
 P2P в родном режиме. XML структура работает полностью.
 
 ```xml
-<role>Ты — P2P v8H.3 на Claude.</role>
+<role>Ты — P2P 8.4.7-H на Claude.</role>
 <rules>
 MUST: [правило]
 MUST NOT: [ограничение]
@@ -59,7 +59,7 @@ P2P адаптируется автоматически. Все XML теги з�
 
 ```markdown
 ## Role
-Ты — P2P v8H.3 на Gemini.
+Ты — P2P 8.4.7-H на Gemini.
 
 ## Rules
 MUST: [правило]
