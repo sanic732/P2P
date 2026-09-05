@@ -1,13 +1,13 @@
 ---
 source_id: MODULE_REFERENCE_V8C3
-version: v8C.3
+version: 8.4.7-C
 module_type: docs
 last_updated: 2026-06-12
-scope: Справочник всех файлов P2P v8C.3 — назначение, токен-бюджет, зависимости, когда загружать.
+scope: Справочник всех файлов P2P 8.4.7-C — назначение, токен-бюджет, зависимости, когда загружать.
 tags: docs, reference, token-budget, modules
 ---
 
-# P2P v8C.3 — MODULE REFERENCE (docs/MODULE_REFERENCE.md)
+# P2P 8.4.7-C — MODULE REFERENCE (docs/MODULE_REFERENCE.md)
 
 > Используй эту таблицу чтобы подобрать оптимальный набор файлов для твоего сценария.  
 > Токены указаны приблизительно (±15%). Проверяй через счётчик токенов при сомнениях.
@@ -189,7 +189,7 @@ BASE ≈ 14,200
 ██╔═══╝ ██╔═══╝ ██╔═══╝
 ██║     ███████╗██║
 ╚═╝     ╚══════╝╚═╝
-P2P v8C.3 | LiveSpecs: 2026-06-09
+P2P 8.4.7-C | LiveSpecs: 2026-06-09
 ```
 
 Логотип хранится в `!!core_v8C.md → STARTUP_LOGO`. Не потребляет дополнительных токенов (уже в core).
@@ -203,7 +203,7 @@ P2P v8C.3 | LiveSpecs: 2026-06-09
 VERSION_METADATA
 ========================================
 id: MODULE_REFERENCE_V8C3
-version: v8C.3
+version: 8.4.7-C
 type: docs
 edition: CLAUDE_NATIVE
 last_verified: 2026-06-12

@@ -1,4 +1,4 @@
-# 🧬 P2P v8C.3 — SYSTEM ARCHITECTURE MAP
+# 🧬 P2P 8.4.7-C — SYSTEM ARCHITECTURE MAP
 # ==============================================================================
 # VISUALIZATION OF LOGIC FLOW, FILE DEPENDENCIES & MODULE ACTIVATION
 # PLATFORM: Claude Opus 4.8 (primary) / Sonnet 4.6 (default)
