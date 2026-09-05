@@ -2,7 +2,7 @@
 
 > **English** · [Русский](README.ru.md)
 
-[![Version](https://img.shields.io/badge/version-v8.4.6-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-BETA-yellow)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
+[![Version](https://img.shields.io/badge/version-v8.4.7-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-BETA-yellow)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
 
 **A meta-prompt that writes prompts — and gets the job done.** Stream of consciousness in → a polished, model-specific prompt out. The project's goal: **eliminate classical prompt engineering for the everyday user.**
 
@@ -30,10 +30,10 @@ One architecture, four entry points for different hosts and form factors. **Unsu
 
 | Edition | For whom | Host | Start |
 |---|---|---|---|
-| 🟦 **[8.4.6-C](editions/8.4.6-C/README.en.md)** (Claude, внутр. 8C.3) | You work in **Claude** (Code / Cowork / Projects) | Claude only | ~7K |
-| 🟥 **[8.4.6-H](editions/8.4.6-H/README.en.md)** (внутр. 8H.3) | You want maximum / use **Grok** | 8 hosts (native Grok) | ~60K |
-| 🟩 **[8.4.6-N](editions/8.4.6-N/README.en.md)** (внутр. 8N.3) | Your model isn't "native" | any of 8 | ~60K |
-| 🟦 **[8.4.6-L](editions/8.4.6-L/README.en.md)** (внутр. 8L.3) | Token economy / context limits / **newcomers** | universal | **~18K** |
+| 🟦 **[8.4.7-C](editions/8.4.7-C/README.en.md)** (Claude, внутр. 8C.3) | You work in **Claude** (Code / Cowork / Projects) | Claude only | ~7K |
+| 🟥 **[8.4.7-H](editions/8.4.7-H/README.en.md)** (внутр. 8H.3) | You want maximum / use **Grok** | 8 hosts (native Grok) | ~60K |
+| 🟩 **[8.4.7-N](editions/8.4.7-N/README.en.md)** (внутр. 8N.3) | Your model isn't "native" | any of 8 | ~60K |
+| 🟦 **[8.4.7-L](editions/8.4.7-L/README.en.md)** (внутр. 8L.3) | Token economy / context limits / **newcomers** | universal | **~18K** |
 
 📊 Full comparison — [`editions/COMPARISON.md`](editions/COMPARISON.md) · 📖 naming guide — [`NAMING.md`](NAMING.md).
 
