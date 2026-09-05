@@ -180,7 +180,12 @@ def localize(text: str, ver: str, chunk: str, lite_core: str, lite_db: str) -> s
     def db_ref(m):
         tail = m.group(1) or ""
         target = tail.strip(" ()").split()[0] if tail.strip(" ()") else ""
-        if target and target in lite_db:
+        # Ссылка без цели («поиск в !!db_v8H») указывает на базу целиком — у Lite она
+        # своя и всегда на месте, проверять нечего. Ругаться тут значило поднимать
+        # тревогу на исправной ссылке и приучать не читать предупреждения.
+        if not target:
+            return "!!db_v8L"
+        if target in lite_db:
             return f"!!db_v8L {target}"
         unresolved.append(f"{chunk}: «!!db_v8H{tail.rstrip()}» — в базе Lite цели нет, оставлено как есть")
         return m.group(0)
