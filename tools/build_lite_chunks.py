@@ -180,7 +180,12 @@ def localize(text: str, ver: str, chunk: str, lite_core: str, lite_db: str) -> s
     def db_ref(m):
         tail = m.group(1) or ""
         target = tail.strip(" ()").split()[0] if tail.strip(" ()") else ""
-        if target and target in lite_db:
+        # Ссылка без цели («поиск в !!db_v8H») указывает на базу целиком — у Lite она
+        # своя и всегда на месте, проверять нечего. Ругаться тут значило поднимать
+        # тревогу на исправной ссылке и приучать не читать предупреждения.
+        if not target:
+            return "!!db_v8L"
+        if target in lite_db:
             return f"!!db_v8L {target}"
         unresolved.append(f"{chunk}: «!!db_v8H{tail.rstrip()}» — в базе Lite цели нет, оставлено как есть")
         return m.group(0)
@@ -229,7 +234,17 @@ def build(out_dir: Path) -> int:
         return kb_new
 
     for name, sources in recipe.items():
-        kb_old = float(man[name].get("size_kb", 0) or 0)
+        # Разрезанный чанк в манифесте уже не существует под старым именем: после
+        # выпуска 8.4.6 вместо VENDORS там четыре части. Берём сумму частей, а при
+        # первом разрезании — ноль. Раньше здесь падал KeyError, и сборка обрывалась
+        # на середине списка, оставив половину чанков от прошлого прогона.
+        if name in man:
+            kb_old = float(man[name].get("size_kb", 0) or 0)
+        elif name in SPLIT:
+            kb_old = sum(float(man[s[0]].get("size_kb", 0) or 0)
+                         for s in SPLIT[name] if s[0] in man)
+        else:
+            kb_old = 0.0
         if name in SPLIT:
             print(f"  {name:18} режется на {len(SPLIT[name])} (было {kb_old:.1f} KB)")
             total = 0.0

@@ -1,0 +1,36 @@
+---
+description: "/p2p-quorum — launch full 8-agent QUORUM or sub-QUORUM pattern."
+argument-hint: "[fast|code|security|arch] <task>"
+source_id: CMD_QUORUM_V8C
+version: 8.4.7-C
+module_type: command
+scope: /p2p-quorum — launch full 8-agent QUORUM or sub-QUORUM pattern.
+---
+# /p2p-quorum — Запуск QUORUM
+
+**Что делает:** Запускает полный QUORUM или sub-QUORUM паттерн.
+
+**Использование:**
+```
+/p2p-quorum [задача]              → FULL QUORUM (8 агентов)
+/p2p-quorum fast [задача]         → FAST_TRIO
+/p2p-quorum code [задача]         → CODE_QUAD
+/p2p-quorum security [задача]     → SECURITY_QUAD
+/p2p-quorum arch [задача]         → ARCH_PENTA
+```
+
+**Алгоритм:**
+1. Потребовать BUDGET DECLARATION
+2. Выбрать паттерн
+3. Запустить раунды последовательно
+4. HELIOS финальный синтез
+
+
+========================================
+FILE_META
+========================================
+id: CMD_QUORUM_V8C
+type: command
+edition: CLAUDE_NATIVE
+invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
+========================================
