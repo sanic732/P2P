@@ -6,10 +6,10 @@
   "owner": {
     "name": "sanic732"
   },
-  "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
+  "homepage": "https://github.com/sanic732/P2P",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sanic732/P2P-4PDA-edition.git"
+    "url": "https://github.com/sanic732/P2P.git"
   },
   "plugins": [
     {
