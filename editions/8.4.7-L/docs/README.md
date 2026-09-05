@@ -1,4 +1,4 @@
-# P2P v8L.3 — Lite/Live Hybrid (Universal)
+# P2P 8.4.7-L — Lite/Live Hybrid (Universal)
 
 **Универсальная мета-промпт система с ленивой загрузкой арсенала.**
 4 локальных BOOT-файла (~18K idle) + 11 удалённых Gist-чанков, подгружаемых по триггеру.
@@ -8,10 +8,10 @@
 
 | Edition | Загрузка | Хост | Специализация |
 |---------|----------|------|---------------|
-| v8C.3 (Claude) | монолит в контекст | Claude only | XML-native, **.claude-плагин** |
-| v8H.3 (High) | ~30 файлов BASE/LIVE/ON-DEMAND | 8 хостов | host-engine, Grok Heavy-16 |
-| v8N.3 (Normal) | 31 файл | 8 хостов | универсальный, файловый |
-| **v8L.3 (Lite/Live)** | **4 BOOT + 10 lazy + LIVE** | **8 хостов** | **Resolver-Gated lazy-fetch, ~86% экономии idle; только файловая** |
+| C (Claude) | монолит в контекст | Claude only | XML-native, **.claude-плагин** |
+| H (High) | ~30 файлов BASE/LIVE/ON-DEMAND | 8 хостов | host-engine, Grok Heavy-16 |
+| N (Normal) | 31 файл | 8 хостов | универсальный, файловый |
+| **L (Lite/Live)** | **4 BOOT + 10 lazy + LIVE** | **8 хостов** | **Resolver-Gated lazy-fetch, ~86% экономии idle; только файловая** |
 
 ## Как это работает (в двух словах)
 
@@ -50,7 +50,7 @@ L3 GIST CLOUD (lazy, ~185K) ─ 10 модулей (core_plus·session·vendors·
         reasoning·optimization·rag·security·compress·route·live)
 ```
 
-## Что нового в v8L.3
+## Что нового в редакции L
 
 - **Lazy-fetch арсенал**: idle ~10K вместо полного веса; чанки по триггеру.
 - **GIST_LAZY_FETCH — единственный режим.** Система рассчитана на хост с включённым веб-доступом

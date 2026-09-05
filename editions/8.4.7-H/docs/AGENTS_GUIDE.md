@@ -1,4 +1,4 @@
-# P2P v8H.3 — AGENTS GUIDE
+# P2P 8.4.7-H — AGENTS GUIDE
 
 8 канонических агентов QUORUM. Поведение **host-gated** — см. `!host_profiles.md` и `!agents.md`.
 

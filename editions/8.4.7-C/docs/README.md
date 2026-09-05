@@ -1,13 +1,13 @@
 ---
 source_id: DOCS_README_V8C3
-version: v8C.3
+version: 8.4.7-C
 module_type: docs
 last_updated: 2026-07-07
 scope: "Навигатор по документации редакции C (Claude Native): какой файл о чём, какую форму поставки выбрать."
 tags: docs, readme, navigator, v8c3
 ---
 
-# P2P 8C.3 (Claude Native) — документация
+# P2P 8.4.7-C (Claude Native) — документация
 
 > Обзор самой редакции — в [корневом README](../README.md).
 > Этот файл — карта документации: что читать и в каком порядке.

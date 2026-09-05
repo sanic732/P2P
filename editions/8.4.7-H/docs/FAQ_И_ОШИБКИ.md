@@ -1,4 +1,4 @@
-# P2P v8H.3 — FAQ и Ошибки
+# P2P 8.4.7-H — FAQ и Ошибки
 
 ---
 
@@ -56,7 +56,7 @@ Claude хост может генерировать промпт для Gemini �
 
 **Q: P2P v8H.1 vs v8C.1 — что выбрать?**
 A: v8C.1 (Claude Edition) — если используешь только Claude и хочешь максимум нативных возможностей (56 файлов, .claude/agents, полный HELIOS).
-v8H.3 (Hybrid Edition) — гибрид Gemini+Grok на любом из 8 хостов; Heavy-16 на grok, simulated QUORUM иначе.
+Редакция H (Hybrid Edition) — гибрид Gemini+Grok на любом из 8 хостов; Heavy-16 на grok, simulated QUORUM иначе.
 
 ---
 

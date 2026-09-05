@@ -1,13 +1,13 @@
 ---
 source_id: DOCS_AGENTS_GUIDE_V8C3
-version: v8C.3
+version: 8.4.7-C
 module_type: docs
 last_updated: 2026-07-07
 scope: "8 агентов QUORUM в редакции C: роли, запуск (нативные sub-agents в plugin-форме, симуляция в for-chat), паттерны, веса, VETO."
 tags: docs, agents, quorum, v8c3
 ---
 
-# P2P 8C.3 — руководство по агентам (QUORUM)
+# P2P 8.4.7-C — руководство по агентам (QUORUM)
 
 8 специализированных агентов. **Plugin-форма (Code/Cowork):** нативные sub-agents из
 `.claude/agents/` — изолированные контексты, параллельный запуск. **For-chat:** та же
