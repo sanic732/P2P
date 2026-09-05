@@ -143,7 +143,7 @@ tags: docs, changelog, v8c3, alpha
 - **⚙ `_SERVICE/audit_model_data.py` → pre-release gate:** EDITIONS → 8.4.4; +6 паттернов (deepseek→pro-миграция, sonnet-4-6 как routing source/target/шаблон, `$15/$75`, `$7/$28`). Прогон после правок: 0 хитов по новым паттернам во всех 4 сборках.
 
 ### Code 2026-07-18 — РЕЛИЗ 8.4.4-C / v8C.4: +8 техник промпт-инжиниринга (add-only)
-- **Версии:** внутреннее ядро v8C.3 → **v8C.4**; внешний плагин **8.4.3 → 8.4.4** (`plugin.json` version+displayName, `marketplace.json` source/description → `editions/8.4.4-C`). Slug `p2p-v8c3` неизменен (кнопка Update). ⚠ Физический `git mv editions/8.4.3-C → 8.4.4-C` выполняет Master (в сессии заблокирован file-lock загруженных скиллов).
+- **Версии:** внутреннее ядро v8C.3 → **v8C.4**; внешний плагин **8.4.3 → 8.4.4** (`plugin.json` version+displayName, `marketplace.json` source/description → `editions/8.4.4-C`). Slug `p2p-v8c3` неизменен (кнопка Update). ⚠ Физический `git mv editions/8.4.3-C → 8.4.4-C` выполняется вручную (в сессии заблокирован file-lock загруженных скиллов).
 - **Также интегрированы H/N/L** (v8H.4 / v8N.4 / v8L.4) — те же 8 техник, адаптированы под их структуру (см. их CHANGELOG).
 - **Фаза 1 (db.md, writing_suite.md):** +`POSITIVE_FRAMING` (#DB_TECHNIQUE_POSITIVE_FRAMING, always-loaded) + правило в Contract Builder Шаг 5; +§10 writing_suite (`VERBALIZED_SAMPLING`; `BRUTAL_EDITOR` как вариант Template L); строки-указатели в db §8.
 - **Фаза 2 (optimization.md):** +GEPA (апгрейд EvoPrompt, Pareto-фронт), +MASPO (мета-тюнинг QUORUM — `I7_agents_8` не нарушен, 8 агентов), +SePO backlog. Фреймворки-процессы, не пункты меню.
