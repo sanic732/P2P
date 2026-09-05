@@ -604,7 +604,7 @@ _(запись восстановлена 2026-07-19 — при выпуске 8
 ---
 
 ## [v1.1-EN] — 2026-04 (backfilled, archived) · публичный EN-релиз
-🔗 Архивный репозиторий (read-only): https://github.com/sanic732/P2P
+🔗 Архивный репозиторий (read-only): https://github.com/sanic732/P2P-v1-legacy
 
 - Первый публичный релиз на GitHub. **Внутренняя версия v7C.2** (поколение CORTEX), English-only.
 - Переименование агентов: `ANON → FORGE`, `KSENIA → LYRA`; команда `/lang` (EN/RU).
