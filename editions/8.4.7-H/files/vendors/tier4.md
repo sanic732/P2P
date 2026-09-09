@@ -12,7 +12,7 @@ compatible_with: "!!db_v8H.md | _live/live_vendors.md"
 // Specialist: GLM-5.2/5.1 (MIT), Kimi K3 (WebDev #1), Kimi K2.x (Swarm)
 // ═══════════════════════════════════════════════════════
 
-GLM_52:  // основной GLM — MIT, 1M context (снимает G19-лимит 5.1); WebDev Arena #4
+GLM_52:  // основной GLM — MIT, 1M context (снимает G19-лимит 5.1); WebDev Arena: вне топ-10 (04.09)
   api_string:     glm-5.2
   context:        1M (~1,048,576) | output: 32K-131K
   pricing:        ⚠ UNCONFIRMED. Ходящая цифра ~$1.40/$4.40 идёт из ЕДИНСТВЕННОГО источника,
@@ -20,7 +20,7 @@ GLM_52:  // основной GLM — MIT, 1M context (снимает G19-лим�
                   подтверждена официальной страницей Zhipu ни в один из прогонов.
                   В canon не принята — не закладываться в расчёты стоимости.
   license:        MIT
-  strengths:      WebDev #4, near-Sonnet-5 бенчи, on-prem, long-horizon agent;
+  strengths:      near-Sonnet-5 бенчи, on-prem, long-horizon agent (WebDev: вне топ-10 на 04.09);
                   сильнейший open-weight вариант, у которого веса ДЕЙСТВИТЕЛЬНО опубликованы
                   (Kimi K3 и Qwen3.8 веса обещали и не дали) → выбор для air-gapped и
                   воспроизводимых прогонов

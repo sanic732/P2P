@@ -80,7 +80,7 @@ grep -rn "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deeps
 | Gemini 3.5 Flash-Lite | `gemini-3.5-flash-lite` | ✅ GA 21.07 — самый дешёвый уровень, $0.30/$2.50 |
 | Gemini 3.5 Pro | `gemini-3.5-pro-preview` | ⚠️ PREVIEW (не GA, третий пропуск срока) — 2M |
 | Gemini 3.1 Pro / 3.5 Flash | `gemini-3.1-pro-preview` · `gemini-3.5-flash` | ✅ Long ctx / budget |
-| GLM-5.2 | `glm-5.2` | ✅ MIT 1M, WebDev #4 |
+| GLM-5.2 | `glm-5.2` | ✅ MIT 1M, WebDev вне топ-10 (04.09) |
 | DeepSeek V4 Pro / Flash | `deepseek-v4-pro` · `deepseek-v4-flash` | ⚠️ официально PREVIEW; де-факто единственный путь после ретайра алиасов |
 | Qwen 3.7 Max / 3.7-Plus / 3.6-Plus | `qwen3.7-max` · `qwen3.7-plus` · `qwen3.6-plus` | ✅ 3.7-Max text-only; 3.7-Plus multimodal 1M |
 | Qwen 3.6-35B-A3B | `qwen3.6-35b-a3b` | ✅ open-weight Apache-2.0, 262K |

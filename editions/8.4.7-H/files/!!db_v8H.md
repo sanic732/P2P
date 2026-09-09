@@ -81,7 +81,7 @@ TECHNIQUES:
                      провайдеров, систем безопасности или законодательства.
 
   // ── AGENTIC ──
-  AGENT_SWARM:       До 100 sub-agents, параллельно. Kimi K2.x leader. 89/100.
+  AGENT_SWARM:       До 300 sub-agents, параллельно (>40 sync → async webhooks, G20). Kimi K2.x leader. 89/100.
   TOOL_BUDGET:       MAX_TOOL_CALLS + stop conditions. Kimi/Gemini. 95/100.
   VISUAL_AGENTIC:    Код из изображений/мокапов. Kimi/Gemini/Qwen3-VL. 91/100.
   FRESHNESS_PROTOCOL: Спрашивать разрешение перед допущениями. 88/100.
@@ -417,7 +417,7 @@ API_STRINGS:
     kimi-k2.7-code                     ← open-weight coding; kimi-for-coding-highspeed (~5-6x)
 
   GLM:
-    glm-5.2                            ← MIT, 1M (WebDev #4) — цена ~$1.40/$4.40 UNCONFIRMED (единственный источник)
+    glm-5.2                            ← MIT, 1M (WebDev вне топ-10 (04.09)) — цена ~$1.40/$4.40 UNCONFIRMED (единственный источник)
     glm-5.1                            ← MIT, ~120K (G19)
     glm-5.1-flash                      ← MIT, до 100K — цель маршрута on-premises (G19)
 
