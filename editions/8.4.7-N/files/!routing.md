@@ -37,12 +37,12 @@ menu_item: 28
 Код / debugging            → claude-opus-4-8          → claude-sonnet-5
 Agentic / WebDev T3-4      → claude-fable-5           → claude-opus-4-8  (Safety Nanny ~5%)
 Глубокий анализ T4         → claude-opus-5            → gpt-5.6-sol
-Обычный текст T2-3         → claude-sonnet-5          → gemini-3.1-pro-latest
-Быстрый T0-1               → claude-haiku-4-5         → gemini-3.1-flash-latest
-Длинный контекст >200K     → gemini-3.1-pro-latest    → grok-4.3 (2M)
-Recall >500K               → claude-opus-4-6 (пин G8) → gemini-3.1-pro-latest
+Обычный текст T2-3         → claude-sonnet-5          → gemini-3.1-pro-preview
+Быстрый T0-1               → claude-haiku-4-5         → gemini-3.8-flash
+Длинный контекст >200K     → gemini-3.1-pro-preview    → grok-4.3 (2M)
+Recall >500K               → claude-opus-4-6 (пин G8) → gemini-3.1-pro-preview
 Real-time X/Twitter        → grok-4.3                 → —
-Research / web grounding   → gemini-3.1-pro-latest    → grok-4.3
+Research / web grounding   → gemini-3.1-pro-preview    → grok-4.3
 Swarm многоагентный        → moonshot-v2-128k (Kimi)  → claude-opus-4-8 (G20: до 300; async webhooks >1h)
 Китайский / vision         → qwen3-max                → qwen3-plus
 On-premises / MIT license  → glm-5.1-flash (≤100K G19)→ —
@@ -64,7 +64,7 @@ MUTEX: для проектной декомпозиции с зависимос�
 ## Cost-Aware Routing — с учётом бюджета
 ```
 [COST_ROUTER]  INPUT: task_tier, token_estimate, budget_limit
-IF budget < $0.01      → deepseek-v4-flash ($0.07/$0.28) / glm-5.1-flash
+IF budget < $0.01      → deepseek-v4-flash ($0.22/$0.66 off-peak) / glm-5.1-flash
 IF budget $0.01-$0.10  → claude-sonnet-5 / qwen3.6-plus
 IF budget > $0.10 OR tier ≥ T3 → claude-opus-4-8 / claude-fable-5
 Formula: cost = (in_tok/1M × price_in) + (out_tok/1M × price_out)   // прайс из live_core §1
@@ -74,7 +74,7 @@ Formula: cost = (in_tok/1M × price_in) + (out_tok/1M × price_out)   // пра�
 ```
 [LLM_ROUTER]  Classifier: claude-haiku-4-5 / gemini-3.1-flash (быстро, дёшево, ~$0.001/query)
   code→claude-opus-4-8 | analysis→claude-opus-4-8/sonnet-5 | creative→claude-sonnet-5/gpt-5.6-terra
-  factual→gemini-3.1-pro-latest (web grounding) | math→claude-opus-4-8 + !reasoning MCTS
+  factual→gemini-3.1-pro-preview (web grounding) | math→claude-opus-4-8 + !reasoning MCTS
   chinese→qwen3.7-max | rt_social→grok-4.3 | agentic→claude-fable-5/gpt-5.5
 ```
 

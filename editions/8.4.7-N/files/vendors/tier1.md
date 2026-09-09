@@ -184,8 +184,8 @@ GPT_56:  // GPT-5.6 Sol/Terra/Luna — PUBLIC GA 2026-07-09 (superseded GPT-5.5 
   api_string:     gpt-5.6-sol (alias gpt-5.6) | gpt-5.6-terra | gpt-5.6-luna
   arena_elo:      Sol WebDev #1 (codex-harness); Overall #8
   context:        1.05M | output: 128K | cutoff: 2026-02-16
-  pricing:        Sol $5 in / $0.50 cached / $30 out | Terra $2.50/$15 | Luna $1/$6
-                  Sol long-context (>272K): $10 in / $45 out — но cached input тоже ×2 (пометка EXEMPT была ошибкой)
+  pricing:        Sol $4 in / $0.40 cached / $20 out (промо ≥21.11) | Terra $2.50/$15 | Luna $1/$6
+                  Sol long-context (>272K): $8 in / $30 out — и cached input тоже ×2 (пометка EXEMPT была ошибкой)
                   ⚠ Terra и Luna: long-context ставки НЕ ДОКУМЕНТИРОВАНЫ. Порог 272K и множители
                     расписаны только для Sol. Ходившие Terra $5/$22.5 и Luna $2/$9 — экстраполяция
                     сторонних калькуляторов, не данные вендора → в canon не вносить.
@@ -197,9 +197,9 @@ GPT_56:  // GPT-5.6 Sol/Terra/Luna — PUBLIC GA 2026-07-09 (superseded GPT-5.5 
 
   KNOWN_ISSUES:
     G9: >7 MUST/MUST NOT pairs → silent quality downgrade.
-    G10: >272K input → ×2 UNCACHED input / ×1.5 output на весь запрос (BY DESIGN; 5.4/5.5/5.6).
-         КЛЮЧЕВОЕ: cached input cached тоже ×2 — кэш обрыв НЕ переживает, поэтому для нагрузки
-         со стабильным префиксом переход через 272K может быть приемлем. Решать по доле попаданий
+    G10: >272K input → ×2 input, ×2 CACHED input, ×1.5 output на весь запрос (BY DESIGN; 5.4/5.5/5.6).
+         КЛЮЧЕВОЕ: кэш обрыв НЕ переживает — cached дорожает вдвое вместе с обычным input,
+         поэтому стабильный префикс переход через 272K не удешевляет. Решать по доле попаданий
          в кэш, а не по сырому числу токенов. Перехват 250K, жёсткий обрыв 260K.
          ⚠ У xAI порог устроен ИНАЧЕ: 200K, и там удваивается также кэш — одна общая заглушка
            два случая не описывает.

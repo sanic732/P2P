@@ -378,6 +378,9 @@ API_STRINGS:
 
   GEMINI:
     gemini-3.1-pro-preview             ← Tier 3-4, 2M context
+    gemini-3.8-flash                   ← Tier 2 PRIMARY bulk (GA 02.09; 1,048,576/65,536; $0.75/$3.75, cache-read $0.075 до 31.12)
+                                         ⚠ G13 не проверялся и на 3.8 Flash — обходы применять
+    gemini-3.7-flash                   ← Tier 1-2 (GA 13.08; цена Flash-линии, как у 3.8)
     gemini-3.6-flash                   ← Tier 0-2 workhorse (GA 21.07; 1M/64K; $1.50/$7.50; cache-read $0.15)
                                          ⚠ G13 на 3.6 Flash НЕ тестировался — не очищен, а не проверен: обходы применять
     gemini-3.5-flash-lite              ← самый дешёвый уровень (GA 21.07; $0.30/$2.50; ~350 tok/s)
@@ -387,7 +390,7 @@ API_STRINGS:
   GROK:
     grok-4.5                           ← Tier 3-4 (coding flagship, 500K; EU открыт 21.07, БЕЗ data-residency)
     grok-4.3                           ← Tier 2-3 (1M)
-    grok-4.20                          ← Tier 3-4 (Heavy-16, 2M)
+    grok-4.20                          ← Tier 4 (Heavy-16, 2M) · vendors/tier4.md
 
   DEEPSEEK:
     deepseek-v4-pro                    ← Tier 2-4
@@ -409,15 +412,14 @@ API_STRINGS:
   KIMI:
     kimi-k3                            ← GA 16.07, WebDev #1 ($3/$15; 1,048,576; thinking always-on)
                                          ⚠ ACCESS-RISK: hosted-only, подписки закрыты, весов нет → НЕ primary
-    kimi-k3                            ← GA 16.07, WebDev #1 ($3/$15; 1,048,576; thinking always-on)
-                                         ⚠ ACCESS-RISK: hosted-only, подписки закрыты, весов нет → НЕ primary
     kimi-k2.6                          ← Стандарт (Swarm 300)
-    ⚠ DEADLINE 2026-08-31: гасятся kimi-k2.5 и часть moonshot-v1; kimi-k2.7-code (open-weight); kimi-k2.7-code-highspeed
-    ⚠ DEADLINE 2026-08-31: гасятся kimi-k2.5 и часть moonshot-v1
-    moonshot-v2-8k                     ← Короткий контекст
+    ✅ ИСПОЛНЕНО 2026-08-31: погашены kimi-k2.5 и часть moonshot-v1
+    kimi-k2.7-code                     ← open-weight coding; kimi-for-coding-highspeed (~5-6x)
 
   GLM:
-    glm-5.1-flash                      ← MIT license, до 100K
+    glm-5.2                            ← MIT, 1M (WebDev #4) — цена ~$1.40/$4.40 UNCONFIRMED (единственный источник)
+    glm-5.1                            ← MIT, ~120K (G19)
+    glm-5.1-flash                      ← MIT, до 100K — цель маршрута on-premises (G19)
 
 // ─────────────────────────────────────────────────────
 // §6. DYNAMIC WEIGHTING SYSTEM (QUORUM)
@@ -446,7 +448,7 @@ RECOMMENDATIONS:
   RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.3 (X.com real-time)
   VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro, Claude Opus 4.7
   AGENTS:    Kimi K2.x (1500+ tool calls), Claude Opus 4.7 (Computer Use)
-  BUDGET:    DeepSeek V4-Flash ($0.07/M), GLM-5.1 ($0.60/M, MIT license)
+  BUDGET:    DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M, MIT license)
   LONG_CTX:  Gemini 3.1 Pro (1M), Grok 4.3 (2M)
   RECALL:    Claude Opus 4.6 pinned (>500K, G8 protection)
   FREE_TIER: Claude Sonnet 4.6 (май 2026, бесплатный доступ)

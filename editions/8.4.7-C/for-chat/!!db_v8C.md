@@ -1072,7 +1072,7 @@ If different error type appears → iterate from Step 1 with new diagnosis.
 **RESOURCE STRATEGY:**
 - IDEALIST: Игнорировать стоимость, максимизировать качество
 - PRAGMATIST: Оптимизировать price/quality
-  Budget picks: DeepSeek V4-Flash ($0.27/M), GLM-5.1 ($0.60/M), Kimi K2.x ($0.60/M), Qwen3-Flash ($0.14/M)
+  Budget picks: DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M), Kimi K2.x ($0.60/M), Qwen3-Flash ($0.14/M)
 - EXPERIMENTAL (‡): Только sandbox + A/B testing
 
 ---
