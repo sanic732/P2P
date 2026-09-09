@@ -93,7 +93,6 @@ ARENA_ELO:
   claude-haiku-4-5-20251001: 1455
   deepseek-v4-flash:         1441
   glm-5.1-flash:             1398
-  moonshot-v2-128k:          1432
 
 BENCHMARK_NOTES:
   Arena Elo — general quality, not domain-specific.

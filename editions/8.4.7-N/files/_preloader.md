@@ -154,7 +154,7 @@ LOAD_SEQUENCE:
   3. !!db_v8N.md          ← Техники, ошибки A-P, G-ошибки (всегда)
   4. _live/MANIFEST.md    ← Дедлайны, версии (ежедневно)
   5. _live/live_core.md   ← Прайсинг, арена, маршрутизация
-  6. _live/live_vendors.md ← G1-G20, vendor rules (еженедельно)
+  6. _live/live_vendors.md ← G1-G22, vendor rules (еженедельно)
   7. _live/live_specs.md ← OVERRIDE-спека v8.6.1 (Fable 5, Opus 4.8) при наличии
   8-N. ON-DEMAND          ← По триггеру ИЛИ MODULE_*=true|or (см. !!core_v8N.md §TRIGGERS)
 

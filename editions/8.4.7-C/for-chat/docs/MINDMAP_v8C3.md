@@ -64,7 +64,7 @@
  │     └── CONFLICT_RESOLVER v1.0                      ← 🆕 v8C.3
  │
  ├──📄 !!db_v8C.md  [~4,800 токенов]
- │     ├── G-errors G1–G20 (все вендоры)
+ │     ├── G-errors G1–G22 (все вендоры)
  │     ├── Contract Templates A–M
  │     └── 9-step Algorithm
  │
@@ -83,7 +83,7 @@
  │
  └──📄 vendors/live_specs.md  [~14,000 токенов] — PRIORITY: OVERRIDE
        ├── Все вендоры: Claude, Gemini, Grok, GPT, DeepSeek, Qwen, Kimi, GLM, MiniMax, Manus
-       ├── ERROR_REGISTRY G1–G20 (полный)
+       ├── ERROR_REGISTRY G1–G22 (полный)
        └── USER_SANDBOX: DATA_BINDING, логотип, меню
        
    ↕ При новых данных → выпускается live_specs_YYYYMMDD.md (маленький файл)

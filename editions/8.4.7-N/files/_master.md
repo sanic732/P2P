@@ -47,7 +47,7 @@ STANDARD:  # Рекомендован
       !pipeline.md \
       > p2p_normal_standard.md
 
-  Включает: Всё для T2-T3, G-errors G1-G20, Templates A-M, QUORUM, Translation Layer.
+  Включает: Всё для T2-T3, G-errors G1-G22, Templates A-M, QUORUM, Translation Layer.
 
 FULL:
   cat _preloader.md \

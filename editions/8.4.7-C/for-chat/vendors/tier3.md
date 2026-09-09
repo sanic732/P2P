@@ -47,7 +47,7 @@ API: `grok-4.5` (coding/agentic flagship, GA 2026-07-08, ~80 tps) · `grok-4.3` 
     кэширование обрыв НЕ смягчает; единственный рычаг — резать контекст.
   ⚠ EU: доступ открыт 2026-07-21, **но без гарантий data-residency** — персональные данные EU не пускать.
   grok-build default.
-- Grok 4.3: Context 2M | Cost $1.25/$2.50.
+- Grok 4.3: Context 1M | Cost $1.25/$2.50. Для 2M — Grok 4.20 (Heavy-16).
 
 G-errors: G14 (safe-list params only: temperature, max_tokens, stream, top_p, stop → иначе HTTP 400)
 

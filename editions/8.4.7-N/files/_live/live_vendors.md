@@ -10,7 +10,7 @@ last_verified: 2026-07-26
 
 // ═══════════════════════════════════════════════════════
 // P2P — LIVE VENDORS
-// G-ошибки G1-G20 детально, правила маршрутизации.
+// G-ошибки G1-G22 детально, правила маршрутизации.
 // OVERRIDE приоритет: live_specs > live_vendors > vendors/*.md > !!db_v8N.md
 // ═══════════════════════════════════════════════════════
 
@@ -53,7 +53,7 @@ CAPABILITY_MATRIX:
   // * G19: context collapse above 100K (5.1); GLM-5.2 расширен до 1M
 
 // ─────────────────────────────────────────────────────
-// §2. G-ERRORS FULL CATALOG (G1-G20)
+// §2. G-ERRORS FULL CATALOG (G1-G22)
 // ─────────────────────────────────────────────────────
 
 G1: GEMINI_DEEP_THINK_TEMP
@@ -321,7 +321,7 @@ TRANSLATION_RULES:
 // ─────────────────────────────────────────────────────
 
 FILE_META:
-  SCOPE:       G-errors G1-G20, v8.5 issues, Translation Rules, Capability Matrix
+  SCOPE:       G-errors G1-G22, v8.5 issues, Translation Rules, Capability Matrix
   OVERRIDE:    Этот файл имеет приоритет над vendors/*.md при конфликтах
   COMPATIBLE:  !!core_v8N.md | !!db_v8N.md | all v8N files
 // ═══════════════════════════════════════════════════════

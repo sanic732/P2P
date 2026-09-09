@@ -127,7 +127,7 @@ FROM_v7N1:
 
   ADDITIVE_CHANGES:
     - _live/ директория (MANIFEST + live_core + live_vendors)
-    - G-errors G1-G20 (в v7N.1 не было)
+    - G-errors G1-G22 (в v7N.1 не было)
     - Template M (Karpathy Mode) в !pipeline.md
     - DEADLINE Scanner (пункт 24 меню)
     - YAML frontmatter на всех файлах

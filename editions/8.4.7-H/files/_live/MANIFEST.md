@@ -126,7 +126,7 @@ FROM_8A1_8G1:  // 8H.3 = merge 8A.1 (Gemini) ⊕ 8G.1 (Grok)
     - Grok host-engine: !llm_router, !routing_matrix, !tool_budget, !x_realtime (порт 8G.1)
     - 8C.3 parity: 6 ON-DEMAND модулей [35-40], VERSION_COMPAT, CONFLICT_RESOLVER v1.0
     - Нативный live_specs (Fable 5, Opus 4.8); старые спеки доноров не переносились
-    - G-errors G1-G20 union обоих доноров + Grok Type B/H/T/X/V
+    - G-errors G1-G22 union обоих доноров + Grok Type B/H/T/X/V
     - Native plugin: .claude/agents/p2p-*.md + .claude-plugin/
   BREAKING_CHANGES: нет относительно функционала доноров (новые техник-модули по умолчанию OFF)
   FULL_MIGRATION_GUIDE: docs/MIGRATION_8A1_8G1.md  (см. также docs/MERGE_NOTES.md)

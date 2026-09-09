@@ -20,7 +20,7 @@ MODULE_REGISTRY:
   LIVE (ежедневно/еженедельно):
     4. _live/MANIFEST.md      Version manifest, DEADLINE flags
     5. _live/live_core.md     Pricing, Arena ELO, routing matrix
-    6. _live/live_vendors.md  G1-G20 full catalog, translation rules
+    6. _live/live_vendors.md  G1-G22 full catalog, translation rules
 
   ON-DEMAND (по триггеру):
     7. !agents.md             TRIGGER: "QUORUM|агент|Q:|FULL|FAST_TRIO|HELIOS"

@@ -77,5 +77,5 @@ A: Да. На claude/grok с плагином — нативные sub-agents. �
 ---
 
 ## G-ошибки (полный каталог)
-G1-G20 — в `!!db_v8L §4`. Детальные спеки — в чанке `gist_live` (lazy) и `gist_vendors`.
+G1-G22 — в `!!db_v8L §4`. Детальные спеки — в чанке `gist_live` (lazy) и `gist_vendors`.
 Активный дедлайн: **2026-07-24** — `deepseek-chat`→`deepseek-v4-pro`, `deepseek-reasoner`→`deepseek-v4-flash`.

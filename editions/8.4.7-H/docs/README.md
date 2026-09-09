@@ -51,7 +51,7 @@ cat _preloader.md !!core_v8H.md !!db_v8H.md _live/*.md \
 
 ## Базовое (универсальный каркас)
 
-- **G-errors G1-G20** — полный каталог model-specific ошибок
+- **G-errors G1-G22** — полный каталог model-specific ошибок
 - **DEADLINE flags** — предупреждения об устаревших API строках
 - **HELIOS** — 8-й агент, финальный синтезатор QUORUM
 - **Template M** (Karpathy Mode) — минималистичный шаблон T0-T1

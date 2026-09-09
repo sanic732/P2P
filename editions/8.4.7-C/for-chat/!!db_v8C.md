@@ -3,7 +3,7 @@ source_id: DB_V8C
 version: 8.4.7-C
 module_type: base
 depends_on: !!core_v8C.md
-scope: P2P knowledge base — G-errors G1-G20, Extended Thinking rules, Claude-specific patterns, Template Library A–M, QUORUM agent definitions, 9-step algorithm. Always loaded.
+scope: P2P knowledge base — G-errors G1-G22, Extended Thinking rules, Claude-specific patterns, Template Library A–M, QUORUM agent definitions, 9-step algorithm. Always loaded.
 tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c, positive-framing
 ---
 
@@ -11,7 +11,7 @@ tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c, p
 
 ---
 
-## РАЗДЕЛ 1 — G-ERRORS CATALOG (G1–G20)
+## РАЗДЕЛ 1 — G-ERRORS CATALOG (G1–G22)
 
 > Полный каталог известных ошибок. Проверяй перед отправкой любого запроса к LLM.
 > Anchor: #DB_ERROR_G[N]
