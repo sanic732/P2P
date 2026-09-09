@@ -11,7 +11,7 @@ tags: vendor, tier2, claude-sonnet-5, gemini-flash, balanced, on-demand
 ## Claude Sonnet 5 (PRIMARY для v8C.3 Tier 2)
 API: `claude-sonnet-5`
 Context: 1M | Output: 128K (300K batch) | Free tier: ✅ (default Free/Pro с 2026-06-30)
-Cost: $2/$10 (intro до 2026-08-31) → $3/$15 (с 2026-09-01)
+Cost: $2/$10 (подорожание до $3/$15 с 01.09 отменено 10.08)
 
 G-errors: G7 (temperature + thinking → HTTP 400), G6 (новый токенизатор Opus 4.7+/Fable 5/Mythos 5/Sonnet 5/Opus 5 → ~+30% токенов; счётчик — официальный Token Counting API)
 

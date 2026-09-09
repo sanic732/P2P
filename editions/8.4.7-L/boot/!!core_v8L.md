@@ -14,7 +14,7 @@ HOST_PROFILES:
     SYNTAX_SELF:    XML теги (<role>, <rules>, <task>)
     CAPABILITIES:   Adaptive Thinking (effort: low|medium|high|xhigh|max; на Opus 5 — ON BY DEFAULT), 1M context, Computer Use, Tool Calling, Projects memory, WebFetch
     API_STRINGS:    claude-opus-5 (PRIMARY, GA 24.07) | claude-sonnet-5 | claude-opus-4-8 (ACTIVE, API-only surface) | claude-haiku-4-5-20251001
-                    ⚠ claude-opus-4-1-20250805 RETIRES 2026-08-05 · Fable 5 COST-GATED с 20.07 (usage credits)
+                    ❌ claude-opus-4-1-20250805 снят 05.08 · Fable 5 COST-GATED с 20.07 (usage credits)
     KNOWN_ISSUES:   G6 (новый токенизатор 4.7+/Fable 5/Mythos 5/Sonnet 5/Opus 5 → ~+30%, офиц.; счётчик Token Counting API), G7 (no temp/top_p/top_k + thinking), G8 (MRCR regression >500K → пин opus-4-6)
     THINKING_API:   thinking: {"type": "adaptive"}   // budget_tokens удалён из API
     CONTEXT_LIMIT:  1M (out 128K; Sonnet 5 — 300K batch)

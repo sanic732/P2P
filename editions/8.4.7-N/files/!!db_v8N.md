@@ -357,7 +357,7 @@ API_STRINGS:
     claude-sonnet-5                    ← v8N рекомендован (Tier 2-3, default Free/Pro; near-Opus)
     claude-opus-4-8                    ← Tier 3-4, coding; ACTIVE (НЕ депрекирован), API-only surface,
                                          retirement floor «не ранее 2027-05-28»; UI-видимость ≠ доступность
-    claude-opus-4-1-20250805           ← ⚠ RETIRES 2026-08-05 (замена по офиц. таблице — opus-4-8)
+    claude-opus-4-1-20250805           ← ❌ СНЯТ 2026-08-05 (замена по офиц. таблице — opus-4-8)
     claude-opus-4-7                    ← Tier 3-4
     claude-opus-4-6                    ← Пинить для >500K recall (G8)
     claude-haiku-4-5-20251001          ← Tier 0-1, бюджет

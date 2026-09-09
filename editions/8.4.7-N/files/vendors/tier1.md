@@ -101,12 +101,12 @@ CLAUDE_OPUS_48:
     НЕ для: >500K recall (→ Opus 4.6), документов (→ Opus 4.6, Document #1).
 
 // ─────────────────────────────────────────────────────
-// §0b-2. CLAUDE OPUS 4.1  — RETIRES 2026-08-05
+// §0b-2. CLAUDE OPUS 4.1  — СНЯТ 2026-08-05
 // ─────────────────────────────────────────────────────
 
 CLAUDE_OPUS_41:
   api_string:     claude-opus-4-1-20250805
-  status:         ⚠ DEPRECATED 2026-06-05 → RETIRES 2026-08-05
+  status:         ❌ СНЯТ 2026-08-05 (deprecated 2026-06-05) — API отдаёт ошибку
   replacement:    claude-opus-4-8 (по официальной таблице депрекаций)
   NOTE:           таблица называет заменой Opus 4.8, а не Opus 5 — похоже, её не обновляли после
                   выхода Opus 5. На маршрутизацию не влияет: обе модели активны.
@@ -118,7 +118,7 @@ CLAUDE_OPUS_41:
 CLAUDE_SONNET_5:
   api_string:     claude-sonnet-5
   context:        1M | output: 128K (300K batch)
-  pricing:        $2/$10 (intro до 2026-08-31) → $3/$15 (c 01.09)
+  pricing:        $2/$10 (подорожание до $3/$15 с 01.09 отменено 10.08)
   strengths:      near-Opus-4.8 качество, дёшево; Tier 3 default для cost-efficient agentic
   arch:           XML_NATIVE
   thinking:       {"type":"adaptive"} | effort low|medium|high|xhigh|max

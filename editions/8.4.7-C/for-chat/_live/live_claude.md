@@ -31,7 +31,7 @@ Reasoning:     thinking ON BY DEFAULT (отличие от Opus 4.x, где бы
 API:           claude-sonnet-5
 Status:        GA с 2026-06-30 (заменил Sonnet 4.6 как default)
 Context:       1M | Output: 128K (300K batch)
-Cost:          $2/$10 (intro до 2026-08-31) → $3/$15 (с 2026-09-01)
+Cost:          $2/$10 (подорожание до $3/$15 с 01.09 отменено 10.08)
 Reasoning:     adaptive thinking (low|medium|high|xhigh|max)
 Роль:          Tier 3 default для cost-efficient agentic (near-Opus-4.8)
 ```
@@ -115,7 +115,7 @@ Context:       200K | Cost: $1/$5 | fast fallback (Tier 0-1)
 ```
 [COMPLETED 2026-06-15]: claude-*-4-20250514 → HTTP 404 (без авто-редиректа)
 [COMPLETED 2026-06-30]: claude-sonnet-5 стал моделью по умолчанию; claude-sonnet-4-6 остаётся активным
-[SCHEDULED 2026-08-05]: claude-opus-4-1-20250805 → RETIRES (deprecated 2026-06-05);
+[COMPLETED 2026-08-05]: claude-opus-4-1-20250805 снят (deprecated 2026-06-05);
                         рекомендованная замена по официальной таблице — claude-opus-4-8
 ```
 

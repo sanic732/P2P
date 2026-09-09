@@ -16,11 +16,11 @@ CLAUDE_MODELS:
   claude-opus-5:     $5/$25   | 1M | PRIMARY (GA 24.07); out 128K; thinking ON BY DEFAULT; заменил Opus 4.8
   claude-fable-5:    $10/$50  | 1M | #1 Text/Vision; batch $5/$25, cache-hit in $1; classifier FP → Opus 4.8
                                     | ⚠ USAGE CREDITS с 20.07 — cost-gated, не в автоциклы
-  claude-sonnet-5:   $2/$10   | 1M | default Free/Pro (GA 30.06); near-Opus; $3/$15 c 01.09; out 128K/300K batch
+  claude-sonnet-5:   $2/$10   | 1M | default Free/Pro (GA 30.06); near-Opus; подорожание 01.09 отменено 10.08; out 128K/300K batch
   claude-opus-4-8:   $5/$25   | 1M | coding; SWE-bench Pro 69.2%; ACTIVE, НЕ депрекирован
                                     | retirement floor «не ранее 2027-05-28»; убран из селектора 24.07 —
                                     | это поверхность, НЕ депрекация; видимость в UI ≠ сигнал доступности
-  claude-opus-4-1:   $5/$25   | — | ⚠ RETIRES 2026-08-05 (deprecated 05.06); замена по офиц. таблице — opus-4-8
+  claude-opus-4-1:   $5/$25   | — | ❌ СНЯТ 2026-08-05 (deprecated 05.06); замена по офиц. таблице — opus-4-8
   claude-opus-4-7:   $5/$25   | 1M | legacy флагман; G6 общий токенизатор
   claude-opus-4-6:   $5/$25   | 1M | пин для >500K recall (G8; MRCR 78.3%)
   claude-haiku-4-5:  $1/$5    | 200K | fast fallback (T0-1)

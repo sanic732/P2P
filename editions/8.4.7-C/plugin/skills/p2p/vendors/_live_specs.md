@@ -24,7 +24,7 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Claude** | Opus 5 | `claude-opus-5` | 1M | $5/$25 | T3-4 PRIMARY (thinking default on) | G6, G7 |
 | **Claude** | Fable 5.1 | `claude-fable-5-1` | 1M | $10/$50, **cache read $0.25/MTok (0.025x)** | T4 FULL+ (GA 01.09; Arena WebDev #1) | G6, G7 |
 | **Claude** | Fable 5 | `claude-fable-5` | 1M | $10/$50 (batch $5/$25, cache-hit in $1) | T4 FULL+ — ⚠ COST-GATED с 20.07 | classifier FP |
-| **Claude** | Sonnet 5 | `claude-sonnet-5` | 1M | $2/$10→$3/$15 c 01.09 | T2-3 (default Free/Pro) | G6, G7 |
+| **Claude** | Sonnet 5 | `claude-sonnet-5` | 1M | $2/$10 | T2-3 (default Free/Pro) | G6, G7 |
 | **Claude** | Opus 4.8 | `claude-opus-4-8` | 1M | $5/$25 | T4 ACTIVE — API-only surface | G6, G7, G8 |
 | **Claude** | Opus 4.7 | `claude-opus-4-7` | 1M | $5/$25 | T3-4 | G6, G7, G8 |
 | **Claude** | Opus 4.6 | `claude-opus-4-6` | 1M | $5/$25 | T3-4 (pin >500K recall) | G6, G8 |
