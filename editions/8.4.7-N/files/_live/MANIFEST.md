@@ -5,7 +5,7 @@ type: MANIFEST
 priority: HIGH
 load_order: 4
 compatible_with: "all v8N files"
-last_verified: 2026-07-26
+last_verified: 2026-09-04
 ---
 
 // ═══════════════════════════════════════════════════════
@@ -15,7 +15,7 @@ last_verified: 2026-07-26
 
 MANIFEST:
   SYSTEM:        P2P 8.4.7-N Normal Edition
-  BUILD_DATE:    2026-07-13
+  BUILD_DATE:    2026-09-04
   STATUS:        BETA (technique import from v8C.3)
   FILES:         24 base + 7 docs = 31 total
   PHILOSOPHY:    Universal · Any-host · Any-target · 8 host models

@@ -65,7 +65,7 @@ API: `kimi-k2.7-code-highspeed` | Context: 262,144 | сервис-тир (вар
 
 **GROK TARGET RULES** (при генерации промпта ПОД Grok, TARGET_MODEL=grok):
 - Arch: plain text; XML только в code-fences (I6); NOT native XML (в отличие от Claude host).
-- JSON: Grok склонен к Type H (JSON вперемешку с прозой) → требовать строгий JSON envelope. Компактный контракт — в `!contract.md` (GROK_JSON_TARGET).
+- JSON: Grok склонен к Type H (JSON вперемешку с прозой) → требовать строгий JSON envelope. Компактный контракт — в `contract_builder.md` (GROK_JSON_TARGET).
 - Полный нативный Heavy-16 пак — эксклюзив High/Light редакций.
 
 

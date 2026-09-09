@@ -18,7 +18,7 @@ Claude 4.x не имеет постоянной памяти между сесс
 Memory Bridge решает это через структурированный CAPSULE формат.
 
 **Три уровня памяти:**
-1. **In-session** — ATLAS, live_core.md (текущая сессия, автоматически)
+1. **In-session** — ATLAS, vendors/_live_core.md (текущая сессия, автоматически)
 2. **Cross-session** — CAPSULE (пользователь сохраняет/восстанавливает)
 3. **Permanent** — p2p.config.md (настройки проекта, не меняется)
 
@@ -243,7 +243,7 @@ ON NEW SESSION:
        - project_state → feeds contract_builder.md Step 1 (Task Context)
        - decisions → feeds Step 5 (Constraint Pairs) как established constraints
        - failed_attempts → feeds intent_engine.md Pattern detection
-       - glossary → feeds PROJECT_GLOSSARY в _preloader.md
+       - glossary → feeds PROJECT_GLOSSARY в preloader.md
        - learning_loop → informs agent selection и подход
        - session_metrics → feeds session_metrics.md Routing Memory biases
 

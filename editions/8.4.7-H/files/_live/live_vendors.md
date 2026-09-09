@@ -5,7 +5,7 @@ type: LIVE_VENDORS
 priority: HIGH
 load_order: 6
 update_frequency: weekly
-last_verified: 2026-07-26
+last_verified: 2026-09-04
 ---
 
 // ═══════════════════════════════════════════════════════

@@ -70,8 +70,8 @@ P2P — мета-промпт система для Claude. Помогает с�
 **Теория:**
 3 способа запуска в зависимости от среды:
 - **Claude Code / Cowork:** `/p2p` (slash-команда)
-- **Claude Chat / Projects:** скопировать `_master.md` целиком в system prompt
-- **API:** загрузить `_preloader.md → core.md → db.md → _live/*`
+- **Claude Chat / Projects:** скопировать `master.md` целиком в system prompt
+- **API:** загрузить `preloader.md → core.md → db.md → vendors/_live_*`
 
 **Пример:**
 ```
@@ -624,7 +624,7 @@ GUARDIAN говорит "70% budget на 30% задачи". Что делать?
 10 вопросов покрывая все уровни. Pass: 8/10.
 
 После сертификации:
-- Бейдж в `_live/live_core.md`: `teacher_certified: true`
+- Бейдж в `vendors/_live_core.md`: `teacher_certified: true`
 - Доступ к `advanced examples` (sandbox с реальными production задачами)
 - Рекомендация: попробовать v8C.2 на реальной задаче
 
@@ -661,7 +661,7 @@ A: Да. v8C.2 — это plugin, ставится в обе среды один
 A: HELIOS использует tiebreaker logic. Если spread > 30% — auto-trigger Exploration Mode для прояснения.
 
 ### Q10. Где хранится state между сессиями?
-A: В `_live/live_core.md` (working memory) + CAPSULE YAML файлы для долгосрочного.
+A: В `vendors/_live_core.md` (working memory) + CAPSULE YAML файлы для долгосрочного.
 
 ### Q11. Можно ли создать своего агента?
 A: Технически да — добавить файл в `.claude/agents/`. Но рекомендуется переиспользовать 8 существующих с разными prompts.
@@ -798,7 +798,7 @@ DEADLINE 2026-06-15 — удалить legacy API strings
 
 Для разработчиков системы / advanced users:
 
-1. **Storage:** `_live/live_core.md` секция `teacher_progress` — current_level, completed_levels, struggle_topics, last_session
+1. **Storage:** `vendors/_live_core.md` секция `teacher_progress` — current_level, completed_levels, struggle_topics, last_session
 2. **Adaptive routing:** struggle_topics → следующая сессия начнётся с повторения слабого блока
 3. **Q&A fallback:** если вопрос не в FAQ — full-text search по `core.md` + `db.md` + ON-DEMAND modules с тегами
 4. **Exit handling:** команды `выход`, `позже`, `пауза` → save state → return to `/p2p`

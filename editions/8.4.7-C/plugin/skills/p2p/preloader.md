@@ -7,7 +7,7 @@ scope: P2P entry point — USER_CONTEXT detection, PROJECT_CARD, TRI_MODE_BRIDGE
 tags: preloader, user-context, project-card, tri-mode, env-detection, always-loaded
 ---
 
-# P2P — PRELOADER (_preloader.md)
+# P2P — PRELOADER (preloader.md)
 
 > Этот файл загружается **первым**. Он задаёт контекст для всей сессии.
 
@@ -134,15 +134,15 @@ IF MODULE_X = false AND v8C3 = off:  Не загружать, пункт мен�
 
 ```
 ПОРЯДОК ЗАГРУЗКИ (BASE — всегда):
-  1. _preloader.md         ← этот файл
+  1. preloader.md         ← этот файл
   2. core.md         ← ядро системы
   3. db.md           ← база знаний
-  4. _live/MANIFEST.md     ← текущие дедлайны
-  5. _live/live_core.md    ← состояние сессии
-  6. _live/live_claude.md  ← Claude-specific live данные
+  4. vendors/_live_manifest.md     ← текущие дедлайны
+  5. vendors/_live_core.md    ← состояние сессии
+  6. vendors/_live_claude.md  ← Claude-specific live данные
 
 ПОРЯДОК ЗАГРУЗКИ (LIVE — ежедневно):
-  7. _live/live_vendors.md ← актуальные API strings и цены
+  7. vendors/_live_specs.md ← актуальные API strings и цены
 
 ПОРЯДОК ЗАГРУЗКИ (ON-DEMAND — по триггеру):
   agents.md       ← QUORUM, agent profiles

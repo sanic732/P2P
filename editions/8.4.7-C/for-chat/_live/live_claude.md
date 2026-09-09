@@ -3,7 +3,7 @@ source_id: LIVE_CLAUDE_V8C
 version: 8.4.7-C
 module_type: live
 depends_on: _live/MANIFEST.md
-last_updated: 2026-07-26
+last_updated: 2026-09-04
 scope: Claude-specific live data — current models, pricing, Extended Thinking API, context strategy. Update when Anthropic releases changes.
 tags: live, claude, extended-thinking, pricing, anthropic
 ---
@@ -194,6 +194,6 @@ FILE_META
 id: LIVE_CLAUDE_V8C
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-07-26
+last_verified: 2026-09-04
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

@@ -5,17 +5,17 @@ type: LIVE_CORE
 priority: HIGH
 load_order: 5
 update_frequency: weekly
-last_verified: 2026-07-26
+last_verified: 2026-09-04
 ---
 
 // ═══════════════════════════════════════════════════════
 // P2P — LIVE CORE
 // Прайсинг, Arena benchmarks, маршрутизация с весами.
-// Источник истины: _live/live_specs.md (v8.6.3 OVERRIDE).
+// Источник истины: _live/live_specs.md (v8.7.3 OVERRIDE).
 // ═══════════════════════════════════════════════════════
 
 // ─────────────────────────────────────────────────────
-// §1. PRICING TABLE (2026-06-27 — v8.5)
+// §1. PRICING TABLE (2026-09-04 — v8.7.3)
 // ─────────────────────────────────────────────────────
 
 PRICING:
@@ -67,7 +67,7 @@ PRICING:
   kimi-k2.6:                 TBD    /       / 256K-1M / Swarm 300; kimi-k2.7-code open-weight 0.95/4
 
 // ─────────────────────────────────────────────────────
-// §2. ARENA BENCHMARKS (snapshot; volatile — авторитетно в live_specs v8.6.3 §BENCHMARK_TABLE)
+// §2. ARENA BENCHMARKS (snapshot; volatile — авторитетно в live_specs v8.7.3 §BENCHMARK_TABLE)
 // ─────────────────────────────────────────────────────
 // ⚠ Arena Elo меняется еженедельно → актуальный leaderboard держится в live_specs (OVERRIDE),
 //   НЕ здесь. Ниже — исторический snapshot для грубой ориентировки.

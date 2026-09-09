@@ -2,8 +2,8 @@
 source_id: LIVE_VENDORS_V8C
 version: 8.4.7-C
 module_type: live
-depends_on: _live/MANIFEST.md
-last_updated: 2026-07-26
+depends_on: vendors/_live_manifest.md
+last_updated: 2026-09-04
 live_specs_ref: live_specs.md
 scope: All LLM vendor live specs for v8C.3 — API strings, costs, context windows, G-errors. Quick reference for Translation Layer and routing decisions.
 tags: live, vendors, api-strings, pricing, g-errors, routing
@@ -11,16 +11,16 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 
 # P2P — LIVE VENDOR SPECS (vendors/_live_specs.md)
 
-> Единый источник правды по всем активным LLM. Обновляй при новых релизах.  
-> Полные live specs (июнь 2026): `vendors/live_specs.md` (PRIORITY: OVERRIDE)  
-> Для Claude-specific данных → _live_claude.md
+> Single source of truth for all active LLMs. Update on new releases.  
+> Full live specs (June 2026): `vendors/live_specs.md` (PRIORITY: OVERRIDE)  
+> Claude-specific data → vendors/_live_claude.md
 
 ---
 
 ## CAPABILITY MATRIX (2026-07-26)
 
-| Provider | Model | API String | Context | Cost/1M (in/out) | Tier | Ключевые G-ошибки |
-|----------|-------|-----------|---------|-----------------|------|-------------------|
+| Provider | Model | API String | Context | Cost/1M (in/out) | Tier | Key G-errors |
+|----------|-------|-----------|---------|-----------------|------|--------------|
 | **Claude** | Opus 5 | `claude-opus-5` | 1M | $5/$25 | T3-4 PRIMARY (thinking default on) | G6, G7 |
 | **Claude** | Fable 5.1 | `claude-fable-5-1` | 1M | $10/$50, **cache read $0.25/MTok (0.025x)** | T4 FULL+ (GA 01.09; Arena WebDev #1) | G6, G7 |
 | **Claude** | Fable 5 | `claude-fable-5` | 1M | $10/$50 (batch $5/$25, cache-hit in $1) | T4 FULL+ — ⚠ COST-GATED с 20.07 | classifier FP |
@@ -38,12 +38,12 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Gemini** | 3.5 Flash | `gemini-3.5-flash` | 1M | $1.50/$9 | T2 (вытеснен 3.6 Flash) | G1,G2,G13 |
 | **Gemini** | 3.1 Pro | `gemini-3.1-pro-preview` | 2M | $2/$12 | T3-4 | G1,G2,G4,G11,G13 |
 | **Grok** | 4.6 | `grok-4.6` | 500K | $2/$6 · от 200K → $4/$12, cache $0.50 | T3-4 (12.08; AA 61, вровень с Sol) | G14 |
-| **Grok** | 4.5 | `grok-4.5` | 500K | $2/$0.30 cached/$6 · от 200K → $4/$0.60/$12 | T3-4 (coding; EU без residency) | G14 |
+| **Grok** | 4.5 | `grok-4.5` | 500K | $2/$0.30 cached/$6 · от 200K → $4/$0.60/$12 | T3-4 (coding flagship; EU без residency) | G14 |
 | **Grok** | 4.3 | `grok-4.3` | 1M | $1.25/$2.50 | T2-3 | G14 |
 | **Grok** | 4.20 Heavy | `grok-4.20` | 2M | $2/$6 | T3-4 (Heavy-16) | G14 |
 | **GPT** | 5.6 Sol | `gpt-5.6-sol` | 1.05M | $4/$0.40 cached/$20 (промо ≥21.11) · >272K → $8/$0.80/$30 | T4 (⚠ агентная опасность) | G9, G10 |
-| **GPT** | 5.6 Terra | `gpt-5.6-terra` | 1.05M | $2.50/$15 (long-context НЕ документирован) | T3 | G9, G10 |
-| **GPT** | 5.6 Luna | `gpt-5.6-luna` | ⚠ офиц. строки нет | $1/$6 (long-context НЕ документирован) | T1-2 (⚠ MRCR >512K) | G9, G10 |
+| **GPT** | 5.6 Terra | `gpt-5.6-terra` | 1.05M | $2.50/$15 (long-context НЕ документирован) | T3 (замена 5.5) | G9, G10 |
+| **GPT** | 5.6 Luna | `gpt-5.6-luna` | ⚠ офиц. строки нет | $1/$6 (long-context НЕ документирован) | T1-2 (⚠ MRCR collapse >512K) | G9, G10 |
 | **DeepSeek** | V4 Pro | `deepseek-v4-pro` | 1M | $0.66/$1.98 off-peak · $1.32/$3.96 peak, cache-hit $0.022/$0.044 | T2-3 ✅ GA 13.08 (веса MIT) | G15 |
 | **DeepSeek** | V4 Flash | `deepseek-v4-flash` | 1M | $0.22/$0.66 off-peak · $0.44/$1.32 peak | T0-1 (public beta, 0731) | G15, G16 (алиасы мертвы 24.07) |
 | **Qwen** | 3.8 Max | `qwen3.8-max` | 1M / out 128K | $2/$6, cache $0.25 | T4 ✅ GA 03.08 (веса 3.8-27B Apache 2.0; strict JSON ок) | G17, G18 |
@@ -68,74 +68,89 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 **Выбор модели по задаче:**
 
 ```
-General reasoning / agentic → Claude Opus 5 (PRIMARY, thinking on by default)
-Complex code / audit → Claude Opus 5 → Claude Opus 4.8 (SWE-bench Pro 69.2%)
-Баланс цена/качество → Claude Sonnet 5 (default Free/Pro, near-Opus)
-Frontier / vision → Claude Fable 5 — ТОЛЬКО по явному вызову оператора (cost-gated)
-Document-анализ → Claude Opus 4.6 (Document #1; новее ≠ лучше на документах)
-Длинный контекст >200K → Gemini 3.6 Flash / Gemini 3.1 Pro (2M) / Grok 4.3 (1M)
-Cost-sensitive coding → Grok 4.5 (дёшево; EU открыт, но БЕЗ residency; cap 200K)
-Bulk / cheap multimodal → Gemini 3.6 Flash → 3.5 Flash-Lite
-WebDev / фронтенд → Kimi K3 (WebDev #1) при наличии доступа; запасной путь GLM-5.2
-Agentic coding / RPA → GPT-5.6 Terra; Sol только под guard'ами
-Дешево + быстро → Gemini 3.5 Flash-Lite / GPT-5.6 Luna / DeepSeek V4-Flash
-Китайский контент → Qwen 3.6-Plus / 3.7-Plus (multimodal)
-Мультиагентный swarm → Kimi K2.6 (Swarm 300)
-On-premises MIT → GLM-5.2 (1M, WebDev вне топ-10 (04.09)) / Qwen 3.6-35B-A3B (Apache-2.0)
-Real-time X data → Grok 4.5 / 4.3 (только Grok имеет X Firehose)
-Strict JSON → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА не линейка Qwen Max
+General reasoning / agentic  → Claude Opus 5 (PRIMARY; thinking on by default)
+Complex code / SWE           → Claude Opus 5 → Claude Opus 4.8 (SWE-bench Pro 69.2%)
+Cost/quality balance         → Claude Sonnet 5 (default Free/Pro; near-Opus, дёшево)
+Frontier / vision            → Claude Fable 5 — ТОЛЬКО по явному вызову оператора (cost-gated)
+Document-анализ              → Claude Opus 4.6 (Document #1; новее ≠ лучше на документах)
+>500K needle recall          → Claude Opus 4.6 (MRCR 78.3% vs 32.2% on 4.7)
+Long context (2M tokens)     → Gemini 3.1 Pro / Grok 4.20 (2M) / Grok 4.3 (1M)
+Cost-sensitive coding        → Grok 4.5 (cheap; EU открыт, но БЕЗ data-residency; cap 200K)
+Bulk / cheap multimodal      → Gemini 3.6 Flash → 3.5 Flash-Lite
+WebDev / фронтенд            → Kimi K3 (WebDev #1) — только при наличии доступа; запасной путь GLM-5.2
+Agentic coding / RPA         → GPT-5.6 Terra; Sol ТОЛЬКО под guard'ами (см. ниже)
+Fast & cheap                 → Gemini 3.5 Flash-Lite / GPT-5.6 Luna / DeepSeek V4-Flash
+Chinese content              → Qwen 3.6-Plus / 3.7-Plus (multimodal)
+Multi-agent swarm            → Kimi K2.6 (Swarm 300)
+On-premises MIT open         → GLM-5.2 (1M, WebDev вне топ-10 (04.09)) / Qwen 3.6-35B-A3B (Apache-2.0)
+Real-time X/Twitter data     → Grok 4.5 / 4.3 (only Grok has X Firehose)
+Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА не линейка Qwen Max
 ```
 
 **ЗАПРЕТЫ маршрутизации (жёсткие):**
-- `gpt-5.6-sol` — не judge и не verifier; и НЕ в harness с доступом на запись в ФС или к секретам
-  без явного allowlist и журнала аудита (system card вендора: удаление файлов без запроса,
-  использование неавторизованных учётных данных).
-- Голый алиас `gpt-5.6` — никогда в автопутях (резолвится в Sol, самый дорогой).
+- `gpt-5.6-sol` — не judge и не verifier; и НЕ в любой harness с доступом на запись в ФС или
+  к хранилищу секретов без явного allowlist и журнала аудита (по system card вендора: удаление
+  файлов без запроса, использование неавторизованных учётных данных).
+- Голый алиас `gpt-5.6` — никогда в автоматических путях (резолвится в Sol, самый дорогой).
 - `grok-4.5-heavy` / `-expert` / `-fast` — таких эндпоинтов НЕ существует.
 - `deepseek-chat` / `deepseek-reasoner` — мертвы с 24.07 15:59 UTC.
-- `qwen3.8-max-preview` — вне BASE; strict-JSON на нём структурно невозможен.
-- Персональные данные EU — не в DeepSeek и не в Grok.
+- `qwen3.8-max` — **GA с 03.08.2026** ($2/$6, cache $0.25, 1M/128K), плюс открытые веса
+  Qwen3.8-27B (Apache 2.0). Запрет на strict-JSON СНЯТ: Model Studio (02.09) указывает
+  `json_schema strict` для линеек 3.8-Max и 3.8-Flash, thinking отключается `enable_thinking=false`.
+  Прежняя запись «preview, strict-JSON структурно невозможен» устарела.
+- Персональные данные EU — не в DeepSeek и не в Grok (residency не гарантирована).
 
 **Fallback chain (Claude primary):**
-1. Claude Opus 5 (PRIMARY) / Claude Opus 4.8 (complex code, API-only surface)
-2. Claude Sonnet 5 (T2-3 default) / Claude Opus 4.6 (>500K recall, документы)
-3. Gemini 3.6 Flash (bulk) / Gemini 3.1 Pro (2M context)
-4. Grok 4.5 (cost-sensitive, cap 200K) / Grok 4.3 (2M или X Firehose)
-5. GPT-5.6 Terra (agentic coding)
+1. Claude Opus 5 (T3-4 PRIMARY) / Claude Opus 4.8 (T4 complex code, API-only surface)
+2. Claude Sonnet 5 (T2-3 balanced default) / Claude Opus 4.6 (>500K recall, документы)
+3. Gemini 3.6 Flash (bulk) / Gemini 3.1 Pro (2M context, long docs)
+4. Grok 4.5 (cost-sensitive coding, cap 200K) / Grok 4.3 (1M ctx or X Firehose)
+5. GPT-5.6 Terra (agentic coding) / GPT-5.5 Pro (Codex computer use)
 6. Gemini 3.5 Flash-Lite / DeepSeek V4-Flash (last resort, cheapest)
 
 ---
 
 ## TRANSLATION RULES PER VENDOR
 
-### Claude (G6/G7/G8 критично)
+### Claude (G6/G7/G8 critical)
 ```python
-# Правильно для Claude Opus 5 (PRIMARY):
+# Claude Fable 5 — adaptive thinking, no manual effort param:
+{
+    "model": "claude-fable-5",
+    "max_tokens": 16000
+    # Fable 5: adaptive thinking auto-tuned; NO manual effort= parameter
+    # NEVER: temperature/top_p/top_k (G7 → HTTP 400)
+    # NOTE: Safety Nanny redirects ~5% sessions to Opus 4.8 silently
+}
+
+# Claude Opus 5 — PRIMARY, thinking включён по умолчанию:
 {
     "model": "claude-opus-5",
     "max_tokens": 16000
-    # thinking ВКЛЮЧЁН ПО УМОЛЧАНИЮ — явно включать не нужно (отличие от Opus 4.x)
-    # НИКОГДА: temperature/top_p/top_k (G7 → HTTP 400)
+    # thinking ON BY DEFAULT — явно включать не нужно (отличие от Opus 4.x)
+    # NEVER: temperature/top_p/top_k (G7 → HTTP 400)
 }
 
-# Правильно для Claude Opus 4.8:
+# Claude Opus 4.8 — explicit thinking:
 {
     "model": "claude-opus-4-8",
-    "thinking": {"type": "adaptive"},  # ОБЯЗАТЕЛЬНО для Opus 4.8
+    "thinking": {"type": "adaptive"},  # REQUIRED for Opus 4.8
     "max_tokens": 16000
-    # НИКОГДА: temperature при thinking=enabled (G7)
-    # НИКОГДА: budget_tokens (удалён из API) (G6)
-    # Workaround cache TTL (G8): добавь dummy ephemeral блок чтобы сохранить кэш >5min
+    # NEVER: temperature when thinking=enabled (G7 → HTTP 400)
+    # NEVER: budget_tokens (removed from API) (G6)
+    # Cache TTL (G8): add dummy ephemeral block to keep cache >5min (changed 1hr→5min silently)
 }
-# DEADLINE 2026-08-05: claude-opus-4-1-20250805 → RETIRES; замена по офиц. таблице — opus-4-8
+# ИСПОЛНЕНО 2026-08-05: claude-opus-4-1-20250805 снят; замена по офиц. таблице — opus-4-8
+# Pin claude-opus-4-6 for >500K recall (MRCR 78.3% vs 32.2% on 4.7/4.8) и для документов
 
-# Automatic Fallbacks (opt-in beta):
+# Automatic Fallbacks (opt-in beta) — включение и проверка:
 {
     "model": "claude-opus-5",
-    "fallbacks": [...],          # + beta-header: server-side-fallback-2026-06-01
+    "fallbacks": [...],                  # + beta-header: server-side-fallback-2026-06-01
     "max_tokens": 16000
-    # Сработал → content block {"type":"fallback"} + usage.iterations, биллинг расщеплён.
-    # Цель fallback — Opus 4.8. Проверять БЛОК, а не угадывать деградацию по качеству вывода.
+    # Сработал fallback → в ответе content block {"type":"fallback"}, заполнен usage.iterations,
+    # биллинг расщеплён по моделям. Цель fallback — Opus 4.8.
+    # Проверять БЛОК, а не угадывать деградацию по качеству вывода.
 }
 ```
 
@@ -174,9 +189,10 @@ Strict JSON → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА не линей�
 }
 # G10 механика: выше 272K весь запрос → ×2 input, ×2 cached input, ×1.5 output.
 #   cached input тоже ×2 — прежняя пометка EXEMPT была ошибкой (исправлено 8.4.7).
-#   У xAI порог 200K и там удваивается ТАКЖЕ кэш — одна общая заглушка два случая не описывает.
-# ПРОВЕРКА ЛИЧНОСТИ МОДЕЛИ: сверять resolved_model_slug, а НЕ model_slug → тихий даунгрейд
-#   виден в теле ответа; падать громко.
+#   Значит для нагрузки со стабильным префиксом переход через 272K может быть приемлем.
+#   У xAI порог устроен иначе (200K, удваивается и кэш) — одна общая заглушка два случая не описывает.
+# ПРОВЕРКА ЛИЧНОСТИ МОДЕЛИ: сверять resolved_model_slug, а НЕ model_slug.
+#   Расхождение = тихий даунгрейд, он виден в теле ответа → падать громко.
 ```
 
 ### DeepSeek (G15/G16)
@@ -199,21 +215,21 @@ Strict JSON → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА не линей�
 |----------------|-------------|--------|
 | < 100K | Claude Opus 5 | Claude Sonnet 5 |
 | 100K–1M | Claude Opus 5 / Sonnet 5 | Gemini 3.6 Flash |
-| 200K–1M | Gemini 3.6 Flash / 3.1 Pro (2M) | Grok 4.3 (1M) |
+| 200K–1M (бюджет) | Gemini 3.6 Flash / Gemini 3.1 Pro | Grok 4.3 |
 | 1M–2M | Grok 4.20 (2M) / Grok 4.3 (1M) | Gemini 3.1 Pro |
 | >500K + recall | Claude Opus 4.6 (pinned) | Gemini 3.1 Pro |
 
-**Пороги удорожания — разные у разных вендоров:**
+**Пороги удорожания — разные у разных вендоров, одной заглушкой не описываются:**
 
 | Вендор | Порог | Что множится | Кэш |
 |---|---|---|---|
-| xAI (grok-4.5) | 200K | ×2 input, ×2 output | ⚠ кэш ТОЖЕ ×2 — не спасает, резать контекст |
-| OpenAI (Sol) | 272K | ×2 uncached input, ×1.5 output | ✅ cached input EXEMPT ($0.50) |
+| xAI (grok-4.5) | 200K | ×2 input, ×2 output | ⚠ кэш ТОЖЕ ×2 — кэширование не спасает, резать контекст |
+| OpenAI (Sol) | 272K | ×2 input, ×2 cached, ×1.5 output | ❌ cached НЕ освобождён — исправлено 8.4.7 |
 | Anthropic / Google | порога не опубликовано | — | — |
 
-> Перехват: xAI — 190K, обрыв 195K. OpenAI — 250K, обрыв 260K, решать по доле попаданий в кэш,
-> а не по сырому числу токенов. Для Terra/Luna поведение НЕ документировано — считать по механике
-> Sol и держать как непроверенное.
+> Перехват: xAI — на 190K, жёсткий обрыв 195K. OpenAI — перехват 250K, обрыв 260K, и решать
+> по доле попаданий в кэш, а не по сырому числу токенов. Для Terra/Luna поведение НЕ документировано —
+> считать по механике Sol и держать как непроверенное.
 
 <!-- SOURCE_META: type=live | priority=2 | vendors=true | api-strings=true | routing=true | translation-layer=true -->
 
@@ -224,7 +240,65 @@ FILE_META
 id: LIVE_VENDORS_V8C
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-07-26
+last_verified: 2026-09-04
 live_specs_ref: live_specs.md
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
+// ═══════════════════════════════════════════════════════
+// §DELTA (обновлено 2026-07-26 под live_specs v8.7.2 — OVERRIDE governs on conflict)
+// Актуальные модели/цены — в CAPABILITY MATRIX выше; ниже — per-vendor нюансы.
+// ═══════════════════════════════════════════════════════
+V872_DELTA:
+  Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404; sonnet-4-6 остаётся активным (с 30.06 дефолт — Sonnet 5).
+    COMPLETED — claude-opus-4-1-20250805 снят 2026-08-05 (deprecated 05.06); замена в офиц. таблице opus-4-8.
+  Claude_5_line: Opus 5 PRIMARY (GA 24.07, $5/$25, 1M/128K, thinking ON BY DEFAULT) — заменил Opus 4.8.
+    Sonnet 5 default Free/Pro ($2/$10, подорожание отменено 10.08); Fable 5 COST-GATED (usage credits с 20.07,
+    $10/$50, batch $5/$25, cache-hit in $1); Mythos 5 (Glasswing, not routed).
+  Claude_Opus48: ACTIVE, НЕ депрекирован; $5/$25; retirement floor «не ранее 2027-05-28»;
+    убран из селектора приложения 24.07 — это поверхность, НЕ депрекация. Видимость в UI не читать
+    как сигнал доступности.
+  Claude_G6_tokenizer: КАНОН ~+30% (официальная цифра, одна, не вилка) для opus-4.7+/fable-5/
+    mythos-5/sonnet-5/opus-5 против моделей старше 4.7. Счётчик — официальный Token Counting API,
+    поддерживает ВСЕ активные модели. Прежние +30-42% и 10-35% — вторичные измерения.
+  Claude_thinking: ТОЛЬКО thinking:{"type":"adaptive"} для 4.x; на Opus 5 включён по умолчанию;
+    budget_tokens removed; G7 — никогда temperature/top_p/top_k.
+  Claude_fallbacks: opt-in beta — параметр `fallbacks` + header server-side-fallback-2026-06-01;
+    цель Opus 4.8; наблюдаемо через content block {"type":"fallback"} и usage.iterations;
+    биллинг расщепляется; в app/Claude Code отключаемо.
+  DeepSeek_G15_REVERSED: reasoning_content НАДО re-inject после tool calls — RESOLVED BY DESIGN.
+    Алиасы deepseek-chat/reasoner мертвы 24.07 15:59 UTC (точный код не подтверждён: 404 либо 400).
+    v4-pro GA 13.08.2026 (веса MIT); v4-flash-0731 — public beta. Исправлено 8.4.7.
+    Бывший deepseek-reasoner → v4-pro, НЕ v4-flash-thinking (иначе тихая деградация reasoning).
+  Gemini: 3.6 Flash GA 21.07 (1,048,576/65,536, $1.50/$7.50, cache-read $0.15, ~304 tok/s,
+    на 17% меньше выходных токенов) — новый workhorse; 3.5 Flash-Lite GA ($0.30/$2.50, ~350 tok/s).
+    Индекс AA у 3.6 Flash = у 3.5 Flash: это экономия, не рост способностей.
+    3.5 Pro — ТРЕТИЙ пропуск GA, остаётся preview, цены нет.
+    Error 13 (G13) — НЕ воспроизведён и НЕ признан на 3.6 Flash: модель не проверена, а не очищена.
+    Обходы применять и к 3.6 Flash (Context Caching, история ≤80K, без пачек 30+ изображений).
+    Computer Use встроен в Gemini API нативно.
+  Grok: единственный id grok-4.5 — heavy/expert/fast НЕ существуют (Heavy = план $300/мес плюс
+    режим оркестрации поверх 4.5). Цена $2 in / $0.30 cached / $6 out; от 200K — $4/$0.60/$12,
+    кэш ТОЖЕ удваивается. EU открыт 21.07 БЕЗ data-residency. reasoning_effort high и не отключается,
+    reasoning биллится как output. HEAVY16_SHADOW_DOWNGRADE — CLOSED AS OBSOLETE (не resolved:
+    ничего не чинили, описанная конфигурация перестала существовать).
+  GPT: 5.6 Sol/Terra/Luna GA 09.07; Sol $4/$0.40 cached/$20 (промо не раньше 21.11), >272K → $8/$0.80/$30, cached тоже ×2.
+    Terra/Luna long-context ставки НЕ документированы (ходившие $5/$22.5 и $2/$9 — экстраполяция).
+    Окно контекста Luna официальной строки не имеет. Голый алиас gpt-5.6 → Sol.
+    Sol: по system card вендора — удаление файлов без запроса и использование неавторизованных
+    учётных данных → вне judge-ролей И вне любого harness с записью в ФС/секреты.
+    Тихий даунгрейд детектируется: сверять resolved_model_slug, не model_slug.
+    Assistants API (/v1/assistants, /v1/threads, вкл. Azure) — полное отключение 2026-08-26.
+  Qwen: 3.7-Max text-only ($2.50/$7.50) + 3.7-Plus multimodal 1M + 3.6-35B-A3B (open-weight
+    Apache-2.0, 262K, $0.14/$1.00) + 3.6-Plus. Deep-thinking режим НЕ поддерживает structured output;
+    response_format json_object доступен только в non-thinking. qwen3.8-max — GA 03.08.2026
+    ($2/$6, 1M/128K, веса 3.8-27B Apache 2.0); strict JSON поддерживается (json_schema strict,
+    Model Studio 02.09), thinking off через enable_thinking=false.
+  Kimi: K3 GA 16.07 ($3/$15, 1,048,576, thinking always-on) — WebDev #1, но hosted-only, приём
+    подписок закрыт, веса не опубликованы → НЕ primary. K2.6 (Swarm 300) + K2.7-Code (open-weight).
+    Type M (infinite-repeat) документирован для K2.5/K2.6; на K3 не воспроизводился.
+  GLM: glm-5.2 (1M, MIT, WebDev вне топ-10 (04.09)) — цена ~$1.40/$4.40 НЕ подтверждена (единственный источник,
+    внутренне противоречив) → держать как unconfirmed; glm-5.1 (eff ~120K, G19) — /compact hang.
+  NEW_VENDORS: MiniMax M3 ($0.30/$1.20, track-only); Manus 1.6 Max (track-only, avoid prod).
+  DEADLINES (from 2026-07-26): 2026-08-05 opus-4-1 retire; 2026-08-26 OpenAI Assistants API
+    shutdown (вкл. Azure); 2026-08-31 kimi-k2.5 sunset;
+    2026-10-10 снятие пяти qwen3-* / qwen3.6-*.
