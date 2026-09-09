@@ -34,7 +34,7 @@ menu_item: 28
 [SEMANTIC_ROUTER]
 Задача                     → Модель                  → Fallback
 ──────────────────────────────────────────────────────────────────────
-Код / debugging            → claude-opus-4-8          → claude-sonnet-5
+Код / debugging            → claude-opus-5            → claude-opus-4-8
 Agentic / WebDev T3-4      → claude-fable-5           → claude-opus-4-8  (Safety Nanny ~5%)
 Глубокий анализ T4         → claude-opus-5            → gpt-5.6-sol
 Обычный текст T2-3         → claude-sonnet-5          → gemini-3.1-pro-preview

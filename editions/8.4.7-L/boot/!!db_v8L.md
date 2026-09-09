@@ -12,11 +12,11 @@ LITE_SNAPSHOT:
   DEADLINES:
     [PASSED 2026-06-15] Claude dated legacy aliases retired
     [PASSED 2026-06-30] дефолтной моделью стал claude-sonnet-5; claude-sonnet-4-6 активен
-    [ACTIVE 2026-07-19] Fable 5: конец 50%-weekly include → usage credits
-    [ACTIVE 2026-07-24 15:59 UTC] deepseek-chat/reasoner → HTTP 404 → deepseek-v4-flash
+    [ИСПОЛНЕНО 2026-07-19] Fable 5: конец 50%-weekly include → usage credits
+    [ИСПОЛНЕНО 2026-07-24 15:59 UTC] deepseek-chat/reasoner → HTTP 404 → deepseek-v4-flash
     [CANCELLED 2026-08-10] Sonnet 5 остаётся $2/$10
   CURRENT_FLAGSHIPS:
-    claude: claude-fable-5, claude-opus-4-8, claude-sonnet-5
+    claude: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-opus-4-8, claude-sonnet-5
     gpt: gpt-5.6-sol/terra/luna · gemini: gemini-3.1-pro-preview · grok: grok-4.5 / 4.3
     deepseek: deepseek-v4-pro/flash · qwen: qwen3.7-max · kimi: kimi-k2.6 / k2.7-code · glm: glm-5.2
   WARN: "⚠ LITE_SNAPSHOT — offline snapshot data."
@@ -159,9 +159,9 @@ QUORUM_WEIGHTS:
   VETO: VECTOR — абсолютное право вето на [CRITICAL_RISK]. IF triggered → веса=0 → Audit Mode.
 
 RECOMMENDATIONS:
-  CODING: Claude Opus 4.8, Qwen3-Coder, Kimi K2.x · REASONING: Opus 4.7, GPT-5.6 Sol, Gemini Deep Think
-  CREATIVE: Claude Fable 5, Opus 4.7, GPT-5.5 · RESEARCH: Gemini 3.1 Pro, Grok 4.3
-  VISION: Qwen3-VL, Gemini 3.1 Pro · AGENTS: Claude Fable 5, Kimi K2.x, Opus 4.8
+  CODING: Claude Opus 5, Qwen3-Coder, Kimi K2.x · REASONING: Opus 5, GPT-5.6 Sol, Gemini Deep Think
+  CREATIVE: Claude Fable 5, GPT-5.6 Terra · RESEARCH: Gemini 3.1 Pro, Grok 4.3
+  VISION: Qwen3-VL, Gemini 3.1 Pro · AGENTS: Claude Opus 5, Kimi K2.x, Claude Fable 5
   BUDGET: DeepSeek V4-Flash, GLM-5.1 · LONG_CTX: Gemini 1M, Grok 2M · RECALL: Opus 4.6 pin
 
 CHAIN_PATTERNS:
@@ -196,4 +196,4 @@ GROK_HEAVY_FAILURE_MODES:
 FILE_META:
   CONTENT:     LITE_SNAPSHOT, Techniques, COMBINATOR disambig, Errors A-P, G1-G22, Grok Heavy, Arena, Chains, Feedback, API strings, QUORUM weights
   COMPATIBLE:  !!core_v8L | _index_v8L
-  API_STRINGS: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-sonnet-4-6, claude-opus-4-6, claude-haiku-4-5-20251001
+  API_STRINGS: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-sonnet-4-6, claude-haiku-4-5-20251001

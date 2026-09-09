@@ -75,7 +75,7 @@ HOST_PROFILES:
     CAPABILITIES:   Нативный reasoning (R1), очень дешёвый,
                     multi-turn conversation
     KNOWN_ISSUES:   G15 (reasoning carryover → RE-INJECT multi-turn, НЕ null; RESOLVED BY DESIGN),
-                    G16 (RETIRE deadline 2026-07-24)
+                    G16 (retire 2026-07-24 исполнен)
     THINKING_API:   native (temp=0.3, не управляется извне)
     API_STRINGS:    deepseek-v4-pro | deepseek-v4-flash  # G16: НЕ deepseek-chat
     CONTEXT_LIMIT:  64K
@@ -389,12 +389,12 @@ AUTO_ROUTING:
     Decay: × 0.95 per 30 days
 
 MODEL_ROUTING_BY_TASK:
-  CODING:    Claude Sonnet 4.6 (balanced), Qwen3-Coder (budget)
+  CODING:    Claude Opus 5 (#1 Image-to-WebDev), Claude Sonnet 5 (balanced), Qwen3-Coder (budget)
   REASONING: Claude Opus 5, Gemini 3.1 Pro Deep Think, GPT-5.6 Sol
-  CREATIVE:  Claude Opus 4.7, GPT-5.6 Terra, Gemini 3.1 Pro
+  CREATIVE:  Claude Fable 5 (Text #1), GPT-5.6 Terra, Gemini 3.1 Pro
   RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.3 (X.com real-time)
   VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro
-  AGENTS:    Kimi K2.x (swarm), Claude Opus 4.7 (Computer Use)
+  AGENTS:    Claude Opus 5 (Agent #1), Kimi K2.x (swarm), gpt-5.5-pro (Codex computer use)
   BUDGET:    DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M)
   LONG_CTX:  Gemini 3.1 Pro (2M), Grok 4.20 (2M), Grok 4.3 (1M)
   RECALL:    Claude Opus 4.6 pinned для >500K (G8: Opus 4.7 MRCR 32.2%)
@@ -590,7 +590,7 @@ DEADLINE_SCANNER:
 
     [PASSED 2026-06-05] — gpt-5.x legacy aliases УЖЕ ретайрнуты → gpt-5.5.
 
-    [RETIRE 2026-07-24] — АКТИВНЫЙ дедлайн (DeepSeek):
+    [RETIRE 2026-07-24] — ИСПОЛНЕН 24.07 15:59 UTC, без grace (DeepSeek):
       deepseek-chat            → deepseek-v4-flash (non-thinking)
       deepseek-reasoner        → deepseek-v4-pro  ⚠ НЕ v4-flash-thinking (офиц. маппинг вёл на flash — ловушка: reasoning тихо деградирует)
       Проверить: grep -r "deepseek-chat\|deepseek-reasoner" .
