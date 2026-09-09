@@ -6,7 +6,7 @@ scope: P2P master index — all files, load order, tags, module types.
 tags: index, navigation, load-order, v8c, teacher, plugin
 ---
 
-# P2P — МАСТЕР ИНДЕКС (_index.md)
+# P2P — МАСТЕР ИНДЕКС (global_index.md)
 
 ---
 
@@ -19,15 +19,15 @@ v8C.2/
 │   └── plugin.json             Plugin manifest (Claude Code/Cowork install). marketplace.json — at REPO ROOT, not here
 │
 ├── BASE (всегда загружаются, в этом порядке):
-│   ├── _preloader.md          [1] ENV detection, PROJECT_CARD, load order
+│   ├── preloader.md          [1] ENV detection, PROJECT_CARD, load order
 │   ├── core.md          [2] Меню, TRI_MODE_BRIDGE v3, QUORUM, ATLAS
 │   ├── db.md            [3] G-errors G1-G22, Templates A-M, 9-step algo
-│   ├── _live/MANIFEST.md      [4] Дедлайны, активные модели
-│   ├── _live/live_core.md     [5] Состояние сессии
-│   └── _live/live_claude.md   [6] Claude-specific live данные
+│   ├── vendors/_live_manifest.md      [4] Дедлайны, активные модели
+│   ├── vendors/_live_core.md     [5] Состояние сессии
+│   └── vendors/_live_claude.md   [6] Claude-specific live данные
 │
 ├── LIVE (обновляется ежедневно):
-│   └── _live/live_vendors.md  [7] Все вендоры, API strings, Translation Layer
+│   └── vendors/_live_specs.md  [7] Все вендоры, API strings, Translation Layer
 │
 ├── ON-DEMAND (загружаются по триггеру):
 │   ├── agents.md             QUORUM профили, sub-QUORUM паттерны
@@ -75,8 +75,8 @@ v8C.2/
 │   │   └── SKILL.md           Teacher skill metadata (Cowork triggers)
 │   └── settings.example.json  образец permissions + hooks (opt-in, не часть плагина)
 │
-├── _master.md                 Полная сборка для API (один файл)
-├── _glossary.md               Глоссарий терминов P2P v8C.3
+├── master.md                 Полная сборка для API (один файл)
+├── glossary.md               Глоссарий терминов P2P v8C.3
 │
 ├── docs/
 │   ├── ИНДЕКС.md              Навигация по документации
@@ -103,12 +103,12 @@ v8C.2/
 
 ### Минимальная сборка (~80K токенов)
 ```
-_preloader.md + core.md + _live/MANIFEST.md
+preloader.md + core.md + vendors/_live_manifest.md
 ```
 
 ### Стандартная сборка (~150K токенов)
 ```
-_preloader.md + core.md + db.md + _live/* 
+preloader.md + core.md + db.md + vendors/_live_* 
 + agents.md + contract_builder.md
 ```
 
@@ -124,13 +124,13 @@ _preloader.md + core.md + db.md + _live/*
 | Тег | Файлы |
 |-----|-------|
 | `quorum` | core.md, agents.md |
-| `extended-thinking` | db.md, _live/live_claude.md |
+| `extended-thinking` | db.md, vendors/_live_claude.md |
 | `g-errors` | db.md, debug_engine.md, docs/FAQ_И_ОШИБКИ.md |
-| `translation-layer` | contract_builder.md, _live/live_vendors.md |
+| `translation-layer` | contract_builder.md, vendors/_live_specs.md |
 | `scope-helm` | scope_helm.md |
 | `metrics` | session_metrics.md |
 | `templates` | db.md, templates_library.md |
-| `deadlines` | _live/MANIFEST.md |
+| `deadlines` | vendors/_live_manifest.md |
 | `visual` | visual_suite.md |
 | `writing` | writing_suite.md |
 | `sandbox` | sandbox_user.md |

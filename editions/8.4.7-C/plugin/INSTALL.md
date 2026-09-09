@@ -97,7 +97,7 @@ cp -r v8C.2/_live v8C.2/vendors /path/to/your/project/
 import anthropic
 client = anthropic.Anthropic()
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-5",
     system=open("_master.md").read(),
     messages=[{"role": "user", "content": "СТАРТ"}]
 )

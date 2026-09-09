@@ -31,7 +31,11 @@ tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c, p
 **Причина:** XML теги в system context вызывают Chain-of-Hint interference  
 **Fix:** ZERO XML в system context для Gemini. Только plain text hierarchy.
 
-### G3 — (RESERVED)
+### G3 — GROK_TOPIC_DRIFT #DB_ERROR_G3
+**Модель:** Grok 4.3  
+**Симптом:** Отвечает не на тот вопрос — уход от темы на длинной сессии  
+**Причина:** Дрейф внимания без якоря темы  
+**Fix:** Topic anchor каждые 3 сообщения: `[TOPIC ANCHOR: {task_summary}. Stay on target.]`
 
 ### G4 — GEMINI_THINKING_BUDGET_IGNORED #DB_ERROR_G4
 **Модель:** Gemini 3.1 Pro  

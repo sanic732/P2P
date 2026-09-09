@@ -2,21 +2,21 @@
 source_id: MASTER_V8C
 version: 8.4.7-C
 module_type: meta
-scope: _master.md — assembly instructions for single-file API deployment (v8C.2). Not for direct use — follow assembly guide.
+scope: master.md — assembly instructions for single-file API deployment (v8C.2). Not for direct use — follow assembly guide.
 tags: master, assembly, api, single-file, deployment
 ---
 
-# P2P — МАСТЕР СБОРКИ (_master.md)
+# P2P — МАСТЕР СБОРКИ (master.md)
 
 > Этот файл описывает как собрать v8C.2 в единый промпт для API.
 > Для детальных инструкций → docs/ASSEMBLY_GUIDE.md
 
 ---
 
-## ЗАЧЕМ _master.md
+## ЗАЧЕМ master.md
 
 При работе через API нельзя загружать файлы по одному.
-_master.md описывает порядок конкатенации файлов в единый system prompt.
+master.md описывает порядок конкатенации файлов в единый system prompt.
 
 ---
 
@@ -25,10 +25,10 @@ _master.md описывает порядок конкатенации файло
 ### MINIMAL (~80K токенов)
 Файлы в порядке:
 ```
-1. _preloader.md
+1. preloader.md
 2. core.md
-3. _live/MANIFEST.md
-4. _live/live_core.md
+3. vendors/_live_manifest.md
+4. vendors/_live_core.md
 ```
 
 **Когда:** API со строгими context limits, T0-T2 задачи, тест системы.
@@ -36,13 +36,13 @@ _master.md описывает порядок конкатенации файло
 ### STANDARD (~150K токенов)
 Файлы в порядке:
 ```
-1. _preloader.md
+1. preloader.md
 2. core.md
 3. db.md
-4. _live/MANIFEST.md
-5. _live/live_core.md
-6. _live/live_claude.md
-7. _live/live_vendors.md
+4. vendors/_live_manifest.md
+5. vendors/_live_core.md
+6. vendors/_live_claude.md
+7. vendors/_live_specs.md
 8. agents.md
 9. contract_builder.md
 ```
@@ -73,9 +73,9 @@ _master.md описывает порядок конкатенации файло
 ## ПРАВИЛА СБОРКИ
 
 **PRIMACY/RECENCY RULE:**
-- _preloader.md → ВСЕГДА первый (устанавливает контекст)
+- preloader.md → ВСЕГДА первый (устанавливает контекст)
 - core.md → сразу после (активирует систему)
-- Критичные инструкции из _live/ → в первых 20% и последних 20%
+- Критичные инструкции из vendors/_live_* → в первых 20% и последних 20%
 
 **XML INTEGRITY:**
 - Не разбивать XML теги между файлами
@@ -94,13 +94,13 @@ _master.md описывает порядок конкатенации файло
 # Сборка STANDARD build
 OUTPUT="p2p_v8c1_standard.md"
 
-cat _preloader.md \
+cat preloader.md \
     core.md \
     db.md \
-    _live/MANIFEST.md \
-    _live/live_core.md \
-    _live/live_claude.md \
-    _live/live_vendors.md \
+    vendors/_live_manifest.md \
+    vendors/_live_core.md \
+    vendors/_live_claude.md \
+    vendors/_live_specs.md \
     agents.md \
     contract_builder.md \
     > "$OUTPUT"

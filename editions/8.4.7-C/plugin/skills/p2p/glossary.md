@@ -6,7 +6,7 @@ scope: P2P glossary — all terms, acronyms, G-errors quick reference, agent nam
 tags: glossary, terms, definitions, g-errors-reference, v8c
 ---
 
-# P2P — ГЛОССАРИЙ (_glossary.md)
+# P2P — ГЛОССАРИЙ (glossary.md)
 
 ---
 

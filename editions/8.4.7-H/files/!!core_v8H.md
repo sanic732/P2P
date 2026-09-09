@@ -680,7 +680,7 @@ CORE_RULES:
     - Добавлять >7 MUST/MUST NOT пар для GPT цели (G9)
     - Обращаться к GLM с >100K контекстом (G19)
 
-  [DEADLINE STATUS — 2026-06-27]:
+  [DEADLINE STATUS — 2026-09-10]:
     PASSED 2026-06-15: Claude dated legacy aliases ретайрнуты → claude-opus-4-8/4-7, claude-sonnet-4-6
     PASSED 2026-06-05: gpt-5.x legacy → gpt-5.5
     ИСПОЛНЕНО 2026-07-24 15:59 UTC: deepseek-chat → deepseek-v4-flash · deepseek-reasoner → deepseek-v4-pro (⚠ НЕ v4-flash-thinking: офиц. маппинг вёл на flash, но так reasoning тихо деградирует). Код 404 либо 400 — принимать оба

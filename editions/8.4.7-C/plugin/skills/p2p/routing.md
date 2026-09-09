@@ -3,7 +3,7 @@ source_id: ROUTING_MODULE_V8C3
 version: 8.4.7-C
 module_type: on-demand
 triggers: "routing|маршрутизация|выбор модели|какую модель|model selection|smart route|роутинг"
-depends_on: core.md, _live/live_vendors.md
+depends_on: core.md, vendors/_live_specs.md
 token_estimate: ~2100
 scope: Умная маршрутизация по задаче — выбор оптимальной модели, cost-aware routing, cascade routing. Загружается по триггеру или MODULE_ROUTING=true.
 tags: routing, model-selection, cost-aware, cascade, on-demand, v8c3

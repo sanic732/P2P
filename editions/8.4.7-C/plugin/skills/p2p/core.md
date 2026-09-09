@@ -2,7 +2,7 @@
 source_id: CORE_V8C
 version: 8.4.7-C
 module_type: base
-depends_on: _preloader.md, _live/MANIFEST.md, _live/live_core.md, _live/live_claude.md
+depends_on: preloader.md, vendors/_live_manifest.md, vendors/_live_core.md, vendors/_live_claude.md
 scope: Claude Edition core — XML-native, TRI_MODE_BRIDGE v3, 42-item menu, /p2p dispatcher boundary, SIR SCANNER v3.3, QUORUM_SIMULATED_PROTOCOL, CONSTRAINT_REINJECTION_PROTOCOL, DEEP_THINK_VALUE_GATE, ATLAS v2, teacher route. Always loaded.
 tags: core, claude, xml-native, tri-mode-bridge, quorum, menu, extended-thinking, v8c, teacher
 ---
@@ -704,7 +704,7 @@ MUST NOT:
 **Type L — Temperature Conflict:** temperature + thinking=enabled (G7)
 **Type M — Legacy API String:** Устаревший API string (claude-*-4-20250514 и т.д.)
 **Type N — Context Inflation:** G6 — новый токенизатор (Opus 4.7+, Fable 5, Sonnet 5, Opus 5) ~+30% (офиц.); считать через Token Counting API
-**Type O — Recall Risk:** G8 — Opus 4.7 recall 32.2% >1M, используй Opus 4.6 для >500K
+**Type O — Recall Risk:** G8 — recall Opus 4.8/4.7 деградирует выше 500K; пинить Opus 4.6 для >500K
 **Type P — Budget Shock:** G11/thinkingLevel=HIGH без Value Gate
 
 **Скан командой:** `[11] Аудит промпта` или `/p2p-audit`
@@ -751,12 +751,14 @@ MUST:
 - Обновлять ATLAS после каждого завершённого шага
 - Логировать метрики сессии
 - При использовании Extended Thinking — НИКОГДА не передавать temperature (G7)
-- Использовать API strings: `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`
-  или `claude-sonnet-5`; `claude-sonnet-4-6` активен и остаётся выбором по цене (снятие не раньше 02.2027)
+- Использовать API strings: `claude-opus-5`, `claude-sonnet-5`, `claude-fable-5-1`, `claude-fable-5`,
+  `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-sonnet-4-6`, `claude-haiku-4-5-20251001`.
+  Поколение 4.6+ активно и остаётся выбором по цене (снятие не раньше 02.2027).
+  Legacy — только датированные `claude-*-4-20250514`.
 
 MUST NOT:
 - Использовать legacy API strings (claude-opus-4-20250514, claude-sonnet-4-20250514)
-  → RETIRE 2026-06-15
+  → RETIRED 2026-06-15 → HTTP 400/404; авто-редиректа НЕТ
 - Передавать temperature при thinking=enabled → HTTP 400 (G7)
 - Использовать budget_tokens → УДАЛЁН из API
 - Использовать Full QUORUM для T0-2 задач (нарушает SPAWN ECONOMY)

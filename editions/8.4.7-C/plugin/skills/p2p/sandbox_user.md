@@ -2,7 +2,7 @@
 source_id: SANDBOX_V8C
 version: 8.4.7-C
 module_type: on_demand
-depends_on: [_preloader.md, user_context.md]
+depends_on: [preloader.md, user_context.md]
 tags: [sandbox, user-overrides, session-config, quick-rules]
 triggers: [sandbox, песочница, override, session config, quick rule]
 ---

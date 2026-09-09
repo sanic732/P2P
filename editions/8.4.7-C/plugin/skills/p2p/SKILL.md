@@ -12,7 +12,7 @@ tags: skill, manifest, entry-point, claude-code, v8c
 
 **Skill:** P2P Claude Edition
 **Version:** 8.4.7-C
-**Platform:** Claude (Fable 5 / Opus 4.8 / Sonnet 4.6)
+**Platform:** Claude (Opus 5 / Fable 5.1 / Sonnet 5)
 **Author:** P2P Project
 
 ## Что умеет этот skill
@@ -54,7 +54,7 @@ P2P v8C.3 — мета-промпт система для:
 
 ### Manual (для API / Chat)
 1. Скопируй весь каталог v8C.3 в проект
-2. Загрузи в Claude: `preloader.md → core.md → db.md → _live/*`
+2. Загрузи в Claude: `preloader.md → core.md → db.md → vendors/_live_*`
 3. Введи `СТАРТ` или `/p2p`
 
 Подробнее: `INSTALL.md` (5 методов установки).

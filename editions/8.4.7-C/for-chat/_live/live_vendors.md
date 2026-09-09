@@ -3,7 +3,7 @@ source_id: LIVE_VENDORS_V8C
 version: 8.4.7-C
 module_type: live
 depends_on: _live/MANIFEST.md
-last_updated: 2026-07-26
+last_updated: 2026-09-04
 live_specs_ref: live_specs.md
 scope: All LLM vendor live specs for v8C.3 — API strings, costs, context windows, G-errors. Quick reference for Translation Layer and routing decisions.
 tags: live, vendors, api-strings, pricing, g-errors, routing
@@ -214,8 +214,8 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
 | Context Needed | Best Choice | Backup |
 |----------------|-------------|--------|
 | < 100K | Claude Opus 5 | Claude Sonnet 5 |
-| 100K–200K | Claude Opus 5 / Sonnet 5 | Gemini 3.6 Flash |
-| 200K–1M | Gemini 3.6 Flash / Gemini 3.1 Pro | Grok 4.3 |
+| 100K–1M | Claude Opus 5 / Sonnet 5 | Gemini 3.6 Flash |
+| 200K–1M (бюджет) | Gemini 3.6 Flash / Gemini 3.1 Pro | Grok 4.3 |
 | 1M–2M | Grok 4.20 (2M) / Grok 4.3 (1M) | Gemini 3.1 Pro |
 | >500K + recall | Claude Opus 4.6 (pinned) | Gemini 3.1 Pro |
 
@@ -240,7 +240,7 @@ FILE_META
 id: LIVE_VENDORS_V8C
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-07-26
+last_verified: 2026-09-04
 live_specs_ref: live_specs.md
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
