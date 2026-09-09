@@ -29,7 +29,7 @@ Reasoning: thinking ON BY DEFAULT (в Opus 4.x был opt-in)
 ```
 API:      claude-sonnet-5   | Status: GA с 2026-06-30 (заменил Sonnet 4.6 как default)
 Context:  1M | Output: 128K (300K batch)
-Cost:     $2/$10 (intro до 2026-08-31) → $3/$15 (с 2026-09-01)
+Cost:     $2/$10 (подорожание до $3/$15 с 01.09 отменено 10.08)
 Роль:     Tier 3 default для cost-efficient agentic (near-Opus-4.8)
 ```
 

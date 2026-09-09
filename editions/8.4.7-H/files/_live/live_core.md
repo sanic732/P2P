@@ -24,7 +24,7 @@ PRICING:
   // TIER 1 — Flagship (Claude → 1M context; Opus 4.x = $5/$25)
   claude-opus-5:             $5     / $25   / 1M    / PRIMARY (GA 24.07); thinking ON BY DEFAULT; out 128K; general reasoning/agentic/long-horizon
   claude-fable-5:            $10    / $50   / 1M    / Arena Text/Vision #1; batch 5/25, cache-hit in 1; classifier FP → fallback Opus 4.8; USAGE CREDITS с 20.07 — COST-GATED, не в автоциклы
-  claude-sonnet-5:           $2     / $10   / 1M    / NEW default Free/Pro (GA 30.06); near-Opus; $3/$15 c 01.09; out 128K/300K batch
+  claude-sonnet-5:           $2     / $10   / 1M    / NEW default Free/Pro (GA 30.06); near-Opus; подорожание 01.09 отменено 10.08; out 128K/300K batch
   claude-opus-4-8:           $5     / $25   / 1M    / coding; effort default=high; out 128K/300K batch; ACTIVE, НЕ депрекирован (floor «не ранее 2027-05-28»); API-only surface — UI-видимость ≠ доступность
   claude-opus-4-7:           $5     / $25   / 1M    / legacy; G6 общий токенизатор
   claude-opus-4-6:           $5     / $25   / 1M    / пин для >500K recall (MRCR 78.3%); токенизатор эффективнее 4.7/4.8
@@ -36,7 +36,7 @@ PRICING:
   gemini-3.1-pro-preview:    $2     / $12   / 2M    / Deep Think; grounding (<=200K цена)
   // RECALL >500K: пинить claude-opus-4-6 (MRCR v2 1M: 4.7/4.8 = 32.2% vs 4.6 = 78.3% — G8/G6)
   // gemini-3.5-pro-preview (2M, PREVIEW — ТРЕТИЙ пропуск GA); grok-4.20 (2M, Heavy-16); minimax-m3 (0.30/1.20 track-only)
-  // ⚠ claude-opus-4-1-20250805 RETIRES 2026-08-05 (замена по офиц. таблице — opus-4-8)
+  // ❌ claude-opus-4-1-20250805 СНЯТ 2026-08-05 (замена по офиц. таблице — opus-4-8)
 
   // TIER 2 — Balanced
   gpt-5.6-terra:             $2.50  / $15   / 1.05M / GA 09.07; balanced (замена 5.5); long-context ставки НЕ документированы

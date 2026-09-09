@@ -140,7 +140,7 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
     # NEVER: budget_tokens (removed from API) (G6)
     # Cache TTL (G8): add dummy ephemeral block to keep cache >5min (changed 1hr→5min silently)
 }
-# DEADLINE 2026-08-05: claude-opus-4-1-20250805 → RETIRES; замена по офиц. таблице — opus-4-8
+# ИСПОЛНЕНО 2026-08-05: claude-opus-4-1-20250805 снят; замена по офиц. таблице — opus-4-8
 # Pin claude-opus-4-6 for >500K recall (MRCR 78.3% vs 32.2% on 4.7/4.8) и для документов
 
 # Automatic Fallbacks (opt-in beta) — включение и проверка:
@@ -250,7 +250,7 @@ invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_versi
 // ═══════════════════════════════════════════════════════
 V872_DELTA:
   Claude_legacy_retire: COMPLETED — *-4-20250514 → HTTP 404; sonnet-4-6 остаётся активным (с 30.06 дефолт — Sonnet 5).
-    SCHEDULED — claude-opus-4-1-20250805 RETIRES 2026-08-05 (deprecated 05.06); замена в офиц. таблице opus-4-8.
+    COMPLETED — claude-opus-4-1-20250805 снят 2026-08-05 (deprecated 05.06); замена в офиц. таблице opus-4-8.
   Claude_5_line: Opus 5 PRIMARY (GA 24.07, $5/$25, 1M/128K, thinking ON BY DEFAULT) — заменил Opus 4.8.
     Sonnet 5 default Free/Pro ($2/$10, подорожание отменено 10.08); Fable 5 COST-GATED (usage credits с 20.07,
     $10/$50, batch $5/$25, cache-hit in $1); Mythos 5 (Glasswing, not routed).
