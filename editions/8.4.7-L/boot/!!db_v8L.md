@@ -49,7 +49,7 @@ TECHNIQUES:
   SAFE_THINKING:   Токен [SECURITY_CHECK] между шагами рассуждения. 92/100.
   LLM_COUNCIL:     Multi-model верификация через консенсус. 96/100.
   EXCELLENT:       Калибровка ложных отказов (Type O) в легитимных проф. доменах (мед./юр./аудит/техспеки): Defensive Framing, Objective Abstraction, Clinical Tone. SCOPE: только false positives; НЕ для обхода политик, систем безопасности или закона.
-  AGENT_SWARM:     До 100 sub-agents, параллельно. Kimi K2.x leader. 89/100.
+  AGENT_SWARM:     До 300 sub-agents, параллельно (>40 sync → async, G20). Kimi K2.x leader. 89/100.
   TOOL_BUDGET:     MAX_TOOL_CALLS + stop conditions. Kimi/Gemini. 95/100.
   VISUAL_AGENTIC:  Код из изображений/мокапов. Kimi/Gemini/Qwen3-VL. 91/100.
   FRESHNESS_PROTOCOL: Спрашивать разрешение перед допущениями. 88/100.

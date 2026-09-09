@@ -176,7 +176,7 @@ Before making changes: list all planned changes. Await confirmation.
 MIT лицензия. ## секции.
 
 ```python
-model="glm-5.2"             # основной: 1M контекст, WebDev #3
+model="glm-5.2"             # основной: 1M контекст, WebDev вне топ-10 (04.09)
 # model="glm-5.1"           # legacy: HARD LIMIT ~120K (G19 collapse); /compact hang → мигрировать на 5.2
 temperature=0               # для JSON output
 ```

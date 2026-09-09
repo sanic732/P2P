@@ -56,7 +56,7 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Kimi** | K2.7 Code | `kimi-k2.7-code` | 256K | $0.95/$4 | T2-3 (open-weight) | Type M |
 | **GLM** | 5.3 | `glm-5.3` | 1M | $1.40/$4.40, cache $0.26 | T3-4 (14.08; веса на HF, 753B) | — |
 | **GLM** | 5.3 Flash | `glm-5.3-flash` | 300K / out 131K | $0.15/$0.50 (промо $0.075/$0.25 до 09.09) | T2 (26.08 = «Ox Alpha», MIT 320B/18B, мультимодальная) | — |
-| **GLM** | 5.2 | `glm-5.2` | 1M | $1.40/$4.40 | T3-4 (MIT; WebDev #4) | — |
+| **GLM** | 5.2 | `glm-5.2` | 1M | $1.40/$4.40 | T3-4 (MIT; WebDev вне топ-10 (04.09)) | — |
 | **GLM** | 5.1 | `glm-5.1` | 200K (eff 120K) | budget | T3 | G19 |
 | **MiniMax** | M3 | `minimax-m3` | 1M | $0.30/$1.20 | track-only | — |
 | **Manus** | 1.6 Max | `manus/manus-1.6-max` | N/A | credit-based | track-only (⚠ geopol.) | — |
@@ -82,7 +82,7 @@ Agentic coding / RPA         → GPT-5.6 Terra; Sol ТОЛЬКО под guard'а
 Fast & cheap                 → Gemini 3.5 Flash-Lite / GPT-5.6 Luna / DeepSeek V4-Flash
 Chinese content              → Qwen 3.6-Plus / 3.7-Plus (multimodal)
 Multi-agent swarm            → Kimi K2.6 (Swarm 300)
-On-premises MIT open         → GLM-5.2 (1M, WebDev #4) / Qwen 3.6-35B-A3B (Apache-2.0)
+On-premises MIT open         → GLM-5.2 (1M, WebDev вне топ-10 (04.09)) / Qwen 3.6-35B-A3B (Apache-2.0)
 Real-time X/Twitter data     → Grok 4.5 / 4.3 (only Grok has X Firehose)
 Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА не линейка Qwen Max
 ```
@@ -296,7 +296,7 @@ V872_DELTA:
   Kimi: K3 GA 16.07 ($3/$15, 1,048,576, thinking always-on) — WebDev #1, но hosted-only, приём
     подписок закрыт, веса не опубликованы → НЕ primary. K2.6 (Swarm 300) + K2.7-Code (open-weight).
     Type M (infinite-repeat) документирован для K2.5/K2.6; на K3 не воспроизводился.
-  GLM: glm-5.2 (1M, MIT, WebDev #4) — цена ~$1.40/$4.40 НЕ подтверждена (единственный источник,
+  GLM: glm-5.2 (1M, MIT, WebDev вне топ-10 (04.09)) — цена ~$1.40/$4.40 НЕ подтверждена (единственный источник,
     внутренне противоречив) → держать как unconfirmed; glm-5.1 (eff ~120K, G19) — /compact hang.
   NEW_VENDORS: MiniMax M3 ($0.30/$1.20, track-only); Manus 1.6 Max (track-only, avoid prod).
   DEADLINES (from 2026-07-26): 2026-08-05 opus-4-1 retire; 2026-08-26 OpenAI Assistants API

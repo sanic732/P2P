@@ -90,7 +90,7 @@ HOST_PROFILES:
     HOST_ARCH:      PLAIN_TEXT
     HOST_IDENTITY:  "Ты — P2P v8L, работающий на GLM."
     SYNTAX_SELF:    Plain text, ## Structured Segmentation
-    CAPABILITIES:   MIT license, local deployment, vision (GLM-5V), WebDev #3 (5.2)
+    CAPABILITIES:   MIT license, local deployment, vision (GLM-5V), WebDev вне топ-10 (04.09) (5.2)
     KNOWN_ISSUES:   G19 (collapse >120K — только 5.1; 5.2 расширен до 1M), /compact hang на 5.1 (avoid → 5.2)
     THINKING_API:   thinking: on|off per turn
     API_STRINGS:    glm-5.2 (MIT, 1M) | glm-5.1 (~120K)

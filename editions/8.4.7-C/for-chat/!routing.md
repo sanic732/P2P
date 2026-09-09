@@ -35,11 +35,16 @@ conflict_with_v8C2: Translation_Layer (or mode)
 Длинный контекст >200K    → gemini-3.1-pro-preview → grok-4.3
 Длинный контекст >1M      → grok-4.20           → —
 Real-time X/Twitter data  → grok-4.3            → —
-Agentic / computer use    → gpt-5.6-sol         → gpt-5.5-pro (Codex)
+Agentic / computer use    → gpt-5.6-sol ⚠G22    → gpt-5.5-pro (Codex)
 Swarm многоагентный       → kimi-k2.6           → —
 Китайский контент         → qwen3.6-plus        → qwen3.7-max
 On-premises / MIT license → glm-5.1             → —
-Супер-дёшево              → deepseek-v4-flash   → MiniMax-M3
+Супер-дёшево              → deepseek-v4-flash   → glm-5.1-flash
+
+⚠ G22: computer use на gpt-5.6-sol — только с явным allowlist и журналом аудита
+  (system card вендора: удаление файлов без запроса, неавторизованные учётные данные).
+⚠ minimax / manus — host-only (в live_specs TRACK-ONLY): P2P может РАБОТАТЬ на них,
+  но НЕ роутит НА них.
 ```
 
 ---
@@ -77,7 +82,7 @@ INPUT: task_tier, token_estimate, budget_limit
 
 IF budget_limit < $0.01:
     → deepseek-v4-flash ($0.22/$0.66 off-peak · $0.44/$1.32 peak)
-    → или MiniMax-M3 ($0.30/$1.20 promo)
+    → или glm-5.1-flash (MIT, до 100K — G19)
 
 IF budget_limit = $0.01-$0.10:
     → claude-sonnet-5 или qwen3.6-plus

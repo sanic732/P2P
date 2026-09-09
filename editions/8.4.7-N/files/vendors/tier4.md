@@ -12,14 +12,14 @@ compatible_with: "!!db_v8N.md | _live/live_vendors.md"
 // Specialist: GLM-5.2/5.1 (MIT), Kimi K2.x (Swarm), Grok 4.20 (Heavy-16, 2M)
 // ═══════════════════════════════════════════════════════
 
-GLM_52:  // NEW основной GLM — MIT, 1M context (снимает G19-лимит 5.1); WebDev Arena #3
+GLM_52:  // NEW основной GLM — MIT, 1M context (снимает G19-лимит 5.1); WebDev Arena: вне топ-10 (04.09)
   api_string:     glm-5.2
   context:        1M (~1,048,576) | output: 32K-131K
   pricing:        ⚠ UNCONFIRMED. Ходящая цифра ~$1.40/$4.40 идёт из ЕДИНСТВЕННОГО источника,
                   внутренне противоречива (та же цифра приписана и GLM-5.1, и GLM-5.2) и не
                   подтверждена официальной страницей Zhipu. В canon не принята.
   license:        MIT
-  strengths:      WebDev #3, near-Sonnet-5 бенчи, on-prem, long-horizon agent
+  strengths:      near-Sonnet-5 бенчи, on-prem, long-horizon agent (WebDev: вне топ-10 на 04.09)
   NOTE:           для >120K → GLM-5.2 (не 5.1); OpenRouter AI Gateway stream-break DISPUTED (direct Zhipu API безопаснее).
 
 GLM_51_FLASH:  // legacy — 100K hard limit; мигрировать на GLM-5.2 для длинного контекста

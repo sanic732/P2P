@@ -29,7 +29,7 @@ CAPABILITY_MATRIX:
   deepseek: DeepSeek V4-Flash       | deepseek-v4-flash       | 1M    | $0.22/$0.66 | 8 // budget, off-peak; peak $0.44/$1.32
   qwen:     Qwen 3.6-Plus           | qwen3.6-plus            | 1M    | budget    | 9
   kimi:     Kimi K2.6               | kimi-k2.6               | 256K  | TBD       | 10 // swarm 300 agents; async webhooks >1h (G20)
-  glm:      GLM-5.2                  | glm-5.2                 | 1M    | ~$1.40/$4.40 | 11 // MIT; WebDev #3 (GLM-5.1 legacy — G19 >120K)
+  glm:      GLM-5.2                  | glm-5.2                 | 1M    | ~$1.40/$4.40 | 11 // MIT; WebDev вне топ-10 (04.09) (GLM-5.1 legacy — G19 >120K)
 
 // §2. ROUTING LOGIC
 ROUTING_LOGIC:

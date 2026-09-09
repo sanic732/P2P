@@ -61,7 +61,7 @@ PRICING:
   // TIER 4 — Specialist/Budget
   glm-5.3:                   $1.40  / $4.40 / 1M    / GA 14.08; cache 0.26; веса на HF (753B); Coding Plan молча поднимает 5.1/5.2 → 5.3
   glm-5.3-flash:             $0.15  / $0.50 / 300K  / 26.08 = «Ox Alpha»; MIT 320B/18B; мультимодальная; промо 0.075/0.25 до 09.09
-  glm-5.2:                   $1.40  / $4.40 / 1M    / MIT; WebDev #4
+  glm-5.2:                   $1.40  / $4.40 / 1M    / MIT; WebDev вне топ-10 (04.09)
   glm-5.1:                   budget /       / 120K  / MIT, G19 limit ~120K
   kimi-k3:                   $0.30  / $3 cached / $15 / 1,048,576 / GA 16.07; открытые веса с ~27.07 (HF, ~1.56 ТБ); thinking always-on; Arena WebDev 1 → 4; ⚠ подписки на паузе с ~18.07 «reopen in batches», даты нет → НЕ primary
   kimi-k2.6:                 TBD    /       / 256K-1M / Swarm 300; kimi-k2.7-code open-weight 0.95/4
