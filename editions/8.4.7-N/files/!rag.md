@@ -44,7 +44,7 @@ menu_item: 26
 Когда: модели с >200K контекстом, документы с высокой взаимосвязанностью.
 ```
 [LONGRAG]
-  target_model: claude-opus-4-8 (200K) / gemini-3.1-pro-latest (1M) / grok-4.3 (2M)
+  target_model: claude-opus-4-8 (200K) / gemini-3.1-pro-preview (1M) / grok-4.3 (2M)
   retrieval_unit: "full document" или "major section" (не чанки)
   top_k: 3-5
 ```
@@ -63,7 +63,7 @@ menu_item: 26
 # RAG ROUTING (интеграция с !routing.md)
 ```
 IF corpus < 20 docs AND < 50K tokens → Naive RAG (прямая загрузка)  → модель с большим ctx
-IF corpus 20-500 docs               → RAPTOR (дерево)               → claude-opus-4-8 / gemini-3.1-pro-latest
+IF corpus 20-500 docs               → RAPTOR (дерево)               → claude-opus-4-8 / gemini-3.1-pro-preview
 IF corpus > 500 docs OR semantic    → Vector DB + RAPTOR
 IF high interconnectedness          → LongRAG (большие units)
 ```

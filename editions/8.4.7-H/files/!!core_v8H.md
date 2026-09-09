@@ -429,7 +429,7 @@ MODEL_ROUTING_BY_TASK:
   RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.3 (X.com real-time)
   VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro
   AGENTS:    Kimi K2.x (swarm), Claude Opus 4.7 (Computer Use)
-  BUDGET:    DeepSeek V4-Flash ($0.07/M), GLM-5.1 ($0.60/M)
+  BUDGET:    DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M)
   LONG_CTX:  Gemini 3.1 Pro (1M), Grok 4.3 (2M)
   RECALL:    Claude Opus 4.6 pinned для >500K (G8: Opus 4.7 MRCR 32.2%)
 

@@ -76,7 +76,7 @@ Quality threshold:
 INPUT: task_tier, token_estimate, budget_limit
 
 IF budget_limit < $0.01:
-    → deepseek-v4-flash ($0.14/$0.28 per 1M)
+    → deepseek-v4-flash ($0.22/$0.66 off-peak · $0.44/$1.32 peak)
     → или MiniMax-M3 ($0.30/$1.20 promo)
 
 IF budget_limit = $0.01-$0.10:

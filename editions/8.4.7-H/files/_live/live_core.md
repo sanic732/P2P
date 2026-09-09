@@ -28,7 +28,7 @@ PRICING:
   claude-opus-4-8:           $5     / $25   / 1M    / coding; effort default=high; out 128K/300K batch; ACTIVE, НЕ депрекирован (floor «не ранее 2027-05-28»); API-only surface — UI-видимость ≠ доступность
   claude-opus-4-7:           $5     / $25   / 1M    / legacy; G6 общий токенизатор
   claude-opus-4-6:           $5     / $25   / 1M    / пин для >500K recall (MRCR 78.3%); токенизатор эффективнее 4.7/4.8
-  gpt-5.6-sol:               $5     / $30   / 1.05M / GA 09.07; cached 0.50; >272K → 10/45 при cached тоже ×2; ⚠ G22 агентная опасность — вне judge-ролей и harness с записью в ФС/секреты
+  gpt-5.6-sol:               $4     / $20   / 1.05M / GA 09.07, промо ≥21.11; cached 0.40; >272K → 8/30 при cached тоже ×2; ⚠ G22 агентная опасность — вне judge-ролей и harness с записью в ФС/секреты
   gemini-3.8-flash:          $0.75  / $3.75 / 1,048,576 / GA 02.09 PRIMARY bulk; out 65,536; cache 0.075 до 31.12 → 1.50/7.50 с 01.01.27; thinking_level minimal НЕ поддержан (ошибка)
   gemini-3.7-flash:          $0.75  / $3.75 / 1,048,576 / GA 13.08; та же цена линии Flash
   gemini-3.6-flash:          $0.75  / $3.75 / 1,048,576 / workhorse; ~304 tok/s; нативный Computer Use; ⚠ G13 НЕ тестирован — обходы применять
@@ -84,12 +84,12 @@ ARENA_ELO:
   claude-opus-4-8:           1583  (Code #1)
   claude-opus-4-7:           1571  (legacy)
   gpt-5.6-terra:             1563  // 5.5 снят 09.07, счётчик сохранён для истории
-  gemini-3.1-pro-latest:     1549
+  gemini-3.1-pro-preview:     1549
   claude-sonnet-4-6:         1518
   grok-4.3:                  1541
   deepseek-v4-pro:           1502
   qwen3-max:                 1498
-  gemini-3.1-flash-latest:   1481
+  gemini-3.8-flash:          1494  // prelim (#8 Overall, live_specs 04.09)
   claude-haiku-4-5-20251001: 1455
   deepseek-v4-flash:         1441
   glm-5.1-flash:             1398

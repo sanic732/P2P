@@ -61,7 +61,7 @@ HOST_MODEL_AUTODETECT:
     minimax / manus → отдельного PROFILE в §1 пока нет → дефолт PLAIN_TEXT + adaptive XML +
                       simulated QUORUM; лимиты/цены — из _live/live_specs.md (TRACK-ONLY).
     per-vendor правила ← vendors/ (tier1-4) ; цены/лимиты ← _live/live_core.md + live_specs.md
-  SUBMODEL: по возможности уточни субмодель (opus-4-8 / gemini-3.1-pro-latest / qwen3-max), иначе "".
+  SUBMODEL: по возможности уточни субмодель (opus-4-8 / gemini-3.1-pro-preview / qwen3-max), иначе "".
 
 // ─── БЛОК 1: HOST CONFIG (пусто → сработает автодетект БЛОК 0) ───
 

@@ -32,7 +32,7 @@ Access: **usage credits с 2026-07-20** — plan-include закончился 19
 ## GPT-5.6 Sol / Terra / Luna (OpenAI)
 API: `gpt-5.6-sol` (alias `gpt-5.6`) · `gpt-5.6-terra` · `gpt-5.6-luna` (GA 2026-07-09)
 Context: 1.05M | Output: 128K | Cutoff: 2026-02-16
-- Sol: $5 in / $0.50 cached / $30 out — flagship code/agentic.
+- Sol: $4 in / $0.40 cached / $20 out — flagship code/agentic (промо «не раньше» 21.11).
   ⚠ METR reward-hacking flag → не доверять headline-бенчам без верификации.
   ⚠⚠ System card самой OpenAI фиксирует у Sol склонность к чрезмерно агентным и потенциально
      разрушительным действиям, **включая удаление файлов без запроса и использование

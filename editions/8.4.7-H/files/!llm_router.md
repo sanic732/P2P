@@ -24,9 +24,9 @@ CAPABILITY_MATRIX:
   grok:     Grok Heavy-16           | grok-4.20               | 2M    | $2/$6     | 3  // нативный параллелизм (только grok host)
   grok:     Grok 4.5                | grok-4.5                | 500K  | 2/0.30cached/6 | 4  // GA 08.07; EU открыт 21.07 БЕЗ residency; от 200K → 4/0.60/12 (grok-4.3: 1M, 1.25/2.50)
   claude:   Claude Sonnet 5         | claude-sonnet-5         | 1M    | $2/$10    | 5  // подорожание 01.09 отменено 10.08
-  gemini:   Gemini 3.1 Pro          | gemini-3.1-pro-latest   | 2M    | $2/$12 (≤200K) | 6
+  gemini:   Gemini 3.1 Pro          | gemini-3.1-pro-preview   | 2M    | $2/$12 (≤200K) | 6
   gpt:      GPT-5.6 Sol              | gpt-5.6-sol             | 1.05M | $4/$20    | 7  // GA 09.07; промо ≥21.11; cached $0.40 (G10 >272K)
-  deepseek: DeepSeek V4-Flash       | deepseek-v4-flash       | 1M    | $0.14/$0.28 | 8 // budget
+  deepseek: DeepSeek V4-Flash       | deepseek-v4-flash       | 1M    | $0.22/$0.66 | 8 // budget, off-peak; peak $0.44/$1.32
   qwen:     Qwen 3.6-Plus           | qwen3.6-plus            | 1M    | budget    | 9
   kimi:     Kimi K2.6               | kimi-k2.6               | 256K  | TBD       | 10 // swarm 300 agents; async webhooks >1h (G20)
   glm:      GLM-5.2                  | glm-5.2                 | 1M    | ~$1.40/$4.40 | 11 // MIT; WebDev #3 (GLM-5.1 legacy — G19 >120K)
@@ -38,10 +38,10 @@ ROUTING_LOGIC:
   //   adaptive plain-text контракт), но как ЦЕЛЬ роутинга не выбираются — routed sub-tasks идут
   //   по FALLBACK_CHAIN (grok/claude/gemini/deepseek).
   Tier 0-1   → cheapest/fastest (deepseek-v4-flash, qwen3-plus, gemini-3.1-flash)
-  Tier 2     → balanced (grok-4.3, claude-sonnet-5, gemini-3.1-pro-latest)
+  Tier 2     → balanced (grok-4.3, claude-sonnet-5, gemini-3.1-pro-preview)
   Tier 3-4   → top (claude-fable-5 / claude-opus-4-8 ; grok Heavy-16 ТОЛЬКО на grok host)
   X Firehose нужен  → grok ТОЛЬКО (иначе web_search)
-  Long ctx >200K    → gemini-3.1-pro-latest (2M) или grok-4.20 (2M)
+  Long ctx >200K    → gemini-3.1-pro-preview (2M) или grok-4.20 (2M)
   Recall >500K      → claude-opus-4-6 пин (G8)
 
 // §3. FALLBACK CHAIN (host-agnostic)
@@ -49,7 +49,7 @@ FALLBACK_CHAIN:
   1. primary (= HOST_MODEL)
   2. grok-4.3
   3. claude-sonnet-5
-  4. gemini-3.1-pro-latest
+  4. gemini-3.1-pro-preview
   5. deepseek-v4-flash
   // Fable 5 в цепочке: при Safety Nanny redirect → claude-opus-4-8 (см. live_vendors §2b)
 

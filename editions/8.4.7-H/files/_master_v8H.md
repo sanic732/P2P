@@ -128,7 +128,7 @@ GEMINI_API:
       system = strip_xml_tags(f.read())
 
   model = genai.GenerativeModel(
-      "gemini-3.1-pro-latest",
+      "gemini-3.1-pro-preview",
       system_instruction=system
   )
   response = model.generate_content("СТАРТ")

@@ -6,7 +6,7 @@
 
 **Q: Какую модель выбрать для задачи?**
 A: T0-1 → Sonnet 4.6 или DeepSeek V4-Flash. T2-3 → Sonnet 4.6 или Opus 4.7.
-T4 / максимальное качество → Opus 4.7. Бюджет → DeepSeek V4-Flash ($0.07/M).
+T4 / максимальное качество → Opus 4.7. Бюджет → DeepSeek V4-Flash ($0.22/$0.66 off-peak).
 
 **Q: HTTP 400 при Extended Thinking на Claude**
 A: Удали `temperature` из payload — G7. Также убедись что нет `budget_tokens` (удалён из API). Используй `effort: "medium"`.
