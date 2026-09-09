@@ -435,20 +435,20 @@ QUORUM_WEIGHTS:
     IF triggered → все веса = 0 → блокировка → Audit Mode.
 
 // ─────────────────────────────────────────────────────
-// §7. MODEL RECOMMENDATIONS (2026-05-02)
+// §7. MODEL RECOMMENDATIONS (2026-09-04, по live_specs)
 // ─────────────────────────────────────────────────────
 
 RECOMMENDATIONS:
-  CODING:    Claude Opus 4.7 (#1 Arena Code 1571), Qwen3-Coder, Kimi K2.x
-  REASONING: Claude Opus 4.7, GPT-5.6 Sol, Gemini 3.1 Pro Deep Think
-  CREATIVE:  Claude Opus 4.7, GPT-5.6 Terra, Gemini 3.1 Pro
+  CODING:    Claude Opus 5 (#1 Image-to-WebDev 1664), Claude Fable 5.1 (#1 WebDev 1765), Qwen3-Coder
+  REASONING: Claude Opus 5, GPT-5.6 Sol, Gemini 3.1 Pro Deep Think
+  CREATIVE:  Claude Fable 5 (Text #1), GPT-5.6 Terra, Gemini 3.1 Pro
   RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.3 (X.com real-time)
-  VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro, Claude Opus 4.7
-  AGENTS:    Kimi K2.x (1500+ tool calls), Claude Opus 4.7 (Computer Use)
+  VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro
+  AGENTS:    Claude Opus 5 (Agent #1 13.74%), Kimi K2.x (1500+ tool calls), gpt-5.5-pro (Codex computer use)
   BUDGET:    DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M, MIT license)
   LONG_CTX:  Gemini 3.1 Pro (2M), Grok 4.20 (2M), Grok 4.3 (1M)
   RECALL:    Claude Opus 4.6 pinned (>500K, G8 protection)
-  FREE_TIER: Claude Sonnet 4.6 (май 2026, бесплатный доступ)
+  FREE_TIER: Claude Sonnet 5 (дефолт Free/Pro с 30.06.2026)
 
 // ─────────────────────────────────────────────────────
 // §8. CHAIN PATTERNS

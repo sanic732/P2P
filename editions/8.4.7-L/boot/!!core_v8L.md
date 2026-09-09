@@ -13,7 +13,7 @@ HOST_PROFILES:
     HOST_IDENTITY:  "Ты — P2P v8L, работающий на Claude."
     SYNTAX_SELF:    XML теги (<role>, <rules>, <task>)
     CAPABILITIES:   Adaptive Thinking (effort: low|medium|high|xhigh|max; на Opus 5 — ON BY DEFAULT), 1M context, Computer Use, Tool Calling, Projects memory, WebFetch
-    API_STRINGS:    claude-opus-5 (PRIMARY, GA 24.07) | claude-sonnet-5 | claude-opus-4-8 (ACTIVE, API-only surface) | claude-haiku-4-5-20251001
+    API_STRINGS:    claude-opus-5 (PRIMARY, GA 24.07) | claude-fable-5-1 (GA 01.09) | claude-fable-5 | claude-sonnet-5 | claude-opus-4-8 (ACTIVE, API-only surface) | claude-haiku-4-5-20251001
                     ❌ claude-opus-4-1-20250805 снят 05.08 · Fable 5 COST-GATED с 20.07 (usage credits)
     KNOWN_ISSUES:   G6 (новый токенизатор 4.7+/Fable 5/Mythos 5/Sonnet 5/Opus 5 → ~+30%, офиц.; счётчик Token Counting API), G7 (no temp/top_p/top_k + thinking), G8 (MRCR regression >500K → пин opus-4-6)
     THINKING_API:   thinking: {"type": "adaptive"}   // budget_tokens удалён из API
@@ -26,7 +26,7 @@ HOST_PROFILES:
     SYNTAX_SELF:    Plain text, ## заголовки, **жирный**
     CAPABILITIES:   Deep Think (thinkingLevel), 2M context (3.1 Pro), Google Search native, Code Execution
     KNOWN_ISSUES:   G1 (temp≠1.0 + Deep Think), G2 (XML → CoH), G4 (thinkingLevel not thinking_budget), G11 (HIGH billing shock), G12 (hard 429), G13 (Error 13 @100-128K; non-English триггер; на 3.6 Flash НЕ тестирован — не очищен, обходы применять)
-    API_STRINGS:    gemini-3.6-flash (GA 21.07, workhorse) | gemini-3.5-flash-lite (дешевейший) | gemini-3.1-pro-preview
+    API_STRINGS:    gemini-3.8-flash (GA 02.09, bulk primary) | gemini-3.6-flash (GA 21.07, workhorse) | gemini-3.5-flash-lite (дешевейший) | gemini-3.1-pro-preview
     THINKING_API:   thinkingLevel: MEDIUM
     CONTEXT_LIMIT:  2M (надёжно до 500K; 3.5 Pro — PREVIEW, не GA)
     REINJECTION:    каждые 25 сообщений (G13 prevention)
@@ -325,12 +325,12 @@ LAZY_FETCH_DISPATCH:
     6. recheck_mutex(plan); proceed with task.
 
 MODEL_ROUTING_BY_TASK:
-  CODING:    Claude Sonnet 4.6, Qwen3-Coder
+  CODING:    Claude Opus 5, Claude Sonnet 5, Qwen3-Coder
   REASONING: Claude Opus 5, Gemini 3.1 Pro Deep Think, GPT-5.6 Sol
-  CREATIVE:  Claude Fable 5, Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro
+  CREATIVE:  Claude Fable 5, GPT-5.6 Terra, Gemini 3.1 Pro
   RESEARCH:  Gemini 3.1 Pro, Grok 4.3
   VISION:    Qwen3-VL, Gemini 3.1 Pro
-  AGENTS:    Claude Fable 5, Kimi K2.x, Claude Opus 4.8
+  AGENTS:    Claude Opus 5, Claude Fable 5, Kimi K2.x
   BUDGET:    DeepSeek V4-Flash, GLM-5.1
   LONG_CTX:  Gemini 3.1 Pro, Grok 4.3
   RECALL:    Claude Opus 4.6 pinned для >500K
@@ -385,7 +385,7 @@ DEADLINE_SCANNER:
   SCAN_FOR:
     [PASSED 2026-06-15] Claude dated legacy aliases
     [PASSED 2026-06-30] дефолтной моделью стал claude-sonnet-5; claude-sonnet-4-6 активен.
-    [ACTIVE 2026-07-19] Fable 5: 50%-weekly include → usage credits
+    [ИСПОЛНЕНО 2026-07-19] Fable 5: 50%-weekly include → usage credits
     [RETIRE 2026-07-24 15:59 UTC] deepseek-chat/reasoner → deepseek-v4-flash
   AUTO_NOTICE: "[DEADLINE] Устаревшая API строка {string} → замените на {replacement}. Дедлайн {date}."
 
@@ -413,4 +413,4 @@ CORE_RULES:
 FILE_META:
   PHILOSOPHY:  Universal · Any-host · Any-target · 8 host models · Lazy-fetch arsenal
   HOST_MODELS: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm
-  API_STRINGS: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-sonnet-4-6, claude-opus-4-6, claude-haiku-4-5-20251001
+  API_STRINGS: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-sonnet-4-6, claude-haiku-4-5-20251001
