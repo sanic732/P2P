@@ -44,7 +44,7 @@ menu_item: 35
 Когда: модели с >200K контекстом, документы с высокой взаимосвязанностью.
 ```
 [LONGRAG]
-  target_model: claude-opus-4-8 (200K) / gemini-3.1-pro-preview (1M) / grok-4.3 (2M)
+  target_model: claude-opus-4-8 (1M) / gemini-3.1-pro-preview (2M) / grok-4.20 (2M)
   retrieval_unit: "full document" или "major section" (не чанки)
   top_k: 3-5
 ```

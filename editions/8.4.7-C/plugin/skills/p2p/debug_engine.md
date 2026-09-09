@@ -159,7 +159,7 @@ MUST NOT: Add explanations inside JSON as string values
 
 ## LLM ERROR TAXONOMY A–P (port from v7C.2)
 
-> Cross-model behavioral failures (separate from G1-G20 API errors). Activate during diagnosis.
+> Cross-model behavioral failures (separate from G1-G22 API errors). Activate during diagnosis.
 
 **Core metaphor:** LLM = CPU, context window = RAM. Lost-in-the-Middle: rules in middle 55% of context decay; primacy + recency survive.
 

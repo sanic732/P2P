@@ -73,7 +73,7 @@ L3 GIST CLOUD (lazy, ~185K) ─ 10 модулей (core_plus·session·vendors·
 │   ├── _preloader_v8L.md          BOOT 1: host pick + FETCH gate + mode
 │   ├── _index_v8L.md              BOOT 2: routing table + контракты чанков
 │   ├── !!core_v8L.md              BOOT 3: dispatcher + resolver + 8 host-профилей
-│   └── !!db_v8L.md                BOOT 4: техники, G1-G20, LITE_SNAPSHOT
+│   └── !!db_v8L.md                BOOT 4: техники, G1-G22, LITE_SNAPSHOT
 └── docs/                      ← 📚 документация (этот каталог)
     README.md · HOST_GUIDE.md · FAQ_И_ОШИБКИ.md · AGENTS_GUIDE.md
     CHANGELOG_v8L3.md · mindmap-8L.html

@@ -104,7 +104,7 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
 1. Claude Opus 5 (T3-4 PRIMARY) / Claude Opus 4.8 (T4 complex code, API-only surface)
 2. Claude Sonnet 5 (T2-3 balanced default) / Claude Opus 4.6 (>500K recall, документы)
 3. Gemini 3.6 Flash (bulk) / Gemini 3.1 Pro (2M context, long docs)
-4. Grok 4.5 (cost-sensitive coding, cap 200K) / Grok 4.3 (2M ctx or X Firehose)
+4. Grok 4.5 (cost-sensitive coding, cap 200K) / Grok 4.3 (1M ctx or X Firehose)
 5. GPT-5.6 Terra (agentic coding) / GPT-5.5 Pro (Codex computer use)
 6. Gemini 3.5 Flash-Lite / DeepSeek V4-Flash (last resort, cheapest)
 
@@ -216,7 +216,7 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
 | < 100K | Claude Opus 5 | Claude Sonnet 5 |
 | 100K–200K | Claude Opus 5 / Sonnet 5 | Gemini 3.6 Flash |
 | 200K–1M | Gemini 3.6 Flash / Gemini 3.1 Pro | Grok 4.3 |
-| 1M–2M | Grok 4.3 | Gemini 3.1 Pro |
+| 1M–2M | Grok 4.20 (2M) / Grok 4.3 (1M) | Gemini 3.1 Pro |
 | >500K + recall | Claude Opus 4.6 (pinned) | Gemini 3.1 Pro |
 
 **Пороги удорожания — разные у разных вендоров, одной заглушкой не описываются:**

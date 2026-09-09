@@ -21,7 +21,7 @@ v8C.2/
 ├── BASE (всегда загружаются, в этом порядке):
 │   ├── _preloader.md          [1] ENV detection, PROJECT_CARD, load order
 │   ├── core.md          [2] Меню, TRI_MODE_BRIDGE v3, QUORUM, ATLAS
-│   ├── db.md            [3] G-errors G1-G20, Templates A-M, 9-step algo
+│   ├── db.md            [3] G-errors G1-G22, Templates A-M, 9-step algo
 │   ├── _live/MANIFEST.md      [4] Дедлайны, активные модели
 │   ├── _live/live_core.md     [5] Состояние сессии
 │   └── _live/live_claude.md   [6] Claude-specific live данные

@@ -181,5 +181,5 @@ WIRING:
 FILE_META:
   ROLE:        offer-on-detect нативного Grok Heavy-16 пака + рыночно-строгий JSON-контракт
   COMPATIBLE:  _preloader.md | !!core_v8H.md | !host_profiles.md | !agents.md | !tool_budget.md | !x_realtime.md | vendors/grok.md
-  API_STRINGS: grok-4.5 (current coding/agentic default, Grok Build CLI) | grok-4.3 (2M long-context) ; XML только в code-fences (I6)
+  API_STRINGS: grok-4.5 (current coding/agentic default, Grok Build CLI) | grok-4.20 (2M long-context) | grok-4.3 (1M) ; XML только в code-fences (I6)
 // EOF_MARKER_GROK_HEAVY_V8H

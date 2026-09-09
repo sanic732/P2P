@@ -39,11 +39,11 @@ Agentic / WebDev T3-4      → claude-fable-5           → claude-opus-4-8  (Sa
 Глубокий анализ T4         → claude-opus-5            → gpt-5.6-sol
 Обычный текст T2-3         → claude-sonnet-5          → gemini-3.1-pro-preview
 Быстрый T0-1               → claude-haiku-4-5         → gemini-3.8-flash
-Длинный контекст >200K     → gemini-3.1-pro-preview    → grok-4.3 (2M)
+Длинный контекст >200K     → gemini-3.1-pro-preview    → grok-4.20 (2M)
 Recall >500K               → claude-opus-4-6 (пин G8) → gemini-3.1-pro-preview
 Real-time X/Twitter        → grok-4.3                 → —
 Research / web grounding   → gemini-3.1-pro-preview    → grok-4.3
-Swarm многоагентный        → moonshot-v2-128k (Kimi)  → claude-opus-4-8 (G20: до 300; async webhooks >1h)
+Swarm многоагентный        → kimi-k2.6 (Kimi)         → claude-opus-4-8 (G20: до 300; async webhooks >1h)
 Китайский / vision         → qwen3-max                → qwen3-plus
 On-premises / MIT license  → glm-5.1-flash (≤100K G19)→ —
 Супер-дёшево               → deepseek-v4-flash        → glm-5.1-flash
@@ -75,7 +75,7 @@ Formula: cost = (in_tok/1M × price_in) + (out_tok/1M × price_out)   // пра�
 [LLM_ROUTER]  Classifier: claude-haiku-4-5 / gemini-3.1-flash (быстро, дёшево, ~$0.001/query)
   code→claude-opus-4-8 | analysis→claude-opus-4-8/sonnet-5 | creative→claude-sonnet-5/gpt-5.6-terra
   factual→gemini-3.1-pro-preview (web grounding) | math→claude-opus-4-8 + !reasoning MCTS
-  chinese→qwen3.7-max | rt_social→grok-4.3 | agentic→claude-fable-5/gpt-5.5
+  chinese→qwen3.7-max | rt_social→grok-4.3 | agentic→claude-fable-5/claude-opus-4-8
 ```
 
 # CONFLICT_RESOLVER DECLARATIONS

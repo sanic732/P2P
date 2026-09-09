@@ -181,7 +181,7 @@ LOAD_SEQUENCE:
   3. !!db_v8H.md          ← Техники, ошибки A-P, G-ошибки (всегда)
   4. _live/MANIFEST.md    ← Дедлайны, версии (ежедневно)
   5. _live/live_core.md   ← Прайсинг, арена, маршрутизация
-  6. _live/live_vendors.md ← G1-G20, vendor rules (еженедельно)
+  6. _live/live_vendors.md ← G1-G22, vendor rules (еженедельно)
   6.5 !host_profiles.md   ← HOST_CAPS по HOST_MODEL (Heavy-16 gate) — ВСЕГДА после live
   6.6 !llm_router.md      ← multi-provider router (default primary = HOST_MODEL) — ВСЕГДА
   6.7 !routing_matrix.md  ← аудируемая карта маршрутизации — по запросу/при routing

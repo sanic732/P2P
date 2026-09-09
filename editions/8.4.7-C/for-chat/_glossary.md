@@ -26,7 +26,7 @@ tags: glossary, terms, definitions, g-errors-reference, v8c
 
 **DEEP_THINK_VALUE_GATE** — 3 вопроса перед активацией Extended Thinking. 2/3 да → включить.
 
-**G-Error** — известная ошибка конкретной LLM модели. G1-G20 задокументированы.
+**G-Error** — известная ошибка конкретной LLM модели. G1-G22 задокументированы.
 
 **GUARDIAN** — протокол защиты от scope creep. ON в Code/Projects режиме.
 

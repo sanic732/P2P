@@ -22,7 +22,7 @@ tags: docs, reference, token-budget, modules
 |------|-----------|---------|---------|
 | `_preloader.md` | Определение среды (Code/Projects/API/Chat), PROJECT_CARD, VERSION_COMPAT, порядок загрузки | ~2,700 | Первым |
 | `!!core_v8C.md` | Ядро: меню (42 пункта), SIR Scanner, TRI_MODE_BRIDGE, QUORUM, ATLAS, логотип, CONFLICT_RESOLVER | ~8,300 | Вторым |
-| `!!db_v8C.md` | База знаний: техники, шаблоны A–M, ошибки G1-G20 + Type A–Q | ~13,400 | Третьим |
+| `!!db_v8C.md` | База знаний: техники, шаблоны A–M, ошибки G1-G22 + Type A–Q | ~13,400 | Третьим |
 | `_live/MANIFEST.md` | Дедлайны, статус моделей, статус v8C.3 модулей | ~1,800 | Четвёртым |
 | `_live/live_core.md` | Текущее состояние сессии, SIR state | ~700 | Пятым |
 | `_live/live_claude.md` | Claude-specific данные: API patterns, G-errors, thinking | ~1,500 | Шестым |

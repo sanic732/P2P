@@ -649,7 +649,7 @@ A: Claude 4.x лучше понимает XML теги чем markdown. P2P ис
 A: Да: `/p2p [QUORUM=off]` или через `p2p.config.md`. Но для complex задач — не рекомендуется.
 
 ### Q6. Что такое G-errors?
-A: 20 типов системных ошибок Claude (G1-G20). G6=stop-token confusion, G7=temperature+thinking conflict, G8=budget_tokens deprecated. См. `db.md` раздел 4.
+A: 21 тип системных ошибок Claude (G1-G22, G5 не занят). G6=stop-token confusion, G7=temperature+thinking conflict, G8=budget_tokens deprecated. См. `db.md` раздел 4.
 
 ### Q7. Чем v8C.2 отличается от v8C.3?
 A: + plugin manifest для one-click import, + interactive teacher mode (`/p2p-teacher` + `teacher.md`), + packaging scripts, + INSTALL docs.

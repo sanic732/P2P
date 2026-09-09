@@ -32,7 +32,7 @@ KNOWLEDGE_LAYERS:
     #LINK_QWEN     → vendors/tier2.md §Qwen + vendors/tier3.md §Plus
     #LINK_KIMI     → vendors/tier4.md §Kimi
     #LINK_GLM      → vendors/tier4.md §GLM
-    #LINK_LIVE     → _live/live_vendors.md (G1-G20, OVERRIDE)
+    #LINK_LIVE     → _live/live_vendors.md (G1-G22, OVERRIDE)
     PRIORITY: live_vendors > vendors_*.md > db defaults
     FRESHNESS: >60 дней → активировать DATOS Deep Search
 
@@ -154,7 +154,7 @@ ERRORS_AP:
                           Fix: format lock в primacy AND recency зонах.
 
 // ─────────────────────────────────────────────────────
-// §4. G-ERRORS CATALOG (G1-G20)
+// §4. G-ERRORS CATALOG (G1-G22)
 // Model-specific known issues. Full spec → _live/live_vendors.md
 // ─────────────────────────────────────────────────────
 
@@ -446,7 +446,7 @@ RECOMMENDATIONS:
   VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro, Claude Opus 4.7
   AGENTS:    Kimi K2.x (1500+ tool calls), Claude Opus 4.7 (Computer Use)
   BUDGET:    DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M, MIT license)
-  LONG_CTX:  Gemini 3.1 Pro (1M), Grok 4.3 (2M)
+  LONG_CTX:  Gemini 3.1 Pro (2M), Grok 4.20 (2M), Grok 4.3 (1M)
   RECALL:    Claude Opus 4.6 pinned (>500K, G8 protection)
   FREE_TIER: Claude Sonnet 4.6 (май 2026, бесплатный доступ)
 
@@ -563,7 +563,7 @@ MENTOR_METHOD:
 // ─────────────────────────────────────────────────────
 
 FILE_META:
-  CONTENT:      Techniques (41), Errors A-P (16 types), G-errors G1-G20,
+  CONTENT:      Techniques (41), Errors A-P (16 types), G-errors G1-G22,
                 Arena, Chain Orchestrator, Feedback Loop, API strings,
                 Quorum weights, Model recommendations
   COMPATIBLE:   !!core_v8N.md | !agents.md | !pipeline.md | !toolkit.md | all v8N files

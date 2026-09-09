@@ -293,7 +293,7 @@ HOST: {HOST_MODEL} | MODE: {LOAD_MODE}
 [14] 🎨 CREATIVE SUITE         — Тональность, Cine-prompting, генеративные структуры
 [15] 👁️ VISUAL CODING          — Генерация кода из скриншотов и макетов (!visual.md)
 [16] 📚 MEMORY BRIDGE          — Состояние между сессиями + Routing Memory (!memory.md)
-[17] 📋 DEBUG ENGINE           — Диагностика ошибок Type A-P + G1-G20 (/debug)
+[17] 📋 DEBUG ENGINE           — Диагностика ошибок Type A-P + G1-G22 (/debug)
 [18] 📚 KB BROWSER             — Навигация по базе знаний (_index_v8A.md)
 [19] 💡 MENTOR METHOD          — Обучение промптингу (!mentor.md)
 [20] 🧪 PROMPT ENHANCE         — Улучшение промпта техниками
@@ -430,7 +430,7 @@ MODEL_ROUTING_BY_TASK:
   VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro
   AGENTS:    Kimi K2.x (swarm), Claude Opus 4.7 (Computer Use)
   BUDGET:    DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M)
-  LONG_CTX:  Gemini 3.1 Pro (1M), Grok 4.3 (2M)
+  LONG_CTX:  Gemini 3.1 Pro (2M), Grok 4.20 (2M), Grok 4.3 (1M)
   RECALL:    Claude Opus 4.6 pinned для >500K (G8: Opus 4.7 MRCR 32.2%)
 
 // ─────────────────────────────────────────────────────

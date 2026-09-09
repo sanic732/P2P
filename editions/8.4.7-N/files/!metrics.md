@@ -52,7 +52,7 @@ TRACKING:
   quality_avg:      [computed]
   session_efficiency: [computed]
   techniques_used:  [list from !!db_v8N.md]
-  errors_encountered: [list Type A-P + G1-G20]
+  errors_encountered: [list Type A-P + G1-G22]
   routing_memory:   [dict — from !memory.md]
   arena_results:    [list {model, score, verdict}]
   quorum_runs:      [counter]

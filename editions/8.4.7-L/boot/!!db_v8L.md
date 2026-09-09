@@ -194,6 +194,6 @@ GROK_HEAVY_FAILURE_MODES:
   Type V — Tool Result Verify Failed: результат противоречит контексту. Fix: AXIOM+VECTOR cross-verify.
 
 FILE_META:
-  CONTENT:     LITE_SNAPSHOT, Techniques, COMBINATOR disambig, Errors A-P, G1-G20, Grok Heavy, Arena, Chains, Feedback, API strings, QUORUM weights
+  CONTENT:     LITE_SNAPSHOT, Techniques, COMBINATOR disambig, Errors A-P, G1-G22, Grok Heavy, Arena, Chains, Feedback, API strings, QUORUM weights
   COMPATIBLE:  !!core_v8L | _index_v8L
   API_STRINGS: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-sonnet-5, claude-opus-4-8, claude-opus-4-7, claude-opus-4-6, claude-sonnet-4-6, claude-opus-4-6, claude-haiku-4-5-20251001

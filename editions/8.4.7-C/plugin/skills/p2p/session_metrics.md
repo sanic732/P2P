@@ -50,7 +50,7 @@ metrics_v02:
     ARCHITECTON: 0
     HELIOS: 0
     
-  # Errors caught (types A-P from db.md + G-errors G1-G20)
+  # Errors caught (types A-P from db.md + G-errors G1-G22)
   errors_caught: {}       # {ErrorType: count}
   
   # Автоматические оценки

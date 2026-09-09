@@ -33,7 +33,7 @@ conflict_with_v8C2: Translation_Layer (or mode)
 Обычный текст T2-3        → claude-sonnet-5     → claude-opus-4-7
 Быстрый T0-1              → claude-haiku-4-5    → claude-sonnet-5
 Длинный контекст >200K    → gemini-3.1-pro-preview → grok-4.3
-Длинный контекст >1M      → grok-4.3            → —
+Длинный контекст >1M      → grok-4.20           → —
 Real-time X/Twitter data  → grok-4.3            → —
 Agentic / computer use    → gpt-5.6-sol         → gpt-5.5-pro (Codex)
 Swarm многоагентный       → kimi-k2.6           → —
