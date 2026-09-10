@@ -29,6 +29,26 @@ Access: **usage credits с 2026-07-20** — plan-include закончился 19
 
 > Claude Mythos 5 (`claude-mythos-5`) — Limited (Project Glasswing, доверенные US-орг.); **НЕ маршрутизируется**.
 
+## Claude Code 2.1.263 … 2.1.267 (06–09.09.2026) — клиент, не модель
+- `maxEffortLevel` — потолок усилия на ВСЕХ провайдерах, включая Bedrock, Vertex и Foundry.
+  Если действует ещё и корпоративный потолок на роль — побеждает НИЖНИЙ из двух.
+- Хуки `PreModelSwitch` — срабатывают до применения смены модели и могут её запретить.
+  Когда Claude Code не может определить, какие хуки `PreModelSwitch` поставляет управляемый
+  плагин, смена модели ОТКЛОНЯЕТСЯ.
+- Новый ключ `--system-prompt-snapshot off`.
+- Правило кэша: скилл или команда, у которых во frontmatter указан `model`, отличный от модели
+  сессии, превращают ход в смену модели — вся история перечитывается БЕЗ попаданий в кэш.
+- Алиас `fable` → Fable 5.1 везде, КРОМЕ сессий Claude apps gateway: там `fable` и `best` → Fable 5;
+  шлюз, не отдающий `claude-fable-5-1`, отклонит запрос к нему. Маршрутизировать явной строкой.
+- Пол версии для Fable 5.1: v2.1.255 → **v2.1.257**.
+- Коды ошибок: нет доступа к модели — **404**, недоступный бета-заголовок — **400**, НЕ 403.
+- Token counting сузился: `invalid_request_error` для серверных инструментов (все, кроме advisor),
+  для MCP-коннектора и для image/document-блоков с источником `url` или `file` — слать base64
+  либо брать usage из ответа Messages.
+- Per-message effort (бета `mid-conversation-output-config-2026-07-01`) теперь и на Google Cloud.
+- Fable 5.1 против Fable 5: «the tokenizer is unchanged» (было «roughly unchanged»). Это НЕ отмена
+  G6 — ~+30% против моделей старше 4.7 остаётся.
+
 ## GPT-5.6 Sol / Terra / Luna (OpenAI)
 API: `gpt-5.6-sol` (alias `gpt-5.6`) · `gpt-5.6-terra` · `gpt-5.6-luna` (GA 2026-07-09)
 Context: 1.05M | Output: 128K | Cutoff: 2026-02-16

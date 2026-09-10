@@ -177,6 +177,29 @@ CLAUDE_OPUS_47:
     [PASSED 2026-06-15] Claude dated legacy alias → claude-opus-4-8 / claude-opus-4-7
 
 // ─────────────────────────────────────────────────────
+// §1b. CLAUDE CODE 2.1.263 … 2.1.267  (клиент, не модель; 06–09.09.2026)
+// ─────────────────────────────────────────────────────
+
+CLAUDE_CODE:
+  maxEffortLevel:  потолок усилия на ВСЕХ провайдерах (Bedrock, Vertex, Foundry).
+                   При корпоративном потолке на роль побеждает НИЖНИЙ из двух.
+  PreModelSwitch:  хуки срабатывают до применения смены модели и могут её запретить; если набор
+                   хуков управляемого плагина определить нельзя — смена модели ОТКЛОНЯЕТСЯ.
+  new flag:        --system-prompt-snapshot off
+  cache rule:      скилл/команда с `model` во frontmatter, отличным от модели сессии, = смена
+                   модели → вся история перечитывается БЕЗ попаданий в кэш.
+  alias `fable`:   → Fable 5.1 везде, КРОМЕ сессий Claude apps gateway (там `fable` и `best` →
+                   Fable 5). Шлюз без claude-fable-5-1 отклонит запрос — звать явной строкой.
+  version floor:   Fable 5.1 — v2.1.255 → v2.1.257
+  коды:            нет доступа к модели 404 | недоступный бета-заголовок 400 | НЕ 403
+  token counting:  сузился — invalid_request_error для серверных инструментов (кроме advisor),
+                   MCP-коннектора и image/document-блоков с источником url|file →
+                   слать base64 либо брать usage из ответа Messages.
+  per-message effort: бета mid-conversation-output-config-2026-07-01 теперь и на Google Cloud.
+  Fable 5.1 vs 5:  «the tokenizer is unchanged» (было «roughly unchanged») — НЕ отмена G6,
+                   ~+30% против моделей старше 4.7 остаётся.
+
+// ─────────────────────────────────────────────────────
 // §2. GPT-5.5
 // ─────────────────────────────────────────────────────
 
@@ -272,7 +295,7 @@ GEMINI_31_PRO:
   context:        2M (reliable up to 500K)
   pricing:        $2/$12 per M (≤200K)
   strengths:      Long context (2M), Google Search native, multimodal
-  NOTE:           Gemini 3.5 Pro (gemini-3.5-pro-preview, 2M) — ТРЕТИЙ пропуск срока GA (17.07).
+  NOTE:           Gemini 3.5 Pro (gemini-3.5-pro-preview, 2M) — ПЯТЫЙ пропуск срока GA (счёт на 10.09.2026).
                   Суффикс -preview в официальном changelog не снят, цена не финализирована,
                   даты GA нет. НЕ трактовать как GA и не строить на ней планов.
 

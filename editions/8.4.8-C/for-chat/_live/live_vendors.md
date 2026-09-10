@@ -34,10 +34,11 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Gemini** | 3.7 Flash | `gemini-3.7-flash` | 1,048,576 | та же цена линии Flash | T2 (GA 13.08) | G1,G2,G13 |
 | **Gemini** | 3.6 Flash | `gemini-3.6-flash` | 1,048,576 | та же цена линии Flash | T2 (~304 tok/s) | G1,G2,G13 |
 | **Gemini** | 3.5 Flash-Lite | `gemini-3.5-flash-lite` | 1M | $0.30/$2.50 | T0-1 (дешевейший, ~350 tok/s) | G1,G2,G13 |
-| **Gemini** | 3.5 Pro | `gemini-3.5-pro-preview` | 2M | TBD | T4 (⚠ PREVIEW, **четвёртый** пропуск GA; отсутствует в models/pricing/changelog) | G1,G2,G13 |
+| **Gemini** | 3.5 Pro | `gemini-3.5-pro-preview` | 2M | TBD | T4 (⚠ PREVIEW, **пятый** пропуск GA; отсутствует в models/pricing/changelog) | G1,G2,G13 |
 | **Gemini** | 3.5 Flash | `gemini-3.5-flash` | 1M | $1.50/$9 | T2 (вытеснен 3.6 Flash) | G1,G2,G13 |
 | **Gemini** | 3.1 Pro | `gemini-3.1-pro-preview` | 2M | $2/$12 | T3-4 | G1,G2,G4,G11,G13 |
 | **Grok** | 4.6 | `grok-4.6` | 500K | $2/$6 · от 200K → $4/$12, cache $0.50 | T3-4 (12.08; AA 61, вровень с Sol) | G14 |
+| **Grok** | 4.7 | — | — | — | ⚠ объявлен на 12.09: ни id, ни цены, ни контекста — НЕ пре-маршрутизировать | — |
 | **Grok** | 4.5 | `grok-4.5` | 500K | $2/$0.30 cached/$6 · от 200K → $4/$0.60/$12 | T3-4 (coding flagship; EU без residency) | G14 |
 | **Grok** | 4.3 | `grok-4.3` | 1M | $1.25/$2.50 | T2-3 | G14 |
 | **Grok** | 4.20 Heavy | `grok-4.20` | 2M | $2/$6 | T3-4 (Heavy-16) | G14 |
@@ -273,7 +274,7 @@ V872_DELTA:
   Gemini: 3.6 Flash GA 21.07 (1,048,576/65,536, $1.50/$7.50, cache-read $0.15, ~304 tok/s,
     на 17% меньше выходных токенов) — новый workhorse; 3.5 Flash-Lite GA ($0.30/$2.50, ~350 tok/s).
     Индекс AA у 3.6 Flash = у 3.5 Flash: это экономия, не рост способностей.
-    3.5 Pro — ТРЕТИЙ пропуск GA, остаётся preview, цены нет.
+    3.5 Pro — ПЯТЫЙ пропуск GA, остаётся preview, цены нет.
     Error 13 (G13) — НЕ воспроизведён и НЕ признан на 3.6 Flash: модель не проверена, а не очищена.
     Обходы применять и к 3.6 Flash (Context Caching, история ≤80K, без пачек 30+ изображений).
     Computer Use встроен в Gemini API нативно.

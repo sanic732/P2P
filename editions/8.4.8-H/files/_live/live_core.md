@@ -35,12 +35,13 @@ PRICING:
   gemini-3.5-flash:          $1.50  / $9.00 / 1M    / вытеснен 3.6 Flash; thinkingLevel MEDIUM default
   gemini-3.1-pro-preview:    $2     / $12   / 2M    / Deep Think; grounding (<=200K цена)
   // RECALL >500K: пинить claude-opus-4-6 (MRCR v2 1M: 4.7/4.8 = 32.2% vs 4.6 = 78.3% — G8/G6)
-  // gemini-3.5-pro-preview (2M, PREVIEW — ТРЕТИЙ пропуск GA); grok-4.20 (2M, Heavy-16); minimax-m3 (0.30/1.20 track-only)
+  // gemini-3.5-pro-preview (2M, PREVIEW — ПЯТЫЙ пропуск GA); grok-4.20 (2M, Heavy-16); minimax-m3 (0.30/1.20 track-only)
   // ❌ claude-opus-4-1-20250805 СНЯТ 2026-08-05 (замена по офиц. таблице — opus-4-8)
 
   // TIER 2 — Balanced
   gpt-5.6-terra:             $2.50  / $15   / 1.05M / GA 09.07; balanced (замена 5.5); long-context ставки НЕ документированы
   grok-4.6:                  $2     / $6    / 500K  / GA 12.08; AA index 61 (вровень с GPT-5.6 Sol); cached $0.50; от 200K → $4 / $12
+  grok-4.7:                  —      / —     / —     / ⚠ объявлен на 12.09; id, цены и контекста нет — НЕ пре-маршрутизировать
   grok-4.5:                  $2     / $6    / 500K  / GA 08.07: coding/agentic flagship, ~80 tps; cached $0.30 (дешевле, чем у 4.6); от 200K → $4 / $0.60 cached / $12; EU открыт 21.07 БЕЗ data-residency; strict JSON
   grok-4.3:                  $1.25  / $2.50 / 1M    / X Firehose; для 2M → grok-4.20 Heavy
   deepseek-v4-pro:           $0.66  / $1.98 / 1M    / GA 13.08 (веса MIT); out 384K; peak 1.32/3.96, cache-hit 0.022/0.044; пик 01-04 и 06-10 UTC пн-пт

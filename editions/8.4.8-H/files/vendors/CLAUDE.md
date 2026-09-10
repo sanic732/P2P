@@ -43,6 +43,24 @@ KNOWN_ISSUES:
       {"type":"fallback"} + usage.iterations; биллинг расщепляется по моделям; в app/Claude Code отключаемо.
       Тихий fallback перестал быть тихим — проверять блок, а не угадывать деградацию по качеству вывода.
 
+CLAUDE_CODE (2.1.263 … 2.1.267, 06–09.09.2026 — клиент, не модель):
+  maxEffortLevel: потолок усилия на ВСЕХ провайдерах (Bedrock, Vertex, Foundry). При корпоративном
+      потолке на роль побеждает НИЖНИЙ из двух.
+  PreModelSwitch: хуки срабатывают до применения смены модели и могут её запретить; если набор хуков
+      управляемого плагина определить нельзя — смена модели ОТКЛОНЯЕТСЯ.
+  --system-prompt-snapshot off: новый ключ.
+  cache-правило: скилл/команда с `model` во frontmatter, отличным от модели сессии, = смена модели →
+      вся история перечитывается БЕЗ кэша.
+  alias `fable`: → Fable 5.1 везде, КРОМЕ сессий Claude apps gateway (там `fable` и `best` → Fable 5).
+      Шлюз без claude-fable-5-1 отклонит запрос — маршрутизировать явной строкой, не алиасом.
+  version floor Fable 5.1: v2.1.255 → v2.1.257.
+  коды: нет доступа к модели 404, недоступный бета-заголовок 400 — НЕ 403.
+  token counting: сузился — invalid_request_error для серверных инструментов (кроме advisor),
+      MCP-коннектора и image/document-блоков с источником url|file → base64 либо usage из Messages.
+  per-message effort: бета mid-conversation-output-config-2026-07-01 теперь и на Google Cloud.
+  Fable 5.1 vs Fable 5: «the tokenizer is unchanged» (было «roughly unchanged») — НЕ отмена G6,
+      ~+30% против моделей старше 4.7 остаётся.
+
 ARCH:     XML_NATIVE (на claude host); host-gated при генерации под другие модели.
 WHEN_TO_USE: general reasoning/agentic/long-horizon (Opus 5 — PRIMARY), coding (Opus 5 → Opus 4.8),
              баланс (Sonnet 5), >500K recall и документы (Opus 4.6),
