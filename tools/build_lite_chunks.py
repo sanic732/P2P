@@ -69,6 +69,11 @@ SPLIT = {
     ],
 }
 
+# Плоский вид SPLIT: имя части → (триггер, спецификация срезов). Нужен, чтобы
+# пересборка уже разрезанного чанка сохраняла те же границы.
+SUBSPLIT = {sub: (trig, spec) for parts in SPLIT.values() for sub, trig, spec in parts}
+
+
 
 def slice_file(path: Path, frm: str | None, until: str | None) -> str:
     """Кусок файла между маркерами. При срезе с середины сохраняем YAML-шапку."""
@@ -245,6 +250,22 @@ def build(out_dir: Path) -> int:
                          for s in SPLIT[name] if s[0] in man)
         else:
             kb_old = 0.0
+        if name in SUBSPLIT:
+            # Чанк уже разрезан в прошлом выпуске: в рецепте с гиста он значится
+            # под именем части, а маркеры source: границ секций не хранят. Без этой
+            # ветки пересборка брала файлы ЦЕЛИКОМ — vendors-чанки удваивались
+            # (18.3 → 36.1 KB) и дублировали друг друга: GPT-секция попадала
+            # и в VENDORS_CLAUDE, и в VENDORS_FRONTIER. Проверено 10.09.2026.
+            trig, spec = SUBSPLIT[name]
+            pieces = []
+            for rel, frm, until in spec:
+                f = h_files / rel
+                if not f.is_file():
+                    die(f"{name}: источник не найден — {f}")
+                pieces.append((rel, slice_file(f, frm, until)))
+            emit(name, pieces, f"EOF_MARKER_{name}_VALIDATED", kb_old, trig)
+            continue
+
         if name in SPLIT:
             print(f"  {name:18} режется на {len(SPLIT[name])} (было {kb_old:.1f} KB)")
             total = 0.0
