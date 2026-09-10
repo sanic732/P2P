@@ -36,6 +36,7 @@ conflict_with_v8C2: Translation_Layer (or mode)
 Длинный контекст >1M      → grok-4.20           → —
 Real-time X/Twitter data  → grok-4.3            → —
 Agentic / computer use    → gpt-5.6-sol ⚠G22    → gpt-5.5-pro (Codex)
+  (gpt-6-astra: запрет G22 на него НЕ переносится и не снимается — проверка по результату)
 Swarm многоагентный       → kimi-k2.6           → —
 Китайский контент         → qwen3.6-plus        → qwen3.7-max
 On-premises / MIT license → glm-5.1             → —

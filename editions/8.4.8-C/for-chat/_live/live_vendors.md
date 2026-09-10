@@ -48,6 +48,9 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **GPT** | 5.6 Luna | `gpt-5.6-luna` | ⚠ офиц. строки нет | $1/$6 (long-context НЕ документирован) | T1-2 (⚠ MRCR collapse >512K) | G9, G10 |
 | **DeepSeek** | V4 Pro | `deepseek-v4-pro` | 1M | $0.66/$1.98 off-peak · $1.32/$3.96 peak, cache-hit $0.022/$0.044 | T2-3 ✅ GA 13.08 (веса MIT) | G15 |
 | **DeepSeek** | V4 Flash | `deepseek-v4-flash` | 1M | $0.22/$0.66 off-peak · $0.44/$1.32 peak | T0-1 (public beta, 0731) | G15, G16 (алиасы мертвы 24.07) |
+> ⚠ `deepseek-v4.1-flash` — три несовместимых рассказа о статусе и цене: в BASE и в маршруты
+>   НЕ вносится (bulk остаётся на `gemini-3.8-flash` + `deepseek-v4-flash`). Ловушка: id
+>   с подстрокой `expires-on-0910`, зашитый в клиент, с 10.09.2026 начинает отдавать ошибки.
 | **Qwen** | 3.8 Max | `qwen3.8-max` | 1M / out 131 072 | $2/$6, cache $0.25 (тариф плоский: 12/36 CNY за 1M) | T4 ✅ GA 03.08 (веса 3.8-27B Apache 2.0; strict JSON ок) | G17, G18 |
 | **Qwen** | 3.7 Max | `qwen3.7-max` | 1M | $2.50/$7.50 | T4 (text-only, без vision) | G17, G18 |
 | **Qwen** | 3.8 Flash-Next | `qwen3.8-flash-next` | — | $0.16/$0.47 | T2 (дебют Arena WebDev #9, 1631 prelim; цена опубликована 10.09) | G17, G18 |
@@ -164,7 +167,7 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
     "model": "gemini-3.1-pro-preview",
     "generationConfig": {
         "thinkingConfig": {"thinkingBudget": -1},  # или thinkingLevel: "MEDIUM"
-        "temperature": 1.0                          # или опустить (G1)
+        # temperature НЕ передавать: deprecated на всей линии 3.x с 21.07.2026 (G1)
     }
 }
 # НИКОГДА: XML в system context (G2)

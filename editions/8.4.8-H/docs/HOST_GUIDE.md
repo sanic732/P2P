@@ -72,7 +72,7 @@ MUST NOT: [ограничение]
 **Thinking API:**
 ```python
 thinkingConfig={"thinkingLevel": "MEDIUM"}  # НЕ thinking_budget (G4)
-# temperature: 1.0 при Deep Think (G1)
+# temperature/top_p/top_k НЕ передавать: deprecated на всей линии 3.x с 21.07.2026 (G1)
 ```
 
 **Критично:** ZERO XML в любых промптах (G2 — CoH interference).

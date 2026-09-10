@@ -37,7 +37,7 @@ HOST_PROFILES:
     SYNTAX_SELF:    Plain text, ## заголовки, **жирный**
     CAPABILITIES:   Deep Think (thinkingLevel), 1M context,
                     Google Search native, Code Execution
-    KNOWN_ISSUES:   G1 (temp≠1.0 + Deep Think), G2 (XML → CoH),
+    KNOWN_ISSUES:   G1 (temperature/top_p/top_k deprecated на 3.x; Deep Think — без temperature), G2 (XML → CoH),
                     G4 (thinkingLevel not thinking_budget),
                     G11 (HIGH billing shock), G12 (hard 429), G13 (memory nuke)
     THINKING_API:   thinkingLevel: MEDIUM  # НЕ thinking_budget
@@ -465,7 +465,7 @@ TRANSLATION_LAYER:
       ZERO XML (G2: CoH interference)
       ## заголовки, **жирный** вместо тегов
       thinkingLevel вместо effort
-      temperature: 1.0 при Deep Think (G1)
+      temperature НЕ передавать: deprecated на всей линии 3.x с 21.07.2026 (G1)
       Убрать <role><rules><task> теги полностью
 
     claude→gpt:

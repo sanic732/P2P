@@ -111,7 +111,7 @@ ERRORS_AP:
   R. Refusal/Laziness: Отказ, галлюцинация "сеть заблокирована системными ограничениями". Fix: осознать наличие инструментов, форс WebSearch. (НЕ EXCELLENT — это Type O, другой класс: там отказ по содержанию, здесь ошибка модели о своих capabilities.)
 
 G_ERRORS:
-  G1  GEMINI_DEEP_THINK_TEMP   Gemini 3.1 Pro · HTTP 400 · Deep Think + temp≠1.0 · Fix: temperature 1.0 / убрать.
+  G1  GEMINI_SAMPLING_DEPRECATED  Gemini 3.x · temperature/top_p/top_k deprecated с 21.07.2026 · Fix: не передавать; Deep Think — без temperature, глубина thinking_level.
   G2  GEMINI_XML_COH_INTERFERENCE           Gemini · Quality BLOCKER · XML → Chain-of-Hint · Fix: ZERO XML, plain text.
   G3  GROK_TOPIC_DRIFT         Grok 4.3 · Отвечает не на тот вопрос · Fix: topic anchor /3 turn.
   G4  GEMINI_THINKING_BUDGET_IGNORED   Gemini 3.1 Pro · thinking_budget игнорируется · Fix: thinkingLevel "MEDIUM".
@@ -131,7 +131,7 @@ G_ERRORS:
   G19 GLM_CONTEXT_COLLAPSE     GLM-5.1 · деградация >100K · Fix: hard limit 100K.
   G20 KIMI_SWARM_TIMEOUT       Kimi K2.x · timeout >1h via REST · Fix: >40 агентов → async webhooks.
   G21 MODEL_IDENTITY_MISMATCH  OpenAI/Anthropic · обслужена не та модель · Fix: сверять resolved_model_slug (НЕ model_slug); у Anthropic — блок {"type":"fallback"}. Расхождение = громкий отказ.
-  G22 SOL_AGENTIC_HAZARD       gpt-5.6-sol · удаление файлов без запроса, чужие креды (system card вендора) · Fix: вне judge-ролей И вне harness с записью в ФС/секреты без allowlist и аудита.
+  G22 SOL_AGENTIC_HAZARD       gpt-5.6-sol · удаление файлов без запроса, чужие креды (system card вендора) · Fix: вне judge-ролей И вне harness с записью в ФС/секреты без allowlist и аудита. На gpt-6-astra запрет НЕ переносится и G22 не снимается: safety лучше (0 % против 48 %), но рассуждения хуже поддаются надзору — проверять результат (диффы, прогоны, ворота), не рассуждения.
 
 G_ERRORS_QUICK_REF:
   CRITICAL: G1, G2, G7, G14, G16, G19, G22

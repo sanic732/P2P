@@ -52,7 +52,7 @@ G7, G8 (MRCR >500K → пин `claude-opus-4-6`).
 ## Gemini
 `HOST_MODEL: "gemini"` — ZERO XML (G2!), Google Search покрывает fetch.
 ```python
-thinkingConfig={"thinkingLevel":"MEDIUM"}  # НЕ thinking_budget (G4); temperature 1.0 при Deep Think (G1)
+thinkingConfig={"thinkingLevel":"MEDIUM"}  # НЕ thinking_budget (G4); temperature НЕ передавать — deprecated на 3.x (G1)
 ```
 Память: REINJECT каждые 25 (G13). QUORUM — из CORE_PLUS chunk (не нативные агенты).
 

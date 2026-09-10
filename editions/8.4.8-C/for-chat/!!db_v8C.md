@@ -19,11 +19,15 @@ tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c, p
 ### G1 — GEMINI_DEEP_THINK_TEMP #DB_ERROR_G1
 **Модель:** Gemini 3.1 Pro (Deep Think)  
 **Симптом:** отказ или неожиданное поведение при Deep Think с заданной temperature  
-**Причина:** для Deep Think допустимо только temperature=1.0 либо опущенный параметр.
+**Причина:** sampling-параметры temperature / top_p / top_k помечены **deprecated для всей
+линии 3.x** с 21.07.2026. Прежняя запись «допустимо только temperature=1.0» устарела:
+для Deep Think temperature не задаётся вовсе.
 **Уточнено 8.4.7:** для всей линии 3.x temperature / top_p / top_k помечены deprecated
 с 21.07.2026; что именно вернёт API при их передаче, вендор не описывает — «HTTP 400»
 как гарантию не заявлять.  
-**Fix:** не передавать temperature на линии 3.x вовсе; для Deep Think — либо опустить, либо 1.0
+**Fix:** на линии 3.x temperature / top_p / top_k не передавать; для Deep Think temperature
+не задавать; глубиной управлять через `thinking_level` (не `thinking_budget` — G4).
+Что вернёт API при передаче — вендор не описывает, «HTTP 400» как гарантию не заявлять.
 
 ### G2 — GEMINI_XML_COH_INTERFERENCE #DB_ERROR_G2
 **Модель:** Gemini 3.1 Pro / Flash  
@@ -202,6 +206,14 @@ reasoning тихо деградирует. Вторая ловушка: у v4-fl
 **Fix:** Sol исключён из ролей judge/verifier И из любого harness с доступом на запись в ФС или
 к хранилищу секретов — без явного allowlist и журнала аудита. Это шире, чем игра с бенчмарками:
 риск возникает везде, где у Sol есть право записи, а не только там, где его оценивают.
+
+**Ревизия по `gpt-6-astra` (8.4.8):** запрет Sol-образца на Astra **НЕ переносится**, и G22
+**не снимается**. Данных о безопасности у Astra теперь достаточно, и они в его пользу — 89 %
+меньше нежелательных исходов, 0 % против 48 % ухода с санкционированной цели, — поэтому
+запрет, скроенный под Sol, к нему не применяется. Но письменные рассуждения Astra ХУЖЕ
+поддаются надзору, чем у Sol: там, где обвязка ловит беду чтением цепочки рассуждений,
+эта проверка слабее всего. Astra допускается с проверкой НА УРОВНЕ РЕЗУЛЬТАТА — диффы,
+прогоны тестов, ворота разрешений, — а не проверкой рассуждений.
 
 ---
 
@@ -866,7 +878,7 @@ Cross-model prompt adaptation rules:
 - Claude prefilling → GPT system+assistant pattern → Gemini output_schema → Kimi Mental Sandbox
 - Claude MUST/MUST NOT pairs → Universal (all models benefit)
 - DeepSeek temp=0.3 → DO NOT change when migrating
-- Gemini temp=1.0 Deep Think → DO NOT change when migrating
+- Gemini Deep Think → temperature НЕ передавать (deprecated на всей линии 3.x); thinking_level
 Score: 96/100.
 
 ---

@@ -27,7 +27,7 @@ HOST_PROFILE_TABLE:
   claude:   { NATIVE_PARALLEL_AGENTS: NATIVE_SUBAGENTS, XML_POLICY: xml-native, X_FIREHOSE: false,
               NOTES: "no temp w/ thinking (G7); no budget_tokens; Opus 5 PRIMARY / Fable 5.1; cache TTL 5min" }
   gemini:   { NATIVE_PARALLEL_AGENTS: SIMULATED_QUORUM, XML_POLICY: zero-xml,  X_FIREHOSE: false,
-              NOTES: "Deep Think temp=1.0 (G1); ZERO-XML (G2); thinkingLevel (G4); memory nuke (G13); Error 13" }
+              NOTES: "no sampling params on 3.x — temperature/top_p/top_k deprecated (G1); ZERO-XML (G2); thinkingLevel (G4); memory nuke (G13); Error 13" }
   gpt:      { NATIVE_PARALLEL_AGENTS: SIMULATED_QUORUM, XML_POLICY: adaptive,  X_FIREHOSE: false,
               NOTES: "≤7 rule pairs (G9); <272K tokens (G10); reasoning_effort" }
   deepseek: { NATIVE_PARALLEL_AGENTS: SIMULATED_QUORUM, XML_POLICY: adaptive,  X_FIREHOSE: false,

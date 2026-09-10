@@ -80,7 +80,7 @@ v8N.1 (Normal Edition) — если работаешь с несколькими
 
 | G# | Модель | Симптом | Критичность | Fix |
 |----|--------|---------|-------------|-----|
-| G1 | Gemini Pro | отказ / иное поведение | CRITICAL | не передавать temperature на линии 3.x; Deep Think — 1.0 или опустить |
+| G1 | Gemini 3.x | отказ / иное поведение | CRITICAL | temperature/top_p/top_k deprecated с 21.07.2026 — не передавать; Deep Think — без temperature, глубина thinking_level |
 | G2 | Gemini | Quality fail | CRITICAL (BLOCKER) | ZERO XML |
 | G3 | Grok | Topic drift | HIGH | Anchor каждые 3 turn |
 | G4 | Gemini Pro | Ignored thinking | MEDIUM | thinkingLevel вместо thinking_budget |
