@@ -48,7 +48,7 @@ tags: docs, readme, navigator, v8c3
 
 ## Минимальный старт (30 секунд)
 
-- **Claude Code:** `/plugin marketplace add sanic732/P2P-4PDA-edition` → установить `p2p-v8c3` → `/p2p-v8c3:p2p`
+- **Claude Code:** `/plugin marketplace add sanic732/P2P` → установить `p2p-v8c3` → `/p2p-v8c3:p2p`
 - **Claude.ai Projects:** загрузить 6 BASE-файлов из `for-chat/` → написать `старт`
 
 > ⚠️ Команды плагина вызываются С ПРЕФИКСОМ: `/p2p-v8c3:p2p`, а не `/p2p` (ограничение Claude Code, не баг).

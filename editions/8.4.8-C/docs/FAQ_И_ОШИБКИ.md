@@ -30,7 +30,7 @@ A: Логика и веса одни. В plugin-форме агенты — на
 параллельно), в for-chat — симулируются в одном контексте. См. [AGENTS_GUIDE.md](AGENTS_GUIDE.md).
 
 **Q: Как обновиться?**
-A: Маркетплейс: кнопка **Update** или `/plugin marketplace update P2P-4PDA-edition`
+A: Маркетплейс: кнопка **Update** или `/plugin marketplace update P2P`
 (загорается при поднятой версии в `plugin.json`). Бандл/for-chat: заменить файлы из свежего релиза.
 
 ---
@@ -56,7 +56,7 @@ Code (парсер строгий; Cowork мягкий и маскирует). �
 
 ### E4. Кнопка Update не загорается
 **Причина:** версия в `plugin.json` репо не выше установленной (Update смотрит только туда).
-**Fix:** дождаться релиза с bump; проверить `/plugin marketplace update P2P-4PDA-edition`.
+**Fix:** дождаться релиза с bump; проверить `/plugin marketplace update P2P`.
 
 ### E5. Команды «воскресают» после перезапуска / появился marketplace `local-desktop-app-uploads`
 **Причина (исторически):** вложенный `marketplace.json` внутри плагина (footgun сборок ≤8.3.4).

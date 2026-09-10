@@ -30,14 +30,14 @@ bash pack.sh
 
 ```bash
 # В Claude Code:
-/plugin marketplace add https://github.com/sanic732/P2P-4PDA-edition
+/plugin marketplace add https://github.com/sanic732/P2P
 /plugin install p2p-v8c3@p2p
 ```
 
 Ожидаемый вывод:
 
 ```
-✔ Added marketplace 'p2p' (source: github:sanic732/P2P-4PDA-edition)
+✔ Added marketplace 'p2p' (source: github:sanic732/P2P)
 ✔ Resolved plugin 'p2p-v8c3' from marketplace 'p2p' (v8.3.0)
 ✔ Installed 11 commands, 8 agents, 2 skills
 ```
