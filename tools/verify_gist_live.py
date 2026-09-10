@@ -139,10 +139,17 @@ def main() -> int:
 
     results = [check(entry) for entry in entries]
 
+    # Раскол таблицы: часть записей перенесена на новую ревизию, часть осталась
+    # на старой. Живое содержимое при этом совпадает у всех — сверка по /raw/<имя>
+    # ревизию не видит, — а хост качает по вшитому URL и получает СТАРЫЙ файл,
+    # чей sha не сойдётся с объявленным. Одна строка в консоли этого не ловит (R15).
+    revisions = {r.get("pinned_revision") for r in results if r.get("pinned_revision")}
+    split = len(revisions) > 1
+
     if args.json:
-        print(json.dumps(results, ensure_ascii=False, indent=2))
+        print(json.dumps({"revisions": sorted(revisions), "split": split,
+                          "entries": results}, ensure_ascii=False, indent=2))
     else:
-        revisions = {r.get("pinned_revision") for r in results if r.get("pinned_revision")}
         print(f"индекс: {args.index}")
         print(f"записей проверено: {len(results)} (канарейка исключена: frozen_probe)")
         print(f"ревизий в URL индекса: {len(revisions)} — {', '.join(sorted(r[:8] for r in revisions))}")
@@ -164,13 +171,19 @@ def main() -> int:
 
     if not args.json:
         print()
+        if split:
+            print(f"РАСКОЛ: записи таблицы пинятся на {len(revisions)} разных ревизий — "
+                  f"{', '.join(sorted(r[:8] for r in revisions))}")
+            print("перенос пинов доехал не до всех записей: хост скачает по старому URL")
         if drift or errors:
             print(f"ИТОГ: расхождений {drift}, недоступных {errors} из {len(results)}")
             print("индекс указывает не на то, что лежит на гисте сейчас")
+        elif split:
+            print(f"ИТОГ: содержимое совпало у всех {len(results)} записей, но ревизии расколоты")
         else:
             print(f"ИТОГ: все {len(results)} записей совпали с живым гистом")
 
-    return 1 if (drift or errors) else 0
+    return 1 if (drift or errors or split) else 0
 
 
 if __name__ == "__main__":
