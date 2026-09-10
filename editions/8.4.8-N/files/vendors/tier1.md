@@ -200,6 +200,33 @@ CLAUDE_CODE:
                    ~+30% против моделей старше 4.7 остаётся.
 
 // ─────────────────────────────────────────────────────
+// §2-a. GPT-6 ASTRA  (OpenAI frontier — GA 2026-09-09)
+// ─────────────────────────────────────────────────────
+
+GPT_6_ASTRA:
+  api_string:     gpt-6-astra          // единственный снимок, алиас совпадает; звать явно, не алиасом
+  context:        1,050,000 | output: 128,000 | knowledge cutoff: 2026-04-30
+  reasoning:      effort low | medium | high | xhigh | max
+  pricing:        $10 in / $1 cached in / $12.50 cache-write / $50 out per MTok
+                  batch и flex — 50 % от ставки; fast mode x2; cache-write = 1.25x нецелевой входной
+  long_context:   свыше 272K входных токенов — x2 input, x2 cache и x1.5 output на весь запрос.
+                  КЭШ НЕ ОСВОБОЖДАЕТСЯ (та же форма, что у Sol): кэш-тяжёлый прогон за порогом
+                  платит вдвое при тарифе $50 output — держать контекст НИЖЕ 272K.
+  known_defect:   function tools вместе с reasoning_effort на /v1/chat/completions -> 400
+                  (тикет: "To use function tools, use /v1/responses or set reasoning_effort to none").
+                  Инструменты — только через /v1/responses. Предел эндпойнта, не метаданных Azure.
+  arena:          WebDev #1 (1796, 1810 голосов) · Agent #2 (12.55 % Net Improvement, $4.02/задача,
+                  32.8K выходных токенов — против 54.7K у Fable 5.1)
+  benchmarks:     независимых нет; вендорские 64.6 % против 52.6 % у Fable 5.1 — один отчёт,
+                  методика не названа -> как канон не использовать
+  access:         Pro / Business / Enterprise (на Enterprise выключен по умолчанию), Plus — только
+                  Work/Codex; также API, Microsoft Azure, AWS Bedrock
+  WHEN_TO_USE:    webdev / frontend_generation — PRIMARY (fallback claude-fable-5-1 max)
+
+  > Рядом: gpt-image-2.5-sunburst и gpt-image-2.5-flare (GA 09.09) — Text-to-Image #1/#2
+  >   и Image-Edit #1/#2; цены не опубликованы, планировать по gpt-image-2.
+
+// ─────────────────────────────────────────────────────
 // §2. GPT-5.5
 // ─────────────────────────────────────────────────────
 

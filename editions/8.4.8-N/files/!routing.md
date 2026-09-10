@@ -35,6 +35,7 @@ menu_item: 28
 Задача                     → Модель                  → Fallback
 ──────────────────────────────────────────────────────────────────────
 Код / debugging            → claude-opus-5            → claude-opus-4-8
+WebDev / frontend T3-4     → gpt-6-astra (max)        → claude-fable-5-1 (max)  (ctx <272K; tools → /v1/responses)
 Agentic / WebDev T3-4      → claude-fable-5           → claude-opus-4-8  (Safety Nanny ~5%)
 Глубокий анализ T4         → claude-opus-5            → gpt-5.6-sol
 Обычный текст T2-3         → claude-sonnet-5          → gemini-3.1-pro-preview
