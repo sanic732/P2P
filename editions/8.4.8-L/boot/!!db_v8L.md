@@ -25,8 +25,8 @@ LITE_SNAPSHOT:
     [DEADLINE 2026-12-31 T-112] Gemini Flash-линия: вводная цена → $1.50 / $7.50 с 01.01.2027
   CURRENT_FLAGSHIPS:
     claude: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-opus-4-8, claude-sonnet-5
-    gpt: gpt-6-astra (GA 09.09; 1,050,000/128,000; $10/$50; >272K x2 вкл. кэш; tools -> /v1/responses), gpt-5.6-sol/terra/luna · gemini: gemini-3.1-pro-preview · grok: grok-4.5 / 4.3
-    deepseek: deepseek-v4-pro/flash · qwen: qwen3.7-max · kimi: kimi-k2.6 / k2.7-code · glm: glm-5.2
+    gpt: gpt-6-astra (GA 09.09; 1,050,000/128,000; $10/$50; >272K x2 вкл. кэш; tools -> /v1/responses), gpt-5.6-sol/terra/luna · gemini: gemini-3.8-flash (bulk primary) / gemini-3.1-pro-preview · grok: grok-4.6 / 4.5 / 4.3
+    deepseek: deepseek-v4-pro/flash · qwen: qwen3.8-max · kimi: kimi-k3 / k2.6 / k2.7-code · glm: glm-5.3 / 5.3-flash
   WARN: "⚠ LITE_SNAPSHOT — offline snapshot data."
 
 KNOWLEDGE_LAYERS:
@@ -114,7 +114,7 @@ ERRORS_AP:
 G_ERRORS:
   G1  GEMINI_SAMPLING_DEPRECATED  Gemini 3.x · temperature/top_p/top_k deprecated с 21.07.2026 · Fix: не передавать; Deep Think — без temperature, глубина thinking_level.
   G2  GEMINI_XML_COH_INTERFERENCE           Gemini · Quality BLOCKER · XML → Chain-of-Hint · Fix: ZERO XML, plain text.
-  G3  GROK_TOPIC_DRIFT         Grok 4.3 · Отвечает не на тот вопрос · Fix: topic anchor /3 turn.
+  G3  GROK_TOPIC_DRIFT         Grok 4.6/4.5/4.3 · Отвечает не на тот вопрос · Fix: topic anchor /3 turn.
   G4  GEMINI_THINKING_BUDGET_IGNORED   Gemini 3.1 Pro · thinking_budget игнорируется · Fix: thinkingLevel "MEDIUM".
   G6  OPUS4X_TOKENIZER_INFLATION    Opus 4.7+/Fable 5/Sonnet 5/Opus 5 · контекст быстрее · ~+30% (офиц., одна цифра) · Fix: Token Counting API; пин 4.6.
   G7  CLAUDE_EXTENDED_THINKING_TEMP     Opus 4.7/Sonnet 4.6 · HTTP 400 · temp при thinking=enabled · Fix: убрать temperature.
@@ -124,11 +124,11 @@ G_ERRORS:
   G11 GEMINI_HIGH_BILLING      Gemini 3.1 Pro · thinkingLevel=HIGH без gate · Fix: DEEP_THINK_VALUE_GATE.
   G12 GEMINI_HARD_429          Gemini 3.1 Pro · HTTP 429 без retry · Fix: high-freq → Flash.
   G13 GEMINI_MEMORY_NUKE       Gemini 3.1 Pro · забывает после ~80 сообщений · Fix: REINJECT каждые 25.
-  G14 GROK_UNSUPPORTED_PARAM   Grok 4.3/4.5/4.20 · HTTP 400 · Fix: safe params only (temp/max_tokens/stream/top_p/stop). ⚠ -heavy/-expert/-fast id НЕ существуют; от 200K тариф x2 ВКЛЮЧАЯ кэш (обрыв кэшем не смягчить); cached 0.30 short / 0.60 long — унаследованная 0.50 неверна.
+  G14 GROK_UNSUPPORTED_PARAM   Grok 4.6/4.5/4.3/4.20 · HTTP 400 · Fix: safe params only (temp/max_tokens/stream/top_p/stop). ⚠ -heavy/-expert/-fast id НЕ существуют; от 200K тариф x2 ВКЛЮЧАЯ кэш (обрыв кэшем не смягчить); у 4.6 cached 0.50 short / 1 long, у 4.5 — 0.30 / 0.60 (унаследованная 0.50 для 4.5 неверна).
   G15 DEEPSEEK_REASONING_CARRY DeepSeek V4 · загрязнение reasoning · Fix: re-inject reasoning_content (НЕ null) — RESOLVED BY DESIGN.
   G16 DEEPSEEK_ALIAS_RETIRE    ★ИСПОЛНЕНО 2026-07-24 15:59 UTC (no grace) · код 404 либо 400 — принимать оба · Fix: бывший reasoner → deepseek-v4-pro, НЕ v4-flash-thinking (иначе тихая деградация). v4-pro GA 13.08.2026 (веса MIT); v4-flash-0731 — public beta.
-  G17 QWEN_PROVIDER_PREFIX     Qwen · HTTP 404 · Fix: DashScope qwen3.6-plus / OpenRouter qwen/qwen3.6-plus.
-  G18 QWEN_PRESERVE_THINKING_AMNESIA   Qwen 3.6 agentic · thinking теряется · Fix: preserve_thinking: true.
+  G17 QWEN_PROVIDER_PREFIX     Qwen · HTTP 404 · Fix: DashScope qwen3.8-max / OpenRouter qwen/qwen3.8-max.
+  G18 QWEN_PRESERVE_THINKING_AMNESIA   Qwen 3.6 / 3.8 agentic · thinking теряется · Fix: preserve_thinking: true.
   G19 GLM_CONTEXT_COLLAPSE     GLM-5.1 · деградация >100K · Fix: hard limit 100K.
   G20 KIMI_SWARM_TIMEOUT       Kimi K2.x · timeout >1h via REST · Fix: >40 агентов → async webhooks.
   G21 MODEL_IDENTITY_MISMATCH  OpenAI/Anthropic · обслужена не та модель · Fix: сверять resolved_model_slug (НЕ model_slug); у Anthropic — блок {"type":"fallback"}. Расхождение = громкий отказ.
@@ -149,12 +149,12 @@ API_STRINGS:
     claude-opus-4-6
     claude-haiku-4-5-20251001
   GPT:      gpt-5.6-sol | gpt-5.6-terra | gpt-5.6-luna | gpt-5.5-pro
-  GEMINI:   gemini-3.6-flash (GA 21.07 workhorse) | gemini-3.5-flash-lite (дешевейший, L primary) | gemini-3.1-pro-preview | gemini-3.5-flash | gemini-3.5-pro-preview (⚠ PREVIEW, 5-й пропуск GA)
-  GROK:     grok-4.5 | grok-4.3 | grok-4.20   // вендор SpaceXAI (бывш. xAI, сделка 02.02.2026); имя Grok и api-строки не менялись
+  GEMINI:   gemini-3.8-flash (GA 02.09, bulk primary; $0.75/$3.75, cache $0.075 до 31.12) | gemini-3.7-flash (GA 13.08) | gemini-3.6-flash (GA 21.07, предыдущий workhorse) | gemini-3.5-flash-lite (дешевейший, L primary) | gemini-3.1-pro-preview | gemini-3.5-flash | gemini-3.5-pro-preview (⚠ PREVIEW, 5-й пропуск GA)
+  GROK:     grok-4.6 (flagship GA 12.08) | grok-4.5 | grok-4.3 | grok-4.20   // вендор SpaceXAI (бывш. xAI, сделка 02.02.2026); имя Grok и api-строки не менялись; Grok 4.7 — анонс без спецификации, не маршрутизировать
   DEEPSEEK: deepseek-v4-pro | deepseek-v4-flash
-  QWEN:     DashScope qwen3.7-max|qwen3.7-plus|qwen3.6-plus | OpenRouter qwen/qwen3.6-plus  // qwen3.8-max GA 03.08, strict JSON ок
+  QWEN:     DashScope qwen3.8-max|qwen3.8-flash-next|qwen3.7-max|qwen3.6-plus | OpenRouter qwen/qwen3.8-max  // 3.8-Max GA 03.08 ($2/$6, out 131 072, плоский тариф), strict JSON ок при enable_thinking=false; линейки qwen3-*/3.6-* снимаются 10.10
   KIMI:     kimi-k3 (WebDev #1, ⚠ ACCESS-RISK — не primary) | kimi-k2.6 | kimi-k2.7-code | kimi-for-coding-highspeed
-  GLM:      glm-5.2 | glm-5.1
+  GLM:      glm-5.3 (GA 14.08) | glm-5.3-flash (GA 26.08, 300K) | glm-5.2 (MIT, 1M) | glm-5.1 (G19)
 
 QUORUM_WEIGHTS:
   CODING:     TECTON 35%, ANON 25%, AXIOM 15%, VECTOR 15%, DATOS 5%, IRIS 5%
@@ -168,9 +168,9 @@ QUORUM_WEIGHTS:
 
 RECOMMENDATIONS:
   CODING: Claude Opus 5, Qwen3-Coder, Kimi K2.x · REASONING: Opus 5, GPT-5.6 Sol, Gemini Deep Think
-  CREATIVE: Claude Fable 5, GPT-5.6 Terra · RESEARCH: Gemini 3.1 Pro, Grok 4.3
+  CREATIVE: Claude Fable 5, GPT-5.6 Terra · RESEARCH: Gemini 3.1 Pro, Grok 4.6
   VISION: Qwen3-VL, Gemini 3.1 Pro · AGENTS: Claude Opus 5, Kimi K2.x, Claude Fable 5
-  BUDGET: DeepSeek V4-Flash, GLM-5.1 · LONG_CTX: Gemini 1M, Grok 2M · RECALL: Opus 4.6 pin
+  BUDGET: Gemini 3.8 Flash, DeepSeek V4-Flash, GLM-5.3-Flash · LONG_CTX: Gemini 1M, Grok 2M · RECALL: Opus 4.6 pin
 
 CHAIN_PATTERNS:
   RESEARCH_DRAFT_REVIEW: Research(Gemini/Grok)→Draft(Claude/GPT)→Review(GPT/R1)→Polish(Sonnet)

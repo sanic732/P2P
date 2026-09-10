@@ -26,7 +26,7 @@ HOST_PROFILES:
     SYNTAX_SELF:    Plain text, ## заголовки, **жирный**
     CAPABILITIES:   Deep Think (thinkingLevel), 2M context (3.1 Pro), Google Search native, Code Execution
     KNOWN_ISSUES:   G1 (temperature/top_p/top_k deprecated на 3.x; Deep Think — без temperature), G2 (XML → CoH), G4 (thinkingLevel not thinking_budget), G11 (HIGH billing shock), G12 (hard 429), G13 (Error 13 @100-128K; non-English триггер; на 3.6 Flash НЕ тестирован — не очищен, обходы применять)
-    API_STRINGS:    gemini-3.8-flash (GA 02.09, bulk primary) | gemini-3.6-flash (GA 21.07, workhorse) | gemini-3.5-flash-lite (дешевейший) | gemini-3.1-pro-preview
+    API_STRINGS:    gemini-3.8-flash (GA 02.09, bulk primary) | gemini-3.6-flash (GA 21.07, предыдущий workhorse) | gemini-3.5-flash-lite (дешевейший) | gemini-3.1-pro-preview
     THINKING_API:   thinkingLevel: MEDIUM
     CONTEXT_LIMIT:  2M (надёжно до 500K; 3.5 Pro — PREVIEW, не GA)
     REINJECTION:    каждые 25 сообщений (G13 prevention)
@@ -50,7 +50,8 @@ HOST_PROFILES:
     KNOWN_ISSUES:   G14 (unsupported params → HTTP 400), G3 (topic drift, anchor каждые 3 turn), grok-4.5 — EU открыт 21.07, но БЕЗ data-residency (персональные данные EU не пускать)
     THINKING_API:   reasoning: none|low|medium|high (safe-list, НЕ effort-style)
     SAFE_PARAMS:    temperature, max_tokens, stream, top_p, stop
-    API_STRINGS:    grok-4.5 (coding, 500K) | grok-4.3 (1M) | grok-4.20 (Heavy-16, 2M)
+    API_STRINGS:    grok-4.6 (flagship GA 12.08, 500K; $2/$0.50 cached/$6, от 200K → $4/$1/$12) | grok-4.5 (fallback, 500K) | grok-4.3 (1M) | grok-4.20 (Heavy-16, 2M)
+                    ⚠ Grok 4.7 — объявление основателя на 12.09, спецификации вендора нет: НЕ маршрутизировать
                     ⚠ grok-4.5-heavy / -expert / -fast НЕ СУЩЕСТВУЮТ; от 200K тариф удваивается вместе с кэшем
     CONTEXT_LIMIT:  500K (4.5) · 1M (4.3) · 2M (4.20)
 
@@ -71,7 +72,8 @@ HOST_PROFILES:
     CAPABILITIES:   thinking_budget (0-81920), Vision (Qwen3-VL), coding (Qwen3-Coder)
     KNOWN_ISSUES:   G17 (provider prefix: DashScope vs OpenRouter), G18 (preserve_thinking: true для agentic)
     THINKING_API:   thinking_budget: 10000
-    API_STRINGS:    DashScope→qwen3.7-max|qwen3.7-plus|qwen3.6-plus | OpenRouter→qwen/qwen3.6-plus
+    API_STRINGS:    DashScope→qwen3.8-max (GA 03.08, $2/$6, out 131 072)|qwen3.8-flash-next ($0.16/$0.47)|qwen3.7-max|qwen3.6-plus | OpenRouter→qwen/qwen3.8-max
+                    ⚠ линейки qwen3-* / 3.6-* снимаются 10.10 (список id у вендора не прочитан) — в новые маршруты не ставить
                     ✅ qwen3.8-max: GA 03.08.2026, strict JSON поддерживается (enable_thinking=false)
     CONTEXT_LIMIT:  1M
 
@@ -93,7 +95,7 @@ HOST_PROFILES:
     CAPABILITIES:   MIT license, local deployment, vision (GLM-5V), WebDev вне топ-10 (04.09) (5.2)
     KNOWN_ISSUES:   G19 (collapse >120K — только 5.1; 5.2 расширен до 1M), /compact hang на 5.1 (avoid → 5.2)
     THINKING_API:   thinking: on|off per turn
-    API_STRINGS:    glm-5.2 (MIT, 1M) | glm-5.1 (~120K)
+    API_STRINGS:    glm-5.3 (GA 14.08, 1M) | glm-5.3-flash (GA 26.08, 300K, $0.15/$0.03 cached/$0.50) | glm-5.2 (MIT, 1M) | glm-5.1 (~120K, G19)
     CONTEXT_LIMIT:  1M (5.2) · ~120K HARD LIMIT (5.1 — G19)
     TEMP_JSON:      temperature=0 для строгого JSON
 
@@ -325,13 +327,13 @@ LAZY_FETCH_DISPATCH:
     6. recheck_mutex(plan); proceed with task.
 
 MODEL_ROUTING_BY_TASK:
-  CODING:    Claude Opus 5, Claude Sonnet 5, Qwen3-Coder
+  CODING:    Claude Opus 5, Claude Sonnet 5, Qwen 3.8-Max
   REASONING: Claude Opus 5, Gemini 3.1 Pro Deep Think, GPT-5.6 Sol
   CREATIVE:  Claude Fable 5, GPT-5.6 Terra, Gemini 3.1 Pro
-  RESEARCH:  Gemini 3.1 Pro, Grok 4.3
+  RESEARCH:  Gemini 3.1 Pro, Grok 4.6
   VISION:    Qwen3-VL, Gemini 3.1 Pro
   AGENTS:    Claude Opus 5, Claude Fable 5, Kimi K2.x
-  BUDGET:    DeepSeek V4-Flash, GLM-5.1
+  BUDGET:    Gemini 3.8 Flash, DeepSeek V4-Flash, GLM-5.3-Flash
   LONG_CTX:  Gemini 3.1 Pro, Grok 4.3
   RECALL:    Claude Opus 4.6 pinned для >500K
 
@@ -359,14 +361,14 @@ TRANSLATION_LAYER:
     claude→gpt:     минимум XML, reasoning_effort, MAX 7 пар, <272K, response_format
     claude→grok:    только safe params, topic anchor /3 turn, Markdown
     claude→deepseek: re-inject reasoning_content multi-turn, deepseek-v4-pro, temp=0.3
-    claude→qwen:    thinking_budget, DashScope qwen3.6-plus|OpenRouter qwen/qwen3.6-plus, preserve_thinking
+    claude→qwen:    thinking_budget, DashScope qwen3.8-max|OpenRouter qwen/qwen3.8-max, preserve_thinking
     claude→kimi:    thinking on|off, off для T0-1, checkpoint
     claude→glm:     ## Structured Segmentation, temperature=0 JSON, HARD 100K
   OUTPUT: "## ПЕРЕВОД: [HOST]→[TARGET]" + изменения + адаптированный промпт.
 
 RESOURCE_STRATEGY:
   IDEALIST:   игнорируй стоимость, максимум качества.
-  PRAGMATIST: бюджет — DeepSeek V4-Flash, GLM-5.1, Qwen3-Plus.
+  PRAGMATIST: бюджет — Gemini 3.8 Flash, DeepSeek V4-Flash, GLM-5.3-Flash, Qwen 3.8-Flash-Next.
   CONTEXT_WINDOW:
     <160K → Claude Opus 4.7 · 160-200K → Sonnet 4.6 · >200K → Gemini 1M / Grok 2M
     >500K+recall → Opus 4.6 pinned · >100K+GLM → BLOCKED
