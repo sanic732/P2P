@@ -3,7 +3,7 @@ source_id: MANIFEST_V8C
 version: 8.4.8-C
 module_type: live
 depends_on: none
-last_updated: 2026-09-04
+LAST_VERIFIED: 2026-09-10
 live_specs_ref: gist:a64245c3f824f45708519d57e0d62408/live_specs.md   # LIVE-канал по /p2p-download; в сборку НЕ вшивается
 scope: P2P live manifest — deadlines, deprecation flags, daily refresh checklist. Always loaded as part of BASE set.
 tags: manifest, deadlines, deprecation, live, v8c
@@ -12,7 +12,7 @@ tags: manifest, deadlines, deprecation, live, v8c
 # P2P — LIVE MANIFEST (vendors/_live_manifest.md)
 
 > Обновляй этот файл при каждом обновлении live specs.
-> Last updated: 2026-09-04
+> LAST_VERIFIED: 2026-09-10
 > Full live specs: LIVE-канал по `/p2p-download` (gist `a64245c3…/raw/live_specs.md`, PRIORITY: OVERRIDE).
 > В сборку не вшивается: факты лежат в BASE и `vendors/_live_*` на дату LAST_VERIFIED ниже.
 
@@ -99,7 +99,7 @@ grep -rn "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deeps
 - [ ] Проверить изменения в pricing
 - [ ] Обновить Arena Elo scores если изменились
 - [ ] Проверить новые G-errors
-- [ ] Обновить `last_updated` в этом файле
+- [ ] Обновить `LAST_VERIFIED` в этом файле
 
 ---
 
@@ -135,6 +135,6 @@ FILE_META
 id: MANIFEST_V8C
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-09-04
+LAST_VERIFIED: 2026-09-10
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

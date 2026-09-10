@@ -3,7 +3,7 @@ source_id: LIVE_VENDORS_V8C
 version: 8.4.8-C
 module_type: live
 depends_on: vendors/_live_manifest.md
-last_updated: 2026-09-04
+LAST_VERIFIED: 2026-09-10
 live_specs_ref: gist:a64245c3f824f45708519d57e0d62408/live_specs.md
 scope: All LLM vendor live specs for v8C.3 — API strings, costs, context windows, G-errors. Quick reference for Translation Layer and routing decisions.
 tags: live, vendors, api-strings, pricing, g-errors, routing
@@ -240,7 +240,7 @@ FILE_META
 id: LIVE_VENDORS_V8C
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-09-04
+LAST_VERIFIED: 2026-09-10
 live_specs_ref: gist:a64245c3f824f45708519d57e0d62408/live_specs.md
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

@@ -5,7 +5,7 @@ type: LIVE_CORE
 priority: HIGH
 load_order: 5
 update_frequency: weekly
-last_verified: 2026-09-04
+LAST_VERIFIED: 2026-09-10
 ---
 
 // ═══════════════════════════════════════════════════════
