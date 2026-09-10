@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md
 scope: User Context extended — personalization profiles, communication preferences, expertise mapping, adaptive behavior rules.
 tags: user-context, personalization, adaptive, preferences, expertise, on-demand
-triggers: "профиль", "настройки пользователя", "user context", "[17]", "персонализация"
+triggers: ["профиль", "настройки пользователя", "user context", "[17]", "персонализация"]
 ---
 
 # P2P — USER CONTEXT EXTENDED (user_context.md)

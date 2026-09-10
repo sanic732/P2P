@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md
 scope: Exploration Mode (Cortex Patch A built-in) — divergent thinking, hypothesis generation, experimental approaches. Safe for brainstorming, not for production decisions without verification.
 tags: exploration, cortex-patch-a, brainstorm, hypotheses, divergent-thinking, on-demand
-triggers: "исследуй", "exploration", "EXPLORATION MODE", "brainstorm", "гипотезы", "[22]", "/p2p-explore"
+triggers: ["исследуй", "exploration", "EXPLORATION MODE", "brainstorm", "гипотезы", "[22]", "/p2p-explore"]
 ---
 
 # P2P — EXPLORATION MODE (exploration_mode.md)

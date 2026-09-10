@@ -4,7 +4,7 @@ argument-hint: "[start|menu] | <задача>"
 source_id: CMD_P2P_V8C
 version: 8.4.8-C
 module_type: command
-scope: /p2p — main entry point. Dispatcher: task in args → SIR Scanner → Tier → Contract Builder; empty/start/menu → full menu.
+scope: "/p2p — main entry point. Dispatcher: task in args → SIR Scanner → Tier → Contract Builder; empty/start/menu → full menu."
 ---
 # /p2p — Главная Команда (диспетчер)
 

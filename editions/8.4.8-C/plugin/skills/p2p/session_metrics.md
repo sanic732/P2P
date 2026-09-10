@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md
 scope: Session Metrics v0.2 — efficiency formula, routing memory tracking, quality scoring, performance dashboard.
 tags: metrics, session-metrics, routing-memory, efficiency, quality, on-demand
-triggers: "метрики", "эффективность", "/p2p-metrics", "[19]", "[20]", "ROUTING MEMORY"
+triggers: ["метрики", "эффективность", "/p2p-metrics", "[19]", "[20]", "ROUTING MEMORY"]
 ---
 
 # P2P — SESSION METRICS v0.2 (session_metrics.md)

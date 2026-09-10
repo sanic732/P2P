@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md
 scope: Memory Bridge — CAPSULE protocol, cross-session state persistence, context compression for long sessions.
 tags: memory, capsule, cross-session, context-compression, state-persistence, on-demand
-triggers: "память", "CAPSULE", "сохрани контекст", "восстанови", "/p2p-capsule", "[24]"
+triggers: ["память", "CAPSULE", "сохрани контекст", "восстанови", "/p2p-capsule", "[24]"]
 ---
 
 # P2P — MEMORY BRIDGE (memory_bridge.md)

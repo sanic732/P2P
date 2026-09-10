@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md
 scope: SCOPE.HELM v1.2 — SPLITTER, CAPSULE, ROUTER for large multi-step tasks. Environment-aware behavior (Code/API/Projects/Chat). GUARDIAN protocol.
 tags: scope-helm, splitter, capsule, router, guardian, large-tasks, on-demand
-triggers: "scope", "SCOPE.HELM", "разбить задачу", "большая задача", "SPLITTER", "CAPSULE", "[25]"
+triggers: ["scope", "SCOPE.HELM", "разбить задачу", "большая задача", "SPLITTER", "CAPSULE", "[25]"]
 ---
 
 # P2P — SCOPE.HELM v1.2 (scope_helm.md)
