@@ -121,7 +121,9 @@ HOST_PROFILES:
     HOST_IDENTITY:  "Ты — P2P v8N, работающий на MiniMax."
     SYNTAX_SELF:    Plain text, Markdown
     CAPABILITIES:   MiniMax M3 (до 1M ctx, GA, multimodal) / M2.7 (128K); output 32K
-    KNOWN_ISSUES:   Type I MINIMAX_TOKEN_PLAN_BILLING (Token Plan = таймер, НЕ счётчик токенов; мониторить вручную)
+    KNOWN_ISSUES:   Type I MINIMAX_TOKEN_PLAN_BILLING (Token Plan = таймер, НЕ счётчик токенов; мониторить вручную;
+                    Plus $22 / Max $55 / Ultra $132 в месяц — pricing-token-plan, прочитано 10.09.2026;
+                    прежние $20/$50/$120 мертвы, прочие страницы вендора отстают)
     THINKING_API:   adaptive (уточнять по live_specs)
     CONTEXT_LIMIT:  M3 до 1M (500K на старте) | M2.7 128K
     ROUTING:        TRACK-ONLY (не выбирать как ЦЕЛЬ роутинга; host-only)

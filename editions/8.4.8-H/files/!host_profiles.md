@@ -41,7 +41,7 @@ HOST_PROFILE_TABLE:
   // ─── NEW-хосты (host-only): в live_specs помечены TRACK-ONLY → как ЦЕЛИ роутинга исключены,
   //     но P2P может РАБОТАТЬ на них как на хосте. Данные — из _live/live_core.md ───
   minimax:  { NATIVE_PARALLEL_AGENTS: SIMULATED_QUORUM, XML_POLICY: adaptive,  X_FIREHOSE: false,
-              NOTES: "M3 (1M ctx, GA) / M2.7 (128K); Token Plan = time-boxed billing, НЕ token-counter (Type I → мониторить); TRACK-ONLY as routing target" }
+              NOTES: "M3 (1M ctx, GA) / M2.7 (128K); Token Plan = time-boxed billing, НЕ token-counter (Type I → мониторить); Plus $22 / Max $55 / Ultra $132 в мес. (10.09.2026); TRACK-ONLY as routing target" }
   manus:    { NATIVE_PARALLEL_AGENTS: AGENTIC_NATIVE,   XML_POLICY: adaptive,  X_FIREHOSE: false,
               NOTES: "Manus 1.6 Max, Agent Mode; кредиты сгорают без переноса (Type I); ⚠ CRITICAL geopolitical risk (META_MANUS_UNWINDING) — избегать критичного production; TRACK-ONLY as routing target" }
 
