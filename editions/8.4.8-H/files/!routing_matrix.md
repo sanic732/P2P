@@ -28,6 +28,7 @@ ROUTING_EXAMPLES:
   Code Generation:    claude-opus-4-8 / claude-fable-5 (T2-4) → grok-4.3 → deepseek-v4-pro
   Complex Agentic:    grok Heavy-16 (grok host) / claude-fable-5 → kimi swarm → claude-opus-4-8
   Research/Fact-check: gemini-3.1-pro-preview (grounding) / grok-4.3 (X realtime) → deepseek-v4-flash
+  WebDev / frontend:  gpt-6-astra (max) → claude-fable-5-1 (max)   // Arena WebDev #1 1796; ctx <272K (кэш за порогом x2); tools ТОЛЬКО /v1/responses; звать явной строкой
   UI/Design:          claude-fable-5 (#1 WebDev) / glm-5v → gemini-3.1-pro-preview
   High-Stakes Reason: claude-opus-4-8 (max quality) → grok Heavy-16 → gemini-3.1-pro-preview
   Long Context:       gemini-3.1-pro-preview (2M) / grok-4.20 (2M) → claude-sonnet-5 (1M)

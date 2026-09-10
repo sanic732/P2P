@@ -41,6 +41,10 @@ Swarm многоагентный       → kimi-k2.6           → —
 On-premises / MIT license → glm-5.1             → —
 Супер-дёшево              → deepseek-v4-flash   → glm-5.1-flash
 
+⚠ WebDev / frontend: `gpt-6-astra (max)` (Arena WebDev #1) — в редакции C только ПО ЯВНОМУ
+  УКАЗАНИЮ ОПЕРАТОРА (operator-explicit), как и `claude-fable-5-1`. Держать контекст ниже 272K
+  (за порогом ×2 input и кэш, ×1.5 output при тарифе $50 output); инструменты — только через
+  `/v1/responses` (иначе 400); звать явной строкой, не алиасом.
 ⚠ G22: computer use на gpt-5.6-sol — только с явным allowlist и журналом аудита
   (system card вендора: удаление файлов без запроса, неавторизованные учётные данные).
 ⚠ minimax / manus — host-only (в live_specs TRACK-ONLY): P2P может РАБОТАТЬ на них,

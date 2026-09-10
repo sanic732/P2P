@@ -28,6 +28,11 @@ PRICING:
   claude-opus-4-8:           $5     / $25   / 1M    / coding; effort default=high; out 128K/300K batch; ACTIVE, НЕ депрекирован (floor «не ранее 2027-05-28»); API-only surface — UI-видимость ≠ доступность
   claude-opus-4-7:           $5     / $25   / 1M    / legacy; G6 общий токенизатор
   claude-opus-4-6:           $5     / $25   / 1M    / пин для >500K recall (MRCR 78.3%); токенизатор эффективнее 4.7/4.8
+  gpt-6-astra:               $10    / $50   / 1,050,000 / GA 09.09: out 128,000; cutoff 2026-04-30; effort low..max;
+                             cached in $1, cache-write $12.50; batch/flex 50 %, fast x2; >272K -> x2 input, x2 cache,
+                             x1.5 output (кэш НЕ освобождается) — держать контекст ниже 272K;
+                             tools + reasoning_effort на /v1/chat/completions -> 400, инструменты через /v1/responses;
+                             Arena WebDev #1 (1796), Agent #2 (12.55 %); звать явной строкой, не алиасом
   gpt-5.6-sol:               $4     / $20   / 1.05M / GA 09.07, промо ≥21.11; cached 0.40; >272K → 8/30 при cached тоже ×2; ⚠ G22 агентная опасность — вне judge-ролей и harness с записью в ФС/секреты
   gemini-3.8-flash:          $0.75  / $3.75 / 1,048,576 / GA 02.09 PRIMARY bulk; out 65,536; cache 0.075 до 31.12 → 1.50/7.50 с 01.01.27; thinking_level minimal НЕ поддержан (ошибка)
   gemini-3.7-flash:          $0.75  / $3.75 / 1,048,576 / GA 13.08; та же цена линии Flash

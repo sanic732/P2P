@@ -42,6 +42,7 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Grok** | 4.5 | `grok-4.5` | 500K | $2/$0.30 cached/$6 · от 200K → $4/$0.60/$12 | T3-4 (coding flagship; EU без residency) | G14 |
 | **Grok** | 4.3 | `grok-4.3` | 1M | $1.25/$2.50 | T2-3 | G14 |
 | **Grok** | 4.20 Heavy | `grok-4.20` | 2M | $2/$6 | T3-4 (Heavy-16) | G14 |
+| **GPT** | 6 Astra | `gpt-6-astra` | 1 050 000 / out 128 000 | $10/$1 cached/$12.50 write/$50 · >272K → ×2 in, ×2 cache, ×1.5 out | T4 (GA 09.09; Arena WebDev #1 1796; cutoff 2026-04-30; effort low..max) | ⚠ tools+effort на /v1/chat/completions → 400 → /v1/responses |
 | **GPT** | 5.6 Sol | `gpt-5.6-sol` | 1.05M | $4/$0.40 cached/$20 (промо ≥21.11) · >272K → $8/$0.80/$30 | T4 (⚠ агентная опасность) | G9, G10 |
 | **GPT** | 5.6 Terra | `gpt-5.6-terra` | 1.05M | $2.50/$15 (long-context НЕ документирован) | T3 (замена 5.5) | G9, G10 |
 | **GPT** | 5.6 Luna | `gpt-5.6-luna` | ⚠ офиц. строки нет | $1/$6 (long-context НЕ документирован) | T1-2 (⚠ MRCR collapse >512K) | G9, G10 |

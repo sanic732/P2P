@@ -24,7 +24,7 @@ LITE_SNAPSHOT:
     [DEADLINE 2026-12-31 T-112] Gemini Flash-линия: вводная цена → $1.50 / $7.50 с 01.01.2027
   CURRENT_FLAGSHIPS:
     claude: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-opus-4-8, claude-sonnet-5
-    gpt: gpt-5.6-sol/terra/luna · gemini: gemini-3.1-pro-preview · grok: grok-4.5 / 4.3
+    gpt: gpt-6-astra (GA 09.09; 1,050,000/128,000; $10/$50; >272K x2 вкл. кэш; tools -> /v1/responses), gpt-5.6-sol/terra/luna · gemini: gemini-3.1-pro-preview · grok: grok-4.5 / 4.3
     deepseek: deepseek-v4-pro/flash · qwen: qwen3.7-max · kimi: kimi-k2.6 / k2.7-code · glm: glm-5.2
   WARN: "⚠ LITE_SNAPSHOT — offline snapshot data."
 

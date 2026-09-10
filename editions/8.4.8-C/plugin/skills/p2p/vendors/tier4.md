@@ -49,6 +49,26 @@ Access: **usage credits с 2026-07-20** — plan-include закончился 19
 - Fable 5.1 против Fable 5: «the tokenizer is unchanged» (было «roughly unchanged»). Это НЕ отмена
   G6 — ~+30% против моделей старше 4.7 остаётся.
 
+## GPT-6 Astra (OpenAI, GA 2026-09-09)
+API: `gpt-6-astra` (единственный снимок, алиас совпадает — звать явной строкой, не алиасом)
+Context: 1 050 000 | Output: 128 000 | Knowledge cutoff: 2026-04-30
+reasoning.effort: low | medium | high | xhigh | max
+Cost: $10 in / $1 cached in / $12.50 cache-write / $50 out per MTok · batch и flex 50 % от ставки ·
+  fast mode ×2. Cache-write считается как 1.25× от нецелевой входной ставки.
+⚠ Порог 272K действует и кэш НЕ освобождается: запрос свыше 272K входных токенов считается
+  по ×2 input и ×2 cache и ×1.5 output — на тарифе $50 output кэш-тяжёлый прогон за порогом
+  дорожает вдвое. Держать контекст НИЖЕ 272K, а не полагаться на кэш.
+⚠ Дефект: function tools вместе с `reasoning_effort` на `/v1/chat/completions` → **400**
+  (текст тикета: "To use function tools, use /v1/responses or set reasoning_effort to 'none'").
+  Инструменты — только через `/v1/responses`. Это предел эндпойнта, а не метаданных Azure.
+Arena: WebDev #1 (1796, 1810 голосов) · Agent #2 (12.55 % Net Improvement, $4.02/задача, 32.8K
+  выходных токенов). Независимых бенчмарков нет; вендорские 64.6 % против 52.6 % у Fable 5.1 —
+  единственный отчёт, методика не названа.
+Доступ: Pro / Business / Enterprise (на Enterprise выключен по умолчанию), Plus — только режим
+  Work/Codex; также API, Microsoft Azure, AWS Bedrock.
+> Рядом: `gpt-image-2.5-sunburst` и `gpt-image-2.5-flare` (GA 09.09) — Text-to-Image #1/#2
+>   и Image-Edit #1/#2; цены не опубликованы, планировать по `gpt-image-2`.
+
 ## GPT-5.6 Sol / Terra / Luna (OpenAI)
 API: `gpt-5.6-sol` (alias `gpt-5.6`) · `gpt-5.6-terra` · `gpt-5.6-luna` (GA 2026-07-09)
 Context: 1.05M | Output: 128K | Cutoff: 2026-02-16
