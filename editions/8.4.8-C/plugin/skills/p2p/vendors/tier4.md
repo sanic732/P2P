@@ -63,9 +63,11 @@ Cost: $10 in / $1 cached in / $12.50 cache-write / $50 out per MTok · batch и 
   Инструменты — только через `/v1/responses`. Это предел эндпойнта, а не метаданных Azure.
 Arena: WebDev #1 (1796, 1810 голосов) · Agent #2 (12.55 % Net Improvement, $4.02/задача, 32.8K
   выходных токенов). Независимых бенчмарков нет; вендорские 64.6 % против 52.6 % у Fable 5.1 —
-  единственный отчёт, методика не названа.
-Доступ: Pro / Business / Enterprise (на Enterprise выключен по умолчанию), Plus — только режим
-  Work/Codex; также API, Microsoft Azure, AWS Bedrock.
+  единственный отчёт, тест не назван. ⚠ 64.6 % совпадает со SWE-bench, который несёт
+  `gpt-5.6-sol`, — возможная ошибка атрибуции; как канон не использовать.
+Доступ: Pro / Business / Enterprise (на Enterprise выключен по умолчанию), Plus — только
+  ChatGPT Work и Codex [S: формулировка документации OpenAI в пересказе Notebookcheck];
+  также API, Microsoft Azure, AWS Bedrock.
 > Рядом: `gpt-image-2.5-sunburst` и `gpt-image-2.5-flare` (GA 09.09) — Text-to-Image #1/#2
 >   и Image-Edit #1/#2; цены не опубликованы, планировать по `gpt-image-2`.
 
