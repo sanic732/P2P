@@ -196,6 +196,8 @@ def check(entry: dict) -> dict:
 
     pinned_rev = entry["pinned_url"].split("/raw/")[1].split("/")[0]
     result["pinned_revision"] = pinned_rev
+    # id гиста из адреса: .../gist.githubusercontent.com/<owner>/<gist_id>/raw/...
+    result["pinned_gist"] = entry["pinned_url"].split("/raw/")[0].rsplit("/", 1)[-1]
 
     result["status"] = "DRIFT" if problems else "OK"
     if problems:
@@ -263,13 +265,24 @@ def main() -> int:
     revisions = {r.get("pinned_revision") for r in results if r.get("pinned_revision")}
     split = len(revisions) > 1
 
+    # Раскол по ГИСТУ страшнее раскола по ревизии: при переезде выпуска на свой гист
+    # id меняется руками в 14 строках, а update_lite_index без --gist берёт базу URL
+    # из индекса и правит только ревизию. Отставшая запись ведёт на СТАРЫЙ гист,
+    # содержимое там то же самое (файлы залиты одни и те же) — и sha сходится, и
+    # страж ревизий молчит: ревизия-то одна. Дефект вскроется в день, когда старый
+    # гист обновят или удалят. Поэтому считаем ещё и гисты.
+    gists = {r.get("pinned_gist") for r in results if r.get("pinned_gist")}
+    gist_split = len(gists) > 1
+
     if args.json:
         print(json.dumps({"revisions": sorted(revisions), "split": split,
+                          "gists": sorted(gists), "gist_split": gist_split,
                           "entries": results}, ensure_ascii=False, indent=2))
     else:
         print(f"индекс: {args.index}")
         print(f"записей проверено: {len(results)} (канарейка исключена: frozen_probe)")
         print(f"ревизий в URL индекса: {len(revisions)} — {', '.join(sorted(r[:8] for r in revisions))}")
+        print(f"гистов в URL индекса: {len(gists)} — {', '.join(sorted(g[:8] for g in gists))}")
         print()
         width = max(len(r["name"]) for r in results)
         for r in results:
@@ -288,6 +301,10 @@ def main() -> int:
 
     if not args.json:
         print()
+        if gist_split:
+            print(f"РАСКОЛ ПО ГИСТУ: неканареечные записи ведут на {len(gists)} разных гистов — "
+                  f"{', '.join(sorted(g[:8] for g in gists))}. Часть выпуска осталась на старом "
+                  f"гисте: содержимое там пока то же, поэтому sha сходится и раскол ревизий молчит.")
         if split:
             print(f"РАСКОЛ: записи таблицы пинятся на {len(revisions)} разных ревизий — "
                   f"{', '.join(sorted(r[:8] for r in revisions))}")
@@ -300,7 +317,7 @@ def main() -> int:
         else:
             print(f"ИТОГ: все {len(results)} записей совпали с живым гистом")
 
-    return 1 if (drift or errors or split) else 0
+    return 1 if (drift or errors or split or gist_split) else 0
 
 
 if __name__ == "__main__":

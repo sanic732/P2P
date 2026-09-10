@@ -85,6 +85,10 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--revision", required=True,
                     help="ревизия гиста после заливки (40 hex)")
+    ap.add_argument("--gist", default=None,
+                    help="id НОВОГО гиста (32 hex) — когда выпуск переезжает на свой гист. "
+                         "Без него база URL берётся из индекса и меняется только ревизия: "
+                         "смена гиста руками по 14 строкам однажды сорвалась (8.4.7, 05.09)")
     ap.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     ap.add_argument("--index", type=Path, default=None)
     ap.add_argument("--apply", action="store_true", help="записать изменения")
@@ -92,6 +96,8 @@ def main() -> int:
 
     if not re.fullmatch(r"[0-9a-f]{40}", args.revision):
         die(f"ревизия должна быть 40 шестнадцатеричных знаков, получено: {args.revision!r}")
+    if args.gist is not None and not re.fullmatch(r"[0-9a-f]{32}", args.gist):
+        die(f"id гиста должен быть 32 шестнадцатеричных знака, получено: {args.gist!r}")
 
     index = args.index or default_index()
     if not index.is_file():
@@ -116,6 +122,10 @@ def main() -> int:
             absent.append(name)
             continue
         base, _old_file = gist.group(1), gist.group(2)
+        if args.gist:
+            # меняем ТОЛЬКО id гиста, владельца оставляем как в индексе
+            owner = base.rsplit("/", 2)[-2]
+            base = f"https://gist.githubusercontent.com/{owner}/{args.gist}"
         new_url = f"{base}/raw/{args.revision}/{row['file']}"
 
         new_body = URL_RE.sub(lambda g: g.group("pre") + new_url + g.group("post"), body, count=1)
