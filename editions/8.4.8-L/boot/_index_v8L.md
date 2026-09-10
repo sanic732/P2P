@@ -33,8 +33,8 @@ BOOT_REGISTRY:
 GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size сверены с гистом 2026-07-26.
   CORE_PLUS:
     trigger:  "QUORUM|агент|Q:|FULL|FAST_TRIO|HELIOS|Contract|шаблон|template|5D|интент|karpathy"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_core_plus.md"
-    sha256:   "d3a989e0f5abab158a19bd2d69831e019e641d08ed050d03d1d6ab0577a77b39"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_core_plus.md"
+    sha256:   "5acccc7a5797342ca67d107eaea98fd064e9260a1aae58f1335303478ca06b38"
     eof_hash: "EOF_MARKER_CORE_PLUS_VALIDATED"
     size_kb:  21.7
     requires: []
@@ -43,8 +43,8 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   SESSION_CORE:
     trigger:  "debug|Arena|scope|CAPSULE|sandbox|исследуй|exploration|toolkit|writing|тон|enhance|combinator|memory|сохрани|загрузи|состояние|resume"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_session_core.md"
-    sha256:   "cc4f0f604505e594dc62f44cdc89066e0d43feeae2649b1552e6a49376b3524f"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_session_core.md"
+    sha256:   "cd9039a17310c2d0251ce48c3aed742ddeef5fb7b2f7b0d76ebafeb0f26a0e7b"
     eof_hash: "EOF_MARKER_SESSION_CORE_VALIDATED"
     size_kb:  38.5
     requires: []
@@ -53,8 +53,8 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   SESSION_METRICS:
     trigger:  "метрики|SESSION_EFFICIENCY|routing memory|статистика|quality|evaluation"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_session_metrics.md"
-    sha256:   "c38049b5f0c406c9a85aaf8feb7aa0ade6872d806dd929b11119e9c0f8fec08b"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_session_metrics.md"
+    sha256:   "6561daa80a7f0df7610b5b9185b8e0f146dfc2d05013d56f328a1f022845a764"
     eof_hash: "EOF_MARKER_SESSION_METRICS_VALIDATED"
     size_kb:  6.8
     requires: []
@@ -63,28 +63,28 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   HOST_ENGINE:
     trigger:  "auto-orchestration|IDEALIST|host engine|автовыбор модели|оркестрац"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_host_engine.md"
-    sha256:   "c4ba987143cc1f7635c3754052bd783f30ac364905fb65c57e307c504de5e428"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_host_engine.md"
+    sha256:   "51e37fe0ea544bb7667c498eefa42f69d604e1a41720f74ba22884354aa7887e"
     eof_hash: "EOF_MARKER_HOST_ENGINE_VALIDATED"
-    size_kb:  17.9
+    size_kb:  18.3
     requires: []
     mutex:    []
     fallback: SKIP
 
   VENDORS_CLAUDE:
     trigger:  "claude|anthropic|opus|sonnet|haiku|fable"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_vendors_claude.md"
-    sha256:   "f68c2928baac8abf34038aba44ea9f84ad728ac27b1f60521dcd73433c16d230"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_vendors_claude.md"
+    sha256:   "5c45f6ff16ed250d488f9e1bddadf328f4d17d75f595133c6f528c222a77c36c"
     eof_hash: "EOF_MARKER_VENDORS_CLAUDE_VALIDATED"
-    size_kb:  18.3
+    size_kb:  18.4
     requires: []
     mutex:    []
     fallback: SKIP
 
   VENDORS_FRONTIER:
     trigger:  "gpt|openai|chatgpt|gemini.*pro|google|frontier"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_vendors_frontier.md"
-    sha256:   "ddb05b2f89737199d2c03c3dd0bec24174bfe5c62d43a0ee9f263b8bf2802a47"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_vendors_frontier.md"
+    sha256:   "d1913e040bd81dd678ab2ba666570fe566f7490a39d253992269e1c2083497b6"
     eof_hash: "EOF_MARKER_VENDORS_FRONTIER_VALIDATED"
     size_kb:  10.8
     requires: []
@@ -93,8 +93,8 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   VENDOR_GROK:
     trigger:  "grok|xai|heavy-16|firehose|x\.com"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_vendor_grok.md"
-    sha256:   "5445f21b43e27987f66636d1f00272bcbcde5c95055ee835c84b6076b3a209f4"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_vendor_grok.md"
+    sha256:   "9ba8d50ee72ef4421341a586357227bf3307a8558f39b55ea7ab5ad715294f52"
     eof_hash: "EOF_MARKER_VENDOR_GROK_VALIDATED"
     size_kb:  9.4
     requires: []
@@ -103,18 +103,18 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   VENDORS_BUDGET:
     trigger:  "deepseek|qwen|kimi|glm|tier3|tier4|flash|дешёв|бюджет|budget|китайск"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_vendors_budget.md"
-    sha256:   "f912d64a31412a332100e2326ac88bb66e2f9a3b9af3934a83b48701691f0da0"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_vendors_budget.md"
+    sha256:   "8eb0c971b9ed837dc7ff92e2211603c22807cba2320109e6e212a9ed9b66e6c2"
     eof_hash: "EOF_MARKER_VENDORS_BUDGET_VALIDATED"
-    size_kb:  16.9
+    size_kb:  16.7
     requires: []
     mutex:    []
     fallback: SKIP
 
   RAG:
     trigger:  "rag|raptor|retrieval|ретривал|векторный поиск|grounding"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_rag.md"
-    sha256:   "5e12048a191db335f63b0eaf0a4ae5ae6dfcb7a0451b5a167b3cc2808443435a"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_rag.md"
+    sha256:   "ac8feeb56bebd85306244cccb2ad8a98c9b5e0d7c8f3a098d38fa19f15e4ef9a"
     eof_hash: "EOF_MARKER_RAG_VALIDATED"
     size_kb:  5.3
     requires: [SESSION_CORE, CORE_PLUS]
@@ -123,8 +123,8 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   REASONING:
     trigger:  "reasoning|CoT|chain of thought|MCTS|self-consistency|цепочк рассужден"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_reasoning.md"
-    sha256:   "1718603809ca581d76ce1df58bcda5d323da5e96a344cdee4c50731f767ac952"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_reasoning.md"
+    sha256:   "b4c329e7b33b275f4058db3859b79a72aac0b1b74e1de3ae788b8c5b1b165b0d"
     eof_hash: "EOF_MARKER_REASONING_VALIDATED"
     size_kb:  6.2
     requires: [CORE_PLUS]
@@ -133,8 +133,8 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   ROUTE:
     trigger:  "routing|smart routing|выбор модели|маршрутиз"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_route.md"
-    sha256:   "c7f93133f6a4f75707baed38ccf0611592459cb164b233638a7bf56d01f79582"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_route.md"
+    sha256:   "06ed0e869cf579517f58631d4126d3c2c63a43715d14387874e10ed68d48ec97"
     eof_hash: "EOF_MARKER_ROUTE_VALIDATED"
     size_kb:  7.1
     requires: []
@@ -143,8 +143,8 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   COMPRESS:
     trigger:  "compress|сжат|LLMLingua|gist token|токен бюджет|контекст переполнен"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_compress.md"
-    sha256:   "6732a81766b98cdc06fa2d5495aabc7ad54815cd35731c60e46b5f55ff59a48b"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_compress.md"
+    sha256:   "4bb47aff1f390a7cd6e3db2393ed2a85454f971d3620eca773a769f17768706b"
     eof_hash: "EOF_MARKER_COMPRESS_VALIDATED"
     size_kb:  6.4
     requires: []
@@ -153,8 +153,8 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   SECURITY:
     trigger:  "security|безопас|injection|уязвим|аудит промпта|hardening"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_security.md"
-    sha256:   "76c1d91b1f264d28c7995a6618631ff2c00a65fb8ef64c54653275d337bbb869"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_security.md"
+    sha256:   "688c9969beb5750b059200fe95f73d8c681d8cafe72487c703b8f0246fa46673"
     eof_hash: "EOF_MARKER_SECURITY_VALIDATED"
     size_kb:  5.4
     requires: []
@@ -163,8 +163,8 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
 
   OPTIMIZATION:
     trigger:  "optimization|APO|OPRO|автооптимизац|улучшить промпт автоматически"
-    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/439fb8ea6764e880079eec0ed6b9e7b48489efe9/gist_optimization.md"
-    sha256:   "d99029e1be64d437427d87cab7df27eeda7c6ad82edaa495509b63eaf908f002"
+    url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_optimization.md"
+    sha256:   "43e1ad6c6b3a19be876d49d211e9d21557c6a861787846f3a6a7c98fa9b8c53b"
     eof_hash: "EOF_MARKER_OPTIMIZATION_VALIDATED"
     size_kb:  7.2
     requires: [SESSION_METRICS, CORE_PLUS]
