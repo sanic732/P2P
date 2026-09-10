@@ -31,17 +31,22 @@ CAPABILITY_MATRIX:
   claude-sonnet-4-6:   XML=NATIVE | Thinking=effort    | 200K    | Tool Calling  | Yes  // активен, выбор по цене
   gemini-3.5-pro:      XML=BLOCK  | Deep Think=level   | 2M      | Code Exec     | Yes  // ⚠ PREVIEW (не GA)
   gemini-3.1-pro:      XML=BLOCK  | Deep Think=level   | 2M      | Code Exec     | Yes (native)
-  gemini-3.6-flash:    XML=BLOCK  | Flash thinking     | 1,048,576 | Code Exec + Computer Use | Yes  // GA 21.07 workhorse; 1.50/7.50; cache-read 0.15; G13 НЕ тестирован — не очищен
+  gemini-3.8-flash:    XML=BLOCK  | Flash thinking     | 1,048,576 | Code Exec + Computer Use | Yes  // GA 02.09 PRIMARY bulk; 0.75/3.75, cache-read 0.075 до 31.12 (далее 1.50/7.50); G13 НЕ тестирован — не очищен
+  gemini-3.7-flash:    XML=BLOCK  | Flash thinking     | 1,048,576 | Code Exec + Computer Use | Yes  // GA 13.08; цена линии Flash
+  gemini-3.6-flash:    XML=BLOCK  | Flash thinking     | 1,048,576 | Code Exec + Computer Use | Yes  // GA 21.07; предыдущий workhorse; G13 НЕ тестирован — не очищен
   gemini-3.5-flash-lite: XML=BLOCK | Flash thinking     | 1M      | Code Exec     | Yes  // GA 21.07; дешевейший 0.30/2.50
   gemini-3.5-flash:    XML=BLOCK  | Flash thinking     | 1M      | Code Exec     | Yes  // вытеснен 3.6 Flash
   gpt-5.6-sol:         XML=JSON   | reasoning_effort   | 1.05M   | Function Call | Yes  // GA 09.07; ⚠ G22 агентная опасность: вне judge-ролей и вне harness с записью в ФС/секреты
   gpt-5.6-terra:       XML=JSON   | reasoning_effort   | 1.05M   | Function Call | Yes  // NEW balanced (замена 5.5)
   gpt-5.6-luna:        XML=JSON   | reasoning_effort   | ⚠ офиц. строки нет | Function Call | Yes  // cheap; ⚠ MRCR >512K; long-context ставки не документированы
-  grok-4.5:            XML=NO     | reasoning(def high, НЕ отключается)| 500K    | Tool+strict JSON | Yes  // GA 08.07; coding flagship; EU открыт 21.07 БЕЗ data-residency; $2 / $0.30 cached / $6, от 200K ×2 включая кэш
+  grok-4.6:            XML=NO     | reasoning(def high, НЕ отключается)| 500K    | Tool+strict JSON | Yes  // GA 12.08 flagship (SpaceXAI); $2 / $0.50 cached / $6, от 200K → $4 / $1 / $12 включая кэш; Microsoft Foundry + Google Model Garden
+  grok-4.5:            XML=NO     | reasoning(def high, НЕ отключается)| 500K    | Tool+strict JSON | Yes  // GA 08.07 fallback; EU открыт 21.07 БЕЗ data-residency; $2 / $0.30 cached / $6, от 200K ×2 включая кэш
   grok-4.3:            XML=NO     | reasoning          | 1M      | Tool Use      | Yes  // $1.25/$2.50
   grok-4.20:           XML=NO     | reasoning(Heavy-16)| 2M      | Tool Use      | Yes  // multi-agent 16 parallel
   deepseek-v4-pro:     XML=NO     | native (temp=0.3)  | 1M      | Function Call | No
   deepseek-v4-flash:   XML=NO     | native (light, thinking неотключаем) | 1M | Function Call | No   // v4-pro GA 13.08, flash public beta; алиасы мертвы 24.07
+  qwen3.8-max:         XML=NO     | thinking_budget    | 1M / out 131,072 | Tool+strict JSON | Yes  // GA 03.08; $2/$6 плоский тариф (12/36 CNY); WebDev #4; json_schema strict при enable_thinking=false
+  qwen3.8-flash-next:  XML=NO     | thinking_budget    | —       | Tool Use      | Yes  // $0.16/$0.47; WebDev #9 — дешевейший в топ-12
   qwen3.7-max:         XML=NO     | thinking_budget    | 1M      | Tool Use      | Qwen-VL
   qwen3.7-plus:        XML=NO     | thinking_budget    | 1M / out 65K | Tool Use  | Yes  // multimodal, GA
   qwen3.6-35b-a3b:     XML=NO     | thinking_budget    | 262,144 | Tool Use      | No   // open-weight Apache-2.0
@@ -49,6 +54,8 @@ CAPABILITY_MATRIX:
   kimi-k3:             XML=NO     | thinking=ALWAYS-ON | 1,048,576 | Tool Use    | No   // WebDev #1; ⚠ ACCESS-RISK: hosted-only, подписки закрыты, весов нет → НЕ primary
   kimi-k2.6:           XML=NO     | thinking=on|off    | 256K-1M | Swarm 300     | No
   glm-5.2:             XML=NO     | thinking=on|off    | 1M      | Tool Use      | No   // MIT; WebDev вне топ-10 (04.09); цена UNCONFIRMED
+  glm-5.3:             XML=NO     | thinking=on|off    | 1M      | Tool Use      | No   // GA 14.08, старший в линии; ~1.40/4.40
+  glm-5.3-flash:       XML=NO     | thinking=on|off    | 300K    | Tool Use      | No   // GA 26.08; 0.15 / 0.03 cached / 0.50 (промо истекло 09.09)
   glm-5.1:             XML=NO     | thinking=on|off    | 100K*   | Tool Use      | GLM-5V
   // * G19: context collapse above 100K (5.1); GLM-5.2 расширен до 1M
 
@@ -197,16 +204,16 @@ G16: DEEPSEEK_ALIAS_RETIRE
   Scan:     grep -r "deepseek-chat\|deepseek-reasoner" .
 
 G17: QWEN_PROVIDER_PREFIX
-  Model:    Qwen 3.6 (все варианты)
+  Model:    Qwen 3.6 / 3.8 (все варианты)
   Error:    HTTP 404 или загружается не та модель
   Cause:    Разные провайдеры требуют разные форматы имён
   Fix:
-    DashScope (official):  "qwen3-plus" (без префикса)
-    OpenRouter:            "qwen/qwen3-plus" (с префиксом qwen/)
-    HuggingFace Inference: "Qwen/Qwen3-plus" (с заглавной Q)
+    DashScope (official):  "qwen3.8-max" (без префикса)
+    OpenRouter:            "qwen/qwen3.8-max" (с префиксом qwen/)
+    HuggingFace Inference: "Qwen/Qwen3.8-Max" (с заглавной Q)
 
 G18: QWEN_PRESERVE_THINKING_AMNESIA
-  Model:    Qwen 3.6 в agentic режиме
+  Model:    Qwen 3.6 / 3.8 в agentic режиме
   Error:    Thinking блок теряется между tool calls
   Cause:    По умолчанию thinking не сохраняется в контексте
   Fix:      preserve_thinking: true в параметрах запроса
@@ -337,11 +344,11 @@ DELTA_v872:
   Claude_automatic_fallbacks: opt-in beta — параметр `fallbacks` + beta-header server-side-fallback-2026-06-01; цель Opus 4.8; НАБЛЮДАЕМО через content block {"type":"fallback"} + usage.iterations; биллинг расщепляется по моделям; в app/Claude Code отключаемо. Проверять блок, а не угадывать деградацию по качеству вывода.
   MODEL_IDENTITY_ASSERT (cross-vendor): OpenAI — сверять resolved_model_slug, НЕ model_slug; Anthropic — проверять блок {"type":"fallback"}. Расхождение личности модели = громкий отказ harness, а не то, что поглощают молча.
   DeepSeek_G15_REVERSED: reasoning_content НАДО re-inject после tool calls (НЕ обнулять) — RESOLVED BY DESIGN. Алиасы deepseek-chat/reasoner мертвы 24.07 15:59 UTC без grace; точный код не подтверждён (404 либо 400 invalid_request_error) — принимать оба. Бывший deepseek-reasoner → v4-pro, НЕ v4-flash-thinking. v4-pro GA 13.08.2026 (чекпойнт 0813, веса MIT); v4-flash-0731 — public beta (исправлено 8.4.7).
-  Gemini: 3.6 Flash GA 21.07 — новый workhorse (1,048,576/65,536; $1.50/$7.50; cache-read $0.15; ~304 tok/s; на 17% меньше выходных токенов; нативный Computer Use). Индекс AA = 50, как у 3.5 Flash: экономия, не рост способностей. 3.5 Flash-Lite GA ($0.30/$2.50, ~350 tok/s). 3.5 Pro — ПЯТЫЙ пропуск GA, остаётся preview, цены нет. Error 13 на 3.6 Flash НЕ воспроизведён и НЕ признан — модель не проверена, а не очищена: обходы (Context Caching, cap 80K, без пачек 30+ изображений) применять и к ней. Safety Erasure → BLOCK_SOME/NONE (API не UI). Внутренний маршрут gemini-3.6-flash-tiered НЕ публичный.
-  Grok: единственный id grok-4.5 — heavy/expert/fast НЕ существуют (Heavy = план 300/мес плюс режим оркестрации поверх той же модели). Цена: 2 in / 0.30 cached / 6 out; от 200K — 4 / 0.60 / 12, удваивается И КЭШ, кэширование обрыв не смягчает (перехват 190K, обрыв 195K). Унаследованная cached 0.50 НЕВЕРНА. EU открыт 21.07 БЕЗ data-residency. reasoning_effort high неотключаем, reasoning биллится как output. 4.20 multi-agent (2M, Heavy-16); 4.3 → 1M. HEAVY16_SHADOW_DOWNGRADE — CLOSED AS OBSOLETE (не resolved: ничего не чинили, конфигурация перестала существовать; реоткрыть при появлении отдельных Heavy-эндпоинтов). G14 safe-list.
+  Gemini: 3.8 Flash GA 02.09 — PRIMARY bulk (1,048,576/65,536; $0.75/$3.75, cache-read $0.075 — вводная цена всей линии Flash до 31.12, с 01.01.27 $1.50/$7.50 и cache $0.15; ~304 tok/s; на 17% меньше выходных токенов; нативный Computer Use). Линия: 3.8 → 3.7 (GA 13.08) → 3.6 (GA 21.07). Индекс AA = 50, как у 3.5 Flash: экономия, не рост способностей. 3.5 Flash-Lite GA ($0.30/$2.50, ~350 tok/s). 3.5 Pro — ПЯТЫЙ пропуск GA, остаётся preview, цены нет. Error 13 на 3.6 / 3.7 / 3.8 Flash НЕ воспроизведён и НЕ признан — модели не проверены, а не очищены: обходы (Context Caching, cap 80K, без пачек 30+ изображений) применять и к ним. Safety Erasure → BLOCK_SOME/NONE (API не UI). Внутренний маршрут gemini-3.6-flash-tiered НЕ публичный.
+  Grok (вендор SpaceXAI, бывш. xAI): flagship grok-4.6 GA 12.08 — $2 in / $0.50 cached / $6 out, от 200K → $4 / $1 / $12 (удваивается И КЭШ); есть в Microsoft Foundry и Google Model Garden. grok-4.5 — fallback: 2 / 0.30 cached / 6, от 200K — 4 / 0.60 / 12; унаследованная cached 0.50 для 4.5 НЕВЕРНА. Перехват 190K, обрыв 195K — кэширование обрыв не смягчает. Фантомные id: heavy/expert/fast НЕ существуют (Heavy = план 300/мес плюс режим оркестрации поверх той же модели). EU открыт 21.07 БЕЗ data-residency. reasoning_effort high неотключаем, reasoning биллится как output. 4.20 multi-agent (2M, Heavy-16); 4.3 → 1M. Grok 4.7 — объявление основателя на 12.09, спецификации нет: НЕ пре-маршрутизировать. HEAVY16_SHADOW_DOWNGRADE — CLOSED AS OBSOLETE (не resolved: ничего не чинили, конфигурация перестала существовать; реоткрыть при появлении отдельных Heavy-эндпоинтов). G14 safe-list.
   GPT: 5.6 Sol/Terra/Luna GA 09.07 (Sol 4 in / 0.40 cached / 20 out, промо ≥21.11; Terra 2.50/15; Luna 1/6). G10: выше 272K весь запрос ×2 UNCACHED input и ×1.5 output, cached input cached тоже ×2 — кэш обрыв НЕ переживает, решать по доле попаданий в кэш. Long-context ставки Terra и Luna НЕ документированы (ходившие цифры — экстраполяция); окно контекста Luna официальной строки не имеет. Голый алиас gpt-5.6 резолвится в Sol. Sol: system card вендора документирует удаление файлов без запроса и использование неавторизованных учётных данных → вне judge-ролей И вне любого harness с записью в ФС/секреты без allowlist и аудита. Тихий даунгрейд детектируется через resolved_model_slug. Ghost-users: падение одного списания деактивирует ВЕСЬ workspace вместе с оплаченными местами → не брать годовую предоплату на Business. Assistants API (/v1/assistants, /v1/threads, вкл. Azure) — отключение 2026-08-26 без автомиграции. 5.5 Pro для Codex; G9 (≤7 пар).
   Qwen: 3.7-Max TEXT-ONLY (2.50/7.50) + 3.7-Plus multimodal 1M/65K + 3.6-35B-A3B (open-weight Apache-2.0, 262K, 0.14/1.00) + 3.6-Plus. Deep-thinking режим НЕ поддерживает structured output; response_format json_object доступен только в non-thinking. qwen3.8-max GA 03.08.2026 ($2/$6, 1M / out 131 072, открытые веса 3.8-27B Apache 2.0; тариф плоский 12/36 CNY за 1M — ступенчатая карточка и потолок 256K опровергнуты прямым чтением help.aliyun.com 10.09); strict JSON ПОДДЕРЖИВАЕТСЯ (json_schema strict, Model Studio 02.09), thinking off через enable_thinking=false. JSON errors → response_format + слово "JSON"; G18 bailian/ prefix обязателен. DEADLINE 2026-10-10: снятие исторической линейки qwen — шесть уведомлений подтверждены на странице политики снятия [O], список id не прочитан.
   Kimi: K3 GA 16.07 (3/15, ctx 1,048,576, thinking always-on) — Arena WebDev #1, но ACCESS-RISK: только hosted, приём подписок приостановлен, веса не опубликованы → НЕ primary, держать запасной путь. K2.6 (Swarm 300 async) + K2.7-Code (open-weight) + Code HighSpeed tier. Type M (infinite-repeat) документирован для K2.5/K2.6; на K3 не воспроизводился, обход «отключить Thinking» там неприменим. DEADLINE 2026-08-31: гасятся k2.5 и часть moonshot-v1.
-  GLM: glm-5.2 (1M, MIT, WebDev вне топ-10 (04.09)) основной — цена ~1.40/4.40 UNCONFIRMED (единственный источник, внутренне противоречив, официальной страницей не подтверждён) → в canon не принята. Сильнейший open-weight, у которого веса ДЕЙСТВИТЕЛЬНО опубликованы. OpenRouter AI Gateway stream-break: DISPUTED, взвешено В СТОРОНУ ОТКРЫТОГО — первичная проверка тикета показала, что он открыт и PR не привязан; корень в SSE-событиях из одних комментариев, задевает любого провайдера с таким поведением → путь через этот шлюз обходить. glm-5.1 (eff ~120K, G19); /compact hang на 5.1.
+  GLM: glm-5.3 GA 14.08 — старший в линии (1M, ~1.40/4.40, cache 0.26, веса на HF 753B); glm-5.3-flash GA 26.08 (300K, 0.15 / 0.03 cached / 0.50 — промо −50 % истекло 09.09 24:00 UTC+8, действует прайс); Coding Plan молча поднимает 5.1/5.2 → 5.3. GLM-5.5 НЕ вышел — только анонс. glm-5.2 (1M, MIT, WebDev вне топ-10 (04.09))
   NEW_VENDORS: MiniMax M3 ($0.30/$1.20, track-only); Manus 1.6 Max (GEOPOLITICAL CRISIS — Meta unwinding $2B; track-only, avoid prod).
   DEADLINES (from 2026-09-04): ИСПОЛНЕНО — 2026-08-05 claude-opus-4-1 снят; 2026-08-26 OpenAI Assistants API выключен (вкл. Azure); 2026-08-31 kimi-k2.5 погашен. ПРЕДСТОИТ — 2026-10-10 снятие исторической линейки qwen (шесть уведомлений [O], список id не прочитан).

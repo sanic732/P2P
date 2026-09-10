@@ -79,7 +79,7 @@ EXPERIMENTAL:
     Risk: +20% tokens
 
   GLM_STRUCTURED_SEGMENTATION:
-    Модель: GLM-5.1
+    Модель: GLM-5.3 / 5.2 / 5.1
     Usage: ## Жёсткие секции с ## подзаголовками
     Эффект: Лучшее следование структуре
     Risk: Снижение flexibility
