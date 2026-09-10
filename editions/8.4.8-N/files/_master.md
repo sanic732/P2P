@@ -17,7 +17,7 @@ priority: REFERENCE
 BUILD_SIZES:
   MINIMAL:   ~60K токенов   | 4 файла  | Тест, T0-T2, строгий лимит
   STANDARD:  ~120K токенов  | 8 файлов | Большинство задач, T2-T3
-  FULL:      ~200K токенов  | 18 файлов | T3-T4, QUORUM, длинные задачи (+ live_specs)
+  FULL:      ~200K токенов  | 17 файлов | T3-T4, QUORUM, длинные задачи (LIVE-дельта — по fetch)
   FULL+:     ~215K токенов  | 24 файла | FULL + 6 модулей v8N.3 (RAG/Reasoning/Routing/Compression/Security/Optimization)
   // ВНИМАНИЕ (mutex): не грузить все 7 модулей при LIGHT-контексте — макс 2-3 одновременно (context overflow).
   // По умолчанию модули OFF (VERSION_COMPAT.v3=off); включать через MODULE_*=true|or при необходимости.
