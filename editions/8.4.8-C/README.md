@@ -36,7 +36,7 @@ Claude Opus 4.8 / 4.7 · Sonnet 4.6 · Fable 5. Контекст: FULL ~59K не
 vs 8C.2: PILOT (Co/Auto/Manual + GLASS COCKPIT), SHERPA, 6 ON-DEMAND модулей (RAG/Reasoning/Routing/Compression/Security/Optimization), VERSION_COMPAT + CONFLICT_RESOLVER, арт-меню, Claude Fable 5 как T4.
 
 ## Установка
-`/plugin marketplace add https://github.com/sanic732/P2P-4PDA-edition` → `/plugin install p2p-v8c3@p2p`. Для Chat/Projects/API — грузить `.md` из `for-chat/`.
+`/plugin marketplace add https://github.com/sanic732/P2P` → `/plugin install p2p-v8c3@p2p`. Для Chat/Projects/API — грузить `.md` из `for-chat/`.
 
 > ⚠️ Не смешивайте файлы разных редакций — архитектуры синтаксически несовместимы.
 > 📊 Сравнение всех 4 редакций — [`COMPARISON.md`](../COMPARISON.md).

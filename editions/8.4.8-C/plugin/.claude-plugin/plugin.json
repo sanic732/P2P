@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "p2p-v8c3",
   "displayName": "8.4.8-C — Claude Native Edition",
-  "version": "8.4.7",
+  "version": "8.4.8",
   "description": "Meta-prompt system for Claude Opus 5 / Fable 5.1 / Sonnet 5 and generation 4.6-4.8. 8 QUORUM agents, 11 /p2p-* commands, XML-native, SCOPE.HELM, teacher mode.",
   "author": {
     "name": "P2P Project"
@@ -19,8 +19,8 @@
     "token-optimization"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/sanic732/P2P-4PDA-edition",
-  "repository": "https://github.com/sanic732/P2P-4PDA-edition.git",
+  "homepage": "https://github.com/sanic732/P2P",
+  "repository": "https://github.com/sanic732/P2P.git",
   "commands": "./commands",
   "agents": [
     "./agents/p2p-anon.md",

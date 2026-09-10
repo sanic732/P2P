@@ -25,16 +25,16 @@ tags: docs, install, plugin, for-chat, v8c3
 ### A1. Через маркетплейс (авто-обновления)
 
 ```
-/plugin marketplace add sanic732/P2P-4PDA-edition
-/plugin install p2p-v8c3@P2P-4PDA-edition
+/plugin marketplace add sanic732/P2P
+/plugin install p2p-v8c3@P2P
 ```
 
-Обновление потом: `/plugin marketplace update P2P-4PDA-edition` — или кнопка **Update**,
+Обновление потом: `/plugin marketplace update P2P` — или кнопка **Update**,
 когда в репо поднята версия.
 
 ### A2. Через .plugin-бандл (ручная, без авто-обновлений)
 
-1. Скачать `p2p-v8c3.plugin` из [Releases](https://github.com/sanic732/P2P-4PDA-edition/releases).
+1. Скачать `p2p-v8c3.plugin` из [Releases](https://github.com/sanic732/P2P/releases).
 2. `/plugin install <путь-к-файлу>/p2p-v8c3.plugin`
 
 > Бандл — снимок на момент релиза; обновляется только заменой файла. Для постоянной
