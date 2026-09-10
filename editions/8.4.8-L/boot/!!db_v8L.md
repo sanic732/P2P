@@ -148,7 +148,7 @@ API_STRINGS:
     claude-opus-4-6
     claude-haiku-4-5-20251001
   GPT:      gpt-5.6-sol | gpt-5.6-terra | gpt-5.6-luna | gpt-5.5-pro
-  GEMINI:   gemini-3.6-flash (GA 21.07 workhorse) | gemini-3.5-flash-lite (дешевейший, L primary) | gemini-3.1-pro-preview | gemini-3.5-flash | gemini-3.5-pro-preview (⚠ PREVIEW, 3-й пропуск GA)
+  GEMINI:   gemini-3.6-flash (GA 21.07 workhorse) | gemini-3.5-flash-lite (дешевейший, L primary) | gemini-3.1-pro-preview | gemini-3.5-flash | gemini-3.5-pro-preview (⚠ PREVIEW, 5-й пропуск GA)
   GROK:     grok-4.5 | grok-4.3 | grok-4.20
   DEEPSEEK: deepseek-v4-pro | deepseek-v4-flash
   QWEN:     DashScope qwen3.7-max|qwen3.7-plus|qwen3.6-plus | OpenRouter qwen/qwen3.6-plus  // qwen3.8-max GA 03.08, strict JSON ок

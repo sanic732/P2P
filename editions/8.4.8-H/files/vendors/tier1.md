@@ -272,7 +272,7 @@ GEMINI_31_PRO:
   context:        2M (reliable up to 500K)
   pricing:        $2/$12 per M (≤200K)
   strengths:      Long context (2M), Google Search native, multimodal
-  NOTE:           Gemini 3.5 Pro (gemini-3.5-pro-preview, 2M) — ТРЕТИЙ пропуск срока GA (17.07).
+  NOTE:           Gemini 3.5 Pro (gemini-3.5-pro-preview, 2M) — ПЯТЫЙ пропуск срока GA (счёт на 10.09.2026).
                   Суффикс -preview в официальном changelog не снят, цена не финализирована,
                   даты GA нет. НЕ трактовать как GA и не строить на ней планов.
 
