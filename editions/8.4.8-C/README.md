@@ -1,4 +1,4 @@
-# 🟦 P2P 8.4.6-C — Claude Native Edition
+# 🟦 P2P 8.4.8-C — Claude Native Edition
 
 > [EN](README.en.md) · ⬆️ [Назад к выбору редакции](../../README.md) · 📖 [Расшифровка имени](../../NAMING.md)
 

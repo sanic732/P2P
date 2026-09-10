@@ -1,4 +1,4 @@
-# 🟥 P2P 8.4.6-H — High \ Hybrid Edition  <sub>(внутр. тег: 8H.4)</sub>
+# 🟥 P2P 8.4.8-H — High \ Hybrid Edition  <sub>(внутр. тег: 8H.4)</sub>
 
 > [EN](README.en.md) · ⬆️ [Назад к выбору редакции](../../README.md) · 📖 [Расшифровка имени](../../NAMING.md)
 

@@ -1,4 +1,4 @@
-# 🟥 P2P 8H.3 — High \ Hybrid Edition
+# 🟥 P2P 8.4.8-H — High \ Hybrid Edition
 
 > [RU](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 

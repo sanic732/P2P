@@ -1,4 +1,4 @@
-# 🟩 P2P 8N.3 — Normal / Universal Edition
+# 🟩 P2P 8.4.8-N — Normal / Universal Edition
 
 > [RU](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 
