@@ -15,6 +15,13 @@ LITE_SNAPSHOT:
     [ИСПОЛНЕНО 2026-07-19] Fable 5: конец 50%-weekly include → usage credits
     [ИСПОЛНЕНО 2026-07-24 15:59 UTC] deepseek-chat/reasoner → HTTP 404 → deepseek-v4-flash
     [CANCELLED 2026-08-10] Sonnet 5 остаётся $2/$10
+    [ИСПОЛНЕНО 2026-09-09] промо GLM-5.3-Flash истекло → $0.15 / $0.03 / $0.50
+    [DEADLINE 2026-09-13 T-3] Claude Code: промо +50% к недельным лимитам кончается
+    [DEADLINE 2026-09-14 T-4] Claude Code: постоянные +25% (сам вендор называет это −17% против сегодня)
+    [DEADLINE 2026-09-20 T-10] GLM-5.3-Flash бесплатен в ZCode 23:00–09:00 UTC+8 — конец кампании
+    [DEADLINE 2026-09-29 T-19] claude-sonnet-4-5 — самая ранняя дата снятия → claude-sonnet-5
+    [DEADLINE 2026-10-10 T-30] Alibaba снимает историческую линейку qwen (список id не прочитан)
+    [DEADLINE 2026-12-31 T-112] Gemini Flash-линия: вводная цена → $1.50 / $7.50 с 01.01.2027
   CURRENT_FLAGSHIPS:
     claude: claude-opus-5, claude-fable-5-1, claude-fable-5, claude-opus-4-8, claude-sonnet-5
     gpt: gpt-5.6-sol/terra/luna · gemini: gemini-3.1-pro-preview · grok: grok-4.5 / 4.3
