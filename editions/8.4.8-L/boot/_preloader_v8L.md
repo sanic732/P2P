@@ -9,7 +9,7 @@ compatible_with: "!!core_v8L.md | _index_v8L.md | all v8L files"
 
 FETCH_CAPABILITY_GATE:
   CANARY:
-    url: "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/85411b2ff7002141dce987caaa3f7f93757f8aa5/gist_route.md"
+    url: "https://gist.githubusercontent.com/sanic732/f67d58a5c291e229848970b60f131fc5/raw/70bce8579f5bac167873063e7d9eb4d25c62902b/gist_route.md"
     expect: "// EOF_MARKER_ROUTE_VALIDATED"
   PROBE:
     "Загрузи по сети {CANARY.url} и верни ДОСЛОВНО последнюю непустую строку файла. Только эту строку, без комментариев."
