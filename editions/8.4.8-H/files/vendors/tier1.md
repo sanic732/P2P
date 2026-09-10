@@ -195,9 +195,11 @@ GPT_6_ASTRA:
   arena:          WebDev #1 (1796, 1810 голосов) · Agent #2 (12.55 % Net Improvement, $4.02/задача,
                   32.8K выходных токенов — против 54.7K у Fable 5.1)
   benchmarks:     независимых нет; вендорские 64.6 % против 52.6 % у Fable 5.1 — один отчёт,
-                  методика не названа -> как канон не использовать
+                  тест не назван -> как канон не использовать. 64.6 % совпадает со SWE-bench,
+                  который несёт gpt-5.6-sol, — возможная ошибка атрибуции
   access:         Pro / Business / Enterprise (на Enterprise выключен по умолчанию), Plus — только
-                  Work/Codex; также API, Microsoft Azure, AWS Bedrock
+                  ChatGPT Work и Codex [S: формулировка документации OpenAI в пересказе
+                  Notebookcheck]; также API, Microsoft Azure, AWS Bedrock
   WHEN_TO_USE:    webdev / frontend_generation — PRIMARY (fallback claude-fable-5-1 max)
   G22_РЕВИЗИЯ:    запрет Sol-образца на Astra НЕ переносится и G22 НЕ снимается. 89 % меньше
                   нежелательных исходов, 0 % против 48 % ухода с санкционированной цели —

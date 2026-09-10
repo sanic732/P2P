@@ -37,8 +37,8 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Gemini** | 3.5 Pro | `gemini-3.5-pro-preview` | 2M | TBD | T4 (⚠ PREVIEW, **пятый** пропуск GA; отсутствует в models/pricing/changelog) | G1,G2,G13 |
 | **Gemini** | 3.5 Flash | `gemini-3.5-flash` | 1M | $1.50/$9 | T2 (вытеснен 3.6 Flash) | G1,G2,G13 |
 | **Gemini** | 3.1 Pro | `gemini-3.1-pro-preview` | 2M | $2/$12 | T3-4 | G1,G2,G4,G11,G13 |
-| **Grok** | 4.6 | `grok-4.6` | 500K | $2/$6 · от 200K → $4/$12, cache $0.50 | T3-4 (12.08; AA 61, вровень с Sol) | G14 |
-| **Grok** | 4.7 | — | — | — | ⚠ объявлен на 12.09: ни id, ни цены, ни контекста — НЕ пре-маршрутизировать | — |
+| **Grok** | 4.6 | `grok-4.6` | 500K | $2/$6, cache $0.50 · от 200K → $4/$12, cache $1 | T3-4 (12.08; AA 61, вровень с Sol) | G14 |
+| **Grok** | 4.7 | — | — | — | ⚠ объявлен на 12.09 записью основателя (02.09) — не спецификация вендора; на 10.09 список моделей docs.x.ai кончается на `grok-4.6`: ни id, ни цены, ни контекста — НЕ пре-маршрутизировать | — |
 | **Grok** | 4.5 | `grok-4.5` | 500K | $2/$0.30 cached/$6 · от 200K → $4/$0.60/$12 | T3-4 (coding flagship; EU без residency) | G14 |
 | **Grok** | 4.3 | `grok-4.3` | 1M | $1.25/$2.50 | T2-3 | G14 |
 | **Grok** | 4.20 Heavy | `grok-4.20` | 2M | $2/$6 | T3-4 (Heavy-16) | G14 |
@@ -48,7 +48,9 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **GPT** | 5.6 Luna | `gpt-5.6-luna` | ⚠ офиц. строки нет | $1/$6 (long-context НЕ документирован) | T1-2 (⚠ MRCR collapse >512K) | G9, G10 |
 | **DeepSeek** | V4 Pro | `deepseek-v4-pro` | 1M | $0.66/$1.98 off-peak · $1.32/$3.96 peak, cache-hit $0.022/$0.044 | T2-3 ✅ GA 13.08 (веса MIT) | G15 |
 | **DeepSeek** | V4 Flash | `deepseek-v4-flash` | 1M | $0.22/$0.66 off-peak · $0.44/$1.32 peak | T0-1 (public beta, 0731) | G15, G16 (алиасы мертвы 24.07) |
-> ⚠ `deepseek-v4.1-flash` — три несовместимых рассказа о статусе и цене: в BASE и в маршруты
+> ⚠ `deepseek-v4.1-flash` — двухдневная бета под истекающим id подтверждена тремя источниками,
+>   «события не было» опровергнуто; выход в GA с переводом трафика `deepseek-v4-pro` — заявленный
+>   план по одному источнику [S], в официальном журнале изменений записи нет. В BASE и в маршруты
 >   НЕ вносится (bulk остаётся на `gemini-3.8-flash` + `deepseek-v4-flash`). Ловушка: id
 >   с подстрокой `expires-on-0910`, зашитый в клиент, с 10.09.2026 начинает отдавать ошибки.
 | **Qwen** | 3.8 Max | `qwen3.8-max` | 1M / out 131 072 | $2/$6, cache $0.25 (тариф плоский: 12/36 CNY за 1M) | T4 ✅ GA 03.08 (веса 3.8-27B Apache 2.0; strict JSON ок) | G17, G18 |
@@ -307,4 +309,5 @@ V872_DELTA:
   NEW_VENDORS: MiniMax M3 ($0.30/$1.20, track-only); Manus 1.6 Max (track-only, avoid prod).
   DEADLINES (from 2026-07-26): 2026-08-05 opus-4-1 retire; 2026-08-26 OpenAI Assistants API
     shutdown (вкл. Azure); 2026-08-31 kimi-k2.5 sunset;
-    2026-10-10 снятие пяти qwen3-* / qwen3.6-*.
+    2026-10-10 снятие исторической линейки qwen — шесть уведомлений подтверждены
+    на странице политики снятия, список id не прочитан.
