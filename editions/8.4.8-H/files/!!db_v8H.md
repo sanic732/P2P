@@ -181,7 +181,7 @@ G_ERRORS:
        Критичность: BLOCKER для любого Gemini
 
   G3:  GROK_TOPIC_DRIFT
-       Модель: Grok 4.3
+       Модель: Grok 4.6 / 4.5 / 4.3
        Симптом: Grok отвечает не на тот вопрос
        Fix: Topic anchor каждые 3 сообщения:
             "[TOPIC ANCHOR: {task_summary}. Stay on target.]"
@@ -252,12 +252,13 @@ G_ERRORS:
 
   // ── GROK ──
   G14: GROK_UNSUPPORTED_PARAM
-       Модель: Grok 4.3 / 4.5 / 4.20
+       Модель: Grok 4.6 / 4.5 / 4.3 / 4.20
        Симптом: HTTP 400 на нестандартные параметры
        Fix: Safe params только: temperature, max_tokens, stream, top_p, stop
        ⚠ ФАНТОМНЫЕ ID: grok-4.5-heavy / -expert / -fast НЕ СУЩЕСТВУЮТ. Опубликован единственный
          id grok-4.5; Heavy — тарифный план плюс режим оркестрации поверх той же модели.
-       ⚠ Порог удорожания SpaceXAI: от 200K → $4 in / $0.60 cached / $12 out (было $2/$0.30/$6).
+       ⚠ Порог удорожания SpaceXAI: от 200K ставки удваиваются. У grok-4.6: $4 in / $1 cached / $12 out
+         (было $2/$0.50/$6); у grok-4.5: $4 / $0.60 / $12 (было $2/$0.30/$6).
          Удваивается И КЭШ — кэширование не смягчает, рычаг один: резать контекст (190K/195K).
          Унаследованная cache $0.50 НЕВЕРНА: верные $0.30 (short) и $0.60 (long). Грепать явно.
        ⚠ reasoning_effort HIGH по умолчанию и не отключается; reasoning биллится как output.
@@ -283,12 +284,12 @@ G_ERRORS:
 
   // ── QWEN ──
   G17: QWEN_PROVIDER_PREFIX
-       Модель: Qwen 3.6
+       Модель: Qwen 3.6 / 3.8
        Симптом: HTTP 404 или неправильная модель
-       Fix: DashScope → qwen3-plus, OpenRouter → qwen/qwen3-plus
+       Fix: DashScope → qwen3.8-max, OpenRouter → qwen/qwen3.8-max
 
   G18: QWEN_PRESERVE_THINKING_AMNESIA
-       Модель: Qwen 3.6 agentic
+       Модель: Qwen 3.6 / 3.8 agentic
        Симптом: Thinking теряется
        Fix: preserve_thinking: true для agentic задач
 
@@ -389,14 +390,19 @@ API_STRINGS:
     gemini-3.8-flash                   ← Tier 2 PRIMARY bulk (GA 02.09; 1,048,576/65,536; $0.75/$3.75, cache-read $0.075 до 31.12)
                                          ⚠ G13 не проверялся и на 3.8 Flash — обходы применять
     gemini-3.7-flash                   ← Tier 1-2 (GA 13.08; цена Flash-линии, как у 3.8)
-    gemini-3.6-flash                   ← Tier 0-2 workhorse (GA 21.07; 1M/64K; $1.50/$7.50; cache-read $0.15)
+    gemini-3.6-flash                   ← Tier 0-2, предыдущий workhorse (GA 21.07; 1M/64K; цена линии Flash)
                                          ⚠ G13 на 3.6 Flash НЕ тестировался — не очищен, а не проверен: обходы применять
     gemini-3.5-flash-lite              ← самый дешёвый уровень (GA 21.07; $0.30/$2.50; ~350 tok/s)
-    gemini-3.5-flash                   ← предыдущий workhorse, вытеснен 3.6 Flash
+    gemini-3.5-flash                   ← вытеснен линией 3.6 / 3.7 / 3.8 Flash ($1.50/$9)
     gemini-3.5-pro-preview             ← ⚠ PREVIEW (не GA), 2M
 
   GROK:
-    grok-4.5                           ← Tier 3-4 (coding flagship, 500K; EU открыт 21.07, БЕЗ data-residency)
+    grok-4.6                           ← Tier 3-4 PRIMARY budget_frontier (flagship GA 12.08; 500K;
+                                         $2 / $0.50 cached / $6, от 200K → $4 / $1 / $12 включая кэш;
+                                         есть в Microsoft Foundry и Google Model Garden)
+                                         ⚠ Grok 4.7 объявлен на 12.09 записью основателя — id, цен
+                                           и карточки нет: НЕ пре-маршрутизировать
+    grok-4.5                           ← Tier 3-4 fallback (500K; EU открыт 21.07, БЕЗ data-residency)
     grok-4.3                           ← Tier 2-3 (1M)
     grok-4.20                          ← Tier 4 (Heavy-16, 2M) · vendors/tier4.md
 
@@ -431,7 +437,10 @@ API_STRINGS:
   GLM:
     glm-5.2                            ← MIT, 1M (WebDev вне топ-10 (04.09)) — цена ~$1.40/$4.40 UNCONFIRMED (единственный источник)
     glm-5.1                            ← MIT, ~120K (G19)
-    glm-5.1-flash                      ← MIT, до 100K — цель маршрута on-premises (G19)
+    glm-5.3                            ← старший в линии (GA 14.08; 1M; ~$1.40/$4.40)
+    glm-5.3-flash                      ← GA 26.08; 300K; $0.15 / $0.03 cached / $0.50 (промо истекло 09.09)
+    glm-5.1-flash                      ← MIT, до 100K (G19) — legacy, в новые маршруты не ставить
+    ⚠ GLM-5.5 НЕ вышел — только анонс: id, цены и весов нет
 
 // ─────────────────────────────────────────────────────
 // §6. DYNAMIC WEIGHTING SYSTEM (QUORUM)
@@ -454,13 +463,13 @@ QUORUM_WEIGHTS:
 // ─────────────────────────────────────────────────────
 
 RECOMMENDATIONS:
-  CODING:    Claude Opus 5 (#1 Image-to-WebDev 1664), Claude Fable 5.1 (#1 WebDev 1765), Qwen3-Coder
+  CODING:    Claude Opus 5 (#1 Image-to-WebDev 1664), Claude Fable 5.1 (#1 WebDev 1765), Qwen 3.8-Max (WebDev #4)
   REASONING: Claude Opus 5, GPT-5.6 Sol, Gemini 3.1 Pro Deep Think
   CREATIVE:  Claude Fable 5 (Text #1), GPT-5.6 Terra, Gemini 3.1 Pro
-  RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.3 (X.com real-time)
+  RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.6 (X.com real-time)
   VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro
   AGENTS:    Claude Opus 5 (Agent #1 13.74%), Kimi K2.x (1500+ tool calls), gpt-5.5-pro (Codex computer use)
-  BUDGET:    DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M, MIT license)
+  BUDGET:    Gemini 3.8 Flash ($0.75/$3.75), DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.3-Flash ($0.15/$0.50)
   LONG_CTX:  Gemini 3.1 Pro (2M), Grok 4.20 (2M), Grok 4.3 (1M)
   RECALL:    Claude Opus 4.6 pinned (>500K, G8 protection)
   FREE_TIER: Claude Sonnet 5 (дефолт Free/Pro с 30.06.2026)

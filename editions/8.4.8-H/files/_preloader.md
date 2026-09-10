@@ -66,7 +66,7 @@ HOST_MODEL_AUTODETECT:
                                 (host-only; в live_specs TRACK-ONLY → НЕ цели роутинга);
                                 свежие цены/лимиты — _live/live_core.md; новее — /p2p-download
   // Канарейки / GIST-fetch из 8L.3 здесь НЕ нужны: вся справка уже лежит рядом файлами.
-  SUBMODEL: по возможности уточни субмодель (opus-4-8 / grok-4.3 / gemini-3.1-pro-preview),
+  SUBMODEL: по возможности уточни субмодель (opus-5 / grok-4.6 / gemini-3.1-pro-preview),
             иначе оставь "". Точные лимиты — из _live/live_core.md (дата в LAST_VERIFIED).
 
 // ─── БЛОК 1: HOST CONFIG (пусто → сработает автодетект БЛОК 0) ───
@@ -75,7 +75,7 @@ HOST_CONFIG:
   HOST_MODEL: ""           // пусто → HOST_MODEL_AUTODETECT (БЛОК 0); при неудаче — HOST_PICK_LIST [1..10]. NORMALIZE→lowercase.
   // Допустимые значения: claude | gemini | gpt | grok | deepseek | qwen | kimi | glm | minimax | manus
   // Влияет на: синтаксис промптов, правила форматирования, thinking API
-  HOST_SUBMODEL: ""    // напр. grok-4.3 | claude-opus-4-8 | gemini-3.1-pro-preview | claude-fable-5
+  HOST_SUBMODEL: ""    // напр. grok-4.6 | claude-opus-5 | gemini-3.1-pro-preview | claude-fable-5-1
   ENV: "auto"          // auto | api | studio | notebooks | chat | code
 
 // ─── HOST_CAPS (авто-выставляются из !host_profiles.md по HOST_MODEL) ───

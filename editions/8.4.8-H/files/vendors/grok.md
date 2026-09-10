@@ -11,12 +11,27 @@ tags: grok, heavy-16, x-firehose, vendor, v8h3
 // P2P — VENDOR: GROK (primary для grok host)
 // ВЕНДОР ПЕРЕИМЕНОВАН: SpaceXAI (бывш. xAI). Сделка SpaceX / xAI объявлена 2026-02-02,
 //   docs.x.ai брендирован «SpaceXAI Docs», Arena рендерит вендора как SpaceXAI на всех бордах.
-//   Продуктовое имя Grok сохраняется; api-строки (grok-4.5, grok-4.20) НЕ менялись.
+//   Продуктовое имя Grok сохраняется; api-строки (grok-4.6, grok-4.5, grok-4.20) НЕ менялись.
 //   Распознавание хоста понимает и «xAI», и «SpaceXAI».
 // OVERRIDE: live_specs > live_vendors > этот файл.
 // ═══════════════════════════════════════════════════════
 
-GROK_4_5:  // GA 2026-07-08 (source: docs.x.ai/developers/grok-4-5) — current agentic/coding flagship; default в Grok Build/CLI
+GROK_4_6:  // GA 2026-08-12 — ТЕКУЩИЙ agentic/coding flagship; default в Grok Build/CLI
+  api_string:   grok-4.6
+  context:      500K
+  pricing:      short-context $2 in / $0.50 cached / $6 out per M
+                long-context (промпты ОТ 200K): $4 in / $1 cached / $12 out per M
+                ⚠ на обрыве удваивается И КЭШ ТОЖЕ — рычаг один: резать контекст
+  availability: помимо API — Microsoft Foundry и Google Enterprise Agent Platform (Model Garden,
+                через Responses API)
+  strengths:    budget_frontier PRIMARY (fallback grok-4.5); AA index 61 — вровень с GPT-5.6 Sol
+  reasoning:    ⚠ reasoning_effort HIGH по умолчанию и НЕ ОТКЛЮЧАЕТСЯ (как у всей линии)
+  ⚠ GROK 4.7:   объявлен на 12.09 записью основателя (02.09), НЕ спецификацией вендора. На 10.09
+                список моделей docs.x.ai кончается на grok-4.6 — id, цены, контекста и карточки
+                нет. «2.1T» и «обучен на инженерных данных SpaceX» — слова основателя [S].
+                НЕ пре-маршрутизировать.
+
+GROK_4_5:  // GA 2026-07-08 (source: docs.x.ai/developers/grok-4-5) — fallback, бывший flagship
   api_string:   grok-4.5
   context:      500K
   pricing:      short-context $2 in / $0.30 cached / $6 out per M — проверено у вендора
@@ -62,7 +77,7 @@ GROK_4_20:  // Heavy-16 multi-agent — реальный параллелизм 
 GROK_BUILD_01:
   api_string:   grok-build-0.1
   context:      256K | pricing: $1/$2 per M
-  WHEN_TO_USE:  coding engine (НЕ default — с 08.07 CLI по умолчанию на grok-4.5).
+  WHEN_TO_USE:  coding engine (НЕ default — с 12.08 flagship grok-4.6, CLI по умолчанию на нём).
 
 KNOWN_ISSUES:  // общие для линейки
   G14: unsupported param → HTTP 400 (hard fail). Safe-list: temperature, max_tokens, stream, top_p, stop.

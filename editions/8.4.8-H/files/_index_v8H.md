@@ -52,12 +52,12 @@ MODULE_REGISTRY:
     13j. !art.md               TRIGGER: "арт|баннер|art|banner|смена режима|выбор режима|pilot|sherpa|quorum|scope|exploration"
 
   VENDORS (reference, по запросу):
-    14. vendors/grok.md       Grok 4.5 / 4.3 / 4.20 Heavy-16 / X Firehose (primary для grok host)
+    14. vendors/grok.md       Grok 4.6 / 4.5 / 4.3 / 4.20 Heavy-16 / X Firehose (primary для grok host)
     15. vendors/claude.md     Fable 5, Opus 4.8/4.7, Sonnet 4.6
     16. vendors/tier1.md      Claude Fable 5, Claude Opus 4.8/4.7, GPT-5.6, Gemini 3.x
-    17. vendors/tier2.md      Sonnet 4.6, Grok 4.3, DeepSeek V4-Pro, Qwen 3.6-Max
+    17. vendors/tier2.md      Sonnet 4.6, Grok 4.6/4.5/4.3, DeepSeek V4-Pro, Qwen 3.8-Max
     18. vendors/tier3.md      Gemini Flash, DeepSeek V4-Flash, Qwen Plus, Haiku 4.5
-    19. vendors/tier4.md      GLM-5.1 (MIT), Kimi K2.x (Swarm)
+    19. vendors/tier4.md      GLM-5.3 / 5.3-Flash / 5.2 (MIT), Kimi K3 / K2.x (Swarm)
 
   META:
     20. _index_v8H.md         ← ЭТО (module registry)

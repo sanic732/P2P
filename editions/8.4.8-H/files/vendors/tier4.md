@@ -13,7 +13,8 @@ compatible_with: "!!db_v8H.md | _live/live_vendors.md"
 // ═══════════════════════════════════════════════════════
 
 GLM_52:  // основной GLM — MIT, 1M context (снимает G19-лимит 5.1); WebDev Arena: вне топ-10 (04.09)
-  api_string:     glm-5.2
+  api_string:     glm-5.3            // GA 2026-08-14, старший в линии; glm-5.2 (MIT, 1M) — fallback
+  flash:          glm-5.3-flash — 300K, $0.15 / $0.03 cached / $0.50 (промо -50 % истекло 09.09), GA 26.08
   context:        1M (~1,048,576) | output: 32K-131K
   pricing:        ⚠ UNCONFIRMED. Ходящая цифра ~$1.40/$4.40 идёт из ЕДИНСТВЕННОГО источника,
                   внутренне противоречива (та же цифра приписана и GLM-5.1, и GLM-5.2) и не
@@ -122,6 +123,6 @@ KIMI_K2X:
   IDEAL: Multi-agent tasks, tool-heavy pipelines, agentic coding.
 
 FILE_META:
-  MODELS:      GLM-5.2 (MIT, 1M) / GLM-5.1 (legacy), Kimi K3 (WebDev #1, access-risk),
+  MODELS:      GLM-5.3 / 5.3-Flash / GLM-5.2 (MIT, 1M) / GLM-5.1 (legacy — G19), Kimi K3 (WebDev #1, access-risk),
                Kimi K2.6/K2.7 Code (Swarm/open-weight)
   COMPATIBLE:  !!db_v8H.md | _live/live_vendors.md
