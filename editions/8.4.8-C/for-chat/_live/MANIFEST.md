@@ -96,7 +96,7 @@ grep -rn "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deeps
 ## ЕЖЕДНЕВНЫЙ REFRESH CHECKLIST
 
 При ежедневном обновлении live specs:
-- [ ] Проверить новые API strings (Anthropic Status / xAI docs)
+- [ ] Проверить новые API strings (Anthropic Status / SpaceXAI docs)
 - [ ] Проверить изменения в pricing
 - [ ] Обновить Arena Elo scores если изменились
 - [ ] Проверить новые G-errors

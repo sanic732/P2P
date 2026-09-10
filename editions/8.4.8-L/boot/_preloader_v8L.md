@@ -24,7 +24,7 @@ HOST_CONFIG:
 
 HOST_MODEL_NORMALIZE:
   RULE: HOST_MODEL = lowercase(trim(HOST_MODEL))
-  SYNONYMS: { grok|GROK|Grok|xai|x.ai|xAI → grok ; chatgpt|openai → gpt ; anthropic → claude ; google → gemini ; tongyi|alibaba → qwen ; moonshot → kimi ; zhipu|chatglm → glm }
+  SYNONYMS: { grok|GROK|Grok|xai|x.ai|xAI|spacexai|SpaceXAI → grok ; chatgpt|openai → gpt ; anthropic → claude ; google → gemini ; tongyi|alibaba → qwen ; moonshot → kimi ; zhipu|chatglm → glm }
 
 SELECT_HOST_FETCH_MATRIX:
   claude:   FETCH=native (WebFetch/web_search)  → GIST_LAZY_FETCH ✓

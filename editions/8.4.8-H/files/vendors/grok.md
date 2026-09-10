@@ -9,6 +9,10 @@ tags: grok, heavy-16, x-firehose, vendor, v8h3
 
 // ═══════════════════════════════════════════════════════
 // P2P — VENDOR: GROK (primary для grok host)
+// ВЕНДОР ПЕРЕИМЕНОВАН: SpaceXAI (бывш. xAI). Сделка SpaceX / xAI объявлена 2026-02-02,
+//   docs.x.ai брендирован «SpaceXAI Docs», Arena рендерит вендора как SpaceXAI на всех бордах.
+//   Продуктовое имя Grok сохраняется; api-строки (grok-4.5, grok-4.20) НЕ менялись.
+//   Распознавание хоста понимает и «xAI», и «SpaceXAI».
 // OVERRIDE: live_specs > live_vendors > этот файл.
 // ═══════════════════════════════════════════════════════
 
@@ -27,7 +31,7 @@ GROK_4_5:  // GA 2026-07-08 (source: docs.x.ai/developers/grok-4-5) — current 
   arch:         PLAIN_TEXT; XML только в code-fences; native strict JSON (json_schema)
   extras:       function calling, web search, X search, code execution; Responses API + Chat Completions
   cutoff:       2026-02-01
-  avail:        GA (Grok Build, Cursor, xAI console); EU-доступ ОТКРЫТ 2026-07-21 через API-консоль,
+  avail:        GA (Grok Build, Cursor, SpaceXAI console); EU-доступ ОТКРЫТ 2026-07-21 через API-консоль,
                 но БЕЗ гарантий data-residency → персональные данные EU не пускать (отдельный риск GDPR).
                 50% launch-скидка закончилась 21.07.
   benchmarks:   SWE-Bench Pro 64.7% | Terminal-Bench 2.1 83.3% | Arena WebDev #8
@@ -73,7 +77,7 @@ KNOWN_ISSUES:  // общие для линейки
     Heavy-модели, способный тихо деградировать — перестала существовать. Два прогона подряд
     не нашли воспроизведения. Закрытие как OBSOLETE фиксирует, что вопрос стал неотвечаемым,
     а не что ответ отрицательный.
-    УСЛОВИЕ РЕОТКРЫТИЯ: если xAI опубликует отдельные Heavy-эндпоинты или документацию
+    УСЛОВИЕ РЕОТКРЫТИЯ: если SpaceXAI опубликует отдельные Heavy-эндпоинты или документацию
     маршрутизации — тег оживляется, а не заводится заново.
   Type B/H/T/X/V (Heavy failure modes — см. !!db_v8H GROK_HEAVY_FAILURE_MODES).
 

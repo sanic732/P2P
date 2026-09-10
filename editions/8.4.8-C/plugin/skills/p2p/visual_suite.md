@@ -48,7 +48,7 @@ Negative (MANDATORY): `lowres, bad anatomy, bad hands, text, watermark, blurry, 
 CFG: 7-12. Sampler: DPM++ 2M Karras / Euler a.
 </tool>
 
-<tool name="Grok Imagine / GPT-Image-1" vendor="xAI/OpenAI">
+<tool name="Grok Imagine / GPT-Image-1" vendor="SpaceXAI/OpenAI">
 Format: prose. Supports multi-turn refinement.
 Always specify aspect ratio explicitly.
 </tool>

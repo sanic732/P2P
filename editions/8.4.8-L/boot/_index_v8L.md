@@ -92,7 +92,7 @@ GIST_ROUTING_TABLE:  // 14 чанков арсенала + LIVE. sha256/size с�
     fallback: SKIP
 
   VENDOR_GROK:
-    trigger:  "grok|xai|heavy-16|firehose|x\.com"
+    trigger:  "grok|xai|spacexai|heavy-16|firehose|x\.com"
     url:      "https://gist.githubusercontent.com/sanic732/7727406fc1047387c4e49bbef489bc46/raw/b8667a4b836edae916bbb69ff2f8530749898fdd/gist_vendor_grok.md"
     sha256:   "9ba8d50ee72ef4421341a586357227bf3307a8558f39b55ea7ab5ad715294f52"
     eof_hash: "EOF_MARKER_VENDOR_GROK_VALIDATED"
