@@ -9,11 +9,11 @@ compatible_with: "!!db_v8H.md | _live/live_vendors.md"
 
 // ═══════════════════════════════════════════════════════
 // P2P — VENDORS TIER 3
-// Budget/Fast: Gemini 3.6 Flash / 3.5 Flash-Lite, DeepSeek V4-Flash, Qwen 3.6-Plus, Claude Haiku 4.5
+// Budget/Fast: Gemini 3.8 Flash / 3.5 Flash-Lite, DeepSeek V4-Flash, Qwen 3.8-Flash-Next, Claude Haiku 4.5
 // ═══════════════════════════════════════════════════════
 
-GEMINI_36_FLASH:  // GA 2026-07-21 — новый workhorse вместо 3.5 Flash
-  api_string:   gemini-3.6-flash
+GEMINI_38_FLASH:  // GA 2026-09-02 — bulk primary линии Flash (3.6 GA 21.07 → 3.7 GA 13.08 → 3.8)
+  api_string:   gemini-3.8-flash    // GA 2026-09-02 — bulk primary линии Flash (3.6 → 3.7 → 3.8)
   context:      1,048,576 | output: 65,536
   pricing:      $1.50/$7.50 per M | cache-read $0.15 | ~304 tok/s
   strengths:    дешёвый bulk, нативный Computer Use, на 17% меньше выходных токенов
@@ -33,7 +33,7 @@ GEMINI_35_FLASH_LITE:  // GA 2026-07-21 — самый дешёвый урове
   strengths:    самая дешёвая hosted-опция с 1M контекстом
   NOTE: те же G2 / G13-обходы.
 
-GEMINI_35_FLASH:  // предыдущий workhorse, вытеснен 3.6 Flash
+GEMINI_35_FLASH:  // вытеснен линией 3.6 / 3.7 / 3.8 Flash
   api_string:   gemini-3.5-flash
   arena_elo:    Vision #10
   context:      1M | output: 64K
@@ -58,12 +58,12 @@ DEEPSEEK_V4_FLASH:
         принимать оба. ⚠ Бывший deepseek-reasoner → **deepseek-v4-pro**, НЕ v4-flash-thinking.
   IDEAL: T0-T2 tasks, batch processing, high-volume pipelines.
 
-QWEN_36_PLUS:
-  api_string_dashscope:  qwen3-plus
-  api_string_openrouter: qwen/qwen3-plus
-  arena_elo:   1480 (approx)
-  context:     128K
-  pricing:     $0.40/$1.20 per M
+QWEN_38_FLASH_NEXT:
+  api_string_dashscope:  qwen3.8-flash-next    // $0.16/$0.47, Arena WebDev #9
+  api_string_openrouter: qwen/qwen3.8-flash-next
+  arena_elo:   1631 (prelim) — Arena WebDev #9, дешевейший в топ-12
+  context:     не опубликован (дебют 10.09.2026)
+  pricing:     $0.16/$0.47 per M
   strengths:   Good quality/cost T1-2
 
   NOTE: G17 (provider prefix) — то же что Max.
@@ -82,6 +82,6 @@ CLAUDE_HAIKU_45:
   IDEAL: T0-T1 tasks, latency-sensitive apps, high volume с качеством Claude.
 
 FILE_META:
-  MODELS:      Gemini 3.6 Flash, Gemini 3.5 Flash-Lite, Gemini 3.5 Flash, DeepSeek V4-Flash,
+  MODELS:      Gemini 3.8 Flash, Gemini 3.5 Flash-Lite, Gemini 3.5 Flash, DeepSeek V4-Flash,
                Qwen 3.6-Plus, Claude Haiku 4.5
   COMPATIBLE:  !!db_v8H.md | _live/live_vendors.md

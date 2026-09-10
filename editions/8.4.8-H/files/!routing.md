@@ -48,17 +48,17 @@ Recall >500K               → claude-opus-4-6 (пин G8) → gemini-3.1-pro-pr
 Real-time X/Twitter        → grok-4.3                 → —
 Research / web grounding   → gemini-3.1-pro-preview    → grok-4.3
 Swarm многоагентный        → kimi-k2.6 (Kimi)         → claude-opus-4-8 (G20: до 300; async webhooks >1h)
-Китайский / vision         → qwen3-max                → qwen3-plus
-On-premises / MIT license  → glm-5.1-flash (≤100K G19)→ —
-Супер-дёшево               → deepseek-v4-flash        → glm-5.1-flash
+Китайский / vision         → qwen3.8-max              → qwen3.8-flash-next
+On-premises / open-weight  → qwen3.8-27b (Apache 2.0) → glm-5.2 (MIT) / glm-5.3-flash
+Супер-дёшево               → gemini-3.8-flash         → deepseek-v4-flash
 ```
 
 ## Cascade Routing — каскадная маршрутизация
 Сначала дешёвая модель; если качество ниже порога — эскалация к дорогой.
 ```
 [CASCADE_ROUTING]
-  L1: claude-haiku-4-5 / gemini-3.1-flash   → quality ≥ threshold → стоп
-  L2: claude-sonnet-5 / qwen3.6-plus         → quality ≥ threshold → стоп
+  L1: claude-haiku-4-5 / gemini-3.8-flash    → quality ≥ threshold → стоп
+  L2: claude-sonnet-5 / qwen3.8-flash-next   → quality ≥ threshold → стоп
   L3: claude-opus-4-8 / claude-fable-5        → финальный ответ
 Quality threshold по Tier: T0-1→L1, T2→L2, T3-4→L3.
 Эвристика качества: задача завершена? нет hallucination-сигналов? длина ≥ ожидаемой?
@@ -68,18 +68,18 @@ MUTEX: для проектной декомпозиции с зависимос�
 ## Cost-Aware Routing — с учётом бюджета
 ```
 [COST_ROUTER]  INPUT: task_tier, token_estimate, budget_limit
-IF budget < $0.01      → deepseek-v4-flash ($0.22/$0.66 off-peak) / glm-5.1-flash
-IF budget $0.01-$0.10  → claude-sonnet-5 / qwen3.6-plus
+IF budget < $0.01      → deepseek-v4-flash ($0.22/$0.66 off-peak) / glm-5.3-flash ($0.15/$0.50, 300K)
+IF budget $0.01-$0.10  → claude-sonnet-5 / qwen3.8-flash-next
 IF budget > $0.10 OR tier ≥ T3 → claude-opus-4-8 / claude-fable-5
 Formula: cost = (in_tok/1M × price_in) + (out_tok/1M × price_out)   // прайс из live_core §1
 ```
 
 ## LLM-Router — лёгкий классификатор
 ```
-[LLM_ROUTER]  Classifier: claude-haiku-4-5 / gemini-3.1-flash (быстро, дёшево, ~$0.001/query)
-  code→claude-opus-4-8 | analysis→claude-opus-4-8/sonnet-5 | creative→claude-sonnet-5/gpt-5.6-terra
-  factual→gemini-3.1-pro-preview (web grounding) | math→claude-opus-4-8 + !reasoning MCTS
-  chinese→qwen3.7-max | rt_social→grok-4.3 | agentic→claude-fable-5/claude-opus-4-8
+[LLM_ROUTER]  Classifier: claude-haiku-4-5 / gemini-3.8-flash (быстро, дёшево, ~$0.001/query)
+  code→claude-opus-5 | analysis→claude-opus-5/sonnet-5 | creative→claude-sonnet-5/gpt-5.6-terra
+  factual→gemini-3.1-pro-preview (web grounding) | math→claude-opus-5 + !reasoning MCTS
+  chinese→qwen3.8-max | rt_social→grok-4.6 (X Firehose) | agentic→claude-fable-5-1/claude-opus-5
 ```
 
 # CONFLICT_RESOLVER DECLARATIONS
