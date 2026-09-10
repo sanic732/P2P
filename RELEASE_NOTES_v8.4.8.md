@@ -103,8 +103,10 @@ High: ANON там — исполнение инструментов и neutral r
    переехали в BASE редакций, свежее приходит по LIVE-каналу. Сборка стала меньше, а расхождение
    «в файле одно, в канале другое» — невозможным.
 5. **Модули Lite теперь публикуются отдельным гистом на каждый выпуск.** Прежде один гист
-   переписывался поверх, и старые установки молча получали новые модули или, как в 8.4.7,
-   старые под новыми хешами.
+   переписывался поверх, и установка молча получала не те модули, на которые рассчитана.
+   В 8.4.7 это выглядело так: индекс указывал на ревизию гиста от 26.07 — то есть на модули
+   **8.4.6**, — а sha256 рядом были записаны от них же, поэтому проверка целостности сходилась
+   и о подмене не сообщала.
 6. **Маршруты не доедут до уже установленного 8.4.7 через LIVE-канал.** Это ограничение, а не
    недоделка: по каналу идёт форма DELTA, в ней есть цены, статусы, дедлайны и реестр ошибок,
    но нет таблицы маршрутов. Новый маршрут webdev на `gpt-6-astra` появится только у тех,
@@ -197,8 +199,9 @@ knowing where a build lied matters more than a tidy list of improvements.
    moved into each edition's BASE, and fresh data arrives over the LIVE channel. Builds are
    smaller, and "one thing in the file, another in the channel" is no longer possible.
 5. **Lite modules are now published as a separate gist per release.** Previously a single gist was
-   overwritten in place, so existing installs silently received new modules — or, as in 8.4.7,
-   old ones under new hashes.
+   overwritten in place, so an install silently received modules it was not built for. In 8.4.7 the
+   index pinned a gist revision from 26.07 — the **8.4.6** modules — and the sha256 values beside it
+   had been written from those same files, so the integrity check matched and reported nothing.
 6. **Routing will not reach an installed 8.4.7 over the LIVE channel.** This is a limitation, not
    an omission: the channel carries the DELTA form, which has prices, statuses, deadlines and the
    error registry, but not the routing table. The new webdev route to `gpt-6-astra` reaches only
