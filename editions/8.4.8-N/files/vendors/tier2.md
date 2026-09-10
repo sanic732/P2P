@@ -9,7 +9,7 @@ compatible_with: "!!db_v8N.md | _live/live_vendors.md"
 
 // ═══════════════════════════════════════════════════════
 // P2P — VENDORS TIER 2
-// Balanced: Claude Sonnet 4.6, Grok 4.3, DeepSeek V4-Pro, Qwen 3.6-Max
+// Balanced: Claude Sonnet 4.6, Grok 4.6 / 4.5 / 4.3, DeepSeek V4-Pro, Qwen 3.8-Max
 // ═══════════════════════════════════════════════════════
 
 // ─────────────────────────────────────────────────────
@@ -46,7 +46,17 @@ CLAUDE_SONNET_46:
 // §2. GROK 4.3
 // ─────────────────────────────────────────────────────
 
-GROK_45:  // NEW coding/agentic flagship — GA 2026-07-08 (см. также live_vendors CAPABILITY_MATRIX)
+GROK_46:  // coding/agentic flagship — GA 2026-08-12 (сменил 4.5; вендор SpaceXAI, бывш. xAI)
+  api_string:     grok-4.6
+  context:        500K
+  pricing:        short $2 in / $0.50 cached / $6 out per M
+                  long (ОТ 200K): $4 in / $1 cached / $12 out per M — удваивается И КЭШ ТОЖЕ
+  availability:   Microsoft Foundry и Google Model Garden (Responses API)
+  strengths:      budget_frontier primary; fallback grok-4.5
+  ⚠ GROK 4.7:     объявлен на 12.09 записью основателя. На 10.09 docs.x.ai кончается на grok-4.6 —
+                  id, цены, контекста и карточки нет. НЕ пре-маршрутизировать.
+
+GROK_45:  // fallback — GA 2026-07-08 (см. также live_vendors CAPABILITY_MATRIX)
   api_string:     grok-4.5
   context:        500K | ~80 tps
   pricing:        short $2 in / $0.30 cached / $6 out per M — проверено у вендора
@@ -131,9 +141,9 @@ DEEPSEEK_V4_PRO:
 // §4. QWEN 3.6-MAX
 // ─────────────────────────────────────────────────────
 
-QWEN_36_MAX:
-  api_string_dashscope:   qwen3-max
-  api_string_openrouter:  qwen/qwen3-max
+QWEN_38_MAX:
+  api_string_dashscope:   qwen3.8-max      // снимок qwen3.8-max-0902, GA 2026-08-03
+  api_string_openrouter:  qwen/qwen3.8-max
   arena_elo:              1498
   context:                128K (reliable), 32K (optimal)
   pricing:                $1.20/$3.60 per M
@@ -149,9 +159,11 @@ QWEN_36_MAX:
     thinking_budget: 81920    # maximum
 
   PROVIDER_SYNTAX:  # G17
-    DashScope:    "qwen3-max"           (без префикса)
-    OpenRouter:   "qwen/qwen3-max"      (с qwen/)
-    HuggingFace:  "Qwen/Qwen3-Max"      (с заглавной Q)
+    DashScope:    "qwen3.8-max"        (без префикса)
+    OpenRouter:   "qwen/qwen3.8-max"   (с qwen/)
+    HuggingFace:  "Qwen/Qwen3.8-Max"   (с заглавной Q)
+  ⚠ RETIREMENT 2026-10-10: линейки qwen3-* / 3.6-* снимаются (шесть уведомлений Model Studio;
+    список id у вендора НЕ ПРОЧИТАН — в сборку не вносить). В новые маршруты не ставить.
 
   AGENTIC_PARAMS:  # G18
     preserve_thinking: true   # для multi-step agentic задач
@@ -166,5 +178,5 @@ QWEN_36_MAX:
     LIBRARY_ANCHOR обязателен — иначе hallucinated методы в коде.
 
 FILE_META:
-  MODELS:      Claude Sonnet 4.6, Grok 4.3, DeepSeek V4-Pro, Qwen 3.6-Max
+  MODELS:      Claude Sonnet 4.6, Grok 4.6/4.5/4.3, DeepSeek V4-Pro, Qwen 3.8-Max
   COMPATIBLE:  !!db_v8N.md | _live/live_vendors.md

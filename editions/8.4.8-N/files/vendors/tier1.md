@@ -10,7 +10,7 @@ compatible_with: "!!db_v8N.md | _live/live_vendors.md"
 // ═══════════════════════════════════════════════════════
 // P2P — VENDORS TIER 1
 // Flagship models: Claude Opus 5 (PRIMARY), Fable 5, Opus 4.8, Opus 4.7 (legacy),
-//                  GPT-5.6/5.5, Gemini 3.6 Flash / 3.5 Flash-Lite / 3.1 Pro
+//                  GPT-6 Astra, GPT-5.6/5.5, Gemini 3.8 Flash / 3.5 Flash-Lite / 3.1 Pro
 // ═══════════════════════════════════════════════════════
 // OVERRIDE: live_specs > live_vendors.md > этот файл при конфликтах.
 
@@ -234,7 +234,7 @@ GPT_6_ASTRA:
   >   и Image-Edit #1/#2; цены не опубликованы, планировать по gpt-image-2.
 
 // ─────────────────────────────────────────────────────
-// §2. GPT-5.5
+// §2. GPT-5.6 SOL / TERRA / LUNA  (GPT-5.5 — legacy для Codex)
 // ─────────────────────────────────────────────────────
 
 GPT_56:  // GPT-5.6 Sol/Terra/Luna — PUBLIC GA 2026-07-09 (superseded GPT-5.5 как флагман)
@@ -300,15 +300,16 @@ GPT_56:  // GPT-5.6 Sol/Terra/Luna — PUBLIC GA 2026-07-09 (superseded GPT-5.5 
 // §3. GEMINI 3.1 PRO
 // ─────────────────────────────────────────────────────
 
-GEMINI_36_FLASH:  // GA 2026-07-21 — новый workhorse, вытеснил 3.5 Flash
-  api_string:     gemini-3.6-flash
+GEMINI_38_FLASH:  // GA 2026-09-02 — bulk primary линии Flash (3.6 GA 21.07 → 3.7 GA 13.08 → 3.8)
+  api_string:     gemini-3.8-flash    // линия: gemini-3.7-flash, gemini-3.6-flash
   context:        1,048,576 | output: 65,536
-  pricing:        $1.50/$7.50 per M | cache-read $0.15 | ~304 tok/s
+  pricing:        $0.75/$3.75 per M | cache-read $0.075 — вводная цена ВСЕЙ линии Flash до 2026-12-31,
+                  с 2027-01-01 $1.50/$7.50, cache $0.15 | ~304 tok/s
   strengths:      дешёвый bulk, нативный Computer Use (встроен в API, внешняя GUI-обёртка не нужна),
                   на 17% меньше выходных токенов чем 3.5 Flash
   ⚠ SKEPTICISM:   независимый индекс интеллекта у 3.6 Flash = 50, ТОЧНО как у 3.5 Flash.
                   Экономия токенов — это лаконичность ответа, а не рост способностей.
-  ⚠ ERROR_13:     G13 на 3.6 Flash НЕ ВОСПРОИЗВЕДЁН И НЕ ПРИЗНАН. Модель **не проверена** на этот
+  ⚠ ERROR_13:     G13 на 3.6 / 3.7 / 3.8 Flash НЕ ВОСПРОИЗВЕДЁН И НЕ ПРИЗНАН. Модели **не проверены** на этот
                   баг, а не **очищена** от него. Ни launch-пост, ни страница модели, ни changelog
                   Error 13 не упоминают; сообщения сообщества идут против СТАРОЙ линии 3 Flash.
                   → обходы G13 применять и здесь: Context Caching API, история ≤80K, без пачек
@@ -381,6 +382,6 @@ GEMINI_31_PRO:
     Pattern: [Subject] + [Camera move] + [Lighting] + [Lens/Style]
 
 FILE_META:
-  MODELS:      Claude Opus 5 (PRIMARY), Fable 5, Sonnet 5, Opus 4.8, Opus 4.7, GPT-5.6 Sol/Terra/Luna,
-               Gemini 3.6 Flash, Gemini 3.5 Flash-Lite, Gemini 3.1 Pro
+  MODELS:      Claude Opus 5 (PRIMARY), Fable 5.1/5, Sonnet 5, Opus 4.8, Opus 4.7, GPT-6 Astra, GPT-5.6 Sol/Terra/Luna,
+               Gemini 3.8 Flash, Gemini 3.5 Flash-Lite, Gemini 3.1 Pro
   COMPATIBLE:  !!db_v8N.md | _live/live_vendors.md

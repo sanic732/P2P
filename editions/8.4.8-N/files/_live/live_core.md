@@ -47,7 +47,7 @@ PRICING:
   gpt-5.6-terra:             $2.50  / $15   / 1.05M / GA 09.07; balanced (замена 5.5); long-context ставки НЕ документированы
   grok-4.6:                  $2     / $6    / 500K  / GA 12.08; AA index 61 (вровень с GPT-5.6 Sol); cached $0.50; от 200K → $4 / $12, кэш $1 за порогом
   grok-4.7:                  —      / —     / —     / ⚠ объявлен на 12.09 записью основателя (02.09), не спецификацией вендора; на 10.09 список моделей docs.x.ai кончается на grok-4.6 — id, цены и контекста нет; 2.1T и «обучен на инженерных данных SpaceX» — слова основателя [S] — НЕ пре-маршрутизировать
-  grok-4.5:                  $2     / $6    / 500K  / GA 08.07: coding/agentic flagship, ~80 tps; cached $0.30 (дешевле, чем у 4.6); от 200K → $4 / $0.60 cached / $12; EU открыт 21.07 БЕЗ data-residency; strict JSON
+  grok-4.5:                  $2     / $6    / 500K  / GA 08.07: бывший coding/agentic flagship (сменён 4.6 12.08), ~80 tps; cached $0.30 (дешевле, чем у 4.6); от 200K → $4 / $0.60 cached / $12; EU открыт 21.07 БЕЗ data-residency; strict JSON
   grok-4.3:                  $1.25  / $2.50 / 1M    / X Firehose; для 2M → grok-4.20 Heavy
   deepseek-v4-pro:           $0.66  / $1.98 / 1M    / GA 13.08 (веса MIT); out 384K; peak 1.32/3.96, cache-hit 0.022/0.044; пик 01-04 и 06-10 UTC пн-пт
   qwen3.8-max:               $2     / $6    / 1M    / GA 03.08; out 131 072; cache 0.25; тариф ПЛОСКИЙ 12/36 CNY за 1M (Сингапур 14.988/44.965), $2/$6 — приближение; веса 3.8-27B Apache 2.0; strict JSON ок (enable_thinking=false)
@@ -129,7 +129,7 @@ ROUTING_WEIGHTS:
     claude-opus-5:      35%   // PRIMARY с 24.07; thinking on by default
     claude-opus-4-8:    25%   // ACTIVE, API-only surface
     claude-sonnet-5:    20%   // (было sonnet-4-6; дефолт сменился на Sonnet 5)
-    qwen3.6-plus:       12%
+    qwen3.8-max:        12%   // (было qwen3.6-plus; линейки qwen3-*/3.6-* снимаются 10.10)
     deepseek-v4-pro:    8%
     // claude-fable-5 выведен из автоматических весов: COST-GATED с 20.07 (usage credits),
     // допускается только по явному вызову оператора и с бюджетом
@@ -155,9 +155,9 @@ ROUTING_WEIGHTS:
 
   BUDGET:
     deepseek-v4-flash:    40%
-    glm-5.1:              30%
-    qwen3.6-plus:         20%
-    gemini-3.5-flash:     10%
+    glm-5.3-flash:        30%   // (было glm-5.1 — G19 collapse >120K)
+    qwen3.8-flash-next:   20%   // (было qwen3.6-plus)
+    gemini-3.8-flash:     10%   // (было gemini-3.5-flash)
 
   LONG_CONTEXT:
     gemini-3.1-pro:       40%  // 2M context
@@ -173,7 +173,7 @@ CONTEXT_STRATEGY:  // v8.5: Claude Opus/Fable → 1M native; Grok 4.20 → 2M
   <100K:     Любая модель. Claude Opus 4.8 предпочтителен.
   100K-500K: Claude Opus 5 / Opus 4.8 (1M native; G6 tokenizer ~+30% офиц. → считать Token Counting API)
   >500K:     Claude Opus 4.6 pinned (recall MRCR 78.3%) ИЛИ Grok 4.20 (2M) / Gemini 3.1 Pro (2M)
-  cost-sensitive большой ctx: claude-opus-4-6 (токенизатор эффективнее) или gemini-3.5-flash
+  cost-sensitive большой ctx: claude-opus-4-6 (токенизатор эффективнее) или gemini-3.8-flash
   >120K GLM: HARD BLOCK (G19)
   >100K GLM: HARD BLOCK (G19)
 

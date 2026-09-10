@@ -89,7 +89,7 @@ HOST_PROFILES:
     KNOWN_ISSUES:   G17 (provider prefix: DashScope vs OpenRouter),
                     G18 (preserve_thinking: true для agentic)
     THINKING_API:   thinking_budget: 10000  # 0 = отключён
-    API_STRINGS:    DashScope→qwen3-plus | OpenRouter→qwen/qwen3-plus  # G17
+    API_STRINGS:    DashScope→qwen3.8-max | OpenRouter→qwen/qwen3.8-max  # G17
     CONTEXT_LIMIT:  32K (надёжно), 128K (max)
 
   PROFILE[kimi]:
@@ -175,7 +175,7 @@ PRINCIPLES:
       Пример: Claude-хост генерирует Gemini-промпт → ZERO XML в выводе.
       GROK-ВЕТКА: IF TARGET_MODEL == grok → строгий JSON обязателен (риск Type H — JSON+проза) +
         G14 safe-params (иначе HTTP 400). Применить !pipeline.md GROK_JSON_TARGET (envelope+STRICT_MODE).
-        vendors/tier2.md (Grok 4.5/4.3) — источник по api_string/safe-params. (Полный Heavy-16 пак — эксклюзив High/Light.)
+  vendors/tier2.md (Grok 4.6/4.5/4.3) — источник по api_string/safe-params. (Полный Heavy-16 пак — только в H.)
 
   P2. VALIDATION_BEFORE_CONFIDENCE:
       Никогда не подтверждай без проверки.
@@ -394,10 +394,10 @@ MODEL_ROUTING_BY_TASK:
   CODING:    Claude Opus 5 (#1 Image-to-WebDev), Claude Sonnet 5 (balanced), Qwen3-Coder (budget)
   REASONING: Claude Opus 5, Gemini 3.1 Pro Deep Think, GPT-5.6 Sol
   CREATIVE:  Claude Fable 5 (Text #1), GPT-5.6 Terra, Gemini 3.1 Pro
-  RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.3 (X.com real-time)
+  RESEARCH:  Gemini 3.1 Pro (Google native), Grok 4.6 (X.com real-time)
   VISION:    Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro
   AGENTS:    Claude Opus 5 (Agent #1), Kimi K2.x (swarm), gpt-5.5-pro (Codex computer use)
-  BUDGET:    DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M)
+  BUDGET:    Gemini 3.8 Flash ($0.75/$3.75), DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.3-Flash ($0.15/$0.50)
   LONG_CTX:  Gemini 3.1 Pro (2M), Grok 4.20 (2M), Grok 4.3 (1M)
   RECALL:    Claude Opus 4.6 pinned для >500K (G8: Opus 4.7 MRCR 32.2%)
 
@@ -489,7 +489,7 @@ TRANSLATION_LAYER:
 
     claude→qwen:
       thinking_budget вместо effort
-      DashScope: qwen3-plus | OpenRouter: qwen/qwen3-plus (G17)
+      DashScope: qwen3.8-max | OpenRouter: qwen/qwen3.8-max (G17)
       preserve_thinking: true для agentic (G18)
 
     claude→kimi:
@@ -520,19 +520,19 @@ TRANSLATION_LAYER:
 
 RESOURCE_STRATEGY:
   IDEALIST:    Игнорируй стоимость, максимальное качество.
-  PRAGMATIST:  Бюджетные выборы: DeepSeek V4-Flash, GLM-5.1, Qwen3-Plus.
+  PRAGMATIST:  Бюджетные выборы: Gemini 3.8 Flash, DeepSeek V4-Flash, GLM-5.3-Flash, Qwen 3.8-Flash-Next.
 
   COST_ESTIMATE (примерный, 2026-07-13):
     Claude Opus 4.8/4.7: $5/$25 per M (in/out)
     Claude Sonnet 5:   $2/$10 per M (подорожание 01.09 отменено 10.08)
     Gemini 3.1 Pro:    $2/$12 per M (≤200K, без Deep Think)
     GPT-5.6 Sol:       $4/$0.40/$20 per M, промо не раньше 21.11 (Terra $2/$0.20/$12, Luna $0.20/$0.02/$1.20); >272K ×2 in, ×2 cached, ×1.5 out (G10)
-    Grok 4.5:          $2/$6 per M (Grok 4.3 — $1.25/$2.50)
+    Grok 4.6:          $2/$6 per M, cache $0.50 (от 200K → $4/$12, кэш $1); Grok 4.3 — $1.25/$2.50
     DeepSeek V4-Pro:   $0.66/$1.98 per M off-peak (peak $1.32/$3.96)
     DeepSeek V4-Flash: $0.22/$0.66 per M off-peak (peak $0.44/$1.32)
-    Qwen3-Plus:        $0.40/$1.20 per M
+    Qwen 3.8-Max:      $2/$6 per M (плоский тариф); 3.8-Flash-Next $0.16/$0.47
     Kimi K2.x:         $0.50/$2.50 per M
-    GLM-5.1:           $0.60/$1.80 per M (MIT license)
+    GLM-5.3-Flash:     $0.15 / $0.03 cached / $0.50 per M, 300K (GLM-5.2 MIT 1M — ~$1.40/$4.40)
 
   CONTEXT_WINDOW:
     <100K tokens  → Claude Opus 4.7 (без рисков)
