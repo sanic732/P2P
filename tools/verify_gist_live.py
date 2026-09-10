@@ -32,7 +32,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-DEFAULT_INDEX = Path("editions/8.4.7-L/boot/_index_v8L.md")
+ROOT = Path(__file__).resolve().parent.parent
 RAW_HOST = "https://gist.githubusercontent.com"
 SIZE_TOLERANCE = 0.15
 TIMEOUT = 30
@@ -51,6 +51,22 @@ URL_RE = re.compile(r'url:\s*"([^"]+)"')
 SHA_RE = re.compile(r'sha256:\s*"([0-9a-f]{64})"')
 SIZE_RE = re.compile(r"size_kb:\s*([0-9.]+)")
 GIST_ID_RE = re.compile(r"gist\.githubusercontent\.com/([^/]+)/([0-9a-f]+)/raw/")
+
+
+def latest_lite_index(root: Path = ROOT) -> Path | None:
+    """Индекс Lite самой свежей редакции.
+
+    Путь НЕ прибивается к номеру версии: после подъёма 8.4.7 → 8.4.8 каталог
+    editions/8.4.7-L исчезает, и зашитый умолчальный путь роняет проверку с FATAL
+    ровно в том шаге чек-листа, ради которого она заведена.
+    Сортировка — кортежем чисел, а не строкой: строковая на 8.4.10 выбрала бы 8.4.9.
+    """
+    found = []
+    for p in root.glob("editions/*-L/boot/_index_v8L.md"):
+        m = re.fullmatch(r"(\d+)\.(\d+)\.(\d+)-L", p.parent.parent.name)
+        if m:
+            found.append((tuple(int(g) for g in m.groups()), p))
+    return max(found)[1] if found else None
 
 
 def parse_index(path: Path) -> list[dict]:
@@ -124,10 +140,15 @@ def check(entry: dict) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--index", type=Path, default=DEFAULT_INDEX)
+    parser.add_argument("--index", type=Path, default=None)
     parser.add_argument("--json", action="store_true", help="машинный вывод")
     args = parser.parse_args()
 
+    if args.index is None:
+        args.index = latest_lite_index()
+        if args.index is None:
+            print("FATAL: не найден ни один editions/*-L/boot/_index_v8L.md", file=sys.stderr)
+            return 2
     if not args.index.is_file():
         print(f"FATAL: индекс не найден: {args.index}", file=sys.stderr)
         return 2
