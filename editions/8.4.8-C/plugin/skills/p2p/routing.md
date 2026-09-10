@@ -35,12 +35,12 @@ conflict_with_v8C2: Translation_Layer (or mode)
 Длинный контекст >200K    → gemini-3.1-pro-preview → grok-4.3
 Длинный контекст >1M      → grok-4.20           → —
 Real-time X/Twitter data  → grok-4.3            → —
-Agentic / computer use    → gpt-5.6-sol ⚠G22    → gpt-5.5-pro (Codex)
+Agentic / computer use    → gpt-5.6-sol ⚠G22    → claude-opus-5 (gpt-5.5-pro — legacy)
   (gpt-6-astra: запрет G22 на него НЕ переносится и не снимается — проверка по результату)
 Swarm многоагентный       → kimi-k2.6           → —
-Китайский контент         → qwen3.6-plus        → qwen3.7-max
-On-premises / MIT license → glm-5.1             → —
-Супер-дёшево              → deepseek-v4-flash   → glm-5.1-flash
+Китайский контент         → qwen3.8-max         → qwen3.8-flash-next
+On-premises / open-weight → qwen3.8-27b (Apache 2.0) → glm-5.2 (MIT)
+Супер-дёшево              → gemini-3.8-flash    → deepseek-v4-flash
 
 ⚠ WebDev / frontend: `gpt-6-astra (max)` (Arena WebDev #1) — в редакции C только ПО ЯВНОМУ
   УКАЗАНИЮ ОПЕРАТОРА (operator-explicit), как и `claude-fable-5-1`. Держать контекст ниже 272K
@@ -87,13 +87,13 @@ INPUT: task_tier, token_estimate, budget_limit
 
 IF budget_limit < $0.01:
     → deepseek-v4-flash ($0.22/$0.66 off-peak · $0.44/$1.32 peak)
-    → или glm-5.1-flash (MIT, до 100K — G19)
+    → или glm-5.3-flash ($0.15/$0.50, 300K)
 
 IF budget_limit = $0.01-$0.10:
-    → claude-sonnet-5 или qwen3.6-plus
+    → claude-sonnet-5 или qwen3.8-flash-next
 
 IF budget_limit > $0.10 OR tier ≥ T3:
-    → claude-opus-4-8 (best quality)
+    → claude-opus-5 (best quality)
 
 Formula:
   cost_estimate = (input_tokens/1M × price_in) + (output_tokens/1M × price_out)
@@ -108,13 +108,13 @@ Formula:
 [LLM_ROUTER]
 Classifier: claude-haiku-4-5 (быстро, дёшево)
 Классы:
-  code        → claude-opus-4-8
-  analysis    → claude-opus-4-8 / claude-sonnet-5
+  code        → claude-opus-5
+  analysis    → claude-opus-5 / claude-sonnet-5
   creative    → claude-sonnet-5
   factual     → gemini-3.1-pro (web grounding если нужно)
-  multimodal  → claude-opus-4-8
-  math        → claude-opus-4-8 + reasoning.md MCTS
-  chinese     → qwen3.6-plus
+  multimodal  → claude-opus-5
+  math        → claude-opus-5 + reasoning MCTS
+  chinese     → qwen3.8-max
   rt_social   → grok-4.3
 
 Cost: classifier ~$0.001 per query (экономия на дорогих моделях)

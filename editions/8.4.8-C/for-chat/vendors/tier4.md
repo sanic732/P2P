@@ -81,7 +81,7 @@ Context: 1.05M | Output: 128K | Cutoff: 2026-02-16
      неавторизованных учётных данных**. Sol исключён не только из ролей judge/verifier, но и из
      любого harness с доступом на запись в ФС или к хранилищу секретов — без явного allowlist
      и журнала аудита.
-- Terra: $2.50/$15 — balanced (замена GPT-5.5). Long-context ставки НЕ документированы.
+- Terra: $2 / $0.20 cached / $12 — balanced (замена GPT-5.5).
 - Luna: $1/$6 — cheap/fast; ⚠ MRCR collapse >512K (не для deep long-doc).
   Long-context ставки НЕ документированы; окно контекста официальной строки не имеет.
 

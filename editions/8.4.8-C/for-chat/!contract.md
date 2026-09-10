@@ -191,7 +191,7 @@ Must not:
 ```
 Особенности: ZERO XML (G2). thinkingLevel вместо budget_tokens (G4).
 
-### → Grok 4.3
+### → Grok 4.6 / 4.3
 
 ```json
 {

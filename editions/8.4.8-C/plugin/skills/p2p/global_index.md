@@ -60,7 +60,7 @@ v8C.2/
 ├── VENDORS (on-demand по задаче):
 │   ├── vendors/tier1.md       DeepSeek V4-Flash, Qwen 3.6, Kimi K2.x
 │   ├── vendors/tier2.md       Claude Sonnet 4.6, Gemini Flash
-│   ├── vendors/tier3.md       Claude Opus 4.7, Gemini 3.1 Pro, Grok 4.3
+│   ├── vendors/tier3.md       Claude Opus 5, Gemini 3.1 Pro, Grok 4.6/4.3, Qwen 3.8-Max
 │   └── vendors/tier4.md       Maximum quality: Grok Heavy, GPT-5.6 Sol
 │
 ├── plugin/                    [8.4.7] стандартная раскладка: компоненты в КОРНЕ плагина
