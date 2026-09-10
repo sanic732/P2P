@@ -53,14 +53,14 @@ SPLIT = {
         # Все модели вендора — в одном чанке, иначе триггер врёт: по слову «sonnet»
         # пользователь получил бы чанк, где Sonnet 4.6 нет (он лежал в tier2).
         ("VENDORS_CLAUDE", "claude|anthropic|opus|sonnet|haiku|fable",
-         [("vendors/tier1.md", None, "// §2. GPT-5.5"),
-          ("vendors/tier2.md", "// §1. CLAUDE SONNET 4.6", "// §2. GROK 4.3"),
+         [("vendors/tier1.md", None, "// §2. GPT"),
+          ("vendors/tier2.md", "// §1. CLAUDE SONNET 4.6", "// §2. GROK"),
           ("vendors/CLAUDE.md", None, None)]),
         ("VENDORS_FRONTIER", "gpt|openai|chatgpt|gemini.*pro|google|frontier",
-         [("vendors/tier1.md", "// §2. GPT-5.5", None)]),
+         [("vendors/tier1.md", "// §2. GPT", None)]),
         ("VENDOR_GROK", "grok|xai|heavy-16|firehose|x\\.com",
          [("vendors/grok.md", None, None),
-          ("vendors/tier2.md", "// §2. GROK 4.3", "// §3. DEEPSEEK V4-PRO")]),
+          ("vendors/tier2.md", "// §2. GROK", "// §3. DEEPSEEK V4-PRO")]),
         ("VENDORS_BUDGET",
          "deepseek|qwen|kimi|glm|tier3|tier4|flash|дешёв|бюджет|budget|китайск",
          [("vendors/tier2.md", "// §3. DEEPSEEK V4-PRO", None),
