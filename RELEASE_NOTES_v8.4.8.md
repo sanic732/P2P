@@ -83,6 +83,54 @@ High: ANON там — исполнение инструментов и neutral r
 форме. `G3` (Grok topic drift) в редакции Claude стоял «(RESERVED)», хотя Grok там
 поддерживается как цель.
 
+## Что было сломано и как исправлено
+
+Этот раздел — про наши собственные промахи, а не про чужие данные. Мы решили описать их
+прямо: пользователю важнее знать, где сборка врала, чем читать ровный список улучшений.
+
+1. **Lite полтора месяца грузил модули 8.4.6** — разобрано выше, в разделе про индекс `_index_v8L.md`.
+2. **10.09 при попытке починить 8.4.7-L ассет был перезалит с концами строк CRLF.** У части хостов
+   после этого перестали грузиться модули: символ `\r` попадал в хвост адреса, взятого из индекса,
+   и запрос уходил в никуда. Ассет возвращён к опубликованному в тот же день; тег `v8.4.7`
+   и история не трогались. В 8.4.8 сборка идёт из тега, а концы строк проверяет карантин
+   отдельной проверкой — по байтам, а не по тексту.
+3. **Прежний чек-лист выпуска не имел ни одного проверяемого пункта** — это была процедура на бумаге,
+   и 8.4.7 вышел мимо неё. Теперь публикацию запрещает `tools/release_gate.py`: пятнадцать проверок,
+   у каждой печатается число осмотренных объектов рядом с числом провалов, ноль осмотренных —
+   это провал. К заслону написана пара-слепота, которая ломает выпуск нарочно и проверяет,
+   что заслон это заметил.
+4. **Из сборок убран вшитый `live_specs.md`** — четыре копии по 62 КБ в каждой поставке. Факты
+   переехали в BASE редакций, свежее приходит по LIVE-каналу. Сборка стала меньше, а расхождение
+   «в файле одно, в канале другое» — невозможным.
+5. **Модули Lite теперь публикуются отдельным гистом на каждый выпуск.** Прежде один гист
+   переписывался поверх, и старые установки молча получали новые модули или, как в 8.4.7,
+   старые под новыми хешами.
+6. **Маршруты не доедут до уже установленного 8.4.7 через LIVE-канал.** Это ограничение, а не
+   недоделка: по каналу идёт форма DELTA, в ней есть цены, статусы, дедлайны и реестр ошибок,
+   но нет таблицы маршрутов. Новый маршрут webdev на `gpt-6-astra` появится только у тех,
+   кто поставит 8.4.8.
+
+## Факты 8.7.4
+
+- **GPT-6 Astra** (`gpt-6-astra`, GA 09.09): контекст 1 050 000, выход 128 000, cutoff 2026-04-30,
+  $10 / $1 cached / $12.50 cache-write / $50. Порог 272K действует вместе с кэшем — за ним ×2
+  на вход и на кэш и ×1.5 на выход, поэтому контекст держать ниже порога. Инструменты — только
+  через `/v1/responses`, на `/v1/chat/completions` вместе с `reasoning_effort` они дают 400.
+  Primary для webdev в High и Normal; в Claude — по явному указанию оператора.
+- **Вендор Grok теперь SpaceXAI** (бывш. xAI): сделка объявлена 02.02.2026, документация вендора
+  и борды Arena уже переименованы. Имя продукта Grok и api-строки не менялись; распознавание
+  хоста понимает оба написания.
+- **GLM-5.3-Flash**: промо истекло 09.09 в срок, действуют прайсовые $0.15 / $0.03 / $0.50.
+- **Qwen3.8-Max**: максимальный выход — 131 072 токена (прежние 128K были неточностью);
+  тариф плоский, 12/36 CNY за 1M, долларовые $2/$6 — приближение.
+- **MiniMax Token Plan**: Plus $22 / Max $55 / Ultra $132 в месяц (числа $20/$50/$120 мертвы).
+  Модель по-прежнему track-only: P2P на ней работает, но не маршрутизирует на неё.
+- **Claude Code 2.1.267**: `maxEffortLevel` ограничивает усилие на всех провайдерах, и при
+  корпоративном потолке побеждает нижний; хуки `PreModelSwitch` могут запретить смену модели,
+  а при неопределимом наборе хуков плагина смена отклоняется; появился
+  `--system-prompt-snapshot off`; пол версии для Fable 5.1 — v2.1.257; коды ошибок — 404
+  на недоступную модель и 400 на недоступный бета-заголовок, не 403.
+
 ## Обновление
 
 ```
@@ -128,6 +176,54 @@ were missing — three were wrong filenames for modules that do exist, two were 
 and have been ported from the Claude edition. The **error catalogue** is now declared as G1–G22
 (45 headings said G1–G20), seven code names were unified, and `G3` is documented in the Claude
 edition instead of sitting reserved.
+
+## What was broken and how it was fixed
+
+This section is about our own mistakes, not someone else's data. We chose to state them plainly:
+knowing where a build lied matters more than a tidy list of improvements.
+
+1. **Lite loaded 8.4.6 modules for six weeks** — described above, in the `_index_v8L.md` section.
+2. **On 10.09, while fixing 8.4.7-L, the asset was re-uploaded with CRLF line endings.** On some
+   hosts module loading then broke: a `\r` ended up at the tail of the URL read from the index,
+   so the request went nowhere. The asset was restored to the published one the same day; the
+   `v8.4.7` tag and the history were not touched. In 8.4.8 assets are built from the tag, and
+   line endings are checked by the release gate — on bytes, not on text.
+3. **The previous release checklist had no verifiable item in it** — a procedure on paper, and
+   8.4.7 shipped past it. Publication is now blocked by `tools/release_gate.py`: fifteen checks,
+   each printing the number of objects inspected next to the number of failures, with zero
+   inspected counting as a failure. A blind-test companion breaks a release on purpose and
+   verifies that the gate noticed.
+4. **The embedded `live_specs.md` is gone from the builds** — four copies of 62 KB each. The facts
+   moved into each edition's BASE, and fresh data arrives over the LIVE channel. Builds are
+   smaller, and "one thing in the file, another in the channel" is no longer possible.
+5. **Lite modules are now published as a separate gist per release.** Previously a single gist was
+   overwritten in place, so existing installs silently received new modules — or, as in 8.4.7,
+   old ones under new hashes.
+6. **Routing will not reach an installed 8.4.7 over the LIVE channel.** This is a limitation, not
+   an omission: the channel carries the DELTA form, which has prices, statuses, deadlines and the
+   error registry, but not the routing table. The new webdev route to `gpt-6-astra` reaches only
+   those who install 8.4.8.
+
+## Facts from 8.7.4
+
+- **GPT-6 Astra** (`gpt-6-astra`, GA 09.09): context 1,050,000, output 128,000, cutoff 2026-04-30,
+  $10 / $1 cached / $12.50 cache-write / $50. The 272K cliff applies to the cache as well — 2x on
+  input and cache, 1.5x on output beyond it — so keep context below the threshold. Tools go through
+  `/v1/responses` only; on `/v1/chat/completions` together with `reasoning_effort` they return 400.
+  Primary for webdev in High and Normal; in Claude, on explicit operator request only.
+- **The Grok vendor is now SpaceXAI** (formerly xAI): the deal was announced 2026-02-02, and the
+  vendor's docs and the Arena boards already carry the new name. The Grok product name and the
+  api strings are unchanged; host detection understands both spellings.
+- **GLM-5.3-Flash**: the promo expired on schedule on 09.09; list prices $0.15 / $0.03 / $0.50 apply.
+- **Qwen3.8-Max**: max output is 131,072 tokens (the earlier 128K was imprecise); the tariff is
+  flat at 12/36 CNY per 1M, and $2/$6 is an approximation.
+- **MiniMax Token Plan**: Plus $22 / Max $55 / Ultra $132 per month ($20/$50/$120 are dead).
+  The model stays track-only: P2P runs on it but does not route to it.
+- **Claude Code 2.1.267**: `maxEffortLevel` caps effort on every provider, and where an enterprise
+  cap also applies the lower one wins; `PreModelSwitch` hooks can block a model switch, and when
+  the hook set of a managed plugin cannot be determined the switch is refused; new
+  `--system-prompt-snapshot off`; the version floor for Fable 5.1 is v2.1.257; error codes are 404
+  for an unavailable model and 400 for an unavailable beta header, not 403.
 
 ## Update
 
