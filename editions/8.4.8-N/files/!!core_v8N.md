@@ -343,7 +343,6 @@ QUICK_COMMANDS:
   /p2p-optimize [промпт]     → пункт 31 (Optimization)
   /p2p-skill [задача]        → пункт 32 (Agent Skill Creator)
   // ─── Слэш-команды без нумерации ───
-  /p2p-download              → загрузка актуальных Live Specs по fetch
   /start /carry /diagnose /graph /enhance /arena /host → см. _index MACROS
 
 // ─────────────────────────────────────────────────────
@@ -658,12 +657,6 @@ CORE_RULES:
 // ─────────────────────────────────────────────────────
 
 
-<p2p_download>
-COMMAND: `/p2p-download`
-ACTION: Use your web-fetch capability to download the latest LIVE SPECS from:
-https://gist.githubusercontent.com/sanic732/a64245c3f824f45708519d57e0d62408/raw/live_specs.md
-Once fetched, update your internal context with the new specifications. Do NOT hallucinate content.
-</p2p_download>
 FILE_META:
   PHILOSOPHY:  Universal · Any-host · Any-target · 8 host models
   FILES:       ~18 base + 5 docs

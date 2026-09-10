@@ -155,8 +155,7 @@ LOAD_SEQUENCE:
   4. _live/MANIFEST.md    ← Дедлайны, версии (ежедневно)
   5. _live/live_core.md   ← Прайсинг, арена, маршрутизация
   6. _live/live_vendors.md ← G1-G22, vendor rules (еженедельно)
-  7. LIVE OVERRIDE       ← ТОЛЬКО по /p2p-download (гист). Вшитого файла в сборке НЕТ
-  8-N. ON-DEMAND          ← По триггеру ИЛИ MODULE_*=true|or (см. !!core_v8N.md §TRIGGERS)
+  7-N. ON-DEMAND          ← По триггеру ИЛИ MODULE_*=true|or (см. !!core_v8N.md §TRIGGERS)
 
   // Шаг загрузки ON-DEMAND модулей (после BASE+LIVE):
   // FOR each MODULE_X in VERSION_COMPAT:
