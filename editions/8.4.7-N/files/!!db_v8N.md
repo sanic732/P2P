@@ -180,7 +180,7 @@ G_ERRORS:
        Fix: Topic anchor каждые 3 сообщения:
             "[TOPIC ANCHOR: {task_summary}. Stay on target.]"
 
-  G4:  GEMINI_THINKING_BUDGET_PRO
+  G4:  GEMINI_THINKING_BUDGET_IGNORED
        Модель: Gemini 3.1 Pro
        Симптом: thinking_budget молча игнорируется
        Причина: Pro использует thinkingLevel, не thinking_budget
@@ -210,13 +210,13 @@ G_ERRORS:
        Fix: Для recall >500K → пин claude-opus-4-6
 
   // ── GPT ──
-  G9:  GPT55_SILENT_DOWNGRADE
+  G9:  GPT55_SILENT_QUALITY_DOWNGRADE
        Модель: GPT-5.5
        Симптом: Тихое снижение качества без ошибок
        Причина: >7 MUST/MUST NOT пар → silent downgrade
        Fix: Максимум 7 rule pairs
 
-  G10: GPT_PRICING_TRAP_272K
+  G10: GPT_CONTEXT_PRICING_TRAP_272K
        Модель: GPT-5.5, GPT-5.6 (Sol/Terra/Luna)
        Симптом: Неожиданный прыжок стоимости
        Причина: выше 272K весь запрос → x2 input, x2 CACHED input, x1.5 output. Sol: $4/$0.40/$20 → $8/$0.80/$30.
@@ -281,7 +281,7 @@ G_ERRORS:
        Симптом: HTTP 404 или неправильная модель
        Fix: DashScope → qwen3-plus, OpenRouter → qwen/qwen3-plus
 
-  G18: QWEN_PRESERVE_THINKING
+  G18: QWEN_PRESERVE_THINKING_AMNESIA
        Модель: Qwen 3.6 agentic
        Симптом: Thinking теряется
        Fix: preserve_thinking: true для agentic задач

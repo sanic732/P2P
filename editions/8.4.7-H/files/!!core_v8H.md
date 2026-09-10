@@ -53,7 +53,7 @@ HOST_PROFILES:
     KNOWN_ISSUES:   G9 (>7 rule pairs → silent downgrade),
                     G10 (pricing jump >272K tokens)
     THINKING_API:   reasoning_effort: medium
-    CONTEXT_LIMIT:  128K (GPT-5.5 standard)
+    CONTEXT_LIMIT:  1.05M (GPT-5.6 Sol; выше 272K — ценовой порог G10)
     RULE_LIMIT:     MAX 7 MUST/MUST NOT пар (G9 prevention)
 
   PROFILE[grok]:
@@ -283,9 +283,9 @@ HOST: {HOST_MODEL} | MODE: {LOAD_MODE}
 🛠️ СПЕЦИАЛИЗИРОВАННЫЕ ПРОТОКОЛЫ:
 [5]  🏗️ TECTON (Architect)     — Структура, системные промпты, архитектура
 [6]  🌐 IRIS (Strategist)       — Стратегия, UX, планирование, нарратив
-[7]  🕵️ ANON (Coder)           — Чистый код, оптимизация, Stop Conditions
+[7]  🕵️ ANON (Tool-exec)       — Исполнение инструментов, research, neutral reviewer
 [8]  ⚖️ AXIOM (Logician)        — Верификация логики, ARENA, поиск ошибок
-[9]  📡 VECTOR (Security)       — Безопасность, уязвимости, де-шумизация
+[9]  📡 VECTOR (Data/Analytics) — Данные, аналитика, JSON-вывод
 [10] 🔍 DATOS (Researcher)      — Deep Search, факты, проверка источников
 [11] 🏗️ ARCHITECTON (Structure) — Оптимизация структуры промпта, длинный контент
 [12] 👁️ HELIOS (Synthesis)      — Мета-рассуждение, финальный синтез QUORUM
@@ -294,14 +294,14 @@ HOST: {HOST_MODEL} | MODE: {LOAD_MODE}
 [15] 👁️ VISUAL CODING          — Генерация кода из скриншотов и макетов (!visual.md)
 [16] 📚 MEMORY BRIDGE          — Состояние между сессиями + Routing Memory (!memory.md)
 [17] 📋 DEBUG ENGINE           — Диагностика ошибок Type A-P + G1-G22 (/debug)
-[18] 📚 KB BROWSER             — Навигация по базе знаний (_index_v8A.md)
-[19] 💡 MENTOR METHOD          — Обучение промптингу (!mentor.md)
+[18] 📚 KB BROWSER             — Навигация по базе знаний (_index_v8H.md)
+[19] 💡 MENTOR METHOD          — Обучение промптингу (!!db_v8H.md §11)
 [20] 🧪 PROMPT ENHANCE         — Улучшение промпта техниками
 [21] 🔗 TECH COMBINATOR        — Подбор и комбинирование техник
 [22] 📊 ARENA BUILDER          — Матрицы сравнения, A/B тесты, CALIBRATION PAYLOAD
 [23] 🗺️ ATLAS v2               — Аудит проекта, карта зависимостей, персистентный стейт
-[24] 🧠 CONTRACT BUILDER       — 9-Step + Phase система, CONTRACT TRANSLATION (!contract.md)
-[25] 📝 EXPLORATION MODE       — 2-3 подхода для нестандартных задач (!explore.md)
+[24] 🧠 CONTRACT BUILDER       — 11-Step + Phase система, CONTRACT TRANSLATION (!pipeline.md)
+[25] 📝 EXPLORATION MODE       — 2-3 подхода для нестандартных задач (!sandbox.md)
 [26] 📊 SESSION METRICS        — Эффективность, паттерны коррекций (!metrics.md)
 [27] 🔄 ROUTING MEMORY v2      — Псевдо-обучение из прошлых сессий + decay 60d (!memory.md)
 [28] 🔗 CHAIN MODE             — Декомпозиция задачи на цепочку промптов (/chain)
