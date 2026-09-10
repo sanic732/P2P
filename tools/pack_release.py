@@ -26,7 +26,22 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 EDITIONS = ROOT / "editions"
-EXCLUDE = ("pack.", ".plugin", ".zip")
+# Служебное сборочное, чему в поставке не место.
+#
+# БЫЛО: EXCLUDE = ("pack.", ".plugin", ".zip") с проверкой f.endswith(EXCLUDE).
+# «pack.» не срабатывало НИКОГДА — имя файла на точку не кончается, оно кончается
+# на «pack.ps1». Из-за этого pack.ps1 и pack.sh уезжали внутрь плагина и внутрь
+# <ver>-C.zip в каждом выпуске, и G04 карантина краснела на четырёх записях.
+# Правило имени сопоставляется с ИМЕНЕМ ФАЙЛА целиком, а не с хвостом пути.
+EXCLUDE_NAMES = frozenset({"pack.ps1", "pack.sh", "pack.bat", "pack.cmd", "pack.py",
+                           ".DS_Store", "Thumbs.db"})
+EXCLUDE_SUFFIXES = (".plugin", ".zip")
+
+
+def excluded(path: str) -> bool:
+    """Служебное ли это. По имени файла целиком — не по хвосту пути."""
+    name = path.rsplit("/", 1)[-1]
+    return name in EXCLUDE_NAMES or path.endswith(EXCLUDE_SUFFIXES)
 
 
 def tracked(prefix: str) -> list[str]:
@@ -65,14 +80,14 @@ def main() -> int:
         if not files:
             sys.exit(f"FATAL: в git нет файлов редакции {ed}")
         items = [(f"{ed}/{f.split(f'editions/{ed}/', 1)[1]}", ROOT / f)
-                 for f in files if not f.endswith(EXCLUDE)]
+                 for f in files if not excluded(f)]
         target = out / f"{ed}.zip"
         write_zip(target, items)
         made.append((target, len(items)))
 
     # плагин: содержимое plugin/ кладётся в КОРЕНЬ архива
     pl = f"editions/{ver}-C/plugin/"
-    files = [f for f in tracked(pl) if not f.endswith(EXCLUDE)]
+    files = [f for f in tracked(pl) if not excluded(f)]
     if not files:
         sys.exit("FATAL: в git нет файлов плагина")
     items = [(f.split(pl, 1)[1], ROOT / f) for f in files]
