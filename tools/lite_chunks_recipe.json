@@ -19,13 +19,22 @@
     "!tool_budget.md",
     "!x_realtime.md"
   ],
-  "VENDORS": [
+  "VENDORS_CLAUDE": [
     "vendors/tier1.md",
     "vendors/tier2.md",
-    "vendors/tier3.md",
-    "vendors/tier4.md",
+    "vendors/CLAUDE.md"
+  ],
+  "VENDORS_FRONTIER": [
+    "vendors/tier1.md"
+  ],
+  "VENDOR_GROK": [
     "vendors/grok.md",
-    "vendors/claude.md"
+    "vendors/tier2.md"
+  ],
+  "VENDORS_BUDGET": [
+    "vendors/tier2.md",
+    "vendors/tier3.md",
+    "vendors/tier4.md"
   ],
   "RAG": [
     "!rag.md"

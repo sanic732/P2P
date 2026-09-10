@@ -112,6 +112,50 @@ def bump(old: str, new: str, apply: bool, rename: bool) -> int:
                 if apply:
                     f.write_text(head_re.sub(rf"\g<1>{new}\g<2>", t), encoding="utf-8")
 
+    # H1-ЗАГОЛОВОК README и frontmatter docs/README.md.
+    #
+    # ЧЕМ ОПЛАЧЕНО. Блок выше правит в README ОДНУ строку — «**Версия:** / **Version:**»,
+    # а SKIP выбрасывает из общего обхода и README, и весь /docs/. В итоге H1-заголовок
+    # не трогал никто: на 8.4.7 все восемь README редакций несли прошлый номер в первой
+    # строке при верной строке «Версия:» пятью строками ниже, на 8.4.8 таких файлов было
+    # двенадцать. Заголовок — первое, что видит пользователь на GitHub.
+    #
+    # Правило узкое НАМЕРЕННО: только первый H1 и только frontmatter. Файл целиком под
+    # замену не попадает — в README есть исторические таблицы, где номера описывают
+    # прошлое и меняться не должны. По той же причине заголовок, где номера версии нет
+    # ВОВСЕ (внутренний ярлык вида «P2P 8N.3»), здесь не чинится: вставлять номер туда,
+    # где его не было, скрипт не вправе. Такой случай ловит G09 карантина и правится
+    # руками — на 8.4.8 их было четыре.
+    for letter in "CHNL":
+        old_tag, new_tag = f"{old}-{letter}", f"{new}-{letter}"
+        for name in ("README.md", "README.en.md", "docs/README.md"):
+            f = EDITIONS / f"{old}-{letter}" / name
+            if not f.is_file():
+                continue
+            lines = f.read_text(encoding="utf-8").splitlines(keepends=True)
+            hits = 0
+            # первый H1 — в пределах шапки файла, после возможного frontmatter
+            for i, l in enumerate(lines[:60]):
+                if l.startswith("# "):
+                    if old_tag in l:
+                        lines[i] = l.replace(old_tag, new_tag)
+                        hits += 1
+                    break
+            # frontmatter version: он есть у docs/README.md и в общий обход не попадает
+            if lines and lines[0].startswith("---"):
+                for i, l in enumerate(lines[1:40], start=1):
+                    if l.startswith("---"):
+                        break
+                    if l.lstrip().startswith("version:") and old_tag in l:
+                        lines[i] = l.replace(old_tag, new_tag)
+                        hits += 1
+            if hits:
+                changed_lines += hits
+                per_class["README заголовок / frontmatter"] = \
+                    per_class.get("README заголовок / frontmatter", 0) + hits
+                if apply:
+                    f.write_text("".join(lines), encoding="utf-8", newline="")
+
     # манифест маркетплейса: путь в source ломает кнопку Update, если отстанет
     if MARKETPLACE.is_file():
         t = MARKETPLACE.read_text(encoding="utf-8")

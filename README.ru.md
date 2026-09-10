@@ -46,7 +46,7 @@ P2P (Prompt-to-Prompt) — модульная оркестрирующая си�
 ### Вариант A — плагин (Claude Code / Cowork)
 
 ```
-/plugin marketplace add https://github.com/sanic732/P2P-4PDA-edition
+/plugin marketplace add https://github.com/sanic732/P2P
 /plugin install p2p-v8c3@p2p
 ```
 
@@ -106,6 +106,6 @@ P2P (Prompt-to-Prompt) — модульная оркестрирующая си�
 
 - Не запускается → [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md) или [`FAQ.md`](FAQ.md)
 - Не понятно как пользоваться → `/p2p-teacher` после установки
-- Багрепорт / предложение → [Issues](https://github.com/sanic732/P2P-4PDA-edition/issues) или 4PDA-ветка
+- Багрепорт / предложение → [Issues](https://github.com/sanic732/P2P/issues) или 4PDA-ветка
 
 **Лицензия:** MIT (форкай, модифицируй; не вырезай `NOTICE`). **Автор:** sanic732 · **4PDA:** [Prompt to Prompt 8 NEXUS](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576)
