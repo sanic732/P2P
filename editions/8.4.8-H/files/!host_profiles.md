@@ -25,7 +25,7 @@ HOST_PROFILE_TABLE:
   grok:     { NATIVE_PARALLEL_AGENTS: HEAVY_16_NATIVE,  XML_POLICY: code-fences, X_FIREHOSE: true,
               NOTES: "Type B/H/T/X; safe-list params (G14); temp 0.3 analytical; budget 25, ANON ≤18" }
   claude:   { NATIVE_PARALLEL_AGENTS: NATIVE_SUBAGENTS, XML_POLICY: xml-native, X_FIREHOSE: false,
-              NOTES: "no temp w/ thinking (G7); no budget_tokens; Fable 5 / Opus 4.8; cache TTL 5min" }
+              NOTES: "no temp w/ thinking (G7); no budget_tokens; Opus 5 PRIMARY / Fable 5.1; cache TTL 5min" }
   gemini:   { NATIVE_PARALLEL_AGENTS: SIMULATED_QUORUM, XML_POLICY: zero-xml,  X_FIREHOSE: false,
               NOTES: "Deep Think temp=1.0 (G1); ZERO-XML (G2); thinkingLevel (G4); memory nuke (G13); Error 13" }
   gpt:      { NATIVE_PARALLEL_AGENTS: SIMULATED_QUORUM, XML_POLICY: adaptive,  X_FIREHOSE: false,
