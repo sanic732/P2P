@@ -403,9 +403,13 @@ API_STRINGS:
     DashScope:   qwen3.7-max           ← Tier 4 (Agent Era) — TEXT-ONLY, без vision
     DashScope:   qwen3.7-plus          ← Tier 2-3 multimodal (1M / out 65K)
     DashScope:   qwen3.6-35b-a3b       ← Tier 1 open-weight Apache-2.0 (262K; $0.14/$1.00)
-    DashScope:   qwen3.8-max          ← GA 03.08.2026 ($2/$6, cache $0.25, 1M / out 128K);
+    DashScope:   qwen3.8-max          ← GA 03.08.2026 ($2/$6, cache $0.25, 1M / out 131 072);
       открытые веса Qwen3.8-27B (Apache 2.0). strict JSON ПОДДЕРЖИВАЕТСЯ — json_schema strict
       по Model Studio 02.09; thinking выключается enable_thinking=false. Прежний запрет снят 8.4.7.
+      ТАРИФ ПЛОСКИЙ, без ступеней по контексту (help.aliyun.com, прочитано 10.09.2026):
+      12 / 36 CNY за 1M (Сингапур 14.988 / 44.965); $2/$6 — долларовое приближение.
+      Карточка со ступенями $1.20→$3.00 и потолком 256K ОПРОВЕРГНУТА — на странице её нет.
+      max chain-of-thought 262 144.
     DashScope:   qwen3.6-plus          ← Tier 2-3
     OpenRouter:  qwen/qwen3.6-plus     ← Tier 2-3 (G17: prefix required)
 

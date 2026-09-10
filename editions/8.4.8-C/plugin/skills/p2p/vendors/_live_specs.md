@@ -46,8 +46,9 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **GPT** | 5.6 Luna | `gpt-5.6-luna` | ⚠ офиц. строки нет | $1/$6 (long-context НЕ документирован) | T1-2 (⚠ MRCR collapse >512K) | G9, G10 |
 | **DeepSeek** | V4 Pro | `deepseek-v4-pro` | 1M | $0.66/$1.98 off-peak · $1.32/$3.96 peak, cache-hit $0.022/$0.044 | T2-3 ✅ GA 13.08 (веса MIT) | G15 |
 | **DeepSeek** | V4 Flash | `deepseek-v4-flash` | 1M | $0.22/$0.66 off-peak · $0.44/$1.32 peak | T0-1 (public beta, 0731) | G15, G16 (алиасы мертвы 24.07) |
-| **Qwen** | 3.8 Max | `qwen3.8-max` | 1M / out 128K | $2/$6, cache $0.25 | T4 ✅ GA 03.08 (веса 3.8-27B Apache 2.0; strict JSON ок) | G17, G18 |
+| **Qwen** | 3.8 Max | `qwen3.8-max` | 1M / out 131 072 | $2/$6, cache $0.25 (тариф плоский: 12/36 CNY за 1M) | T4 ✅ GA 03.08 (веса 3.8-27B Apache 2.0; strict JSON ок) | G17, G18 |
 | **Qwen** | 3.7 Max | `qwen3.7-max` | 1M | $2.50/$7.50 | T4 (text-only, без vision) | G17, G18 |
+| **Qwen** | 3.8 Flash-Next | `qwen3.8-flash-next` | — | $0.16/$0.47 | T2 (дебют Arena WebDev #9, 1631 prelim; цена опубликована 10.09) | G17, G18 |
 | **Qwen** | 3.7-Plus | `qwen3.7-plus` | 1M / out 65K | $0.32/$1.28 (расхождение: и $0.40/$1.60) | T2-3 (multimodal) | G17, G18 |
 | **Qwen** | 3.6-35B-A3B | `qwen3.6-35b-a3b` | 262,144 | $0.14/$1.00 | T1 (open-weight Apache-2.0) | G17, G18 |
 | **Qwen** | 3.6-Plus | `qwen3.6-plus` | 1M | budget | T2-3 | G17, G18 |
@@ -55,7 +56,7 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Kimi** | K2.6 | `kimi-k2.6` | 256K-1M | TBD | T3 swarm | G20, Type M |
 | **Kimi** | K2.7 Code | `kimi-k2.7-code` | 256K | $0.95/$4 | T2-3 (open-weight) | Type M |
 | **GLM** | 5.3 | `glm-5.3` | 1M | $1.40/$4.40, cache $0.26 | T3-4 (14.08; веса на HF, 753B) | — |
-| **GLM** | 5.3 Flash | `glm-5.3-flash` | 300K / out 131K | $0.15/$0.50 (промо $0.075/$0.25 до 09.09) | T2 (26.08 = «Ox Alpha», MIT 320B/18B, мультимодальная) | — |
+| **GLM** | 5.3 Flash | `glm-5.3-flash` | 300K / out 131K | $0.15/$0.03 cached/$0.50 (промо кончилось 09.09.2026 24:00 UTC+8) | T2 (26.08 = «Ox Alpha», MIT 320B/18B, мультимодальная) | — |
 | **GLM** | 5.2 | `glm-5.2` | 1M | $1.40/$4.40 | T3-4 (MIT; WebDev вне топ-10 (04.09)) | — |
 | **GLM** | 5.1 | `glm-5.1` | 200K (eff 120K) | budget | T3 | G19 |
 | **MiniMax** | M3 | `minimax-m3` | 1M | $0.30/$1.20 | track-only | — |
@@ -94,7 +95,7 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
 - Голый алиас `gpt-5.6` — никогда в автоматических путях (резолвится в Sol, самый дорогой).
 - `grok-4.5-heavy` / `-expert` / `-fast` — таких эндпоинтов НЕ существует.
 - `deepseek-chat` / `deepseek-reasoner` — мертвы с 24.07 15:59 UTC.
-- `qwen3.8-max` — **GA с 03.08.2026** ($2/$6, cache $0.25, 1M/128K), плюс открытые веса
+- `qwen3.8-max` — **GA с 03.08.2026** ($2/$6, cache $0.25, 1M / out 131 072), плюс открытые веса
   Qwen3.8-27B (Apache 2.0). Запрет на strict-JSON СНЯТ: Model Studio (02.09) указывает
   `json_schema strict` для линеек 3.8-Max и 3.8-Flash, thinking отключается `enable_thinking=false`.
   Прежняя запись «preview, strict-JSON структурно невозможен» устарела.

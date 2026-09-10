@@ -64,7 +64,7 @@ CONTRACT_TRANSLATION:
   qwen:     tool_use plain; preserve_thinking:true agentic (G18)
   kimi:     thinking on|off; Mental Sandbox для strict format; checkpoint before writes
   glm:      ## Structured Segmentation; temp=0 для JSON
-  minimax:  adaptive plain-text/Markdown (host-only; Token Plan billing — таймер, не токены)
+  minimax:  adaptive plain-text/Markdown (host-only; Token Plan billing — таймер, не токены; Plus $22 / Max $55 / Ultra $132 в мес., 10.09.2026)
   manus:    adaptive plain-text/Markdown (host-only; agent mode; ⚠ CRITICAL geopolitical risk)
 
 // §5. UNIFIED OUTPUT SCHEMA (downstream !memory/!metrics/!debug зависят от этого)
