@@ -61,7 +61,7 @@ MODULE_REGISTRY:
     26. docs/CHANGELOG_v8N3.md
 
 LOAD_ORDER:
-  REQUIRED: 1 → 2 → 3 → 4 → 5 → 6 (+ _live/live_specs.md OVERRIDE при наличии)
+  REQUIRED: 1 → 2 → 3 → 4 → 5 → 6 (+ LIVE OVERRIDE по /p2p-download, если есть сеть)
   ON_DEMAND: 7-13 по триггеру; 13a-13f (v8N.3) по триггеру ИЛИ MODULE_*=true|or
   VENDORS: 14-17 по запросу "vendor check|vendor info|[model name]"
 

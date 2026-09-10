@@ -59,8 +59,8 @@ HOST_MODEL_AUTODETECT:
     HOST_PROFILE ← !!core_v8N.md §1 HOST_PROFILES → PROFILE[<HOST_MODEL>]
                    (HOST_IDENTITY / SYNTAX_SELF / THINKING_API / KNOWN_ISSUES / CONTEXT_LIMIT)
     minimax / manus → отдельного PROFILE в §1 пока нет → дефолт PLAIN_TEXT + adaptive XML +
-                      simulated QUORUM; лимиты/цены — из _live/live_specs.md (TRACK-ONLY).
-    per-vendor правила ← vendors/ (tier1-4) ; цены/лимиты ← _live/live_core.md + live_specs.md
+                      simulated QUORUM; лимиты/цены — из _live/live_core.md (TRACK-ONLY).
+    per-vendor правила ← vendors/ (tier1-4) ; цены/лимиты ← _live/live_core.md + _live/live_vendors.md
   SUBMODEL: по возможности уточни субмодель (opus-4-8 / gemini-3.1-pro-preview / qwen3-max), иначе "".
 
 // ─── БЛОК 1: HOST CONFIG (пусто → сработает автодетект БЛОК 0) ───
@@ -155,7 +155,7 @@ LOAD_SEQUENCE:
   4. _live/MANIFEST.md    ← Дедлайны, версии (ежедневно)
   5. _live/live_core.md   ← Прайсинг, арена, маршрутизация
   6. _live/live_vendors.md ← G1-G22, vendor rules (еженедельно)
-  7. _live/live_specs.md ← OVERRIDE-спека v8.6.1 (Fable 5, Opus 4.8) при наличии
+  7. LIVE OVERRIDE       ← ТОЛЬКО по /p2p-download (гист). Вшитого файла в сборке НЕТ
   8-N. ON-DEMAND          ← По триггеру ИЛИ MODULE_*=true|or (см. !!core_v8N.md §TRIGGERS)
 
   // Шаг загрузки ON-DEMAND модулей (после BASE+LIVE):

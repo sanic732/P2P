@@ -5,7 +5,7 @@ type: HOST_ENGINE
 priority: HIGH
 load_order: 6.6
 triggers: "router|маршрут|llm router|выбор провайдера|fallback|contract translation|какая модель"
-depends_on: "!host_profiles.md, !!db_v8H.md, _live/live_core.md, _live/live_specs.md"
+depends_on: "!host_profiles.md, !!db_v8H.md, _live/live_core.md, _live/live_vendors.md"
 compatible_with: "all v8H files"
 tags: router, multi-provider, fallback, contract-translation, v8h3
 ---

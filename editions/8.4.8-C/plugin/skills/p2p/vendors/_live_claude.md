@@ -11,7 +11,8 @@ tags: live, claude, extended-thinking, pricing, anthropic
 # P2P — LIVE CLAUDE SPECS (vendors/_live_claude.md)
 
 > Обновляй при каждом релизе Anthropic. Источник: https://docs.anthropic.com / https://www.anthropic.com/news
-> При конфликте OVERRIDE-приоритет у `vendors/live_specs.md` (VERSION новее → перебивает).
+> При конфликте OVERRIDE-приоритет у LIVE-канала (`/p2p-download` → gist `a64245c3…/raw/live_specs.md`,
+> VERSION новее → перебивает). Вшитой копии в сборке нет — без сети действует этот файл.
 
 ---
 

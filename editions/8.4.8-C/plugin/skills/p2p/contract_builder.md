@@ -140,11 +140,12 @@ P2P работает НА host-модели (для этой редакции �
 Перед адаптацией (PILOT co-pilot → спроси простыми словами; manual → выведи и иди дальше):
 1. Target-модель? Если не задана в `PROJECT_CARD.target_model` → возьми из запроса или уточни.
 2. Доступ пользователя? free tier | paid — определяет реальный контекст и rate limits target-модели.
-3. Сверься с `vendors/_live_specs.md` и `vendors/live_specs_*.md`: context window, output limit, цена, G-errors target-модели.
+3. Сверься с `vendors/_live_specs.md` (BASE-слой сборки): context window, output limit, цена, G-errors target-модели.
 4. Если ожидаемый объём задачи > эффективного лимита target → предложи разбивку:
    → Chain Mode [9] (цепочка self-contained промптов) или SCOPE.HELM [25] (большие проекты).
 5. free tier + тяжёлая задача → предупреди о лимитах; предложи разбить ИЛИ более дешёвую/доступную модель (`routing.md`).
-Источник метрик — всегда свежий live_specs (обновляется автором ~раз в 1-2 недели; auto-detect при старте).
+Источник метрик — `vendors/_live_*` на дату LAST_VERIFIED; свежее приходит LIVE-каналом по `/p2p-download`
+(автор перезаливает гист ~раз в 1-2 недели). Вшитого live_specs.md в сборке нет.
 
 ---
 

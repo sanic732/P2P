@@ -4,7 +4,7 @@ version: 8.4.8-C
 module_type: live
 depends_on: vendors/_live_manifest.md
 last_updated: 2026-09-04
-live_specs_ref: live_specs.md
+live_specs_ref: gist:a64245c3f824f45708519d57e0d62408/live_specs.md
 scope: All LLM vendor live specs for v8C.3 — API strings, costs, context windows, G-errors. Quick reference for Translation Layer and routing decisions.
 tags: live, vendors, api-strings, pricing, g-errors, routing
 ---
@@ -12,7 +12,7 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 # P2P — LIVE VENDOR SPECS (vendors/_live_specs.md)
 
 > Single source of truth for all active LLMs. Update on new releases.  
-> Full live specs (June 2026): `vendors/live_specs.md` (PRIORITY: OVERRIDE)  
+> Full live specs: LIVE-канал по `/p2p-download` (gist `a64245c3…/raw/live_specs.md`, PRIORITY: OVERRIDE) — в сборку не вшит  
 > Claude-specific data → vendors/_live_claude.md
 
 ---
@@ -241,7 +241,7 @@ id: LIVE_VENDORS_V8C
 type: live
 edition: CLAUDE_NATIVE
 last_verified: 2026-09-04
-live_specs_ref: live_specs.md
+live_specs_ref: gist:a64245c3f824f45708519d57e0d62408/live_specs.md
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================
 // ═══════════════════════════════════════════════════════
