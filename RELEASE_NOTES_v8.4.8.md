@@ -107,10 +107,85 @@ High: ANON там — исполнение инструментов и neutral r
    В 8.4.7 это выглядело так: индекс указывал на ревизию гиста от 26.07 — то есть на модули
    **8.4.6**, — а sha256 рядом были записаны от них же, поэтому проверка целостности сходилась
    и о подмене не сообщала.
-6. **Маршруты не доедут до уже установленного 8.4.7 через LIVE-канал.** Это ограничение, а не
-   недоделка: по каналу идёт форма DELTA, в ней есть цены, статусы, дедлайны и реестр ошибок,
-   но нет таблицы маршрутов. Новый маршрут webdev на `gpt-6-astra` появится только у тех,
-   кто поставит 8.4.8.
+6. **Форма DELTA шла на LIVE-канал без таблицы маршрутов** — то есть установленные сборки
+   получали новые цены и сроки, но не новые маршруты. Причина была в наследовании: сборщик форм
+   выбрасывал из дельты те же секции, что из полной формы, а `HOST_PROFILE_DELTA` выбрасывался
+   с верным обоснованием «в новой сборке это уже вшито в BASE» — для дельты, которая едет
+   в СТАРЫЕ сборки, обоснование обратное. Исправлено: `ROUTING_MATRIX` и `HOST_PROFILE_DELTA`
+   входят в дельту обязательно, их отсутствие роняет проверку ненулевым кодом. Дельта на канале
+   выросла с 27,9 до 53,1 КБ — маршруты теперь доезжают и до 8.4.7.
+
+## Линейки моделей приведены к 10.09 во всех четырёх редакциях
+
+Сборка знала модели по состоянию на июль. Это чинилось не выборочно, а сплошным проходом:
+из всех файлов поставки выписаны идентификаторы моделей, отобраны устаревшие, и каждая строка
+правилась по списку замен с проверкой якоря — якорь обязан совпасть ровно один раз, иначе
+правки не применяются вовсе. Всего **343 замены**: C — 130, H — 108, N — 84, Lite — 21.
+
+- **Grok 4.6** — флагман (было 4.5): $2 / $0.50 cached / $6, от 200K → $4 / $1 / $12, причём
+  за порогом дорожает и кэш. Grok 4.5 остался как fallback, у него кэш дешевле — $0.30.
+  Grok 4.7 объявлен на 12.09 записью основателя; спецификации у вендора нет, поэтому
+  в маршруты не заводится.
+- **Gemini 3.8 Flash** — bulk primary (было 3.6): $0.75 / $3.75, cache-read $0.075 — это вводная
+  цена **всей линии** Flash до 31.12, с 01.01.2027 вдвое дороже.
+- **GLM-5.3 и 5.3-Flash** вместо GLM-5.1: Flash — 300K контекста, $0.15 / $0.03 / $0.50.
+  GLM-5.1 остался в каталоге как legacy с дефектом G19 (обвал контекста выше 120K).
+- **Qwen 3.8-Max** вместо 3.6-Plus: 1M контекста, максимальный выход 131 072, плоский тариф.
+  Рядом 3.8-Flash-Next — $0.16 / $0.47. Линейки `qwen3-*` и `3.6-*` снимаются 10.10; список
+  идентификаторов у вендора не прочитан, поэтому в сборке его нет — только предупреждение.
+- **Kimi K3** вместо снятого 31.08 K2.5.
+- **Код, анализ и математика** ведут на `claude-opus-5` (было Opus 4.8).
+
+Отдельно правились **веса маршрутизации** — те проценты, по которым выбирается модель внутри
+задачи. Там оставались `glm-5.1` (30 % бюджетных задач) и `qwen3.6-plus` (12 % кода): модель
+могла быть названа верно в справочнике и при этом выбрана неверно на деле.
+
+**Что намеренно не тронуто:** записи о снятых моделях и датах ретайра, история версий, карточки
+дефектов G9/G14/G17/G18/G19, предупреждения о несуществующих идентификаторах вроде
+`grok-4.5-heavy`, `gpt-5.5-pro` в роли Codex. Это законные упоминания старых имён, а не устаревшие
+данные — разница проверялась глазами по каждой строке.
+
+## Гисты: почему свой подставить не получится
+
+Модули Lite лежат в gist, и подменить адрес на собственный не выйдет — сборка это заметит
+и откажется работать. Так задумано, и вот механика.
+
+Каждая запись индекса несёт три вещи: адрес с **вшитой ревизией**, `sha256` содержимого
+и размер. Ревизия gist неизменяема: файл по такому адресу не меняется никогда, сколько бы раз
+поверх ни заливали. Загрузив модуль, сборка считает хеш и сверяет с объявленным, а в конце
+каждого файла ищет собственный маркер `EOF_MARKER_<ИМЯ>_VALIDATED` — он подтверждает, что файл
+пришёл целиком, а не обрезанным.
+
+Практический вывод для тех, кто захочет держать свою копию: **менять надо не адрес, а всю тройку
+сразу** — адрес, хеш и размер, — иначе проверка встанет. И этого всё равно недостаточно: часть
+хостов отказывается работать, когда объявленное расходится с фактическим, даже если содержимое
+безобидное. Проверено на живых моделях 10.09: сборка, у которой индекс говорил одно, а gist
+отдавал другое, на одном хосте ворчала в отчёте, а на другом молча упиралась и не грузила ничего.
+Расхождение в размерах на этом фоне выглядит невинно — а ведёт себя как поломка.
+
+Поэтому в 8.4.8 модули публикуются **отдельным gist на выпуск**, все записи ведут на один
+и тот же gist и одну ревизию, а хеши пересчитаны по фактическим файлам и сверены с тем, что
+реально отдаёт сеть. Проверка `verify_gist_live` ходит по адресу **без** ревизии — то есть
+спрашивает источник, а не собственное объявление, — и падает, если записи разъехались
+по разным gist или ревизиям.
+
+## Что ещё нашлось по дороге
+
+Эти дефекты не видны пользователю, но каждый мог испортить следующий выпуск.
+
+- **Сборщик модулей Lite рвал нарезку при обновлении линейки моделей.** Границы кусков были
+  привязаны к заголовкам с номером версии — `// §2. GPT-5.5`, `// §2. GROK 4.3`. Стоило
+  обновить заголовок под новую модель, и сборка падала. Границы отвязаны от номеров.
+- **Предзагрузчик High заявлял работу «БЕЗ сети / fetch»** — верно для схемы, где спецификации
+  лежали вшитым файлом, и неверно с 8.4.8, где они приходят по каналу. Строка пережила пять
+  выпусков, ни разу не соврав, и стала неверной ровно тогда, когда вшитый файл сняли.
+- **`vendors/CLAUDE.md` в High пишется заглавными, а индекс и предзагрузчик зовут его строчными.**
+  На Windows это незаметно, на регистрозависимой файловой системе половина ссылок не найдёт файл.
+  Тянется с 14.07, когда файл переименовали и не поправили ссылки.
+- **Переход выпуска на свой gist проходил все три заслона зелёными.** Инструмент переноса менял
+  только ревизию, а страж считал ревизии, но не сами gist: отставшая запись вела на старый gist,
+  где лежат те же файлы, — хеш сходился, и всё выглядело исправным. Добавлены ключ переноса
+  и проверка «все записи на одном gist».
 
 ## Факты 8.7.4
 
@@ -202,10 +277,48 @@ knowing where a build lied matters more than a tidy list of improvements.
    overwritten in place, so an install silently received modules it was not built for. In 8.4.7 the
    index pinned a gist revision from 26.07 — the **8.4.6** modules — and the sha256 values beside it
    had been written from those same files, so the integrity check matched and reported nothing.
-6. **Routing will not reach an installed 8.4.7 over the LIVE channel.** This is a limitation, not
-   an omission: the channel carries the DELTA form, which has prices, statuses, deadlines and the
-   error registry, but not the routing table. The new webdev route to `gpt-6-astra` reaches only
-   those who install 8.4.8.
+6. **The DELTA form went to the LIVE channel without the routing table** — installed builds got
+   new prices and deadlines but not new routes. The cause was inheritance: the form builder dropped
+   the same sections from DELTA as from the full form, and `HOST_PROFILE_DELTA` was dropped for
+   a sound reason — "already baked into BASE in the new build" — which is exactly backwards for
+   a delta that travels to OLD builds. Fixed: `ROUTING_MATRIX` and `HOST_PROFILE_DELTA` are now
+   mandatory in DELTA, and their absence fails the check with a non-zero code. The delta on the
+   channel grew from 27.9 to 53.1 KB — routes now reach 8.4.7 as well.
+
+## Model lines brought up to date across all four editions
+
+The build knew models as of July. This was fixed by a sweep, not by spot edits: every model
+identifier was extracted from the delivery files, the outdated ones selected, and each line
+replaced through an anchored substitution list — an anchor must match exactly once, otherwise
+nothing is applied. **343 replacements** in total: C — 130, H — 108, N — 84, Lite — 21.
+
+Grok 4.6 is the flagship ($2 / $0.50 cached / $6; above 200K it doubles, cache included) ·
+Gemini 3.8 Flash is the bulk primary at $0.75/$3.75, the introductory price of the whole Flash
+line until 31.12 · GLM-5.3 and 5.3-Flash replace GLM-5.1 · Qwen 3.8-Max (max output 131,072)
+replaces 3.6-Plus · Kimi K3 replaces K2.5, retired 31.08 · code, analysis and math now route to
+`claude-opus-5`. Routing **weights** were corrected too — `glm-5.1` still held 30% of budget tasks
+and `qwen3.6-plus` 12% of coding, so a model could be described correctly and still be picked
+incorrectly. Retirement records, version history and defect cards keep their old model names
+on purpose: those are legitimate mentions, not stale data.
+
+## Gists: substituting your own will not work
+
+Lite modules live in a gist, and pointing the build at your own copy will not work — the build
+notices and refuses. Each index entry carries three things: a URL with a **pinned revision**,
+the `sha256` of the contents, and the size. A gist revision is immutable, so that address never
+changes no matter how many times you push on top. After loading, the build hashes the file,
+compares it with the declaration, and looks for its own `EOF_MARKER_<NAME>_VALIDATED` at the end
+to confirm the file arrived whole.
+
+So a private copy means changing **all three** — URL, hash and size — and even that is not enough:
+some hosts refuse to work when the declared and the actual disagree, however harmless the content.
+Verified on live models on 10.09 — a build whose index said one thing while the gist served another
+merely complained on one host and silently refused to load anything on another.
+
+That is why 8.4.8 publishes modules as **a separate gist per release**, with every entry pointing
+at one gist and one revision, and hashes recomputed from the actual files and verified against what
+the network really serves. `verify_gist_live` fetches **without** the pinned revision — it asks the
+source rather than the declaration — and fails if entries have drifted apart.
 
 ## Facts from 8.7.4
 
