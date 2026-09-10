@@ -46,7 +46,7 @@ conflict_with_v8C2: none
 **Применение в P2P:**
 ```
 [LONGRAG]
-target_model: claude-opus-4-8 (1M ctx) / gemini-3.1-pro (1M ctx)
+target_model: claude-opus-4-8 (1M ctx) / gemini-3.1-pro (2M ctx)
 retrieval_unit: "full document" или "major section" (не чанки)
 top_k: 3-5 (меньше units, но больше каждый)
 ```

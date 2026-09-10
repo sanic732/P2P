@@ -94,7 +94,7 @@ DEEPSEEK_V4_PRO:
   api_string:     deepseek-v4-pro
   arena_elo:      SWE-bench Verified 80.6%
   context:        1M | output: 384K
-  pricing:        $0.435/$0.87 per M  (BUDGET POWERHOUSE)
+  pricing:        $0.66/$1.98 per M off-peak · $1.32/$3.96 peak  (BUDGET POWERHOUSE)
   status:         ✅ GA 13.08.2026 для deepseek-v4-pro (чекпойнт 0813, веса MIT, нативный
                   OpenAI Responses API). deepseek-v4-flash-0731 — public beta, не GA.
                   Прежняя пометка «вся линейка V4 — Preview» опиралась на changelog

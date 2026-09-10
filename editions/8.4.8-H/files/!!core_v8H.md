@@ -562,8 +562,8 @@ RESOURCE_STRATEGY:
     Gemini 3.1 Pro:    $2/$12 per M (≤200K, без Deep Think)
     GPT-5.6 Sol:       $4/$0.40/$20 per M, промо не раньше 21.11 (Terra $2/$0.20/$12, Luna $0.20/$0.02/$1.20); >272K ×2 in, ×2 cached, ×1.5 out (G10)
     Grok 4.5:          $2/$6 per M (Grok 4.3 — $1.25/$2.50)
-    DeepSeek V4-Pro:   $0.435/$0.87 per M
-    DeepSeek V4-Flash: $0.14/$0.28 per M
+    DeepSeek V4-Pro:   $0.66/$1.98 per M off-peak (peak $1.32/$3.96)
+    DeepSeek V4-Flash: $0.22/$0.66 per M off-peak (peak $0.44/$1.32)
     Qwen3-Plus:        $0.40/$1.20 per M
     Kimi K2.x:         $0.50/$2.50 per M
     GLM-5.1:           $0.60/$1.80 per M (MIT license)
@@ -572,7 +572,7 @@ RESOURCE_STRATEGY:
     <100K tokens  → Claude Opus 4.7 (без рисков)
     100K-160K     → Claude Opus 4.7 (G6: inflation, эффективно ~160K)
     160K-200K     → Claude Sonnet 4.6 (нет G6)
-    >200K         → Gemini 3.1 Pro (1M) или Grok 4.3 (2M)
+    >200K         → Gemini 3.1 Pro (2M) / Grok 4.20 (2M) / Grok 4.3 (1M)
     >500K + recall → Claude Opus 4.6 pinned (G8 protection)
     >100K + GLM   → BLOCKED (G19)
 
