@@ -87,7 +87,7 @@ UNIFIED_OUTPUT:
 KNOWN_ISSUES:
   grok:     safe-list params only (G14 → HTTP 400 на unknown)
   claude:   NO temperature при thinking=enabled (G7); NO budget_tokens (удалён)
-  gemini:   NO XML в system (G2); thinkingLevel не thinking_budget (G4); temp=1.0 Deep Think (G1)
+  gemini:   NO XML в system (G2); thinkingLevel не thinking_budget (G4); НЕ слать temperature/top_p/top_k на 3.x (G1)
   deepseek: re-inject reasoning_content (G15 RESOLVED BY DESIGN — store+re-inject, НЕ clear); alias retire 07-24 (G16)
   qwen:     preserve_thinking=true (G18); provider prefix (G17)
   kimi:     до 300 agents; async webhooks при >1h (G20)

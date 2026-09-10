@@ -37,7 +37,7 @@ G. Crash/timeout  → G12/G19/G20, resource limit
 ```
 HTTP 400 + temperature + Claude → G7 (удали temperature)
 HTTP 400 + Grok + нестандартный param → G14 (safe params only)
-HTTP 400 + Gemini + temperature ≠ 1.0 → G1
+Gemini 3.x + передан temperature/top_p/top_k → G1 (deprecated с 21.07.2026; убрать параметр)
 HTTP 429 + Gemini Pro → G12 (перейди на Flash для batching)
 Плохой recall >500K + Opus 4.7 → G8 (пин на Opus 4.6)
 Дорого + Opus 4.7 → G6 (160K effective max)

@@ -64,7 +64,7 @@ A: v8C.1 (Claude Edition) — если используешь только Claud
 
 | G# | Модель | Симптом | Критичность | Fix |
 |----|--------|---------|-------------|-----|
-| G1 | Gemini Pro | отказ / иное поведение | CRITICAL | не передавать temperature на линии 3.x; Deep Think — 1.0 или опустить |
+| G1 | Gemini 3.x | отказ / иное поведение | CRITICAL | temperature/top_p/top_k deprecated с 21.07.2026 — не передавать; Deep Think — без temperature, глубина thinking_level |
 | G2 | Gemini | Quality fail | CRITICAL (BLOCKER) | ZERO XML |
 | G3 | Grok | Topic drift | HIGH | Anchor каждые 3 turn |
 | G4 | Gemini Pro | Ignored thinking | MEDIUM | thinkingLevel вместо thinking_budget |

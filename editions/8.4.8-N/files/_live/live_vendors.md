@@ -58,14 +58,14 @@ CAPABILITY_MATRIX:
 
 G1: GEMINI_DEEP_THINK_TEMP
   Model:    Gemini 3.1 Pro
-  Error:    HTTP 400
-  Cause:    Deep Think требует temperature = 1.0 (или отсутствие temperature)
-  Fix:      Установи temperature: 1.0 или удали temperature полностью
+  Error:    отказ или неожиданное поведение (гарантии HTTP 400 источник больше не даёт)
+  Cause:    temperature / top_p / top_k deprecated для ВСЕЙ линии 3.x с 21.07.2026
+  Fix:      не передавать temperature/top_p/top_k; для Deep Think temperature не задавать
   Example:
     // WRONG:
     // {"model":"gemini-3.1-pro", "temperature":0.7, "thinkingConfig":{"thinkingBudget":5000}}
     // CORRECT:
-    // {"model":"gemini-3.1-pro", "temperature":1.0, "thinkingConfig":{"thinkingLevel":"MEDIUM"}}
+    // {"model":"gemini-3.1-pro", "thinkingConfig":{"thinkingLevel":"MEDIUM"}}   // без temperature
 
 G2: GEMINI_XML_COH_INTERFERENCE
   Model:    Gemini 3.1 Pro / Flash
@@ -273,7 +273,7 @@ TRANSLATION_RULES:
     STRIP: <role>, <rules>, <task>, <context>, <output_format>
            все кастомные XML теги
     REPLACE_WITH: ## Role, ## Rules, ## Task (plain text)
-    STRIP_PARAM: temperature (если Deep Think)
+    STRIP_PARAM: temperature / top_p / top_k (вся линия 3.x, не только Deep Think)
     ADD_PARAM: thinkingLevel: "MEDIUM" (если deep thinking нужен)
     VERIFY: grep -c '<[a-z_]*>' output.txt == 0
 

@@ -25,7 +25,7 @@ API: `gemini-3.6-flash`
 Context: 1,048,576 | Output: 65,536 | Cost: $1.50/$7.50 | cache-read $0.15 | ~304 tok/s | GA 2026-07-21
 Best for: High-volume batching, дешёвый long context, нативный Computer Use
 
-G-errors: G1 (temp при Deep Think), G2 (XML в system context), G13 (Error 13 @100-128K)
+G-errors: G1 (sampling-параметры deprecated на 3.x; Deep Think — без temperature), G2 (XML в system context), G13 (Error 13 @100-128K)
 ⚠ G13 на 3.6 Flash **НЕ ТЕСТИРОВАЛСЯ** — модель не очищена от бага, а не проверена на него.
   Обходы G13 (Context Caching API, история ≤80K, без пачек 30+ изображений) применять и здесь,
   особенно на длинных не-английских контекстах.

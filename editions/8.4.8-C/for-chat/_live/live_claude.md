@@ -162,7 +162,7 @@ App / Claude Code: поведение то же, ОТКЛЮЧАЕТСЯ в на�
 | Model | Input $/1M | Output $/1M | Прим. |
 |-------|-----------|-------------|-------|
 | Opus 5 | $5 | $25 | flagship, thinking on by default |
-| Sonnet 5 | $2 (intro) → $3 c 01.09 | $10 → $15 | default Free/Pro |
+| Sonnet 5 | $2 / $10 (подорожание до $3/$15 с 01.09 ОТМЕНЕНО 10.08) | $10 → $15 | default Free/Pro |
 | Fable 5 | $10 | $50 | batch $5/$25; cache-hit input $1/1M; usage credits с 20.07 |
 | Opus 4.8 / 4.7 / 4.6 | $5 | $25 | 4.8 — API-only surface |
 | Haiku 4.5 | $1 | $5 | |

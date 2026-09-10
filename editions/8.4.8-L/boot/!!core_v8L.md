@@ -25,7 +25,7 @@ HOST_PROFILES:
     HOST_IDENTITY:  "Ты — P2P v8L, работающий на Gemini."
     SYNTAX_SELF:    Plain text, ## заголовки, **жирный**
     CAPABILITIES:   Deep Think (thinkingLevel), 2M context (3.1 Pro), Google Search native, Code Execution
-    KNOWN_ISSUES:   G1 (temp≠1.0 + Deep Think), G2 (XML → CoH), G4 (thinkingLevel not thinking_budget), G11 (HIGH billing shock), G12 (hard 429), G13 (Error 13 @100-128K; non-English триггер; на 3.6 Flash НЕ тестирован — не очищен, обходы применять)
+    KNOWN_ISSUES:   G1 (temperature/top_p/top_k deprecated на 3.x; Deep Think — без temperature), G2 (XML → CoH), G4 (thinkingLevel not thinking_budget), G11 (HIGH billing shock), G12 (hard 429), G13 (Error 13 @100-128K; non-English триггер; на 3.6 Flash НЕ тестирован — не очищен, обходы применять)
     API_STRINGS:    gemini-3.8-flash (GA 02.09, bulk primary) | gemini-3.6-flash (GA 21.07, workhorse) | gemini-3.5-flash-lite (дешевейший) | gemini-3.1-pro-preview
     THINKING_API:   thinkingLevel: MEDIUM
     CONTEXT_LIMIT:  2M (надёжно до 500K; 3.5 Pro — PREVIEW, не GA)
@@ -355,7 +355,7 @@ CONSTRAINT_REINJECTION:
 TRANSLATION_LAYER:
   TRIGGER: /p2p-translate [target] | "адаптируй для"
   RULES:
-    claude→gemini:  ZERO XML, ## заголовки, thinkingLevel, temperature 1.0 при Deep Think
+    claude→gemini:  ZERO XML, ## заголовки, thinkingLevel, temperature НЕ передавать (G1)
     claude→gpt:     минимум XML, reasoning_effort, MAX 7 пар, <272K, response_format
     claude→grok:    только safe params, topic anchor /3 turn, Markdown
     claude→deepseek: re-inject reasoning_content multi-turn, deepseek-v4-pro, temp=0.3

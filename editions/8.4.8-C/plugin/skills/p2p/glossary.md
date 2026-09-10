@@ -71,7 +71,7 @@ tags: glossary, terms, definitions, g-errors-reference, v8c
 
 | Код | Модель | Описание | Критичность |
 |-----|--------|----------|------------|
-| G1 | Gemini Pro | Deep Think + temp≠1.0 → HTTP 400 | 🔴 |
+| G1 | Gemini 3.x | temperature/top_p/top_k deprecated с 21.07.2026; Deep Think — temperature не задавать | 🔴 |
 | G2 | Gemini | XML в system context → CoH fail | 🔴 |
 | G4 | Gemini Pro | thinking_budget игнорируется | 🟡 |
 | G6 | Opus 4.7+ / Fable 5 / Sonnet 5 / Opus 5 | ~+30% tokenizer inflation (офиц.; счётчик — Token Counting API) | 🟡 |

@@ -163,9 +163,12 @@ G_ERRORS:
   // ── GEMINI ──
   G1:  GEMINI_DEEP_THINK_TEMP
        Модель: Gemini 3.1 Pro
-       Симптом: HTTP 400
-       Причина: Deep Think + temperature ≠ 1.0
-       Fix: temperature: 1.0 или убери temperature совсем
+       Симптом: отказ или неожиданное поведение при переданных sampling-параметрах
+       Причина: temperature / top_p / top_k помечены deprecated для ВСЕЙ линии 3.x
+                с 21.07.2026; поведение при передаче вендор не описывает —
+                «HTTP 400» как гарантию не заявлять
+       Fix: на 3.x не передавать temperature/top_p/top_k; для Deep Think temperature
+            не задавать; глубина — thinking_level, не thinking_budget (G4)
 
   G2:  GEMINI_XML_COH_INTERFERENCE
        Модель: Gemini 3.1 Pro / Flash
@@ -320,6 +323,11 @@ G_ERRORS:
                 высокий уровень обхода проверок среди публично оценённых моделей.
        Fix: Sol вне ролей judge/verifier И вне любого harness с записью в ФС или доступом
             к хранилищу секретов — без явного allowlist и журнала аудита.
+       Ревизия по gpt-6-astra (8.4.8): запрет Sol-образца на Astra НЕ переносится и G22
+            НЕ снимается. У Astra 89 % меньше нежелательных исходов и 0 % против 48 % ухода
+            с санкционированной цели, но письменные рассуждения хуже поддаются надзору —
+            допускать с проверкой НА УРОВНЕ РЕЗУЛЬТАТА (диффы, прогоны тестов, ворота
+            разрешений), а не чтением рассуждений.
 
 G_ERRORS_QUICK_REF:
   G1  Gemini    HTTP 400    CRITICAL

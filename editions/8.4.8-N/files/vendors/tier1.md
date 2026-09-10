@@ -222,6 +222,11 @@ GPT_6_ASTRA:
   access:         Pro / Business / Enterprise (на Enterprise выключен по умолчанию), Plus — только
                   Work/Codex; также API, Microsoft Azure, AWS Bedrock
   WHEN_TO_USE:    webdev / frontend_generation — PRIMARY (fallback claude-fable-5-1 max)
+  G22_РЕВИЗИЯ:    запрет Sol-образца на Astra НЕ переносится и G22 НЕ снимается. 89 % меньше
+                  нежелательных исходов, 0 % против 48 % ухода с санкционированной цели —
+                  но письменные рассуждения хуже поддаются надзору, чем у Sol. Допускать
+                  с проверкой НА УРОВНЕ РЕЗУЛЬТАТА (диффы, прогоны тестов, ворота разрешений),
+                  а не чтением рассуждений.
 
   > Рядом: gpt-image-2.5-sunburst и gpt-image-2.5-flare (GA 09.09) — Text-to-Image #1/#2
   >   и Image-Edit #1/#2; цены не опубликованы, планировать по gpt-image-2.
@@ -327,7 +332,8 @@ GEMINI_31_PRO:
                   даты GA нет. НЕ трактовать как GA и не строить на ней планов.
 
   KNOWN_ISSUES:
-    G1: Deep Think + temperature ≠ 1.0 → HTTP 400.
+    G1: temperature/top_p/top_k deprecated для всей линии 3.x с 21.07.2026;
+        для Deep Think temperature не задавать. «HTTP 400» источником больше не заявлен.
     G2: XML tags → Chain-of-Hint interference. ZERO XML required.
     G4: thinking_budget ignored. Use thinkingLevel instead.
     G11: thinkingLevel=HIGH без Value Gate → billing shock ($50/M).
@@ -342,7 +348,7 @@ GEMINI_31_PRO:
 
   THINKING_API:
     thinkingConfig: {thinkingLevel: "MEDIUM"}  // не thinking_budget!
-    temperature: 1.0 при Deep Think (или удали temperature — G1)
+    temperature НЕ передавать (deprecated на 3.x — G1); глубина только thinkingLevel
 
   SYNTAX_EXAMPLE:
     ## Role
