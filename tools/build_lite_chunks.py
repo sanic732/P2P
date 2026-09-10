@@ -297,7 +297,12 @@ def build(out_dir: Path) -> int:
 
     # Готовый фрагмент для _index_v8L.md. URL проставляются ПОСЛЕ заливки — до неё
     # ревизии не существует, а манифест без верного пина хуже старого манифеста.
-    patch = ["// ─── вставить вместо записи VENDORS в GIST_ROUTING_TABLE ───\n"]
+    # ВАЖНО: сюда попадают только записи с триггером, то есть части разрезанного чанка.
+    # Это фрагмент для НОВЫХ записей, которых в индексе ещё нет. Обновление существующих
+    # делает tools/update_lite_index.py: переносить sha глазами нельзя — в 8.4.7 так
+    # и остались десять записей со старым пином, а Lite грузил модули 8.4.6.
+    patch = ["// ─── фрагмент для НОВЫХ записей GIST_ROUTING_TABLE (части разрезанного чанка)\n"
+             "// ─── Обновление существующих: tools/update_lite_index.py --revision <rev> --apply\n"]
     for r in rows:
         if not r.get("trigger"):
             continue
@@ -328,7 +333,9 @@ def build(out_dir: Path) -> int:
         for u in sorted(set(unresolved)):
             print(f"      {u}")
     print("\n  Ничего не опубликовано. Следующий шаг (по решению Master): залить в гист,")
-    print("  взять новые raw-URL, перенести sha256/size в _index_v8L.md, прогнать verify_lite.")
+    print("  затем ОДНОЙ командой перенести пины и хеши в индекс — руками нельзя, проверено 8.4.7:")
+    print("    python tools/update_lite_index.py --revision <ревизия> --apply")
+    print("    python tools/verify_gist_live.py        # должно быть 0 расхождений")
     return 0
 
 
