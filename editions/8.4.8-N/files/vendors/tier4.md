@@ -10,6 +10,10 @@ compatible_with: "!!db_v8N.md | _live/live_vendors.md"
 // ═══════════════════════════════════════════════════════
 // P2P — VENDORS TIER 4
 // Specialist: GLM-5.2/5.1 (MIT), Kimi K2.x (Swarm), Grok 4.20 (Heavy-16, 2M)
+// ВЕНДОР ПЕРЕИМЕНОВАН: SpaceXAI (бывш. xAI). Сделка SpaceX / xAI объявлена 2026-02-02,
+//   docs.x.ai брендирован «SpaceXAI Docs», Arena рендерит вендора как SpaceXAI на всех бордах.
+//   Продуктовое имя Grok сохраняется; api-строки (grok-4.5, grok-4.20) НЕ менялись.
+//   Распознавание хоста понимает и «xAI», и «SpaceXAI».
 // ═══════════════════════════════════════════════════════
 
 GLM_52:  // NEW основной GLM — MIT, 1M context (снимает G19-лимит 5.1); WebDev Arena: вне топ-10 (04.09)
@@ -70,7 +74,7 @@ GROK_420:  // Heavy-16 multi-agent — реальный параллелизм (
          SAFE_PARAMS: temperature, max_tokens, stream, top_p, stop.
     G3:  Topic drift — anchor каждые 3 turn.
     Heavy-16 downgrade — **CLOSED AS OBSOLETE** (2026-07-26), НЕ resolved: ничего не чинили,
-         описанная конфигурация перестала существовать. Реоткрыть, если xAI опубликует
+         описанная конфигурация перестала существовать. Реоткрыть, если SpaceXAI опубликует
          отдельные Heavy-эндпоинты или документацию маршрутизации.
     ⚠ ФАНТОМНЫЕ ID: grok-4.5-heavy / -expert / -fast НЕ СУЩЕСТВУЮТ — единственный id grok-4.5;
          Heavy это тарифный план плюс режим оркестрации поверх той же модели.

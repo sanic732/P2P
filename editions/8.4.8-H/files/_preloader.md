@@ -22,7 +22,7 @@ HOST_MODEL_AUTODETECT:
   // NORMALIZE применяется ВСЕГДА — и к ручному HOST_CONFIG.HOST_MODEL, и к результату автодетекта.
   // Фикс 8.4.3: сравнения HOST_MODEL == grok регистрозависимы; "GROK"/"Grok" не матчились.
   NORMALIZE: HOST_MODEL = lowercase(trim(HOST_MODEL))    // "GROK" / "Grok" / " grok " → grok
-    SYNONYMS: { grok|GROK|Grok|xai|x.ai|xAI → grok ; chatgpt|openai|gpt-* → gpt ;
+    SYNONYMS: { grok|GROK|Grok|xai|x.ai|xAI|spacexai|SpaceXAI → grok ; chatgpt|openai|gpt-* → gpt ;
                 anthropic|claude-* → claude ; google|gemini-* → gemini ;
                 tongyi|alibaba|qwen-* → qwen ; moonshot → kimi ; zhipu|chatglm → glm ;
                 abab|hailuo → minimax }
@@ -32,7 +32,7 @@ HOST_MODEL_AUTODETECT:
                                              // Определи собственную идентичность (вендор/семейство).
   SIGNALS → HOST_MODEL:
     self=="Claude" / "Anthropic" ; "[SYSTEM: anthropic]" ; "You are Claude"     → claude
-    self=="Grok" / "xAI" ; X/Twitter-инструменты ; "You are Grok"               → grok
+    self=="Grok" / "xAI" / "SpaceXAI" ; X/Twitter-инструменты ; "You are Grok"               → grok
     self=="Gemini" / "Google" ; AI Studio / Vertex-маркеры ; "You are Gemini"   → gemini
     self=="ChatGPT" / "OpenAI" ; "You are ChatGPT" / "GPT-*"                     → gpt
     self=="DeepSeek"                                                             → deepseek
