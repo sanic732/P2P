@@ -1,4 +1,4 @@
-# 🟦 P2P 8L.3 — Lite / Live Edition
+# 🟦 P2P 8.4.8-L — Lite / Live Edition
 
 > [RU](README.md) · ⬆️ [Back to edition picker](../../README.en.md) · 📖 [Naming guide](../../NAMING.md)
 

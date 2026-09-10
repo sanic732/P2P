@@ -1,4 +1,4 @@
-# 🟦 P2P 8.4.6-L — Lite / Live Edition  <sub>(внутр. тег: 8L.4)</sub>
+# 🟦 P2P 8.4.8-L — Lite / Live Edition  <sub>(внутр. тег: 8L.4)</sub>
 
 > [EN](README.en.md) · ⬆️ [Назад к выбору редакции](../../README.md) · 📖 [Расшифровка имени](../../NAMING.md)
 
