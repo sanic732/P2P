@@ -2,11 +2,19 @@
 source_id: TIER1_V8C
 version: 8.4.8-C
 module_type: vendor
-scope: Tier 1 budget models — Gemini 3.5 Flash-Lite, DeepSeek V4-Flash, Qwen 3.6-Plus, Kimi K2.6/K2.7, GLM-5.1, GPT-5.6 Luna. For T0-2 high-volume or cost-sensitive tasks.
+scope: Tier 1 budget models — Gemini 3.8 Flash, Gemini 3.5 Flash-Lite, DeepSeek V4-Flash, Qwen 3.8-Flash-Next, Kimi K2.6/K2.7, GLM-5.3-Flash, GPT-5.6 Luna. For T0-2 high-volume or cost-sensitive tasks.
 tags: vendor, tier1, deepseek, qwen, kimi, glm, budget, on-demand
 ---
 
 # P2P — VENDORS TIER 1 (Budget)
+
+## Gemini 3.8 Flash (bulk primary)
+API: `gemini-3.8-flash` | GA 2026-09-02 | Arena Text #8
+Context: 1M | Cost: $0.75/$3.75, cache-read $0.075 — вводная цена всей линии Flash 3.6/3.7/3.8 до 2026-12-31,
+  с 2027-01-01 $1.50/$7.50, cache $0.15 | Best for: bulk / cheap reasoning (primary; fallback deepseek-v4-flash)
+
+G-errors: G1 (sampling-параметры deprecated на всей линии 3.x; thinking_level "minimal" на 3.8 Flash → ошибка),
+  G2 (XML в system context), G13 (Error 13 НЕ воспроизведён и НЕ признан на 3.8 — обходы применять)
 
 ## Gemini 3.5 Flash-Lite (самый дешёвый уровень)
 API: `gemini-3.5-flash-lite`
@@ -18,7 +26,7 @@ G-errors: G1, G2, G13 (обходы G13 применять и здесь — н�
 ## DeepSeek V4-Flash
 API: `deepseek-v4-flash` (⚠ НЕ `deepseek-chat`/`deepseek-reasoner` — alias мёртв с 2026-07-24 15:59 UTC,
      без grace-периода; точный HTTP-код первичными логами не подтверждён: 404 либо 400 invalid_request_error)
-Context: 1M | Output: 384K | Cost: $0.14/$0.28 | Best for: Bulk batch, T0-2
+Context: 1M | Output: 384K | Cost: $0.22/$0.66 off-peak · $0.44/$1.32 peak | Best for: Bulk batch, T0-2
 
 ⚠ СТАТУС ЛИНЕЙКИ V4: официально **PREVIEW**. Свежайшая запись V4 в changelog вендора датирована
   2026-04-24; с 13.08.2026 v4-pro официально GA, v4-flash-0731 остаётся public beta. Заявления
@@ -31,8 +39,10 @@ G-errors: G15 (reasoning_content store + re-inject после tool calls — BY 
 > ⚠ Нагрузку бывшего `deepseek-reasoner` вести на **v4-pro**, а НЕ на v4-flash-thinking —
 >   иначе reasoning тихо деградирует (официальный маппинг алиасов указывал на flash).
 
-## Qwen 3.6-Plus
-API DashScope: `qwen3.6-plus` | Context: 1M | Cost: Budget | Best for: Multilingual, Chinese content
+## Qwen 3.8-Flash-Next
+API DashScope: `qwen3.8-flash-next` | Cost: $0.16/$0.47 | Arena WebDev #9 — самый дешёвый в топ-12 | Best for: Multilingual, Chinese content, дешёвый webdev
+> ⚠ `qwen3.6-plus` и линейки qwen3-* / 3.6-* снимаются **2026-10-10** (шесть уведомлений Alibaba, список id не прочитан) —
+>   в новые маршруты не ставить. Флагман — `qwen3.8-max` (tier3): $2/$6, 1M, max output 131 072, strict JSON при enable_thinking=false.
 
 G-errors: G17 (preserve_thinking=true для agentic), G18 (обязательный `bailian/` prefix — иначе silent fail)
 
@@ -46,13 +56,16 @@ G-errors: G20 (>N sync agents → timeout; для больших swarm → async
 >   на K3 неприменим: там thinking не отключается.
 > Kimi Code HighSpeed (`kimi-for-coding-highspeed`) — access-tier ~5-6x Standard speed.
 
-## GLM-5.1 (MIT)
-API: `glm-5.1` | Context: 200K (effective ~120K) | Cost: budget
+## GLM-5.3-Flash / GLM-5.2 (MIT)
+API: `glm-5.3-flash` | Context: 300K | Cost: $0.15 / $0.03 cached / $0.50 (промо −50 % истекло 09.09) | GA 2026-08-26
+API: `glm-5.2` | Context: 1M | MIT open-weight | Cost: $1.40/$4.40 (единственный источник, unconfirmed)
+> GLM-5.3 (`glm-5.3`, 14.08, $1.40/$4.40) — старший в линии; GLM-5.1 (`glm-5.1`, eff ~120K) — G19 compact hang,
+>   в новые маршруты не ставить. GLM-5.5 не вышел — только анонс.
 
-G-errors: G19 (context collapse >120K → cap 100-120K, или мигрировать на GLM-5.2 1M)
+G-errors: G19 (GLM-5.1: context collapse >120K → cap 100-120K, или мигрировать на 5.2 / 5.3)
 
 ## GPT-5.6 Luna
-API: `gpt-5.6-luna` | Cost: $1/$6 | Best for: cheap high-volume, classification, streaming
+API: `gpt-5.6-luna` | Cost: $0.20 / $0.02 cached / $1.20 | Best for: cheap high-volume, classification, streaming
 > ⚠ MRCR collapse >512K — не для deep long-doc анализа (см. tier4 GPT-5.6 семейство).
 > ⚠ Окно контекста официальной строки НЕ имеет — в разделе Models вендора есть строки для 5.5 и 5.4,
 >   строки для Luna нет. Ни 1.05M/128K, ни 400K/64K не подтверждены. Не закладываться на цифру.

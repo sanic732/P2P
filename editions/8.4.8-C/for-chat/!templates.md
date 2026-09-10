@@ -381,7 +381,7 @@ PAUSE before:
 - Always include Tool Budget — without it, agents loop infinitely.
 - Always include Stop Conditions — without them, agents make irreversible mistakes.
 - Max 7 tools per prompt. More → split into sub-agents with tool subsets.
-- Claude → use native tool_use API. GPT → function_calling schema. Kimi K2.5 → add checkpoint "Output planned actions. Await confirmation."
+- Claude → use native tool_use API. GPT → function_calling schema. Kimi K2.6/K3 → add checkpoint "Output planned actions. Await confirmation."
 
 ### Template CH — Chain of Prompts (multi-step / cross-model)
 ```

@@ -104,19 +104,25 @@ tags: glossary, terms, definitions, g-errors-reference, v8c
 
 ---
 
-## API STRINGS (актуальные, May 2026)
+## API STRINGS (актуальные, 2026-09-10 · live specs 8.7.4)
 
 | Модель | API String |
 |--------|-----------|
-| Claude Opus 4.7 | `claude-opus-4-7` |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6` |
+| Claude Opus 5 | `claude-opus-5` |
+| Claude Sonnet 5 | `claude-sonnet-5` |
+| Claude Fable 5.1 | `claude-fable-5-1` |
+| Claude Opus 4.8 / 4.7 | `claude-opus-4-8` · `claude-opus-4-7` |
+| Claude Sonnet 4.6 (снятие не раньше 17.02.2027) | `claude-sonnet-4-6` |
 | Claude Haiku 4.5 | `claude-haiku-4-5-20251001` |
 | Gemini 3.1 Pro | `gemini-3.1-pro-preview` |
-| GPT-5.6 Terra | `gpt-5.6-terra` |
-| Grok 4.3 | `grok-4.3` |
-| DeepSeek V4-Flash | `deepseek-v4-flash` |
-| Qwen 3.6-Plus | `qwen3-plus` |
-| Kimi K2.x | `kimi-k2-6` |
+| Gemini 3.8 Flash | `gemini-3.8-flash` |
+| GPT-5.6 Sol / Terra / Luna | `gpt-5.6-sol` · `gpt-5.6-terra` · `gpt-5.6-luna` |
+| GPT-6 Astra (operator-explicit) | `gpt-6-astra` |
+| Grok 4.6 / 4.5 / 4.3 | `grok-4.6` · `grok-4.5` · `grok-4.3` |
+| DeepSeek V4-Pro / V4-Flash | `deepseek-v4-pro` · `deepseek-v4-flash` |
+| Qwen 3.8-Max / 3.8-Flash-Next | `qwen3.8-max` · `qwen3.8-flash-next` |
+| Kimi K3 / K2.6 | `kimi-k3` · `kimi-k2.6` |
+| GLM-5.3 / 5.3-Flash | `glm-5.3` · `glm-5.3-flash` |
 
 <!-- SOURCE_META: type=meta | priority=2 | glossary=true | reference=true -->
 

@@ -32,14 +32,16 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 | **Claude** | Sonnet 4.6 | `claude-sonnet-4-6` | 200K | $3/$15 | ✅ активен, выбор по цене | G7 |
 | **Gemini** | 3.8 Flash | `gemini-3.8-flash` | 1,048,576 / out 65,536 | $0.75/$3.75, cache $0.075 (до 31.12; далее вдвое) | T2 PRIMARY bulk (GA 02.09) | G1,G2,G13 |
 | **Gemini** | 3.7 Flash | `gemini-3.7-flash` | 1,048,576 | та же цена линии Flash | T2 (GA 13.08) | G1,G2,G13 |
-| **Gemini** | 3.6 Flash | `gemini-3.6-flash` | 1,048,576 | та же цена линии Flash | T2 (~304 tok/s) | G1,G2,G13 |
+| **Gemini** | 3.8 Flash | `gemini-3.8-flash` | 1,048,576 | $0.75/$3.75, cache $0.075 (линия 3.6/3.7/3.8 до 31.12; затем $1.50/$7.50) | T2 bulk primary, GA 02.09 | G1,G2,G13 |
+| **Gemini** | 3.7 / 3.6 Flash | `gemini-3.7-flash` · `gemini-3.6-flash` | 1,048,576 | та же цена линии Flash | T2 (~304 tok/s) | G1,G2,G13 |
 | **Gemini** | 3.5 Flash-Lite | `gemini-3.5-flash-lite` | 1M | $0.30/$2.50 | T0-1 (дешевейший, ~350 tok/s) | G1,G2,G13 |
 | **Gemini** | 3.5 Pro | `gemini-3.5-pro-preview` | 2M | TBD | T4 (⚠ PREVIEW, **пятый** пропуск GA; отсутствует в models/pricing/changelog) | G1,G2,G13 |
 | **Gemini** | 3.5 Flash | `gemini-3.5-flash` | 1M | $1.50/$9 | T2 (вытеснен 3.6 Flash) | G1,G2,G13 |
 | **Gemini** | 3.1 Pro | `gemini-3.1-pro-preview` | 2M | $2/$12 | T3-4 | G1,G2,G4,G11,G13 |
 | **Grok** | 4.6 | `grok-4.6` | 500K | $2/$6, cache $0.50 · от 200K → $4/$12, cache $1 | T3-4 (12.08; AA 61, вровень с Sol) | G14 |
 | **Grok** | 4.7 | — | — | — | ⚠ объявлен на 12.09 записью основателя (02.09) — не спецификация вендора; на 10.09 список моделей docs.x.ai кончается на `grok-4.6`: ни id, ни цены, ни контекста — НЕ пре-маршрутизировать | — |
-| **Grok** | 4.5 | `grok-4.5` | 500K | $2/$0.30 cached/$6 · от 200K → $4/$0.60/$12 | T3-4 (coding flagship; EU без residency) | G14 |
+| **SpaceXAI (Grok)** | 4.6 | `grok-4.6` | 500K | $2/$0.50 cached/$6 · от 200K → $4/$1 cached/$12 | T3-4 flagship, GA 12.08 | G14 |
+| **SpaceXAI (Grok)** | 4.5 | `grok-4.5` | 500K | $2/$0.30 cached/$6 · от 200K → $4/$0.60/$12 | T3-4 fallback; EU без residency | G14 |
 | **Grok** | 4.3 | `grok-4.3` | 1M | $1.25/$2.50 | T2-3 | G14 |
 | **Grok** | 4.20 Heavy | `grok-4.20` | 2M | $2/$6 | T3-4 (Heavy-16) | G14 |
 | **GPT** | 6 Astra | `gpt-6-astra` | 1 050 000 / out 128 000 | $10/$1 cached/$12.50 write/$50 · >272K → ×2 in, ×2 cache, ×1.5 out | T4 (GA 09.09; Arena WebDev #1 1796; cutoff 2026-04-30; effort low..max) | ⚠ tools+effort на /v1/chat/completions → 400 → /v1/responses |
@@ -54,16 +56,20 @@ tags: live, vendors, api-strings, pricing, g-errors, routing
 >   НЕ вносится (bulk остаётся на `gemini-3.8-flash` + `deepseek-v4-flash`). Ловушка: id
 >   с подстрокой `expires-on-0910`, зашитый в клиент, с 10.09.2026 начинает отдавать ошибки.
 | **Qwen** | 3.8 Max | `qwen3.8-max` | 1M / out 131 072 | $2/$6, cache $0.25 (тариф плоский: 12/36 CNY за 1M) | T4 ✅ GA 03.08 (веса 3.8-27B Apache 2.0; strict JSON ок) | G17, G18 |
+| **Qwen** | 3.8 Max | `qwen3.8-max` | 1M / out 131,072 | $2/$6 (плоский 12/36 CNY) | T4 flagship, GA 03.08; WebDev #4 | G17, G18 |
+| **Qwen** | 3.8-Flash-Next | `qwen3.8-flash-next` | — | $0.16/$0.47 | T1 (WebDev #9, дешевейший в топ-12) | G17, G18 |
 | **Qwen** | 3.7 Max | `qwen3.7-max` | 1M | $2.50/$7.50 | T4 (text-only, без vision) | G17, G18 |
 | **Qwen** | 3.8 Flash-Next | `qwen3.8-flash-next` | — | $0.16/$0.47 | T2 (дебют Arena WebDev #9, 1631 prelim; цена опубликована 10.09) | G17, G18 |
 | **Qwen** | 3.7-Plus | `qwen3.7-plus` | 1M / out 65K | $0.32/$1.28 (расхождение: и $0.40/$1.60) | T2-3 (multimodal) | G17, G18 |
 | **Qwen** | 3.6-35B-A3B | `qwen3.6-35b-a3b` | 262,144 | $0.14/$1.00 | T1 (open-weight Apache-2.0) | G17, G18 |
-| **Qwen** | 3.6-Plus | `qwen3.6-plus` | 1M | budget | T2-3 | G17, G18 |
+| **Qwen** | 3.6-Plus | `qwen3.6-plus` | 1M | budget | T2-3 — ⚠ снятие 2026-10-10, в новые маршруты не ставить | G17, G18 |
 | **Kimi** | K3 | `kimi-k3` | 1,048,576 | $0.30/$3 cached/$15 | T3 (⚠ ACCESS-RISK: подписки на паузе с ~18.07; Arena WebDev 1→4) | thinking не отключается |
 | **Kimi** | K2.6 | `kimi-k2.6` | 256K-1M | TBD | T3 swarm | G20, Type M |
 | **Kimi** | K2.7 Code | `kimi-k2.7-code` | 256K | $0.95/$4 | T2-3 (open-weight) | Type M |
 | **GLM** | 5.3 | `glm-5.3` | 1M | $1.40/$4.40, cache $0.26 | T3-4 (14.08; веса на HF, 753B) | — |
 | **GLM** | 5.3 Flash | `glm-5.3-flash` | 300K / out 131K | $0.15/$0.03 cached/$0.50 (промо кончилось 09.09.2026 24:00 UTC+8) | T2 (26.08 = «Ox Alpha», MIT 320B/18B, мультимодальная) | — |
+| **GLM** | 5.3 | `glm-5.3` | 1M | $1.40/$4.40 | T3-4 старший, GA 14.08 | — |
+| **GLM** | 5.3-Flash | `glm-5.3-flash` | 300K | $0.15/$0.03 cached/$0.50 (промо истекло 09.09) | T1, GA 26.08 | — |
 | **GLM** | 5.2 | `glm-5.2` | 1M | $1.40/$4.40 | T3-4 (MIT; WebDev вне топ-10 (04.09)) | — |
 | **GLM** | 5.1 | `glm-5.1` | 200K (eff 120K) | budget | T3 | G19 |
 | **MiniMax** | M3 | `minimax-m3` | 1M | $0.30/$1.20 | track-only | — |
@@ -83,14 +89,14 @@ Frontier / vision            → Claude Fable 5 — ТОЛЬКО по явном
 Document-анализ              → Claude Opus 4.6 (Document #1; новее ≠ лучше на документах)
 >500K needle recall          → Claude Opus 4.6 (MRCR 78.3% vs 32.2% on 4.7)
 Long context (2M tokens)     → Gemini 3.1 Pro / Grok 4.20 (2M) / Grok 4.3 (1M)
-Cost-sensitive coding        → Grok 4.5 (cheap; EU открыт, но БЕЗ data-residency; cap 200K)
-Bulk / cheap multimodal      → Gemini 3.6 Flash → 3.5 Flash-Lite
-WebDev / фронтенд            → Kimi K3 (WebDev #1) — только при наличии доступа; запасной путь GLM-5.2
+Cost-sensitive coding        → Grok 4.6 ($2/$6; cap 200K, кэш за порогом ×2) → Grok 4.5
+Bulk / cheap multimodal      → Gemini 3.8 Flash → DeepSeek V4-Flash → 3.5 Flash-Lite
+WebDev / фронтенд            → GPT-6 Astra (WebDev #1; в C — operator-explicit) → Claude Fable 5.1; дёшево — Qwen 3.8-Max / 3.8-Flash-Next
 Agentic coding / RPA         → GPT-5.6 Terra; Sol ТОЛЬКО под guard'ами (см. ниже)
 Fast & cheap                 → Gemini 3.5 Flash-Lite / GPT-5.6 Luna / DeepSeek V4-Flash
 Chinese content              → Qwen 3.6-Plus / 3.7-Plus (multimodal)
 Multi-agent swarm            → Kimi K2.6 (Swarm 300)
-On-premises MIT open         → GLM-5.2 (1M, WebDev вне топ-10 (04.09)) / Qwen 3.6-35B-A3B (Apache-2.0)
+On-premises open-weight      → Qwen 3.8-27B (Apache-2.0) / GLM-5.2 (MIT, 1M)
 Real-time X/Twitter data     → Grok 4.5 / 4.3 (only Grok has X Firehose)
 Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА не линейка Qwen Max
 ```
@@ -111,9 +117,9 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
 **Fallback chain (Claude primary):**
 1. Claude Opus 5 (T3-4 PRIMARY) / Claude Opus 4.8 (T4 complex code, API-only surface)
 2. Claude Sonnet 5 (T2-3 balanced default) / Claude Opus 4.6 (>500K recall, документы)
-3. Gemini 3.6 Flash (bulk) / Gemini 3.1 Pro (2M context, long docs)
-4. Grok 4.5 (cost-sensitive coding, cap 200K) / Grok 4.3 (1M ctx or X Firehose)
-5. GPT-5.6 Terra (agentic coding) / GPT-5.5 Pro (Codex computer use)
+3. Gemini 3.8 Flash (bulk) / Gemini 3.1 Pro (2M context, long docs)
+4. Grok 4.6 (cost-sensitive coding, cap 200K) / Grok 4.3 (1M ctx or X Firehose)
+5. GPT-5.6 Terra (agentic coding) / GPT-6 Astra (webdev, operator-explicit; tools через /v1/responses)
 6. Gemini 3.5 Flash-Lite / DeepSeek V4-Flash (last resort, cheapest)
 
 ---
@@ -222,8 +228,8 @@ Strict JSON                  → Claude Sonnet 5 / GPT-5.6 Terra. НИКОГДА
 | Context Needed | Best Choice | Backup |
 |----------------|-------------|--------|
 | < 100K | Claude Opus 5 | Claude Sonnet 5 |
-| 100K–1M | Claude Opus 5 / Sonnet 5 | Gemini 3.6 Flash |
-| 200K–1M (бюджет) | Gemini 3.6 Flash / Gemini 3.1 Pro | Grok 4.3 |
+| 100K–1M | Claude Opus 5 / Sonnet 5 | Gemini 3.8 Flash |
+| 200K–1M (бюджет) | Gemini 3.8 Flash / Gemini 3.1 Pro | Grok 4.3 |
 | 1M–2M | Grok 4.20 (2M) / Grok 4.3 (1M) | Gemini 3.1 Pro |
 | >500K + recall | Claude Opus 4.6 (pinned) | Gemini 3.1 Pro |
 

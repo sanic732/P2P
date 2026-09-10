@@ -76,18 +76,18 @@ grep -rn "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deeps
 | Model | API String | Status |
 |-------|-----------|--------|
 | GPT-5.6 Sol/Terra/Luna | `gpt-5.6-sol` · `-terra` · `-luna` | ✅ GA 09.07 — ⚠ Sol: агентная опасность, голый алиас `gpt-5.6` → Sol |
-| Grok 4.5 | `grok-4.5` | ✅ Coding flagship 500K — EU открыт 21.07, но БЕЗ data-residency |
+| Grok 4.6 / 4.5 | `grok-4.6` · `grok-4.5` | ✅ 4.6 flagship 500K (GA 12.08), 200K cliff ×2 вкл. кэш; вендор SpaceXAI |
 | Grok 4.3 / 4.20 | `grok-4.3` · `grok-4.20` | ✅ 1M/2M ctx + X Firehose |
-| Gemini 3.6 Flash | `gemini-3.6-flash` | ✅ GA 21.07 — новый workhorse, 1M/64K, $1.50/$7.50 |
+| Gemini 3.8 / 3.7 / 3.6 Flash | `gemini-3.8-flash` · `gemini-3.7-flash` · `gemini-3.6-flash` | ✅ 3.8 GA 02.09 — bulk primary; линия $0.75/$3.75 до 31.12 |
 | Gemini 3.5 Flash-Lite | `gemini-3.5-flash-lite` | ✅ GA 21.07 — самый дешёвый уровень, $0.30/$2.50 |
 | Gemini 3.5 Pro | `gemini-3.5-pro-preview` | ⚠️ PREVIEW (не GA, ПЯТЫЙ пропуск срока, счёт на 10.09.2026) — 2M |
 | Gemini 3.1 Pro / 3.5 Flash | `gemini-3.1-pro-preview` · `gemini-3.5-flash` | ✅ Long ctx / budget |
-| GLM-5.2 | `glm-5.2` | ✅ MIT 1M, WebDev вне топ-10 (04.09) |
+| GLM-5.3 / 5.3-Flash / 5.2 | `glm-5.3` · `glm-5.3-flash` · `glm-5.2` | ✅ 5.3 GA 14.08; 5.3-Flash $0.15/$0.50 (промо истекло 09.09); 5.2 MIT 1M |
 | DeepSeek V4 Pro / Flash | `deepseek-v4-pro` · `deepseek-v4-flash` | ⚠️ официально PREVIEW; де-факто единственный путь после ретайра алиасов |
-| Qwen 3.7 Max / 3.7-Plus / 3.6-Plus | `qwen3.7-max` · `qwen3.7-plus` · `qwen3.6-plus` | ✅ 3.7-Max text-only; 3.7-Plus multimodal 1M |
+| Qwen 3.8-Max / 3.8-Flash-Next | `qwen3.8-max` · `qwen3.8-flash-next` | ✅ 3.8-Max GA 03.08 ($2/$6, out 131K); ⚠ qwen3-*/3.6-* снятие 10.10 |
 | Qwen 3.6-35B-A3B | `qwen3.6-35b-a3b` | ✅ open-weight Apache-2.0, 262K |
 | Kimi K3 | `kimi-k3` | ⚠️ GA 16.07, WebDev #1 — hosted-only, подписки закрыты, весов нет → не primary |
-| Kimi K2.6 / K2.7 Code | `kimi-k2.6` · `kimi-k2.7-code` | ✅ Swarm 300 / open-weight |
+| Kimi K3 / K2.6 / K2.7 Code | `kimi-k3` · `kimi-k2.6` · `kimi-k2.7-code` | ✅ K3 1M $3/$15 (подписки приостановлены → не primary); K2.6 Swarm 300; K2.5 снят 31.08 |
 | MiniMax M3 | `minimax-m3` | 🔒 track-only |
 | Manus 1.6 Max | `manus/manus-1.6-max` | ⚠️ track-only (geopolitical) |
 

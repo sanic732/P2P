@@ -2,7 +2,7 @@
 source_id: TIER3_V8C
 version: 8.4.8-C
 module_type: vendor
-scope: Tier 3 high-quality — Claude Opus 5 (primary), Opus 4.8/4.7/4.6, Gemini 3.5/3.1 Pro, Grok 4.5/4.3 (incl. TARGET rules). For T2-4 demanding tasks.
+scope: Tier 3 high-quality — Claude Opus 5 (primary), Opus 4.8/4.7/4.6, Gemini 3.5/3.1 Pro, Grok 4.6/4.5/4.3 (incl. TARGET rules), Qwen 3.8-Max. For T2-4 demanding tasks.
 tags: vendor, tier3, claude-opus, gemini-pro, grok, high-quality, on-demand
 ---
 
@@ -40,16 +40,25 @@ Context: 2M | Output: 128K | Cost (3.1 Pro): $2/$12 (≤200K) | 3.5 Pro pricing:
 G-errors: G1, G2, G4, G11, G12, G13
 Fix G4: `thinkingLevel: "MEDIUM"` (не thinking_budget) · Fix G2: ZERO XML в system context
 
-## Grok 4.5 / 4.3
-API: `grok-4.5` (coding/agentic flagship, GA 2026-07-08, ~80 tps) · `grok-4.3` (long context)
+## Grok 4.6 / 4.5 / 4.3 (вендор SpaceXAI, бывш. xAI)
+API: `grok-4.6` (flagship, GA 2026-08-12) · `grok-4.5` (fallback, GA 2026-07-08, ~80 tps) · `grok-4.3` (long context)
+- Grok 4.6: Context 500K | Cost $2 in / $0.50 cached / $6 out; **от 200K** — $4 / $1 cached / $12 (кэш за порогом тоже дорожает).
+  Есть в Microsoft Foundry и Google Model Garden (Responses API).
 - Grok 4.5: Context 500K | Cost $2 in / $0.30 cached / $6 out (проверено у вендора).
   ⚠ Long-context: промпты **от 200K** — $4 in / $0.60 cached / $12 out. Кэш тоже удваивается,
     кэширование обрыв НЕ смягчает; единственный рычаг — резать контекст.
   ⚠ EU: доступ открыт 2026-07-21, **но без гарантий data-residency** — персональные данные EU не пускать.
   grok-build default.
 - Grok 4.3: Context 1M | Cost $1.25/$2.50. Для 2M — Grok 4.20 (Heavy-16).
+> Grok 4.7 объявлен на 12.09 записью основателя — id, цены, контекста и карточки нет: НЕ маршрутизировать.
 
 G-errors: G14 (safe-list params only: temperature, max_tokens, stream, top_p, stop → иначе HTTP 400)
+
+## Qwen 3.8-Max
+API: `qwen3.8-max` (снимок `qwen3.8-max-0902`) | Context: 1M | Output: 131,072 | Cost: $2/$6 (плоский тариф 12/36 CNY за 1M) | GA 2026-08-03
+Arena WebDev #4/#6 · strict JSON поддерживается (json_schema strict при enable_thinking=false) · открытые веса 3.8-27B Apache 2.0
+
+G-errors: G17, G18 (обязательный `bailian/` prefix) · ⚠ 2026-10-10 снятие линеек qwen3-* / 3.6-*
 
 ## Kimi K3
 API: `kimi-k3`

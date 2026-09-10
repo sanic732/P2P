@@ -175,8 +175,8 @@ Voice cloning: 30s+ clean reference audio.
 
 | Task | Tier 1 | Tier 2 | Tier 3 |
 |------|--------|--------|--------|
-| **Image-to-Code (UI replication)** | Kimi K2.5 (MoonViT-3D, OCRBench 92.3%) | GLM-4.6V (image→code, PDF/UI reverse) | Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro |
-| **Screenshot Analysis** | Claude Opus 4.7 (spatial logic, chart understanding) | Gemini 3.1 Pro (multimodal native) | Kimi K2.5 (MoonViT-3D) |
+| **Image-to-Code (UI replication)** | Kimi K3 (MoonViT-3D, OCRBench 92.3%; K2.5 снят 31.08) | GLM-4.6V (image→code, PDF/UI reverse) | Qwen3-VL (OCR 99.2%), Gemini 3.1 Pro |
+| **Screenshot Analysis** | Claude Opus 4.7 (spatial logic, chart understanding) | Gemini 3.1 Pro (multimodal native) | Kimi K3 (MoonViT-3D) |
 | **Video Generation** | Veo 3.1 (highest quality, native audio) | Sora 2 (continuity) | Runway Gen-4 (style transfer) / Kling 2.5 (human motion) |
 | **Audio (music)** | Suno v5 / Udio | — | — |
 | **Audio (TTS)** | ElevenLabs v3 | — | — |

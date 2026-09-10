@@ -64,7 +64,7 @@ _master.md описывает порядок конкатенации файло
 19. !domain.md
 20. vendors/tier3.md
 21. vendors/tier4.md
-22. vendors/tier3.md  (TARGET: генерация промптов ПОД Grok — Grok 4.5/4.3, strict JSON, G14)
+22. vendors/tier3.md  (TARGET: генерация промптов ПОД Grok — Grok 4.6/4.5/4.3, strict JSON, G14)
 ```
 
 **Когда:** T3-T4, QUORUM, длинные multi-step задачи.

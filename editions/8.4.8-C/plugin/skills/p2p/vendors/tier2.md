@@ -2,7 +2,7 @@
 source_id: TIER2_V8C
 version: 8.4.8-C
 module_type: vendor
-scope: Tier 2 balanced models — Claude Sonnet 5 (primary), Gemini 3.6 Flash, Gemini 3.5 Flash. For T1-3 production workloads.
+scope: Tier 2 balanced models — Claude Sonnet 5 (primary), Gemini 3.8 Flash, Gemini 3.7/3.6 Flash. For T1-3 production workloads.
 tags: vendor, tier2, claude-sonnet-5, gemini-flash, balanced, on-demand
 ---
 
@@ -20,23 +20,23 @@ Strengths: near-Opus-4.8 качество при низкой цене; отли
 > ✅ Claude Sonnet 4.6 (`claude-sonnet-4-6`) — активен: 30.06 он лишь перестал быть моделью по умолчанию.
 > Снятие не раньше 17.02.2027, поэтому остаётся законным выбором по цене.
 
-## Gemini 3.6 Flash (новый workhorse)
-API: `gemini-3.6-flash`
-Context: 1,048,576 | Output: 65,536 | Cost: $1.50/$7.50 | cache-read $0.15 | ~304 tok/s | GA 2026-07-21
+## Gemini 3.8 / 3.7 / 3.6 Flash (workhorse линии Flash)
+API: `gemini-3.8-flash` (GA 2026-09-02, текущий) · `gemini-3.7-flash` (GA 2026-08-13) · `gemini-3.6-flash` (GA 2026-07-21)
+Context: 1,048,576 | Output: 65,536 | Cost: $0.75/$3.75, cache-read $0.075 — вводная цена линии до 2026-12-31, затем $1.50/$7.50, cache $0.15 | ~304 tok/s
 Best for: High-volume batching, дешёвый long context, нативный Computer Use
 
 G-errors: G1 (sampling-параметры deprecated на 3.x; Deep Think — без temperature), G2 (XML в system context), G13 (Error 13 @100-128K)
-⚠ G13 на 3.6 Flash **НЕ ТЕСТИРОВАЛСЯ** — модель не очищена от бага, а не проверена на него.
+⚠ G13 на 3.6 / 3.7 / 3.8 Flash **НЕ ТЕСТИРОВАЛСЯ** — модели не очищены от бага, а не проверены на него.
   Обходы G13 (Context Caching API, история ≤80K, без пачек 30+ изображений) применять и здесь,
   особенно на длинных не-английских контекстах.
-Note: дешевле 3.5 Flash по выходу ($7.50 против $9.00), на 17% меньше выходных токенов.
+Note: вводная цена линии вдвое ниже 3.5 Flash ($1.50/$9); 3.6 Flash даёт на 17% меньше выходных токенов.
   Индекс интеллекта AA не изменился против 3.5 Flash — это экономия, а не рост способностей.
 
 > Внутренний маршрут `gemini-3.6-flash-tiered` (Antigravity) — НЕ публичный API-id, не использовать.
 
 ## Gemini 3.5 Flash
 API: `gemini-3.5-flash`
-Context: 1M | Output: 64K | Cost: $1.50/$9 | предыдущий workhorse, вытеснен 3.6 Flash
+Context: 1M | Output: 64K | Cost: $1.50/$9 | предыдущий workhorse, вытеснен линией 3.6 / 3.7 / 3.8 Flash
 
 G-errors: G1, G2, G13
 Note: Soft rate limit + queue (в отличие от Pro hard 429 — G12)

@@ -118,7 +118,7 @@ EXEMPT» была ошибкой. По официальной странице �
 **Fix:** CONSTRAINT_REINJECTION каждые 25 сообщений. /p2p-capsule при >60 сообщений.
 
 ### G14 — GROK_UNSUPPORTED_PARAM #DB_ERROR_G14
-**Модель:** Grok 4.3 / 4.5 / 4.20  
+**Модель:** Grok 4.6 / 4.5 / 4.3 / 4.20
 **Симптом:** HTTP 400 на нестандартные параметры  
 **Причина:** Grok выбрасывает hard 400 (не молча игнорирует) на любой unsupported param  
 **Fix:** Safe params только: `temperature, max_tokens, stream, top_p, stop`. Удалять всё остальное.
@@ -161,7 +161,7 @@ reasoning тихо деградирует. Вторая ловушка: у v4-fl
 **Модель:** Qwen 3.6  
 **Симптом:** HTTP 404 или неправильная модель  
 **Причина:** Разные API strings для DashScope vs OpenRouter  
-**Fix:** DashScope → `qwen3-plus`, OpenRouter → `qwen/qwen3-plus`
+**Fix:** DashScope → `qwen3.8-max`, OpenRouter → `qwen/qwen3.8-max` (линейки qwen3-* / 3.6-* снимаются 10.10)
 
 ### G18 — QWEN_PRESERVE_THINKING_AMNESIA #DB_ERROR_G18
 **Модель:** Qwen 3.6 (agentic режим)  
@@ -708,7 +708,7 @@ Compatibility: Kimi (94.7%), Gemini (92.3% on 1M). Score: 94/100.
 
 **MENTAL_SANDBOX** #DB_TECHNIQUE_MENTAL_SANDBOX
 Simulate answer internally before outputting. Legal documents, contradiction search.
-Compatibility: Kimi K2/K2.5, Gemini Deep Think. Score: 88/100.
+Compatibility: Kimi K2.6/K3, Gemini Deep Think. Score: 88/100.
 
 **DEEP_REASONING** #DB_TECHNIQUE_DEEP_REASONING
 Universal template for deep logical analysis. Scientific research, mathematical proofs.
@@ -766,7 +766,7 @@ provider policies, security controls or law. Operator bears responsibility for g
 
 **AGENT_SWARM** #DB_TECHNIQUE_AGENT_SWARM
 Parallel coordination of up to 100 sub-agents.
-Compatibility: Kimi K2.5 (leader, BrowseComp 78.4%), Gemini (BrowseComp 85-86%). Score: 89/100.
+Compatibility: Kimi K3 (K2.5 снят 31.08), Gemini (BrowseComp 85-86%). Score: 89/100.
 
 **TOOL_BUDGET** #DB_TECHNIQUE_TOOL_BUDGET
 Always set MAX_TOOL_CALLS + stop conditions + parallelize only independent subtasks.
@@ -775,7 +775,7 @@ Compatibility: Kimi (up to 1500 calls), Gemini (limits required). Score: 95/100.
 
 **VISUAL_AGENTIC_CODING** #DB_TECHNIQUE_VISUAL_CODING
 Direct code generation from images, UI mockups, screenshots, video.
-Compatibility: Kimi K2.5 (MoonViT-3D), Gemini (VEO), Qwen3-VL. Score: 91/100.
+Compatibility: Kimi K3 (MoonViT-3D), Gemini (VEO), Qwen3-VL. Score: 91/100.
 
 **FRESHNESS_PROTOCOL** #DB_TECHNIQUE_FRESHNESS_GUARDRAIL
 Protection against stale data in Thinking mode.
@@ -965,7 +965,7 @@ Step 4 (Polish): → Claude Sonnet 4.6 (cost-efficient for edits)
 ```
 Step 1 (Architecture): → Claude Opus 4.7
   Output: File structure, interfaces, data flow diagram
-Step 2 (Implementation): → Claude Sonnet 4.6 или Qwen3-Coder
+Step 2 (Implementation): → Claude Sonnet 5 или Qwen3.8-Max
   Input: Architecture. Output: Code files
 Step 3 (Test): → GPT-5.6 Terra или DeepSeek V4
   Input: Code. Output: Test cases + edge cases
@@ -1082,13 +1082,13 @@ If different error type appears → iterate from Step 1 with new diagnosis.
 | Research | Gemini 3.1 Pro | Kimi K2.x | Claude Opus 4.7 | Qwen 3.6 |
 | Visual | Kimi K2.x (MoonViT-3D) | GLM-5V | Gemini 3.1 Pro (VEO) | Qwen3-VL |
 | Agents | GPT-5.6 Sol (native computer use; ⚠ G22) | GLM-5.3 | Kimi K2.x Agent Swarm | DeepSeek V4 |
-| Writing | Claude Opus 4.7 (depth, empathy) | GPT-5.6 Terra (structured) | Grok 4.3 (uncensored creative) | — |
+| Writing | Claude Opus 5 (depth, empathy) | GPT-5.6 Terra (structured) | Grok 4.6 (uncensored creative) | — |
 | Frontier | Gemini 3.1 Pro Deep Think | Claude Opus 5 | GPT-5.6 Sol | — |
 
 **RESOURCE STRATEGY:**
 - IDEALIST: Игнорировать стоимость, максимизировать качество
 - PRAGMATIST: Оптимизировать price/quality
-  Budget picks: DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.1 ($0.60/M), Kimi K2.x ($0.60/M), Qwen3-Flash ($0.14/M)
+Budget picks: Gemini 3.8 Flash ($0.75/$3.75), DeepSeek V4-Flash ($0.22/$0.66 off-peak), GLM-5.3-Flash ($0.15/$0.50), Qwen 3.8-Flash-Next ($0.16/$0.47)
 - EXPERIMENTAL (‡): Только sandbox + A/B testing
 
 ---
