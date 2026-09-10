@@ -18,6 +18,7 @@ tags: router, multi-provider, fallback, contract-translation, v8h3
 // §1. CAPABILITY MATRIX (источник истины — live_specs / live_core)
 CAPABILITY_MATRIX:
   // provider | model display       | api_string              | context | cost/1M in-out | prio
+  claude:   Claude Opus 5           | claude-opus-5           | 1M    | $5/$25    | 1  // PRIMARY (GA 24.07, thinking ON by default); Arena Agent #1, Image-to-WebDev #1
   claude:   Claude Fable 5.1        | claude-fable-5-1        | 1M    | $10/$50   | 1  // GA 01.09; cache read 0.025x; Arena WebDev #1
   claude:   Claude Fable 5          | claude-fable-5          | 1M    | $10/$50   | 2  // Safety Nanny ~5%→Opus4.8
   claude:   Claude Opus 4.8         | claude-opus-4-8         | 1M    | $5/$25    | 2  // coding #1 (SWE-bench Pro 69.2%)
