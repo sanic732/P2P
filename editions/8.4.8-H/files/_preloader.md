@@ -61,13 +61,13 @@ HOST_MODEL_AUTODETECT:
     HOST_PROFILE / HOST_CAPS ← !host_profiles.md (HOST_PROFILE_TABLE по HOST_MODEL)
                                + !!core_v8H.md §1 HOST_PROFILES (identity / thinking / G-rules)
     per-vendor правила        ← vendors/{claude,grok,tier1..4}.md
-    цены / лимиты / субмодели ← _live/live_specs.md (вшитый локальный файл, НЕ Gist)
+    цены / лимиты / субмодели ← _live/live_core.md + _live/live_vendors.md (BASE, на дату LAST_VERIFIED)
     minimax / manus (NEW)     ← PROFILE[minimax]/PROFILE[manus] в !host_profiles.md + !!core §1
                                 (host-only; в live_specs TRACK-ONLY → НЕ цели роутинга);
-                                свежие цены/лимиты — из _live/live_specs.md
+                                свежие цены/лимиты — _live/live_core.md; новее — /p2p-download
   // Канарейки / GIST-fetch из 8L.3 здесь НЕ нужны: вся справка уже лежит рядом файлами.
   SUBMODEL: по возможности уточни субмодель (opus-4-8 / grok-4.3 / gemini-3.1-pro-preview),
-            иначе оставь "". Точные лимиты — из локального _live/live_specs.md.
+            иначе оставь "". Точные лимиты — из _live/live_core.md (дата в LAST_VERIFIED).
 
 // ─── БЛОК 1: HOST CONFIG (пусто → сработает автодетект БЛОК 0) ───
 
@@ -185,7 +185,7 @@ LOAD_SEQUENCE:
   6.5 !host_profiles.md   ← HOST_CAPS по HOST_MODEL (Heavy-16 gate) — ВСЕГДА после live
   6.6 !llm_router.md      ← multi-provider router (default primary = HOST_MODEL) — ВСЕГДА
   6.7 !routing_matrix.md  ← аудируемая карта маршрутизации — по запросу/при routing
-  7. _live/live_specs.md ← OVERRIDE-спека v8.6.1 (Fable 5, Opus 4.8) при наличии
+  7. LIVE OVERRIDE       ← ТОЛЬКО по /p2p-download (гист). Вшитого файла в сборке НЕТ
   8-N. ON-DEMAND          ← По триггеру ИЛИ MODULE_*=true|or (см. !!core_v8H.md §TRIGGERS)
 
   // Шаг загрузки ON-DEMAND модулей (после BASE+LIVE):

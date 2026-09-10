@@ -81,13 +81,14 @@
  ├──📄 _live/live_vendors.md  [~1,600 токенов]
  │     └── Quick reference: API strings, цены, routing guide, Translation Rules
  │
- └──📄 vendors/live_specs.md  [~14,000 токенов] — PRIORITY: OVERRIDE
+ └──🌐 LIVE gist (fetch по /p2p-download)  [~14,000 токенов] — PRIORITY: OVERRIDE
+       // в сборке файла НЕТ с 2026-09-10 — тянется из сети или не тянется вовсе
        ├── Все вендоры: Claude, Gemini, Grok, GPT, DeepSeek, Qwen, Kimi, GLM, MiniMax, Manus
        ├── ERROR_REGISTRY G1–G22 (полный)
        └── USER_SANDBOX: DATA_BINDING, логотип, меню
        
-   ↕ При новых данных → выпускается live_specs_YYYYMMDD.md (маленький файл)
-     Обновить ссылку: live_specs_ref в MANIFEST.md + live_vendors.md
+   ↕ При новых данных автор перезаливает файл на гист — ссылка не меняется (unpinned).
+     Факты, ставшие стабильными, переносятся руками в BASE и `_live/*`.
 
 
 # ==============================================================================

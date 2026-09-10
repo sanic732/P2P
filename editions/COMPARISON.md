@@ -30,12 +30,14 @@
 
 ## Механика Live Specs (что нового в поколении .3)
 
-Во все редакции `.3` вшит авто-обновляемый справочник цен/квот/багов моделей.
+Во всех редакциях `.3` есть авто-обновляемый справочник цен/квот/багов моделей.
+С 2026-09-10 он **не вшивается в сборку**: факты лежат в BASE и `_live/*` с полем
+`LAST_VERIFIED`, а свежее приходит из гиста по `/p2p-download`.
 
 - **Источник.** Выделенный **unpinned (latest) Gist** со статичным именем файла `live_specs.md` — при апдейте меняется только содержимое (`VERSION: 8.5 → 8.6…`), ссылка не «протухает». Автор правит файл локально (`Live_UPDATE/` → `update_live.cmd`, один клик, без браузера/2FA).
 - **FETCH-гейт.** На старте система активно проверяет способность к web-fetch (пробный `FETCH_CANARY`, сверка с эталоном — ловит и «лень» модели, и галлюцинацию). Результат → режим `GIST_LAZY_FETCH` или `LITE_ONLY`. Честная деградация вместо выдуманных данных.
 - **Проверка свежести.** По маркерам `VERSION:` + `// END OF FILE` (не sha256 — для live-контента содержимое меняется). Для статичных чанков (8L.3) — sha256 + EOF-маркер + размер ±15%.
-- **Поведение без сети.** Используется вшитый snapshot (`LITE_SNAPSHOT` в `!!db`) + предупреждение о дате; удалённые модули недоступны.
+- **Поведение без сети.** Используется BASE-слой сборки (`_live/*`, у Lite — `LITE_SNAPSHOT` в `!!db`) с полем `LAST_VERIFIED` + предупреждение о дате; удалённые модули недоступны.
 - **8L.3 (4-слойная lazy-модель).** `L0 BOOT → L1 RESOLVER → L2 TRANSPORT → L3 GIST CLOUD`. DEPENDENCY_RESOLVER строит план загрузки (транзитивные `requires` + dedup + MUTEX-чек) **до** обращения к сети, затем fetch с проверкой целостности.
 - Источник механики: `editions/8.4.3-L/CHANGELOG.md` (8L.3) и `Live_UPDATE/INTEGRATION_SNIPPET.md` (переносится в 8C/8H/8N).
 
@@ -56,4 +58,4 @@ All four editions share **one architecture**; they differ by host and form facto
 
 **Pick:** newcomer / token economy → **light**; Claude user → **claude-native**; maximum / Grok → **high**; your model isn't native → **normal**.
 
-**Live Specs (new in .3):** an auto-updated price/quota/bug reference loaded from a dedicated **unpinned Gist** (`live_specs.md`, latest). An **active FETCH gate** (FETCH_CANARY) decides `GIST_LAZY_FETCH` vs `LITE_ONLY`; freshness is checked via `VERSION:` + `// END OF FILE` markers; offline falls back to an embedded snapshot with a date warning. 8L.3 uses a 4-layer lazy model (BOOT→RESOLVER→TRANSPORT→GIST) with a dependency resolver and sha256 integrity checks.
+**Live Specs (new in .3):** an auto-updated price/quota/bug reference loaded from a dedicated **unpinned Gist** (`live_specs.md`, latest). An **active FETCH gate** (FETCH_CANARY) decides `GIST_LAZY_FETCH` vs `LITE_ONLY`; freshness is checked via `VERSION:` + `// END OF FILE` markers; offline falls back to BASE with LAST_VERIFIED and a date warning. 8L.3 uses a 4-layer lazy model (BOOT→RESOLVER→TRANSPORT→GIST) with a dependency resolver and sha256 integrity checks.

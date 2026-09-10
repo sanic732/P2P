@@ -4,7 +4,7 @@ version: 8.4.8-C
 module_type: live
 depends_on: none
 last_updated: 2026-09-04
-live_specs_ref: vendors/live_specs.md
+live_specs_ref: gist:a64245c3f824f45708519d57e0d62408/live_specs.md   # LIVE-канал по /p2p-download; в сборку НЕ вшивается
 scope: P2P live manifest — deadlines, deprecation flags, daily refresh checklist, v8C.3 module status. Always loaded as part of BASE set.
 tags: manifest, deadlines, deprecation, live, v8c, v8c3
 ---
@@ -13,7 +13,8 @@ tags: manifest, deadlines, deprecation, live, v8c, v8c3
 
 > Обновляй этот файл при каждом обновлении live specs.
 > Last updated: 2026-09-04
-> Full live specs: `vendors/live_specs.md` (PRIORITY: OVERRIDE)
+> Full live specs: LIVE-канал по `/p2p-download` (gist `a64245c3…/raw/live_specs.md`, PRIORITY: OVERRIDE).
+> В сборку не вшивается: факты лежат в BASE и `_live/*` на дату LAST_VERIFIED ниже.
 
 ---
 
@@ -110,7 +111,7 @@ grep -rn "claude-opus-4-20250514\|claude-sonnet-4-20250514\|deepseek-chat\|deeps
 | live_core.md | Live | Ежедневно | ✅ |
 | live_claude.md | Live | При обновлениях Claude | ✅ |
 | live_vendors.md | Live | При обновлениях моделей | ✅ v8C.3 |
-| vendors/live_specs.md | OVERRIDE | При выходе новой версии | ✅ Loaded (v8.7.3) |
+| LIVE gist (fetch) | OVERRIDE | По `/p2p-download` | ⬇ Не вшит в сборку — тянется из сети |
 
 ## v8C.3 MODULES STATUS
 

@@ -17,7 +17,7 @@
    команда `/host <модель>` в сессии.
 
 > MiniMax/Manus: отдельного профиля в `!!core §1` пока нет → дефолт PLAIN_TEXT + adaptive XML +
-> simulated QUORUM; лимиты/цены — из `_live/live_specs.md`.
+> simulated QUORUM; лимиты/цены — из `_live/live_core.md` (свежее — по `/p2p-download`).
 
 Ниже — как вручную задать любой конкретный хост (необязательно, для форса).
 

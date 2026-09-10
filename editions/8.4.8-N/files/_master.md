@@ -63,7 +63,6 @@ FULL:
       !memory.md \
       !metrics.md \
       !sandbox.md \
-      _live/live_specs.md \
       vendors/tier1.md \
       vendors/tier2.md \
       vendors/tier3.md \

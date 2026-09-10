@@ -36,11 +36,12 @@ tags: docs, reference, token-budget, modules
 | Файл | Назначение | ~Токены | Загрузка |
 |------|-----------|---------|---------|
 | `_live/live_vendors.md` | API strings, цены, routing guide, Translation Rules | ~3,700 | Рекомендуется (генерация под другие модели) |
-| `_live/live_specs.md` | ДЕЛЬТА live specs PRIORITY:OVERRIDE (изменения/дедлайны/ARENA/активные баги) | ~10,600 | По необходимости |
+| LIVE gist (fetch, не файл сборки) | ДЕЛЬТА live specs PRIORITY:OVERRIDE (изменения/дедлайны/ARENA/активные баги) | ~10,600 | По `/p2p-download` |
 
 > `live_vendors.md` + `vendors/tier*.md` — **стабильный канон** (модели, цены, контекст, тиры).
-> `live_specs.md` — с 2026-07-14 **только дельта**: перебивает канон по свежим изменениям
-> (правило OVERRIDE при более новом `VERSION`). Было ~27,800 → стало ~10,600.
+> LIVE-дельта — с 2026-09-10 **в сборку не вшивается**: приходит по `/p2p-download` из гиста
+> и перебивает канон при более новом `VERSION` (правило OVERRIDE). Без сети работает BASE
+> и `_live/*` на дату `LAST_VERIFIED`.
 
 ---
 
@@ -174,7 +175,7 @@ BASE ≈ 14,200
 | Отладка промпта | !templates.md, !scope.md | BASE + !debug.md + !optimization.md |
 | Обучение P2P | !agents.md, !scope.md | BASE + !teacher.md + !mentor.md |
 | Быстрый T0-1 | всё ON-DEMAND | Только BASE |
-| Бюджетная модель (<50K ctx) | live_specs.md, !teacher.md | BASE + LIVE краткие |
+| Бюджетная модель (<50K ctx) | LIVE-дельту по /p2p-download, !teacher.md | BASE + LIVE краткие |
 
 ---
 

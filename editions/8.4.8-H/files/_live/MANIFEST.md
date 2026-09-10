@@ -19,7 +19,7 @@ MANIFEST:
   STATUS:        BETA (technique import from v8C.3)
   FILES:         24 base + 7 docs = 31 total
   PHILOSOPHY:    Universal · Any-host · Any-target · 10 host models (8 routing-targets + minimax/manus host-only, TRACK-ONLY)
-  LIVE_SPECS_REF: _live/live_specs.md (v8.7.3, OVERRIDE)
+  LIVE_SPECS_REF: gist:a64245c3f824f45708519d57e0d62408/live_specs.md (fetch по /p2p-download, OVERRIDE)
 
 VERSIONS:
   !!core_v8H.md:        v8H.3  verified: 2026-06-27
@@ -28,7 +28,7 @@ VERSIONS:
   _live/MANIFEST.md:    v8H.3  verified: 2026-06-27
   _live/live_core.md:   v8H.3  verified: 2026-07-26
   _live/live_vendors.md: v8H.3 verified: 2026-07-26
-  _live/live_specs.md: v8.7.3 verified: 2026-09-04  // OVERRIDE source
+  // _live/live_specs.md снят из поставки 2026-09-10 — OVERRIDE приходит из гиста по /p2p-download
   !agents.md:           v8H.3  verified: 2026-06-27
   !pipeline.md:         v8H.3  verified: 2026-06-27
   !toolkit.md:          v8H.3  verified: 2026-06-27
