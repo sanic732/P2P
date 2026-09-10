@@ -105,14 +105,14 @@ ERRORS_AP:
 
 G_ERRORS:
   G1  GEMINI_DEEP_THINK_TEMP   Gemini 3.1 Pro · HTTP 400 · Deep Think + temp≠1.0 · Fix: temperature 1.0 / убрать.
-  G2  GEMINI_XML_COH           Gemini · Quality BLOCKER · XML → Chain-of-Hint · Fix: ZERO XML, plain text.
+  G2  GEMINI_XML_COH_INTERFERENCE           Gemini · Quality BLOCKER · XML → Chain-of-Hint · Fix: ZERO XML, plain text.
   G3  GROK_TOPIC_DRIFT         Grok 4.3 · Отвечает не на тот вопрос · Fix: topic anchor /3 turn.
-  G4  GEMINI_THINKING_BUDGET   Gemini 3.1 Pro · thinking_budget игнорируется · Fix: thinkingLevel "MEDIUM".
-  G6  OPUS4X_TOKENIZER_INFL    Opus 4.7+/Fable 5/Sonnet 5/Opus 5 · контекст быстрее · ~+30% (офиц., одна цифра) · Fix: Token Counting API; пин 4.6.
-  G7  CLAUDE_THINKING_TEMP     Opus 4.7/Sonnet 4.6 · HTTP 400 · temp при thinking=enabled · Fix: убрать temperature.
+  G4  GEMINI_THINKING_BUDGET_IGNORED   Gemini 3.1 Pro · thinking_budget игнорируется · Fix: thinkingLevel "MEDIUM".
+  G6  OPUS4X_TOKENIZER_INFLATION    Opus 4.7+/Fable 5/Sonnet 5/Opus 5 · контекст быстрее · ~+30% (офиц., одна цифра) · Fix: Token Counting API; пин 4.6.
+  G7  CLAUDE_EXTENDED_THINKING_TEMP     Opus 4.7/Sonnet 4.6 · HTTP 400 · temp при thinking=enabled · Fix: убрать temperature.
   G8  OPUS47_MRCR_REGRESSION   Opus 4.7 · плохой recall >500K (MRCR 32.2%@1M) · Fix: пин claude-opus-4-6.
-  G9  GPT55_SILENT_DOWNGRADE   GPT-5.5 · >7 MUST/MUST NOT пар → downgrade · Fix: макс 7 пар.
-  G10 GPT_PRICING_TRAP_272K    GPT-5.x/5.6 · >272K → x2 UNCACHED in / x1.5 out; cached input cached тоже ×2 (кэш обрыв не переживает) · Fix: перехват 250K, обрыв 260K; решать по доле кэш-попаданий. Terra/Luna long-context НЕ документирован.
+  G9  GPT55_SILENT_QUALITY_DOWNGRADE   GPT-5.5 · >7 MUST/MUST NOT пар → downgrade · Fix: макс 7 пар.
+  G10 GPT_CONTEXT_PRICING_TRAP_272K    GPT-5.x/5.6 · >272K → x2 UNCACHED in / x1.5 out; cached input cached тоже ×2 (кэш обрыв не переживает) · Fix: перехват 250K, обрыв 260K; решать по доле кэш-попаданий. Terra/Luna long-context НЕ документирован.
   G11 GEMINI_HIGH_BILLING      Gemini 3.1 Pro · thinkingLevel=HIGH без gate · Fix: DEEP_THINK_VALUE_GATE.
   G12 GEMINI_HARD_429          Gemini 3.1 Pro · HTTP 429 без retry · Fix: high-freq → Flash.
   G13 GEMINI_MEMORY_NUKE       Gemini 3.1 Pro · забывает после ~80 сообщений · Fix: REINJECT каждые 25.
@@ -120,7 +120,7 @@ G_ERRORS:
   G15 DEEPSEEK_REASONING_CARRY DeepSeek V4 · загрязнение reasoning · Fix: re-inject reasoning_content (НЕ null) — RESOLVED BY DESIGN.
   G16 DEEPSEEK_ALIAS_RETIRE    ★ИСПОЛНЕНО 2026-07-24 15:59 UTC (no grace) · код 404 либо 400 — принимать оба · Fix: бывший reasoner → deepseek-v4-pro, НЕ v4-flash-thinking (иначе тихая деградация). v4-pro GA 13.08.2026 (веса MIT); v4-flash-0731 — public beta.
   G17 QWEN_PROVIDER_PREFIX     Qwen · HTTP 404 · Fix: DashScope qwen3.6-plus / OpenRouter qwen/qwen3.6-plus.
-  G18 QWEN_PRESERVE_THINKING   Qwen 3.6 agentic · thinking теряется · Fix: preserve_thinking: true.
+  G18 QWEN_PRESERVE_THINKING_AMNESIA   Qwen 3.6 agentic · thinking теряется · Fix: preserve_thinking: true.
   G19 GLM_CONTEXT_COLLAPSE     GLM-5.1 · деградация >100K · Fix: hard limit 100K.
   G20 KIMI_SWARM_TIMEOUT       Kimi K2.x · timeout >1h via REST · Fix: >40 агентов → async webhooks.
   G21 MODEL_IDENTITY_MISMATCH  OpenAI/Anthropic · обслужена не та модель · Fix: сверять resolved_model_slug (НЕ model_slug); у Anthropic — блок {"type":"fallback"}. Расхождение = громкий отказ.

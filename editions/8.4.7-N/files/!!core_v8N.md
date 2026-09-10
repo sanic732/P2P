@@ -53,7 +53,7 @@ HOST_PROFILES:
     KNOWN_ISSUES:   G9 (>7 rule pairs → silent downgrade),
                     G10 (pricing jump >272K tokens)
     THINKING_API:   reasoning_effort: medium
-    CONTEXT_LIMIT:  128K (GPT-5.5 standard)
+    CONTEXT_LIMIT:  1.05M (GPT-5.6 Sol; выше 272K — ценовой порог G10)
     RULE_LIMIT:     MAX 7 MUST/MUST NOT пар (G9 prevention)
 
   PROFILE[grok]:

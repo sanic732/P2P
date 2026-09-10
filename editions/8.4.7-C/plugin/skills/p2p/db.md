@@ -25,7 +25,7 @@ tags: db, knowledge-base, g-errors, templates, agents, extended-thinking, v8c
 как гарантию не заявлять.  
 **Fix:** не передавать temperature на линии 3.x вовсе; для Deep Think — либо опустить, либо 1.0
 
-### G2 — GEMINI_XML_COH #DB_ERROR_G2
+### G2 — GEMINI_XML_COH_INTERFERENCE #DB_ERROR_G2
 **Модель:** Gemini 3.1 Pro / Flash  
 **Симптом:** Деградация качества, игнорирование инструкций  
 **Причина:** XML теги в system context вызывают Chain-of-Hint interference  
@@ -560,7 +560,7 @@ T0-T4 + LoadScore → выбор бюджета агентов и thinking level
 - Claude → XML теги (как выше)
 - Gemini → Plain text, NO XML, thinkingLevel вместо budget_tokens
 - Grok → JSON Tool Calling, safe params only
-- GPT-5.5 → max 7 rule pairs, под 272K токенов
+- GPT-5.6 (Sol/Terra/Luna) → max 7 rule pairs, под 272K токенов
 
 ---
 
@@ -777,7 +777,7 @@ Universal. Score: 88/100.
 Optimal placement of techniques within prompt structure:
 - NEVER enforce structural tags (XML/JSON/Lists) for internal CoT in system prompt on Gemini/Claude Extended Thinking
 - Structural formatting MUST ONLY be applied to [OUTPUT FORMAT] block
-- STEP_BY_STEP: GPT-5.5 (allowed), Claude 4.x (allowed), Gemini 3.1 Pro (forbidden in reasoning), DeepSeek V4 (forbidden), Kimi K2.x (forbidden in Thinking), GLM-5 (forbidden in thinking)
+- STEP_BY_STEP: GPT-5.6 (allowed), Claude 4.x (allowed), Gemini 3.1 Pro (forbidden in reasoning), DeepSeek V4 (forbidden), Kimi K2.x (forbidden in Thinking), GLM-5 (forbidden in thinking)
 
 **COMBINATOR** #DB_TECHNIQUE_COMBINATOR
 Technique chaining via pipes: ELI5 | STEP_BY_STEP | TLDR.
@@ -831,7 +831,7 @@ BANNED in single-pass for: DeepSeek R1, Kimi Thinking. Score: 88/100.
 Model generates answer, then critiques it, then improves. Single-prompt implementation.
 Pattern: "Generate your best answer. Then list 3 weaknesses in your answer. Then rewrite fixing those weaknesses. Output ONLY the final rewritten version."
 WARNING: Doubles token usage. Tier 2+ only.
-Compatibility: Claude Opus (optimal), GPT-5.5 (good), Gemini 3.1 Pro (good). Score: 90/100.
+Compatibility: Claude Opus (optimal), GPT-5.6 (good), Gemini 3.1 Pro (good). Score: 90/100.
 
 **GATE_PATTERN**
 Model classifies input first, then routes to appropriate response strategy.
@@ -842,7 +842,7 @@ Compatibility: Universal. Score: 91/100.
 Model generates skeleton first, then fills section by section.
 Pattern: "Step 1: Output ONLY a structured outline. Step 2: For each section, write the full content. Do NOT skip any section from the outline."
 WARNING: Include "Do NOT skip any section" — models tend to collapse middle sections.
-Compatibility: Claude Opus (optimal — 128K output), GPT-5.5 (good). Score: 89/100.
+Compatibility: Claude Opus (optimal — 128K output), GPT-5.6 (good). Score: 89/100.
 
 **ADVERSARIAL_PAIR**
 Two-role pattern: Generator creates, Critic finds flaws, Generator fixes.
@@ -938,7 +938,7 @@ Assign ARENA_SCORE (0-100). Define 3-5 criteria → Create CALIBRATION PAYLOAD �
 ```
 Step 1 (Research): → Gemini 3.1 Pro или Grok 4.x (Deep Search, real-time)
   Output: Structured findings in JSON/Markdown
-Step 2 (Draft): → Claude Opus 4.7 или GPT-5.5 (long output, structured)
+Step 2 (Draft): → Claude Opus 5 или GPT-5.6 Terra (long output, structured)
   Input: Findings from Step 1. Output: Full draft document
 Step 3 (Review): → GPT-5.6 Sol или DeepSeek V4 (reasoning, critique)
   Input: Draft from Step 2. Output: Issues + severity
@@ -952,7 +952,7 @@ Step 1 (Architecture): → Claude Opus 4.7
   Output: File structure, interfaces, data flow diagram
 Step 2 (Implementation): → Claude Sonnet 4.6 или Qwen3-Coder
   Input: Architecture. Output: Code files
-Step 3 (Test): → GPT-5.5 или DeepSeek V4
+Step 3 (Test): → GPT-5.6 Terra или DeepSeek V4
   Input: Code. Output: Test cases + edge cases
 Step 4 (Security): → Claude Opus 4.7 (VECTOR agent)
   Input: Code + Tests. Output: Security audit report

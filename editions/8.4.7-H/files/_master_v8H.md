@@ -180,8 +180,8 @@ CHECKLIST:
   [ ] temperature отсутствует при thinking=enabled (G7)
   [ ] YAML frontmatter убран если нужно
   [ ] XML теги убраны если цель Gemini (G2)
-  [ ] Rule pairs ≤7 если цель GPT-5.5 (G9)
-  [ ] Context <272K если цель GPT-5.5 (G10)
+  [ ] Rule pairs ≤7 если цель GPT-5.x (G9)
+  [ ] Context <272K если цель GPT-5.x (G10)
   [ ] Context <100K если цель GLM-5.1 (G19)
   [ ] Тест на 3 кейсах: T1 / T2 / adversarial
   [ ] HOST_CONFIG заполнен в _preloader.md

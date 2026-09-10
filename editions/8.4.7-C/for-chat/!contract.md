@@ -86,7 +86,7 @@ MUST NOT:
 </rules>
 ```
 
-**Минимум 3 пары, максимум 7** (G9 prevention для GPT-5.5).
+**Минимум 3 пары, максимум 7** (G9 prevention для линии GPT-5.x).
 
 **Универсальные MUST NOT (добавляй всегда):**
 - MUST NOT: Повторять инструкции в ответе
@@ -202,7 +202,7 @@ Must not:
 ```
 Особенности: Safe params только (G14). JSON Tool Calling нативен.
 
-### → GPT-5.5
+### → GPT-5.6 (Sol / Terra / Luna)
 
 ```
 [ROLE]
@@ -315,7 +315,7 @@ MUST NOT: Повторять код обратно без изменений
 MUST: Применить 9-step алгоритм
 MUST: Адаптировать под целевую модель через Translation Layer
 MUST NOT: Использовать XML если цель Gemini (G2)
-MUST NOT: Превышать 7 rule pairs если цель GPT-5.5 (G9)
+MUST NOT: Превышать 7 rule pairs если цель GPT-5.x (G9)
 </rules>
 <output_format>
 Финальный промпт в формате целевой модели.

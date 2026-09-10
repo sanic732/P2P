@@ -83,7 +83,7 @@ G3: GROK_TOPIC_DRIFT
             "[TOPIC ANCHOR: Исходная задача = {краткое описание}. Держись темы.]"
   Pattern:  Добавь в шаблон для Grok как часть контракта
 
-G4: GEMINI_THINKING_BUDGET_PRO
+G4: GEMINI_THINKING_BUDGET_IGNORED
   Model:    Gemini 3.1 Pro
   Error:    thinking_budget молча игнорируется
   Cause:    Pro модель использует thinkingLevel enum, не thinking_budget int
@@ -130,14 +130,14 @@ G8: OPUS47_MRCR_REGRESSION
   Fix:      Для задач с необходимостью recall >500K → пин claude-opus-4-6
   Note:     claude-opus-4-7 превосходит 4.6 на всём остальном — только recall регрессия
 
-G9: GPT55_SILENT_DOWNGRADE
+G9: GPT55_SILENT_QUALITY_DOWNGRADE
   Model:    GPT-5.5
   Error:    Тихое снижение качества без ошибок, без предупреждений
   Cause:    Более 7 пар MUST/MUST NOT → silent quality downgrade в inference
   Fix:      Максимум 7 MUST + 7 MUST NOT = 14 правил итого
   Pattern:  Использовать приоритетную матрицу: оставить только Critical правила
 
-G10: GPT_PRICING_TRAP_272K
+G10: GPT_CONTEXT_PRICING_TRAP_272K
   Model:    GPT-5.5, GPT-5.6 (Sol/Terra/Luna)
   Error:    Неожиданный скачок стоимости
   Cause:    Выше 272K весь запрос → x2 input, x2 CACHED input и x1.5 output. Sol: 4/20 → 8/30.
@@ -205,7 +205,7 @@ G17: QWEN_PROVIDER_PREFIX
     OpenRouter:            "qwen/qwen3-plus" (с префиксом qwen/)
     HuggingFace Inference: "Qwen/Qwen3-plus" (с заглавной Q)
 
-G18: QWEN_PRESERVE_THINKING
+G18: QWEN_PRESERVE_THINKING_AMNESIA
   Model:    Qwen 3.6 в agentic режиме
   Error:    Thinking блок теряется между tool calls
   Cause:    По умолчанию thinking не сохраняется в контексте

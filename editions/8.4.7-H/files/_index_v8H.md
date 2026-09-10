@@ -30,7 +30,7 @@ MODULE_REGISTRY:
     11. !memory.md            TRIGGER: "memory|capsule|сохрани|загрузи|состояние"
     12. !metrics.md           TRIGGER: "метрики|SESSION_EFFICIENCY|routing memory"
     13. !sandbox.md           TRIGGER: "sandbox|исследуй|exploration|эксперимент"
-    13d. !domain.md      [41] TRIGGER: "domain|react|react 19|jsx|hooks|typescript|kotlin|coroutine|flow|KMP|android|домен|реакт|котлин"
+    13h. !domain.md      [41] TRIGGER: "domain|react|react 19|jsx|hooks|typescript|kotlin|coroutine|flow|KMP|android|домен|реакт|котлин"
 
   HOST-ENGINE (8H — host-choice + Grok advantage):
     H1. !host_profiles.md     ALWAYS — HOST_CAPS по HOST_MODEL (Heavy-16 gate)
@@ -48,6 +48,8 @@ MODULE_REGISTRY:
     13e. !security.md     [39] TRIGGER: "security|injection|инъекц|jailbreak|безопасность"
     13f. !optimization.md [40] TRIGGER: "optim|APO|OPRO|улучши промпт|auto-tune|DSPy"
     13g. !skills.md       [42] TRIGGER: "skill|скилл|agent skill|create skill|SKILL.md|навык агента"
+    13i. !visual.md       [15] TRIGGER: "image|картинк|video|видео|audio|аудио|midjourney|sora|suno|imagen|flux"
+    13j. !art.md               TRIGGER: "арт|баннер|art|banner|смена режима|выбор режима|pilot|sherpa|quorum|scope|exploration"
 
   VENDORS (reference, по запросу):
     14. vendors/grok.md       Grok 4.5 / 4.3 / 4.20 Heavy-16 / X Firehose (primary для grok host)
