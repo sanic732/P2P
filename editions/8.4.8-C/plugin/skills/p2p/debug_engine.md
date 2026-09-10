@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md, db.md
 scope: Debug Engine — structured failure analysis, G-error diagnosis, prompt autopsy, iterative fix workflow.
 tags: debug, failure-analysis, g-errors, autopsy, on-demand
-triggers: "debug", "провал", "не работает", "ошибка", "почему", "исправь", "[12]", "Debug Engine"
+triggers: ["debug", "провал", "не работает", "ошибка", "почему", "исправь", "[12]", "Debug Engine"]
 ---
 
 # P2P — DEBUG ENGINE (debug_engine.md)

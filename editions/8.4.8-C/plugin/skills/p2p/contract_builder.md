@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md, db.md
 scope: Contract Builder — 9-step algorithm full implementation, Translation Layer for 8 models, XML scaffold patterns, output validation.
 tags: contract, builder, translation-layer, xml, 9-step, on-demand
-triggers: "contract", "промпт под модель", "translation layer", "Contract Builder", "[2]", "[5]"
+triggers: ["contract", "промпт под модель", "translation layer", "Contract Builder", "[2]", "[5]"]
 ---
 
 # P2P — CONTRACT BUILDER (contract_builder.md)

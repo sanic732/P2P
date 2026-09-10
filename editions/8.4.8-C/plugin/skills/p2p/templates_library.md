@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md, db.md
 scope: Extended template library — full implementations of Templates A–M with examples, usage notes, and variants. Base templates are in db.md; this module adds extended details and domain-specific variants.
 tags: templates, library, template-a, template-m, karpathy-mode, variants, on-demand
-triggers: "шаблон", "template", "Template Library", "[4]", "Template A", "Template M", "Karpathy"
+triggers: ["шаблон", "template", "Template Library", "[4]", "Template A", "Template M", "Karpathy"]
 ---
 
 # P2P — TEMPLATE LIBRARY EXTENDED (templates_library.md)

@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md, db.md
 scope: Full agent profiles — IRIS, TECTON, AXIOM, VECTOR, DATOS, ANON, ARCHITECTON, HELIOS. QUORUM orchestration patterns, direct invocation, sub-QUORUM compositions.
 tags: agents, quorum, iris, tecton, axiom, vector, datos, anon, architecton, helios, on-demand
-triggers: "агент", "QUORUM", "IRIS", "TECTON", "AXIOM", "VECTOR", "DATOS", "ANON", "ARCHITECTON", "HELIOS", "консилиум"
+triggers: ["агент", "QUORUM", "IRIS", "TECTON", "AXIOM", "VECTOR", "DATOS", "ANON", "ARCHITECTON", "HELIOS", "консилиум"]
 ---
 
 # P2P — АГЕНТЫ (agents.md)

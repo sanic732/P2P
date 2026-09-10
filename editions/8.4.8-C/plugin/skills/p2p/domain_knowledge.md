@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md
 scope: Domain Knowledge — management protocol + built-in React 19 / TypeScript and Kotlin / Coroutines / KMP reference libraries (ported from v7C.2). Replaces separate domain_knowledge.md and domain_knowledge.md.
 tags: domain, knowledge, context, react, typescript, frontend, kotlin, jvm, android, coroutines, multiplatform, on-demand
-triggers: "домен", "контекст проекта", "domain knowledge", "[16]", "добавить знания", "react", "react 19", "JSX", "hooks", "useEffect", "useState", "TanStack", "Zustand", "Suspense", "RSC", "tsx", "frontend", "kotlin", "ktx", "coroutine", "Flow", "StateFlow", "sealed class", "data class", "suspend", "KMP", "multiplatform", "android"
+triggers: ["домен", "контекст проекта", "domain knowledge", "[16]", "добавить знания", "react", "react 19", "JSX", "hooks", "useEffect", "useState", "TanStack", "Zustand", "Suspense", "RSC", "tsx", "frontend", "kotlin", "ktx", "coroutine", "Flow", "StateFlow", "sealed class", "data class", "suspend", "KMP", "multiplatform", "android"]
 ---
 
 # P2P — DOMAIN KNOWLEDGE (domain_knowledge.md)

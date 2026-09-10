@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md
 scope: Mentor Method — adaptive teaching, Socratic dialogue, knowledge assessment, progressive disclosure, 3 stages, showcases, minimal start, implementation checklist, navigator.
 tags: mentor, teaching, socratic, adaptive, progressive-disclosure, on-demand
-triggers: "объясни", "научи", "mentor", "как работает", "[J]", "Template J", "обучение"
+triggers: ["объясни", "научи", "mentor", "как работает", "[J]", "Template J", "обучение"]
 ---
 
 # P2P — MENTOR METHOD (mentor_method.md)

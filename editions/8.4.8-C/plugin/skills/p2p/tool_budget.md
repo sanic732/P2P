@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md
 scope: Tool Budget — managing API tool call limits, re-injection protocols, constraint drift prevention for agentic workflows.
 tags: tool-budget, api, agentic, constraint-drift, re-injection, on-demand
-triggers: "tool budget", "инструменты", "агентика", "API mode", "tool calls", "бюджет инструментов"
+triggers: ["tool budget", "инструменты", "агентика", "API mode", "tool calls", "бюджет инструментов"]
 ---
 
 # P2P — TOOL BUDGET (tool_budget.md)

@@ -5,7 +5,7 @@ module_type: on-demand
 depends_on: core.md, db.md
 scope: Deep intent analysis, anti-pattern detection, tool routing — port of v7C.2 intent_engine.md adapted to v8C.3.
 tags: intent, anti-patterns, tool-routing, 9D, primacy, recency, memory-block, fabrication
-triggers: "intent", "9D", "anti-pattern", "tool routing", "REASONING LLM", "THINKING LLM", "primacy", "recency", "30/55/15", "fabrication"
+triggers: ["intent", "9D", "anti-pattern", "tool routing", "REASONING LLM", "THINKING LLM", "primacy", "recency", "30/55/15", "fabrication"]
 ---
 
 # intent_engine.md — INTENT ENGINE (port from v7C.2)
