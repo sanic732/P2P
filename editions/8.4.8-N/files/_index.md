@@ -117,7 +117,7 @@ VALIDATION_CHECK:
   Циклические ссылки: отсутствуют. Уникальные id для каждого модуля.
   Host: 10 хостов (claude | gemini | gpt | grok | deepseek | qwen | kimi | glm | minimax | manus);
         автодетект + ручной HOST_PICK_LIST [1..10] (_preloader БЛОК 0/4). minimax/manus — дефолт-профиль.
-  Architecture: BASE (3) + LIVE (3 + live_specs) + ON_DEMAND (7 + 6 v8N.3) + VENDORS (4) + META (3) + DOCS (7)
+  Architecture: BASE (3) + LIVE (3, + LIVE-gist по fetch) + ON_DEMAND (7 + 6 v8N.3) + VENDORS (4) + META (3) + DOCS (7)
 
 FILE_META:
   ROLE:        Семантический граф, реестр модулей, триггеры загрузки, зависимости

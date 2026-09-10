@@ -111,7 +111,7 @@ FRESHNESS:
   core/db:      обновлять при мажорных изменениях
 
   STALE_THRESHOLD: 60 дней → активировать DATOS Deep Search
-  OVERRIDE: live_specs_YYYYMMDD.md > live_vendors.md > vendors/*.md > !!db_v8H.md
+  OVERRIDE: LIVE-gist (fetch) > live_vendors.md > vendors/*.md > !!db_v8H.md
 
 // ─────────────────────────────────────────────────────
 // MIGRATION NOTES

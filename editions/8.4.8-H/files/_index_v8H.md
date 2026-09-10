@@ -129,7 +129,7 @@ VALIDATION_CHECK:
   ✅ INDEX v8H.3 Hybrid — host-engine (6, +grok_heavy) + 6 v8H.3 модулей + !domain [41] (React/Kotlin) + native plugin (8 агентов)
   Циклические ссылки: отсутствуют. Уникальные id для каждого модуля.
   Host: 8 моделей; Heavy-16 native при HOST_MODEL=grok, иначе simulated QUORUM.
-  Architecture: BASE (3) + LIVE (3 + live_specs) + HOST-ENGINE (5) + ON_DEMAND (7 + 6 v8H.3)
+  Architecture: BASE (3) + LIVE (3, + LIVE-gist по fetch) + HOST-ENGINE (5) + ON_DEMAND (7 + 6 v8H.3)
                 + VENDORS (6) + META (3) + NATIVE (.claude) + DOCS (8)
 
 FILE_META:
