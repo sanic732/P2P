@@ -263,7 +263,7 @@ Format: [FORMAT]
 [TASK]
 
 Output: [FORMAT]
-Swarm limit: ≤40 agents sync. >40 → PARL async (G20).
+Swarm: до 300 agents (K2.6); ≤40 sync, >40 → PARL async (G20).
 ```
 
 ---

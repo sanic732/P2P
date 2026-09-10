@@ -422,7 +422,7 @@ API_STRINGS:
     OpenRouter:  qwen/qwen3.6-plus     ← Tier 2-3 (G17: prefix required)
 
   KIMI:
-    kimi-k3                            ← GA 16.07, WebDev #1 ($3/$15; 1,048,576; thinking always-on)
+    kimi-k3                            ← GA 16.07, WebDev #1 ($0.30/$3 cached/$15; 1,048,576; thinking always-on)
                                          ⚠ ACCESS-RISK: hosted-only, подписки закрыты, весов нет → НЕ primary
     kimi-k2.6                          ← Стандарт (Swarm 300)
     ✅ ИСПОЛНЕНО 2026-08-31: погашены kimi-k2.5 и часть moonshot-v1

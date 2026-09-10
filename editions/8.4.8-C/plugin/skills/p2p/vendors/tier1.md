@@ -27,7 +27,7 @@ Context: 1M | Output: 384K | Cost: $0.14/$0.28 | Best for: Bulk batch, T0-2
 ⚠ Thinking у V4-Flash включён по умолчанию и не отключается.
 
 G-errors: G15 (reasoning_content store + re-inject после tool calls — BY DESIGN), G16 (alias RETIRE 24.07)
-> Соседний: DeepSeek V4-Pro (`deepseek-v4-pro`, $0.435/$0.87, 1M) — T2-3, SWE-bench Verified 80.6%.
+> Соседний: DeepSeek V4-Pro (`deepseek-v4-pro`, $0.66/$1.98 off-peak · $1.32/$3.96 peak, 1M) — T2-3, SWE-bench Verified 80.6%.
 > ⚠ Нагрузку бывшего `deepseek-reasoner` вести на **v4-pro**, а НЕ на v4-flash-thinking —
 >   иначе reasoning тихо деградирует (официальный маппинг алиасов указывал на flash).
 
