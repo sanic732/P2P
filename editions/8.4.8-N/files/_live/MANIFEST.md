@@ -5,7 +5,7 @@ type: MANIFEST
 priority: HIGH
 load_order: 4
 compatible_with: "all v8N files"
-last_verified: 2026-09-04
+LAST_VERIFIED: 2026-09-10
 ---
 
 // ═══════════════════════════════════════════════════════

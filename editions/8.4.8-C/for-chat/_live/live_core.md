@@ -3,7 +3,7 @@ source_id: LIVE_CORE_V8C
 version: 8.4.8-C
 module_type: live
 depends_on: _live/MANIFEST.md
-last_updated: 2026-09-04
+LAST_VERIFIED: 2026-09-10
 scope: P2P live session state — current session tracking, active project, ATLAS state placeholder, routing memory state.
 tags: live, session-state, atlas, routing-memory, core
 ---
@@ -96,6 +96,6 @@ FILE_META
 id: LIVE_CORE_V8C
 type: live
 edition: CLAUDE_NATIVE
-last_verified: 2026-09-04
+LAST_VERIFIED: 2026-09-10
 invariants_passed: [I1_yaml, I2_api_strings, I3_deadlines, I4_g_errors, I5_version_metadata, I6_xml_native, I7_agents_8]
 ========================================

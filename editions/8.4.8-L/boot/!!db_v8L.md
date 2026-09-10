@@ -8,7 +8,7 @@ compatible_with: "!!core_v8L.md | _index_v8L.md | all v8L files"
 ---
 
 LITE_SNAPSHOT:
-  AS_OF: 2026-09-04
+  LAST_VERIFIED: 2026-09-10        // единое имя поля во всех редакциях (было AS_OF)
   DEADLINES:
     [PASSED 2026-06-15] Claude dated legacy aliases retired
     [PASSED 2026-06-30] дефолтной моделью стал claude-sonnet-5; claude-sonnet-4-6 активен
