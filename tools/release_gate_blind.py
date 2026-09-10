@@ -106,6 +106,10 @@ def файлы_стенда() -> dict[str, str]:
         f"editions/{VER}-C/plugin/agents/p2p-iris.md": агент,
         f"editions/{VER}-C/plugin/skills/bb4pda/SKILL.md": скилл,
         f"editions/{VER}-C/plugin/.claude/settings.example.json": '{\n  "model": "claude-opus-5"\n}\n',
+        # ЗАКОННО ИСКЛЮЧАЕМОЕ: pack.sh лежит в git, но в поставку не едет. Он в стенде
+        # затем, чтобы КОНТРОЛЬ доказывал согласие G03 и G04 между собой: G03 не
+        # краснеет «в git есть, в архиве НЕТ», G04 не краснеет «мусор внутри».
+        f"editions/{VER}-C/plugin/pack.sh": "#!/bin/sh\necho pack\n",
         f"editions/{VER}-H/README.md": readme("H", True),
         f"editions/{VER}-H/README.en.md": readme("H", False),
         f"editions/{VER}-H/CHANGELOG.md": f"# CHANGELOG\n\n## {VER}\n\nправки редакции\n",
@@ -136,6 +140,16 @@ def ls_files(корень: Path, префикс: str) -> list[str]:
     return [p for p in r.stdout.decode("utf-8").split("\0") if p.strip()]
 
 
+def служебное(отн: str) -> bool:
+    """Повторяет EXCLUDE_NAMES из pack_release.py: в поставку это не едет.
+
+    Стенд обязан собираться по тем же правилам, что и живой pack_release, иначе
+    контроль доказывает согласие G03 и G04 на выдуманной сборке.
+    """
+    return отн.rsplit("/", 1)[-1] in {"pack.ps1", "pack.sh", "pack.bat", "pack.cmd",
+                                      "pack.py", ".DS_Store", "Thumbs.db"}
+
+
 def собрать(репо: Path, релиз: Path) -> None:
     """Сборка ассетов: forward-slash, LF в архиве при CRLF на диске."""
     релиз.mkdir(parents=True, exist_ok=True)
@@ -143,12 +157,16 @@ def собрать(репо: Path, релиз: Path) -> None:
         префикс = f"editions/{VER}-{буква}/"
         z = zipfile.ZipFile(релиз / f"{VER}-{буква}.zip", "w", zipfile.ZIP_DEFLATED)
         for f in ls_files(репо, префикс):
+            if служебное(f):
+                continue
             тело = (репо / f).read_bytes().replace(b"\r\n", b"\n")
             z.writestr(f"{VER}-{буква}/" + f[len(префикс):], тело)
         z.close()
     префикс = f"editions/{VER}-C/plugin/"
     z = zipfile.ZipFile(релиз / "p2p-stand.plugin", "w", zipfile.ZIP_DEFLATED)
     for f in ls_files(репо, префикс):
+        if служебное(f):
+            continue
         тело = (репо / f).read_bytes().replace(b"\r\n", b"\n")
         z.writestr(f[len(префикс):], тело)
     z.close()
