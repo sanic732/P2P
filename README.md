@@ -44,7 +44,7 @@ One architecture, four entry points for different hosts and form factors. **Unsu
 ### Option A — plugin (Claude Code / Cowork)
 
 ```
-/plugin marketplace add https://github.com/sanic732/P2P-4PDA-edition
+/plugin marketplace add https://github.com/sanic732/P2P
 /plugin install p2p-v8c3@p2p
 ```
 
@@ -104,6 +104,6 @@ Integrated ON-DEMAND techniques (RAPTOR, LongRAG, Self-Consistency, MCTS, LLMLin
 
 - Won't launch → [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md) or [`FAQ.en.md`](FAQ.en.md)
 - Not sure how to use it → `/p2p-teacher` after install
-- Bug report / suggestion → [Issues](https://github.com/sanic732/P2P-4PDA-edition/issues) or the 4PDA thread
+- Bug report / suggestion → [Issues](https://github.com/sanic732/P2P/issues) or the 4PDA thread
 
 **License:** MIT (fork & modify; keep `NOTICE`). **Author:** sanic732 · **4PDA:** [Prompt to Prompt 8 NEXUS](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576)

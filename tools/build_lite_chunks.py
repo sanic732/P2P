@@ -53,14 +53,14 @@ SPLIT = {
         # Все модели вендора — в одном чанке, иначе триггер врёт: по слову «sonnet»
         # пользователь получил бы чанк, где Sonnet 4.6 нет (он лежал в tier2).
         ("VENDORS_CLAUDE", "claude|anthropic|opus|sonnet|haiku|fable",
-         [("vendors/tier1.md", None, "// §2. GPT-5.5"),
-          ("vendors/tier2.md", "// §1. CLAUDE SONNET 4.6", "// §2. GROK 4.3"),
+         [("vendors/tier1.md", None, "// §2. GPT"),
+          ("vendors/tier2.md", "// §1. CLAUDE SONNET 4.6", "// §2. GROK"),
           ("vendors/CLAUDE.md", None, None)]),
         ("VENDORS_FRONTIER", "gpt|openai|chatgpt|gemini.*pro|google|frontier",
-         [("vendors/tier1.md", "// §2. GPT-5.5", None)]),
+         [("vendors/tier1.md", "// §2. GPT", None)]),
         ("VENDOR_GROK", "grok|xai|heavy-16|firehose|x\\.com",
          [("vendors/grok.md", None, None),
-          ("vendors/tier2.md", "// §2. GROK 4.3", "// §3. DEEPSEEK V4-PRO")]),
+          ("vendors/tier2.md", "// §2. GROK", "// §3. DEEPSEEK V4-PRO")]),
         ("VENDORS_BUDGET",
          "deepseek|qwen|kimi|glm|tier3|tier4|flash|дешёв|бюджет|budget|китайск",
          [("vendors/tier2.md", "// §3. DEEPSEEK V4-PRO", None),
@@ -68,6 +68,11 @@ SPLIT = {
           ("vendors/tier4.md", None, None)]),
     ],
 }
+
+# Плоский вид SPLIT: имя части → (триггер, спецификация срезов). Нужен, чтобы
+# пересборка уже разрезанного чанка сохраняла те же границы.
+SUBSPLIT = {sub: (trig, spec) for parts in SPLIT.values() for sub, trig, spec in parts}
+
 
 
 def slice_file(path: Path, frm: str | None, until: str | None) -> str:
@@ -245,6 +250,22 @@ def build(out_dir: Path) -> int:
                          for s in SPLIT[name] if s[0] in man)
         else:
             kb_old = 0.0
+        if name in SUBSPLIT:
+            # Чанк уже разрезан в прошлом выпуске: в рецепте с гиста он значится
+            # под именем части, а маркеры source: границ секций не хранят. Без этой
+            # ветки пересборка брала файлы ЦЕЛИКОМ — vendors-чанки удваивались
+            # (18.3 → 36.1 KB) и дублировали друг друга: GPT-секция попадала
+            # и в VENDORS_CLAUDE, и в VENDORS_FRONTIER. Проверено 10.09.2026.
+            trig, spec = SUBSPLIT[name]
+            pieces = []
+            for rel, frm, until in spec:
+                f = h_files / rel
+                if not f.is_file():
+                    die(f"{name}: источник не найден — {f}")
+                pieces.append((rel, slice_file(f, frm, until)))
+            emit(name, pieces, f"EOF_MARKER_{name}_VALIDATED", kb_old, trig)
+            continue
+
         if name in SPLIT:
             print(f"  {name:18} режется на {len(SPLIT[name])} (было {kb_old:.1f} KB)")
             total = 0.0
@@ -276,7 +297,12 @@ def build(out_dir: Path) -> int:
 
     # Готовый фрагмент для _index_v8L.md. URL проставляются ПОСЛЕ заливки — до неё
     # ревизии не существует, а манифест без верного пина хуже старого манифеста.
-    patch = ["// ─── вставить вместо записи VENDORS в GIST_ROUTING_TABLE ───\n"]
+    # ВАЖНО: сюда попадают только записи с триггером, то есть части разрезанного чанка.
+    # Это фрагмент для НОВЫХ записей, которых в индексе ещё нет. Обновление существующих
+    # делает tools/update_lite_index.py: переносить sha глазами нельзя — в 8.4.7 так
+    # и остались десять записей со старым пином, а Lite грузил модули 8.4.6.
+    patch = ["// ─── фрагмент для НОВЫХ записей GIST_ROUTING_TABLE (части разрезанного чанка)\n"
+             "// ─── Обновление существующих: tools/update_lite_index.py --revision <rev> --apply\n"]
     for r in rows:
         if not r.get("trigger"):
             continue
@@ -307,7 +333,9 @@ def build(out_dir: Path) -> int:
         for u in sorted(set(unresolved)):
             print(f"      {u}")
     print("\n  Ничего не опубликовано. Следующий шаг (по решению Master): залить в гист,")
-    print("  взять новые raw-URL, перенести sha256/size в _index_v8L.md, прогнать verify_lite.")
+    print("  затем ОДНОЙ командой перенести пины и хеши в индекс — руками нельзя, проверено 8.4.7:")
+    print("    python tools/update_lite_index.py --revision <ревизия> --apply")
+    print("    python tools/verify_gist_live.py        # должно быть 0 расхождений")
     return 0
 
 
