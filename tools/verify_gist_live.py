@@ -17,6 +17,15 @@ URL в индексе содержит вшитую ревизию; ревизи
 
 Использование:
     python tools/verify_gist_live.py [--index PATH] [--json]
+    python tools/verify_gist_live.py --live-size [--index PATH] [--json]
+
+Режим --live-size отвечает на второй вопрос к тому же гисту: сходится ли
+ОБЪЯВЛЕННЫЙ в индексе size_kb с тем, что реально лежит на /raw/<имя> сейчас.
+Записи LIVE-класса (url + size_kb, но БЕЗ sha256) основной режим пропускает по
+построению — parse_index требует sha256, — и объявленный размер не сверялся ничем.
+Цена известна: E2-L нёс `size_kb: ~48` при файле 90 КБ, и строгий хост (Qwen)
+уходил в DEGRADE, не сказав почему. Допуск тот же ±15 %, что у чанков
+(!!core_v8L.md:323).
 
 Код возврата: 0 — расхождений нет, 1 — есть, 2 — FATAL (нечего проверять).
 """
@@ -99,6 +108,62 @@ def parse_index(path: Path) -> list[dict]:
     return entries
 
 
+def parse_live_entries(path: Path) -> list[dict]:
+    """Записи LIVE-класса: url + size_kb, sha256 НЕТ.
+
+    Отбор структурный, а не по имени «LIVE»: имя записи — содержание продукта и
+    может смениться, а отсутствие sha256 при объявленном размере — признак того,
+    что содержимое обновляется на месте и сверять его можно только размером.
+    """
+    text = path.read_text(encoding="utf-8")
+    entries = []
+    for match in ENTRY_RE.finditer(text):
+        name = match.group(1)
+        body = match.group("body")
+        url_m = URL_RE.search(body)
+        size_m = SIZE_RE.search(body)
+        if not url_m or not size_m or SHA_RE.search(body):
+            continue
+        url = url_m.group(1)
+        gist_m = GIST_ID_RE.search(url)
+        if not gist_m:
+            continue
+        entries.append({
+            "name": name,
+            "owner": gist_m.group(1),
+            "gist_id": gist_m.group(2),
+            "file": url.rsplit("/", 1)[-1],
+            "declared_url": url,
+            "size_kb": float(size_m.group(1)),
+        })
+    return entries
+
+
+def check_size(entry: dict) -> dict:
+    """Объявленный size_kb против того, что реально отдаёт гист сейчас."""
+    live_url = f"{RAW_HOST}/{entry['owner']}/{entry['gist_id']}/raw/{entry['file']}"
+    declared = int(round(entry["size_kb"] * 1024))
+    result = {"name": entry["name"], "file": entry["file"], "live_url": live_url,
+              "size_kb": entry["size_kb"], "declared_bytes": declared,
+              "tolerance": SIZE_TOLERANCE}
+    try:
+        raw = fetch(live_url)
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as exc:
+        result["status"] = "ERROR"
+        result["detail"] = f"не скачался: {exc}"
+        return result
+    result["live_bytes"] = len(raw)
+    низ, верх = int(declared * (1 - SIZE_TOLERANCE)), int(declared * (1 + SIZE_TOLERANCE))
+    result["low"], result["high"] = низ, верх
+    if not (низ <= len(raw) <= верх):
+        result["status"] = "DRIFT"
+        result["detail"] = (f"на гисте {len(raw)} б, объявлено size_kb {entry['size_kb']} "
+                            f"= {declared} б (допуск {низ}…{верх} б)")
+    else:
+        result["status"] = "OK"
+    return result
+
+
 def fetch(url: str) -> bytes:
     request = urllib.request.Request(url, headers={"User-Agent": "p2p-verify-gist-live"})
     with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
@@ -138,10 +203,38 @@ def check(entry: dict) -> dict:
     return result
 
 
+def live_size_main(args) -> int:
+    entries = [e for e in parse_live_entries(args.index) if e["name"] not in SKIP_ENTRIES]
+    results = [check_size(e) for e in entries]
+    плохих = sum(1 for r in results if r["status"] != "OK")
+    if args.json:
+        print(json.dumps({"mode": "live-size", "tolerance": SIZE_TOLERANCE,
+                          "entries": results}, ensure_ascii=False, indent=2))
+    else:
+        print(f"индекс: {args.index}")
+        print(f"записей LIVE-класса (url + size_kb, без sha256): {len(results)}")
+        for r in results:
+            if r["status"] == "OK":
+                print(f"OK      {r['name']}  {r['live_bytes']} б в допуске "
+                      f"{r['low']}…{r['high']} б")
+            else:
+                print(f"{'РАСХОД' if r['status'] == 'DRIFT' else 'ОШИБКА'}  "
+                      f"{r['name']}  {r.get('detail', '')}")
+        print(f"ИТОГ: осмотрено {len(results)}, расхождений {плохих}")
+    # ноль осмотренных — не «ок»: сверять было чем, а нечего
+    if not results:
+        if not args.json:
+            print("ни одной записи LIVE-класса не найдено — сверять нечего", file=sys.stderr)
+        return 2
+    return 1 if плохих else 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--index", type=Path, default=None)
     parser.add_argument("--json", action="store_true", help="машинный вывод")
+    parser.add_argument("--live-size", action="store_true",
+                        help="сверить объявленный size_kb записей без sha256 с живым гистом")
     args = parser.parse_args()
 
     if args.index is None:
@@ -152,6 +245,9 @@ def main() -> int:
     if not args.index.is_file():
         print(f"FATAL: индекс не найден: {args.index}", file=sys.stderr)
         return 2
+
+    if args.live_size:
+        return live_size_main(args)
 
     entries = [e for e in parse_index(args.index) if e["name"] not in SKIP_ENTRIES]
     if not entries:
