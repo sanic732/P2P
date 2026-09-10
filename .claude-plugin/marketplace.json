@@ -14,8 +14,8 @@
   "plugins": [
     {
       "name": "p2p-v8c3",
-      "source": "./editions/8.4.7-C/plugin",
-      "description": "P2P 8.4.7-C Claude Native Edition — live specs 8.7.3 (срез 04.09.2026), PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 12 команд, XML-native, SCOPE.HELM",
+      "source": "./editions/8.4.8-C/plugin",
+      "description": "P2P 8.4.8-C Claude Native Edition — live specs 8.7.3 (срез 04.09.2026), PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 12 команд, XML-native, SCOPE.HELM",
       "tags": [
         "latest",
         "claude-native",
