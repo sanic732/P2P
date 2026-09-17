@@ -1082,7 +1082,7 @@ If different error type appears → iterate from Step 1 with new diagnosis.
 | Research | Gemini 3.1 Pro | Kimi K2.x | Claude Opus 4.7 | Qwen 3.6 |
 | Visual | Kimi K2.x (MoonViT-3D) | GLM-5V | Gemini 3.1 Pro (VEO) | Qwen3-VL |
 | Agents | GPT-5.6 Sol (native computer use; ⚠ G22) | GLM-5.3 | Kimi K2.x Agent Swarm | DeepSeek V4 |
-| Writing | Claude Opus 5 (depth, empathy) | GPT-5.6 Terra (structured) | Grok 4.6 (uncensored creative) | — |
+| Writing | Claude Opus 5 (depth, empathy) | GPT-5.6 Terra (structured) | Grok 4.6 (fewer refusals in creative writing) | — |
 | Frontier | Gemini 3.1 Pro Deep Think | Claude Opus 5 | GPT-5.6 Sol | — |
 
 **RESOURCE STRATEGY:**
