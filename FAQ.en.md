@@ -111,7 +111,7 @@ ARENA v3.0 — A/B testing with trap markers and numeric scoring. → [ARENA Bui
 ## Security
 
 **Why do jailbreaks kill accounts?**
-Provider infrastructure is private; repeated filter-bypassing earns a High Risk status ("black mark") and fingerprint de-anonymization (a VPN won't save you). Don't use your main account for filter tests; the legal alternative is a white-hat sandbox. → [Jailbreak & the illusion of control](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142093413)
+Provider infrastructure is private; repeated filter-bypassing earns a High Risk status ("black mark") and fingerprint de-anonymization (a VPN won't save you). The legal alternative to bypassing is a white-hat sandbox in developer tooling, with the provider's own safety controls. → [Jailbreak & the illusion of control](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142093413)
 
 **What is White Hat prompt engineering?**
 A set of techniques that work without breaking provider rules. → [White Hat Prompt Engineering](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142218452)
