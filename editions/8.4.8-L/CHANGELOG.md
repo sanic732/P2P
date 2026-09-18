@@ -220,10 +220,10 @@ last_verified: 2026-07-07
 
 ### Не сделано (ждёт)
 
-- Числа B, C в теле чанков — ждут тестового гиста (разрешение Master'а).
+- Числа B, C в теле чанков — ждут тестового гиста (разрешение автора'а).
 - sha256 в EXP-B GIST_ROUTING_TABLE = PLACEHOLDER до пересчёта по тестовому гисту.
 - Дрейф +2 в 6 чанках (§B5) — зафиксирован в `DIFF_EXP-B.md`, вносить в тестовый гист.
-- Прогон по хостам — выполняет Master вручную на своих подписках.
+- Прогон по хостам — выполняется вручную на живых подписках.
 
 ### Документы
 
@@ -289,8 +289,6 @@ last_verified: 2026-07-07
 - Возврат `PRINCIPLE` в полной формулировке v3.2: «Лучший промпт — это не тот, который красиво
   написан, а тот, который доказал свою эффективность в тесте» (утерян при миграции ядра 7 → 8).
 
-Контекст: `P2P_SELF_STUDY/_NEXT_RELEASE/03_PLAN_8.4.5_compliance_and_arena.md`
-
 ---
 
 ## [8.4.4-L] — 2026-07-18 (Code: v8L.4 — +техники промпт-инжиниринга, Light-scope)
@@ -303,15 +301,15 @@ last_verified: 2026-07-07
 
 - **E2 Live Specs → v8.6.3 (Gist):** L тянет live_specs из отдельного unpinned gist `a64245c3f824f45708519d57e0d62408` (raw/live_specs.md). Canon v8.6.3 готов к заливке (`VERSION:` + `// END OF FILE` → integrity-gate проходит). ⚠ Сама заливка `gh gist edit` — ОТДЕЛЬНЫМ шагом после `gh auth login` (см. HANDOFF).
 - **E5 Host-normalize (`_preloader_v8L` БЛОК 0/HOST_CONFIG):** `HOST_MODEL_NORMALIZE` → lowercase + синонимы grok (`GROK`/`Grok`/`xai` → grok) ДО любого сравнения; ENV_HINT (X-инструменты / grok.com / Grok Build → grok); `PERSIST`; хинт `/host grok`.
-- **НЕ добавлялось (решение Master):** Grok target-слой и Agent Skills генератор — в Lite намеренно НЕ портируются (экономия токенов).
+- **НЕ добавлялось (решение автора):** Grok target-слой и Agent Skills генератор — в Lite намеренно НЕ портируются (экономия токенов).
 - **E7:** bump 8.4.2 → 8.4.3 (`plugin.json`, README, каталог `editions/8.4.3-L`).
 
 ### 🗑 BREAKING 2026-07-14 — плагинная форма Lite УДАЛЕНА НАВСЕГДА
-**Причина (решение Master):** команды/скиллы 8L.3-плагина пересекались с 8C.3 — при установке обоих
+**Причина (решение автора):** команды/скиллы 8L.3-плагина пересекались с 8C.3 — при установке обоих
 плагинов в Claude Code они «заражали» друг друга одноимёнными файлами. Lite и так задуман как лёгкая
 файловая сборка; держать вторую форму поставки = мусорить в системе Claude Code.
 - **Удалено:** `editions/8.4.3-L/plugin/` (27 файлов: `.claude/agents` ×8, `.claude/commands` ×15, `settings.json`,
-  `.claude-plugin/plugin.json`, `pack.ps1`, `README.md`) + бандл `p2p-v8l3.plugin`. **Восстановлению не подлежит** (при нужде — из `current_version/editions/8.4.2-L/`).
+  `.claude-plugin/plugin.json`, `pack.ps1`, `README.md`) + бандл `p2p-v8l3.plugin`. **Восстановлению не подлежит** (при нужде — из опубликованного релиза той версии).
 - **Состав 8L.3 теперь:** `boot/` (4 файла загрузки: `_preloader` · `_index` · `!!core` · `!!db`) + `docs/` + `README(.en)` + `INSTALL` + `CHANGELOG`.
 - **Ссылки починены:** `README.md`/`README.en.md` (убрано «плагин — ручная установка», добавлено «файловая сборка; для Claude Code → 8C.3»),
   `INSTALL.md` (переписан: убран «Способ 1 — Native plugin», остался файловый путь + `/p2p-verify` + блок «Почему у Lite нет плагина»),
@@ -381,11 +379,11 @@ last_verified: 2026-07-07
 
 ### LIVE_SPECS — единый авто-обновляемый источник (2026-06-27)
 - `LIVE` чанк переподключён на выделенный **unpinned** gist (`a64245c3…/raw/live_specs.md`) —
-  всегда latest. Источник: `Live_UPDATE/` (юзер правит файл → `update_live.cmd` → один клик, без браузера/2FA).
+  всегда latest. Источник обновляется автором одним действием.
 - Свежесть проверяется маркером `VERSION:` + `// END OF FILE` (не sha256 — для live контент меняется).
 - `_preloader_v8L` ON_LOAD шаг 5: при fetch_capable → fetch live → **override** LITE_SNAPSHOT;
   иначе вшитый snapshot + warn о дате. ~48 KB (~12K токенов) на старте при fetch.
-- Тот же механизм переносим в 8C/8H/8N — см. `Live_UPDATE/INTEGRATION_SNIPPET.md`.
+- Тот же механизм переносим в 8C/8H/8N .
 - (старый `gist_live_specs.md` в чанк-гисте больше не источник LIVE — deprecated.)
 
 ### Команда /p2p-download — полная интеграция (2026-06-27)

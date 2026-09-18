@@ -53,11 +53,11 @@ VALIDATION_CHECK, MIGRATION-заметки. Человекочитаемая д�
 
 ### LIVE_SPECS — единый авто-обновляемый источник (2026-06-27)
 - `LIVE` чанк переподключён на выделенный **unpinned** gist (`a64245c3…/raw/live_specs.md`) —
-  всегда latest. Источник: `Live_UPDATE/` (юзер правит файл → `update_live.cmd` → один клик, без браузера/2FA).
+  всегда latest. Источник обновляется автором одним действием.
 - Свежесть проверяется маркером `VERSION:` + `// END OF FILE` (не sha256 — для live контент меняется).
 - `_preloader_v8L` ON_LOAD шаг 5: при fetch_capable → fetch live → **override** LITE_SNAPSHOT;
   иначе вшитый snapshot + warn о дате. ~48 KB (~12K токенов) на старте при fetch.
-- Тот же механизм переносим в 8C/8H/8N — см. `Live_UPDATE/INTEGRATION_SNIPPET.md`.
+- Тот же механизм переносим в 8C/8H/8N .
 - (старый `gist_live_specs.md` в чанк-гисте больше не источник LIVE — deprecated.)
 
 ### Команда /p2p-download — полная интеграция (2026-06-27)

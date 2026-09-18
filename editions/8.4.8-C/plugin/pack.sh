@@ -72,6 +72,6 @@ echo "  • Cowork:      Settings → Skills → Upload a skill → ${OUTPUT_NAM
 echo "  • Claude Code: /plugin install ${OUTPUT_PATH}"
 echo ""
 echo "For normal distribution use the MARKETPLACE (no bundle needed):"
-echo "  • /plugin marketplace add sanic732/P2P-4PDA-edition"
-echo "  • /plugin install ${PLUGIN_NAME}@P2P-4PDA-edition"
+echo "  • /plugin marketplace add sanic732/P2P"
+echo "  • /plugin install ${PLUGIN_NAME}@P2P"
 echo "═══════════════════════════════════════════════════════════"

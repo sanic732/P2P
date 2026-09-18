@@ -128,9 +128,9 @@ try {
     Write-Host "  • Claude Code: /plugin install `"$OutputPath`""
     Write-Host ""
     Write-Host "For normal distribution use the MARKETPLACE (no bundle needed):"
-    Write-Host "  • /plugin marketplace add sanic732/P2P-4PDA-edition"
-    Write-Host "  • /plugin install $PluginName@P2P-4PDA-edition"
-    Write-Host "  • Update later: /plugin marketplace update P2P-4PDA-edition"
+    Write-Host "  • /plugin marketplace add sanic732/P2P"
+    Write-Host "  • /plugin install $PluginName@P2P"
+    Write-Host "  • Update later: /plugin marketplace update P2P"
     Write-Host "═══════════════════════════════════════════════════════════"
 
 } finally {

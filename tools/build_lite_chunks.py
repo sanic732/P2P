@@ -332,7 +332,7 @@ def build(out_dir: Path) -> int:
         print("\n  ⚠ ссылки, которые в Lite не разрешаются (оставлены как были, не выдуманы):")
         for u in sorted(set(unresolved)):
             print(f"      {u}")
-    print("\n  Ничего не опубликовано. Следующий шаг (по решению Master): залить в гист,")
+    print("\n  Ничего не опубликовано. Следующий шаг (по решению автора): залить в гист,")
     print("  затем ОДНОЙ командой перенести пины и хеши в индекс — руками нельзя, проверено 8.4.7:")
     print("    python tools/update_lite_index.py --revision <ревизия> --apply")
     print("    python tools/verify_gist_live.py        # должно быть 0 расхождений")

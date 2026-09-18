@@ -12,7 +12,7 @@
   - каждая проверка объявляет, сколько объектов она реально осмотрела;
   - exit code 1 при любом провале.
 
-Запуск:  python P2P/new_version/tools/verify_c_dispatch.py
+Запуск:  python tools/verify_c_dispatch.py
          P2P_EDITIONS_ROOT=<путь> python ...   (переопределить корень)
 Read-only: скрипт ничего не пишет.
 """
