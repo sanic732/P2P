@@ -95,7 +95,7 @@ try {
     # Create archive with FORWARD-SLASH entry paths (.plugin = zip).
     # NOTE: Compress-Archive on Windows writes BACKSLASH separators in entry names,
     # which is non-standard and breaks some unzippers — so we build the zip via
-    # System.IO.Compression and force '/' in every entry name (per tools/RELEASE_CHECKLIST.md).
+    # System.IO.Compression and force '/' in every entry name.
     Add-Type -AssemblyName System.IO.Compression | Out-Null
     Add-Type -AssemblyName System.IO.Compression.FileSystem | Out-Null
     $fs = [System.IO.File]::Open($OutputPath, [System.IO.FileMode]::Create)

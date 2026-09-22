@@ -90,7 +90,6 @@ P2P (Prompt-to-Prompt) — модульная оркестрирующая си�
 | **[NAMING.md](NAMING.md)** | Расшифровка имён C/H/N/L/A/G, версий, статусов |
 | **[FAQ.md](FAQ.md)** | Частые вопросы: установка, хосты, токены, траблшутинг |
 | **[editions/COMPARISON.md](editions/COMPARISON.md)** | Сравнение 4 редакций + механика Live Specs |
-| **[CHANGELOG.md](CHANGELOG.md)** | История версий (v1 → v8) |
 | **[legacy/HISTORY.md](legacy/HISTORY.md)** | Нарратив эволюции проекта |
 | **[docs/](docs/)** | Архитектура, техники, режимы PILOT, mindmap |
 

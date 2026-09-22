@@ -1,39 +1,31 @@
-# Release artifacts (built locally, never committed)
 *.plugin
 *.zip
 *.7z
 *.rar
 
-# Local working artifacts (не канон, не публикуем)
 *.patch
 experiments/
 HANDOFF_*.md
 editions/841*.txt
 editions/gemini_lite.txt
 
-# OS
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# IDE / editor
 .idea/
 .vscode/
 *.swp
 *~
 
-# Local node/python (defensive — repo is markdown-only)
 node_modules/
 __pycache__/
 *.pyc
 
-# Local Claude Code overrides (anywhere in the tree)
 **/settings.local.json
 .claude/settings.local.json
 
-# Staging / artifacts dirs (in case someone clones into a parent)
 _release-staging/
 _release-artifacts/
 
-# Сборка чанков Lite — промежуточные артефакты, канон лежит в гисте
 build/
