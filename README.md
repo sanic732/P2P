@@ -88,7 +88,6 @@ Model prices/quotas/bugs are updated separately (~every 1-2 weeks) from a dedica
 | **[NAMING.md](NAMING.md)** | Names C/H/N/L/A/G, versions, statuses |
 | **[FAQ.en.md](FAQ.en.md)** | FAQ: install, hosts, tokens, troubleshooting |
 | **[editions/COMPARISON.md](editions/COMPARISON.md)** | 4-edition comparison + Live Specs mechanics |
-| **[CHANGELOG.md](CHANGELOG.md)** | Version history (v1 → v8) |
 | **[legacy/HISTORY.md](legacy/HISTORY.md)** | Project evolution narrative |
 | **[docs/](docs/)** | Architecture, techniques, PILOT modes, mindmap |
 
