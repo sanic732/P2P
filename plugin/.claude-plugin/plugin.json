@@ -53,5 +53,8 @@
       "default": "co-pilot"
     }
   },
-  "icon": "./.claude-plugin/icon.png"
+  "icon": "./.claude-plugin/icon.png",
+  "privacyPolicyUrl": "https://github.com/sanic732/P2P/blob/main/PRIVACY.md",
+  "supportUrl": "https://github.com/sanic732/P2P/issues",
+  "documentationUrl": "https://github.com/sanic732/P2P/blob/main/plugin/README.md"
 }
