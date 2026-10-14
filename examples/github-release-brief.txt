@@ -1,0 +1,264 @@
+<role>
+You are a senior release engineer + DevOps. You work in Claude Code (Opus 4.7, reasoning=high) on Windows 11, PowerShell. Goal — prepare, validate and publish P2P v8C.2 as a new public GitHub repository "P2P-4PDA-edition" with a release, ZIP archives and a working /plugin marketplace add import.
+
+Act step by step, verify each step before moving to the next. On errors — diagnose the root cause and fix, record it in CHANGELOG. Do not collapse steps into one: every phase has an ACK checkpoint.
+</role>
+
+<environment>
+- OS: Windows 11, PowerShell 7+
+- CWD at start: C:\Users\<you>\Desktop\promt eng\P2P
+- gh CLI: installed (if not — install `winget install GitHub.cli` and continue)
+- git: installed
+- Network: available
+</environment>
+
+<auth>
+GITHUB_USER: sanic732
+GITHUB_PAT: <your PAT>
+GITHUB_EMAIL: <your email>
+NEW_REPO_NAME: P2P-4PDA-edition
+NEW_REPO_VISIBILITY: public
+LICENSE: MIT
+RELEASE_TAG: v8C.2
+RELEASE_TITLE: P2P v8C.2 — Claude Native Edition
+</auth>
+
+<source_paths>
+SOURCE_ROOT: C:\Users\<you>\Desktop\promt eng\P2P\P2P v8\p2p-v8C.2
+SOURCE_COWORK: C:\Users\<you>\Desktop\promt eng\P2P\P2P v8\p2p-v8C.2\cowork + code
+SOURCE_CHAT: C:\Users\<you>\Desktop\promt eng\P2P\P2P v8\p2p-v8C.2\for chat (project)
+SOURCE_DOCS: C:\Users\<you>\Desktop\promt eng\P2P\P2P v8\p2p-v8C.2\docs
+SOURCE_README: C:\Users\<you>\Desktop\promt eng\P2P\P2P v8\p2p-v8C.2\README.md
+
+OLD_REPO_REFERENCE_STYLE: C:\Users\<you>\Desktop\promt eng\P2P\P2P github\P2P-v1.1\README.md
+OLD_REPO_URL_STYLE: https://github.com/sanic732/P2P
+
+POST_8: C:\Users\<you>\Desktop\promt eng\P2P\forum posts p2p\P2p 8 post.txt
+POST_8C2: C:\Users\<you>\Desktop\promt eng\P2P\forum posts p2p\P2p 8C.2 announcement.txt
+POST_LIVE_SPECS: C:\Users\<you>\Desktop\promt eng\P2P\forum posts p2p\post Live specs 8.txt
+
+KARPATHY_REF: https://github.com/forrestchang/andrej-karpathy-skills
+
+STAGING_DIR: C:\Users\<you>\Desktop\promt eng\P2P\_release-staging   ← create it for the working copy of the repo
+ARTIFACTS_DIR: C:\Users\<you>\Desktop\promt eng\P2P\_release-artifacts   ← create it for ZIP/plugin
+</source_paths>
+
+<deliverables>
+1) Public repository https://github.com/sanic732/P2P-4PDA-edition
+2) In the repo root: README.md (in Russian, in the style of https://github.com/sanic732/P2P), LICENSE (MIT), NOTICE (Karpathy skills attribution), CHANGELOG.md, .gitignore, .claude-plugin/marketplace.json (for /plugin marketplace add)
+3) Folders in the repo: `cowork + code/`, `for chat (project)/`, `docs/`
+4) Release `v8C.2` with three assets:
+   - p2p-v8C.2-cowork-code.zip
+   - p2p-v8C.2-for-chat.zip
+   - p2p-v8c2.plugin
+5) Release description (in Russian) — a synopsis of 3 forum posts, links to the 4PDA original, a note on Live Specs with a link.
+6) Updated install docs in `docs/INSTALL_GUIDE.md` and `cowork + code/INSTALL.md` with the current GitHub import.
+</deliverables>
+
+<phases>
+
+<phase id="0_preflight">
+Goal: confirm the environment.
+Actions:
+- Check `gh --version`, `git --version`, `pwsh` or `powershell` availability.
+- `gh auth status` — if not authorized, run `$env:GH_TOKEN="<PAT>"` (do NOT write it via `gh auth login --with-token` from a file, so it stays out of history).
+- Read SOURCE_README, OLD_REPO_REFERENCE_STYLE, POST_8, POST_8C2, POST_LIVE_SPECS in full — this is the context for the README and release notes.
+- Ask the GitHub API: `gh api user` — make sure the token is valid and owner = sanic732.
+ACK: print "PHASE 0 OK" with a short summary (gh version, user, repo exists / does not exist).
+</phase>
+
+<phase id="1_validate_source">
+Goal: make sure v8C.2 is built correctly. Before publishing — simulate the installation and fix defects.
+Actions:
+1. Check the SOURCE_ROOT structure against SOURCE_README. These must exist:
+   - SOURCE_COWORK\.claude-plugin\plugin.json (valid JSON, name="p2p-v8c2", version="8.2.0")
+   - SOURCE_COWORK\.claude-plugin\marketplace.json (valid JSON, plugins[0].source=".")
+   - SOURCE_COWORK\.claude\agents\, .claude\commands\, .claude\skills\
+   - SOURCE_COWORK\pack.ps1, pack.sh, INSTALL.md
+   - SOURCE_CHAT\_preloader.md, !!core_v8C.md, !!db_v8C.md, _live\MANIFEST.md, _live\live_core.md, _live\live_claude.md
+   - SOURCE_DOCS\INSTALL_GUIDE.md, TEACHER_GUIDE.md, CHANGELOG.md, FAQ_AND_ERRORS.md
+2. Read every .json and validate it with `ConvertFrom-Json`. Any broken JSON — fix in place.
+3. Check that .claude/commands/ holds exactly 11 files /p2p-*.md (including p2p-teacher.md), and .claude/agents/ — 8 sub-agent files.
+4. **INSTALL SIMULATION — Claude Code path:**
+   - Run `cd "<SOURCE_COWORK>"; powershell -ExecutionPolicy Bypass -File pack.ps1 -OutputName "p2p-v8c2.plugin"` — it creates the .plugin next to the cowork+code folder.
+   - Unpack the resulting .plugin (it is a zip) into a temp folder `$env:TEMP\p2p-validate-$(Get-Random)` and make sure it contains `.claude-plugin/plugin.json`, `.claude/commands/`, `.claude/agents/`, `.claude/skills/`. The package must NOT contain pack.ps1/pack.sh/*.plugin.
+   - Record the .plugin size.
+5. **IMPORT SIMULATION — marketplace path:** the existing marketplace.json expects `source: "."`, but for a git import in Claude Code it must sit in the **repo root** (not inside cowork+code/). So in the repo structure marketplace.json is duplicated into the root with the correct source.
+6. **SIMULATION for Chat:** make sure `for chat (project)/_master.md` points to files that exist (preloader, core, db, _live/*).
+7. If ANY error/mismatch is found — fix it in the SOURCE_ROOT sources and add an entry to SOURCE_DOCS\CHANGELOG.md under `## [v8C.2] — pre-release fixes 2026-05-15`. Do not invent fixes where everything is correct — better state "no fixes needed" explicitly.
+ACK: "PHASE 1 OK — N fixes applied, .plugin built (size=XXX KB)".
+</phase>
+
+<phase id="2_karpathy_license_check">
+Goal: attribute andrej-karpathy-skills correctly.
+Actions:
+- Via `gh api repos/forrestchang/andrej-karpathy-skills` get the repo metadata (license.spdx_id).
+- Via `gh api repos/forrestchang/andrej-karpathy-skills/contents/LICENSE` (or /readme) download the full license text.
+- Record the SPDX and the author.
+- Prepare a NOTICE file with a "Third-party attributions" section mentioning:
+  - Andrej Karpathy's prompting philosophy and karpathy-skills (forrestchang/andrej-karpathy-skills) with the SPDX license and a link;
+  - Karpathy Mode (Template M) in P2P is inspired by this work and implemented independently.
+- If the license requires the full text (MIT/Apache) — embed it in NOTICE or as a separate file `LICENSES/andrej-karpathy-skills-LICENSE.txt`.
+ACK: "PHASE 2 OK — Karpathy license=<SPDX>, NOTICE prepared".
+</phase>
+
+<phase id="3_staging">
+Goal: assemble the working copy of the repository in STAGING_DIR.
+Actions:
+1. Create an empty STAGING_DIR. Inside:
+   ```
+   STAGING_DIR/
+   ├── README.md          ← new, in Russian (Phase 4)
+   ├── LICENSE            ← MIT, copyright sanic732 / P2P Project, 2026
+   ├── NOTICE             ← Phase 2 content
+   ├── CHANGELOG.md       ← based on SOURCE_DOCS\CHANGELOG.md + pre-release fixes
+   ├── .gitignore         ← *.plugin, *.zip, _release-staging, _release-artifacts, .DS_Store, Thumbs.db
+   ├── .claude-plugin/
+   │   ├── plugin.json        ← copy from SOURCE_COWORK\.claude-plugin (unchanged)
+   │   └── marketplace.json   ← edit: source="./cowork + code" (NOT "."), homepage → new repo
+   ├── cowork + code/     ← full copy of SOURCE_COWORK
+   ├── for chat (project)/ ← full copy of SOURCE_CHAT
+   └── docs/              ← full copy of SOURCE_DOCS + updated INSTALL_GUIDE.md
+   ```
+2. When copying, exclude: `*.plugin`, `*.zip`, `node_modules`, `.git`, `.DS_Store`, `Thumbs.db`.
+3. In `cowork + code/.claude-plugin/plugin.json` set `homepage` to `https://github.com/sanic732/P2P-4PDA-edition`.
+4. In the root `.claude-plugin/marketplace.json` change plugins[0].source to `"./cowork + code"` (URL-encode the space if required) and add homepage / repository.
+ACK: "PHASE 3 OK — staging tree ready, size=X MB".
+</phase>
+
+<phase id="4_authoring">
+Goal: write README.md (Russian) and release notes.
+
+README.md in STAGING_DIR must include (OLD_REPO_REFERENCE_STYLE, but in Russian):
+- Header: name, subtitle "Distributed Cognitive Orchestrator — Meta-Prompt System", branch "Claude Native Edition", version 8.2.0, license MIT, status Release.
+- "What is P2P" — 1–2 paragraphs from POST_8 and SOURCE_README.
+- "What's new in v8C.2 vs v8C.1" — bullets from POST_8C2.
+- "Live Specs" — what it is, with a link to the current post https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=142685423 (or the one in POST_LIVE_SPECS) and a note that live_specs are updated outside system releases.
+- "Archive structure" — a table as in SOURCE_README (two folders cowork+code / for chat).
+- "Installation" — 4 methods:
+  * Method 1: `/plugin marketplace add https://github.com/sanic732/P2P-4PDA-edition` → `/plugin install p2p-v8c2@p2p` (new, recommended)
+  * Method 2: download the .plugin from the release → drag-and-drop into Cowork
+  * Method 3: download ZIP `p2p-v8C.2-cowork-code.zip` → unpack → `pack.ps1` → drag-and-drop
+  * Method 4: download ZIP `p2p-v8C.2-for-chat.zip` for Claude.ai Projects/Chat/API
+  Give direct links to the release https://github.com/sanic732/P2P-4PDA-edition/releases/tag/v8C.2 .
+- "Attributions" — a short link to NOTICE mentioning karpathy-skills (forrestchang/andrej-karpathy-skills) and Andrey Karpathy philosophy.
+- "Contact / forum" — link to the 4PDA parent post https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=143218594 .
+
+Release notes (for step 7) in Russian, in markdown:
+- A short synopsis of the release (3–5 lines, quoting POST_8C2).
+- "What's in the archive": the 3 assets with the use case for each.
+- "Install from GitHub in 30 seconds": `gh repo clone ...` or `/plugin marketplace add ...`.
+- "API deadlines": the table from SOURCE_README §Deadlines (current as of 05.2026).
+- "What's new vs v8C.1": bullets.
+- "Live Specs" — 2–3 lines + link.
+- At the end — link to the 4PDA parent post.
+
+INSTALL updates:
+- In `STAGING_DIR\docs\INSTALL_GUIDE.md` — add at the top "Method 0: Import from GitHub" (via `/plugin marketplace add`), describe the precondition (Claude Code ≥ 1.0). Keep the existing 5 methods, renumbered.
+- In `STAGING_DIR\cowork + code\INSTALL.md` — in `## 🌐 Method 2 — Marketplace (git repo)` replace the placeholder `<user>` with `sanic732` and `p2p` with `P2P-4PDA-edition`, add a full example with expected output.
+ACK: "PHASE 4 OK — README, NOTICE, release notes, INSTALL updated".
+</phase>
+
+<phase id="5_artifacts">
+Goal: build the three release artifacts in ARTIFACTS_DIR.
+Actions:
+1. Create an empty ARTIFACTS_DIR.
+2. Generate `p2p-v8c2.plugin` via `STAGING_DIR\cowork + code\pack.ps1` → move it to ARTIFACTS_DIR.
+3. Generate `p2p-v8C.2-cowork-code.zip` from `STAGING_DIR\cowork + code\` (including .claude-plugin/, .claude/, pack.*, INSTALL.md, but WITHOUT *.plugin, *.zip):
+   ```pwsh
+   Compress-Archive -Path "STAGING_DIR\cowork + code\*" -DestinationPath "ARTIFACTS_DIR\p2p-v8C.2-cowork-code.zip" -CompressionLevel Optimal
+   ```
+4. Generate `p2p-v8C.2-for-chat.zip` from `STAGING_DIR\for chat (project)\`.
+5. For every artifact print: name, size (KB), SHA256 (via `Get-FileHash`).
+6. **Smoke test .plugin:** unpack into a temp folder, check `.claude-plugin/plugin.json` is present, valid JSON, exactly 11 commands /p2p-*.md, 8 agents.
+7. **Smoke test for-chat.zip:** unpack, check `_preloader.md`, `!!core_v8C.md`, `!!db_v8C.md`, `_live/`.
+ACK: "PHASE 5 OK — 3 artifacts in ARTIFACTS_DIR with hashes".
+</phase>
+
+<phase id="6_repo_create">
+Goal: create the public repository and push the working copy.
+Actions:
+1. Via `gh api -X POST user/repos -f name="P2P-4PDA-edition" -f description="P2P v8C.2 Claude Native Edition — meta-prompt system: 8 QUORUM agents, /p2p-teacher, plugin import for Claude Code/Cowork" -F private=false -F has_issues=true -F has_wiki=false -F auto_init=false` create the repo. If 422 "already exists" — continue.
+2. In `STAGING_DIR` run:
+   ```pwsh
+   git init -b main
+   git config user.name "sanic732"
+   git config user.email "<your email>"
+   git add -A
+   git status   # check that .plugin/.zip are excluded by .gitignore
+   git commit -m "Initial release: P2P v8C.2 Claude Native Edition"
+   # Use the PAT via a credential helper, do NOT hardcode it in the remote URL:
+   git remote add origin "https://github.com/sanic732/P2P-4PDA-edition.git"
+   $env:GH_TOKEN = "<PAT>"
+   gh auth setup-git
+   git push -u origin main
+   ```
+3. If the push fails on large files — check that .plugin/.zip did not get in (via .gitignore). If they did — `git rm --cached <file>`, recommit, push.
+ACK: "PHASE 6 OK — repo created, main pushed (N commits, M files)".
+</phase>
+
+<phase id="7_release">
+Goal: create GitHub Release v8C.2 with 3 assets.
+Actions:
+1. Save the release notes from Phase 4 to `ARTIFACTS_DIR\RELEASE_NOTES.md`.
+2. ```pwsh
+   gh release create v8C.2 `
+     "ARTIFACTS_DIR\p2p-v8c2.plugin" `
+     "ARTIFACTS_DIR\p2p-v8C.2-cowork-code.zip" `
+     "ARTIFACTS_DIR\p2p-v8C.2-for-chat.zip" `
+     --repo sanic732/P2P-4PDA-edition `
+     --title "P2P v8C.2 — Claude Native Edition" `
+     --notes-file "ARTIFACTS_DIR\RELEASE_NOTES.md" `
+     --latest
+   ```
+3. Call `gh release view v8C.2 --repo sanic732/P2P-4PDA-edition --json assets,url` and check that all 3 assets are present and their sizes are non-zero.
+ACK: "PHASE 7 OK — release v8C.2 published, URL=...".
+</phase>
+
+<phase id="8_postcheck">
+Goal: end-to-end verification — a user must be able to import from scratch.
+Actions:
+1. In a clean temp folder run `git clone https://github.com/sanic732/P2P-4PDA-edition.git` via `gh` (without authorization, as an outside user would). Check that cloning works (the repo is public).
+2. Read the cloned README.md — all links to the release/assets must work. Send HEAD requests to the asset URLs via `gh api` or `Invoke-WebRequest -Method Head`.
+3. Simulate installation via .plugin: unpack `p2p-v8c2.plugin` from the release, check the structure.
+4. Simulate marketplace.json discovery: the root of the cloned repo has a valid `.claude-plugin/marketplace.json`, the plugin source path exists, `plugin.json` is reachable.
+5. If something does not work — fix in STAGING_DIR, commit, push, and `gh release upload v8C.2 <file> --clobber` to update the asset.
+ACK: "PHASE 8 OK — import from GitHub works, post-check passed".
+</phase>
+
+<phase id="9_report">
+Goal: final report to the user.
+Print:
+- Link to the repo.
+- Link to the release and the three assets.
+- The command to import into Claude Code (`/plugin marketplace add https://github.com/sanic732/P2P-4PDA-edition`, then `/plugin install p2p-v8c2@p2p`).
+- The list of changes in CHANGELOG.md (what was fixed in pre-release).
+- Asset sizes.
+- **REMINDER:** "Revoke the PAT right now: https://github.com/settings/tokens".
+</phase>
+
+</phases>
+
+<error_handling>
+- If any phase fails — do NOT continue. Report the exact root cause + propose 1–2 fix options.
+- Never use `--force-with-lease` or `git push --force` without explicit user confirmation.
+- If create repo returns 422 with message="name already exists" — that is OK, continue with push.
+- On a GitHub API rate limit (HTTP 403 X-RateLimit-Remaining=0) — wait for the reset, do not retry earlier.
+- Never log the full PAT to stdout. If needed, show only the prefix: `ghp_xxxx...` (4 characters).
+- If the .plugin is > 50MB — that is an anomaly (normal is ~200–400KB): check whether `vendors/tier3.md, tier4.md` were excluded by pack if they are in `.claude/skills/p2p/vendors/`? No — on the contrary, vendors must be included. The cause is most likely an accidental `.git/` or `*.zip`. Investigate.
+</error_handling>
+
+<stop_conditions>
+- All 9 phases passed with ACK = success.
+- The published release contains exactly 3 assets.
+- The E2E check of Phase 8 has passed.
+- The final report has been shown to the user.
+</stop_conditions>
+
+<output_format>
+At the end of every phase: one line `=== PHASE N OK: <short summary> ===` or `=== PHASE N FAIL: <root cause + proposed fix> ===`.
+At the end — a structured final report (Phase 9) with emoji section markers.
+No extra explanations, no markdown folklore. Only the result.
+</output_format>
+
+INSTRUCTION: ask no clarifying questions — all data is in the blocks above. Start with Phase 0. If ambiguity comes up during the work — choose the option closest to the existing repo style https://github.com/sanic732/P2P and continue. Start.

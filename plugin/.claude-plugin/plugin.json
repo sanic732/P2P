@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "p2p",
+  "displayName": "P2P — Prompt to Prompt",
+  "version": "9.0.0",
+  "description": "Prompt to Prompt: a prompt that writes prompts. Describe your task in your own words and get one precise, ready prompt for it, written in the syntax of the model that will run it. Plain-text skills only: no scripts, no network calls, nothing collected.",
+  "author": {
+    "name": "P2P Project"
+  },
+  "keywords": [
+    "prompt-engineering",
+    "meta-prompt",
+    "prompt-generator",
+    "system-prompt",
+    "multi-model",
+    "quorum",
+    "plain-text"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sanic732/P2P",
+  "repository": "https://github.com/sanic732/P2P",
+  "agents": [
+    "./agents/anon.md",
+    "./agents/architecton.md",
+    "./agents/axiom.md",
+    "./agents/datos.md",
+    "./agents/helios.md",
+    "./agents/iris.md",
+    "./agents/tecton.md",
+    "./agents/vector.md"
+  ],
+  "metadata": {
+    "edition": "9.0",
+    "models": [
+      "claude-opus-5-5",
+      "claude-sonnet-5-5",
+      "claude-fable-5-1",
+      "claude-haiku-5-5"
+    ],
+    "formerName": "p2p-v8c3"
+  },
+  "userConfig": {
+    "language": {
+      "type": "string",
+      "title": "Response language",
+      "description": "auto — the language of your own words; or any language of the world by name or code (ru, en, uk, de, es, ja, Deutsch, español …). /p2p:lang changes it inside a conversation.",
+      "default": "auto"
+    },
+    "pilot_mode": {
+      "type": "string",
+      "title": "Assistance mode",
+      "description": "co-pilot asks a few questions before building; auto-pilot asks one or two and uses defaults; manual asks nothing and shows every choice it makes.",
+      "default": "co-pilot",
+      "options": [
+        "co-pilot",
+        "auto-pilot",
+        "manual"
+      ]
+    }
+  }
+}

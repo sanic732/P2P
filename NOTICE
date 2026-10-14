@@ -1,11 +1,11 @@
-P2P — Prompt-to-Prompt (Claude Native Edition)
+P2P — Prompt to Prompt (Claude Edition)
 ================================================
 Copyright (c) 2026 sanic732 (4PDA community)
 Licensed under the MIT License (see LICENSE).
 
 This product is a META-PROMPT system: it consists of behavioral instructions
 and prompting patterns (Markdown/XML text), NOT executable code from the
-projects listed below. The techniques integrated in v8C.3 are implemented as
+projects listed below. The techniques integrated since v8C.3 are implemented as
 PROMPTING PATTERNS INSPIRED BY published research. No third-party source code
 is vendored. Attributions below are credits for intellectual inspiration; they
 do not impose additional license obligations on this MIT-licensed work.
@@ -16,36 +16,36 @@ do not impose additional license obligations on this MIT-licensed work.
 * Template M ("Karpathy Mode") — inspired by Andrej Karpathy's minimalist
   prompting philosophy ("best prompt is no prompt, just clean context").
 * 4PDA community — bug reports, stress-tests, and non-standard use cases that
-  shaped every patch of P2P from v1 to v8C.3.
+  shaped every patch of P2P from v1 to 9.0.
 
 
 --- SCIENTIFIC SOURCES (v8C.3 integrated techniques) -------------------------
 
 Integrated as prompting patterns in the corresponding ON-DEMAND modules.
-Full descriptions: docs/TECHNIQUES_v8C3.md
+Full descriptions: the module files in plugin/skills/p2p/
 
-RAG (!rag.md):
+RAG (rag.md):
 * RAPTOR — Sarthi et al., Stanford NLP — arXiv:2401.18059 (2024) — code MIT (parthsarthi03/raptor)
 * LongRAG / LRGinstruction — arXiv:2410.18050 (2024)
 * Dynamic RAPTOR (adRAP) — arXiv:2410.01736 (2024)
 
-Reasoning (!reasoning.md):
+Reasoning (reasoning.md):
 * Self-Consistency — Wang et al., Google Brain — arXiv:2203.11171 (ICLR 2023)
 * rStar-Math / MCTS reasoning — Microsoft Research — arXiv:2501.04519 (2025)
 * s1 — Simple Test-Time Scaling (Budget Forcing) — Muennighoff et al., Stanford — github.com/simplescaling/s1 (2025)
 
-Compression (!compression.md):
+Compression (compression.md):
 * LLMLingua / LLMLingua-2 — Microsoft Research — arXiv:2310.05736 / 2403.12968 (2023/2024) — code MIT (microsoft/LLMLingua)
 * Gist Tokens — Mu et al., Stanford NLP — arXiv:2304.08467 (NeurIPS 2024)
 
-Security (!security.md):
+Security (security.md):
 * SelfCheckGPT / SelfCheck-Eval — arXiv:2502.01812 (2025)
 
-Optimization (!optimization.md):
+Optimization (optimization.md):
 * OPRO ("LLMs as Optimizers") — Yang et al., Google DeepMind — arXiv:2309.03409 (2023)
 * EvoPrompt / EvoPrompting — arXiv:2309.08532 (2023)
 
-Routing (!routing.md):
+Routing (routing.md):
 * Semantic Router pattern — aurelio-ai/semantic-router (MIT)
 * LLM Routing / RouteLLM — arXiv:2406.18665
 

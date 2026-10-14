@@ -1,108 +1,87 @@
-# P2P — Prompt-to-Prompt
+# P2P — Prompt to Prompt
 
-> **English** · [Русский](README.ru.md)
+**A prompt that writes prompts.** Describe your task in your own words — P2P builds one precise, ready prompt for it, written in the syntax of the model that will run it.
 
-[![Version](https://img.shields.io/badge/version-v8.4.8-blue)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Status](https://img.shields.io/badge/status-BETA-yellow)]() [![Editions](https://img.shields.io/badge/editions-C%20%C2%B7%20H%20%C2%B7%20N%20%C2%B7%20L-orange)]()
-
-**A meta-prompt that writes prompts — and gets the job done.** Stream of consciousness in → a polished, model-specific prompt out. The project's goal: **eliminate classical prompt engineering for the everyday user.**
-
-You shouldn't need to know what Chain-of-Thought is or how to escape XML against prompt-injection. You just describe the task — *"I want an expense-tracker app, data from Excel, dark theme"* — and P2P handles decomposition, routing, agent selection and hallucination defense under the hood.
+P2P 9 ships as a **Claude plugin** (Claude Code, Cowork, claude.ai). A file edition for other models (Gemini, GPT, Qwen and others) is attached to each release.
 
 ---
 
-## What is P2P
+## Why not just copy a good prompt?
 
-P2P (Prompt-to-Prompt) is a modular orchestration system loaded into an LLM that turns it into a prompt-engineering expert. **RAG** architecture (BASE / LIVE / ON-DEMAND), an 8-agent **QUORUM** council, the **SCOPE.HELM** engine for large tasks, and auto-updating **Live Specs**.
+You can copy anything — someone's mega-prompt, a "perfect" system prompt from a thread. Often it turns to noise in your hands. A prompt written for one task carries its author's goal, knowledge and assumptions; laid over your task, they collide with yours. And the same text behaves differently on Claude, Gemini or GPT: each family was trained on different structure and reads it differently.
 
-**Philosophy:** constraints, not pressure. Empirical, not aesthetic.
+P2P doesn't solve your task. It writes the prompt for **your** task, for **your** model. Think of it as a travel adapter: you plug in and stop thinking about the voltage of each socket.
 
-The project evolved from a single text prompt (v1) into a meta-prompt OS (v8 NEXUS) — see the [evolution history](legacy/HISTORY.md).
+It is not a holy grail. It covers most everyday prompt work; the rest is your own expertise and finishing touches — but you start from a sound base instead of stitched-together pieces.
 
-### ⚡ [Interactive Architecture Map](https://sanic732.github.io/P2P/p2p-map.html)
+## Install
 
-> **Full system map: modules, agents, commands, cross-references, data flow** — in one D3.js interactive visualization with tabs, filters, animation and RU/EN switch. See how the 8 QUORUM agents, 11 commands and 6 ON-DEMAND modules connect.
+**claude.ai or the desktop app (recommended — updates arrive by themselves):**
+**Customize** (left sidebar) → Plugins → Add → add marketplace `sanic732/P2P`, keep "Sync automatically" on, then add **P2P — Prompt to Prompt**. It appears in chat, Cowork and Claude Code.
 
----
-
-## 🧭 Choose your edition
-
-One architecture, four entry points for different hosts and form factors. **Unsure? Pick the one tuned for your main model.**
-
-| Edition | For whom | Host | Start |
-|---|---|---|---|
-| 🟦 **[8.4.8-C](editions/8.4.8-C/README.en.md)** (Claude, внутр. 8C.3) | You work in **Claude** (Code / Cowork / Projects) | Claude only | ~7K |
-| 🟥 **[8.4.8-H](editions/8.4.8-H/README.en.md)** (внутр. 8H.3) | You want maximum / use **Grok** | 8 hosts (native Grok) | ~60K |
-| 🟩 **[8.4.8-N](editions/8.4.8-N/README.en.md)** (внутр. 8N.3) | Your model isn't "native" | any of 8 | ~60K |
-| 🟦 **[8.4.8-L](editions/8.4.8-L/README.en.md)** (внутр. 8L.3) | Token economy / context limits / **newcomers** | universal | **~18K** |
-
-📊 Full comparison — [`editions/COMPARISON.md`](editions/COMPARISON.md) · 📖 naming guide — [`NAMING.md`](NAMING.md).
-
----
-
-## 🚀 Quick start
-
-### Option A — plugin (Claude Code / Cowork)
+**Claude Code terminal:**
 
 ```
-/plugin marketplace add https://github.com/sanic732/P2P
-/plugin install p2p-v8c3@p2p
+/plugin marketplace add sanic732/P2P
+/plugin install p2p@P2P
 ```
 
-Check: `/p2p` (main menu) · `/p2p-teacher` (interactive course). Update: `/plugin update p2p-v8c3@p2p`.
+Upgrading from 8.x: the plugin is now called `p2p` (it was `p2p-v8c3`) — remove the old one and add P2P — Prompt to Prompt once; after that updates come automatically.
 
-### Option B — Chat / Projects / API (any host)
+## Use
 
-Load the chosen edition's `.md` files into Project Knowledge (or system prompt) and type `start` / `/p2p`. For Gemini you can use NotebookLM (token savings). Details in each edition's INSTALL and [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md).
+```
+/p2p <model> <your task, in your own words>
+```
 
-Launch triggers: `/start` · `start` · `старт` · `/p2p` · `/menu`. Menu not showing? Type `full ui menu`.
+```
+/p2p Gemini a system prompt for a support bot of an online shop
+/p2p Claude a technical brief for publishing my project on GitHub: files are in …, I want …
+```
 
----
+The more context you give — what you want, for whom, what the result should look like — the better the prompt. Write in any language; P2P answers in yours (`/p2p:lang` to fix it).
 
-## 👥 The 8 QUORUM agents
+A real example: [a technical brief for publishing a repository](examples/github-release-brief.txt) — dictated in plain words, turned by P2P into a ready start prompt for Claude Code (8.x era).
 
-| Agent | Role | When |
-|-------|------|------|
-| 🟣 **IRIS** | Strategist & Cartographer | Task map, hidden dependencies, the right questions |
-| 🟢 **TECTON** | System Architect | Prompt structure, code architecture, decision trees |
-| 🟡 **AXIOM** | Logician & Verifier | Red-teaming, logic gaps, Confidence Score |
-| 🟠 **VECTOR** | Optimization & Security | Prompt-injection defense, sanitization |
-| 🟤 **DATOS** | Data Analyst | Fact-checking, empirical verification (X Firehose on Grok) |
-| ⚫ **ANON** | Code Specialist / Security | Production-ready code, Stop Conditions (security in 8C.3) |
-| 🔵 **ARCHITECTON** | Integrator | Resolves inter-agent conflicts, UI/UX |
-| ☀️ **HELIOS** | Final Synthesizer | Merges the 7-agent chorus into a clean result |
+`/p2p:menu` opens the full menu — over forty functions, from quick prompts to prompt audits.
 
-On **Grok** (high) agents run natively in parallel (**Heavy-16**, 5-7× faster); on other hosts a simulated QUORUM is used.
+## P2P in a few pictures
 
----
+- **An operating system over the LLM, not "a good prompt".** Routing between models, knowledge bases pulled in on demand, protective patches for each architecture.
+- **A mirror of Claude Code's architecture.** The P2P core is what `CLAUDE.md` is in Claude Code; on-demand modules are Skills; protective patches are Hooks; the council of roles is subagents. One way of thinking, two implementations — with an honest caveat: a hook is executed by the runtime, always; a P2P patch is executed by the model's attention, like any prompt, probabilistically.
+- **Lost-in-the-Middle doesn't care about the platform.** A monolithic mega-prompt degrades exactly like a 600-line `CLAUDE.md`. So P2P is not one long sheet but layers, priorities and loading on demand.
+- **Countermeasures, not faith.** Every P2P technique is an engineering answer to a specific model behaviour: losing the middle, overflowing the window, mistaking text for an instruction.
+- **One contract, repacked for each model.** The meaning of the task stays the same; the syntax is native: XML for Claude, Markdown for Gemini, JSON for Grok.
+- **You call it, you don't hope for it.** P2P starts with an explicit `/p2p` command — you don't wait for the system to guess the moment.
+## How P2P is built — and why
 
-## 📡 Live Specs
+P2P is plain text: Markdown files you can open and read. **No scripts, no hooks, no network calls, nothing collected.** Nothing runs on its own — you call it, it works, it stops.
 
-Model prices/quotas/bugs are updated separately (~every 1-2 weeks) from a dedicated Gist (`live_specs.md`, latest). At startup the system checks web-fetch capability and runs in online-update mode or from an embedded snapshot. Mechanics — in [`editions/COMPARISON.md`](editions/COMPARISON.md#-english).
+It is organised like a small operating system, so the model knows *where to look* instead of holding everything at once:
 
----
-
-## 📚 Documentation
-
-| Section | Inside |
+| Layer | What it holds |
 |---|---|
-| **[NAMING.md](NAMING.md)** | Names C/H/N/L/A/G, versions, statuses |
-| **[FAQ.en.md](FAQ.en.md)** | FAQ: install, hosts, tokens, troubleshooting |
-| **[editions/COMPARISON.md](editions/COMPARISON.md)** | 4-edition comparison + Live Specs mechanics |
-| **[legacy/HISTORY.md](legacy/HISTORY.md)** | Project evolution narrative |
-| **[docs/](docs/)** | Architecture, techniques, PILOT modes, mindmap |
+| **Index → preloader** | the entry point and settings — the role `CLAUDE.md` plays in a project, made portable to any chat |
+| **Core** | the main logic: read the request (SIR scanner), estimate complexity (Tier T0–T4), pick a route |
+| **Knowledge base** | prompt-engineering rules that don't age with model versions: Claude reads XML best, Gemini — Markdown, Grok — a JSON schema; the nine-step Contract Builder; templates |
+| **Vendors** | how to write for each model family |
+| **Modules** | read only when the task needs them: RAG, reasoning chains, routing, compression, security audit, optimization |
+| **Live Specs** *(optional)* | a metrics layer: exact model ids, prices, context windows, known model failures — see below |
 
----
+**A contract, not a template.** A template is a form to fill in. P2P writes a contract: role, goal, rules in pairs (what the model must do and what it must not), success criteria and how to check them.
 
-## 🔬 Scientific Sources & attributions
+**A council when it pays off.** For hard tasks QUORUM convenes up to eight expert roles — researcher, architect, critic, code specialist, data analyst, security engineer, integrator, synthesizer. In Claude Code and Cowork they run as real subagents; in chat, as roles inside one answer. Calling all eight for a small task is like sending special forces to get a kitten off a tree — so smaller councils exist too.
 
-Integrated ON-DEMAND techniques (RAPTOR, LongRAG, Self-Consistency, MCTS, LLMLingua, OPRO…) are **prompting patterns inspired by** published research; no third-party code is vendored, the project is **MIT**. `/p2p-karpathy` and Template M are inspired by Andrej Karpathy's philosophy. P2P's own mechanisms (QUORUM, SCOPE.HELM, PILOT, ATLAS…) are original. Full list with sources — [`NOTICE`](NOTICE) and [`docs/TECHNIQUES_v8C3.md`](docs/TECHNIQUES_v8C3.md).
+**Grown from feedback.** P2P has been developed in the open since early 2026, release by release. People use it in ways its author never planned — and those reports shaped much of what it is now.
 
----
+## Live Specs — fresh model data, optional
 
-## Help & feedback
+The prompt techniques and the rules of each model family work without any extra file. If you work through APIs with many models and need today's exact ids, prices, windows and the status of known model failures (G-errors, confirmed by at least two independent reports), take `live_specs.md` from the assets of the [latest release](https://github.com/sanic732/P2P/releases) and attach it to the conversation or put it in your project. Menu item [41] explains it. P2P downloads nothing by itself.
 
-- Won't launch → [`docs/INSTALL_GUIDE.md`](docs/INSTALL_GUIDE.md) or [`FAQ.en.md`](FAQ.en.md)
-- Not sure how to use it → `/p2p-teacher` after install
-- Bug report / suggestion → [Issues](https://github.com/sanic732/P2P/issues) or the 4PDA thread
+## Other models — the file edition
 
-**License:** MIT (fork & modify; keep `NOTICE`). **Author:** sanic732 · **4PDA:** [Prompt to Prompt 8 NEXUS](https://4pda.to/forum/index.php?showtopic=1109539&view=findpost&p=137565576)
+`P2P_9.0.0-M_en.zip` in each release is the same system as plain files for any chat that accepts attachments. Attach the files, type `/p2p <model> <task>`. Fresh model data comes the same way: attach the newer `live_specs.md`.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

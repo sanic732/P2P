@@ -1,26 +1,24 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "P2P",
-  "displayName": "P2P Marketplace — 4PDA Edition",
-  "description": "Official P2P meta-prompt system marketplace (Claude Native edition, mirror published for the 4PDA community)",
+  "description": "P2P — Prompt to Prompt, Claude Edition: a meta-prompt plugin that writes task-specific prompts for any model.",
   "owner": {
     "name": "sanic732"
   },
-  "homepage": "https://github.com/sanic732/P2P",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sanic732/P2P.git"
-  },
   "plugins": [
     {
-      "name": "p2p-v8c3",
-      "source": "./editions/8.4.8-C/plugin",
-      "description": "P2P 8.4.8-C Claude Native Edition — live specs 8.7.4 (срез 10.09.2026), PILOT/SHERPA, 6 ON-DEMAND modules, 8 QUORUM agents, 12 команд, XML-native, SCOPE.HELM",
+      "name": "p2p",
+      "source": "./plugin",
+      "displayName": "P2P — Prompt to Prompt",
+      "description": "P2P — Prompt to Prompt, Claude Edition: a meta-prompt plugin that writes task-specific prompts for any model.",
       "tags": [
         "latest",
         "claude-native",
         "meta-prompt"
       ]
     }
-  ]
+  ],
+  "renames": {
+    "p2p-v8c3": "p2p"
+  }
 }
