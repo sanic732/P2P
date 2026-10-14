@@ -21,13 +21,13 @@ tags: agent-skills, skill-md, generator, agentskills-io, progressive-disclosure
 // §A. SKILL_OFFER — when to offer skill generation
 // ─────────────────────────────────────────────────────
 SKILL_OFFER:
-  TRIGGER: query contains "создай скилл | create skill | agent skill | SKILL.md | навык агента |
-           оформи это как скилл | сделай переиспользуемый навык".
+  TRIGGER: query contains “создай скилл | create skill | agent skill | SKILL.md | навык агента |
+           оформи это как скилл | сделай переиспользуемый навык”.
   ACTION (once, not silently):
-    EMIT: "🧩 Build an Agent Skill (agentskills.io standard)? Choose:
+    EMIT: “🧩 Build an Agent Skill (agentskills.io standard)? Choose:
       [1] Minimal SKILL.md (frontmatter + body only)
       [2] SKILL.md + resources (scripts/ references/ assets/)
-      [3] Show template and description validator rules"
+      [3] Show template and description validator rules”
   DISCOVERY_RULE: a skill makes sense ONLY for things the model does NOT know (domain processes,
                   runbooks, specific workflows). Well-known common knowledge → do not package into a skill.
 
@@ -76,8 +76,8 @@ SKILL_MD_CONTRACT:
 // §C. DESCRIPTION_VALIDATOR — triggering reliability (sole trigger during discovery)
 // ─────────────────────────────────────────────────────
 DESCRIPTION_VALIDATOR:
-  FORMULA: "[What it does]. Use when [contexts/intentions]. Include even if the user
-            did not mention [key terms]."
+  FORMULA: “[What it does]. Use when [contexts/intentions]. Include even if the user
+            did not mention [key terms].”
   PRINCIPLES: imperative mood; focus on user INTENT (not on mechanics); "pushy" (explicit contexts);
               keywords + variations; concise 1–4 sentences.
   EVAL (checklist before output):
@@ -117,7 +117,7 @@ TARGETS:
 // §F. GENERATOR — step-by-step output
 // ─────────────────────────────────────────────────────
 GENERATOR:
-  STEP_1: clarify the skill's task + intended target (Grok/Claude/Cursor/Codex).
+  STEP_1: clarify the skill’s task + intended target (Grok/Claude/Cursor/Codex).
   STEP_2: generate name (a-z0-9-, ==folder) + description (via §C formula and validator).
   STEP_3: assemble the SKILL.md body (§B: imperative mood, checklists, Gotchas, output templates, ≤500 lines).
   STEP_4: if [2] — propose scripts/ references/ assets/ (only what is necessary; §D anti-patterns).

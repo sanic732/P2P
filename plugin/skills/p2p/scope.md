@@ -178,32 +178,32 @@ GUARDIAN=ON will catch scope creep and ask before changing the plan.
 
 ---
 
-## ENV-AWARE ACTIVATION
+## ENVIRONMENT-AWARE ACTIVATION
 
 **Principle:** Context Engineering, not Prompt Engineering.
 SESSION GUARDIAN below is the quota light (#SCOPE_GUARDIAN); the GUARDIAN PROTOCOL against scope creep follows
 core.md TRI_MODE_BRIDGE (ON in Code and Projects, OFF in API and Chat).
 
 ```
-IF env == "claude.ai (projects/chat)":
+IF ENVIRONMENT == "claude.ai (projects/chat)":
   → SPLITTER:  ON  (recommends decomposition across chats)
   → SESSION GUARDIAN:  ON  (inline progress bar in each response)
   → CAPSULE:   ON  (copy-paste format)
   → ROUTER:    ON  (fast / balanced / flagship Claude model matrix)
 
-IF env == "cowork" (only if the host names itself Cowork; with the Agent tool TRI_MODE
+IF ENVIRONMENT == "cowork" (only if the host names itself Cowork; with the Agent tool TRI_MODE
                    detects it as Code):
   → SPLITTER:  ON
   → SESSION GUARDIAN:  ON  (less aggressive — Cowork shows limits itself)
   → CAPSULE:   ON  (via files, not copy-paste)
   → ROUTER:    ON
 
-IF env == "code" AND WORKSPACE == "cloud" (claude.ai / desktop app, _preloader.md STEP 1):
+IF ENVIRONMENT == "code" AND WORKSPACE == "cloud" (claude.ai / desktop app, _preloader.md STEP 1):
   → as "cowork" above (claude.ai quotas apply: SESSION GUARDIAN ON), except:
   → CAPSULE:   ON  → written to .claude/state/ AND sent to the user (send-file tool)
   → no /model, /agents or other CLI commands — name app features instead
 
-IF env == "code":
+IF ENVIRONMENT == "code":
   → SPLITTER:  ON  → tasks via task tool (TaskCreate, formerly TodoWrite) if available in session
   → SESSION GUARDIAN:  OFF (Code has a different quota model, the quota light is redundant; GUARDIAN PROTOCOL stays ON)
   → CAPSULE:   ON  → written to .claude/state/capsule_<project>_<N>.md
@@ -337,7 +337,7 @@ Math / ARC-AGI:
 ```
 ═══════════════════════════════════════
 SCOPE.HELM — PROJECT MAP
-[PROJECT] | [PLAN] | [DATE] | [ENV]
+[PROJECT] | [PLAN] | [DATE] | [ENVIRONMENT]
 ═══════════════════════════════════════
 
 OVERVIEW: Chats: N | Models: [list] | Est. sessions: N
@@ -356,7 +356,7 @@ Capsule:     capsule_<project>_1.md
 ═══════════════════════════════════════
 ```
 
-**ENV-specific:**
+**Environment-specific:**
 - Code: Map → tasks via task tool (TaskCreate, formerly TodoWrite) if available in session; Capsule paths: `.claude/state/capsule_<project>_<N>.md`
 
 ---
@@ -368,7 +368,7 @@ Capsule:     capsule_<project>_1.md
 /p2p:capsule              → Generate Capsule now
 /guardian                 → Tracker only (claude.ai/cowork)
 /route [task]             → Model recommendation
-/status                   → Current status: turns, weight, plan, env
+/status                   → Current status: turns, weight, plan, environment
 /split [message]          → Split heavy request into batches
 ```
 
@@ -381,12 +381,12 @@ MENU:    item 25 in core.md
 MEMORY:  CAPSULE → memory.md memory_block (auto-sync)
 DATA FLOW:
   p2p.config.md PROJECT_CARD → SCOPE_CONFIG (auto-fill)
-  CAPSULE → memory.md memory_block (export)
+  CAPSULE → memory.md memory_block (saved as a file)
 ```
 
 ---
 
-<!-- SOURCE_META: type=on-demand | priority=3 | scope-helm=true | splitter=true | capsule=true | router=true | guardian=true | env-aware=true | plan-limits=true -->
+<!-- SOURCE_META: type=on-demand | priority=3 | scope-helm=true | splitter=true | capsule=true | router=true | guardian=true | environment-aware=true | plan-limits=true -->
 
 
 ========================================

@@ -33,7 +33,7 @@
 **Order of execution:**
 1. Load `core.md` (QUORUM / TRI_MODE section) and `agents.md`
    (profiles of 8 agents and sub-QUORUM patterns).
-2. Execute QUORUM for the user's task: each relevant agent provides its breakdown,
+2. Execute QUORUM for the user’s task: each relevant agent provides its breakdown,
    HELIOS performs the synthesis; VECTOR — veto/security according to rules from db.
 3. Observe disambiguation from db (RAPTOR/LongRAG ≠ GoT, SC ≠ USC, MCTS ≠ ToT).
 

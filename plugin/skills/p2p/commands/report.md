@@ -20,9 +20,9 @@ paths, addresses, keys, and passwords.
    erred (features, route, target model, error type). Nothing was recorded in advance.
 2. Ask for a rating 1–5 and a comment; an answer of "skip" means a report without them.
 3. Show the report IN FULL in a single code block — the user sees everything that will go to the author.
-   The report itself is ALWAYS in English, whatever OUTPUT_LANG is (the user's comment translated into English);
+   The report itself is ALWAYS in English, whatever OUTPUT_LANG is (the user’s comment translated into English);
    the questions and explanations around it stay in OUTPUT_LANG.
-4. State where to send it: an issue in the P2P repository on GitHub (the repository link is in the plugin's
+4. State where to send it: an issue in the P2P repository on GitHub (the repository link is in the plugin’s
    README). Only the user sends it; P2P itself never sends anything anywhere.
 
 **Format:**
@@ -32,7 +32,7 @@ features: <comma-separated features>
 routes: <INTENT/Tier → route; …>
 targets: <model ids>
 issues: <A–P or E-A…E-P: one line; …> | none
-rating: <1–5 | —> · comment: <user's words | —>
+rating: <1–5 | —> · comment: <user’s words | —>
 ```
 
 ========================================

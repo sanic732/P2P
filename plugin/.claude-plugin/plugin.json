@@ -49,13 +49,9 @@
     "pilot_mode": {
       "type": "string",
       "title": "Assistance mode",
-      "description": "co-pilot asks a few questions before building; auto-pilot asks one or two and uses defaults; manual asks nothing and shows every choice it makes.",
-      "default": "co-pilot",
-      "options": [
-        "co-pilot",
-        "auto-pilot",
-        "manual"
-      ]
+      "description": "co-pilot asks a few questions before building; auto-pilot asks one or two and uses defaults; manual asks nothing and shows every choice it makes. One of: co-pilot, auto-pilot, manual.",
+      "default": "co-pilot"
     }
-  }
+  },
+  "icon": "./.claude-plugin/icon.png"
 }

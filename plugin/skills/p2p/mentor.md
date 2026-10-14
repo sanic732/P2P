@@ -24,7 +24,7 @@ Activates automatically upon requests such as:
 
 ## ADAPTIVE LEVEL
 
-P2P determines the user's level from the first question:
+P2P determines the user’s level from the first question:
 
 ```
 Beginner signs:
@@ -119,7 +119,7 @@ Test yourself: [1 question on the topic]
 If the user:
 - Says "understood everything, now do X" → switch to Standard
 - Asks a technical question at an expert level → reduce "pedagogical tone"
-- Explicitly says "don't explain, just show" → Template M
+- Explicitly says "don’t explain, just show" → Template M
 ```
 
 ---
@@ -137,7 +137,7 @@ Transition: The first time a structured prompt yielded a result without rework.
 **STAGE 2 — CONTEXT**
 What it is: Projects, Cowork, CLAUDE.md — context autoloading mechanisms.
 How it works: Configure context once. Every session starts with it.
-Result: Claude answers as if continuing yesterday's conversation. Without repetition.
+Result: Claude answers as if continuing yesterday’s conversation. Without repetition.
 Transition: The first time you open a new session and Claude starts working without a preamble.
 
 **STAGE 3 — SYSTEM**

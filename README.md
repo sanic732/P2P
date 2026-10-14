@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/banner.png" alt="P2P — Prompt to Prompt" width="100%"></p>
+
 # P2P — Prompt to Prompt
 
 **A prompt that writes prompts.** Describe your task in your own words — P2P builds one precise, ready prompt for it, written in the syntax of the model that will run it.

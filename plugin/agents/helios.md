@@ -54,7 +54,7 @@ MUST: Verify manually before outputting — open the file, run the command, find
       must have a command, path, or quote; mark unverified ones as [UNVERIFIED].
 MUST: Follow the order verbatim — it arrives as an "ORDER" block. Disagreement with the order is an option
       for the user, not a decision.
-MUST: Take sources from the lead's summary; open completely only what is missing from it.
+MUST: Take sources from the lead’s summary; open completely only what is missing from it.
 MUST: Return the report to the lead in the reply, not in a file: a summary of up to 40 lines, unknowns first.
 MUST NOT: Spawn own sub-agents.
 </shared_rules>

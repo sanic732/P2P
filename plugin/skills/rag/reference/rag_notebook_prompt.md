@@ -36,7 +36,7 @@ PART I. READY-TO-USE SYSTEM PROMPT (COPY AS IS)
 
 <!-- rag_anchor: ready_system_prompt -->
 
-Below is a self-contained system prompt. Paste into the notebook's system
+Below is a self-contained system prompt. Paste into the notebook’s system
 instruction field (in NotebookLM — custom prompt; in Gemini —
 notebook instructions; in Claude Project — Project instructions).
 Replace values in [square brackets] for your project.
@@ -221,8 +221,8 @@ template returns to the notebook as a master prompt. Convenient for migration
 and comparing versions against each other.
 
 PRE-PROCESSING SOURCES BEFORE INGESTION:
-run "dirty" text through an LLM with the instruction "structure into Markdown
-with headers, remove noise, add metadata". The response quality of the RAG backend
+run "dirty" text through an LLM with the instruction “structure into Markdown
+with headers, remove noise, add metadata”. The response quality of the RAG backend
 grows multifold on clean, structured sources.
 
 NOTEBOOK VERSIONING — two strategies:
@@ -256,47 +256,47 @@ Formulate what is desired, not prohibitions.
 
 ─── 5.1. GAP ANALYSIS (finding gaps in documentation) ───
 
-"Using only the sources of this notebook, identify 3–5 categories
+“Using only the sources of this notebook, identify 3–5 categories
 of gaps along the axes: (a) conceptual, (b) procedural, (c) example-based.
 For each gap:
 1) problem description in one sentence;
 2) files/sections where the gap is particularly noticeable;
 3) 1–2 clarifying questions for the authors.
-Format as a table. Each thesis — with a citation [file, §]."
+Format as a table. Each thesis — with a citation [file, §].”
 
 ─── 5.2. RECURRING TOPICS / GLOSSARY ───
 
-"Analyze sources associated with [version/tag].
+“Analyze sources associated with [version/tag].
 Identify 10–15 recurring concepts (modules, protocols, modes).
 For each:
 1) short definition in your own words;
 2) files where it occurs, with a brief citation;
 3) whether there are contradictions between sources.
-Present as a table — this will form the foundation of _GLOSSARY.md."
+Present as a table — this will form the foundation of _GLOSSARY.md.”
 
 ─── 5.3. CONFLICT DETECTION (finding contradictions) ───
 
-"Find contradictions between notebook sources.
+“Find contradictions between notebook sources.
 Format: [file_A §N] claims X, [file_B §M] claims Y.
-Suggest a resolution or flag as an “open question”."
+Suggest a resolution or flag as an “open question”.”
 
 ─── 5.4. RESEARCH MAP (topic map for a new team member) ───
 
-"Role: analyst of system [NAME] with access to the notebook.
+“Role: analyst of system [NAME] with access to the notebook.
 Task: construct a map of topics, questions, and risks for [domain].
 Context: use notebook sources; if necessary — web search,
 but clearly separate web data from notebook data; do not provide final
 security recommendations, only designate risk areas.
 Format: first, a list of 7–10 main topics; then for each —
 (a) description, (b) related sources, (c) open questions.
-Language: [language]."
+Language: [language].”
 
 ─── 5.5. CITATION-FORCING GUARD (for mixed notebook+web mode) ───
 
-"Answer based on notebook sources. For each thesis, provide
+“Answer based on notebook sources. For each thesis, provide
 at least one citation [file, §]. If there is no exact citation — state:
 “There is no direct answer in the sources — reasoning based on interpretation”.
-Claims without source backing are considered an error."
+Claims without source backing are considered an error.”
 
 CONSENSUS ON PATTERNS:
 - The best prompts for a grounded backend FORCE citation,

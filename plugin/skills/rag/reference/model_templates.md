@@ -1,7 +1,7 @@
 # Ready-made grounding prompts for each model (RAG)
 
 > One contract (source analysis → insights/answer strictly based on them, UNKNOWN marker),
-> rewritten for the model's native syntax and bypassing its bugs. Change Task/Output to fit
+> rewritten for the model’s native syntax and bypassing its bugs. Change Task/Output to fit
 > your objective; keep grounding and guard. Lightweight models (fast Claude / Gemini models; exact ids: live_specs.md)
 > are excluded — strict grounding is unstable on them.
 

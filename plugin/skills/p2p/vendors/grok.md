@@ -40,7 +40,7 @@ GROK_TARGET_RULES:  (generating a prompt FOR Grok)
   in a strict JSON envelope (GROK_JSON_TARGET); no stop / presencePenalty / frequencyPenalty; verify reasoning_effort is sent.
   The full Heavy-16 pack works on the grok host.
 SPECIAL_TAGS: [Tone: Expert] facts · [Tone: Fun] satire · [Require: Real-Time Verification] forced X lookup ·
-              [Perspective: Devil's Advocate]
+              [Perspective: Devil’s Advocate]
 
 X_FIREHOSE:   native x_stream; value gate; cache rules apply.
 TEMP:         0.3 analytical / 0.85 creative.

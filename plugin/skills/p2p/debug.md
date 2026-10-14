@@ -104,7 +104,7 @@ Prevention:
 MUST: Be concise
 MUST NOT: Add preamble ("Here is...", "Sure!", "Of course!")
 MUST NOT: Add explanation after result unless asked
-MUST NOT: Repeat the user's question
+MUST NOT: Repeat the user’s question
 </rules>
 ```
 
@@ -147,10 +147,10 @@ MUST NOT: Add explanations inside JSON as string values
 
 ```
 Iteration 1: Apply minimal fix
-Iteration 2: If it didn't help — add MUST NOT targeting the problematic behavior
-Iteration 3: If it didn't help — change template (e.g., Template C for JSON)
-Iteration 4: If it didn't help — switch agent or Tier
-Iteration 5: If it didn't help — QUORUM for diagnostics
+Iteration 2: If it didn’t help — add MUST NOT targeting the problematic behavior
+Iteration 3: If it didn’t help — change template (e.g., Template C for JSON)
+Iteration 4: If it didn’t help — switch agent or Tier
+Iteration 5: If it didn’t help — QUORUM for diagnostics
 
 After 5 iterations without improvement → Rethink the task (formulation may be flawed)
 ```
@@ -167,7 +167,7 @@ After 5 iterations without improvement → Rethink the task (formulation may be 
 
 | Type | Name | Symptom | Diagnosis | Fix |
 |------|------|---------|-----------|-----|
-| **E-A** | Silent timeout | Credits gone, no response | Thinking set too high for the target | One step lower in the family's own parameter (Claude `effort`, GPT `reasoning_effort`, Gemini `thinkingLevel`, Gemini Flash / Qwen `thinking_budget` — vendors/<family>.md), split the task |
+| **E-A** | Silent timeout | Credits gone, no response | Thinking set too high for the target | One step lower in the family’s own parameter (Claude `effort`, GPT `reasoning_effort`, Gemini `thinkingLevel`, Gemini Flash / Qwen `thinking_budget` — vendors/<family>.md), split the task |
 | **E-B** | Mid-stop without Continue | Stops at 50-90%, no continuation | Token cap hit | Chunking, raise max_tokens |
 | **E-C** | Unwarned truncation | Looks complete, ~90% cut silently | max_tokens below required | Check max_tokens, request "indicate if truncated" |
 | **E-D** | Long response drift | Quality degrades mid-output | Attention decay during generation | Anchor Context, Semantic Chunking |
@@ -193,7 +193,7 @@ After 5 iterations without improvement → Rethink the task (formulation may be 
 - **E-L4**: Creativity drops — no unexpected angles, no pushback.
 - **E-L5**: Same correction requested twice without improvement.
 
-**Root cause:** context pollution. **Prevention:** keep context clean; one task per prompt; don't stack corrections — restart with better prompt.
+**Root cause:** context pollution. **Prevention:** keep context clean; one task per prompt; don’t stack corrections — restart with better prompt.
 
 ### Symptom-based quick lookup
 
@@ -212,7 +212,7 @@ After 5 iterations without improvement → Rethink the task (formulation may be 
 | Grok answering wrong question | E-K |
 | Claude generic/safe/bland | E-L |
 | Worse the more I correct | E-M1 |
-| Can't handle all my files | E-M2 |
+| Can’t handle all my files | E-M2 |
 | Research ate all the context | E-M3 |
 | Calls non-existent tool | E-N |
 | Refuses legitimate request | E-O |

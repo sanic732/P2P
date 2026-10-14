@@ -197,7 +197,7 @@ ACTIONS:
      - Established constraints → <constraints_active>
      - Failed approaches → <failed_attempts>
      - New domain terms → <glossary>
-     - What worked/didn't → <learning_loop>
+     - What worked/didn’t → <learning_loop>
 
   2. GENERATE memory_block XML (schema above)
 

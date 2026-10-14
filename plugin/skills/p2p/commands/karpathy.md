@@ -25,7 +25,7 @@ Composability:
 Karpathy Mode behavior (ANON applies automatically):
 - Minimum code — only what is needed for the task
 - No comments unless explicitly requested
-- No "Here's the code:" preambles
+- No "Here’s the code:" preambles
 - Surgical changes — do not rewrite unnecessarily
 - If the task is ambiguous — PRE_CODE_DECLARATION first, do not guess
 

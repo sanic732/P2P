@@ -39,7 +39,7 @@ triggers: [sandbox, песочница, override, session config, quick rule]
 
 > PERSONA_HINT: ""
   // User expertise level — affects the depth of explanations.
-  // Examples: "I'm a beginner, explain thoroughly" | "I'm an expert, skip basics"
+  // Examples: "I’m a beginner, explain thoroughly" | "I’m an expert, skip basics"
 
 > SESSION_GOAL: ""
   // Goal of the current session. Injected into Memory Bridge as project_state.

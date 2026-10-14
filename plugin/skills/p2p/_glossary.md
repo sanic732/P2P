@@ -62,7 +62,7 @@ not GUARDIAN.
 |---|---|
 | CHART | task map in the conversation: goal, progress, next step, blockers (item [23], `/p2p:chart`) |
 | CAPSULE | session state snapshot to continue in a new conversation (item [24], `/p2p:capsule`) |
-| REPORT | anonymized report to the author: what worked, what didn't; submitted by user (item [19], `/p2p:report`) |
+| REPORT | anonymized report to the author: what worked, what didn’t; submitted by user (item [19], `/p2p:report`) |
 | SCOPE.HELM | large tasks mode: step-by-step plan, guidance, CAPSULE after a step (item [25], `/p2p:scope`) |
 | GUARDIAN | protection of the context against noise and scope creep in Code and Projects; «Guardian» of the status line |
 | SESSION GUARDIAN | quota traffic light of SCOPE.HELM in claude.ai / Cowork |
