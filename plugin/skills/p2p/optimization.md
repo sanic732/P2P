@@ -88,7 +88,7 @@ Cost: high (many requests) → T3-4 tasks only
 ---
 
 ### GEPA — Reflective Evolution (EvoPrompt upgrade)
-**Source/Metrics:** arXiv 2507.19457 (July 2025, ICLR'26 Oral — "surging", not new-in-window). +6..19pp over GRPO with 35× fewer rollouts; +12pp AIME-2025 vs MIPROv2.
+**Source/Metrics:** arXiv 2507.19457 (July 2025, ICLR’26 Oral — "surging", not new-in-window). +6..19pp over GRPO with 35× fewer rollouts; +12pp AIME-2025 vs MIPROv2.
 **Difference from EvoPrompt:** NL-reflection (LLM diagnoses WHY failure occurred, accumulates lessons) + Pareto-selection across {accuracy, tokens, cost}, rather than a single fitness function.
 ```
 [GEPA_CYCLE]  (framework, T3-4, requires eval-harness)
@@ -118,7 +118,7 @@ Output: prompt v_final + changelog of improvements
 ---
 
 ### MASPO — Joint QUORUM Optimization (meta-tuning mode)
-**Source/Metrics:** arXiv 2605.06623 (May 2026, ICML'26 — genuinely in-window). +2.9pp over SOTA; without ground-truth for intermediate agents.
+**Source/Metrics:** arXiv 2605.06623 (May 2026, ICML’26 — genuinely in-window). +2.9pp over SOTA; without ground-truth for intermediate agents.
 **⚠ Invariant interaction:** MASPO optimizes WEIGHT DISTRIBUTION and prompts of the 8 agents (agents.md). DOES NOT violate `I7_agents_8` — the number of agents = 8 remains unchanged, only their weights/prompts change. Recorded in changelog.
 ```
 [MASPO_QUORUM]  (QUORUM meta-tuning mode, T4)

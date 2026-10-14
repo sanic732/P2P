@@ -192,7 +192,7 @@ In the plugin every command is a skill; as a Skill without the plugin — type t
 Also `/sherpa` — SHERPA on / off for this session (typed in the chat).
 
 **Exercise:**
-Name the command for the scenario: "I have a large architectural task, I don't know how to break it down".
+Name the command for the scenario: "I have a large architectural task, I don’t know how to break it down".
 
 **Criterion:** answer — `/p2p:scope` (or `/p2p:explore` when the requirements themselves are unclear).
 
@@ -219,7 +219,7 @@ In a chat the same command runs FAST_TRIO: IRIS → TECTON → AXIOM, summary by
 ```
 
 **Exercise:**
-Which agent is the devil's advocate that looks for weak points in the plan? (hint: the plugin folder `agents/` or `agents.md`)
+Which agent is the devil’s advocate that looks for weak points in the plan? (hint: the plugin folder `agents/` or `agents.md`)
 
 **Criterion:** answer — AXIOM.
 
@@ -253,7 +253,7 @@ You have 30 code files to refactor across several sessions. Which 2 commands do 
 What you can override and where:
 - `Q:` / `AUTO:` / `MANUAL:` / `MAX:` — one-off override of the PILOT level (co-pilot / auto-pilot / manual); `AUTO:` — P2P takes sensible defaults
 - `/p2p <model> <task>` — the named model becomes TARGET_MODEL
-- `/p2p:lang <language>` (or `/lang`) — output language; `/lang auto` — back to the user's language
+- `/p2p:lang <language>` (or `/lang`) — output language; `/lang auto` — back to the user’s language
 - `/sherpa` — SHERPA hints on / off for the session
 - `p2p.config.md` (project root) — PROJECT_CARD, USER_PROFILE, flags, SESSION_OVERRIDE (`quorum_threshold`); `sandbox.md` — session overrides (`PERSONA_HINT`, `TONE_OVERRIDE`, `MODEL_OVERRIDE` …)
 
@@ -273,7 +273,7 @@ Write how to run QUORUM with output in English.
 1. When to use `/p2p:quorum` vs `/p2p <task>`?
 2. What does `/p2p:capsule` do?
 3. How to switch the output language?
-4. Which agent is the devil's advocate?
+4. Which agent is the devil’s advocate?
 5. What is `/p2p:karpathy`?
 
 **Pass:** 4/5 → Level 3.
@@ -312,7 +312,7 @@ List 3 risks of "single perspective" thinking.
 |-------|------|--------------|
 | **IRIS** | Research, problem mapping, open questions | 1 |
 | **TECTON** | Architecture, task decomposition, structure | 2 |
-| **AXIOM** | Critique, verification, devil's advocate | 3 |
+| **AXIOM** | Critique, verification, devil’s advocate | 3 |
 | **ANON** | Code prompts, optimization, algorithms, performance | 4 |
 | **DATOS** | Data, fact-checking, sources | 5 |
 | **VECTOR** | Security, privacy, threat model; de-noising and veto | 6 |
@@ -372,7 +372,7 @@ Which sub-QUORUM for "smart contract security audit"?
 ## LEVEL 3 CHECK
 
 5 questions:
-1. Who is the devil's advocate?
+1. Who is the devil’s advocate?
 2. Who holds the veto, and what does it do?
 3. Which sub-QUORUM patterns do you know? (≥2)
 4. Why do weights depend on the task type?
@@ -415,7 +415,7 @@ Simple task "write hello world". Will QUORUM trigger? Why?
 **Theory:**
 1. BUDGET DECLARATION first: agents [N of 8], reasoning limit, passes [1-3], stop condition, expected output
 2. Rounds in order, Checkpoints A (IRIS vs TECTON), B (AXIOM remarks addressed), C (security threats), Final (HELIOS matches the request); a failed Checkpoint → mandatory iteration
-3. The user's order goes to each agent verbatim, in an "ORDER" block; ARCHITECTON settles divergences by verification, not by compromise
+3. The user’s order goes to each agent verbatim, in an "ORDER" block; ARCHITECTON settles divergences by verification, not by compromise
 4. Claude Code: plugin subagents in waves — IRIS → TECTON → AXIOM ∥ DATOS ∥ VECTOR → ANON → Checkpoint C → ARCHITECTON → HELIOS; API: sequential emulation in one response; Projects: sequential with checkpoints; Chat: FAST_TRIO by default
 
 **Example output (HELIOS):**

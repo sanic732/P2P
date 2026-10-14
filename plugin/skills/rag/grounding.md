@@ -34,7 +34,7 @@ grounding is unstable on them.
 
 ## Process
 1. Ask/identify the target model and task.
-2. Take the framework, insert Task/Output, repackage for the model's syntax and its bug.
+2. Take the framework, insert Task/Output, repackage for the model’s syntax and its bug.
 3. Output the ready prompt in a single block for copying.
 
 ## Self-check

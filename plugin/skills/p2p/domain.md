@@ -17,7 +17,7 @@ triggers: ["домен", "контекст проекта", "domain knowledge", 
 Claude knows general patterns well, but does not know:
 - Specifics of your codebase
 - Internal company standards
-- Nuances of your project's domain area
+- Nuances of your project’s domain area
 - Non-standard conventions and terms
 
 Domain Knowledge allows adding this context once and using it across all requests.

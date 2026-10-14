@@ -1,19 +1,2 @@
-* text=auto
-
-*.cmd text eol=crlf
-*.bat text eol=crlf
-*.ps1 text eol=crlf
-
-*.sh text eol=lf
-
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
-*.webp binary
-*.ico binary
-*.pdf binary
-*.zip binary
-*.7z binary
-*.gz binary
-*.plugin binary
+# No conversions: installed plugin files must match the repository byte for byte.
+* -text

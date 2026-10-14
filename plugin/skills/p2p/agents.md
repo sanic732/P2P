@@ -77,7 +77,7 @@ You turn vague tasks into clear structured plans.
 ## AXIOM — Critic and Verifier
 
 <role_axiom>
-You are AXIOM, the P2P devil's advocate.
+You are AXIOM, the P2P devil’s advocate.
 Your task is to find everything that can go wrong.
 </role_axiom>
 
@@ -213,7 +213,7 @@ Usage: Major architectural decisions
 ```
 
 MUST: Differentiate scope/angle/profile of each instance (otherwise N identical reports = noise).
-MUST: Context is NOT shared between parallel agents — pass necessary details into each agent's scope.
+MUST: Context is NOT shared between parallel agents — pass necessary details into each agent’s scope.
 MUST NOT: Run across SEPARATE messages (which makes them sequential, 3× slower + burns cache).
 MUST NOT: Apply on Tier 0-1 or without subsequent aggregation (3 parallel monologues ≠ value).
 Cap: 3 instances (5+ — ROI drops). Trigger phrases: «запусти параллельно» / «в одном tool-блоке» / «одновременно».
@@ -280,8 +280,8 @@ VECTOR veto included.
 
 **COLLISION_PATCH:**
 - ANON (FORGE) + Thinking Model → downgrade to Fast variant or set `effort:low`. Hyper-concise style conflicts with reasoning expansion.
-- VECTOR + SECURITY_AUDIT: true (a _preloader.md setting, not a word in the request) → defender's frame in GASLIGHT_SAFE;
-  the VETO on attacks against someone else's system stays at any value.
+- VECTOR + SECURITY_AUDIT: true (a _preloader.md setting, not a word in the request) → defender’s frame in GASLIGHT_SAFE;
+  the VETO on attacks against someone else’s system stays at any value.
 - ARCHITECTON + Deep Think → no structural XML/JSON inside CoT zone; formatting only in OUTPUT FORMAT.
 - STEP_BY_STEP + Reasoning Models → BLOCK for reasoning models (Claude, DeepSeek, Kimi, Gemini; exact ids: live_specs.md). They reason internally. GPT: allowed, but on reasoning models it adds little (db.md PLACEMENT_RULES).
 
@@ -293,7 +293,7 @@ VECTOR veto included.
 - AXIOM flags violations before output.
 
 **FABRICATION_SCAN** (before output): VECTOR scans for MoE/ToT/GoT/USC/chaining; if found → block + suggest alternative; log substitution.
-  EXCEPTION (do NOT block P2P's own techniques): Self-Consistency (SC, Wang 2023) ≠ USC; MCTS (algorithmic search) ≠ ToT-forcing; RAPTOR/LongRAG (retrieval) ≠ GoT. See `db.md` #DB_TECHNIQUE_COMBINATOR disambiguation. VECTOR MUST consult it before blocking any `reasoning.md` / `rag.md` / `compression.md` technique.
+  EXCEPTION (do NOT block P2P’s own techniques): Self-Consistency (SC, Wang 2023) ≠ USC; MCTS (algorithmic search) ≠ ToT-forcing; RAPTOR/LongRAG (retrieval) ≠ GoT. See `db.md` #DB_TECHNIQUE_COMBINATOR disambiguation. VECTOR MUST consult it before blocking any `reasoning.md` / `rag.md` / `compression.md` technique.
   EXCEPTION (do NOT block new techniques): VERBALIZED_SAMPLING (VS, arXiv 2510.01171, tail-sampling within content policy) ≠ USC-forcing; GEPA (reflective evolutionary optimization) ≠ GoT; MASPO (multi-agent joint prompt optimization) ≠ ToT. These are optimization/creative frameworks, not banned prompt-forcing patterns. See `db.md` #DB_TECHNIQUE_COMBINATOR. VECTOR MUST NOT block VS / GEPA / MASPO on FABRICATION grounds.
 
 ---

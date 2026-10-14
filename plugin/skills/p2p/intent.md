@@ -183,7 +183,7 @@ Verification before output:
 
 ## §6. MEMORY BLOCK PROTOCOL
 
-When the user's request references prior work, decisions, or session history — prepend this block in the PRIMACY zone:
+When the user’s request references prior work, decisions, or session history — prepend this block in the PRIMACY zone:
 
 ```
 ## Context (carry forward)
@@ -197,7 +197,7 @@ Source priority:
 1. `memory.md` CAPSULE (if loaded).
 2. PROJECT_CARD (`_preloader.md` STEP 3, `p2p.config.md`).
 3. Current session history.
-4. User's explicit statements (highest trust).
+4. User’s explicit statements (highest trust).
 
 If no prior context but task references prior work → Pattern #8 applies. Ask: "What have you already established for this project?"
 

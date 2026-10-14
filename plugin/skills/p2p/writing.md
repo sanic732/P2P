@@ -54,8 +54,8 @@ FORBIDDEN (hard constraints):
   - Words: delve, leverage, harness, navigate, embark, journey, unleash,
     realm, landscape, tapestry, paradigm, robust, seamless, vibrant,
     elevate, foster, empower, pivotal, crucial, intricate, nuanced.
-  - Phrases: "in today's fast-paced world", "in the realm of",
-    "it's important to note", "delve into", "navigate the complexities".
+  - Phrases: "in today’s fast-paced world", "in the realm of",
+    "it’s important to note", "delve into", "navigate the complexities".
   - Rhetorical questions ("Have you ever wondered...?").
   - Em-dashes (—). Replace with periods or commas.
   - Triple-bullet structures repeated as a tic.
@@ -116,7 +116,7 @@ Run before delivery:
 
 ## §7. TONE SPECTRUM — 9 DETAILED CONTEXTS
 
-> Use when the simple table in §3 isn't precise enough. Specifies sentence length, structure, allowed/avoided constructs.
+> Use when the simple table in §3 isn’t precise enough. Specifies sentence length, structure, allowed/avoided constructs.
 
 ### TECHNICAL_POST (technical blog, dev article, documentation)
 - Voice: authoritative, precise, no hedging.
@@ -209,7 +209,7 @@ ELSE → CASUAL_COMMENT (safest default)
 - "narrative" → "story" / "explanation" / cut it
 - "unique" → describe what makes it different
 - "revolutionary" → describe what changed
-- "innovative" → describe what's new
+- "innovative" → describe what’s new
 - "ecosystem" → "system" / "set of tools"
 - "leverage" → "use"
 - "paradigm shift" → describe the actual change
@@ -219,17 +219,17 @@ ELSE → CASUAL_COMMENT (safest default)
 - "cutting-edge" → cite the specific advancement
 
 ### Hedging → remove or commit
-- "perhaps" / "maybe" / "possibly" → state it or don't
-- "it could be argued that" → argue it or don't
+- "perhaps" / "maybe" / "possibly" → state it or don’t
+- "it could be argued that" → argue it or don’t
 - "in some ways" → specify which ways
 - "to some extent" → specify the extent
 - "generally speaking" → be specific
 
 ### Filler constructions → delete
 - "It is worth noting that" → just state the thing
-- "It goes without saying" → then don't say it
+- "It goes without saying" → then don’t say it
 - "At the end of the day" → cut
-- "In today's world" → cut
+- "In today’s world" → cut
 - "As we all know" → cut
 - "Needless to say" → cut
 - "Not just X, but also Y" → state X and Y directly
@@ -237,9 +237,9 @@ ELSE → CASUAL_COMMENT (safest default)
 ### AI-typical phrasing → rephrase to human voice
 - "Let me break this down" → just break it down
 - "Great question!" → answer the question
-- "Here's the thing" → state the thing
+- "Here’s the thing" → state the thing
 - "Absolutely!" → state the answer
-- "I'd be happy to help" → just help
+- "I’d be happy to help" → just help
 
 ---
 
@@ -248,7 +248,7 @@ ELSE → CASUAL_COMMENT (safest default)
 1. **Each sentence adds information or direction.** Test: cover the sentence — does the text lose anything? No → delete.
 2. **The reader knows what to do next.** Test: can the reader take a concrete action? No → add direction.
 3. **The writing sounds natural when read aloud.** Test: does it sound like a person talking? No → rewrite.
-4. **No sentence exists only to transition or summarize.** Test: only says "now let's look at X"? Delete and start the next section directly.
+4. **No sentence exists only to transition or summarize.** Test: only says "now let’s look at X"? Delete and start the next section directly.
 
 ---
 
@@ -262,10 +262,10 @@ Pattern: "Generate 5 responses to the query, each in a separate <response> tag w
 Application: creative writing, dialogues/simulations, data synthesis, open-ended QA, brainstorm phase of QUORUM (IRIS).
 DEFAULT OFF for research/legal/factual — probabilities are poorly calibrated outside creative.
 Compatibility: Universal (stronger on capable models). Score: 90/100 creative / 60/100 factual (P2P-estimate).
-Source/Metrics: arXiv 2510.01171 (ICML'26): ×1.6–2.1 diversity, +25.7% human eval, recovers 66.8% base diversity.
+Source/Metrics: arXiv 2510.01171 (ICML’26): ×1.6–2.1 diversity, +25.7% human eval, recovers 66.8% base diversity.
 
 **BRUTAL_EDITOR** #WRITING_TECHNIQUE_BRUTAL_EDITOR (variant of Template L → db.md #DB_TEMPLATE_L)
-Hook at the end of the prompt: "First, score your answer 1-10 on clarity, usefulness, accuracy. Then rewrite it to hit a 10. Flag anything you're guessing at."
+Hook at the end of the prompt: "First, score your answer 1-10 on clarity, usefulness, accuracy. Then rewrite it to hit a 10. Flag anything you’re guessing at."
 NOT for reasoning-native models in reasoning mode (duplicates internal critique → downgrade).
 Compatibility: Claude/GPT/Gemini standard. Score: 90/100 writing/analysis (P2P-estimate).
 

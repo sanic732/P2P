@@ -77,7 +77,7 @@ Paths: `${CLAUDE_PLUGIN_ROOT}` is the plugin root. If it reaches you unsubstitut
 | `vendors/openai.md` | data: VENDOR: OPENAI (GPT) — prompting profile |
 | `vendors/qwen.md` | data: VENDOR: QWEN (Alibaba) — prompting profile |
 4. Plugin settings: language `${user_config.language}`, mode `${user_config.pilot_mode}`. They take precedence over
-   the defaults of `_preloader.md`; the user's own `p2p.config.md` and the commands `/lang`, `Q:`, `AUTO:`, `MANUAL:`, `MAX:`
+   the defaults of `_preloader.md`; the user’s own `p2p.config.md` and the commands `/lang`, `Q:`, `AUTO:`, `MANUAL:`, `MAX:`
    take precedence over them. `${user_config…}` visible instead of a value — no settings, use the defaults.
 
 ## Dispatcher `/p2p`
@@ -93,7 +93,7 @@ Unclear whether it is a task or a command — ask in one line, do not show the m
 tool is available — ask "What are we doing?" with the options of branch A. No tool — wait for a text answer.
 The line is in `${user_config.language}` if it is set, otherwise in the language of the environment or of the last message.
 
-**Branch A — menu.** Detect the environment; apply the user's `p2p.config.md` if given; show the menu of
+**Branch A — menu.** Detect the environment; apply the user’s `p2p.config.md` if given; show the menu of
 `core.md` completely, every item [0]–[42], without truncation; status line
 `[P2P 9.0 | Environment: {ENVIRONMENT} | Guardian: {ON/OFF}]`. A multiple-choice tool is available (AskUserQuestion
 in Claude Code and Cowork, its equivalent in chat) — offer right under the menu "What are we doing?":

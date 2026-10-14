@@ -71,7 +71,7 @@ Each file of the P2P 9.0 package — one line: file, importance, what is inside.
 | `vendors/qwen.md` | data | VENDOR: QWEN (Alibaba) — prompting profile. Specs, prices, statuses: live_specs.md MODEL_REGISTRY. |
 
 
-In the plugin alongside the folder `skills/p2p/`: `.claude-plugin/plugin.json` (manifest), `agents/` (8 QUORUM subagents), `skills/<command>/` (slashes `/p2p:<command>` — pointers to `commands/`), `INSTALL.md` (installation), `settings.example.json` (in the plugin root: a sample of permissions and hooks to copy into your project's
+In the plugin alongside the folder `skills/p2p/`: `.claude-plugin/plugin.json` (manifest), `agents/` (8 QUORUM subagents), `skills/<command>/` (slashes `/p2p:<command>` — pointers to `commands/`), `INSTALL.md` (installation), `settings.example.json` (in the plugin root: a sample of permissions and hooks to copy into your project’s
 `.claude/settings.json`; the plugin does not apply it).
 
 ---

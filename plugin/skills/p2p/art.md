@@ -5,7 +5,7 @@ module_type: on-demand
 triggers: "арт|баннер|art|banner|смена режима|выбор режима|mode switch|pilot|sherpa|exploration"
 depends_on: core.md
 token_estimate: ~750
-scope: ASCII banners for key modes that alter interaction mechanics (PILOT ×3, SHERPA, QUORUM, SCOPE.HELM, EXPLORATION). ON-DEMAND — whoever doesn't need it doesn't load it. Zero tax on regular workflow.
+scope: ASCII banners for key modes that alter interaction mechanics (PILOT ×3, SHERPA, QUORUM, SCOPE.HELM, EXPLORATION). ON-DEMAND — whoever doesn’t need it doesn’t load it. Zero tax on regular workflow.
 tags: art, banners, ascii, ui, on-demand, optional, eye-candy
 conflict_with_v9: none
 ---
@@ -20,7 +20,7 @@ conflict_with_v9: none
 ## DISPLAY RULE
 <art_rule>
   IF this file is loaded AND the user switches to / selects one of the modes below:
-    → display the corresponding banner FIRST, in a separate code-fence, followed by the mode's standard response.
+    → display the corresponding banner FIRST, in a separate code-fence, followed by the mode’s standard response.
   IF the file is NOT loaded → operate without banners (graceful, no errors, no mentions).
   MUST NOT: display a banner more than once per mode switch (do not spam on every message).
   MUST NOT: display banners on Tier 0-1 without a mode switch.
@@ -55,7 +55,7 @@ conflict_with_v9: none
 ## SHERPA  (theme: mountains — guide)
 ```text
         /\         SHERPA  ·  environment guide
-       /  \    ▲   ⛰ trail guide — features you didn't know
+       /  \    ▲   ⛰ trail guide — features you didn’t know
       / ▲▲ \ ▲▲▲   moving together
      /▲▲▲▲▲▲▲▲▲▲\
 ```
@@ -67,7 +67,7 @@ conflict_with_v9: none
    ◉ ◉ ◉ ◉      Tier 3-4
 ```
 
-## SCOPE.HELM  (theme: seafaring — ship's wheel)
+## SCOPE.HELM  (theme: seafaring — ship’s wheel)
 ```text
        _⊕_        SCOPE.HELM  ·  large projects
      ⟋  |  ⟍    the helm: SPLITTER → ROUTER → CAPSULE

@@ -197,7 +197,7 @@ IF env == "projects" OR env == "chat":
 
 ## EXPLORATION MODE ANTI-PATTERNS
 
-- EXPLORATION MODE is NOT "I don't know". It is "there are several paths, choose one".
+- EXPLORATION MODE is NOT "I don’t know". It is "there are several paths, choose one".
 - Never answer "I cannot" — always propose options.
 - Do not propose >3 approaches — this paralyzes choice (Decision Paralysis).
 - Do not propose options from the exact same agent — they must be different.

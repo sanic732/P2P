@@ -39,7 +39,7 @@ FOUNDATIONAL PRINCIPLE
 
 A RAG engine splits documents into chunks and returns the most
 relevant ones. LLM response quality = the quality of the chunks
-retrieved into context. The metaprompt author's task: make each chunk
+retrieved into context. The metaprompt author’s task: make each chunk
 self-contained, accurately named, and free from semantic
 noise from adjacent concepts.
 
@@ -70,7 +70,7 @@ One paragraph — one concept. One tag — one signal.
      a large corpus.
 
   2. LONG-CONTEXT INGESTION (everything into the window)
-     Sources are fed in their entirety into the model's large context window
+     Sources are fed in their entirety into the model’s large context window
      (currently 1M tokens in frontier models). Retrieval is not needed
      as long as the corpus fits within the window.
 
@@ -237,7 +237,7 @@ used_by: [ROUTER, TEMPLATES]
 // 00_INDEX.md is the most important file in the system for RAG.
 // It MUST be FIRST in the notebook / source list.
 // On any generic query, RAG will find it first
-// via the system's shared keywords.
+// via the system’s shared keywords.
 
 ─── MANDATORY INDEX SECTIONS ───
 
@@ -679,8 +679,8 @@ Each section of a module is constructed using the schema:
   Each file flags its version:
   version: X.Y
 
-  This enables the LLM to answer "this rule is from v1.0, current
-  version v1.1 modified it — see §N.2"
+  This enables the LLM to answer “this rule is from v1.0, current
+  version v1.1 modified it — see §N.2”
 
 ─── CHANGELOG FILE ───
 
@@ -707,29 +707,29 @@ Each section of a module is constructed using the schema:
 
 ─── MASTER PROMPT GUARD (insert into custom instructions / system prompt) ───
 
-  "Answer only on the basis of the sources in this notebook.
+  “Answer only on the basis of the sources in this notebook.
    For each substantive point, provide a citation:
    [file_id, §N, rag_anchor].
    If there is no exact citation, state:
    'The sources do not contain a direct answer. This reasoning is based
    on an interpretation of [file_id]'.
-   Any claim lacking source support = an error."
+   Any claim lacking source support = an error.”
 
 ─── GAP ANALYSIS PROMPT ───
 
-  "Using only the sources in this notebook, identify 3-5 categories
+  “Using only the sources in this notebook, identify 3-5 categories
    of documentation gaps along the following axes:
    (a) conceptual, (b) procedural, (c) example-based.
    For each gap: description + files containing the closest content +
    formulation of a question to the authors.
-   Format as a table. Every point MUST include a citation."
+   Format as a table. Every point MUST include a citation.”
 
 ─── CONFLICT DETECTION PROMPT ───
 
-  "Find contradictions across notebook sources.
+  “Find contradictions across notebook sources.
    Format: [file_id_A §N] asserts X,
            [file_id_B §M] asserts Y.
-   Suggest a resolution or mark as 'open question'."
+   Suggest a resolution or mark as 'open question'.”
 
 ─── POSITIVE FORMULATIONS (Trigger Words principle) ───
 
@@ -842,7 +842,7 @@ CHECK 5 — DEDUPLICATION:
 
 CHECK 6 — TROUBLESHOOT:
   Is the Symptom Index table present at the beginning of the file?
-  Are symptoms described using the user's vocabulary?
+  Are symptoms described using the user’s vocabulary?
   ❌ FIX: Add table per §8.
 
 CHECK 7 — TEMPLATES:

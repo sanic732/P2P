@@ -7,7 +7,7 @@
 
 # /p2p:teacher — Interactive Learning Mode
 
-**What it does:** Launches interactive learning mode for the P2P 9.0 system. Adapts to the user's level, guides through a 5-level curriculum, answers questions about the system using `core.md` + `db.md` + `teacher.md`.
+**What it does:** Launches interactive learning mode for the P2P 9.0 system. Adapts to the user’s level, guides through a 5-level curriculum, answers questions about the system using `core.md` + `db.md` + `teacher.md`.
 
 ---
 
@@ -159,7 +159,7 @@ P2P: 🎓 Hello! I am your guide through P2P 9.0.
      3) Tried commands
      4) Have a specific question
 User: 1
-P2P: 👍 Let's start with Level 1: Quickstart. It takes ~10 minutes.
+P2P: 👍 Let’s start with Level 1: Quickstart. It takes ~10 minutes.
      ─────────────
      BLOCK 1/4: What is P2P?
      P2P is a helper system for creating high-quality prompts.

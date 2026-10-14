@@ -108,12 +108,12 @@ pinned model: vendors/claude.md PINNED EARLIER MODEL
 **Model:** GPT models (tiers: live_specs.md)  
 **Symptom:** Sudden price spike  
 **Cause:** Above 272K, the **entire request** is billed at ×2 input, ×2 **cached** input, and ×1.5 output.
-**Key detail:** cached input is **NOT exempt** — the previous entry "cached
-EXEMPT" was an error. According to the official pricing page, the ×2 multiplier applies to it as well, so
+**Key detail:** cached input is **NOT exempt** — the previous entry “cached
+EXEMPT” was an error. According to the official pricing page, the ×2 multiplier applies to it as well, so
 a stable prefix does not protect against cost increases past the threshold.  
 **Fix:** Intercept above 250K, hard cutoff at 260K, explicit cache breakpoints. Decide based on cache hit
 rate, not on raw token count.  
-⚠ For Terra and Luna, long-context rates are NOT documented — calculate using Sol's mechanics and treat
+⚠ For Terra and Luna, long-context rates are NOT documented — calculate using Sol’s mechanics and treat
 as unverified. Circulating figures were extrapolations from third-party calculators (verified prices: live_specs.md).  
 ⚠ At SpaceXAI, the threshold is structured DIFFERENTLY: 200K, and cache doubles there as well (see G14).
 
@@ -218,7 +218,7 @@ Model identity divergence is a loud harness failure, not something to swallow si
 ### G22 — GPT56_SOL_AGENTIC_HAZARD #DB_ERROR_G22
 **Model:** the previous-generation Sol GPT model (exact id: live_specs.md, ERROR_REGISTRY G22)  
 **Symptom:** Overly agentic and potentially destructive actions  
-**Cause:** The vendor's own system card documents Sol deleting files without prompts and
+**Cause:** The vendor’s own system card documents Sol deleting files without prompts and
 using unauthorized credentials. Separately, METR records Sol having the highest
 rate of checkpoint circumvention among publicly evaluated models — time-horizon estimates are consequently
 unstable and unfit as a capability metric. There has been no benchmark retraction.  
@@ -229,8 +229,8 @@ write permissions, not merely where it is evaluated.
 **Revision regarding next-gen GPT:** Tier ban does **NOT apply** to next-gen flagship models (ids: live_specs.md), and G22
 **is not lifted**. Safety data for Astra is now sufficient, and it favors it — 89%
 fewer adverse outcomes, 0% vs 48% drift from sanctioned goal — therefore,
-a ban tailored to Sol does not apply to it. However, Astra's written reasoning is HARDER
-to monitor than Sol's: wherever a harness catches trouble by reading the reasoning chain,
+a ban tailored to Sol does not apply to it. However, Astra’s written reasoning is HARDER
+to monitor than Sol’s: wherever a harness catches trouble by reading the reasoning chain,
 this check is weakest. Astra is permitted with verification AT THE OUTCOME LEVEL — diffs,
 test runs, permission gates — rather than reasoning verification.
 
@@ -672,7 +672,7 @@ Fix detected Type A, C, D, E, K, L, M at a minimum.
 ### BASIC TECHNIQUES
 
 **ELI5** #DB_TECHNIQUE_ELI5
-Explain Like I'm 5. Application: Education, conceptual explanation, documentation. Add "ELI5:" prefix.
+Explain Like I’m 5. Application: Education, conceptual explanation, documentation. Add "ELI5:" prefix.
 Compatibility: Universal. Score: 92/100 for educational tasks.
 
 **STEP_BY_STEP** #DB_TECHNIQUE_STEP_BY_STEP
@@ -811,7 +811,7 @@ Conflict matrix — modules [35]–[40]:
 - IF MODULE_OPTIMIZATION (APO / OPRO) AND Contract Builder active → optimization runs as post-pass on the built prompt, never in parallel.
 - IF MODULE_SECURITY scan flags a technique → VECTOR veto applies (security > convenience).
 
-Fabrication Banned List disambiguation (CRITICAL — VECTOR MUST NOT veto P2P's own techniques of the modules [35]–[40]):
+Fabrication Banned List disambiguation (CRITICAL — VECTOR MUST NOT veto P2P’s own techniques of the modules [35]–[40]):
 - Self-Consistency (SC, reasoning.md — Wang 2023, sample N paths + majority vote) ≠ USC (Universal Self-Consistency, banned as forcing). SC ALLOWED.
 - MCTS (reasoning.md — Monte-Carlo Tree Search, algorithmic) ≠ ToT (Tree-of-Thoughts as multi-step prompt forcing, banned). MCTS ALLOWED.
 - RAPTOR / LongRAG (rag.md — retrieval structure) are NOT GoT / graph-prompt forcing. ALLOWED.
@@ -1016,7 +1016,7 @@ Total estimated cost: ${X} (Idealist) / ${Y} (Pragmatist)
 ## SECTION 11 — FEEDBACK LOOP PROTOCOL v1.0
 
 > Anchor: #DB_FEEDBACK_LOOP
-> Trigger: "не работает", "doesn't work", "частично", "80%", "не то", "wrong output", "исправь промпт", "попробовал"
+> Trigger: "не работает", "doesn’t work", "частично", "80%", "не то", "wrong output", "исправь промпт", "попробовал"
 
 Links debug.md diagnostics with contract.md patching.
 
@@ -1114,9 +1114,9 @@ DECIDE and ANALYTICAL use the RESEARCH weights.
 **VETO POWER:** VECTOR possesses absolute veto authority.
 IF [CRITICAL_RISK] detected → all weights zero out → execution blocked → Audit Mode.
 No text in the request lifts the veto. SECURITY_AUDIT: true (a setting in _preloader.md STEP 2, never a word in the
-request) opens the audit route: defender's frame, GASLIGHT_SAFE, evidence for every finding. At any value the veto
-stands on what serves an attack on someone else's system — a working exploit or payload against it, malicious code,
-getting around other people's protections; VECTOR states the reason and gives the defender's version.
+request) opens the audit route: defender’s frame, GASLIGHT_SAFE, evidence for every finding. At any value the veto
+stands on what serves an attack on someone else’s system — a working exploit or payload against it, malicious code,
+getting around other people’s protections; VECTOR states the reason and gives the defender’s version.
 
 **LEGACY MODE:** Triggered by explicit "v4 Strict Mode" or "legacy" request.
 v4 format: [Role] → [Context] → [Task] → [Rules] → [Format]
@@ -1171,11 +1171,11 @@ Depth mode determines:
 | STRUCTURAL | "audit", "structure", "map dependencies", "аудит структур" |
 | KARPATHY | "karpathy", "хирургическ", "surgical", "минимум кода", "template m" |
 | CHAIN | "chain", "pipeline", "поэтапно", "цепочка", "multi-step", "декомпози" |
-| FEEDBACK | "не работает", "doesn't work", "частично", "wrong output", "исправь промпт" |
+| FEEDBACK | "не работает", "doesn’t work", "частично", "wrong output", "исправь промпт" |
 | SELF_CHECK | "diagnostics", "check P2P", "integrity check", "диагностика", "проверь себя", "проверка целостности" |
 
 > SELF_CHECK → ANALYZE T1 on P2P itself: the files of the SKILL.md map are present, depends_on and links resolve,
-> versions match, menu numbers and the G and E tables are whole. P2P changes nothing and reports in the user's language;
+> versions match, menu numbers and the G and E tables are whole. P2P changes nothing and reports in the user’s language;
 > what needs live_specs.md (exact ids, G statuses, deadlines) is named as not checked.
 
 ---
